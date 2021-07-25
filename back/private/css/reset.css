@@ -1,0 +1,23 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: 0;
+    line-height: 1;
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+    position: relative;
+    background-color: var(--background-blue);
+}
+
+input,
+button,
+textarea {
+    outline: none;
+}
+
+* {
+    direction: ltr;
+}

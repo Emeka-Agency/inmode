@@ -1,0 +1,354 @@
+#modale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0008;
+    opacity: 0;
+}
+
+#modale.opened {
+    z-index: 6;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out 0s;
+}
+
+#modale #modale-container {
+    width: 60%;
+    height: fit-content;
+    max-height: 90%;
+    background-color: var(--main-blue);
+    border-top: 5px solid var(--main-purple);
+    margin: 0 auto;
+    top: 50%;
+    position: relative;
+    box-shadow: var(--shadow-second-black) 2.5px 2.5px 4px;
+    transform: translateY(-50%);
+}
+
+#modale #modale-container.tiny-modale {
+    width: 40%;
+    min-width: 300px;
+    max-width: 500px;
+}
+
+#modale #modale-container.big-modale {
+    width: 60%;
+    min-width: 500px;
+    max-width: 800px;
+}
+
+#modale #modale-container.fullscreen-modale {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    border-top: none;
+    top: 0;
+    box-shadow: none;
+    transform: none;
+}
+
+#modale #modale-container #modale-content {
+
+}
+
+#modale #modale-container #modale-content h2 {
+    margin-bottom: 15px;
+    color: var(--text-white);
+    font-weight: bold;
+    letter-spacing: 1.2px;
+}
+
+#modale #modale-container #modale-content form {
+    padding: 25px 0;
+}
+
+#modale #modale-container #modale-content form input {
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 14px;
+    margin: 10px 0;
+    background-color: var(--background-blue);
+    border: none;
+    box-shadow: var(--shadow-black) 2.5px 2.5px 4px;
+    caret-color: var(--text-white);
+    color: var(--text-white);
+}
+
+#modale #modale-container #modale-content form button {
+    width: 100%;
+    padding: 10px 14px;
+    margin: 10px 0;
+    background-color: var(--background-blue);
+    border: none;
+    box-shadow: var(--shadow-black) 2.5px 2.5px 4px;
+    color: var(--text-white);
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out 0s,
+                color 0.3s ease-in-out 0s;
+}
+
+#modale #modale-container #modale-content form button:hover {
+    box-shadow: var(--pure-black) 3.5px 3.5px 5px;
+    color: var(--pure-white);
+}
+
+#modale #modale-container #modale-content form .form-message,
+#modale #modale-container #modale-content form .form-message.success,
+#modale #modale-container #modale-content form .form-message.error,
+#modale #modale-container #modale-content form .form-message.global,
+#modale #modale-container #modale-content form .form-message.global.success,
+#modale #modale-container #modale-content form .form-message.global.error {
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    line-height: 14px;
+    margin-bottom: 2px;
+    padding: 0px 14px;
+}
+
+#modale #modale-container #modale-content form .form-message,
+#modale #modale-container #modale-content form .form-message.global {
+    color: var(--text-white);
+}
+
+#modale #modale-container #modale-content form .form-message.success,
+#modale #modale-container #modale-content form .form-message.global.success {
+    color: var(--text-success);
+}
+
+#modale #modale-container #modale-content form .form-message.error,
+#modale #modale-container #modale-content form .form-message.global.error {
+    color: var(--text-error);
+}
+
+#modale #modale-container #modale-content #modale-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 50px;
+    font-weight: 400;
+    color: var(--text-white);
+    cursor: pointer;
+    transform: rotate(45deg);
+}
+
+#modale #modale-container #modale-content #modale-close:hover {
+    color: var(--main-purple);
+}
+
+/* *************************************************** */
+/* CONFIG MODALE */
+/* *************************************************** */
+
+#modale #modale-container #modale-content .config-modale {
+    padding: 50px;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.config-modale {
+
+}
+
+.config-modale .title {
+    font-size: 28px;
+    color: var(--text-white);
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.config-modale .input-form {
+    padding: 25px;
+}
+
+.config-modale .input-form [for="bo-descr"],
+.config-modale .input-form [for="bo-short"],
+.config-modale .input-form [for="bo-free"],
+.config-modale .input-form [for="bo-tag"],
+.config-modale .input-form [for="bo-icon"],
+.config-modale .input-form [for="bo-name"] {
+    font-size: 20px;
+    color: var(--text-second-white);
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.config-modale .input-form [for="bo-descr"] {}
+.config-modale .input-form [for="bo-short"] {}
+.config-modale .input-form [for="bo-free"] {}
+.config-modale .input-form [for="bo-tag"] {}
+.config-modale .input-form [for="bo-icon"] {}
+.config-modale .input-form [for="bo-name"] {}
+
+.config-modale .input-form .input-field {
+
+}
+
+.config-modale .input-form .toggle-field.input-field {
+
+}
+
+.config-modale .input-form .toggle-field.input-field .build-is-free {
+    font-size: 18px;
+    color: var(--text-white);
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+.config-modale .input-form .toggle-field.input-field .build-is-free,
+.config-modale .input-form .toggle-field.input-field .build-is-free + .switch-component {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.config-modale .input-form .toggle-field.input-field .build-is-free + .switch-component {
+    
+}
+
+.config-modale .input-form .select-field.input-field .select-component {
+
+}
+
+.config-modale .input-form .select-field.input-field .select-component select {
+    padding: 4px 16px;
+    background-color: var(--background-blue);
+    border: none;
+    box-shadow: var(--shadow-second-black) 2.5px 2.5px 4px;
+    color: var(--text-white);
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.config-modale .input-form .input-field .guide-param {
+    max-width: 500px;
+    width: 100%;
+    padding: 5px 8px;
+    margin: 5px 7px 15px;
+    background-color: var(--background-blue);
+    box-shadow: var(--shadow-second-black) 2.5px 2.5px 4px;
+    border: none;
+    color: var(--text-white);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.config-modale .input-form .input-field .guide-param:focus {
+    color: var(--text-second-purple);
+}
+
+.config-modale .input-form .input-field .guide-param {
+    color: var(--text-purple);
+}
+
+.config-modale .input-form .input-field img.guide-param {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.config-modale .input-form .input-field .guide-param::placeholder {
+    color: var(--text-second-white);
+}
+
+.config-modale .input-form .input-field .form-field-icon,
+.config-modale .input-form .toggle-field .form-field-error {
+    display: block;
+}
+
+.config-modale .input-form .input-field .form-field-icon {
+
+}
+
+.config-modale .input-form .toggle-field .form-field-error {
+
+}
+
+.config-modale .input-form .input-field .form-field-error {
+    font-size: 13px;
+    display: block;
+    color: var(--error);
+    font-weight: bold;
+}
+
+.config-modale .input-form .toggle-field,
+.config-modale .input-form .select-field {
+    padding: 5px 8px;
+    margin: 5px 7px 15px;
+}
+
+.config-modale .input-form .creer-guide {
+    padding: 8px 20px;
+    margin: 15px 7px;
+    background-color: var(--main-purple);
+    color: var(--text-white);
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    float: right;
+    border: none;
+    transition: background 0.1s linear 0s;
+}
+
+.config-modale .input-form .creer-guide:hover {
+    background-color: var(--background-purple);
+    cursor: pointer;
+}
+
+/* *************************************************** */
+/* SIGNUP MODALE */
+/* *************************************************** */
+
+#modale-signup {
+    padding: 25px;
+}
+
+#modale-signup h2 {
+    
+}
+
+#modale-signup form {
+    
+}
+
+#modale-signup input {
+    
+}
+
+#modale-signup button {
+    
+}
+
+/* *************************************************** */
+/* LOGIN MODALE */
+/* *************************************************** */
+
+#modale-login {
+    padding: 25px;
+}
+
+#modale-login h2 {
+    
+}
+
+#modale-login form {
+    
+}
+
+#modale-login input {
+    
+}
+
+#modale-login button {
+    
+}
+
+

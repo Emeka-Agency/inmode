@@ -1,8 +1,0 @@
-# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
-PassengerAppRoot "/back/orders"
-PassengerBaseURI "/back/orders"
-PassengerNodejs "/back/orders/10/bin/node"
-PassengerAppType node
-PassengerStartupFile app.js
-PassengerAppLogFile "/back/orders/logs/logs.log"
-# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END

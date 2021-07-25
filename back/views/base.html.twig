@@ -1,0 +1,61 @@
+{% set popper_v = '2.9.2@' %}
+{% set tippy_v = '6.3.1@' %}
+{% set dragula_v = '3.7.2@' %}
+
+<html lang="en">
+
+    {% include "sections/head.html.twig" %}
+
+    <body data-route="{{ route }}" class="{{ route }}">
+
+        {# {% if route != "forbidden" %} #}
+            {% include "sections/header.html.twig" %}
+        {# {% endif %} #}
+
+        <div id="wrapper">
+            {% block body %}{% endblock %}
+        </div>
+
+        
+        {# {% if route != "forbidden" %} #}
+            {% include "sections/footer.html.twig" %}
+            {% include "components/Modale/index.html.twig" %}
+        {# {% endif %} #}
+
+        {# {% if route != "forbidden" %} #}
+            {# JS #}
+            {% if _dev and necessiteTippy(route) %}
+                <!-- Development -->
+                <script src="{{- particule_url -}}/private/libs/popper/js/{{- popper_v -}}popper.min.js"></script>
+                <script src="{{- particule_url -}}/private/libs/tippy/js/{{- tippy_v -}}tippy-bundle.umb.js"></script>
+            {% endif %}
+            {% if _prod and necessiteTippy(route) %}
+                <!-- Production -->
+                <script src="{{- particule_url -}}/private/libs/popper/js/{{- popper_v -}}popperjs_core.js"></script>
+                <script src="{{- particule_url -}}/private/libs/tippy/js/{{- tippy_v -}}tippy.js"></script>
+            {% endif %}
+            <script src="{{- particule_url -}}/public/js/is-type.js"></script>
+            <script src="{{- particule_url -}}/public/js/selectors.js"></script>
+            <script src="{{- particule_url -}}/public/js/tools.js"></script>
+            <script src="{{- particule_url -}}/public/js/const.js"></script>
+            <script src="{{- particule_url -}}/public/js/modale.js"></script>
+            {% if estAdmin() %}
+                <script src="{{- particule_url -}}/private/js/const.js"></script>
+                <script src="{{- particule_url -}}/private/js/html.js"></script>
+                <script src="{{- particule_url -}}/private/js/tippy.js"></script>
+                <script src="{{- particule_url -}}/private/js/modale.js"></script>
+                <script src="{{- particule_url -}}/private/js/order.js"></script>
+            {% endif %}
+            {% if necessiteDragula(route) %}
+                <script src="{{- particule_url -}}/private/libs/dragula/js/{{- dragula_v -}}dragula.js"></script>
+                <script src="{{- particule_url -}}/private/js/dragula.js"></script>
+            {% endif %}
+            <script src="{{- particule_url -}}/{{ estConnecte() == true ? 'private' : 'public'}}/js/user.js"></script>
+            {% if estAdmin() %}
+                <script src="{{- particule_url -}}/private/js/main.js"></script>
+            {% endif %}
+            <script src="{{- particule_url -}}/public/js/main.js"></script>
+        {# {% endif %} #}
+    </body>
+
+</html>

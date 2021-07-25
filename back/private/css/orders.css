@@ -1,0 +1,265 @@
+.order-item {
+    width: 100%;
+    border-top: none;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* .order-item.order-opened::after {
+    content: "";
+    height: 3px;
+    width: 60%;
+    position: absolute;
+    bottom: -5px;
+    left: 20%;
+    background-color: var(--background-electric-blue);
+} */
+
+.order-item .order-presentation {
+    line-height: 1.2;
+    padding: 5px 10px;
+    width: max-content;
+    border-bottom: 2px solid var(--pure-white);
+    cursor: pointer;
+}
+
+.order-item .order-presentation:hover {
+    background-color: #59b7b340;
+}
+
+.order-item .order-presentation .order-presentation-reference,
+.order-item .order-presentation .order-presentation-paye,
+.order-item .order-presentation .order-presentation-statut,
+.order-item .order-presentation .order-presentation-total {
+    padding: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+    color: var(--text-half-blue);
+}
+
+.order-item .order-presentation .order-presentation-reference {
+    color: var(--text-blue);
+}
+
+.order-item .order-presentation .order-presentation-paye {
+    
+}
+
+.order-item .order-presentation .order-presentation-paye.paid {
+    color: var(--text-success);
+}
+
+.order-item .order-presentation .order-presentation-paye.not-paid {
+    color: var(--text-error);
+}
+
+.order-item .order-presentation .order-presentation-statut {
+    
+}
+
+.order-item .order-presentation .order-presentation-total {
+    
+}
+
+.order-item .order-presentation .order-presentation-total::after {
+    content: " €";
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--text-half-blue);
+}
+
+.order-item .order-details {
+    width: 100%;
+    height: auto;
+    max-height: 0%;
+    padding: 0px 10px;
+    transform-origin: top;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s,
+                max-height 0.3s ease-out 0s,
+                padding 0.3s ease-out 0s;
+}
+
+.order-item.order-opened .order-details {
+    max-height: 100%;
+    padding: 20px 10px;
+    background: #59b7b310;
+    border-radius: 0 20px 20px 0;
+    transition: height 0.4s ease-out 0s,
+                max-height 0.4s ease-out 0s,
+                padding 0.4s ease-out 0s;
+}
+
+.order-item .order-details .order-details-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--text-white);
+}
+
+.order-item .order-details .order-details-big-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--text-blue);
+    margin-bottom: 10px;
+    line-height: 26px;
+}
+
+.order-item .order-details .order-reference,
+.order-item .order-details .order-paye,
+.order-item .order-details .order-statut,
+.order-item .order-details .order-total,
+.order-item .order-details .order-date,
+.order-item .order-details .order-prenom,
+.order-item .order-details .order-nom,
+.order-item .order-details .order-societe,
+.order-item .order-details .order-fraislivraison,
+.order-item .order-details .order-paiement,
+.order-item .order-details .order-pays,
+.order-item .order-details .order-tva_intra,
+/* .order-item .order-details .order-articles, */
+.order-item .order-details .order-articles .order-article,
+.order-item .order-details .order-articles .order-article .order-article-reference,
+.order-item .order-details .order-articles .order-article .order-article-nom,
+.order-item .order-details .order-articles .order-article .order-article-quantite,
+.order-item .order-details .order-articles .order-article .order-article-total,
+/* .order-item .order-details .order-livraison, */
+.order-item .order-details .order-livraison .order-livraison-prenom,
+.order-item .order-details .order-livraison .order-livraison-nom,
+.order-item .order-details .order-livraison .order-livraison-societe,
+.order-item .order-details .order-livraison .order-livraison-adresse,
+.order-item .order-details .order-livraison .order-livraison-code,
+.order-item .order-details .order-livraison .order-livraison-ville,
+.order-item .order-details .order-livraison .order-livraison-telephone,
+.order-item .order-details .order-livraison .order-livraison-mail,
+.order-item .order-details .order-livraison .order-livraison-pays,
+/* .order-item .order-details .order-facturation, */
+.order-item .order-details .order-facturation .order-facturation-prenom,
+.order-item .order-details .order-facturation .order-facturation-nom,
+.order-item .order-details .order-facturation .order-facturation-societe,
+.order-item .order-details .order-facturation .order-facturation-adresse,
+.order-item .order-details .order-facturation .order-facturation-code,
+.order-item .order-details .order-facturation .order-facturation-ville,
+.order-item .order-details .order-facturation .order-facturation-telephone,
+.order-item .order-details .order-facturation .order-facturation-mail,
+.order-item .order-details .order-facturation .order-facturation-pays {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--text-second-white);
+    padding: 5px 0;
+    line-height: 20px;
+}
+
+.order-item .order-details * {
+    font-size: 16px;
+    font-weight: normal;
+    color: var(--text-second-white);
+    line-height: 20px;
+}
+
+.order-item .order-details .order-articles,
+.order-item .order-details .order-livraison,
+.order-item .order-details .order-facturation {
+    font-size: 0;
+}
+
+.order-item .order-details .order-articles {
+
+}
+
+.order-item .order-details .order-articles .order-article {
+    width: 100%;
+    padding: 2px;
+    margin: 3px 0;
+    border-left: 2px dashed var(--background-electric-blue);
+    position: relative;
+}
+
+.order-item .order-details .order-articles .order-article::after {
+    content: "";
+    width: 30%;
+    border: 1px dashed var(--background-electric-blue);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.order-item .order-details .order-articles .order-article .order-article-reference {
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.order-item .order-details .order-articles .order-article .order-article-nom {
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.order-item .order-details .order-articles .order-article .order-article-quantite {
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.order-item .order-details .order-articles .order-article .order-article-total {
+    padding: 0;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+
+.order-item .order-details .order-detail {
+
+}
+
+.order-item .order-details .order-detail.order-detail-demi {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+
+
+.order-item .order-details .order-reference {}
+.order-item .order-details .order-statut {}
+.order-item .order-details .order-date {}
+.order-item .order-details .order-paye {}
+.order-item .order-details .order-paye.paid {
+    color: var(--text-success);
+}
+.order-item .order-details .order-paye.not-paid {
+    color: var(--text-error);
+}
+.order-item .order-details .order-facturation {}
+.order-item .order-details .order-facturation .order-facturation-prenom {}
+.order-item .order-details .order-facturation .order-facturation-nom {}
+.order-item .order-details .order-facturation .order-facturation-societe {}
+.order-item .order-details .order-facturation .order-facturation-adresse {}
+.order-item .order-details .order-facturation .order-facturation-code {}
+.order-item .order-details .order-facturation .order-facturation-ville {}
+.order-item .order-details .order-facturation .order-facturation-pays {}
+.order-item .order-details .order-facturation .order-facturation-telephone {}
+.order-item .order-details .order-facturation .order-facturation-mail {}
+.order-item .order-details .order-livraison {}
+.order-item .order-details .order-livraison .order-livraison-prenom {}
+.order-item .order-details .order-livraison .order-livraison-nom {}
+.order-item .order-details .order-livraison .order-livraison-societe {}
+.order-item .order-details .order-livraison .order-livraison-adresse {}
+.order-item .order-details .order-livraison .order-livraison-code {}
+.order-item .order-details .order-livraison .order-livraison-ville {}
+.order-item .order-details .order-livraison .order-livraison-pays {}
+.order-item .order-details .order-livraison .order-livraison-telephone {}
+.order-item .order-details .order-livraison .order-livraison-mail {}
+.order-item .order-details .order-nom {}
+.order-item .order-details .order-prenom {}
+.order-item .order-details .order-societe {}
+.order-item .order-details .order-fraislivraison {}
+.order-item .order-details .order-total {}
+.order-item .order-details .order-paiement {}
+.order-item .order-details .order-pays {}
+.order-item .order-details .order-tva_intra {}

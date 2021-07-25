@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div id="forbidden">
+        {% if request_params is empty %}
+            {{ forbidden_reason() }}
+        {% elseif request_params.f_val is defined %}
+            {{ forbidden_reason(request_params['f_val']) }}
+        {% endif %}
+        <br/>
+        If it's an error, please contact an administrator if that problem persist.
+    </div>
+{% endblock %}

@@ -1,1 +1,15 @@
-save_mail
+# Vendor
+
+/vendor
+/vendor/*
+
+# Locals
+
+/logs
+/*.zip
+/data
+/divers
+.htaccess
+*.md
+
+# Private

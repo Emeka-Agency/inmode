@@ -1,0 +1,23 @@
+{% set link = link is defined ? link : 'home' %}
+{% set link_param = link_param is defined ? link_param : null %}
+{% set title = title is defined ? title : 'Home' %}
+{% set internal_link = internal_link is defined ? internal_link : false %}
+{% set label = label is defined ? label : "" %}
+{% set zone = zone is defined ? zone : false %}
+
+{% if internal_link == true %}
+    <a
+        href="{{ avoirURL(link, link_param) }}"
+        class="{{ zone == true ? "zone-link" : "" }}"
+    >
+        {{ label }}
+    </a>
+{% else %}
+    <a
+        href="{{ avoirURL(link, link_param) }}"
+        title="{{ title }}"
+        class="{{ zone == true ? "zone-link" : "" }}"
+    >
+        {{ label }}
+    </a>
+{% endif %}

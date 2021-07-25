@@ -1,0 +1,8 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="page-title">Orders</div>
+    {% for order in orders %}
+        {% include "components/Orders/presentation.html.twig" %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,215 @@
+* {
+    appearance: auto;
+}
+
+body.no-scroll,
+#main.no-scroll {
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    max-height: 100vh;
+}
+
+main {
+    margin-top: 50px;
+    position: relative;
+    z-index: 0;
+    background-color: var(--background-white);
+}
+
+/* H-Elements */
+
+h1 {
+    font-size: 28px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 22px;
+}
+h4 {
+    font-size: 20px;
+}
+h5 {
+    font-size: 18px;
+}
+h6 {
+    font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    font-weight: 500;
+}
+
+/* CONTAINER */
+
+.container {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (max-width: 1719px) {
+    .container,
+    .container-1660 {
+        width: 100%;
+        max-width: 100vw;
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+}
+
+@media (min-width: 425px) {
+    .container {
+        max-width: 400px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 680px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1080px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1260px;
+    }
+}
+
+/* LISTS */
+
+li,
+ul,
+ol {
+    list-style: none;
+}
+
+/* ABSOLUTE LINK */
+
+.zone-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* IMAGE */
+
+.background-image {
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: content;
+}
+
+/* FORM */
+
+input,
+select,
+button {
+    outline: none;
+}
+
+/* input {
+
+} */
+
+/* select {
+
+} */
+
+/* button {
+
+} */
+
+/* input[type="text"],
+input[type="text"]:hover,
+input[type="text"]::placeholder {} */
+
+/* input[type="text"] {} */
+/* input[type="text"]:hover {} */
+/* input[type="text"]::placeholder {} */
+
+/* input[type="number"],
+input[type="number"]:hover,
+input[type="number"]::placeholder {} */
+
+/* input[type="mail"] {} */
+/* input[type="mail"]:hover {} */
+/* input[type="mail"]::placeholder {} */
+
+/* input[type="number"],
+input[type="number"]:hover,
+input[type="number"]::placeholder {} */
+
+/* input[type="mail"] {} */
+/* input[type="mail"]:hover {} */
+/* input[type="mail"]::placeholder {} */
+
+/* input[type="checkbox"],
+input[type="checkbox"]:hover,
+input[type="checkbox"]::placeholder {} */
+
+/* input[type="radio"] {} */
+/* input[type="radio"]:hover {} */
+/* input[type="radio"]::placeholder {} */
+
+
+/* input[type="checkbox"],
+input[type="checkbox"]:hover,
+input[type="checkbox"]::placeholder {} */
+
+
+/* input[type="radio"] {} */
+/* input[type="radio"]:hover {} */
+/* input[type="radio"]::placeholder {} */
+
+/* input[type="submit"],
+input[type="submit"]:hover,
+input[type="submit"]::placeholder {} */
+
+/* input[type="submit"] {} */
+/* input[type="submit"]:hover {} */
+/* input[type="submit"]::placeholder {} */
+
+
+/* button[type="button"],
+button[type="button"]:hover,
+button[type="button"]::placeholder {} */
+
+/* button[type="button"] {} */
+/* button[type="button"]:hover {} */
+/* button[type="button"]::placeholder {} */
+
+
+/* select,
+select:hover,
+select::placeholder {} */
+
+/* select {} */
+/* select:hover {} */
+/* select::placeholder {} */

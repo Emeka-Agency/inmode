@@ -1,0 +1,57 @@
+<header>
+    <div class="header-left-part">
+        {% include "components/Link/index.html.twig" with {zone : true} %}
+        <img
+            src="{{ avoirCheminImage('favicon.ico') }}"
+            srcSet="{{ avoirCheminImage('favicon.ico') }}"
+            alt="favicon"
+            class="image"
+        />
+        {# <div class="user-pseudo">{{ user('pseudo') }}</div> #}
+        {# <div class="user-highest-role">{{ user('role') }}</div> #}
+    </div>
+    <div class="header-right-part">
+        <div class="header-menus">
+            {% if estAdmin() %}
+                <div class="header-menu">
+                    <span class="menu-title">
+                        Commandes
+                        {% include "components/Link/index.html.twig" with {zone : true, link : "orders"} %}
+                    </span>
+                </div>
+            {% endif %}
+            {% if estAdmin() %}
+                <div class="header-menu">
+                    <span class="menu-title">
+                        Mails
+                        {% include "components/Link/index.html.twig" with {zone : true, link : "mails"} %}
+                    </span>
+                </div>
+            {% endif %}
+            {% if estConnecte() == false %}
+                <div id="header-signup" class="header-menu">
+                    <span class="menu-title">
+                        Sign up
+                        {# {% include "components/Link/index.html.twig" with {zone : true, link : "signup"} %} #}
+                    </span>
+                </div>
+            {% endif %}
+            {% if estConnecte() == false %}
+                <div id="header-login" class="header-menu">
+                    <span class="menu-title">
+                        Login
+                        {# {% include "components/Link/index.html.twig" with {zone : true, link : "signin"} %} #}
+                    </span>
+                </div>
+            {% endif %}
+            {% if estConnecte() == true %}
+                <div class="header-menu">
+                    <span class="menu-title">
+                        Logout
+                        {% include "components/Link/index.html.twig" with {zone : true, link : "logout"} %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</header>
