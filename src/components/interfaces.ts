@@ -328,6 +328,7 @@ export interface  InmodePanel_SellingNext_Interface {
         Price: number;
         Name: string;
         Pack: string;
+        Reference?: string;
     };
     export interface InmodePanel_Product_Buyer_Interface {
         Firstname?: string;

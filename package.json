@@ -7,7 +7,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
-    "crypto-js": "^4.0.0",
+    "crypto-js": "^4.1.1",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
     "flickity": "^2.2.2",
@@ -24,7 +24,6 @@
     "gatsby-plugin-typescript": "^2.12.1",
     "gatsby-source-filesystem": "^2.11.1",
     "gatsby-source-graphql": "^2.14.0",
-    "gatsby-source-instagram": "^0.9.0",
     "gatsby-source-mysql": "^2.2.3",
     "gatsby-source-strapi": "0.0.12",
     "gatsby-transformer-sharp": "^2.12.1",
@@ -38,14 +37,14 @@
     "react-flickity-component": "^3.6.1",
     "react-helmet": "^6.1.0",
     "react-slick": "^0.27.14",
-    "typescript": "^4.3.4",
+    "typescript": "^4.3.5",
     "typescript-eslint": "0.0.1-alpha.0"
   },
   "devDependencies": {
-    "@types/crypto-js": "^4.0.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.1",
-    "@typescript-eslint/parser": "^4.28.1",
-    "eslint": "^7.29.0",
+    "@types/crypto-js": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.28.4",
+    "@typescript-eslint/parser": "^4.28.4",
+    "eslint": "^7.31.0",
     "gatsby-plugin-sitemap": "^3.3.0",
     "gatsby-source-instagram": "^0.9.0",
     "prettier": "^2.3.2"
@@ -62,7 +61,10 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "update_all": "npm update --save/--save-dev -f"
+    "update_all": "npm update --save/--save-dev -f",
+    "launch_dev": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=development npm run develop",
+    "launch_stage": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=staging npm run develop",
+    "launch_prod": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=production npm run build && gatsby serve"
   },
   "repository": {
     "type": "git",

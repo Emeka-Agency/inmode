@@ -75,8 +75,8 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        // apiURL: `${process.env.STRAPI_URL}`,
-        apiURL: `https://inmode-content.emeka.fr`,
+        apiURL: `${process.env.STRAPI_URL}`,
+        // apiURL: `https://inmode-content.emeka.fr`,
         contentTypes: [ // List of the Collection Types you want to be able to request from Gatsby.
           `addon`,
           `product`,

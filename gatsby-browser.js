@@ -8,7 +8,6 @@
 
 import React from 'react';
 
-
 import CartWrapper from './src/components/CartWrapper';
 
 export const wrapPageElement = ({ element, props }) => (

@@ -86,8 +86,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const [pay_params, setPayParams] = React.useState({
         signature: "",
         actionMode: "INTERACTIVE",
-        // vads_ctx_mode: "TEST",
-        vads_ctx_mode: "PRODUCTION",
+        vads_ctx_mode: "TEST",
+        // vads_ctx_mode: "PRODUCTION",
         currency: currencies.EUR,
         pageAction: "PAYMENT",
         siteId: "",
@@ -290,7 +290,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         return Object.keys(form_fields).sort().map((key:string):string => {return form_fields[key]}).join('+');
     }
 
-    const get_signature = async(str:string):Promise<{signature?:string}> => {
+    const get_signature = async(str:string):Promise<{status:string, signature?:string, message?:string}> => {
         let promise:Promise<{signature?:string}>;
         let vars:RequestInit = {
             method: "POST",
@@ -340,8 +340,14 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         _temp["vads_url_refused"] = pay_params.url_refused;
 
         _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
-        
-        const { signature } = await get_signature(payment_str(_temp));
+
+        const _signature = await get_signature(payment_str(_temp));
+
+        if(_signature.status == 'error' && !sepa) {
+            return false;
+        }
+
+        const signature = _signature.signature;
 
         _temp['signature'] = signature || '';
 

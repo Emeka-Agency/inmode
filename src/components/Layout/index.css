@@ -4954,6 +4954,7 @@ input[type="submit"].neumorphic:hover,
 
 .addon-what-treat .treats {
     display: inline-flex;
+    width: 100%;
 }
 
 .addon-what-treat .treats .treat-part {
@@ -6601,7 +6602,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     font-weight: 700;
 }
 
-.contact-page.contact-form input[type="submit"] {
+.contact-page.contact-form button[type="submit"] {
     display: block;
     min-width: 150px;
     width: max-content;

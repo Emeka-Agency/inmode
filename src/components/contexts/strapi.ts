@@ -51,6 +51,7 @@ function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Ord
             (datas && typeof datas.ZIP == 'number' && datas.ZIP > 0)
             ? datas.ZIP : "ErrorZIP",
         City: datas && typeof datas.City == 'string' && datas.City.length  ? datas.City : "ErrorCity",
+        Society: datas && typeof datas.Society == 'string' && datas.Society.length ? datas.Society : null
     }
 }
 
@@ -97,6 +98,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
                 Price: article.price,
                 Name: article.name,
                 Pack: article.pack_name(),
+                Reference: article.reference,
             }
         }),
         Billing: {
@@ -141,7 +143,7 @@ export async function create_object(body:InmodePanel_Order_Interface, url:string
     let vars:RequestInit = {
         method: "POST",
         headers: new Headers({'content-type': 'application/json'}),
-        mode: 'cors',
+        mode: 'no-cors',
         cache: 'default',
         body: JSON.stringify(body)
     };
@@ -154,7 +156,7 @@ export async function load_object(reference:string, url:string):Promise<Response
     let vars:RequestInit = {
         method: "POST",
         headers: new Headers({'content-type': 'application/json'}),
-        mode: 'cors',
+        mode: 'no-cors',
         cache: 'default',
         body: JSON.stringify({reference: reference})
     };

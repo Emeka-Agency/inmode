@@ -77,8 +77,9 @@ const ContactForm = ({ from }:ContactForm) => {
         };
         fetch(
             // SWITCH LOCALHOST
-            `https://inmodemd.fr/back/app.php`,
-            // `http://localhost/inmode/back/app.php`,
+            `http://localhost/inmode/back/mails`,
+            // `https://inmodemd.fr/back/mails`,
+            // `http://localhost/inmode/back/mails`,
             request_init,
         )
         .then((promise) => {
@@ -226,7 +227,7 @@ const ContactForm = ({ from }:ContactForm) => {
             </div>
             <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-            <input type="submit" className="submit transition" placeholder={submitText}/>
+            <button type="submit" className="submit transition">{submitText}</button>
         </form>
     );
 };

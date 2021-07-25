@@ -89,8 +89,9 @@ const ContactUs = () => {
         };
         fetch(
             // SWITCH LOCALHOST
-            `https://inmodemd.fr/back/app.php`,
-            // `http://localhost/inmode/back/app.php`,
+            `http://localhost/inmode/back/mails`,
+            // `https://inmodemd.fr/back/mails`,
+            // `http://localhost/inmode/back/mails`,
             _request_init
         )
         .then((promise) => {
