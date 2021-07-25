@@ -7,7 +7,10 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "launch_dev": "cls && NODE_ENV=development npm run build --clean && NODE_ENV=development npm run develop",
+    "launch_stage": "cls && NODE_ENV=staging npm run build --clean && NODE_ENV=staging npm run develop",
+    "launch_prod": "cls && NODE_ENV=production npm run build --clean && NODE_ENV=production npm run develop"
   },
   "devDependencies": {},
   "dependencies": {
