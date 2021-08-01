@@ -32,10 +32,17 @@ const PaymentCancelPage = () => {
     React.useEffect(() => {
         let _test:any = get_url_params();
         setParams(new Object({..._test}));
-        // delete _test.signature;
-        // verify_signature();
-        order_load(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
-        window.history.pushState('', page_title, '/payment/cancel/');
+        if(
+            (_test.vads_trans_id == undefined || _test.vads_trans_id == null)
+            &&
+            (_test.vads_order_id == undefined || _test.vads_order_id == null)
+        ) {
+            window.location.href = window.location.origin;
+        }
+        else {
+            order_load(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
+            window.history.pushState('', page_title, '/payment/cancel/');
+        }
     }, []);
 
     const order_load = async(reference:string) => {

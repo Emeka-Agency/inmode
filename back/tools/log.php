@@ -22,8 +22,8 @@
      * Detailed - 
      */
     function lastError() {
-        logEvent(json_encode(error_get_last()));
-        logError(json_encode(error_get_last()));
+        logEvent(json_encode(error_get_last()["message"]));
+        logError(json_encode(error_get_last()["message"]));
     }
 
     // DONE save session pour ne pas init de nouveau logs à chaque changement de page

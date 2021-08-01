@@ -17,9 +17,9 @@ function build_order_object() {
         $_order['Article'] = array_map(function($article) {
             return [
                 'Article' => $article['Article'],
-                'Quantite' => $article['Quantity'],
-                'Prix' => $article['Price'],
-                'Nom' => $article['Name'],
+                'Quantity' => $article['Quantity'],
+                'Price' => $article['Price'],
+                'Name' => $article['Name'],
                 'Pack' => $article['Pack'],
                 'Reference' => $article['Reference'],
             ];
@@ -27,50 +27,50 @@ function build_order_object() {
     
         if(isset($_POST['Shipping']) && $_POST['Shipping'] != null)
         {
-            $_order['Livraison'] = []; // MAKE A SPECIFIC FUNCTION FOR THE Livraison MODEL
-            $_order['Livraison']['Prenom'] = isset($_POST['Shipping']['Firstname']) ? $_POST['Shipping']['Firstname'] : null;
-            $_order['Livraison']['Nom'] = isset($_POST['Shipping']['Lastname']) ? $_POST['Shipping']['Lastname'] : null;
-            $_order['Livraison']['Societe'] = isset($_POST['Shipping']['Society']) ? $_POST['Shipping']['Society'] : null;
-            $_order['Livraison']['Adresse'] = isset($_POST['Shipping']['Address']) ? $_POST['Shipping']['Address'] : null;
-            $_order['Livraison']['CodePostal'] = isset($_POST['Shipping']['ZIP']) ? $_POST['Shipping']['ZIP'] : null;
-            $_order['Livraison']['Ville'] = isset($_POST['Shipping']['City']) ? $_POST['Shipping']['City'] : null;
-            $_order['Livraison']['Telephone'] = isset($_POST['Shipping']['Phone']) ? $_POST['Shipping']['Phone'] : null;
-            $_order['Livraison']['Mail'] = isset($_POST['Shipping']['Mail']) ? $_POST['Shipping']['Mail'] : null;
-            $_order['Livraison']['Pays'] = isset($_POST['Shipping']['Country']) ? $_POST['Shipping']['Country'] : null;
+            $_order['Shipping'] = []; // MAKE A SPECIFIC FUNCTION FOR THE Livraison MODEL
+            $_order['Shipping']['Firstname'] = isset($_POST['Shipping']['Firstname']) ? $_POST['Shipping']['Firstname'] : null;
+            $_order['Shipping']['Lastname'] = isset($_POST['Shipping']['Lastname']) ? $_POST['Shipping']['Lastname'] : null;
+            $_order['Shipping']['Society'] = isset($_POST['Shipping']['Society']) ? $_POST['Shipping']['Society'] : null;
+            $_order['Shipping']['Address'] = isset($_POST['Shipping']['Address']) ? $_POST['Shipping']['Address'] : null;
+            $_order['Shipping']['ZIP'] = isset($_POST['Shipping']['ZIP']) ? $_POST['Shipping']['ZIP'] : null;
+            $_order['Shipping']['City'] = isset($_POST['Shipping']['City']) ? $_POST['Shipping']['City'] : null;
+            $_order['Shipping']['Phone'] = isset($_POST['Shipping']['Phone']) ? $_POST['Shipping']['Phone'] : null;
+            $_order['Shipping']['Mail'] = isset($_POST['Shipping']['Mail']) ? $_POST['Shipping']['Mail'] : null;
+            $_order['Shipping']['Country'] = isset($_POST['Shipping']['Country']) ? $_POST['Shipping']['Country'] : null;
         }
         else {
             $_order['Shipping'] = null;
         }
         
-        $_order['Paye'] = isset($_POST['Paid']) ? $_POST['Paid'] : null; // EASY TO VERIFY
+        $_order['Paid'] = isset($_POST['Paid']) ? $_POST['Paid'] : null; // EASY TO VERIFY
     
-        $_order['Statut'] = isset($_POST['Status']) ? $_POST['Status'] : null; // EASY TO VERIFY
+        $_order['Status'] = isset($_POST['Status']) ? $_POST['Status'] : null; // EASY TO VERIFY
     
-        $_order['Facturation'] = []; // MAKE A SPECIFIC FUNCTION FOR THE Facturation MODEL
-        $_order['Facturation']['Prenom'] = isset($_POST['Billing']['Firstname']) ? $_POST['Billing']['Firstname'] : null;
-        $_order['Facturation']['Nom'] = isset($_POST['Billing']['Lastname']) ? $_POST['Billing']['Lastname'] : null;
-        $_order['Facturation']['Societe'] = isset($_POST['Billing']['Society']) ? $_POST['Billing']['Society'] : null;
-        $_order['Facturation']['Adresse'] = isset($_POST['Billing']['Address']) ? $_POST['Billing']['Address'] : null;
-        $_order['Facturation']['CodePostal'] = isset($_POST['Billing']['ZIP']) ? $_POST['Billing']['ZIP'] : null;
-        $_order['Facturation']['Ville'] = isset($_POST['Billing']['City']) ? $_POST['Billing']['City'] : null;
-        $_order['Facturation']['Telephone'] = isset($_POST['Billing']['Phone']) ? $_POST['Billing']['Phone'] : null;
-        $_order['Facturation']['Societe'] = isset($_POST['Billing']['Society']) ? $_POST['Billing']['Society'] : null;
-        $_order['Facturation']['Mail'] = isset($_POST['Billing']['Mail']) ? $_POST['Billing']['Mail'] : null;
-        $_order['Facturation']['Pays'] = isset($_POST['Billing']['Country']) ? $_POST['Billing']['Country'] : null;
+        $_order['Billing'] = []; // MAKE A SPECIFIC FUNCTION FOR THE Facturation MODEL
+        $_order['Billing']['Firstname'] = isset($_POST['Billing']['Firstname']) ? $_POST['Billing']['Firstname'] : null;
+        $_order['Billing']['Lastname'] = isset($_POST['Billing']['Lastname']) ? $_POST['Billing']['Lastname'] : null;
+        $_order['Billing']['Society'] = isset($_POST['Billing']['Society']) ? $_POST['Billing']['Society'] : null;
+        $_order['Billing']['Address'] = isset($_POST['Billing']['Address']) ? $_POST['Billing']['Address'] : null;
+        $_order['Billing']['ZIP'] = isset($_POST['Billing']['ZIP']) ? $_POST['Billing']['ZIP'] : null;
+        $_order['Billing']['City'] = isset($_POST['Billing']['City']) ? $_POST['Billing']['City'] : null;
+        $_order['Billing']['Phone'] = isset($_POST['Billing']['Phone']) ? $_POST['Billing']['Phone'] : null;
+        $_order['Billing']['Society'] = isset($_POST['Billing']['Society']) ? $_POST['Billing']['Society'] : null;
+        $_order['Billing']['Mail'] = isset($_POST['Billing']['Mail']) ? $_POST['Billing']['Mail'] : null;
+        $_order['Billing']['Country'] = isset($_POST['Billing']['Country']) ? $_POST['Billing']['Country'] : null;
     
-        $_order['Prenom'] = isset($_POST['Firstname']) ? $_POST['Firstname'] : null; // EASY TO VERIFY
+        $_order['Firstname'] = isset($_POST['Firstname']) ? $_POST['Firstname'] : null; // EASY TO VERIFY
     
-        $_order['Nom'] = isset($_POST['Lastname']) ? $_POST['Lastname'] : null; // EASY TO VERIFY
+        $_order['Lastname'] = isset($_POST['Lastname']) ? $_POST['Lastname'] : null; // EASY TO VERIFY
     
-        $_order['Societe'] = isset($_POST['Society']) ? $_POST['Society'] : null; // EASY TO VERIFY
+        $_order['Society'] = isset($_POST['Society']) ? $_POST['Society'] : null; // EASY TO VERIFY
     
-        $_order['FraisLivraison'] = isset($_POST['DeliveryTax']) ? $_POST['DeliveryTax'] : null; // EASY TO VERIFY
+        $_order['DeliveryTax'] = isset($_POST['DeliveryTax']) ? $_POST['DeliveryTax'] : null; // EASY TO VERIFY
         
         $_order['Total'] = isset($_POST['Total']) ? $_POST['Total'] : null; // EASY TO VERIFY
 
         $_order['Paiement'] = isset($_POST['SEPA']) && $_POST['SEPA'] == true ? 'Virement' : 'SogeCommerce'; // EASY TO VERIFY
 
-        $_order['Pays'] = isset($_POST['Country']) ? $_POST['Country'] : null; // EASY TO VERIFY
+        $_order['Country'] = isset($_POST['Country']) ? $_POST['Country'] : null; // EASY TO VERIFY
 
         $_order['TVA_Intra'] = isset($_POST['TVA_Intra']) ? $_POST['TVA_Intra'] : null; // EASY TO VERIFY
 
@@ -273,7 +273,7 @@ function update_order_payment_status($Reference, $Trans_status, $token) {
             [
                 'Reference' => $Reference,
                 'Statut' => $Trans_status,
-                'Paye' => is_paid($Trans_status) ? true : false,
+                'Paid' => is_paid($Trans_status) ? true : false,
             ],
             $token,
             $GLOBALS['ObjectName'],

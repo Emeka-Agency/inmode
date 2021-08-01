@@ -89,9 +89,9 @@ const ContactUs = () => {
         };
         fetch(
             // SWITCH LOCALHOST
-            `http://localhost/inmode/back/mails`,
-            // `https://inmodemd.fr/back/mails`,
-            // `http://localhost/inmode/back/mails`,
+            // `http://localhost/inmode/back/mails/contact-us`,
+            // `https://inmode.emeka.fr/back/mails/contact-us`,
+            `https://inmodemd.fr/back/mails/contact-us`,
             _request_init
         )
         .then((promise) => {
@@ -108,14 +108,14 @@ const ContactUs = () => {
                 let _form = document.forms.namedItem('contact-mini');
                 _form && _form.reset();
             }
-            if(response.status === 'fail' && response.type === 'client') {
+            if(response.status === 'error' && response.type === 'client') {
                 setSubmitText(response.message);
                 _temp = oneBySelector('#contact-mini .submit');
                 _temp.setAttribute('disabled', true);
-                _temp = oneBySelector('#contact-mini .req-return.success');
+                _temp = oneBySelector('#contact-mini .req-return.error');
                 if(_temp) {_temp.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";}
             }
-            if(response.status === 'fail' && response.type === 'server') {
+            if(response.status === 'error' && response.type === 'server') {
                 _temp = oneBySelector('#contact-mini .submit');
                 _temp.setAttribute('disabled', true);
                 _temp = oneBySelector('#contact-mini .req-return.error');

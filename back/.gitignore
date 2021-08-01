@@ -13,3 +13,9 @@
 *.md
 
 # Private
+
+/private/config.dev.ini
+/private/config.prod.ini
+/save_kept
+/save_mails
+/save_orders

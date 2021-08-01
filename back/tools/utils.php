@@ -61,7 +61,7 @@
         if (!file_exists($path))
         {
             mkdir($path, 0755, $recursive = true);
-            logEvent(json_encode(error_get_last()));
+            logEvent(json_encode(error_get_last()["message"]));
         }
     }
 
@@ -196,3 +196,21 @@
         }
     }
     
+    /**
+     * 
+     * Short - 
+     * 
+     * Detailed - 
+     * 
+     * @param string $str
+     * 
+     * @return string
+     */
+    function hardTrim($str) {
+        if(gettype($str) != "string") {return "";}
+        $str = preg_replace('/ /', ' ', $str);
+        $str = preg_replace('/\n/', ' ', $str);
+        $str = preg_replace('/\r/', ' ', $str);
+        $str = preg_replace('/\t/', ' ', $str);
+        return trim($str);
+    }

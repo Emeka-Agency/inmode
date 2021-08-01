@@ -1,8 +1,8 @@
 <div class="order-item">
     <div class="order-presentation user-select-none">
         <div class="order-presentation-reference">{{ order.Reference }} - </div>
-        <div class="order-presentation-paye {{ order.Paye == true ? "paid" : "not-paid" }}">{{ order.Paye == true ? 'Payé' : 'Non payé' }}</div>
-        <div class="order-presentation-statut"> - {{ order.Statut }}</div>
+        <div class="order-presentation-paye {{ order.Paid == true ? "paid" : "not-paid" }}">{{ order.Paid == true ? 'Payé' : 'Non payé' }}</div>
+        <div class="order-presentation-statut"> - {{ order.Status }}</div>
         <div class="order-presentation-total"> - {{ order.Total }}</div>
     </div>
     <div class="order-details">
@@ -15,13 +15,13 @@
                         <span class="order-details-title">Reference</span> - {{ article.Reference }}
                     </div>
                     <div class="order-detail order-article-nom">
-                        <span class="order-details-title">Nom</span> - {{ article.Nom }}
+                        <span class="order-details-title">Nom</span> - {{ article.Lastname }}
                     </div>
                     <div class="order-detail order-article-quantite">
-                        <span class="order-details-title">Quantite</span> - {{ article.Quantite }}
+                        <span class="order-details-title">Quantite</span> - {{ article.Quantity }}
                     </div>
                     <div class="order-detail order-article-total">
-                        <span class="order-details-title">Total</span> - {{ article.Prix * article.Quantite }} €
+                        <span class="order-details-title">Total</span> - {{ article.Price * article.Quantity }} €
                     </div>
                 </div>
                 {% endfor %}
@@ -31,90 +31,90 @@
             <span class="order-details-title">Référence - </span>{{ order.Reference }}
         </div>
         <div class="order-detail order-detail-demi order-statut">
-            <span class="order-details-title">Statut - </span>{{ order.Statut }}
+            <span class="order-details-title">Statut - </span>{{ order.Status }}
         </div>
         <div class="order-detail order-detail-demi order-date">
             <span class="order-details-title">Date - </span>{{ order.Date }}
         </div>
-        <div class="order-detail order-detail-demi order-paye {{ order.Paye == true ? "paid" : "not-paid" }}">
-            <span class="order-details-title">Payé - </span>{{ order.Paye == true ? 'Payé' : 'Non payé' }}
+        <div class="order-detail order-detail-demi order-paye {{ order.Paid == true ? "paid" : "not-paid" }}">
+            <span class="order-details-title">Payé - </span>{{ order.Paid == true ? 'Payé' : 'Non payé' }}
         </div>
-        {% if order.Facturation is defined and order.Facturation is not empty %}
+        {% if order.Billing is defined and order.Billing is not empty %}
             <div class="order-facturation">
                 <div class="order-details-big-title">Facturation</div>
                 <div class="order-detail order-detail-demi order-facturation-nom">
-                    <span class="order-details-title">Nom - </span>{{ order.Facturation.Nom }}
+                    <span class="order-details-title">Nom - </span>{{ order.Billing.Lastname }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-prenom">
-                    <span class="order-details-title">Prenom - </span>{{ order.Facturation.Prenom }}
+                    <span class="order-details-title">Prenom - </span>{{ order.Billing.Firstname }}
                 </div>
                 <div class="order-detail order-facturation-societe">
-                    <span class="order-details-title">Société - </span>{{ order.Facturation.Societe ? order.Facturation.Societe : "##########" }}
+                    <span class="order-details-title">Société - </span>{{ order.Billing.Society ? order.Billing.Society : "##########" }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-adresse">
-                    <span class="order-details-title">Adresse - </span>{{ order.Facturation.Adresse }}
+                    <span class="order-details-title">Adresse - </span>{{ order.Billing.Address }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-code">
-                    <span class="order-details-title">Code Postal - </span>{{ order.Facturation.CodePostal }}
+                    <span class="order-details-title">Code Postal - </span>{{ order.Billing.ZIP }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-ville">
-                    <span class="order-details-title">Ville - </span>{{ order.Facturation.Ville }}
+                    <span class="order-details-title">Ville - </span>{{ order.Billing.City }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-pays">
-                    <span class="order-details-title">Pays - </span>{{ order.Facturation.Pays }}
+                    <span class="order-details-title">Pays - </span>{{ order.Billing.Country }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-telephone">
-                    <span class="order-details-title">Téléphone - </span>{{ order.Facturation.Telephone }}
+                    <span class="order-details-title">Téléphone - </span>{{ order.Billing.Phone }}
                 </div>
                 <div class="order-detail order-detail-demi order-facturation-mail">
-                    <span class="order-details-title">Mail - </span>{{ order.Facturation.Mail }}
+                    <span class="order-details-title">Mail - </span>{{ order.Billing.Mail }}
                 </div>
             </div>
         {% endif %}
-        {% if order.Livraison is defined and order.Livraison is not empty %}
+        {% if order.Shipping is defined and order.Shipping is not empty %}
             <div class="order-livraison">
                 <div class="order-details-big-title">Livraison</div>
                 <div class="order-detail order-detail-demi order-livraison-nom">
-                    <span class="order-details-title">Nom - </span>{{ order.Livraison.Nom }}
+                    <span class="order-details-title">Nom - </span>{{ order.Shipping.Lastname }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-prenom">
-                    <span class="order-details-title">Prenom - </span>{{ order.Livraison.Prenom }}
+                    <span class="order-details-title">Prenom - </span>{{ order.Shipping.Firstname }}
                 </div>
                 <div class="order-livraison-societe">
-                    <span class="order-details-title">Société - </span>{{ order.Livraison.Societe ? order.Livraison.Societe : "##########" }}
+                    <span class="order-details-title">Société - </span>{{ order.Shipping.Society ? order.Shipping.Society : "##########" }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-adresse">
-                    <span class="order-details-title">Adresse - </span>{{ order.Livraison.Adresse }}
+                    <span class="order-details-title">Adresse - </span>{{ order.Shipping.Address }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-code">
-                    <span class="order-details-title">Code Postal - </span>{{ order.Livraison.CodePostal }}
+                    <span class="order-details-title">Code Postal - </span>{{ order.Shipping.ZIP }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-ville">
-                    <span class="order-details-title">Ville - </span>{{ order.Livraison.Ville }}
+                    <span class="order-details-title">Ville - </span>{{ order.Shipping.City }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-pays">
-                    <span class="order-details-title">Pays - </span>{{ order.Livraison.Pays }}
+                    <span class="order-details-title">Pays - </span>{{ order.Shipping.Country }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-telephone">
-                    <span class="order-details-title">Téléphone - </span>{{ order.Livraison.Telephone }}
+                    <span class="order-details-title">Téléphone - </span>{{ order.Shipping.Phone }}
                 </div>
                 <div class="order-detail order-detail-demi order-livraison-mail">
-                    <span class="order-details-title">Mail - </span>{{ order.Livraison.Mail ? order.Livraison.Mail : "##########" }}
+                    <span class="order-details-title">Mail - </span>{{ order.Shipping.Mail ? order.Shipping.Mail : "##########" }}
                 </div>
             </div>
         {% endif %}
         <div class="order-details-big-title">Détails</div>
         <div class="order-detail order-detail-demi order-nom">
-            <span class="order-details-title">Nom - </span>{{ order.Nom }}
+            <span class="order-details-title">Nom - </span>{{ order.Lastname }}
         </div>
         <div class="order-detail order-detail-demi order-prenom">
-            <span class="order-details-title">Prénom - </span>{{ order.Prenom }}
+            <span class="order-details-title">Prénom - </span>{{ order.Firstname }}
         </div>
         <div class="order-detail order-detail-demi order-societe">
-            <span class="order-details-title">Société - </span>{{ order.Societe ? order.Societe : "##########" }}
+            <span class="order-details-title">Société - </span>{{ order.Society ? order.Society : "##########" }}
         </div>
         <div class="order-detail order-detail-demi order-fraislivraison">
-            <span class="order-details-title">Frais de livraison - </span>{{ order.FraisLivraison > 0 ? [orderFraisLivraison, " €"]|join : "Pas de frais" }}
+            <span class="order-details-title">Frais de livraison - </span>{{ order.DeliveryTax > 0 ? [order.DeliveryTax, " €"]|join : "Pas de frais" }}
         </div>
         <div class="order-detail order-detail-demi order-total">
             <span class="order-details-title">Total - </span>{{ order.Total }}
@@ -123,7 +123,7 @@
             <span class="order-details-title">Paiement - </span>{{ order.Paiement }}
         </div>
         <div class="order-detail order-detail-demi order-pays">
-            <span class="order-details-title">Pays - </span>{{ order.Pays }}
+            <span class="order-details-title">Pays - </span>{{ order.Country }}
         </div>
         <div class="order-detail order-detail-demi order-tva_intra">
             <span class="order-details-title">TVA Intracommunautaire - </span>{{ order.TVA_Intra ? order.TVA_Intra : "Aucune" }}

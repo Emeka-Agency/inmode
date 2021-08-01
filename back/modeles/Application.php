@@ -502,6 +502,11 @@
                 case 'order-delete': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-delete';
                 case 'order-signature': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-signature';
 
+                // MAILS
+                case 'full-contact-mail': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/full-contact';
+                case 'contact-us-mail': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/contact-us';
+                case 'fail-mail-mail': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/fail-mail';
+
                 // ERRORS
                 case 'forbidden': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/forbidden';
                 case '500': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/500';
@@ -621,9 +626,9 @@
         const PRODUCTION = [
             'particule_admin_secret' => 'fz684ef6reg64zqg6trh4se6aq8f4ht6r4',
             'DB_HOST' => '127.0.0.1',
-            'DB_NAME' => 'nemzytch_infr_back',
+            'DB_NAME' => 'infr2333_infr_back',
             'DB_PORT' => '3306',
-            'USER_NAME' => 'nemzytch_infr_back',
+            'USER_NAME' => 'infr2333_infr_back',
             'USER_PASSWORD' => '%r~NkVdF^O4{',
         ];
     }

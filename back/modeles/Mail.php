@@ -22,15 +22,17 @@
             $retour = tryMail('mael.fallet@gmail.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
             if($retour == false) {return false;}
 
-            // $retour = tryMail('mael.fallet@hotmail.fr', $_POST['speciality'], 'full-contact', 'full-contact', true);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('lesieutre.kevin@gmail.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
+            $retour = tryMail('mael.fallet@hotmail.fr', $_POST['speciality'], 'full-contact', 'full-contact', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('lesieutre.kevin@gmail.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
+            if($retour == false) {return false;}
+            // $retour = tryMail('black.blood2008@hotmail.fr', $_POST['speciality'], 'full-contact', 'full-contact', true);
             // if($retour == false) {return false;}
 
-            // $retour = tryMail('contactinmode@gmail.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('contact.fr@inmodemd.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
-            // if($retour == false) {return false;}
+            $retour = tryMail('contactinmode@gmail.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('contact.fr@inmodemd.com', $_POST['speciality'], 'full-contact', 'full-contact', true);
+            if($retour == false) {return false;}
             return true;
         }
 
@@ -45,15 +47,17 @@
             $retour = tryMail('mael.fallet@gmail.com', $_POST['subject'], 'contact-us', 'contact-us', true);
             if($retour == false) {return false;}
 
-            // $retour = tryMail('mael.fallet@hotmail.fr', $_POST['subject'], 'contact-us', 'contact-us', true);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('lesieutre.kevin@gmail.com', $_POST['subject'], 'contact-us', 'contact-us', true);
+            $retour = tryMail('mael.fallet@hotmail.fr', $_POST['subject'], 'contact-us', 'contact-us', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('lesieutre.kevin@gmail.com', $_POST['subject'], 'contact-us', 'contact-us', true);
+            if($retour == false) {return false;}
+            // $retour = tryMail('black.blood2008@hotmail.fr', $_POST['subject'], 'contact-us', 'contact-us', true);
             // if($retour == false) {return false;}
 
-            // $retour = tryMail('contactinmode@gmail.com', $_POST['subject'], 'contact-us', 'contact-us', true);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('contact.fr@inmodemd.com', $_POST['subject'], 'contact-us', 'contact-us', true);
-            // if($retour == false) {return false;}
+            $retour = tryMail('contactinmode@gmail.com', $_POST['subject'], 'contact-us', 'contact-us', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('contact.fr@inmodemd.com', $_POST['subject'], 'contact-us', 'contact-us', true);
+            if($retour == false) {return false;}
             return true;
         }
 
@@ -74,58 +78,62 @@
             $_POST['for'] = $body['for'];
             $_POST['type'] = $body['type'];
 
-            if(isset($body['order']['Livraison']) && $body['for'] == 'client') {
+            if(isset($body['order']['Shipping']) && $body['for'] == 'client') {
                 $retour = tryMail('mael.fallet@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
                 if($retour == false) {return false;}
 
-                // $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
 
-                // $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail($body['order']['Livraison']['Mail'], 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail($body['order']['Shipping']['Mail'], 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
             }
-            if(isset($body['order']['Facturation']) && $body['for'] == 'client') {
+            if(isset($body['order']['Billing']) && $body['for'] == 'client') {
                 $retour = tryMail('mael.fallet@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
                 if($retour == false) {return false;}
 
-                // $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
 
-                // $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail($body['order']['Facturation']['Mail'], 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail($body['order']['Billing']['Mail'], 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
             }
             if($body['for'] == 'pro') {
                 $retour = tryMail('mael.fallet@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
                 if($retour == false) {return false;}
 
-                // $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('mael.fallet@hotmail.fr', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail('lesieutre.kevin@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
 
-                // $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
-                // $retour = tryMail('contact.fr@inmodemd.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-                // if($retour == false) {return false;}
+                $retour = tryMail('contactinmode@gmail.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
+                $retour = tryMail('contact.fr@inmodemd.com', 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+                if($retour == false) {return false;}
             }
             $retour = tryMail('mael.fallet@gmail.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
             if($retour == false) {return false;}
 
-            // $retour = tryMail('mael.fallet@hotmail.fr' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('lesieutre.kevin@gmail.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
-            // if($retour == false) {return false;}
+            $retour = tryMail('mael.fallet@hotmail.fr' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('lesieutre.kevin@gmail.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
+            if($retour == false) {return false;}
+            $retour = tryMail('black.blood2008@hotmail.fr' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', true);
+            if($retour == false) {return false;}
 
-            // $retour = tryMail('contact.fr@inmodemd.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
-            // if($retour == false) {return false;}
+            $retour = tryMail('contactinmode@gmail.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+            if($retour == false) {return false;}
+            $retour = tryMail('contact.fr@inmodemd.com' , 'Commande '.$body['order']['Reference'], $body['action'], 'order-mail', false);
+            if($retour == false) {return false;}
             return true;
         }
 
@@ -140,40 +148,43 @@
             $retour = tryMail('mael.fallet@gmail.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
             if($retour == false) {return false;}
 
-            // $retour = tryMail('mael.fallet@hotmail.fr' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('lesieutre.kevin@gmail.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            $retour = tryMail('mael.fallet@hotmail.fr' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            if($retour == false) {return false;}
+            $retour = tryMail('lesieutre.kevin@gmail.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            if($retour == false) {return false;}
+            // $retour = tryMail('black.blood2008@hotmail.fr' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
             // if($retour == false) {return false;}
 
-            // $retour = tryMail('contactinmode@gmail.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('contact.fr@inmodemd.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
-            // if($retour == false) {return false;}
-            // $retour = tryMail('inmode@emeka.fr' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
-            // if($retour == false) {return false;}
+            $retour = tryMail('contactinmode@gmail.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            if($retour == false) {return false;}
+            $retour = tryMail('contact.fr@inmodemd.com' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            if($retour == false) {return false;}
+            $retour = tryMail('inmode@emeka.fr' , 'Erreur envoi de mail '.$_POST['for'], $_POST['action'], 'fail-mail', false);
+            if($retour == false) {return false;}
             return true;
         }
         
 
         // SWITCH LOCALHOST
-        // const PHP_back = 'https://inmodemd.fr/back/app.php';
-        const PHP_back = 'http://localhost/inmode/back/app.php';
+        // const PHP_back = 'http://localhost/inmode/back/app.php';
+        // const PHP_back = 'https://inmode.emeka.fr/back/app.php';
+        const PHP_back = 'https://inmodemd.fr/back/app.php';
         
         const usedValues = [
             'Reference',
             'Date',
             'Article',
-            'Livraison',
-            'Paye',
-            'Statut',
-            'Facturation',
-            'Prenom',
-            'Nom',
-            'Societe',
-            'FraisLivraison',
+            'Shipping',
+            'Paid',
+            'Status',
+            'Billing',
+            'Firstname',
+            'Lastname',
+            'Society',
+            'DeliveryTax',
             'Total',
             'Paiement',
-            'Pays',
+            'Country',
             'TVA_Intra',
         ];
         
@@ -217,7 +228,7 @@
             };
             $_body['order'] = $_order;
             try {
-                $_body['email'] = $_datas['Facturation']['Mail'];
+                $_body['email'] = $_datas['Billing']['Mail'];
             }
             catch (\Exception $e) {
                 logEvent('Cas 4');

@@ -356,8 +356,8 @@
 
                     $content = json_decode($content, true);
 
-                    $content['Statut'] = $_POST['vads_trans_status'];
-                    $content['Paye'] = isPaid($content['Statut']);
+                    $content['Status'] = $_POST['vads_trans_status'];
+                    $content['Paid'] = isPaid($content['Status']);
 
                     if(file_put_contents($name, json_encode($content)) == false) {
                         logEvent('Can\'t overwrite file "'.$name.'"');
@@ -573,8 +573,6 @@
                     $files = scandir(self::ORDERS_DIR);
 
                     foreach($files as $file) {
-                        // -6 pour la clef
-                        // -5 pour ".json"
                         if(substr($file, -11, 6) == $_POST['reference']) {
 
                             $content = file_get_contents(self::ORDERS_DIR.'/'.$file);
@@ -836,7 +834,9 @@
             emmitDir(self::ORDERS_DIR);
             logEvent('scandir '.self::ORDERS_DIR);
             logEvent(json_encode(scandir(self::ORDERS_DIR)));
-            foreach(scandir(self::ORDERS_DIR) as $value)
+            $values = scandir(self::ORDERS_DIR);
+            rsort($values);
+            foreach($values as $value)
             {
                 !in_array($value, ['.', '..']) && !is_dir(self::ORDERS_DIR.$value) && $temp[pathinfo($value, PATHINFO_FILENAME)] = self::ORDERS_DIR.'/'.$value;
             }

@@ -61,7 +61,7 @@
         http_response_code(500);
         return json_encode([
             'type' => 'client',
-            'status' => 'fail',
+            'status' => 'error',
             'message' => 'Erreur serveur',
         ]);
     }
@@ -214,18 +214,25 @@
                 catch(\Exception $e) {echo requireError($e, './controleurs/ControleurAccueil.php'); die();}
                 return true;
             case route("mails"):
+                
                 logEvent(($user->estAdmin() ? 'Admin' : 'Not admin').', Mails, URI : '.json_encode($path_schema));
-                if($user->estAdmin() != true) {
+                if($user->estAdmin() != true  && !isset($path_schema[2]) && !isset($_POST['action'])) {
                     logEvent('Zone admin, not admin. Go to forbidden. path_schema : '.json_encode($path_schema));
                     header("Location: ".$GLOBALS['app']->avoirURLBase().route("forbidden")."?f_val=na");
                     return true;
                 }
                 try{
                     require_once('./controleurs/ControleurMails.php');
-                    gererMails($path_schema);
-                    return true;
+                    if(gererMails($path_schema) == true) {
+                        logEvent('The mail(s) request was successfully executed');
+                        return true;
+                    }
+                    else {
+                        logEvent('There had a problem during the mail(s) related request execution');
+                        return false;
+                    }
                 }
-                catch(\Exception $e) {echo requireError($e, './controleurs/ControleurAccueil.php'); die();}
+                catch(\Exception $e) {echo requireError($e, './controleurs/ControleurMails.php'); die();}
                 return true;
             case route("orders"):
                 logEvent(($user->estAdmin() ? 'Admin' : 'Not admin').', Orders, URI : '.json_encode($path_schema));

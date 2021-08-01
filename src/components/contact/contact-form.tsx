@@ -77,9 +77,9 @@ const ContactForm = ({ from }:ContactForm) => {
         };
         fetch(
             // SWITCH LOCALHOST
-            `http://localhost/inmode/back/mails`,
-            // `https://inmodemd.fr/back/mails`,
-            // `http://localhost/inmode/back/mails`,
+            // `http://localhost/inmode/back/mails/full-contact`,
+            // `https://inmode.emeka.fr/back/mails/full-contact`,
+            `https://inmodemd.fr/back/mails/full-contact`,
             request_init,
         )
         .then((promise) => {
@@ -95,14 +95,14 @@ const ContactForm = ({ from }:ContactForm) => {
                 let _form:HTMLFormElement | null = document.forms.namedItem('full-contact-form')
                 _form && _form.reset();
             }
-            if(response.status === 'fail' && response.type === 'client') {
+            if(response.status === 'error' && response.type === 'client') {
                 setSubmitText(response.message);
                 let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
                 if(_temp1) _temp1.disabled = true;
-                let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.success');
+                let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.error');
                 if(_temp2) _temp2.innerHTML = "Une erreur d'envoi du message est survenu. Essayez de raffraîchir la page ou de contacter un administrateur.";
             }
-            if(response.status === 'fail' && response.type === 'server') {
+            if(response.status === 'error' && response.type === 'server') {
                 let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
                 if(_temp1) _temp1.disabled = true;
                 let _temp2 = document.querySelector('#full-contact-form .req-return.error');
