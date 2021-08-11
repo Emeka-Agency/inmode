@@ -153,6 +153,7 @@
     logEvent(json_encode($path_schema));
 
     $req_body = file_get_contents('php://input');
+    $req_body = mb_convert_encoding($req_body, 'UTF-8', mb_detect_encoding($req_body, 'UTF-8, ISO-8859-1', true));
 
     if($_POST == null)
     {
@@ -176,6 +177,14 @@
                     return true;
                 }
                 catch(\Exception $e) {echo requireError($e, './controleurs/ControleurRestriction.php'); die();}
+                return true;
+            case "/test-mail":
+                $_POST['action'] = "test-mail";
+                tryMail("mael.fallet@gmail.com", "Envoi test SendGrid", "test-mail", "test-mail", false);
+                tryMail("mael.fallet@hotmail.fr", "Envoi test SendGrid", "test-mail", "test-mail", false);
+                // tryMail("lesieutre.kevin@gmail.com", "Envoi test SendGrid", "test-mail", "test-mail", false);
+                // tryMail("contact.fr@inmodemd.com", "Envoi test SendGrid", "test-mail", "test-mail", false);
+                // tryMail("contactinmode@gmail.com", "Envoi test SendGrid", "test-mail", "test-mail", false);
                 return true;
             case route("user"):
             case route("logout"):

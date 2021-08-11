@@ -535,7 +535,7 @@
                         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                         CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_HTTPHEADER => array(
-                                            'Content-Type: application/json'
+                            'Content-Type: application/json'
                         ),
                         CURLOPT_SSL_VERIFYHOST => 0,
                         CURLOPT_SSL_VERIFYPEER => 0,
@@ -549,7 +549,7 @@
                 if(isset($retour['status']) && $retour['status'] == 'success' && isset($retour['datas'])) {
                     logEvent('Get status success and datas');
                     if(gettype($retour['datas']) == 'string') {
-                        $retour['datas'] = json_decode($retour['datas'], true);
+                        $retour['datas'] = utf8_decode(json_decode($retour['datas'], true));
                         logEvent('get_strapi_jwt() with string');
                         logEvent(json_encode($retour['datas']));
                         return $retour['datas']->jwt;

@@ -37,7 +37,8 @@
         'default' => ['', 'noreply@inmodemd.fr'],
         'contact' => ['Contact', 'submit-contact@inmodemd.fr'],
         'order' => ['Commande', 'submit-order@inmodemd.fr'],
-        'error' => ['Security', 'security@inmodemd.fr']
+        'error' => ['Security', 'security@inmodemd.fr'],
+        'test' => ['Test', 'test@inmodemd.fr'],
     ];
     
     const SAVE_MAIL = './save_mail';
@@ -78,8 +79,8 @@
         $head .= '       <html lang="fr" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" style="font-size:0;font-family:Raleway,Roboto,sans-serif;width:100%;" class="no-js">';
         $head .= '   <![endif]-->';
         $head .= '    <head>';
-        // $head .= '        <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>';
-        $head .= '        <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>';
+        // $head .= '        <meta http-equiv="Content-Type" content="text/html charset=ISO-8859-1"/>';
+        $head .= '        <meta http-equiv="Content-Type" content="text/html charset=utf-8"/>';
         // $head .= '        <meta charset="ISO-8859-1"/>';
         $head .= '        <meta charset="utf-8"/>';
         $head .= '        <meta name="viewport" content="width=device-width, initial-scale=1"/>';
@@ -242,7 +243,7 @@
         $header .= '            <tr cellpadding="0" border="0" align="center" cellspacing="0">';
         $header .= '                <td style="padding-top:40px;">';
         $header .= '                    <a href="https://inmodemd.fr/" style="font-family:Raleway,Roboto,sans-serif;color:#59b7b3;letter-spacing:1px;">';
-        $header .= '                        <img src="https://inmodemd.fr/back/assets/images/header-logo.png" alt="InmodeMD" width="600" style="display:block;">';
+        $header .= '                        <img src="https://inmodemd.fr/back/assets/images/header-logo.png" alt="InmodeMD" width="600" style="display:block;"/>';
         $header .= '                    </a>';
         $header .= '                </td>';
         $header .= '            </tr>';
@@ -343,415 +344,64 @@
      * 
      * @return string
      */
-    function orderMail()
+    function orderMail($type)
     {
         logEvent('orderMail()');
         try
         {
-            logEvent('Liste Article');
-            logEvent(json_encode($_POST['Article']));
-            logEvent('Facturation');
-            logEvent(json_encode($_POST['Billing']));
-            $message = '';
-            $message .= mailHeadPart("Commande ".$_POST["Reference"]);
-            $message .= '   <body width="100%" style="margin:0 auto;padding:0!important;mso-line-height-rule:exactly;background-color:#0b1a25;" bgcolor="#0b1a25">';
-            $message .= '   <center role="article" aria-roledescription="email" lang="fr" style="width:100%;background-color:#0b1a25;" bgcolor="#0b1a25">';
-            $message .= '       <table width="600" cellpadding="0" border="0" align="center" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;mso-hide:all;">';
-            $message .= '           <tr cellpadding="0" border="0" align="center" cellspacing="0">';
-            $message .= '               <td>';
-            $message .=                      headerPart();
-            $message .=                      orderReceived($_POST['Reference'], $_POST['Date'], $_POST['for'], $_POST['type'], $_POST['Status']);
-            $message .=                      orderDetails($_POST['Article'], $_POST['Total'], $_POST['DeliveryTax'], $_POST['Country']);
-            $message .=                      orderTVAIntra($_POST['Country'], isset($_POST['TVA_Intra']) ? $_POST['TVA_Intra'] : null);
-            $message .=                      orderBilling($_POST['Billing']);
-            if(isset($_POST['Shipping']) && $_POST['Shipping'] != null)
-            {
-                logEvent('Livraison');
-                logEvent(json_encode($_POST['Shipping']));
-                logEvent(gettype($_POST['Shipping']));
-                $message .=                         orderShipping($_POST['Shipping']);
+            $img = request(
+                $_ENV['IMGBACK_NODE'].'/create-mail',
+                [
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json'
+                    ),
+                    CURLOPT_SSL_VERIFYHOST => false,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                ],
+                array_merge(
+                    [
+                        'action' => $_POST['action'],
+                        'for' => $_POST['for'],
+                        'type' => $type,
+                        'session_token' => $GLOBALS['request_time']
+                    ],
+                    build_order_object()
+                ),
+                true
+            );
+            logEvent(json_encode($img));
+            if($img['status'] == 'success' && isset($img['datas']) && isset($img['datas']['path']) && gettype($img['datas']['path']) == 'string') {
+                $img = $img['datas']['path'];
             }
-            $message .=                         footerPart();
-            $message .= '                 </td>';
-            $message .= '              </tr>';
-            $message .= '           </table>';
-            $message .= '       </center>';
-            $message .= '   </body>';
-            $message .= '</html>';
-            return $message;
-        }
-        catch(Throwable $e)
-        {
-            logEvent('Erreur durant orderMail');
-            logEvent($e);
-            logError('Étape '.(++$GLOBALS['index']).' - '.'Erreur durant orderMail');
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
-            return 'null';
-        }
-    }
-    
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param string $status
-     * 
-     * @return bool
-     */
-    function isPaid($status) {
-        logEvent('isPaid()');
-        switch($status) {
-            case 'ACCEPTED':
-            case 'AUTHORISED':
-            case 'CAPTURED':
-                return true;
-            case 'ABANDONED':
-            case 'AUTHORISED_TO_VALIDATE':
-            case 'CANCELLED':
-            case 'CAPTURE_FAILED':
-            case 'EXPIRED':
-            case 'REFUSED':
-            case 'SUSPENDED':
-            case 'UNDER_VERIFICATION':
-            case 'WAITING_AUTHORISATION':
-            case 'WAITING_AUTHORISATION_TO_VALIDAT':
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param string|null $pays
-     * 
-     * @return bool
-     */
-    function tva_intra($pays = null)
-    {
-        logEvent('tva_intra()');
-        switch($pays)
-        {
-            case 'Belgique':
-            case 'Luxembourg':
-                return true;
-            case 'France':
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param string $reference
-     * @param string $date
-     * @param string $for
-     * @param string $type
-     * @param string $statut
-     * 
-     * @return string
-     */
-    function orderReceived($reference, $date, $for, $type, $statut)
-    {
-        logEvent('orderReceived()');
-        logEvent('reference : '.$reference);
-        logEvent('date : '.$date);
-        logEvent('for : '.$for);
-        logEvent('type : '.$type);
-        logEvent('statut : '.$statut);
-        $retour = '';
-        $retour .= '        <tr>';
-        $retour .= '            <td style="color:#f2f2f2;font-size:18px;font-weight:400;word-break:break-word;padding-top:60px;">';
-        if($for == 'client')
-        {
-            $retour .= 'Nous avons bien reçu votre commande <span style="font-size:20px;font-weight:600;">'.$reference.'</span> effectuée le ';
-            $retour .= '<span style="font-size:20px;font-weight:600;">'.buildDate($date, 'full').' UTC</span>. ';
-        }
-        if($for == 'pro')
-        {
-            $retour .= 'Une nouvelle commande <span style="font-size:20px;font-weight:600;">'.$reference.'</span> est arrivée.';
-        }
-        if($for == 'client' && $type == 'sepa')
-        {
-            $retour .= ' Votre commande vous sera expédiée une fois que vous aurez effectué un virement sur le RIB suivant:';
-        }
-        if($for == 'client' && $type == 'soge')
-        {
-            $retour .= ' Votre commande sera expédiée sous peu.';
-        }
-        if($for == 'pro' && $type == 'sepa')
-        {
-            $retour .= ' Paiement par virement en attente.';
-        }
-        if($for == 'pro' && $type == 'soge')
-        {
-            $retour .= ' Le paiement est '.(isPaid($statut) == true ? 'validé' : 'en attente').'.';
-        }
-        $retour .= '        </td>';
-        $retour .= '    </tr>';
-        if($for == 'client' && $type == 'sepa') {
-            $retour .= '<tr>';
-            $retour .= '    <td style="padding-top:25px;">';
-            $retour .= '        <table style="width:400px;border-top-width:2px;border-bottom-width:2px;border-left-width:0px;border-right-width:0px;border-style:solid;border-color:#f2f2f2;display:block;">';
-            $retour .= '            <tbody>';
-            $retour .= '                <tr style="color:#f2f2f2;font-size:18px;font-weight:400;">';
-            $retour .= '                    <td style="width:80px;word-break:break-word;">RIB</td>';
-            $retour .= '                    <td style="width:350px;word-break:break-word;">'.$GLOBALS['RIB'].'</td>';
-            $retour .= '                </tr>';
-            $retour .= '                <tr style="color:#f2f2f2;font-size:18px;font-weight:400;">';
-            $retour .= '                    <td style="width:80px;word-break:break-word;">BIC</td>';
-            $retour .= '                    <td style="width:350px;word-break:break-word;">'.$GLOBALS['BIC'].'</td>';
-            $retour .= '                </tr>';
-            $retour .= '            </tbody>';
-            $retour .= '        </table>';
-            $retour .= '    </td>';
-            $retour .= '</tr>';
-        }
-        return $retour;
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param array $articles
-     * @param string $total
-     * @param string|null $delivery_tax
-     * @param string|null $pays
-     * 
-     * @return string
-     */
-    function orderDetails($articles, $total, $delivery_tax = null, $pays = null)
-    {
-        try
-        {
-            
-            logEvent('orderDetails()');
-            logEvent(json_encode($articles));
-            logEvent(gettype($articles));
-            logEvent('total : '.$total);
-            logEvent('delivery_tax : '.$delivery_tax);
-            logEvent('pays : '.$pays);
+            else {
+                throw new Exception(isset($img['message']) ? $img['message'] : (isset($img['error']) ? $img['error'] : "Error during html mail img creation"));
+            }
             $retour = '';
-            $retour .= '   <tr>';
-            $retour .= '       <td style="color:#f2f2f2;font-size:22px;font-weight:500;word-break:break-word;padding-top:45px;">';
-            $retour .= '           Détails de la commande';
-            $retour .= '       </td>';
-            $retour .= '   </tr>';
-            $retour .= '   <tr>';
-            $retour .= '       <table align="center" width="550" style="border-collapse:collapse;border-spacing:0px;border-top-width:2px;border-bottom-width:2px;border-left-width:0px;border-right-width:0px;border-style:solid;border-color:#f2f2f2;">';
-            $tva = 0;
-            foreach($articles as $article)
-            {
-                try
-                {
-                    logEvent($article['Name'].' x '.$article['Quantity'].' = '.$article['Quantity'].' x '.$article['Price'].' = '.($article['Quantity'] * $article['Price']));
-                }
-                catch(Throwable $e)
-                {
-                    logError('Étape '.(++$GLOBALS['index']).' - '.print_r($e));
-                    logEvent(print_r($e));
-                }
-                $retour .= '           <tr>';
-                $retour .= '               <td style="padding:20px;font-size:18px;color:#f2f2f2;">'.$article['Name'].'</td>';
-                $retour .= '               <td style="padding:20px;font-size:18px;color:#f2f2f2;">';
-                $retour .= '                   <p style="font-family:Raleway,Roboto,sans-serif;font-size:18px;color:#f2f2f2;font-weight:bold;">';
-                $retour .= '                       '.$article['Pack'];
-                $retour .= '                   </p>';
-                $retour .= '               </td>';
-                $retour .= '               <td style="padding:20px;font-size:18px;color:#f2f2f2;">';
-                $retour .= '                   <p style="font-family:Raleway,Roboto,sans-serif;font-size:18px;color:#f2f2f2;">x '.$article['Quantity'].'</p>';
-                $retour .= '               </td>';
-                $retour .= '               <td style="padding:20px;text-align:right;font-size:18px;color:#f2f2f2;">';
-                $retour .= '                   <p style="font-family:Raleway,Roboto,sans-serif;font-size:18px;color:#f2f2f2;">';
-                $retour .= '                       '.($article['Quantity'] * $article['Price']).' EUR';
-                $retour .= '                   </p>';
-                $retour .= '               </td>';
-                $retour .= '           </tr>';
-                $tva += $article['Quantity'] * $article['Price'];
-            }
-            $retour .= '       </table>';
-            $retour .= '   </tr>';
-            $retour .= '   <tr>';
-            $retour .= '       <table style="margin:0 auto;width:600px;display:block;color:#f2f2f2;font-size:16px;font-weight:400;">';
-            $retour .= '           <tbody style="display:block;width:100%;text-align:center;">';
-            if($delivery_tax != null && is_numeric($delivery_tax) && $delivery_tax > 0)
-            {        	
-                $retour .= '           <tr style="display:block;width:100%;text-align:right;font-size:15px;color:#f2f2f2">';
-                $retour .= '               <td style="display:inline-block;text-align:right;word-break:break-word;">Livraison</td>';
-                $retour .= '               <td style="padding-right:20px;width:100px;display:inline-block;text-align:right;word-break:break-word;">'.$delivery_tax.' EUR</td>';
-                $retour .= '           </tr>';
-            }
-            if($total != null && is_numeric($total))
-            {
-                if(!tva_intra($pays))
-                {
-                    $retour .= '           <tr style="display:block;width:100%;text-align:right;font-size:15px;color:#f2f2f2">';
-                    $retour .= '               <td style="display:inline-block;text-align:right;word-break:break-word;">TVA</td>';
-                    $retour .= '               <td style="padding-right:20px;width:100px;display:inline-block;text-align:right;word-break:break-word;">'.($tva * 0.2).' EUR</td>';
-                    $retour .= '           </tr>';
-                }
-                $retour .= '           <tr style="display:block;width:100%;text-align:right;font-size:15px;color:#f2f2f2">';
-                $retour .= '               <td style="display:inline-block;text-align:right;word-break:break-word;">TOTAL</td>';
-                $retour .= '               <td style="padding-right:20px;width:100px;display:inline-block;text-align:right;word-break:break-word;">'.$total.' EUR</td>';
-                $retour .= '           </tr>';
-            }
-            $retour .= '           </tbody>';
-            $retour .= '       </table>';
-            $retour .= '   </tr>';
+            $retour .= mailHeadPart("Fail mail");
+            $retour .= '    <body width="100%" style="margin:0 auto;padding:0!important;mso-line-height-rule:exactly;background-color:#0b1a25;" bgcolor="#0b1a25">';
+            $retour .= '        <center role="fail-mail" aria-roledescription="email" lang="fr" style="width:100%;background-color:#0b1a25;" bgcolor="#0b1a25">';
+            $retour .= '            <table width="600" cellpadding="0" border="0" align="center" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;">';
+            $retour .= '                <img src="'.$_ENV['IMGBACK_NODE'].$img.'" width="600"/>';
+            $retour .= '            </table>';
+            $retour .= '        </center>';
+            $retour .= '    </body>';
+            $retour .= '</html>';
+            return $retour;
         }
-        catch(Throwable $e)
+        catch(\Exception $e)
         {
-            $retour = '';
+            // echo json_encode([
+            //     'status' => 'error',
+            //     'message' => $e
+            // ]);
+            return false;
         }
-        return $retour;
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param string $pays
-     * @param string $tva_intra
-     * 
-     * @return string
-     */
-    function orderTVAIntra($pays, $tva_intra)
-    {
-        logEvent('orderTVAIntra()');
-        $retour = '';
-        $retour .= '    <tr>';
-        $retour .= '        <td style="padding-top:15px;font-size:13px;color:#f2f2f2;">';
-        if(tva_intra($pays))
-        {
-            $retour .= '            Exonération TVA, article 262 ter I du Code général des impôts<br/>';
-            $retour .= '            TVA intracommunautaire :'.$tva_intra;
-        }
-        else
-        {
-            $retour .= '            Application de la TVA, article 258-I-a du Code général des impôts';
-
-        }
-        $retour .= '        </td>';
-        $retour .= '    </tr>';
-        return $retour;
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param array $facturation
-     * 
-     * @return string
-     */
-    function orderBilling($facturation)
-    {
-        logEvent('orderBilling()');
-        logEvent(json_encode($facturation));
-        $retour = '';
-        $retour .= '    <tr>';
-        $retour .= '        <td style="color:#f2f2f2;font-size:22px;font-weight:500;word-break:break-word;padding-top:45px;">';
-        $retour .= '            Détails de facturation';
-        $retour .= '        </td>';
-        $retour .= '    </tr>';
-        $retour .= '    <tr>';
-        $retour .= '        <td style="padding-top:15px;">';
-        $retour .= '            <table align="center" width="550" style="border-collapse:collapse;border-spacing:0px;border-top-width:2px;border-bottom-width:0px;border-left-width:0px;border-right-width:0px;border-style:solid;border-color:#f2f2f2;">';
-        $retour .= '                <tbody>';
-        $retour .= '                    <tr>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Facturé à</td>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$facturation['Firstname'].' '.$facturation['Lastname'].'</td>';
-        $retour .= '                    </tr>';
-        $retour .= '                    <tr>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Au</td>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$facturation['Address'].', '.(isset($facturation['Address2']) ? $facturation['Address2'].', ' : '').$facturation['ZIP'].' '.$facturation['City'].', '.$facturation['Country'].'</td>';
-        $retour .= '                    </tr>';
-        if($facturation['Society'] != null)
-        {
-            $retour .= '                    <tr>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Pour la société</td>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$facturation['Society'].'</td>';
-            $retour .= '                    </tr>';
-        }
-        $retour .= '                   <tr>';
-        $retour .= '                       <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Mail</td>';
-        $retour .= '                       <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$facturation['Mail'].'</td>';
-        $retour .= '                   </tr>';
-        $retour .= '                   <tr>';
-        $retour .= '                       <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Téléphone</td>';
-        $retour .= '                       <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$facturation['Phone'].'</td>';
-        $retour .= '                   </tr>';
-        $retour .= '               </tbody>';
-        $retour .= '           </table>';
-        $retour .= '       </td>';
-        $retour .= '   </tr>';
-        return $retour;
-    }
-
-    /**
-     * Short - 
-     * 
-     * Detailed - 
-     * 
-     * @param array $livraison
-     * 
-     * @return string
-     */
-    function orderShipping($livraison)
-    {
-        logEvent('orderShipping()');
-        logEvent(json_encode($livraison));
-        $retour = '';
-        $retour .= '    <tr>';
-        $retour .= '        <td style="color:#f2f2f2;font-size:22px;font-weight:500;word-break:break-word;padding-top:45px;">';
-        $retour .= '            Détails de livraison';
-        $retour .= '        </td>';
-        $retour .= '    </tr>';
-        $retour .= '    <tr>';
-        $retour .= '        <td style="padding-top:15px;">';
-        $retour .= '            <table align="center" width="550" style="border-collapse:collapse;border-spacing:0px;border-top-width:2px;border-bottom-width:0px;border-left-width:0px;border-right-width:0px;border-style:solid;border-color:#f2f2f2;">';
-        $retour .= '                <tbody>';
-        $retour .= '                    <tr>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Facturé à</td>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$livraison['Firstname'].' '.$livraison['Lastname'].'</td>';
-        $retour .= '                    </tr>';
-        $retour .= '                    <tr>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Au</td>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$livraison['Address'].', '.($livraison['Address'] != null ? $livraison['Address'].', ' : '').$livraison['ZIP'].' '.$livraison['City'].', '.$livraison['Country'].'</td>';
-        $retour .= '                    </tr>';
-        if($livraison['Society'] != null)
-        {
-            $retour .= '                    <tr>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Pour la société</td>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$livraison['Society'].'</td>';
-            $retour .= '                    </tr>';
-        }
-        if($livraison['Mail'] != null)
-        {
-            $retour .= '                    <tr>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Pour la société</td>';
-            $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$livraison['Mail'].'</td>';
-            $retour .= '                    </tr>';
-        }
-        $retour .= '                    <tr>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">Téléphone</td>';
-        $retour .= '                        <td style="color:#f2f2f2;font-size:16px;word-break:break-word;">'.$livraison['Phone'].'</td>';
-        $retour .= '                    </tr>';
-        $retour .= '                </tbody>';
-        $retour .= '            </table>';
-        $retour .= '        </tr>';
-        $retour .= '    </td>';
-        return $retour;
     }
     
     /**
@@ -859,8 +509,8 @@
         $message .= '>';
         $message .= '   <head>';
         $message .= '      <title></title>';
-        // $message .= '      <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>';
-        $message .= '      <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>';
+        // $message .= '      <meta http-equiv="Content-Type" content="text/html charset=ISO-8859-1"/>';
+        $message .= '      <meta http-equiv="Content-Type" content="text/html charset=utf-8"/>';
         $message .= '      <meta name="viewport" content="width=device-width, initial-scale=1"/>';
         $message .= '      <meta http-equiv="X-UA-Compatible" content="IE=edge"/>';
         $message .= '      <style type="text/css">';
@@ -920,11 +570,14 @@
         logEvent('Mail action "'.$mail.'" exist');
         switch($mail)
         {
+            case 'test-mail':
+                $retour = testMail();
+                break;
             case 'contact-us':
                 $retour = contactUsMail();
                 break;
             case 'order-mail':
-                $retour = orderMail();
+                $retour = orderMail($_POST['type']);
                 break;
             case 'fail-mail':
                 $retour = failMail($_POST['type']);
@@ -953,6 +606,8 @@
         }
         switch($action)
         {
+            case 'test-mail':
+                return 'test';
             case 'full-contact':
             case 'contact-us':
                 return 'contact';
@@ -1052,6 +707,8 @@
             {
                 throw 'Content empty';
             }
+            
+            // $content = specialChars($content);
 
             $subject = (isset(SPECIALITY[$subject]) ? SPECIALITY[$subject] : $subject);
 
@@ -1068,10 +725,12 @@
             
             $headers = "From: InmodeMD-FR ".MAIL_CONST[$from][0]." <".MAIL_CONST[$from][1].">\r\n";
             $headers .= "Reply-To: contact.fr@inmodemd.com"."\r\n";
-            $headers .= "MIME-version: 1.0\r\nDate: ".date('r')."\r\n";
+            $headers .= "MIME-version: 1.0\r\n";
+            $headers .= "Date: ".date('r')."\r\n";
             $headers .= "Content-Transfer-Encoding: 8bit\r\n";
-            // $headers .= "Content-Type: text/html;charset=ISO-8859-1\r\nX-Mailer: PHP/".phpversion()."\r\n";
-            $headers .= "Content-Type: text/html;charset=utf-8\r\nX-Mailer: PHP/".phpversion()."\r\n";
+            // $headers .= "Content-Type: text/html charset=ISO-8859-1\r\n";
+            $headers .= "Content-Type: text/html; charset=utf-8\r\n";
+            $headers .= "X-Mailer: PHP/".phpversion()."\r\n";
             
             logEvent('Headers : '.PHP_EOL.$headers);
             
@@ -1142,4 +801,602 @@
             logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
             return false;
         }
+    }
+
+    function saveToPdf($string)
+    {
+        
+    }
+
+    function saveToImg($string)
+    {
+
+    }
+    
+    function testMail()
+    {
+        $order = [
+            "Article" => [
+                [
+                    "Name" => "Produit 1",
+                    "Pack" => "Pack 1",
+                    "Quantity" => 1,
+                    "Price" => 19,
+                ],
+                [
+                    "Name" => "Produit 3",
+                    "Pack" => "Pack 3",
+                    "Quantity" => 3,
+                    "Price" => 27,
+                ],
+                [
+                    "Name" => "Produit 2",
+                    "Pack" => "Pack 2",
+                    "Quantity" => 2,
+                    "Price" => 42,
+                ],
+            ],
+            "sentence" => "Votre commande X a bien été enregistrée",
+        ];
+        $retour = '';
+        $retour .= '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">';
+        $retour .= '<html data-editor-version="2" class="sg-campaigns" xmlns="http://www.w3.org/1999/xhtml">';
+
+        $retour .= '<head>';
+        $retour .= '    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
+        $retour .= '    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">';
+        $retour .= '    <!--[if !mso]><!-->';
+        $retour .= '    <meta http-equiv="X-UA-Compatible" content="IE=Edge">';
+        $retour .= '    <!--<![endif]-->';
+        $retour .= '    <!--[if (gte mso 9)|(IE)]>';
+        $retour .= '      <xml>';
+        $retour .= '        <o:OfficeDocumentSettings>';
+        $retour .= '          <o:AllowPNG/>';
+        $retour .= '          <o:PixelsPerInch>96</o:PixelsPerInch>';
+        $retour .= '        </o:OfficeDocumentSettings>';
+        $retour .= '      </xml>';
+        $retour .= '      <![endif]-->';
+        $retour .= '    <!--[if (gte mso 9)|(IE)]>';
+        $retour .= '  <style type="text/css">';
+        $retour .= '    body {width: 600px;margin: 0 auto;}';
+        $retour .= '    table {border-collapse: collapse;}';
+        $retour .= '    table, td {mso-table-lspace: 0pt;mso-table-rspace: 0pt;}';
+        $retour .= '    img {-ms-interpolation-mode: bicubic;}';
+        $retour .= '  </style>';
+        $retour .= '<![endif]-->';
+        $retour .= '    <style type="text/css">';
+        $retour .= '        body,';
+        $retour .= '        p,';
+        $retour .= '        div {';
+        $retour .= '            font-family: verdana, geneva, sans-serif;';
+        $retour .= '            font-size: 14px;';
+        $retour .= '        }';
+
+        $retour .= '        body {';
+        $retour .= '            color: #f2f2f2;';
+        $retour .= '        }';
+
+        $retour .= '        body a {';
+        $retour .= '            color: #f2f2f2;';
+        $retour .= '            text-decoration: none;';
+        $retour .= '        }';
+
+        $retour .= '        p {';
+        $retour .= '            margin: 0;';
+        $retour .= '            padding: 0;';
+        $retour .= '        }';
+
+        $retour .= '        table.wrapper {';
+        $retour .= '            width: 100% !important;';
+        $retour .= '            table-layout: fixed;';
+        $retour .= '            -webkit-font-smoothing: antialiased;';
+        $retour .= '            -webkit-text-size-adjust: 100%;';
+        $retour .= '            -moz-text-size-adjust: 100%;';
+        $retour .= '            -ms-text-size-adjust: 100%;';
+        $retour .= '        }';
+
+        $retour .= '        img.max-width {';
+        $retour .= '            max-width: 100% !important;';
+        $retour .= '        }';
+
+        $retour .= '        .column.of-2 {';
+        $retour .= '            width: 50%;';
+        $retour .= '        }';
+
+        $retour .= '        .column.of-3 {';
+        $retour .= '            width: 33.333%;';
+        $retour .= '        }';
+
+        $retour .= '        .column.of-4 {';
+        $retour .= '            width: 25%;';
+        $retour .= '        }';
+
+        $retour .= '        ul ul ul ul {';
+        $retour .= '            list-style-type: disc !important;';
+        $retour .= '        }';
+
+        $retour .= '        ol ol {';
+        $retour .= '            list-style-type: lower-roman !important;';
+        $retour .= '        }';
+
+        $retour .= '        ol ol ol {';
+        $retour .= '            list-style-type: lower-latin !important;';
+        $retour .= '        }';
+
+        $retour .= '        ol ol ol ol {';
+        $retour .= '            list-style-type: decimal !important;';
+        $retour .= '        }';
+
+        $retour .= '        @media screen and (max-width:480px) {';
+
+        $retour .= '            .preheader .rightColumnContent,';
+        $retour .= '            .footer .rightColumnContent {';
+        $retour .= '                text-align: left !important;';
+        $retour .= '            }';
+
+        $retour .= '            .preheader .rightColumnContent div,';
+        $retour .= '            .preheader .rightColumnContent span,';
+        $retour .= '            .footer .rightColumnContent div,';
+        $retour .= '            .footer .rightColumnContent span {';
+        $retour .= '                text-align: left !important;';
+        $retour .= '            }';
+
+        $retour .= '            .preheader .rightColumnContent,';
+        $retour .= '            .preheader .leftColumnContent {';
+        $retour .= '                font-size: 80% !important;';
+        $retour .= '                padding: 5px 0;';
+        $retour .= '            }';
+
+        $retour .= '            table.wrapper-mobile {';
+        $retour .= '                width: 100% !important;';
+        $retour .= '                table-layout: fixed;';
+        $retour .= '            }';
+
+        $retour .= '            img.max-width {';
+        $retour .= '                height: auto !important;';
+        $retour .= '                max-width: 100% !important;';
+        $retour .= '            }';
+
+        $retour .= '            a.bulletproof-button {';
+        $retour .= '                display: block !important;';
+        $retour .= '                width: auto !important;';
+        $retour .= '                font-size: 80%;';
+        $retour .= '                padding-left: 0 !important;';
+        $retour .= '                padding-right: 0 !important;';
+        $retour .= '            }';
+
+        $retour .= '            .columns {';
+        $retour .= '                width: 100% !important;';
+        $retour .= '            }';
+
+        $retour .= '            .column {';
+        $retour .= '                display: block !important;';
+        $retour .= '                width: 100% !important;';
+        $retour .= '                padding-left: 0 !important;';
+        $retour .= '                padding-right: 0 !important;';
+        $retour .= '                margin-left: 0 !important;';
+        $retour .= '                margin-right: 0 !important;';
+        $retour .= '            }';
+
+        $retour .= '            .social-icon-column {';
+        $retour .= '                display: inline-block !important;';
+        $retour .= '            }';
+        $retour .= '        }';
+        $retour .= '    </style>';
+        $retour .= '    <!--user entered Head Start-->';
+        $retour .= '    <!--End Head user entered-->';
+        $retour .= '</head>';
+
+        $retour .= '<body>';
+        $retour .= '    <center class="wrapper" data-link-color="#f2f2f2"';
+        $retour .= '        data-body-style="font-size:14px; font-family:verdana,geneva,sans-serif; color:#f2f2f2; background-color:#0b1a25;">';
+        $retour .= '        <div class="webkit">';
+        $retour .= '            <table cellpadding="0" cellspacing="0" border="0" width="100%" class="wrapper" bgcolor="#0b1a25">';
+        $retour .= '                <tr>';
+        $retour .= '                    <td valign="top" bgcolor="#0b1a25" width="100%">';
+        $retour .= '                        <table width="100%" role="content-container" class="outer" align="center" cellpadding="0"';
+        $retour .= '                            cellspacing="0" border="0">';
+        $retour .= '                            <tr>';
+        $retour .= '                                <td width="100%">';
+        $retour .= '                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">';
+        $retour .= '                                        <tr>';
+        $retour .= '                                            <td>';
+        $retour .= '                                                <!--[if mso]>';
+        $retour .= '                                                    <center>';
+        $retour .= '                                                        <table>';
+        $retour .= '                                                            <tr>';
+        $retour .= '                                                                <td width="600">';
+        $retour .= '                                                 <![endif]-->';
+        $retour .= '                                                <table width="100%" cellpadding="0" cellspacing="0" border="0"';
+        $retour .= '                                                    style="width:100%; max-width:600px;" align="center">';
+        $retour .= '                                                    <tr>';
+        $retour .= '                                                        <td role="modules-container"';
+        $retour .= '                                                            style="padding:0px 0px 0px 0px; color:#f2f2f2; text-align:left;"';
+        $retour .= '                                                            bgcolor="#0b1a25" width="100%" align="left">';
+        $retour .= '                                                            <table class="module preheader preheader-hide" role="module"';
+        $retour .= '                                                                data-type="preheader" border="0" cellpadding="0"';
+        $retour .= '                                                                cellspacing="0" width="100%"';
+        $retour .= '                                                                style="display: none !important; mso-hide: all; visibility: hidden; opacity: 0; color: transparent; height: 0; width: 0;">';
+        $retour .= '                                                                <tr>';
+        $retour .= '                                                                    <td role="module-content">';
+        $retour .= '                                                                        <p></p>';
+        $retour .= '                                                                    </td>';
+        $retour .= '                                                                </tr>';
+        $retour .= '                                                            </table>';
+        $retour .= '                                                            <table class="wrapper" role="module" data-type="image"';
+        $retour .= '                                                                border="0" cellpadding="0" cellspacing="0" width="100%"';
+        $retour .= '                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                data-muid="b496a446-0585-48bf-be0f-e22405074cd1">';
+        $retour .= '                                                                <tbody>';
+        $retour .= '                                                                    <tr>';
+        $retour .= '                                                                        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                            valign="top" align="center">';
+        $retour .= '                                                                            <img';
+        $retour .= '                                                                                class="max-width" border="0"';
+        $retour .= '                                                                                src="https://inmode.emeka.fr/back/assets/images/header-logo.png"';
+        $retour .= '                                                                                style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:100% !important; width:100%; height:auto !important;"';
+        $retour .= '                                                                                width="600" alt=""';
+        $retour .= '                                                                                data-proportionally-constrained="true"';
+        $retour .= '                                                                                data-responsive="true"';
+        $retour .= '                                                                            />';
+        $retour .= '                                                                        </td>';
+        $retour .= '                                                                    </tr>';
+        $retour .= '                                                                </tbody>';
+        $retour .= '                                                            </table>';
+        $retour .= '                                                            <table class="module" role="module" data-type="code"';
+        $retour .= '                                                                border="0" cellpadding="0" cellspacing="0" width="100%"';
+        $retour .= '                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                data-muid="db6919a4-990c-429a-82a4-9cb1bf027e91">';
+        $retour .= '                                                                <tbody>';
+        $retour .= '                                                                    <tr>';
+        $retour .= '                                                                        <td height="100%" valign="top"';
+        $retour .= '                                                                            role="module-content">'.$order['sentence'];
+        $retour .= '                                                                        </td>';
+        $retour .= '                                                                    </tr>';
+        $retour .= '                                                                </tbody>';
+        $retour .= '                                                            </table>';
+        $retour .= '                                                            <table border="0" cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                align="center" width="100%" role="module"';
+        $retour .= '                                                                data-type="columns" style="padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                bgcolor="#0b1a25" data-distribution="1,1,1,1">';
+        $retour .= '                                                                <tbody>';
+        $retour .= '                                                                    <tr role="module-content">';
+        $retour .= '                                                                        <td height="100%" valign="top">';
+        $retour .= '                                                                            <table width="135"';
+        $retour .= '                                                                                style="width:135px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 0px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-0">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        foreach($order['Article'] as $item)
+        {
+            $retour .= '                                                                                            <table class="module"';
+            $retour .= '                                                                                                role="module"';
+            $retour .= '                                                                                                data-type="code"';
+            $retour .= '                                                                                                border="0"';
+            $retour .= '                                                                                                cellpadding="0"';
+            $retour .= '                                                                                                cellspacing="0"';
+            $retour .= '                                                                                                width="100%"';
+            $retour .= '                                                                                                style="table-layout: fixed;"';
+            $retour .= '                                                                                                data-muid="f58697f2-da7c-4724-b057-ebb3797d25b3">';
+            $retour .= '                                                                                                <tbody>';
+            $retour .= '                                                                                                    <tr>';
+            $retour .= '                                                                                                        <td height="100%"';
+            $retour .= '                                                                                                            valign="top"';
+            $retour .= '                                                                                                            role="module-content">';
+            $retour .=                                                                                                              $item['Name'];
+            $retour .= '                                                                                                        </td>';
+            $retour .= '                                                                                                    </tr>';
+            $retour .= '                                                                                                </tbody>';
+            $retour .= '                                                                                            </table>';
+        }
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="135"';
+        $retour .= '                                                                                style="width:135px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-1">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        foreach($order['Article'] as $item)
+        {
+            $retour .= '                                                                                            <table class="module"';
+            $retour .= '                                                                                                role="module"';
+            $retour .= '                                                                                                data-type="code"';
+            $retour .= '                                                                                                border="0"';
+            $retour .= '                                                                                                cellpadding="0"';
+            $retour .= '                                                                                                cellspacing="0"';
+            $retour .= '                                                                                                width="100%"';
+            $retour .= '                                                                                                style="table-layout: fixed;"';
+            $retour .= '                                                                                                data-muid="f58697f2-da7c-4724-b057-ebb3797d25b3">';
+            $retour .= '                                                                                                <tbody>';
+            $retour .= '                                                                                                    <tr>';
+            $retour .= '                                                                                                        <td height="100%"';
+            $retour .= '                                                                                                            valign="top"';
+            $retour .= '                                                                                                            role="module-content">';
+            $retour .=                                                                                                              $item['Pack'];
+            $retour .= '                                                                                                        </td>';
+            $retour .= '                                                                                                    </tr>';
+            $retour .= '                                                                                                </tbody>';
+            $retour .= '                                                                                            </table>';
+        }
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="135"';
+        $retour .= '                                                                                style="width:135px; border-spacing:0; border-collapse:collapse; margin:0px 10px 0px 10px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-2">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        foreach($order['Article'] as $item)
+        {
+            $retour .= '                                                                                            <table class="module"';
+            $retour .= '                                                                                                role="module"';
+            $retour .= '                                                                                                data-type="code"';
+            $retour .= '                                                                                                border="0"';
+            $retour .= '                                                                                                cellpadding="0"';
+            $retour .= '                                                                                                cellspacing="0"';
+            $retour .= '                                                                                                width="100%"';
+            $retour .= '                                                                                                style="table-layout: fixed;"';
+            $retour .= '                                                                                                data-muid="f58697f2-da7c-4724-b057-ebb3797d25b3">';
+            $retour .= '                                                                                                <tbody>';
+            $retour .= '                                                                                                    <tr>';
+            $retour .= '                                                                                                        <td height="100%"';
+            $retour .= '                                                                                                            valign="top"';
+            $retour .= '                                                                                                            role="module-content">';
+            $retour .=                                                                                                              $item['Quantity'];
+            $retour .= '                                                                                                        </td>';
+            $retour .= '                                                                                                    </tr>';
+            $retour .= '                                                                                                </tbody>';
+            $retour .= '                                                                                            </table>';
+        }
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="135"';
+        $retour .= '                                                                                style="width:135px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 10px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-3">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        foreach($order['Article'] as $item)
+        {
+            $retour .= '                                                                                            <table class="module"';
+            $retour .= '                                                                                                role="module"';
+            $retour .= '                                                                                                data-type="code"';
+            $retour .= '                                                                                                border="0"';
+            $retour .= '                                                                                                cellpadding="0"';
+            $retour .= '                                                                                                cellspacing="0"';
+            $retour .= '                                                                                                width="100%"';
+            $retour .= '                                                                                                style="table-layout: fixed;"';
+            $retour .= '                                                                                                data-muid="f58697f2-da7c-4724-b057-ebb3797d25b3">';
+            $retour .= '                                                                                                <tbody>';
+            $retour .= '                                                                                                    <tr>';
+            $retour .= '                                                                                                        <td height="100%"';
+            $retour .= '                                                                                                            valign="top"';
+            $retour .= '                                                                                                            role="module-content">';
+            $retour .=                                                                                                              $item['Quantity'] * $item['Price'];
+            $retour .= '                                                                                                        </td>';
+            $retour .= '                                                                                                    </tr>';
+            $retour .= '                                                                                                </tbody>';
+            $retour .= '                                                                                            </table>';
+        }
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                        </td>';
+        $retour .= '                                                                    </tr>';
+        $retour .= '                                                                </tbody>';
+        $retour .= '                                                            </table>';
+        $retour .= '                                                            <table border="0" cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                align="center" width="100%" role="module"';
+        $retour .= '                                                                data-type="columns"';
+        $retour .= '                                                                style="padding:15px 150px 15px 150px;" bgcolor="#0b1a25"';
+        $retour .= '                                                                data-distribution="1,1,1,1">';
+        $retour .= '                                                                <tbody>';
+        $retour .= '                                                                    <tr role="module-content">';
+        $retour .= '                                                                        <td height="100%" valign="top">';
+        $retour .= '                                                                            <table width="75"';
+        $retour .= '                                                                                style="width:75px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-0">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        $retour .= '                                                                                            <table class="wrapper"';
+        $retour .= '                                                                                                role="module"';
+        $retour .= '                                                                                                data-type="image"';
+        $retour .= '                                                                                                border="0"';
+        $retour .= '                                                                                                cellpadding="0"';
+        $retour .= '                                                                                                cellspacing="0"';
+        $retour .= '                                                                                                width="100%"';
+        $retour .= '                                                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                                                data-muid="604aa702-f929-4bd6-aec2-fb0c959add62">';
+        $retour .= '                                                                                                <tbody>';
+        $retour .= '                                                                                                    <tr>';
+        $retour .= '                                                                                                        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                                                            valign="top"';
+        $retour .= '                                                                                                            align="center">';
+        $retour .= '                                                                                                            <img class="max-width"';
+        $retour .= '                                                                                                                border="0"';
+        $retour .= '                                                                                                                style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:50% !important; width:50%; height:auto !important;"';
+        $retour .= '                                                                                                                width="38"';
+        $retour .= '                                                                                                                alt=""';
+        $retour .= '                                                                                                                data-proportionally-constrained="true"';
+        $retour .= '                                                                                                                data-responsive="true"';
+        $retour .= '                                                                                                                src="https://inmode.emeka.fr/back/assets/icons/facebook.png"/>';
+        $retour .= '                                                                                                        </td>';
+        $retour .= '                                                                                                    </tr>';
+        $retour .= '                                                                                                </tbody>';
+        $retour .= '                                                                                            </table>';
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="75"';
+        $retour .= '                                                                                style="width:75px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-1">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        $retour .= '                                                                                            <table class="wrapper"';
+        $retour .= '                                                                                                role="module"';
+        $retour .= '                                                                                                data-type="image"';
+        $retour .= '                                                                                                border="0"';
+        $retour .= '                                                                                                cellpadding="0"';
+        $retour .= '                                                                                                cellspacing="0"';
+        $retour .= '                                                                                                width="100%"';
+        $retour .= '                                                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                                                data-muid="01426f1c-6714-4d7e-8d55-56c48e895b48">';
+        $retour .= '                                                                                                <tbody>';
+        $retour .= '                                                                                                    <tr>';
+        $retour .= '                                                                                                        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                                                            valign="top"';
+        $retour .= '                                                                                                            align="center">';
+        $retour .= '                                                                                                            <img class="max-width"';
+        $retour .= '                                                                                                                border="0"';
+        $retour .= '                                                                                                                style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:50% !important; width:50%; height:auto !important;"';
+        $retour .= '                                                                                                                width="38"';
+        $retour .= '                                                                                                                alt=""';
+        $retour .= '                                                                                                                data-proportionally-constrained="true"';
+        $retour .= '                                                                                                                data-responsive="true"';
+        $retour .= '                                                                                                                src="https://inmode.emeka.fr/back/assets/icons/instagram.png"/>';
+        $retour .= '                                                                                                        </td>';
+        $retour .= '                                                                                                    </tr>';
+        $retour .= '                                                                                                </tbody>';
+        $retour .= '                                                                                            </table>';
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="75"';
+        $retour .= '                                                                                style="width:75px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-2">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        $retour .= '                                                                                            <table class="wrapper"';
+        $retour .= '                                                                                                role="module"';
+        $retour .= '                                                                                                data-type="image"';
+        $retour .= '                                                                                                border="0"';
+        $retour .= '                                                                                                cellpadding="0"';
+        $retour .= '                                                                                                cellspacing="0"';
+        $retour .= '                                                                                                width="100%"';
+        $retour .= '                                                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                                                data-muid="beb3312c-e5c0-4b02-b4d2-c836084793a1">';
+        $retour .= '                                                                                                <tbody>';
+        $retour .= '                                                                                                    <tr>';
+        $retour .= '                                                                                                        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                                                            valign="top"';
+        $retour .= '                                                                                                            align="center">';
+        $retour .= '                                                                                                            <img class="max-width"';
+        $retour .= '                                                                                                                border="0"';
+        $retour .= '                                                                                                                style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:50% !important; width:50%; height:auto !important;"';
+        $retour .= '                                                                                                                width="38"';
+        $retour .= '                                                                                                                alt=""';
+        $retour .= '                                                                                                                data-proportionally-constrained="true"';
+        $retour .= '                                                                                                                data-responsive="true"';
+        $retour .= '                                                                                                                src="https://inmode.emeka.fr/back/assets/icons/youtube.png"/>';
+        $retour .= '                                                                                                        </td>';
+        $retour .= '                                                                                                    </tr>';
+        $retour .= '                                                                                                </tbody>';
+        $retour .= '                                                                                            </table>';
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                            <table width="75"';
+        $retour .= '                                                                                style="width:75px; border-spacing:0; border-collapse:collapse; margin:0px 0px 0px 0px;"';
+        $retour .= '                                                                                cellpadding="0" cellspacing="0"';
+        $retour .= '                                                                                align="left" border="0" bgcolor=""';
+        $retour .= '                                                                                class="column column-3">';
+        $retour .= '                                                                                <tbody>';
+        $retour .= '                                                                                    <tr>';
+        $retour .= '                                                                                        <td';
+        $retour .= '                                                                                            style="padding:0px;margin:0px;border-spacing:0;">';
+        $retour .= '                                                                                            <table class="wrapper"';
+        $retour .= '                                                                                                role="module"';
+        $retour .= '                                                                                                data-type="image"';
+        $retour .= '                                                                                                border="0"';
+        $retour .= '                                                                                                cellpadding="0"';
+        $retour .= '                                                                                                cellspacing="0"';
+        $retour .= '                                                                                                width="100%"';
+        $retour .= '                                                                                                style="table-layout: fixed;"';
+        $retour .= '                                                                                                data-muid="375d6118-0af6-4997-bb69-5ec7f932ff7f">';
+        $retour .= '                                                                                                <tbody>';
+        $retour .= '                                                                                                    <tr>';
+        $retour .= '                                                                                                        <td style="font-size:6px; line-height:10px; padding:0px 0px 0px 0px;"';
+        $retour .= '                                                                                                            valign="top"';
+        $retour .= '                                                                                                            align="center">';
+        $retour .= '                                                                                                            <img class="max-width"';
+        $retour .= '                                                                                                                border="0"';
+        $retour .= '                                                                                                                style="display:block; color:#000000; text-decoration:none; font-family:Helvetica, arial, sans-serif; font-size:16px; max-width:50% !important; width:50%; height:auto !important;"';
+        $retour .= '                                                                                                                width="38"';
+        $retour .= '                                                                                                                alt=""';
+        $retour .= '                                                                                                                data-proportionally-constrained="true"';
+        $retour .= '                                                                                                                data-responsive="true"';
+        $retour .= '                                                                                                                src="https://inmode.emeka.fr/back/assets/icons/linkedin.png"/>';
+        $retour .= '                                                                                                        </td>';
+        $retour .= '                                                                                                    </tr>';
+        $retour .= '                                                                                                </tbody>';
+        $retour .= '                                                                                            </table>';
+        $retour .= '                                                                                        </td>';
+        $retour .= '                                                                                    </tr>';
+        $retour .= '                                                                                </tbody>';
+        $retour .= '                                                                            </table>';
+        $retour .= '                                                                        </td>';
+        $retour .= '                                                                    </tr>';
+        $retour .= '                                                                </tbody>';
+        $retour .= '                                                            </table>';
+        $retour .= '                                                        </td>';
+        $retour .= '                                                    </tr>';
+        $retour .= '                                                </table>';
+        $retour .= '                                                <!--[if mso]>';
+        $retour .= '                                                                </td>';
+        $retour .= '                                                            </tr>';
+        $retour .= '                                                        </table>';
+        $retour .= '                                                    </center>';
+        $retour .= '                                                <![endif]-->';
+        $retour .= '                                            </td>';
+        $retour .= '                                        </tr>';
+        $retour .= '                                    </table>';
+        $retour .= '                                </td>';
+        $retour .= '                            </tr>';
+        $retour .= '                        </table>';
+        $retour .= '                    </td>';
+        $retour .= '                </tr>';
+        $retour .= '            </table>';
+        $retour .= '        </div>';
+        $retour .= '    </center>';
+        $retour .= '</body>';
+
+        $retour .= '</html>';
+        
+        return $retour;
     }
