@@ -137,6 +137,9 @@ Phone tourné textes                                                         // 
 
 L'égalité est la tyrannie des médiocres
 
+« Si les Gaulois s’assemblent si facilement en grande quantité, c’est que leur caractère simple et droit les pousse à soutenir toujours les protestations de ceux de leurs voisins qu’ils croient victimes de quelque injustice. » 
+Strabon, historien grec du 1er siècle avant Jésus-Christ.
+
 - Back
   - Responsive
   - Orders
@@ -158,3 +161,7 @@ L'égalité est la tyrannie des médiocres
   - Divers
     - Alvéoles
     - z-index menu, shop, modale, cookies, contact-us
+
+Commandes inmode.emeka.fr
+Events inmode france
+Press-media et blog inmodeuk

@@ -344,12 +344,22 @@
      * 
      * @return string
      */
-    function orderMail($type)
+    function orderMail($mail, $subject, $action, $type, $return = true)
     {
         logEvent('orderMail()');
+        // try{ require_once('./tools/sendgrid.php');}
+        // catch(\Exception $e) {echo requireError($e, './tools/sendgrid.php'); die();}
         try
         {
-            $img = request(
+            // $retour = orderMailHTML();
+            // $retour = '';
+            // $retour .= orderDoctype();
+            // $retour .= '<html>';
+            // $retour .= orderHead();
+            // $retour .= orderBody();
+            // $retour .= '</html>';
+            // return $retour;
+            $retour = request(
                 $_ENV['IMGBACK_NODE'].'/create-mail',
                 [
                     CURLOPT_ENCODING => '',
@@ -369,30 +379,30 @@
                         'action' => $_POST['action'],
                         'for' => $_POST['for'],
                         'type' => $type,
+                        'to' => $mail,
                         'session_token' => $GLOBALS['request_time']
                     ],
                     build_order_object()
                 ),
                 true
             );
-            logEvent(json_encode($img));
-            if($img['status'] == 'success' && isset($img['datas']) && isset($img['datas']['path']) && gettype($img['datas']['path']) == 'string') {
-                $img = $img['datas']['path'];
+            if($retour['status'] == 'success') {
+                $retour = json_encode([
+                    'type' => 'client',
+                    'status' => 'success',
+                    'message' => 'Mail envoyé'
+                ]);
+                return true;
             }
             else {
-                throw new Exception(isset($img['message']) ? $img['message'] : (isset($img['error']) ? $img['error'] : "Error during html mail img creation"));
+                $retour = json_encode([
+                    'type' => 'client',
+                    'status' => 'error',
+                    'message' => 'Erreur d\'envoi du mail'
+                ]);
+                return false;
             }
-            $retour = '';
-            $retour .= mailHeadPart("Fail mail");
-            $retour .= '    <body width="100%" style="margin:0 auto;padding:0!important;mso-line-height-rule:exactly;background-color:#0b1a25;" bgcolor="#0b1a25">';
-            $retour .= '        <center role="fail-mail" aria-roledescription="email" lang="fr" style="width:100%;background-color:#0b1a25;" bgcolor="#0b1a25">';
-            $retour .= '            <table width="600" cellpadding="0" border="0" align="center" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;">';
-            $retour .= '                <img src="'.$_ENV['IMGBACK_NODE'].$img.'" width="600"/>';
-            $retour .= '            </table>';
-            $retour .= '        </center>';
-            $retour .= '    </body>';
-            $retour .= '</html>';
-            return $retour;
+            return false;
         }
         catch(\Exception $e)
         {
@@ -402,6 +412,7 @@
             // ]);
             return false;
         }
+        return false;
     }
     
     /**
@@ -811,6 +822,66 @@
     function saveToImg($string)
     {
 
+    }
+
+    function imgOrderBack($type)
+    {
+        logEvent('imgOrderMail()');
+        try
+        {
+            $img = request(
+                $_ENV['IMGBACK_NODE'].'/create-mail',
+                [
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json'
+                    ),
+                    CURLOPT_SSL_VERIFYHOST => false,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                ],
+                array_merge(
+                    [
+                        'action' => $_POST['action'],
+                        'for' => $_POST['for'],
+                        'type' => $type,
+                        'session_token' => $GLOBALS['request_time']
+                    ],
+                    build_order_object()
+                ),
+                true
+            );
+            logEvent(json_encode($img));
+            if($img['status'] == 'success' && isset($img['datas']) && isset($img['datas']['path']) && gettype($img['datas']['path']) == 'string') {
+                $img = $img['datas']['path'];
+            }
+            else {
+                throw new Exception(isset($img['message']) ? $img['message'] : (isset($img['error']) ? $img['error'] : "Error during html mail img creation"));
+            }
+            $retour = '';
+            $retour .= mailHeadPart("Commande ".$_POST['Reference']);
+            $retour .= '    <body width="100%" style="margin:0 auto;padding:0!important;mso-line-height-rule:exactly;background-color:#0b1a25;" bgcolor="#0b1a25">';
+            $retour .= '        <center role="fail-mail" aria-roledescription="email" lang="fr" style="width:100%;background-color:#0b1a25;" bgcolor="#0b1a25">';
+            $retour .= '            <table width="600" cellpadding="0" border="0" align="center" cellspacing="0" style="border-collapse:collapse;border-spacing:0px;">';
+            $retour .= '                <img src="'.$_ENV['IMGBACK_NODE'].$img.'" width="600"/>';
+            $retour .= '            </table>';
+            $retour .= '        </center>';
+            $retour .= '    </body>';
+            $retour .= '</html>';
+            return $retour;
+        }
+        catch(\Exception $e)
+        {
+            // echo json_encode([
+            //     'status' => 'error',
+            //     'message' => $e
+            // ]);
+            return false;
+        }
     }
     
     function testMail()

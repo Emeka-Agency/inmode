@@ -8,23 +8,26 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "launch_dev": "cls && NODE_ENV=development npm run build --clean && NODE_ENV=development npm run develop",
-    "launch_stage": "cls && NODE_ENV=staging npm run build --clean && NODE_ENV=staging npm run develop",
-    "launch_prod": "cls && NODE_ENV=production npm run build --clean && NODE_ENV=production npm run develop"
+    "update_all": "npm update --save/--save-dev -f",
+    "launch_dev": "cls && npm update --save-dev/--save -f && npm audit fix && NODE_ENV=development npm run build --clean && npm run develop",
+    "launch_stage": "cls && npm update --save-dev/--save -f && npm audit fix && NODE_ENV=staging npm run build --clean && npm run develop",
+    "launch_prod": "cls && npm update --save-dev/--save -f && npm audit fix && NODE_ENV=production npm run build --clean && npm run develop"
   },
   "devDependencies": {},
   "dependencies": {
     "knex": "<0.20.0",
     "sqlite3": "latest",
-    "strapi": "^3.6.5",
-    "strapi-admin": "^3.6.5",
-    "strapi-connector-bookshelf": "^3.6.5",
-    "strapi-plugin-content-manager": "^3.6.5",
-    "strapi-plugin-content-type-builder": "^3.6.5",
-    "strapi-plugin-email": "^3.6.5",
-    "strapi-plugin-upload": "^3.6.5",
-    "strapi-plugin-users-permissions": "^3.6.5",
-    "strapi-utils": "^3.6.5"
+    "strapi": "^3.6.6",
+    "strapi-admin": "^3.6.6",
+    "strapi-connector-bookshelf": "3.6.1",
+    "strapi-plugin-content-manager": "^3.6.6",
+    "strapi-plugin-content-type-builder": "^3.6.6",
+    "strapi-plugin-email": "3.6.1",
+    "strapi-plugin-graphql": "^3.6.6",
+    "strapi-plugin-i18n": "^3.6.6",
+    "strapi-plugin-upload": "^3.6.6",
+    "strapi-plugin-users-permissions": "^3.6.6",
+    "strapi-utils": "3.6.1"
   },
   "author": {
     "name": "A Strapi developer"

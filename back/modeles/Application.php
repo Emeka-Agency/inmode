@@ -499,6 +499,7 @@
                 case 'order-payment-update': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-payment-update';
                 case 'order-update': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-update';
                 case 'order-load': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-load';
+                case 'order-cancel': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-cancel';
                 case 'order-delete': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-delete';
                 case 'order-signature': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-signature';
 

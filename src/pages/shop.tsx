@@ -1,3 +1,4 @@
+import { graphql } from "gatsby";
 import React from "react"
 import CartProvider from "../components/contexts/cart-provider";
 import Layout from "../components/layout";

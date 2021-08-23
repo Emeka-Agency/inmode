@@ -1,0 +1,49 @@
+#59B7B3
+#007EFF
+
+#59B7B3
+#84C6D7
+#AED4FB
+
+#59B7B3
+#A0D4D7
+#E6F0FB
+
+#007BFF
+#59A1B7
+
+42B88E et F0811E en 59B7B3
+
+Strapi => InmodePanel dans translations
+STRAPI => INMODE PANEL dans translations
+strapi => InmodePanel dans translations
+
+HomePage
+<LinkWrapper href={`/admin${data.destination}?${data.search}`} target="_self" key={index} type={'code'}>
+	<span style={{display: "block",color: '#59b7b3',fontSize: "20px",fontWeight: "bold",marginTop: "15px"}}>
+		{data.label}
+	</span>
+</LinkWrapper>
+	/plugins/content-manager/collectionType/application::addon.addon?page=1&pageSize=50&_sort=id:ASC
+ET
+	<Wave />
+
+strapi-plugin-content-manager\admin\src\components\RepeatableComponent\Banner.js
+	return <div style={{ ...display, whiteSpace: 'nowrap', maxWidth: "100%", textOverflow: "ellipsis", overflow: "hidden" }}>{displayedValue ?? msg}</div>;
+
+strapi-plugin-content-manager\admin\src\components\RepeatableComponent\index.js
+	const displayedValue = data.Article == undefined ? null : `${data.Article.Name} x ${data.Quantite} - ${data.Quantite * data.Article.price} €`;
+	specialMsg ?? displayedValue
+
+strapi/lib/middlewares/public/index.html
+	retirer background: #e6f0fb ligne 13
+
+strapi-admin/admin/src/containers/Admin/index.js
+	{SHOW_TUTORIALS && <OnboardingVideos />}
+
+search poweredBy
+	- 
+	- 
+	- 
+	- 
+	- 

@@ -152,6 +152,13 @@
     $path_schema = array_map(function($elem){return '/'.$elem;}, $path_schema);
     logEvent(json_encode($path_schema));
 
+    // function file_get_contents_utf8($fn) {
+    //     $content = file_get_contents($fn);
+    //     return mb_convert_encoding($content, 'UTF-8',
+    //         mb_detect_encoding($content, 'UTF-8, ISO-8859-1', true));
+    // }
+    
+
     $req_body = file_get_contents('php://input');
     $req_body = mb_convert_encoding($req_body, 'UTF-8', mb_detect_encoding($req_body, 'UTF-8, ISO-8859-1', true));
 

@@ -56,6 +56,19 @@ function gererCommandes($schema = [])
                     logEvent('orderLoad() successfully exectued');
                 }
             }
+            if($schema[2] == route('order-cancel'))
+            {
+                // if($GLOBALS['order']->orderLoad() == false) {
+                //     logEvent('Error during orderLoad()');
+                //     logError('Error during orderLoad()');
+                // }
+                // else {
+                //     logEvent('orderLoad() successfully exectued');
+                // }
+                echo json_encode([
+                    "Date" => buildDate(time()),
+                ]);
+            }
             // if($schema[2] == route('order-delete'))
             // {
             //     if($GLOBALS['order']->orderDelete() == false) {

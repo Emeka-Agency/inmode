@@ -148,6 +148,7 @@ export async function create_object(body:InmodePanel_Order_Interface, url:string
         body: JSON.stringify(body)
     };
     promise = await fetch(url, vars).catch(err => console.error(err));
+    console.log(promise);
     return promise;
 }
 

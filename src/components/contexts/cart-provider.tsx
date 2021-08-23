@@ -86,8 +86,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const [pay_params, setPayParams] = React.useState({
         signature: "",
         actionMode: "INTERACTIVE",
-        // vads_ctx_mode: "TEST",
-        vads_ctx_mode: "PRODUCTION",
+        vads_ctx_mode: "TEST",
+        // vads_ctx_mode: "PRODUCTION",
         currency: currencies.EUR,
         pageAction: "PAYMENT",
         siteId: "",
@@ -307,7 +307,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         return _sort_html_list(Array.from(form.elements), 'name', 'up').filter(e => e.name && e.id);
     }
 
-    const redirect_payment = async (form_fields:any, sepa:Boolean):Promise<boolean | void> => {
+    const redirect_payment = async (form_fields:any, sepa:boolean = false):Promise<boolean | void> => {
 
         form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
 
@@ -368,13 +368,15 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             _temp['intra_tva'] = intra_tva.value;
         }
         
-        let _country = null;
+        let _country:string|undefined = undefined;
         if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
             if(otherAddress == true) {
-                _country = oneById('vads_ship_to_country');
+                let temp:HTMLSelectElement = oneById('vads_ship_to_country');
+                _country = temp ? temp.value : "FR";
             }
             else {
-                _country = oneById('vads_cust_country');
+                let temp:HTMLSelectElement = oneById('vads_cust_country');
+                _country = temp ? temp.value : "FR";
             }
         }
         else {
@@ -389,7 +391,10 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             _country = 'FR';
         }
         
-        let { status } = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC()), sepa, _country), pay_params.order_create)).json();
+        // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC(), 10), sepa, _country), pay_params.order_create)).json();
+        let result = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC(), 10), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+        console.log(result);
+        return false;
         if(status && status == 'success') {
             if(sepa) {
                 openModale(

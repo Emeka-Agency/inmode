@@ -203,94 +203,78 @@
                 return false;
             }
             try {
-                try {
-                    $_body = build_order_object();
-                    if(isset($_body['error'])) {
-                        throw $_body['error'];
-                    }
-                    else {
-                        try {
-                            logEvent('Attempt to create '.self::ORDERS_DIR);
-                            emmitDir(self::ORDERS_DIR);
-                            $name = self::ORDERS_DIR.'/'.date('Y-m-d_H:i:s', time()).'-'.$GLOBALS['request_time'].'-'.$_body['Reference'].'.json';
-                            $flux = fopen($name, 'w');
-                
-                            if($flux == false)
-                            {
-                                unset($flux);
+                $_body = build_order_object();
+                if(isset($_body['error'])) {
+                    throw $_body['error'];
+                }
+                else {
+                    try {
+                        logEvent('Attempt to create '.self::ORDERS_DIR);
+                        emmitDir(self::ORDERS_DIR);
+                        $name = self::ORDERS_DIR.'/'.date('Y-m-d_H:i:s', time()).'-'.$GLOBALS['request_time'].'-'.$_body['Reference'].'.json';
+                        $flux = fopen($name, 'w');
+            
+                        if($flux == false)
+                        {
+                            unset($flux);
+                            lastError();
+                            throw new \Exception('Impossible to create flux of file "'.$name.'"');
+                        }
+                        else {
+                            if(fwrite($flux, trim(json_encode($_body))) == false) {
                                 lastError();
-                                throw new \Exception('Impossible to create flux of file "'.$name.'"');
+                                throw new \Exception('Impossible to save mail in file "'.$name.'"');
                             }
-                            else {
-                                if(fwrite($flux, trim(json_encode($_body))) == false) {
-                                    lastError();
-                                    throw new \Exception('Impossible to save mail in file "'.$name.'"');
-                                }
-                                if(fclose($flux) == false) {
-                                    lastError();
-                                    throw new \Exception('Impossible to close flux of file "'.$name.'"');
-                                }
-                                unset($flux);
-                                echo json_encode([
-                                    'status' => 'success',
-                                    'message' => 'Order created',
-                                ]);
-                                // SEND MAIL
-                                if($_POST['SEPA']) {
-                                    $this->send_mail('sepa', $_body);
-                                }
-                                else {
-                                    // TODO mail order
-                                    // DONE mail order
-                                    if(!$this->keep_mail('soge', $_body['Reference'], $name)) {
-                                        logEvent('Datas cannot be safely saved so the mails were sended as proof');
-                                        $this->send_mail('soge', $_body);
-                                    }
-                                    else {
-                                        logEvent('Datas were successfully saved. Mail for order '.$_body['Reference'].' will be sent when the payment status will be updated to an authorized status');
-                                    }
-                                }
+                            if(fclose($flux) == false) {
+                                lastError();
+                                throw new \Exception('Impossible to close flux of file "'.$name.'"');
+                            }
+                            unset($flux);
+                            echo json_encode([
+                                'status' => 'success',
+                                'message' => 'Order created',
+                            ]);
+                            // SEND MAIL
+                            if($_POST['SEPA']) {
+                                $this->send_mail('sepa', $_body);
                                 return true;
                             }
-                        }
-                        catch(\Exception $e) {
-                            logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                            echo json_encode([
-                                'status' => 'error',
-                                'message' => 'Impossible to create order'
-                            ]);
-                            return false;
+                            else {
+                                // TODO mail order
+                                // DONE mail order
+                                if(!$this->keep_mail('soge', $_body['Reference'], $name)) {
+                                    logEvent('Datas cannot be safely saved so the mails were sended as proof');
+                                    $this->send_mail('soge', $_body);
+                                    return false;
+                                }
+                                else {
+                                    logEvent('Datas were successfully saved. Mail for order '.$_body['Reference'].' will be sent when the payment status will be updated to an authorized status');
+                                    return true;
+                                }
+                            }
+                            return true;
                         }
                     }
+                    catch(\Exception $e) {
+                        logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
+                        echo json_encode([
+                            'status' => 'error',
+                            'message' => 'Impossible to create order'
+                        ]);
+                        return false;
+                    }
                 }
-                catch (\Exception $e) {
-                    logEvent('order-create error');
-                    logEvent(json_encode($e));
-                    echo json_encode([
-                        'status' => 'error',
-                        'error' => $e,
-                        'message' => 'Impossible to create order'
-                    ]);
-                    return false;
-                }
+            }
+            catch (\Exception $e) {
+                logEvent('order-create error');
+                logEvent(json_encode($e));
                 echo json_encode([
                     'status' => 'error',
+                    'error' => $e,
                     'message' => 'Impossible to create order'
                 ]);
                 return false;
             }
-            catch(\Exception $e) {
-                logError('Étape '.(++$GLOBALS['index']).' - '.'/order-create jwt token error');
-                logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                http_response_code(500);
-                echo json_encode([
-                    "status" => 'error',
-                    "message" => 'Error during jwt fetch',
-                    'error' => $e,
-                ]);
-                return false;
-            }
-            // return true;
         }
 
         /**
@@ -763,6 +747,9 @@
             try {
                 logEvent('try');
                 logEvent('BO_KEY : '.$_ENV['BO_KEY']);
+                logEvent(json_encode($_POST));
+                logEvent(json_encode($_ENV));
+                logEvent('isset($_POST["string"]:'.(isset($_POST["string"]) ? 'true' : 'false'));
                 // $signature = encrypt($_POST['string'].'+'.$_ENV['BO_KEY'], $_ENV['BO_KEY'], 'sha256');
                 $signature = base64_encode(hash_hmac("sha256", $_POST['string'].'+'.$_ENV['BO_KEY'], $_ENV['BO_KEY'], true));
                 logEvent('signature : '.$signature);
@@ -850,10 +837,10 @@
          * 
          * @return 
          */
-        public function avoirCommande($bo)
+        public function avoirCommande($ref)
         {
-            if(gettype($bo) != "string") {return null;}
-            $path = self::ORDERS_DIR.'_bo_'.$bo.'.json';
+            if(gettype($ref) != "string") {return null;}
+            $path = self::ORDERS_DIR.'_bo_'.$ref.'.json';
             logEvent('load order at '.$path);
             if(file_exists($path)) {
                 logEvent('Order exists');
