@@ -32,57 +32,57 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
     const name_table:NameTable_Interface = {
         tip: ['tip', 'tips'],
-        canule: ['canule', 'canules'],
+        canule: ['cannula', 'cannulas'],
         kit: ['Kit-Mix', 'Kit-Mix'],
         pin: ['pin', 'pins'],
-        unite: ['unité', 'unités']
+        unite: ['unit', 'units']
     };
 
     const [appeared, setAppeared] = React.useState(false);
 
-    const [articles] = React.useState(
-        Object.fromEntries(
-            useStaticQuery(graphql`
-                {
-                    allStrapiShop(sort: {order: ASC, fields: relative}) {
-                        nodes {
-                            strapiId
-                            relative
-                            reference
-                            Name
-                            pack_size
-                            pack_type
-                            price
-                            discount
-                            description
-                            pictures {
-                                formats {
-                                    thumbnail {
-                                        childImageSharp {
-                                            fluid {
-                                                srcWebp
-                                                srcSetWebp
-                                            }
-                                        }
-                                        publicURL
-                                    }
-                                }
-                                url
-                            }
-                        }
-                    }
-                }
-            `).allStrapiShop.nodes.map((article:InmodePanel_Shop_Interface) => {
-                return [
-                    article.reference,
-                    {
-                        ...article,
-                        'pack_name': (function() {
-                            return `${article.pack_size} ${name_table[article.pack_type][article.pack_size === 1 ? 0 : 1]}`;
-                        }),
-                    }];
-            }),
-        ),
+    const [articles] = React.useState({}
+        // Object.fromEntries(
+        //     useStaticQuery(graphql`
+        //         {
+        //             allStrapiShop(sort: {order: ASC, fields: relative}) {
+        //                 nodes {
+        //                     strapiId
+        //                     relative
+        //                     reference
+        //                     Name
+        //                     pack_size
+        //                     pack_type
+        //                     price
+        //                     discount
+        //                     description
+        //                     pictures {
+        //                         formats {
+        //                             thumbnail {
+        //                                 childImageSharp {
+        //                                     fluid {
+        //                                         srcWebp
+        //                                         srcSetWebp
+        //                                     }
+        //                                 }
+        //                                 publicURL
+        //                             }
+        //                         }
+        //                         url
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     `).allStrapiShop.nodes.map((article:InmodePanel_Shop_Interface) => {
+        //         return [
+        //             article.reference,
+        //             {
+        //                 ...article,
+        //                 'pack_name': (function() {
+        //                     return `${article.pack_size} ${name_table[article.pack_type][article.pack_size === 1 ? 0 : 1]}`;
+        //                 }),
+        //             }];
+        //     }),
+        // ),
     );
 
     const currencies = {
@@ -122,6 +122,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             quantity: qnt,
             pack_size: articles[ref].pack_size,
             type: articles[ref].pack_type,
+            description: articles[ref].description,
             pack_name():string {return `${qnt * this.pack_size} ${name_table[this.type][qnt * this.pack_size === 1 ? 0 : 1]}`;},
             add(qnt:number):Article_Interface {this.quantity+=qnt;return this;},
             remove(qnt:number):Article_Interface {
@@ -263,30 +264,30 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         }, 0);
     };
 
-    const total_DELIVER = ():string => {return count_total() === 0 ? (0).toFixed(2) : (10).toFixed(2);}
+    const total_DELIVER = ():string => {return count_total() === 0 ? (0).toFixed(2) : (50).toFixed(2);}
     const total_HT = ():string => {return count_total().toFixed(2);}
     const hasTVAIntra = ():boolean => {
         let i = 0;
         let _temp = oneById('facture');
         const _other_address = _temp ? _temp.checked : false;
         _temp = oneById('vads_cust_country');
-        const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "FR";
+        const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "GB";
         _temp = oneById('vads_ship_to_country');
-        const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "FR";
-        if(_other_address == false && _part_1_country == "FR") {
+        const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "GB";
+        if(_other_address == false && _part_1_country == "GB") {
             return false;
         }
-        if(_other_address == true && _part_2_country == "FR") {
+        if(_other_address == true && _part_2_country == "GB") {
             return false;
         }
         return true;
     }
     /*PAS DE FRAIS DE LIVRAISON*/
     // const total_TVA = ():string => {return (count_total() * 0.2 * 0).toFixed(2);}
-    // const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() && false ? 10 : 0)).toFixed(2);}
+    // const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() && false ? 50 : 0)).toFixed(2);}
     // /*FRAIS DE LIVRAISON*/
     const total_TVA = ():string => {return hasTVAIntra() ? (0).toFixed(2) : (count_total() * 0.2).toFixed(2);}
-    const total_TTC = ():string => {return ((count_total() * (hasTVAIntra() ? 1 : 1.2)) + (pay_delivery() ? 10 : 0)).toFixed(2);}
+    const total_TTC = ():string => {return ((count_total() * (hasTVAIntra() ? 1 : 1.2)) + (pay_delivery() ? 50 : 0)).toFixed(2);}
     
     /*PAS DE FRAIS DE LIVRAISON*/
     // const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 && false ? true : false;}

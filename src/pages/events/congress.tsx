@@ -3,12 +3,12 @@ import EventsLayout from "../../components/events/events-layout";
 import Layout from "../../components/Layout"
 import SEO from "../../components/seo";
 
-const CongressPage = ({ data }) =>  {
+const ConferencesPage = ({ data }) =>  {
     return (
-        <Layout>
-            <SEO title="Congress"/>
+        <Layout title="congress">
+            <SEO title="Conferences"/>
             <EventsLayout
-                current_page="Congress"
+                current_page="Conferences"
                 upcoming_events={!data ? {} : data.incoming.nodes}
                 // past_events={!data ? {} : data.past.nodes}
             />
@@ -16,11 +16,11 @@ const CongressPage = ({ data }) =>  {
     );
 };
 
-export default CongressPage;
+export default ConferencesPage;
 
 // export const query = graphql`
-//     query CongressPage($today_string: Date!) {
-//         incoming: allStrapiEvent(filter: {begin: {gte: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: ASC}) {
+//     query ConferencesPage($today_string: Date!) {
+//         incoming: allStrapiEvent(filter: {begin: {gte: $today_string}, type: {eq: "conference"}}, sort: {fields: begin, order: ASC}) {
 //             nodes {
 //                 address
 //                 begin(formatString: "DD MMM. YY, HH:MM")
@@ -45,7 +45,7 @@ export default CongressPage;
 //                 }
 //             }
 //         }
-//         past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: DESC}) {
+//         past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "conference"}}, sort: {fields: begin, order: DESC}) {
 //             nodes {
 //                 address
 //                 begin(formatString: "DD MMM. YY, HH:MM")

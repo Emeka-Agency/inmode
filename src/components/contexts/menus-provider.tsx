@@ -213,9 +213,10 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
     `));
 
     const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
-        if(!_array) {
+        if(!_array || !Array.isArray(_array)) {
             return {};
         }
+        _array = _array.filter(elem => elem);
         return Object.fromEntries(
             _array.map((elem) => {
                 return [elem.strapiId || elem.id, elem];

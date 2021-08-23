@@ -98,7 +98,7 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
 
     const addon_navigation = [
         {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'before and after\'s', 'url': '#before-after'},
+        {'name': 'before and after', 'url': '#before-after'},
         {'name': 'what can you treat', 'url': '#what-treat'},
         {'name': 'clinical studies', 'url': '#studies'}
     ];

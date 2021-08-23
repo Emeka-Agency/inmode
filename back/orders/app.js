@@ -102,6 +102,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors());
 app.use(express.json());
 
+app.use((req, res, next) => {
+    console.log(`${req.headers.host}${req.url}`);
+    next();
+});
+
 //////////////////////////////
 
 // DESIGNED TO KEEP SOGE PAYMENTS DURING THEIR PAYMENT
@@ -722,7 +727,7 @@ http.listen(3000, () => {
     console.log('listening on *:3000');
     console.log(`Environment : ${process.env.NODE_ENV}`);
     // console.log(`BO_KEY : ${process.env.BO_KEY}`);
-    // console.log(`STRAPI_URL : ${process.env.STRAPI_URL}`);
+    console.log(`BACK_URL : ${process.env.STRAPI_URL}`);
     // console.log(`STRAPI_ID : ${process.env.STRAPI_ID}`);
     // console.log(`STRAPI_PASS : ${process.env.STRAPI_PASS}`);
     // console.log(`BEARER : ${process.env.BEARER}`);

@@ -115,7 +115,19 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     }
                 }
             }
+            learnIcon: file(relativePath: {eq: "about-us/learn-icon.png"}) {
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
+                publicURL
+            }
             backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {
+                publicURL
+            }
+            wideBackAlveole: file(relativePath: {eq: "home/wide-bg-alveoles.png"}) {
                 publicURL
             }
             alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
@@ -189,6 +201,14 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 }
             }
             gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
+            }
+            nextImage: file(relativePath: {eq: "products/addons/next.png"}) {
                 childImageSharp {
                     fluid {
                         srcWebp

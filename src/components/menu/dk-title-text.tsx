@@ -5,6 +5,7 @@ import { format_string } from '../../functions/format_string';
 import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
+import { useImages } from '../contexts/images-provider';
 
 const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
 
@@ -21,6 +22,8 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
             }
         }
     }
+
+    const images = useImages();
 
     return (
         <ul key={prop_key} className="menu-dk-title menu-text">
@@ -61,6 +64,18 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
             }
             <ul className="dk-dropdown-menu">
                 <div className="dk-sub-container">
+                    <div className="back-hex left">
+                        <img
+                            src={images.getOne('wideBackAlveole').publicURL}
+                            alt="back-left"
+                        />
+                    </div>
+                    <div className="back-hex right">
+                        <img
+                            src={images.getOne('wideBackAlveole').publicURL}
+                            alt="back-right"
+                        />
+                    </div>
                     {menu.menus && menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
                         return (
                             <Menu key={key_sub} prop_key={key_sub} menu={sub}/>

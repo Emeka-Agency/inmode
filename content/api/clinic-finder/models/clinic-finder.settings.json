@@ -37,6 +37,19 @@
     },
     "treatments": {
       "collection": "addon"
+    },
+    "region": {
+      "type": "enumeration",
+      "enum": [
+        "London",
+        "South_West",
+        "South_East",
+        "Midlands",
+        "Northern_England",
+        "Wales",
+        "Ireland",
+        "Scotland"
+      ]
     }
   }
 }

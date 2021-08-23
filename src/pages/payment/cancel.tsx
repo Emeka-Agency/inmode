@@ -56,7 +56,7 @@ const PaymentCancelPage = () => {
     }
     
     return (
-        <Layout>
+        <Layout title="cancel-payment">
             <SEO title={page_title}/>
             <OrderLayout status={page_title} order={order}/>
         </Layout>

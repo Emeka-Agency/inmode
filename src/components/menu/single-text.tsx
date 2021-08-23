@@ -21,7 +21,7 @@ const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
                 {format_string(menu.title || "")}
             </Link>
             :
-            <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text" href={menu.url || "#"} target="_blank" rel="noreferrer"> title={format_string(menu.title || "")}
+            <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text" href={menu.url || "#"} target="_blank" rel="noreferrer" title={format_string(menu.title || "")}>
                 {format_string(menu.title || "")}
             </a>
         :

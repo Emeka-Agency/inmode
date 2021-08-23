@@ -1,7 +1,7 @@
 ._404-zone {
     padding: 110px;
     text-align: center;
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
 }
 
 ._404-zone ._404-message {
@@ -14,7 +14,7 @@
 }
 
 ._404-zone ._404-suggestions a {
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
     width: 30%;
     font-size: 35px;
     font-weight: 200;
@@ -22,7 +22,7 @@
 }
 
 ._404-zone ._404-suggestions a:hover {
-    color: #59b7b3;
+    color: var(--electric-blue, #59b7b3);
     transition: color 0.2s ease-in-out 0s;
 }
 
@@ -32,7 +32,7 @@
     display: block;
     width: 0%;
     height: 3px;
-    background: #59b7b3;
+    background: var(--electric-blue, #59b7b3);
     border-radius: 50%;
     margin: 0 auto;
     transition: width 0.3s ease-in-out 0s;

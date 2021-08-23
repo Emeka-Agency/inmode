@@ -7,7 +7,7 @@ import ClinicalFinder from "../components/ClinicFinder";
 const ClinicFinder = () => {
 
   return (
-    <Layout>
+    <Layout title="clinic-finder">
       <SEO title="Clinic Finder"/>
       <ClinicalFinder/>
     </Layout>

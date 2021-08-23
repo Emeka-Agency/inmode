@@ -27,6 +27,13 @@ const ShopLogin = ({updateLogged}:ShopLogin_Interface) => {
         }
     };
 
+    React.useEffect(() => {
+        let _input:HTMLInputElement | any = oneById('shop-login-input');
+        if(_input) {
+            _input.focus();
+        }
+    })
+
     return (
         <div className="shop-login">
             <div className="container" style={{position: "relative"}}>

@@ -158,7 +158,7 @@ const ContactUs = () => {
                             </select>
                             <input type="email" placeholder="Email*" name="mail" spellCheck={false} required={true}/>
                             <input type="phone" placeholder="Phone*" name="phone" spellCheck={false} required={true} pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"/>
-                            <input type="number" placeholder="ZIP code*" name="zip" spellCheck={false} required={true}/>
+                            <input type="number" placeholder="Postcode*" name="zip" spellCheck={false} required={true}/>
                             <input type="text" placeholder="City*" name="city" spellCheck={false} required={true}/>
                             <textarea
                                 id="contact-message-mini"

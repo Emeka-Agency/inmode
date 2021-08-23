@@ -40,7 +40,7 @@
 
 .loading-gif .loader-bar {
     border: 5px solid transparent;
-    border-top: 5px solid #59b7b3;
+    border-top: 5px solid var(--electric-blue, #59b7b3);
     -webkit-animation: spin 1.5s cubic-bezier(0, 0.07, 0.8, 0.88) infinite; /* Safari */
     animation: spin 1.5s cubic-bezier(0, 0.07, 0.8, 0.88) infinite;
 }

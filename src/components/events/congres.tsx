@@ -1,7 +1,7 @@
 import React from "react";
 import { InmodePanel_Event_Interface } from "../interfaces";
 
-const Congres = ({ event = undefined }:Congres) => {
+const Conferences = ({ event = undefined }:Conferences) => {
 
     if(event == undefined) {
         return <></>;
@@ -27,7 +27,7 @@ const Congres = ({ event = undefined }:Congres) => {
                     {`${event.begin}${event.finish ? ` - ${event.finish}` : ''}`}
                 </div>}
                 {event.place && <div className="address_link">
-                    <a href={event.place_url || "#"} target="_blank" rel="noreferrer" title="Lieu">
+                    <a href={event.place_url || "#"} target="_blank" rel="noreferrer" title="Place">
                         {event.place}
                     </a>
                 </div>}
@@ -35,15 +35,15 @@ const Congres = ({ event = undefined }:Congres) => {
                     {event.address}
                 </div>}
                 {event.maps_link && <div className="maps_location">
-                    <a href={event.maps_link || "#"} target="_blank" rel="noreferrer" title="Localisation Google Maps">+ Google Map</a>
+                    <a href={event.maps_link || "#"} target="_blank" rel="noreferrer" title="Google Maps localization">+ Google Maps</a>
                 </div>}
             </div>
         </div>
     );
 };
 
-interface Congres {
+interface Conferences {
     event: InmodePanel_Event_Interface | undefined;
 };
 
-export default Congres;
+export default Conferences;

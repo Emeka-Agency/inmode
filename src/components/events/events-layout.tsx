@@ -51,8 +51,8 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
             'url': '/events'
         },
         {
-            'name': 'Congress',
-            'url': '/events/congress'
+            'name': 'conferences',
+            'url': '/events/conferences'
         },
         {
             'name': 'workshops',
@@ -71,7 +71,7 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
         e.currentTarget.classList.toggle('opened');
         var panel = e.currentTarget.nextElementSibling;
         if(!panel) {
-            return false;
+            return <></>;
         }
         panel.classList.toggle('opened');
         if (maxHeight) {

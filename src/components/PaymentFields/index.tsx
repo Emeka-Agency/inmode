@@ -22,10 +22,12 @@ function isCountry(country:{label:string, code:string}):boolean {
 // -----        DEFAULT PARAMS      --------//
 // -----============================--------//
 
+// TODO Voir liste pays
 const defaultCountries = [
     {label: 'France', code: 'FR'},
     {label: 'Belgique', code: 'BE'},
     {label: 'Luxembourg', code: 'LU'},
+    {label: 'Great Britain', code: 'GB'},
 ];
 
 const defaultParams = {
@@ -43,7 +45,7 @@ const defaultParams = {
     // AddressLine1: {name: 'vads_cust_address', id: 'vads_cust_address', placeholder: 'Address line 1'},
     AddressLine1: {name: 'vads_cust_address', id: 'vads_cust_address', placeholder: 'Address'},
     AddressLine2: {name: 'vads_cust_address2', id: 'vads_cust_address2', placeholder: 'Address line 2'},
-    Zip: {name: 'vads_cust_zip', id: 'vads_cust_zip', placeholder: 'ZIP code'},
+    Zip: {name: 'vads_cust_zip', id: 'vads_cust_zip', placeholder: 'Postcode'},
     City: {name: 'vads_cust_city', id: 'vads_cust_city', placeholder: 'City'},
     State: {name: 'vads_cust_state', id: 'vads_cust_state', placeholder: 'State/country'},
     Country: {name: 'vads_cust_country', id: 'vads_cust_country', placeholder: 'Country', countries: defaultCountries},
@@ -53,12 +55,12 @@ const defaultParams = {
     // DeliveryAddressLine1: {name: 'vads_ship_to_street', id: 'vads_ship_to_street', placeholder: 'Address line 1'},
     DeliveryAddressLine1: {name: 'vads_ship_to_street', id: 'vads_ship_to_street', placeholder: 'Address'},
     DeliveryAddressLine2: {name: 'vads_ship_to_street2', id: 'vads_ship_to_street2', placeholder: 'Address line 2'},
-    DeliveryZip: {name: 'vads_ship_to_zip', id: 'vads_ship_to_zip', placeholder: 'ZIP code'},
+    DeliveryZip: {name: 'vads_ship_to_zip', id: 'vads_ship_to_zip', placeholder: 'Postcode'},
     DeliveryCity: {name: 'vads_ship_to_city', id: 'vads_ship_to_city', placeholder: 'City'},
     DeliveryState: {name: 'vads_ship_to_state', id: 'vads_ship_to_state', placeholder: 'State/country'},
     DeliveryCountry: {name: 'vads_ship_to_country', id: 'vads_ship_to_country', placeholder: 'Country', countries: defaultCountries},
     DeliveryFirstName: {name: 'vads_ship_to_first_name', id: 'vads_ship_to_first_name', placeholder: 'Firstname'},
-    DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'lastname'},
+    DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'Lastname'},
     DeliveryPhone: {name: 'vads_ship_to_phone_num', id: 'vads_ship_to_phone_num', placeholder: 'Phone'},
     DeliveryStatus: {name: 'vads_ship_to_status', id: 'vads_ship_to_status', placeholder: 'Status'},
     DeliverySociety: {name: 'vads_ship_to_legal_name', id: 'vads_ship_to_legal_name', placeholder: 'Society'},

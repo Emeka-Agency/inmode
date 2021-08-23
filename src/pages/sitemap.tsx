@@ -5,11 +5,11 @@ import SEO from "../components/seo";
 const Sitemap = ({ data }) => {
     
     return (
-        <Layout>
+        <Layout title="sitemap">
             <SEO title="Sitemap"/>
             <div id="sitemap-links" className="container">
                 <div className="sitemap-list">
-                    <div className="title">LIENS</div>
+                    <div className="title">LINKS</div>
                     {/* BASE */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/" title="Home">https://inmodemd.co.uk/</a></div>
                     {/* SHOP */}
@@ -20,10 +20,16 @@ const Sitemap = ({ data }) => {
                     <div className="sitemap-link">- <a className="absolute-link" href="/contact/" title="Contact">https://inmodemd.co.uk/contact/</a></div>
                     {/* LEGALS */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/legals/" title="Legals">https://inmodemd.co.uk/legals/</a></div>
+                    {/* ARTICLES */}
+                    {/* <div className="sitemap-link">- <a className="absolute-link" href="/articles/" title="Articles">https://inmodemd.co.uk/articles/</a></div> */}
+                    {/* PRESS-MEDIA */}
+                    <div className="sitemap-link">- <a className="absolute-link" href="/press-media/" title="Press & Media">https://inmodemd.co.uk/press-media/</a></div>
+                    {/* BLOG */}
+                    <div className="sitemap-link">- <a className="absolute-link" href="/blog/" title="Blog">https://inmodemd.co.uk/blog/</a></div>
                     {/* SITEMAP */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/sitemap/" title="Sitemap">https://inmodemd.co.uk/sitemap/</a></div>
                     {/* WORKSTATION */}
-                    <div className="sitemap-category">MACHINES</div>
+                    <div className="sitemap-category">WORKSTATIONS</div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/workstation/" title="Workstations/">https://inmodemd.co.uk/workstation/</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/workstation/morpheus-pro" title="Morpheus pro">https://inmodemd.co.uk/workstation/morpheus-pro</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/workstation/bodytite" title="Bodytite">https://inmodemd.co.uk/workstation/bodytite</a></div>
@@ -55,7 +61,7 @@ const Sitemap = ({ data }) => {
                     <div className="sitemap-link">- <a className="absolute-link" href="/technology/duo-light" title="Duo light">https://inmodemd.co.uk/technology/duo-light</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/technology/vasculaze" title="Vasculaze">https://inmodemd.co.uk/technology/vasculaze</a></div>
                     {/* TREATMENT */}
-                    <div className="sitemap-category">TRAITEMENTS</div>
+                    <div className="sitemap-category">TREATMENTS</div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/hair-removal" title="Hair removal">https://inmodemd.co.uk/treatment/hair-removal</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-body-contouring" title="Mini invasive body contouring">https://inmodemd.co.uk/treatment/mini-invasive-body-contouring</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-face-neck-contouring" title="Mini invasive face neck contouring">https://inmodemd.co.uk/treatment/mini-invasive-face-neck-contouring</a></div>
@@ -63,11 +69,11 @@ const Sitemap = ({ data }) => {
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/non-invasive-face-neck-contouring" title="Non invasive face neck contouring">https://inmodemd.co.uk/treatment/non-invasive-face-neck-contouring</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/pigmentation" title="Pigmentation">https://inmodemd.co.uk/treatment/pigmentation</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/vascular-lesions" title="Vascular lesions">https://inmodemd.co.uk/treatment/vascular-lesions</a></div>
-                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/women-s-health" title="Women's health">https://inmodemd.co.uk/treatment/women-s-health</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/women-s-wellbeing" title="Women's wellbeing">https://inmodemd.co.uk/treatment/women-s-wellbeing</a></div>
                     {/* EVENTS */}
-                    <div className="sitemap-category">ÉVÉNEMENTS</div>
+                    <div className="sitemap-category">EVENTS</div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/" title="Events">https://inmodemd.co.uk/events/</a></div>
-                    <div className="sitemap-link">- <a className="absolute-link" href="/events/congress/" title="Congress">https://inmodemd.co.uk/events/congress/</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="/events/conferences/" title="Conferences">https://inmodemd.co.uk/events/conferences/</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/webinars/" title="Webinars">https://inmodemd.co.uk/events/webinars/</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/workshops/" title="Workshops">https://inmodemd.co.uk/events/workshops/</a></div>
                 </div>

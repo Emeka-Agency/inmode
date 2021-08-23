@@ -17,14 +17,16 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
+    console.log(datas);
+
     return (
-            <Layout>
-                <SEO title="Product"/>
+            <Layout title="products">
+                <SEO title="Products"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation
                     name={datas.Name}
                     exist={{
-                        'before-after': datas.BeforesAfters !== [] && datas.BeforesAfters.length > 0,
+                        'before-after': datas.BeforesAfters && datas.BeforesAfters !== [] && datas.BeforesAfters.length > 0,
                         'studies': datas.ClinicalStudies !== [] && datas.ClinicalStudies.length > 0
                     }}
                 />
@@ -39,12 +41,12 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                     }}
                 />
                 <Divider position="top"/>
-                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
+                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity} name={datas.Name}/>
                 <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>
                 <ProductDemo datas={datas.Demo}/>
                 {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"#0b1a25"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
-                <SellingArgs datas={datas.SellingArgs[0]}/>
+                <SellingArgs datas={datas.SellingArgs ? datas.SellingArgs[0] : null}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
             </Layout>
     );
@@ -61,166 +63,163 @@ export default ProductTemplates;
 export const query = graphql`
     query Product($id: String!) {
         strapiProduct(id: {eq: $id}) {
-          strapiId
-          Banner {
-            left_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            left_video
-            right_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            mini {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            right_text
-          }
-          WhatIs {
-            picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            TitleText {
-              text
-              title
-            }
-          }
-          BeforeKeyBenefits
-          KeyBenefits {
-            texte
-          }
-          Addons {
-            MenuParams {
-              url
-              internal_link
-            }
-            ProductPresentation {
-              left_image {
+            strapiId
+            Banner {
+                left_img {
                 childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                      srcSetWebp
+                        fluid {
+                            base64
+                            srcWebp
+                            srcSetWebp
+                        }
+                    }
+                }
+                left_video
+                right_img {
+                    childImageSharp {
+                        fluid {
+                            base64
+                            srcWebp
+                            srcSetWebp
+                        }
+                    }
+                }
+                mini {
+                    childImageSharp {
+                        fluid {
+                            base64
+                            srcWebp
+                            srcSetWebp
+                        }
+                    }
+                }
+                right_text
+            }
+            WhatIs {
+                picture {
+                    childImageSharp {
+                        fluid {
+                            base64
+                            srcWebp
+                            srcSetWebp
+                        }
+                    }
+                }
+                TitleText {
+                    text
+                    title
+                }
+            }
+            BeforeKeyBenefits
+            KeyBenefits {
+                texte
+            }
+            Addons {
+                MenuParams {
+                    url
+                    internal_link
+                }
+                ProductPresentation {
+                    left_image {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
+                        }
+                    }
+                    title_image {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                            srcSetWebp
+                            }
+                        }
+                    }
+                    title_text
+                    Images {
+                        image {
+                            childImageSharp {
+                                fluid {
+                                    base64
+                                    srcWebp
+                                    srcSetWebp
+                                }
+                            }
+                        }
+                        product {
+                            id
+                        }
+                    }
+                    AddonProductsDescr {
+                        descr
+                        product {
+                            id
+                        }
+                    }
+                    ProductPresentationTreats {
+                        treat_short
+                        product {
+                            id
+                        }
+                    }
+                    appears_everywhere
                   }
                 }
-              }
-              title_image {
-                childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                  srcSetWebp
-                  }
-                }
-              }
-              title_text
-              Images {
-                image {
-                  childImageSharp {
-                    fluid {
-                      base64
-                      srcWebp
-                      srcSetWebp
+                Demo {
+                  text
+                  picture {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
                     }
                   }
                 }
-                product {
-                  id
+                BeforesAfters {
+                  doctor
+                  image {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
+                  }
+                  text
                 }
-              }
-              AddonProductsDescr {
-                descr
-                product {
-                  id
+                SellingArgs {
+                  SectionTitle
+                  Arg {
+                    texte
                 }
-              }
-              ProductPresentationTreats {
-                treat_short
-                product {
-                  id
+            }
+            ClinicalStudies {
+                addons {
+                    Name
                 }
-              }
-              appears_everywhere
-              products {
-                id
-              }
-            }
-          }
-          Demo {
-            text
-            picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                author
+                published_date
+                title
+                url
+                picture {
+                    childImageSharp {
+                        fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
                 }
-              }
+                publication
             }
-          }
-          BeforesAfters {
-            doctor
-            image {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            text
-          }
-          SellingArgs {
-            SectionTitle
-            Arg {
-              texte
-            }
-          }
-          ClinicalStudies {
-            addons {
-              Name
-            }
-            author
-            published_date
-            title
-            url
-            picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
-                }
-              }
-            }
-            publication
-          }
-          Name
-          sensitivity
+            Name
+            sensitivity
         }
     }
 `;

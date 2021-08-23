@@ -5,7 +5,7 @@ const SellingArgs = ({ datas }) => {
 
     const images = useImages();
     
-    if(!datas || datas.length === 0) {
+    if(datas == null || datas.length === 0) {
         return <></>;
     }
 

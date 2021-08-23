@@ -16,13 +16,13 @@ module.exports = {
     og_description: `InMode offers cutting edge medical devices for minimally-invasive & non-invasive procedures that provide amazing results for the patient and the practice.`,
     og_image: ``,
     og_url: `https://inmodemd.co.uk/`,
-    og_site_name: `InModeMD FR`,
+    og_site_name: `InModeMD UK`,
     twitter_card: `summary_large_image`,
     twitter_title: `InMode offers cutting edge medical devices for minimally-invasive & non-invasive procedures that provide amazing results for the patient and the practice.`,
     twitter_description: `InMode offers cutting edge medical devices for minimally-invasive & non-invasive procedures that provide amazing results for the patient and the practice.`,
-    twitter_site: `@InModeMD_FR`,
+    twitter_site: `@InModeMD_UK`,
     twitter_image: ``,
-    twitter_creator: `@InModeMD_FR`,
+    twitter_creator: `@InModeMD_UK`,
     msapplication_TileImage: ``,
     shop_id: `${process.env.SHOP_ID}`,
     url_success: `${process.env.URL_SUCCESS}`,
@@ -78,22 +78,28 @@ module.exports = {
         // apiURL: `${process.env.STRAPI_URL}`,
         apiURL: `https://inmodeuk-content.emeka.fr`,
         contentTypes: [ // List of the Collection Types you want to be able to request from Gatsby.
-          `addon`,
-          `product`,
-          `tag`,
-          `tag-family`,
-          `treatment`,
-          `menu`,
-          `shop`,
-          `clinic-finders`,
-          // `event`
+          `addon`,              // Addons
+          `product`,            // Products
+          `tag`,                // Tags
+          `tag-family`,         // TagFamilies
+          `treatment`,          // Treatments
+          `menu`,               // Menus
+          `shop`,               // Shops
+          `clinic-finders`,     // ClinicFinders
+          `discount`,           // Dicounts
+          `our-specialists`,    // OurSpecialists
+          `testimonial`,        // Testimonials
+          `press-media`,        // PressMedias
+          `articles`            // BlogPosts
+        //   `order`            // Orders
+        //   `event`            // Events
         ],
         singleTypes: [
-          `footer`,
-          `about-us`,
-          `professional-contact`,
-          `hero-header`,
-          `seo-meta`
+          `footer`,                 // Footer
+          `about-us`,               // AboutUs
+        //   `professional-contact`,   // ProfessionalContact
+          `hero-header`,            // HeroHeader
+          `seo-meta`                // SEOMeta
         ],
         queryLimit: 10000,
         loginData: {

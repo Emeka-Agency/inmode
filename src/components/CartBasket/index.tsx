@@ -1,3 +1,4 @@
+import { navigate } from "gatsby-link";
 import React from "react";
 import { useCart } from "../contexts/cart-provider";
 import { useImages } from "../contexts/images-provider";
@@ -18,6 +19,9 @@ const CartBasket = ({  }:CartBasket) => {
                 onClick={(e) => {
                     if(cart.total_articles()) {
                         cart.toggle_open_cart();
+                    }
+                    else {
+                        navigate('/shop');
                     }
                 }}
             />

@@ -9,7 +9,7 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                 </div>
                 <hr/>
                 <div className="descr">
-                    InMode is a fast paced innovative company with continuous growth opportunities. We are always looking for good candidates to join our team. If you are interested in working for InMode please submit a cover letter and resume to hr@inmodemd.com
+                    InMode is a fast paced innovative company with continuous growth opportunities. We are always looking for good candidates to join our team. If you are interested in working for InMode please submit a cover letter and resume to <a href="mailto:info@inmodemd.co.uk" target="_blank">info@inmodemd.co.uk</a>
                 </div>
             </div>
             <div className="around-the-world">
@@ -33,8 +33,8 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                             //     'mail': 'apac@inmodemd.com'
                             // }
                             {
-                                'place': 'Inmode France',
-                                'mail': 'contact.fr@inmodemd.com'
+                                'place': 'Inmode UK',
+                                'mail': 'info@inmodemd.co.uk'
                             }
                         ].map((distributor, key) => {
                             return (

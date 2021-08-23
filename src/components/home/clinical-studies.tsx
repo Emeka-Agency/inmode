@@ -21,7 +21,7 @@ const ClinicalStudies = ({}:ClinicalStudies) => {
                             srcSet={images.getOne('homeClinicalStudy').childImageSharp.fluid.srcSetWebp}
                             alt="studies-img"
                         />
-                        <a href="https://inmodemd.com/clinical-papers/" target="_blank" rel="noreferrer" title="Voir les études">
+                        <a href="https://inmodemd.com/clinical-papers/" target="_blank" rel="noreferrer" title="See the studies">
                             See studies
                         </a>
                     </div>

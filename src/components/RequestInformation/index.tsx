@@ -3,8 +3,8 @@ import { Link } from 'gatsby';
 
 const RequestInformation = ({  }:RequestInformation_Interface) => {
     return (
-        <Link className="request-informations" to="/contact" title="Plus d'informations">
-            request informations
+        <Link className="request-informations" to="/contact" title="More informations">
+            request information
         </Link>
     );
 };

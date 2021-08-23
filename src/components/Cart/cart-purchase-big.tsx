@@ -27,6 +27,7 @@ import LoadingGIF from '../LoadingGIF';
 import './big.css';
 import { oneById } from "../../functions/selectors";
 import { useWindowSize } from "../../functions/window-size";
+import { Link } from "gatsby";
 
 const CartPurchaseBig = ({  }:CartPurchaseBig) => {
 
@@ -61,6 +62,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
 
     const sendForm = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        return false;
         let _temp:any = oneById('big-submit');
         if(_temp){ _temp.disabled= true; }
         let _sepa:HTMLInputElement | any = oneById('sepa');
@@ -166,16 +168,15 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     <img
                         src={images.getOne('cartBasketIcon').publicURL}
                         srcSet={images.getOne('cartBasketIcon').publicURL}
-                        alt="Panier"
+                        alt="Cart"
                     />
                     <span>{`Cart, ${cart.cart.length} object${cart.cart.length > 1 ? 's' : ''}`}</span>
                 </div>
                 <div className={`cart-content custom-scrollbar${formOpened ? ' purchase' : ''}`}>
                     {cart.cart.map((article, key) => {
                         let _image = undefined;
-                        if(cart.articles[article.reference].pictures) {
+                        if(Array.isArray(cart.articles[article.reference].pictures)) {
                             _image = cart.articles[article.reference].pictures[0];
-                            console.log(_image);
                             if(_image.formats && _image.formats.thumbnail) {
                                 _image = _image.formats.thumbnail;
                             }
@@ -183,7 +184,6 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                 _image = _image.url || undefined;
                             }
                         }
-                        console.log(_image);
                         return (
                             <div key={key} className="cart-article transition">
                                 <div
@@ -196,7 +196,17 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                     <img className="blue" src={images.getOne('rmvHover').publicURL} alt="X"/>
                                 </div>
                                 <div className="addon">
-                                    
+                                    {_image == undefined ?
+                                    <></>:typeof _image == "string" ?
+                                    <img
+                                        src={'https://inmodeuk-content.emeka.fr' + _image}
+                                        alt={article.name}
+                                    />:
+                                    <img
+                                        src={_image.childImageSharp.fluid.srcWebp}
+                                        srcSet={_image.childImageSharp.fluid.srcSetWebp}
+                                        alt={article.name}
+                                    />}
                                 </div>
                                 <div className="details">
                                     <div className="reference">{article.reference}</div>
@@ -391,7 +401,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     required
                 />
                 <label htmlFor="terms">
-                    I accept the T&Cs
+                    I accept the <Link to="/legals" target="_blank">T&Cs</Link>
                 </label>
             </div>
             {/* VALIDATE */}

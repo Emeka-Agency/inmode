@@ -1,72 +1,73 @@
 exports.onCreateWebpackConfig = ({
-  actions
+    actions
 }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      // It's important to have 'node_modules' in resolve module,
-      // otherwise the webpack resolve won't be able to find dependencies
-      // correctly.
-      modules: ['node_modules']
-    }
-  })
+    actions.setWebpackConfig({
+        resolve: {
+            // It's important to have 'node_modules' in resolve module,
+            // otherwise the webpack resolve won't be able to find dependencies
+            // correctly.
+            modules: ['node_modules']
+        }
+    })
 }
 
 exports.onCreatePage = async ({
-  page,
-  actions
+    page,
+    actions
 }) => {
-  const {
-    createPage,
-    deletePage
-  } = actions
-  deletePage(page)
-  // You can access the variable "house" in your page queries now
+    const {
+        createPage,
+        deletePage
+    } = actions
+    deletePage(page)
+    // You can access the variable "house" in your page queries now
 
-  if(page.path == '/test/') {
-    return false;
-  }
+    if (page.path == '/test/') {
+        return false;
+    }
 
-  console.log(page.path);
+    console.log(page.path);
 
-  // {/* SWITCH CART */}
+    // {/* SWITCH CART */}
 
-//   if(page.path == '/shop/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/cancel/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/error/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/paid/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/refused/') {
-//     return false;
-//   }
+      if(page.path == '/shop/') {
+        return false;
+      }
+      if(page.path == '/payment/cancel/') {
+        return false;
+      }
+      if(page.path == '/payment/error/') {
+        return false;
+      }
+      if(page.path == '/payment/paid/') {
+        return false;
+      }
+      if(page.path == '/payment/refused/') {
+        return false;
+      }
 
-  // {/* SWITCH CART END */}
+    // {/* SWITCH CART END */}
 
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      today_string: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-'),
-    },
-  })
+    createPage({
+        ...page,
+        context: {
+            ...page.context,
+            today_string: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-'),
+        },
+    })
 }
 
 exports.createPages = async ({
-  graphql,
-  actions
+    graphql,
+    actions
 }) => {
-  const {
-    createPage
-  } = actions
+    
+    const {
+        createPage
+    } = actions
 
-  const result = await graphql(
-    `
+    const result = await graphql(
+        `
       {
         addons: allStrapiAddon {
           edges {
@@ -104,55 +105,77 @@ exports.createPages = async ({
         }
       }
     `
-  );
+    );
+    // articles: allStrapiArticle {
+    //     nodes {
+    //         id
+    //         strapiId
+    //         CustomUrl
+    //     }
+    // }
 
-  if (result.errors) {
-    throw result.errors
-  }
+    if (result.errors) {
+        throw result.errors
+    }
 
-  // Create addons pages.
-  const addons = result.data.addons.edges
+    // Create addons pages.
+    const addons = result.data.addons.edges
 
-  const AddonTemplates = require.resolve("./src/templates/addon.tsx")
+    const AddonTemplates = require.resolve("./src/templates/addon.tsx")
 
-  addons.forEach((addon, index) => {
-    addon.node.Page_addon && createPage({
-      path: addon.node.MenuParams.url,
-      component: AddonTemplates,
-      context: {
-        id: addon.node.id,
-      },
-    })
-  })
+    addons.forEach((addon, index) => {
+        addon.node.Page_addon && createPage({
+            path: addon.node.MenuParams.url,
+            component: AddonTemplates,
+            context: {
+                id: addon.node.id,
+            },
+        })
+    });
 
-  // Create products pages.
-  const products = result.data.products.edges
+    // Create products pages.
+    const products = result.data.products.edges
 
-  const ProductTemplates = require.resolve("./src/templates/product.tsx")
+    const ProductTemplates = require.resolve("./src/templates/product.tsx")
 
-  products.forEach((product, index) => {
-    createPage({
-      path: product.node.MenuParams.url,
-      component: ProductTemplates,
-      context: {
-        id: product.node.id,
-      },
-    })
-  })
+    products.forEach((product, index) => {
+        createPage({
+            path: product.node.MenuParams.url,
+            component: ProductTemplates,
+            context: {
+                id: product.node.id,
+            },
+        })
+    });
 
-  // Create treatments pages.
-  const treatments = result.data.treatments.edges
+    // Create treatments pages.
+    const treatments = result.data.treatments.edges
 
-  const TreatmentTemplates = require.resolve("./src/templates/treatment.tsx")
+    const TreatmentTemplates = require.resolve("./src/templates/treatment.tsx")
 
-  treatments.forEach((treatment, index) => {
-    createPage({
-      path: treatment.node.MenuParams.url,
-      component: TreatmentTemplates,
-      context: {
-        id: treatment.node.id
-      },
-    })
-  })
+    treatments.forEach((treatment, index) => {
+        createPage({
+            path: treatment.node.MenuParams.url,
+            component: TreatmentTemplates,
+            context: {
+                id: treatment.node.id
+            },
+        })
+    });
 
+    // Create articles pages.
+    // const articles = result.data.articles.nodes;
+
+    // const ArticleTemplates = require.resolve("./src/templates/article.tsx")
+
+    // articles.forEach((article, index) => {
+    //     // console.log(JSON.stringify(article));
+    //     createPage({
+    //         path: "blog" + (article.CustomUrl || "/" + parseInt(article.strapiId, 10)),
+    //         component: ArticleTemplates,
+    //         context: {
+    //             id: article.id
+    //         },
+    //     })
+    // });
 }

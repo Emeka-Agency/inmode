@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_article_zone_titles",
+  "info": {
+    "name": "ZoneTitle",
+    "icon": "chess-king"
+  },
+  "options": {},
+  "attributes": {
+    "ZoneTitle": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -14,7 +14,7 @@ interface OrderLayoutParams {
 
 function get_day(day:number):string {
     try {
-        return ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'][day];
+        return ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'][day];
     }
     catch(err) {
         return 'unknown';
@@ -23,7 +23,7 @@ function get_day(day:number):string {
 
 function get_month(month:number):string {
     try {
-        return ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'][month]
+        return ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'][month]
     }
     catch(err) {
         return 'unknown';
@@ -41,10 +41,10 @@ function _getSecond(_date:Date) {return (_date.getSeconds() < 10 ? `0${_date.get
 function get_date(date:string):string {
     const _date = new Date(date);
     let _temp = "";
-    _temp += _getDay(_date) + ' ';
-    _temp += _getDate(_date) + ' ';
+    _temp += _getDay(_date) + ', ';
     _temp += _getMonth(_date) + ' ';
-    _temp += _getFull_year(_date) + ' à ';
+    _temp += _getDate(_date) + ' ';
+    _temp += _getFull_year(_date) + ' at ';
     _temp += _getHour(_date) + ':';
     _temp += _getMinute(_date) + ':';
     _temp += _getSecond(_date);
@@ -77,15 +77,15 @@ const OrderLayout = ({ status, order }:OrderLayoutParams) => {
                                         <div className="article-name">{_art.Name}</div>
                                         <div className="article-price">{_art.price}</div>
                                         <div className="article-pack_size">{_art.pack_size}</div>
-                                        <div className="article-quantity">{article.Quantity}</div>
-                                        <div className="article-total">{_art.price * article.Quantity * (_art.discount > 0 ? _art.discount : 1)}</div>
+                                        <div className="article-quantity">{article.Quantite}</div>
+                                        <div className="article-total">{_art.price * article.Quantite * (_art.discount > 0 ? _art.discount : 1)}</div>
                                     </div>
                                 );
                             }
                             return null;
                         }).filter(e => e)}
                     </div> */}
-                    {/* DeliveryTax: 10 */}
+                    {/* DeliveryTax: 50 */}
                     {/* <div className="order-delivery"> */}
                         {/* {order.DeliveryTax == 0 && "Livraison gratuite"} */}
                         {/* TODO Fonction currency(currency:number):string, ex 978 => '€' */}
@@ -93,7 +93,7 @@ const OrderLayout = ({ status, order }:OrderLayoutParams) => {
                     {/* </div> */}
                     {/* Date: "2021-02-26T05:40:43.000Z" */}
                     <div className="order-date">
-                        {status} on {get_date(order.Date)}
+                        {status} on {get_date(order.Date)} UTC
                     </div>
                     {/* Billing: {id: 20, Firstname: "m", Lastname: "m", Phone: "0667630604", Mail: "test@gmail.com", …} */}
                     {/* {order.Billing && <div className="order-billing">

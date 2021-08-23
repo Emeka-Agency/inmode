@@ -1,0 +1,151 @@
+import React, { ReactChild, useContext } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
+
+import { _sort_html_list, _sort_object } from '../../functions/sort';
+
+import {
+    hashString,
+} from 'react-hash-string';
+
+import '../interfaces';
+import {
+    InmodePanel_BlogArticle_Interface,
+    BlogArticleContext_Interface,
+    BlogArticle_Interface,
+    InmodePanel_BlogArticleElement_Interface,
+} from '../interfaces';
+import ArticleContext from './article-context';
+
+export const useArticle = ():BlogArticleContext_Interface => {
+    return useContext(ArticleContext);
+}
+
+const ArticleProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<BlogArticleContext_Interface> => {
+
+    const [articles] = React.useState({}
+        // Object.fromEntries(
+        //     useStaticQuery(graphql`
+        //         {
+        //             allStrapiArticle {
+        //                 nodes {
+        //                     strapiId
+        //                     Title
+        //                     CustomUrl
+        //                     Thumbnail {
+        //                         publicURL
+        //                         childImageSharp {
+        //                             fluid {
+        //                                 srcWebp
+        //                                 srcSetWebp
+        //                             }
+        //                         }
+        //                     }
+        //                     ShortDescr
+        //                     Element {
+        //                         Text {
+        //                             text
+        //                             type
+        //                         }
+        //                         Image {
+        //                             publicURL
+        //                             childImageSharp {
+        //                                 fluid {
+        //                                     srcWebp
+        //                                     srcSetWebp
+        //                                 }
+        //                             }
+        //                         }
+        //                     }
+        //                     created_at
+        //                     published_at
+        //                     updated_at
+        //                 }
+        //             }
+        //         }
+        //     `).allStrapiArticle.nodes.map((article:InmodePanel_BlogArticle_Interface) => 
+        //         [article.CustomUrl || article.strapiId, article]
+        //     )
+        // )
+    );
+
+    const [articles_length]:[number, React.Dispatch<number>] = React.useState(articles.length);
+
+    const article_base = (hashid:string, qnt:number):BlogArticle_Interface => {
+        return {
+            id: articles[hashid].strapiId,
+            hashid: createHashid(articles[hashid].strapiId),
+            ShortDescr: articles[hashid].ShortDescr,
+            title: articles[hashid].Title,
+            customUrl: articles[hashid].CustomUrl,
+            content: articles[hashid].Content,
+            Thumbnail: articles[hashid].Thumbnail,
+            is_ref(hashid:string):boolean {return hashid === this.hashid;},
+            // 'delete': (function() {
+            //     // console.log("HARA KIRI KIRI !")
+            //     delete this;
+            // })
+        };
+    }
+
+
+    const article_index = (hashid:string):number => {
+        return articles.map((item:BlogArticle_Interface, key:number) => {
+            return item.is_ref(hashid) ? key : 0;
+        }).reduce((a:number, b:number) => {return a + b;});
+    }
+
+    const find_in_articles = (hashid:string):BlogArticle_Interface | undefined | null => {
+        if(!hashid) {
+            return null;
+        }
+        if(typeof hashid != 'string') {
+            return null;
+        }
+        return articles[hashid] || null;
+    }
+
+
+    const nb_articles = ():number => {
+        return articles_length;
+    }
+
+    const createHashid = (_id:string):string => {
+        return hashString(_id).toString();
+    };
+
+    const readTime = (key:string):number => {
+        if(key == null) {return 0;}
+        if(articles[key] == null || articles[key] == undefined) {return 0;}
+        if(articles[key].Element == null || articles[key].Element == undefined) {return 0;}
+        if(articles[key].Element.length == 0) {return 0;}
+        let imgSeconds = articles[key].Element.map((elem:InmodePanel_BlogArticleElement_Interface) => 
+            elem.Image ? 5 : 0                                  // Each image counts for 5 seconds
+        ).reduce((a:number, b:number) => a + b);
+        return ((articles[key].Element.map((elem:InmodePanel_BlogArticleElement_Interface) => 
+            elem.Text ? elem.Text.text : null                   // Get text or null
+        )
+        .filter((str:any) => typeof str == "string")            // Remove nulls
+        .join(' ')                                              // Join strings
+        .replace('  ', ' ')                                     // Remove double spaces
+        .split(/[,'’ \n]/).filter((elem:string) => elem != "")  // Cut the string in words
+        .length) / 4) + imgSeconds;                                           // Get the seconds
+        // 240 words per minute => 4 words per second => divide by 4 give the seconds
+    };
+
+    return (
+        <ArticleContext.Provider
+            value={{
+                articles: articles,
+                article_index: article_index,
+                find_in_articles: find_in_articles,
+                nb_articles: nb_articles,
+                readTime: readTime,
+            }}
+        >
+            {children}
+        </ArticleContext.Provider>
+    );
+}
+
+export default ArticleProvider;
+

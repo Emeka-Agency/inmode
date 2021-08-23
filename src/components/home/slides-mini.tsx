@@ -15,7 +15,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                         <img
                             src={product.ShopPicture.childImageSharp.fluid.srcWebp}
                             srcSet={product.ShopPicture.childImageSharp.fluid.srcSetWebp}
-                            alt='product'
+                            alt='products'
                         />
                     </div>
                     <div className="right">
@@ -30,7 +30,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                             {product.Name}
                         </div>
                         <div className="slide-view-detail">
-                            Product informations
+                            Product information
                             <Link className="zone-link" to={product.MenuParams.url} title={product.Name}></Link>
                         </div>
                     </div>

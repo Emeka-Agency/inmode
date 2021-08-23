@@ -1,0 +1,57 @@
+.our-specialist {
+    background: var(--dark-blue, #0b1a25);
+    text-align: center;
+    padding: 25px 0;
+}
+
+.our-specialist .title {
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 700;
+    padding: 12px 8px;
+    width: fit-content;
+    margin: 0 auto 10px;
+}
+
+.our-specialist .specialists {
+    text-align: center;
+}
+
+.our-specialist .specialists .specialist {
+    display: inline-block;
+    vertical-align: top;
+    width: 30%;
+    margin: 15px 0;
+    position: relative;
+}
+
+.our-specialist .specialists .specialist:nth-child(3n - 1) {
+    margin: 15px 5%;
+}
+
+.our-specialist .specialists .specialist img {
+    width: 100%;
+    max-width: 170px;
+    max-height: 170px;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    text-align: center;
+}
+
+.our-specialist .specialists .specialist .name {
+    border-top: 3px solid var(--electric-blue, #59b7b3);
+    padding-top: 10px;
+    color: #fff;
+    width: 80%;
+    max-width: 220px;
+    margin: 10px auto 0;
+}
+
+.our-specialist .specialists .specialist .descr {
+    color: #e0e0e0;
+    max-width: 270px;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 8px;
+}

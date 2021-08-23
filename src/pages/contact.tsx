@@ -8,8 +8,8 @@ import SEO from "../components/seo"
 
 const ContactPage = () => {
     return (
-      <Layout>
-        <SEO title="Contact"/>
+      <Layout title="contact-us">
+        <SEO title="Contact us"/>
         <GetInTouch from="contact-page"/>
         <ContactForm from="contact-page"/>
         <ProfessionalContact from="contact-page"/>

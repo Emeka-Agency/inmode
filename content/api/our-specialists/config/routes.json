@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/our-specialists",
+      "handler": "our-specialists.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/our-specialists/count",
+      "handler": "our-specialists.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/our-specialists/:id",
+      "handler": "our-specialists.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/our-specialists",
+      "handler": "our-specialists.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/our-specialists/:id",
+      "handler": "our-specialists.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/our-specialists/:id",
+      "handler": "our-specialists.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

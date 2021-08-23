@@ -99,14 +99,14 @@ const Slides = ({from}:Slides) => {
                                         className="slide-bg-img"
                                         src={slide.ShopPicture.childImageSharp.fluid.srcWebp}
                                         srcSet={slide.ShopPicture.childImageSharp.fluid.srcSetWebp}
-                                        alt='product'
+                                        alt='products'
                                     />
                                 </div>
                                 <div className="slide-short-descr">
                                     {slide.Name}
                                 </div>
                                 <div className="slide-view-detail" onClick={(e) => {view_detail(e, key);}}>
-                                    Product informations
+                                    Product information
                                     <img
                                         className="slide-view-detail-arrow transition"
                                         src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}

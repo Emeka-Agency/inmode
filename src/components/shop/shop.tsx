@@ -154,16 +154,23 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }:Shop_
           {/* ///////////////////////////////////////// */}
           {shop_card === "shop" && products.map((group, group_key) => {
             if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
-              return (
-                <div key={group_key} className="shop-addon">
-                  <div className="addon-name">{group.fieldValue}</div>
-                  {group.nodes.map((product, key) => {
-                    return (
-                        <ShopProduct key={`${group_key}-${key}`} reference={product.reference} special={special}/>
-                    );
-                  })}
-                </div>
-              );
+                return (
+                    <div key={group_key} className="shop-addon">
+                        <div className="addon-name">{group.fieldValue}</div>
+                        <div className="addons-products">
+                            {group.nodes.map((product, key) => {
+                                return (
+                                    <>
+                                        <ShopProduct key={`${group_key}-${key}`} reference={product.reference} special={special}/>
+                                        <ShopProduct key={`${group_key}-${key}`} reference={product.reference} special={special}/>
+                                        <ShopProduct key={`${group_key}-${key}`} reference={product.reference} special={special}/>
+                                        <ShopProduct key={`${group_key}-${key}`} reference={product.reference} special={special}/>
+                                    </>
+                                );
+                            })}
+                        </div>
+                    </div>
+                );
             }
             return <></>;
           })}

@@ -1,3 +1,4 @@
+import { PressMedia_Interface } from '../components/interfaces';
 import { disableMainScroll, enableMainScroll } from './disable-scroll';
 
 function modale():HTMLElement {
@@ -20,7 +21,8 @@ export function openModale(params:params) {
     disableMainScroll();
     modale().classList.add('opened');
     params.modaleClass != undefined && modale().classList.add(params.modaleClass);
-    params.contentClass != undefined && modaleContainer().classList.add(params.contentClass);
+    params.containerClass != undefined && modaleContainer().classList.add(params.containerClass);
+    params.contentClass != undefined && modaleContent().classList.add(params.contentClass);
     modaleContent().innerHTML = closePart() + params.content;
     params.onOpen && params.onOpen();
     modale().addEventListener('click', function(e:MouseEvent) {
@@ -28,7 +30,7 @@ export function openModale(params:params) {
             closeModale(params.onClose);
         }
     });
-    modale().addEventListener('keyup', function(e:KeyboardEvent) {
+    document.addEventListener('keyup', function(e:KeyboardEvent) {
         if(e.keyCode === 27) {
             closeModale(params.onClose);
         }
@@ -38,9 +40,10 @@ export function openModale(params:params) {
     });
 }
 
-export function closeModale(onClose:Function = null) {
+export function closeModale(onClose:Function|null = null) {
     modale().classList.remove('opened');
     modaleContainer().classList.remove(...modaleContainer().classList);
+    modaleContent().classList.remove(...modaleContent().classList);
     modaleContent().innerHTML = "";
     onClose != null && onClose();
     enableMainScroll();
@@ -56,27 +59,104 @@ export function paymentSEPA(datas:paymentSEPA) {
     return {
         onOpen: datas.onOpen,
         onClose: datas.onClose,
-        contentClass: 'payment-sepa',
+        containerClass: 'payment-sepa',
         content: `
-            <h2>Commande validée</h2>
+            <h2>Order completed</h2>
             <div class="thanks">
-                Merci, votre commande a bien été prise en compte. Nous l'expédierons dès réception de votre virement de ${datas.total} € sur ce RIB:
+                Thanks, your order has been well created. We'll ship it to you as soon as possible
             </div>
-            <table>
-                <tbody class="SEPA">
-                    <tr class="RIB"><td>RIB</td><td>${datas.RIB}</td></tr>
-                    <tr class="BIC"><td>BIC</td><td>${datas.BIC}</td></tr>
-                </tbody>
-            </table>
             <div class="info">
-                La référence de votre commande est <span class="reference">${datas.reference}</span>, pensez à la notifier dans le libellé de votre virement
+                Your order reference is <span class="reference">${datas.reference}</span>, think about keeping it somewhere
             </div>
             <div class="post-scriptum">
-                PS : les informations relatives à la commande et son réglement vous ont aussi été envoyées par mail. Vous pourrez y retrouver toutes les informations présentes ici.
+                PS : all the informations related to your order had been sent to the mail address(es) provided during the purchase
             </div>
         `.trim()
     };
 };
+
+// Press media Modale
+
+export function pressMedia(datas:pressMedia) {
+    return {
+        onOpen: datas.onOpen,
+        onClose: datas.onClose,
+        containerClass: 'press-media-caroussel',
+        content: `
+            <div class="press-media-caroussel-elems" caroussel-index="${datas.index}">
+                <div class="press-arrow left"><div class="arrow-left"></div></div>
+                <div class="press-arrow right"><div class="arrow-right"></div></div>
+                ${datas.press && datas.press.map((_press, index) => {
+                    return `
+                        <div class="press-media-caroussel-elem">
+                            <div class="press-media-caroussel-elem-back"></div>
+                            ${
+                                _press.Picture
+                                &&
+                                `<img
+                                    class="press-media-modale-picture"
+                                    src="${_press.Picture && _press.Picture.childImageSharp.fluid.srcWebp}"
+                                    srcSet="${_press.Picture && _press.Picture.childImageSharp.fluid.srcSetWebp}"
+                                />`
+                            }
+                            ${
+                                _press.Short
+                                &&
+                                `<div
+                                    class="press-media-modale-short"
+                                >
+                                    ${_press.Short}
+                                </div>`
+                            }
+                            ${
+                                _press.Description
+                                &&
+                                `<div
+                                    class="press-media-modale-description"
+                                >
+                                    ${_press.Description}
+                                </div>`
+                            }
+                            ${
+                                _press.URL
+                                &&
+                                `<a
+                                    class="press-media-modale-url"
+                                    href="${_press.URL}"
+                                    target="_blank"
+                                >
+                                    Read more
+                                </a>`
+                            }
+                        </div>
+                    `;
+                }).join('').trim()}
+            </div>
+        `.trim()
+    };
+}
+
+export function clinicalStudyPassword(datas:clinicalStudy) {
+    return {
+        onOpen: datas.onOpen,
+        onClose: datas.onClose,
+        containerClass: "study-pass-modale-container",
+        content: `
+            <h2>Study download</h2>
+            <div class="clinical-study-download-text">
+                Please first enter the password to get the clinical study
+            </div>
+            <div class="clinical-study-download-input-zone">
+                <input type="password" id="clinical-study-download-password" placeholder="Type password here"/>
+                <div class="clinical-study-download-input-zone-after"></div>
+                <div id="clinical-study-download-password-status" style="display:none;"></div>
+            </div>
+            <div class="clinical-study-download-submit">
+                <button type="submit" id="clinical-study-download-submit">Submit</button>
+            </div>
+        `.trim()
+    };
+}
 
 interface paymentSEPA {
     total: string;
@@ -87,9 +167,22 @@ interface paymentSEPA {
     onClose?: Function;
 };
 
+interface pressMedia {
+    press: PressMedia_Interface[];
+    index: number;
+    onOpen?: Function;
+    onClose?: Function;
+};
+
+interface clinicalStudy {
+    onOpen?: Function;
+    onClose?: Function;
+}
+
 interface params {
     onOpen?: Function,
     onClose?: Function,
+    containerClass?: string,
     contentClass?: string,
     modaleClass?: string,
     content: string,

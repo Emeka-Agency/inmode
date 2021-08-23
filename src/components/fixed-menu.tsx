@@ -4,8 +4,8 @@ import { Link } from "gatsby";
 import MenusContext from "./contexts/menus-context"
 // {/* SWITCH CART */}
 
-import CartBasket from "./CartBasket"
-import { useCart } from './contexts/cart-provider';
+// import CartBasket from "./CartBasket"
+// import { useCart } from './contexts/cart-provider';
 
 // {/* SWITCH CART END */}
 import { useImages } from './contexts/images-provider';
@@ -33,7 +33,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
     
     // {/* SWITCH CART */}
     
-    const cart = useCart();
+    // const cart = useCart();
 
     // {/* SWITCH CART END */}
 
@@ -58,7 +58,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
                     })}
                     {/* SWITCH CART */}
 
-                    { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null }
+                    {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null } */}
 
                     {/* SWITCH CART END */}
                 </div>

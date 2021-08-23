@@ -24,7 +24,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
     return (
         <div id="studies" className="clinical-studies">
             <div className="title">
-                études cliniques
+                clinical studies
             </div>
             <div className={`clinical-studies-slider${datas.length === 1 ? ' few' : ''}`}>
                 {datas.length === 1 ?

@@ -6,63 +6,83 @@ import Footer from "../Footer";
 import ContactUs from "../Contact/contact-us";
 import PrivacyPolicy from "../privacy-policy";
 import FixedMenu from "../fixed-menu";
-import MenusProvider from "../contexts/menus-provider";
-import ProductsProvider from "../contexts/products-provider";
 import Modale from "../Modale";
 
 import "./index.css";
-import ImagesProvider from "../contexts/images-provider";
 
 // {/* SWITCH CART */}
 
-import CartPurchase from "../Cart";
-import PayParams from "../Cart/pay_params";
+// import CartPurchase from "../Cart";
+// import PayParams from "../Cart/pay_params";
+// import { useCart } from "../contexts/cart-provider";
 
 // {/* SWITCH CART END */}
 
-const Layout = ({ children }) => {
+import MenusProvider from "../contexts/menus-provider";
+import ProductsProvider from "../contexts/products-provider";
+import ImagesProvider from "../contexts/images-provider";
+import ArticleProvider from "../contexts/article-provider";
 
-  // TODO régler isMobile pour ouverture cookies
-  // const [isMobile, setIsMobile] = React.useState()
+const Layout = ({ children, title }) => {
 
-  // React.useEffect(() => {
-  //   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-  //     // true for mobile device
-  //     document.write("mobile device");
-  //   }else{
-  //     // false for not mobile device
-  //     document.write("not mobile device");
-  //   }
-  // });
+    // TODO régler isMobile pour ouverture cookies
+    // const [isMobile, setIsMobile] = React.useState()
 
-  return (
-    <ImagesProvider>
-      <MenusProvider>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
-        <Header/>
-        <ProductsProvider>
-          <main id="main">
-            {children}
-          </main>
-        </ProductsProvider>
-        <FixedMenu/>
-        {/* SWITCH CART */}
+    // React.useEffect(() => {
+    //   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    //     // true for mobile device
+    //     document.write("mobile device");
+    //   }else{
+    //     // false for not mobile device
+    //     document.write("not mobile device");
+    //   }
+    // });
 
-        <CartPurchase/>
-        <PayParams/>
+    if(typeof window != "undefined") {
+        console.log('C\'est bon');
+        // window.onbeforeunload = function(event) {
+        //     // console.log('new pathname', location.pathname)
+        //     console.log(event);
+        //     useCart().close_cart();
+        // }
+        window.addEventListener('unload', function(event) {
+            console.log('test');
+            // console.log('new pathname', location.pathname)
+            console.log(event);
+            useCart().close_cart();
+        });
+    }
 
-        {/* SWITCH CART END */}
-        <PrivacyPolicy />
-        <ContactUs/>
-        <Footer/>
-        <Modale/>
-      </MenusProvider>
-    </ImagesProvider>
-  )
+    return (
+        <ImagesProvider>
+            <MenusProvider>
+                <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+                <Header/>
+                <ProductsProvider>
+                    <ArticleProvider>
+                        <main id="main" className={title}>
+                            {children}
+                        </main>
+                    </ArticleProvider>
+                </ProductsProvider>
+                <FixedMenu/>
+                {/* SWITCH CART */}
+
+                {/* <CartPurchase/>
+                <PayParams/> */}
+
+                {/* SWITCH CART END */}
+                <PrivacyPolicy />
+                <ContactUs/>
+                <Footer/>
+                <Modale/>
+            </MenusProvider>
+        </ImagesProvider>
+    )
 }
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+    children: PropTypes.node.isRequired,
 }
 
 export default Layout

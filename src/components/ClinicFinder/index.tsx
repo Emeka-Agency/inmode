@@ -5,7 +5,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { InmodePanel_Clinic_Interface } from '../interfaces';
 
 import './index.css';
-import { allByClass, oneById } from '../../functions/selectors';
+import { allByClass, oneById, oneBySelector } from '../../functions/selectors';
 
 const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
@@ -37,6 +37,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
     `).allStrapiClinicFinders.nodes));
 
     const [search, setSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
+    const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     // const [rest, setRest]:[number, React.Dispatch<number>] = React.useState(0);
 
     const switchTreatmentsOpened = (e:any) => {
@@ -50,12 +51,21 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
         setSearch(e.currentTarget.value.toLowerCase());
     }
 
-    const displayable = (clinic:InmodePanel_Clinic_Interface):boolean => {
+    const updateZipSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault();
+        setZipSearch(e.currentTarget.value.toLowerCase());
+    }
+
+    const displayable = (clinic:InmodePanel_Clinic_Interface, critere:string):boolean => {
+        // console.log("critere = ", critere);
         let _retour = false;
         if(!clinic) {
             return false;
         }
-        if(search == undefined) {
+        if(critere == undefined) {
+            return true;
+        }
+        if(typeof critere == "string" && critere.length == 0) {
             return true;
         }
         let _test = FuzzySet();
@@ -68,37 +78,58 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
         if(_retour == false && clinic.city) {
             _test.add(clinic.city.toLowerCase());
         }
+        if(_retour == false && clinic.zip_code) {
+            _test.add(clinic.zip_code.toLowerCase());
+        }
         if(_retour == false && clinic.treatments && clinic.treatments.length > 0) {
             _test.add(clinic.treatments.map(treatment => treatment.MenuParams.title).join('').toLowerCase());
         }
-        _test = _test.length() > 0 ? _test.get(search, null, _rate) : null;
+        _test = _test.length() > 0 ? _test.get(critere, null, _rate) : null;
         if(_test != _rate && _test != null) {
             console.log(_test);
             _retour = true;
         }
         if(_retour == false && clinic.street) {
-            _retour = clinic.street.toLowerCase().includes(search) ? true : false;
+            _retour = clinic.street.toLowerCase().includes(critere) ? true : false;
         }
         if(_retour == false && clinic.doctor) {
-            _retour = clinic.doctor.toLowerCase().includes(search) ? true : false;
+            _retour = clinic.doctor.toLowerCase().includes(critere) ? true : false;
         }
         if(_retour == false && clinic.city) {
-            _retour = clinic.city.toLowerCase().includes(search) ? true : false;
+            _retour = clinic.city.toLowerCase().includes(critere) ? true : false;
+        }
+        if(_retour == false && clinic.zip_code) {
+            _retour = clinic.zip_code.toLowerCase().includes(critere) ? true : false;
         }
         if(_retour == false && clinic.treatments && clinic.treatments.length > 0) {
-            _retour = clinic.treatments.map(treatment => treatment.MenuParams.title).join('').toLowerCase().includes(search) ? true : false;
+            _retour = clinic.treatments.map(treatment => treatment.MenuParams.title).join('').toLowerCase().includes(critere) ? true : false;
+        }
+        if(_retour == false && clinic.street && clinic.city && clinic.zip_code) {
+            _retour = `${clinic.street}, ${clinic.city}, .${clinic.zip_code}`.includes(critere) ? true : false;
+        }
+        if(_retour == false && clinic.street && clinic.city) {
+            _retour = `${clinic.street}, ${clinic.city}`.includes(critere) ? true : false;
+        }
+        if(_retour == false && clinic.street && clinic.zip_code) {
+            _retour = `${clinic.street}, ${clinic.zip_code}`.includes(critere) ? true : false;
+        }
+        if(_retour == false && clinic.city && clinic.zip_code) {
+            _retour = `${clinic.city}, ${clinic.zip_code}`.includes(critere) ? true : false;
         }
         return _retour;
     }
 
     React.useEffect(() => {
         try {
-            oneById("search-clinic-indicator").innerText = `${typeof document != "undefined" ? document.querySelectorAll('.clinic-item').length : 0}/${clinics ? clinics.length : 0}`;
+            let _part = typeof document != "undefined" ? document.querySelectorAll('.clinic-item').length : 0;
+            let _tot = clinics ? clinics.length : 0;
+            oneById("search-clinic-indicator").innerText = `${_part}/${_tot}`;
+            oneBySelector("#search-clinic-indicator-ui .search-clinic-indicator-ui-back").style.width = `${(_part / _tot) * 100}%`;
         }
         catch(err) {
 
         }
-    }, [search]);
+    }, [search, zipSearch]);
 
     return (
         <div className="clinic-finder">
@@ -106,12 +137,16 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
                 <h2 className="title">Inmode Clinic Finder</h2>
                 <h3 className="subtitle">Authorised practioner list</h3>
                 {/* <div id="search-clinic-indicator"><span>{rest}</span>/{clinics ? clinics.length : 0}</div> */}
-                <div id="search-clinic-indicator">{clinics && clinics.length}/{clinics && clinics.length}</div>
                 {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
-                <input id="clinic-finder-search" type="search" placeholder="Search..." onChange={(e) => updateSearch(e)}/>
+                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Search by postcode" onChange={(e) => updateZipSearch(e)}/></span>
+                <span className="clinic-finder-search-span"><input id="clinic-finder-search" type="search" placeholder="Search by practitioner, city, street, etc" onChange={(e) => updateSearch(e)}/></span>
+                <div id="search-clinic-indicator">{clinics && clinics.length}/{clinics && clinics.length}</div>
+                <div id="search-clinic-indicator-ui">
+                    <div className="search-clinic-indicator-ui-back"></div>
+                </div>
                 <div className="bottom-border"></div>
                 {clinics && clinics.map((clinic:InmodePanel_Clinic_Interface) => {
-                    if(clinic && displayable(clinic)) {
+                    if(clinic && displayable(clinic, search) && displayable(clinic, zipSearch)) {
                         Object.keys(clinic).forEach((elem) => elem ? elem.length < 2 ? undefined : elem : undefined);
                         return (
                             <div className="clinic-item">

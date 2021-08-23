@@ -15,7 +15,7 @@ const Unknown404 = ({  }:Unknown404) => {
                 <Link to="/workstation" title="Workstations">Workstations</Link>
                 {/* SWITCH CART */}
 
-                <Link to="/shop" title="Shop">Shop</Link>
+                {/* <Link to="/shop" title="Shop">Shop</Link> */}
 
                 {/* SWITCH CART END */}
             </div>

@@ -8,13 +8,13 @@
 }
 
 .clinic-finder .title {
-    color: #59b7b6;
+    color: var(--electric-blue, #59b7b3);
     font-size: 28px;
     font-weight: 800;
 }
 
 .clinic-finder .subtitle {
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
     font-size: 16px;
     font-weight: 400;
 }
@@ -27,17 +27,32 @@
     margin: 25px 0 15px;
     font-size: 15px;
     font-weight: 700;
-    color: #f2f2f2;
+    color: var(--electric-blue, #59b7b3);
 }
 
-@media (min-width: 1200px) {
-    .clinic-finder #search-clinic-indicator {
-        margin-left: calc((100% - 850px) / 2);
-    }
+.clinic-finder #search-clinic-indicator-ui {
+    width: 100%;
+    height: 10px;
+    display: block;
+    margin: 30px 0 15px;
+    position: relative;
+    background-color: var(--electric-blue-half, #59b7b380);
+    box-shadow: #0008 0px 4px 4px;
 }
 
-.clinic-finder #clinic-finder-search {
-    width: calc(100% - 60px);
+.clinic-finder #search-clinic-indicator-ui .search-clinic-indicator-ui-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+    background-color: var(--electric-blue, #59b7b3);
+    transition: width 0.5s ease-in-out 0s;
+}
+
+.clinic-finder #clinic-finder-search,
+.clinic-finder #clinic-finder-search-zip {
+    width: calc(50% - 30px);
     max-width: 790px;
     margin: 25px auto 15px;
     border: none;
@@ -45,15 +60,47 @@
     outline: transparent;
     display: inline-block;
     vertical-align: top;
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
     font-weight: bold;
+    font-family: "raleway", sans-serif;
 }
 
-.clinic-finder #clinic-finder-search::placeholder {
-    color: #f2f2f2;
+.clinic-finder .clinic-finder-search-zip-span,
+.clinic-finder .clinic-finder-search-span {
+    position: relative;
 }
 
-.clinic-finder #clinic-finder-search + div.bottom-border {
+.clinic-finder .clinic-finder-search-zip-span::after,
+.clinic-finder .clinic-finder-search-span::after {
+    content: "";
+    width: 30%;
+    background-color: var(--electric-blue, #59b7b3);
+    height: 3px;
+    position: absolute;
+    top: 45px;
+    left: 20px;
+    transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
+}
+
+.clinic-finder .clinic-finder-search-zip-span:hover::after,
+.clinic-finder .clinic-finder-search-span:hover::after,
+.clinic-finder .clinic-finder-search-zip-span:active::after,
+.clinic-finder .clinic-finder-search-span:active::after,
+.clinic-finder .clinic-finder-search-zip-span:focus::after,
+.clinic-finder .clinic-finder-search-span:focus::after,
+.clinic-finder .clinic-finder-search-zip-span:focus-within::after,
+.clinic-finder .clinic-finder-search-span:focus-within::after {
+    width: 70%;
+    left: 0;
+}
+
+.clinic-finder #clinic-finder-search::placeholder,
+.clinic-finder #clinic-finder-search-zip::placeholder {
+    color: var(--text-white, #f2f2f2);
+}
+
+.clinic-finder #clinic-finder-search + div.bottom-border,
+.clinic-finder #clinic-finder-search-zip + div.bottom-border {
     width: 100%;
     max-width: 850px;
     margin: 0 auto;
@@ -61,18 +108,22 @@
     position: relative;
 }
 
-.clinic-finder #clinic-finder-search + div.bottom-border::after {
+.clinic-finder #clinic-finder-search + div.bottom-border::after,
+.clinic-finder #clinic-finder-search-zip + div.bottom-border::after {
     content: "";
     width: 0%;
     height: 2px;
     display: block;
-    background: #f2f2f2;
+    background: var(--text-white, #f2f2f2);
     transition: width 0.3s ease-in-out 0s;
 }
 
 .clinic-finder #clinic-finder-search:active + div.bottom-border::after,
 .clinic-finder #clinic-finder-search:focus + div.bottom-border::after,
-.clinic-finder #clinic-finder-search:focus-within + div.bottom-border::after {
+.clinic-finder #clinic-finder-search:focus-within + div.bottom-border::after,
+.clinic-finder #clinic-finder-search-zip:active + div.bottom-border::after,
+.clinic-finder #clinic-finder-search-zip:focus + div.bottom-border::after,
+.clinic-finder #clinic-finder-search-zip:focus-within + div.bottom-border::after {
     width: 100%;
 }
 
@@ -81,7 +132,7 @@
     margin: 35px auto;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
-    background-color: #0a1727;
+    background-color: var(--star-blue, #0a1727);
     padding: 15px 20px 0 20px;
     position: relative;
     max-width: 850px;
@@ -119,7 +170,7 @@
 .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     font-size: 18px;
     font-weight: 500;
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
     word-break: break-word;
 }
 
@@ -159,7 +210,7 @@
 
 .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     border-radius: 5px;
-    background-color: #59b7b6;
+    background-color: var(--electric-blue, #59b7b3);
     width: fit-content;
     padding: 12px;
     cursor: pointer;
@@ -173,7 +224,7 @@
 .clinic-finder .clinic-item .clinic-treatments {
     position: relative;
     width: 100%;
-    background-color: #59b7b6;
+    background-color: var(--electric-blue, #59b7b3);
     left: -20px;
     transition: top 0.3s ease-in-out 0s;
     padding: 0 20px;
@@ -190,7 +241,7 @@
     position: relative;
     font-size: 15px;
     font-weight: 600;
-    color: #f2f2f2;
+    color: var(--text-white, #f2f2f2);
     display: inline-block;
     font-size: 0;
     padding: 0px;
@@ -217,9 +268,9 @@
 }
 
 .clinic-finder .clinic-item .clinic-treatments span:hover {
-    background: #f2f2f2;
+    background: var(--text-white, #f2f2f2);
     padding: 3px 10px;
-    color: #59b7b6;
+    color: var(--electric-blue, #59b7b3);
 }
 
 @media (max-width: 999px) {

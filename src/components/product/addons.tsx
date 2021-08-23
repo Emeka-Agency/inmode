@@ -5,7 +5,7 @@ import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from ".
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
-const Addons = ({ datas, sensible = false }:Addons) => {
+const Addons = ({ datas, sensible = false, name }:Addons) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -37,7 +37,7 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                         // TODO ton on evolve => evolve-tone
                         let product_title = product.title_text ? product.title_text.toLowerCase().replace(' on ', '-').replace(/ /g, '-').replace(/\*/g, '').replace(/#/g, '') : "";
                         return (
-                            <div key={key} className="product-addon">
+                            <div key={key} className={`product-addon ${name}`}>
                                 <div className="addon-details">
                                     <div className="addon-description">
                                         <div className="addon-img">
@@ -48,14 +48,15 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                             />
                                         </div>
                                         <div className="addon-title">
-                                            {product.title_image && (
+                                            {/* {product.title_image && (
                                                 <img
                                                     src={product.title_image.childImageSharp.fluid.srcWebp}
                                                     srcSet={product.title_image.childImageSharp.fluid.srcSetWebp}
                                                     alt={product.title_text}
                                                 />
-                                            )}
-                                            {!product.title_image && product.title_text}
+                                            )} */}
+                                            {/* {!product.title_image && product.title_text} */}
+                                            {product.title_text}
                                             {product.appears_everywhere && <Link className="zone-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
                                         </div>
                                         {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {
@@ -68,7 +69,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                         })}
                                         <div className="addon-what-can-i-treat">
                                             <div className="title">
-                                                Que puis-je traiter ?
+                                                {/* TODO */}
+                                                {/* What can I treat ? */}
                                             </div>
                                             <ul>
                                             {product.ProductPresentationTreats && product.ProductPresentationTreats.map((descr, key) => {
@@ -134,6 +136,7 @@ interface Addons {
         id: number;
     };
     sensible: boolean;
+    name: string;
 }
 
 export default Addons;

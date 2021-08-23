@@ -10,25 +10,25 @@ const Alveoles = ({}:Alveoles) => {
         {
             'image': images.getOne('alveole1').childImageSharp.fluid,
             'target': '_self',
-            'text': 'Congress',
-            'link': '/events/congress'
+            'text': 'Conferences',
+            'link': '/events/conferences'
         },
         {
             'image': images.getOne('alveole2').childImageSharp.fluid,
             'target': '_self',
-            'text': 'Webinar',
+            'text': 'Webinars',
             'link': '/events/webinars'
         },
         {
             'image': images.getOne('alveole3').childImageSharp.fluid,
             'target': '_self',
-            'text': 'Workshop',
+            'text': 'Workshops',
             'link': '/events/workshops'
         },
         {
             'image': images.getOne('alveole4').childImageSharp.fluid,
             'target': '_self',
-            'text': 'Produits',
+            'text': 'Products',
             'link': '/workstation'
         },
         {

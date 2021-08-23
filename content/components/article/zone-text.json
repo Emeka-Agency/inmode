@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_article_zone_texts",
+  "info": {
+    "name": "ZoneText",
+    "icon": "grip-lines",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "title",
+        "content",
+        "quote",
+        "url",
+        "video"
+      ]
+    }
+  }
+}

@@ -10,7 +10,7 @@ export async function InstaPost():Promise<string[] | null> {
         cache: 'default'
     };
     return fetch(
-        'https://www.instagram.com/inmodeaesthetics/?__a=1',
+        'http://instagram.com/inmodeuk',
         {
             ...fetch_get
         }

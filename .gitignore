@@ -99,4 +99,5 @@ js_old/*
 Saves
 DIVERS
 .vs
+.htaccess
 tests/clinic-finder-script.js

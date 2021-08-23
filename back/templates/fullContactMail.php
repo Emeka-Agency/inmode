@@ -33,7 +33,7 @@
                             <td><?=$_POST['mail']?></td>
                         </tr>
                         <tr>
-                            <td>zip</td>
+                            <td>postcode</td>
                             <td><?=$_POST['zip']?></td>
                         </tr>
                         <tr>

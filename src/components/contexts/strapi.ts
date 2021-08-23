@@ -9,16 +9,16 @@ import {
 
 const _countries = (_country:string | undefined | null):string => {
     if(_country == undefined || _country == null) {
-        return "FR";
+        return "GB";
     }
     switch(_country) {
         case "BE":
             return 'Belgique';
         case "LU":
             return 'Luxembourg';
-        case "FR":
+        case "GB":
         default:
-            return 'France';
+            return 'Great Britain';
     }
 };
 
@@ -49,7 +49,7 @@ function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Ord
             (datas && typeof datas.ZIP == 'string' && datas.ZIP.length >0)
             ||
             (datas && typeof datas.ZIP == 'number' && datas.ZIP > 0)
-            ? datas.ZIP : "ErrorZIP",
+            ? datas.ZIP : "ErrorPostcode",
         City: datas && typeof datas.City == 'string' && datas.City.length  ? datas.City : "ErrorCity",
     }
 }
@@ -122,7 +122,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         Firstname: _datas.vads_cust_first_name,
         Lastname: _datas.vads_cust_last_name,
         Society: _datas.vads_cust_legal_name,
-        DeliveryTax: _datas.vads_product_qty9999 && _datas.vads_product_qty9999 == 1 ? 10 : 0,
+        DeliveryTax: _datas.vads_product_qty0 && _datas.vads_product_qty0 == 1 ? 50 : 0,
         Paid: false,
         Status: 'UNDER_VERIFICATION',
         Total: ((_datas.vads_amount ? typeof _datas.vads_amount == 'string' ? parseInt(_datas.vads_amount, 10) : _datas.vads_amount : 0)/100).toFixed(2) || total,

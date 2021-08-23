@@ -1,0 +1,151 @@
+.testimonials {
+    
+}
+
+.testimonial.product .testimonial-img-part img{
+    filter: grayscale(1);
+}
+
+.testimonial.product .testimonial-quote-part {
+    background: #303030;
+}
+
+.testimonial.product .testimonial-quote-part blockquote {
+    color: #fff;
+}
+
+.testimonial {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    height: 500px;
+    position: relative;
+}
+
+.testimonial.practitioner {
+    width: 100%;
+    margin-top: 25px;
+}
+
+.testimonial .testimonial-img-part.patient,
+.testimonial .testimonial-img-part.practitioner,
+.testimonial .testimonial-quote-part.patient,
+.testimonial .testimonial-quote-part.practitioner {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+    height: 500px;
+}
+
+.testimonial .testimonial-img-part.practitioner {
+    position: relative;
+}
+
+.testimonial .testimonial-img-part.patient {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.testimonial .testimonial-img-part.patient img {
+    height: 460px;
+    padding: 20px;
+}
+
+.testimonial .testimonial-img-part.practitioner img {
+    height: 500px;
+    width: 100%;
+}
+
+.testimonial .testimonial-img-part.practitioner .testimonial-img-part-doctor {
+    position: absolute;
+    top: 0;
+    /* box-shadow: rgba(0, 0, 0, 0.6) 1.5px 1.5px 3px 0.5px; */
+    padding: 15px 5px 10px 5px;
+    background: var(--electric-blue, #59b7b3);
+    width: fit-content;
+}
+
+.testimonial.practitioner.product .testimonial-img-part.practitioner .testimonial-img-part-doctor {
+    background: #303030;
+}
+
+.testimonial .testimonial-img-part.practitioner .testimonial-img-part-doctor span {
+    display: block;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    text-shadow: "000";
+}
+
+.testimonial .testimonial-quote-part {
+    background-color: var(--electric-blue, #59b7b3);
+    text-align: center;
+}
+
+.testimonial .testimonial-quote-part.patient {
+    width: 100%;
+}
+
+.testimonial .testimonial-quote-part blockquote {
+    border: none;
+    color: #fff;
+    font-style: italic;
+    letter-spacing: normal;
+    margin: 0;
+    overflow-wrap: break-word;
+    padding: 0 15px;
+    width: 100%;
+    height: fit-content;
+    top: 100px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.testimonial .testimonial-quote-part.patient .testimonial-quote-part-patient {
+    top: 125px;
+    position: relative;
+    width: 50%;
+    color: #fff;
+    font-size: 18px;
+    left: 50%;
+}
+
+.testimonial .testimonial-quote-part.patient .testimonial-quote-part-patient::before {
+    content: " - ";
+    color: #fff;
+    font-size: 18px;
+}
+
+.testimonial .testimonial-quote-part.practitioner {
+
+}
+
+.testimonial .testimonial-quote-part.practitioner svg {
+    width: 46px;
+    height: 42px;
+    top: 100px;
+    position: relative;
+    text-align: left;
+    display: block;
+    margin-left: 15px;
+}
+
+.testimonial .testimonial-quote-part.patient blockquote {
+    font-size: 22px;
+    line-height: 33px;
+    pointer-events: auto;
+    text-align: center;
+    width: 50%;
+    left: 50%;
+}
+
+.testimonial .testimonial-quote-part.practitioner blockquote {
+    font-size: 28px;
+    line-height: 42px;
+    outline-color: rgb(255, 255, 255);
+    outline-style: none;
+    outline-width: 0px;
+    text-align: start;
+    padding: 5px 30px;
+}

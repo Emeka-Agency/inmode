@@ -20,7 +20,7 @@ const ProductView = ({children, datas}:ProductView) => {
                 <img
                     src={products[datas.current].ShopPicture.childImageSharp.fluid.srcWebp}
                     srcSet={products[datas.current].ShopPicture.childImageSharp.fluid.srcSetWebp}
-                    alt='product'
+                    alt='products'
                 />
             </div>
             <div className="product-view-details">
@@ -63,7 +63,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                     <div className="purchase-infos">
                                         {/* <div className={`price ${currency}`}>{addon.price}</div> */}
                                         <Link className="details" to={addon.MenuParams.url} title={addon.Name}>
-                                            Détails
+                                            Details
                                             <img
                                                 className="detail-view-addon-arrow transition"
                                                 src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}

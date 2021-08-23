@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 const EventsPage = ({ data }) =>  {
 
     return (
-        <Layout>
+        <Layout title="events">
             <SEO title="Events"/>
             <EventsLayout
                 current_page="upcoming events"

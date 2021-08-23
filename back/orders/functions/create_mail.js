@@ -3,7 +3,9 @@ const {
 } = require('./order_object.js');
 const { _request } = require('./fetch.js');
 
+// SWITCH LOCALHOST
 const PHP_back = 'https://inmodemd.fr/back/app.php';
+// const PHP_back = 'http://localhost/inmode/back/app.php';
 
 const usedValues = [
     'Reference',
@@ -26,7 +28,7 @@ const usedValues = [
 function mailBody(_datas = null, _receiver = null, _type = null) {
     console.log('//////////////////');
     console.log('mailBody');
-    console.log(_datas);
+    // console.log(_datas);
     console.log(_receiver);
     console.log(_type);
     console.log('//////////////////');

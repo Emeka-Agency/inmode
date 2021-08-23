@@ -8,8 +8,8 @@ import { disableMainScroll } from "../../functions/disable-scroll";
 import { useImages } from '../contexts/images-provider';
 // {/* SWITCH CART */}
   
-import { useCart } from '../contexts/cart-provider';
-import CartBasket from "../CartBasket";
+// import { useCart } from '../contexts/cart-provider';
+// import CartBasket from "../CartBasket";
 
 // {/* SWITCH CART END */}
 
@@ -28,7 +28,7 @@ const Header = ({}:Header) => {
 
   // {/* SWITCH CART */}
     
-  const cart = useCart();
+//   const cart = useCart();
 
   // {/* SWITCH CART END */}
 
@@ -47,7 +47,7 @@ const Header = ({}:Header) => {
           {size.width < 1200 && <HeaderMini/>}
           {/* SWITCH CART */}
 
-          { cart.cart.length > 0 || cart.appeared ? <CartBasket/>: null }
+          {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/>: null } */}
 
           {/* SWITCH CART END */}
           <button

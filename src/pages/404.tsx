@@ -7,7 +7,7 @@ import Unknown404 from "../components/404/unknown-404";
 const NotFoundPage = () => {
 
   return (
-    <Layout>
+    <Layout title="404">
       <SEO title="404"/>
       <Unknown404/>
       {/* <Slides from="404"/> */}

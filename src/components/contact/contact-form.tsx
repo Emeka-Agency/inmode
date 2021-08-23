@@ -159,7 +159,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     <input spellCheck={false} type="text" name="address" required/>
                 </div>
                 <div className="field">
-                    <label htmlFor="zip">ZIP Code*</label>
+                    <label htmlFor="zip">PostCode*</label>
                     <input spellCheck={false} type="number" name="zip" required/>
                 </div>
                 <div className="field">
@@ -220,11 +220,11 @@ const ContactForm = ({ from }:ContactForm) => {
             </div>
             <div className="policy">
                 <input type="checkbox" id="policy" name="policy" value="policy" required/>
-                <label htmlFor={"policy"}>I accept <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">T&Cs</a></label>
+                <label htmlFor={"policy"}>I accept <a href="/mentions-legales#cgu" target="_blank" title="Terms and conditions">T&Cs</a></label>
             </div>
             <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-            <input type="submit" className="submit transition" placeholder={submitText}/>
+            <button type="submit" className="submit transition">{submitText}</button>
         </form>
     );
 };

@@ -54,7 +54,7 @@ const PaymentPaidPage = () => {
     }
     
     return (
-        <Layout>
+        <Layout title="paid-payment">
             <SEO title={page_title}/>
             <OrderLayout status={page_title} order={order}/>
         </Layout>

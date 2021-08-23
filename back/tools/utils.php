@@ -8,7 +8,7 @@
     *
     * Detailed - 
     *
-    * @param Type $path Description
+    * @param string $path Description
     *
     * @return none
     */
