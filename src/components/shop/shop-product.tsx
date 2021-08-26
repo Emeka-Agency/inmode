@@ -85,7 +85,7 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
                         return (
                             <div key={key} className="ba-slide">
                                 <img
-                                    src={ba.image && ba.image.childImageSharp.fluid.srcWebp}
+                                    src={ba.image && ba.image.localFile.childImageSharp.fluid.srcWebp}
                                     alt={`addon-before-after-${key}`}
                                 />
                                 <div className="ba-doctor">{ba.doctor}</div>
@@ -103,8 +103,8 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
                         className="product-icon-img"
                     />:
                     <img
-                        src={_image.childImageSharp.fluid.srcWebp}
-                        srcSet={_image.childImageSharp.fluid.srcSetWebp}
+                        src={_image.localFile.childImageSharp.fluid.srcWebp}
+                        srcSet={_image.localFile.childImageSharp.fluid.srcSetWebp}
                         alt={article.name}
                         className="product-icon-img"
                     />
@@ -166,7 +166,8 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
 };
 
 interface ShopProduct_Interface {
-
+    reference: string;
+    special: string;
 };
 
 export default ShopProduct;

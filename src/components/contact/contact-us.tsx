@@ -46,7 +46,7 @@ const ContactUs = () => {
         setFormOpen(!formOpen);
     }
 
-    const resolve_contact = (e) => {
+    const resolve_contact = (e:React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         let _choices = allByClass('contact-choice');
         _choices && [].forEach.call(_choices, function(elem:HTMLElement) {
             elem.style.setProperty('width', '0px', 'important');
@@ -60,13 +60,13 @@ const ContactUs = () => {
 
     const [submitText, setSubmitText] = React.useState('Send');
 
-    function send_form ( e ) {
+    function send_form ( e:React.FormEvent<HTMLFormElement> ) {
         e.preventDefault();
         let _temp:any = oneBySelector('#contact-mini .submit');
         _temp && _temp.setAttribute('disabled', true);
         _temp = oneBySelector('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'inline-block';}
-        let body = new Object({});
+        let body:Object = new Object({});
         let _form = document.forms.namedItem('contact-mini');
         Array.from(_form ? _form.elements : []).forEach((elem) => {
             body[elem.name] = elem.checked || elem.value;

@@ -221,8 +221,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                                         alt={article.name}
                                     />:
                                     <img
-                                        src={_image.childImageSharp.fluid.srcWebp}
-                                        srcSet={_image.childImageSharp.fluid.srcSetWebp}
+                                        src={_image.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={_image.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt={article.name}
                                     />}
                                 </div>

@@ -59,139 +59,159 @@ export const query = graphql`
             Name
             Page_addon
             Banner {
-                left_img {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              left_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                mini {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              }
+              mini {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                right_img {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              }
+              right_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                right_text
+              }
+              right_text
             }
             WhatIs {
-                TitleText {
-                    title
-                    text
-                }
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              TitleText {
+                title
+                text
+              }
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             KeyBenefits {
-                texte
+              texte
             }
             Videos {
-                url
-                poster {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              url
+              poster {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             BeforesAfters {
-                doctor
-                text
-                image {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              doctor
+              text
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             WhatTreats {
-                title
-                text
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              title
+              text
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             ClinicalStudies {
-                addons {
-                    Name
-                }
-                author
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              addons {
+                Name
+              }
+              author
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                publication
-                published_date
-                title
-                url
+              }
+              publication
+              published_date
+              title
+              url
             }
             SellingArgs {
-                SectionTitle
-                Arg {
-                    texte
-                }
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              SectionTitle
+              Arg {
+                texte
+              }
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             SellingNewGeneration {
-                title
-                text
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              title
+              text
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
             }
             sensitivity
-        }
+          }
     }
 `;

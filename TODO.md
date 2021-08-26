@@ -20,21 +20,21 @@ DONE Ouverture modale press-media
 
 LATER - Facebook comment API
 
-DONE - 1
-DONE - 2
-DONE - 3
-DONE - 4
-DONE - 5
-?? Rosalie - 6
-DONE - 7
-DONE - 8
-?? Rosalie pour nommage - 9
-DONE- 10
-FIXME Ask to Rosalie - 11
-DONE 1/2 (back yes) (front no) - 12
-DONE 1/2 (back yes) (front yes) - 13 where to put the link press-media ?
-DONE 1/2 (back yes) (front yes) - 14
-DONE 1/2 (back yes) (front yes 1/2) - 15 not yet for product testimonial (not linked to on addon pages)
+DONE - 1 - Please convert French to English on the home page and remove Morpheus8 Pro workstation, we don’t sell that in the UK
+DONE - 2 - Product Information not Product Informations
+DONE - 3 - Webinars and Workshops not Webinar and Workshop
+DONE - 4 - Products not Produits
+DONE - 5 - Social media buttons to have main global youtube channel but UK Instagram and Facebook (NOT twitter or Linkedin) – see my email signature below
+?? Rosalie - 6 - We work in a different way in the UK with all the RF platform machines accommodating ALL RF handpieces. The one exception is BodyTite which is the only machine to accommodate the surgical FaceTite, BodyTite, AccuTite etc (but it also can have the Forma, Forma Plus, Forma V, MiniFX, BodyFX, Morpheus8 etc).  Msg me if you don’t understand
+DONE - 7 - Treatments – Women’s Wellbeing, Face, Body
+DONE - 8 - Events – Please change Congress to Conferences
+?? Rosalie pour nommage - 9 - Information – Scientific Publications please change to Clinical Papers & Case Studies (and make this area password protected for our customers as well please, same password: InModeUK, and change spelling of Resource Centre, please add Testimonials to this drop down as well
+DONE- 10 - Professional Opportunities please change email to: info@inmodemd.co.uk
+FIXME Ask to Rosalie - 11 - Clinic Finder – there will be more to add, and I’ll update you on that before the site goes live.  Let’s categorise by locations: London, South West, South East, Midlands, Northern England, Wales, Ireland, Scotland and possibly add a post code search function
+DONE 1/2 (back yes) (front no) - 12 - Shop: please add a discount code function
+DONE 1/2 (back yes) (front yes) - 13 - where to put the link press-media ? - We need a Media tab for press and blog like we have already: https://www.inmodemd.co.uk/press-media (press coverage, press releases and blog) OR we can make Blog a separate tab
+DONE 1/2 (back yes) (front yes) - 14 - We need to include our Specialists somewhere on the site:  it’s currently on our home page.. and pls see attached screenshot.  Patient testimonials are also on this page: https://www.inmodemd.co.uk/
+DONE 1/2 (back yes) (front yes 1/2) - 15 not yet for product testimonial (not linked to on addon pages) - You’ll find practitioner testimonials around our current website that I would like to include too please.  See attached screenshot, they are to be found on the product/technology pages
 
 
 DONE - Informations -> Information
@@ -62,7 +62,7 @@ UP - Article - Ajouter lien dans photo
 UP - Article - Coder cas caroussel
 UP - Article - Coder cas ligne text + image
 UP - Article - Coder cas ligne caroussel + image
-UP - Article - Coder cas ligne text + caroussel + image
+UP - Article - Coder cas ligne text + caroussel + image 
 
 Input 1 : Type
 
@@ -115,7 +115,7 @@ DONE - Neil Wolfenden is the Managing Director for the UK, managing all aspects 
 
 DONE - Mot de passe pour articles
 DONE - Press media datas
-TODO - Press media style
+FIXME - Press media style
 DONE - Blog datas
 DONE - Blog style
 DONE - Intégration lien MailChimp : https://us15.list-manage.com/contact-form?u=b799a9a69ecc0adb83f6ec99a&form_id=ce32ed8d846e4f4be24edcecea370561
@@ -127,6 +127,12 @@ DONE - ClinicFinders datas
 DONE - OurSpecialists datas
 DONE - Testimonials datas
 
-TODO - Remettre à jour les query inmodeuk en partant des query inmodefr
+CANCEL - Remettre à jour les query inmodeuk en partant des query inmodefr
+DONE - Update Gatsby avec localFile
 
-Code fiscale : 3 037 661 825 352
+FIXME - video header in front 60% width avec ratio height
+FIXME - image header comme avant
+FIXME - Header media chosen and given in InmodePanel
+DONE - password direct download
+
+https://img.youtube.com/vi/N9CVW4Qw5oQ/maxresdefault.jpg

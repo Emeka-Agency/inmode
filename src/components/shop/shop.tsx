@@ -15,7 +15,7 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }:Shop_
 
   const checkbox_resolve_checked_selector = "shopping-menu-filter-checkbox";
 
-  const resolve_checked = (value, remove = true, classname = checkbox_resolve_checked_selector) => {
+  const resolve_checked = (value:string, remove = true, classname = checkbox_resolve_checked_selector) => {
     let list:any = allByClass(classname);
     Object.keys(list).map(elem => {
       if(remove) {
@@ -183,7 +183,7 @@ interface Shop_Interface {
     products: InmodePanel_Product_Interface[] | InmodePanel_Shop_Interface[];
     tag_families: InmodePanel_Addon_Interface[];
     technologies: InmodePanel_TagFamily_Interface[];
-    special: any;
+    special?: any;
     shop_card: string;
 };
 

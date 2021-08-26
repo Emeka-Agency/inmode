@@ -41,6 +41,14 @@
     position: relative;
 }
 
+.testimonial:not(.product) .testimonial-img-part.practitioner {
+    background-color: var(--electric-blue, #59b7b3);
+}
+
+.product.testimonial .testimonial-img-part.practitioner {
+    background-color: #303030;
+}
+
 .testimonial .testimonial-img-part.patient {
     position: absolute;
     top: 0;
@@ -54,7 +62,12 @@
 
 .testimonial .testimonial-img-part.practitioner img {
     height: 500px;
-    width: 100%;
+    width: auto;
+}
+
+.testimonial .testimonial-img-part.practitioner img.right,
+.product.testimonial .testimonial-img-part.practitioner img {
+    float: right;
 }
 
 .testimonial .testimonial-img-part.practitioner .testimonial-img-part-doctor {
@@ -64,6 +77,11 @@
     padding: 15px 5px 10px 5px;
     background: var(--electric-blue, #59b7b3);
     width: fit-content;
+}
+
+.testimonial .testimonial-img-part.practitioner .testimonial-img-part-doctor.right,
+.product.testimonial .testimonial-img-part.practitioner .testimonial-img-part-doctor {
+    right: 0;
 }
 
 .testimonial.practitioner.product .testimonial-img-part.practitioner .testimonial-img-part-doctor {

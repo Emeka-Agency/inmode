@@ -13,11 +13,50 @@ const Article = ({id, customURL}:Article) => {
     }
 
     const articles = useArticle();
-    const [article]:[InmodePanel_BlogArticle_Interface, React.Dispatch<InmodePanel_BlogArticle_Interface>] = React.useState(articles.articles[customURL || id]);
+    const [article]:[InmodePanel_BlogArticle_Interface | null | undefined, React.Dispatch<InmodePanel_BlogArticle_Interface | null | undefined>] = React.useState(articles.find_in_articles(customURL ?? (id).toString()));
 
     if(!article) {
         return <></>;
     }
+
+    React.useEffect(() => {
+        if(typeof window != "undefined") {
+            resizeIFrame();
+            window.addEventListener('resize', resizeIFrame);
+        }
+    }, []);
+
+    const resizeIFrame = () => {
+        if(typeof document != "undefined") {
+            Array.from(document.querySelectorAll('.article-element-video')).forEach((videoElem) => {
+                // console.log(videoElem);
+                // console.log(`${videoElem.offsetWidth * (9/16)}px`);
+                videoElem.style.setProperty('height', `${videoElem.offsetWidth * (9/16)}px`);
+            });
+            return true;
+        }
+        return false;
+    }
+
+    const videoFrame = (_url:string):JSX.Element => {
+        if(_url.includes('youtube')) {
+            _url = _url.replace('watch?v=', 'embed/') + '?autoplay=0&amp;&amp;autohide=1&amp;fs=1&amp;rel=0&amp;hd=1&amp;wmode=transparent&amp;enablejsapi=1&amp;html5=1';
+        }
+        else if(_url.includes('vimeo')) {
+            _url = _url.replace('https://vimeo.com/', '//player.vimeo.com/video/') + '?autoplay=1&hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1';
+        }
+        return (
+            <iframe
+                className="article-element-video"
+                allowFullScreen="allowfullscreen" 
+                allow="fullscreen" 
+                src={_url} 
+                scrolling="no"
+                frameBorder={0}
+            >
+            </iframe>
+        );
+    };
 
     const images = useImages();
 
@@ -32,6 +71,10 @@ const Article = ({id, customURL}:Article) => {
                     {text.text}
                 </blockquote>
             )
+        }
+
+        if(text.type == "video") {
+            return videoFrame(text.text);
         }
 
         return (
@@ -49,9 +92,26 @@ const Article = ({id, customURL}:Article) => {
         return (
             <div className="article-element-image">
                 <img
-                    src={image.childImageSharp ? image.childImageSharp.fluid.srcWebp ||image.publicURL : image.publicURL}
-                    srcSet={image.childImageSharp ? image.childImageSharp.fluid.srcSetWebp ||image.publicURL : image.publicURL}
+                    src={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcWebp || image.localFile.publicURL : image.localFile.publicURL}
+                    srcSet={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcSetWebp || image.localFile.publicURL : image.localFile.publicURL}
                 />
+            </div>
+        );
+    }
+
+    const renderArticleCarouselElement = (carousel:InmodePanel_BlogArticleElement_Interface["Carousel"]) => {
+        if(!carousel) {
+            return <></>;
+        }
+
+        return (
+            <div className="article-element-carousel">
+                {carousel.length && carousel.map((image, key) => {
+                    <img
+                        src={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcWebp || image.localFile.publicURL : image.localFile.publicURL}
+                        srcSet={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcSetWebp || image.localFile.publicURL : image.localFile.publicURL}
+                    />
+                })}
             </div>
         );
     }
@@ -71,24 +131,56 @@ const Article = ({id, customURL}:Article) => {
             <div className="article-main-pic">
                 {
                     article.Thumbnail ?
-                    <img
-                        className="article-list-elem-thumbnail"
-                        src={article.Thumbnail.childImageSharp.fluid ? article.Thumbnail.childImageSharp.fluid.srcWebp : article.Thumbnail.publicURL}
-                        srcSet={article.Thumbnail.childImageSharp.fluid ? article.Thumbnail.childImageSharp.fluid.srcSetWebp : article.Thumbnail.publicURL}
-                        alt={article.Title}
-                    />
+                    (
+                        article.Thumbnail.localFile.ext == ".gif" ?
+                        <img
+                            className="article-list-elem-thumbnail"
+                            src={article.Thumbnail.localFile.publicURL}
+                            srcSet={article.Thumbnail.localFile.publicURL}
+                            alt={article.Title}
+                        />
+                        :
+                        <img
+                            className="article-list-elem-thumbnail"
+                            src={article.Thumbnail.localFile.childImageSharp.fluid ? article.Thumbnail.localFile.childImageSharp.fluid.srcWebp : article.Thumbnail.localFile.publicURL}
+                            srcSet={article.Thumbnail.localFile.childImageSharp.fluid ? article.Thumbnail.localFile.childImageSharp.fluid.srcSetWebp : article.Thumbnail.localFile.publicURL}
+                            alt={article.Title}
+                        />
+                    )
                     :
-                    <img
-                        className="article-list-elem-thumbnail default"
-                        src={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcWebp}
-                        srcSet={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcSetWebp}
-                        alt={article.Title}
-                    />
+                    (
+                        article.VideoURL ?
+                        // videoFrame(article.VideoURL)
+                        <img
+                            className="article-list-elem-thumbnail"
+                            src={`https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`}
+                            alt={article.Title}
+                        />
+                        :
+                        <img
+                            className="article-list-elem-thumbnail default"
+                            src={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcWebp}
+                            srcSet={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcSetWebp}
+                            alt={article.Title}
+                        />
+                    )
                 }
             </div>
             <div className="article-elements">
                 {article.Element && article.Element.length && article.Element.map((element:InmodePanel_BlogArticleElement_Interface) => {
-                    if(element.Text && element.Image) {
+                    if(element.Text && element.Image && element.Carousel) {
+                        return (
+                            <div className="article-element">
+                                <div className="article-element-multiple-text">
+                                    {renderArticleTextElement(element.Text)}
+                                </div>
+                                <div className="article-element-multiple-carousel">
+                                    {renderArticleCarouselElement([element.Image, ...element.Carousel])}
+                                </div>
+                            </div>
+                        );
+                    }
+                    else if(element.Text && element.Image) {
                         return (
                             <div className="article-element">
                                 <div className="article-element-multiple-text">
@@ -100,6 +192,18 @@ const Article = ({id, customURL}:Article) => {
                             </div>
                         );
                     }
+                    else if(element.Text && element.Carousel) {
+                        return (
+                            <div className="article-element">
+                                <div className="article-element-multiple-text">
+                                    {renderArticleTextElement(element.Text)}
+                                </div>
+                                <div className="article-element-multiple-carousel">
+                                    {renderArticleCarouselElement(element.Carousel)}
+                                </div>
+                            </div>
+                        );
+                    }
                     else if(element.Text) {
                         return (
                             <div className="article-element">
@@ -107,10 +211,29 @@ const Article = ({id, customURL}:Article) => {
                             </div>
                         );
                     }
+                    else if(element.Image && element.Carousel) {
+                        return (
+                            <div className="article-element">
+                                <div className="article-element-multiple-text">
+                                    {renderArticleImageElement(element.Image)}
+                                </div>
+                                <div className="article-element-multiple-carousel">
+                                    {renderArticleCarouselElement(element.Carousel)}
+                                </div>
+                            </div>
+                        );
+                    }
                     else if(element.Image) {
                         return (
                             <div className="article-element">
                                 {renderArticleImageElement(element.Image)}
+                            </div>
+                        );
+                    }
+                    else if(element.Carousel) {
+                        return (
+                            <div className="article-element">
+                                {renderArticleCarouselElement(element.Carousel)}
                             </div>
                         );
                     }
@@ -125,7 +248,7 @@ const Article = ({id, customURL}:Article) => {
 
 interface Article {
     id: number | string | null;
-    customURL: string | null;
+    customURL?: string;
 }
 
 export default Article;

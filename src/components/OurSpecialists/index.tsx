@@ -7,25 +7,28 @@ import './index.css';
 const OurSpecialist = ({}:OurSpecialistParams) => {
 
     const [specialists] = React.useState(useStaticQuery(graphql`
-        {
-            allStrapiOurSpecialists {
-                nodes {
-                    strapiId
-                    Picture {
-                        publicURL
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                    }
-                    Name
-                    Description
+    {
+        allStrapiOurSpecialist {
+          nodes {
+            strapiId
+            Picture {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid {
+                    srcWebp
+                    srcSetWebp
+                  }
                 }
+              }
             }
+            Name
+            Description
+          }
         }
-    `).allStrapiOurSpecialists.nodes);
+      }
+      
+    `).allStrapiOurSpecialist.nodes);
 
     console.log(specialists);
 
@@ -37,8 +40,8 @@ const OurSpecialist = ({}:OurSpecialistParams) => {
                     return (
                         <div className="specialist">
                             <img
-                                src={specialist.Picture.childImageSharp.fluid.srcWebp}
-                                srcSet={specialist.Picture.childImageSharp.fluid.srcSetWebp}
+                                src={specialist.Picture.localFile.childImageSharp.fluid.srcWebp}
+                                srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp}
                             />
                             <div className="name">{specialist.Name}</div>
                             <div className="descr">{specialist.Description}</div>

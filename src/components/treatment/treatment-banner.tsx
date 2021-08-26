@@ -1,6 +1,7 @@
 import React from "react";
+import { InmodePanel_Treat_Banner_Interface } from "../interfaces";
 
-const TreatmentBanner = ({ datas }) => {
+const TreatmentBanner = ({ datas }:TreatmentBanner) => {
 
     // TODO récupérer images et vidéos pour chaque produit
     return (
@@ -8,8 +9,8 @@ const TreatmentBanner = ({ datas }) => {
             <div className="top-transition"></div>
             <div className="treatment-banner-media">
                 <img
-                    src={datas.picture.childImageSharp.fluid.srcWebp || null}
-                    srcSet={datas.picture.childImageSharp.fluid.srcSetWebp || null}
+                    src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp || ''}
+                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp || ''}
                     alt="banner"
                 />
             </div>
@@ -18,12 +19,8 @@ const TreatmentBanner = ({ datas }) => {
     );
 }
 
-TreatmentBanner.defaultProps = {
-
-}
-
-TreatmentBanner.propTypes = {
-
+interface TreatmentBanner {
+    datas: InmodePanel_Treat_Banner_Interface;
 }
 
 export default TreatmentBanner;

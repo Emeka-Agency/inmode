@@ -14,12 +14,12 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                     <Link key={prop_key} className="menu-single menu-image social-btn" to={menu.url || "#"} onClick={(e) => {enableMainScroll();}} title={format_string(menu.title || '')} target="_blank" rel="noreferrer">
                         <img
                             className="init"
-                            src={menu.icon ? menu.icon.url || menu.icon.publicURL : ""}
+                            src={menu.icon.localFile ? menu.icon.localFile.url || menu.icon.localFile.publicURL : ""}
                             alt={format_string(menu.title || '')}
                         />
                         <img
                             className="blue"
-                            src={menu.icon_hover ? menu.icon_hover.url || menu.icon_hover.publicURL : ""}
+                            src={menu.icon_hover.localFile ? menu.icon_hover.localFile.url || menu.icon_hover.localFile.publicURL : ""}
                             alt={format_string(menu.title || '')}
                         />
                     </Link>
@@ -27,12 +27,12 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                     <a key={prop_key} className="menu-single menu-image social-btn" href={menu.url || "#"} target="_blank" rel="noreferrer" onClick={(e) => {enableMainScroll();}} title={format_string(menu.title || '')}>
                         <img
                             className="init"
-                            src={menu.icon != undefined ? menu.icon.url || menu.icon.publicURL : ""}
+                            src={menu.icon.localFile != undefined ? menu.icon.localFile.url || menu.icon.localFile.publicURL : ""}
                             alt={format_string(menu.title || '')}
                         />
                         <img
                             className="blue"
-                            src={menu.icon_hover != undefined ? menu.icon_hover.url || menu.icon_hover.publicURL : ""}
+                            src={menu.icon_hover.localFile != undefined ? menu.icon_hover.localFile.url || menu.icon_hover.localFile.publicURL : ""}
                             alt={format_string(menu.title || '')}
                         />
                     </a>
@@ -40,12 +40,12 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                 <div key={prop_key} className="menu-single menu-image social-btn">
                     <img
                         className="init"
-                        src={menu.icon != undefined ? menu.icon.url || menu.icon.publicURL : ""}
+                        src={menu.icon.localFile != undefined ? menu.icon.localFile.url || menu.icon.localFile.publicURL : ""}
                         alt={format_string(menu.title || '')}
                     />
                     <img
                         className="blue"
-                        src={menu.icon_hover != undefined ? menu.icon_hover.url || menu.icon_hover.publicURL : ""}
+                        src={menu.icon_hover.localFile != undefined ? menu.icon_hover.localFile.url || menu.icon_hover.localFile.publicURL : ""}
                         alt={format_string(menu.title || '')}
                     />
                 </div>

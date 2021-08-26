@@ -13,7 +13,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
                     autoPlay={true}
                     loop={true}
                     muted={true}
-                    poster={datas.left_img && datas.left_img.childImageSharp.fluid.srcWebp}
+                    poster={datas.left_img && datas.left_img.localFile.childImageSharp.fluid.srcWebp}
                     height={380}
                 >
                     <source
@@ -26,7 +26,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             <div className="product-banner-details">
                 <img
                     className="product-banner-logo"
-                    src={datas.right_img && datas.right_img.childImageSharp.fluid.srcWebp}
+                    src={datas.right_img && datas.right_img.localFile.childImageSharp.fluid.srcWebp}
                     alt="bodytite-logo-text"
                 />
                 <div className="product-banner-short-descr">
@@ -35,7 +35,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             </div>
             <div className="product-banner-mini">
                 <img
-                    src={datas.mini && datas.mini.childImageSharp.fluid.srcWebp}
+                    src={datas.mini && datas.mini.localFile.childImageSharp.fluid.srcWebp}
                     alt="product-banner-mini"
                 />
             </div>

@@ -47,7 +47,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
 }
 
 interface ClinicalStudies_Interface {
-    datas: InmodePanel_Generic_ClinicalStudies_Interface[];
+    datas?: InmodePanel_Generic_ClinicalStudies_Interface[];
 };
 
 export default ClinicalStudies;

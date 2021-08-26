@@ -8,7 +8,7 @@ const ConferencesPage = ({ data }) =>  {
         <Layout title="congress">
             <SEO title="Conferences"/>
             <EventsLayout
-                current_page="Conferences"
+                current_page="conferences"
                 upcoming_events={!data ? {} : data.incoming.nodes}
                 // past_events={!data ? {} : data.past.nodes}
             />

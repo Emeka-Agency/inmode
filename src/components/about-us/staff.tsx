@@ -11,9 +11,11 @@ const Staff = ({ from = "" }:Staff) => {
             strapiAboutUs {
                 staff {
                     picture {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                }
                             }
                         }
                     }
@@ -50,7 +52,7 @@ const Staff = ({ from = "" }:Staff) => {
                                 className="elem"
                             >
                                 <img
-                                    src={slide.picture ? slide.picture.childImageSharp.fluid.srcWebp : ""}
+                                    src={slide.picture ? slide.picture.localFile.childImageSharp.fluid.srcWebp : ""}
                                     alt={`about-us-staff-${key}`}
                                 />
                                 <div className="name">

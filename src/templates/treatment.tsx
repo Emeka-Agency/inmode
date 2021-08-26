@@ -41,88 +41,98 @@ export const query = graphql`
         strapiTreatment(id: {eq: $id}) {
             Name
             Banner {
-                picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
-                        }
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                text
+              }
+              text
             }
             WhatIsTreat {
-                picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                        }
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
                     }
+                  }
                 }
-                TitleText {
-                        title
-                        text
-                }
+              }
+              TitleText {
+                title
+                text
+              }
             }
             IncludeTitle
             IncludeList {
-                texte
+              texte
             }
             products {
-                WhatIsProduct {
-                    image {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                            }
-                        }
-                    }
-                    title
-                    text
-                    treatment {
-                        Name
-                    }
-                }
-                RelatedAddonTreatment {
-                    short {
-                        texte
-                    }
-                    addon {
-                        Name
-                    }
-                    treatment {
-                        Name
-                    }
-                }
-            }
-            BeforesAfters {
+              WhatIsProduct {
                 image {
+                  localFile {
                     childImageSharp {
-                        fluid {
-                            srcWebp
-                        }
+                      fluid {
+                        srcWebp
+                      }
                     }
-                }
-                doctor
-                text
-            }
-            ClinicalStudies {
-                picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                        }
-                    }
+                  }
                 }
                 title
-                author
-                addons {
-                    Name
+                text
+                treatment {
+                  Name
                 }
-                published_date
-                publication
+              }
+              RelatedAddonTreatment {
+                short {
+                  texte
+                }
+                addon {
+                  Name
+                }
+                treatment {
+                  Name
+                }
+              }
+            }
+            BeforesAfters {
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
+                    }
+                  }
+                }
+              }
+              doctor
+              text
+            }
+            ClinicalStudies {
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
+                    }
+                  }
+                }
+              }
+              title
+              author
+              addons {
+                Name
+              }
+              published_date
+              publication
             }
             sensitivity
+          }
         }
-    }
 `;

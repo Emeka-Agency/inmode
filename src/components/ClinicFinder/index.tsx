@@ -15,7 +15,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
     const [clinics]:[any, React.Dispatch<any>] = React.useState(Array.from(useStaticQuery(graphql`
         {
-            allStrapiClinicFinders {
+            allStrapiClinicFinder {
                 nodes {
                     city
                     doctor
@@ -34,7 +34,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
                 }
             }
         }
-    `).allStrapiClinicFinders.nodes));
+    `).allStrapiClinicFinder.nodes));
 
     const [search, setSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
@@ -123,8 +123,14 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
         try {
             let _part = typeof document != "undefined" ? document.querySelectorAll('.clinic-item').length : 0;
             let _tot = clinics ? clinics.length : 0;
-            oneById("search-clinic-indicator").innerText = `${_part}/${_tot}`;
-            oneBySelector("#search-clinic-indicator-ui .search-clinic-indicator-ui-back").style.width = `${(_part / _tot) * 100}%`;
+            let temp = oneById("search-clinic-indicator");
+            if(temp) {
+                temp.innerText = `${_part}/${_tot}`;
+            }
+            temp = oneBySelector("#search-clinic-indicator-ui .search-clinic-indicator-ui-back");
+            if(temp) {
+                temp.style.width = `${(_part / _tot) * 100}%`;
+            }
         }
         catch(err) {
 

@@ -18,8 +18,8 @@ const ProductView = ({children, datas}:ProductView) => {
             {children}
             <div className="product-view-img">
                 <img
-                    src={products[datas.current].ShopPicture.childImageSharp.fluid.srcWebp}
-                    srcSet={products[datas.current].ShopPicture.childImageSharp.fluid.srcSetWebp}
+                    src={products[datas.current].ShopPicture.localFile.childImageSharp.fluid.srcWebp}
+                    srcSet={products[datas.current].ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
                     alt='products'
                 />
             </div>
@@ -36,24 +36,24 @@ const ProductView = ({children, datas}:ProductView) => {
                                     <div className="title">
                                         <img
                                             className="addon-title"
-                                            src={addon.Banner.right_img.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.childImageSharp.fluid.srcSetWebp}
+                                            src={addon.Banner.right_img.localFile.childImageSharp.fluid.srcWebp}
+                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp}
                                             alt={addon.Name}
                                         />
                                     </div>
                                     <a className="addon-description custom-scrollbar" title={addon.Name}>{addon.Banner.right_text}</a>
                                     <img
                                         className="addon-picture"
-                                        src={addon.Banner.left_img.childImageSharp.fluid.srcWebp}
-                                        srcSet={addon.Banner.left_img.childImageSharp.fluid.srcSetWebp}
+                                        src={addon.Banner.left_img.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={addon.Banner.left_img.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt={addon.Name}/>
                                 </div>
                                 <div className="addon-details transition">
                                     <div className="title">
                                         <img
                                             className="addon-title"
-                                            src={addon.Banner.right_img.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.childImageSharp.fluid.srcSetWebp}
+                                            src={addon.Banner.right_img.localFile.childImageSharp.fluid.srcWebp}
+                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp}
                                             alt={addon.Name}
                                         />
                                     </div>

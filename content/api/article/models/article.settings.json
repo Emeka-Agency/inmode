@@ -39,6 +39,14 @@
     },
     "VideoURL": {
       "type": "string"
+    },
+    "HeaderArticle": {
+      "type": "dynamiczone",
+      "components": [
+        "article.image",
+        "article.zone-text",
+        "article.carousel"
+      ]
     }
   }
 }

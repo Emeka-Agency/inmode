@@ -23,7 +23,13 @@
     padding: 20px 0;
 }
 
-.article-list .article-list-elem .article-list-elem-thumb-container .article-list-elem-thumbnail {
+.article-list .article-list-elem .article-list-elem-thumb-container.video {
+    position: relative;
+    /* z-index: 2; */
+}
+
+.article-list .article-list-elem .article-list-elem-thumb-container .article-list-elem-thumbnail,
+.article-list .article-list-elem .article-list-elem-thumb-container .article-list-elem-video {
     width: 90%;
     margin: 0 auto;
     display: block;

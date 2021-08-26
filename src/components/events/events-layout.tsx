@@ -145,10 +145,10 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
 };
 
 interface EventsLayout {
-    children: React.ReactNode;
+    children?: React.ReactNode;
     current_page: string;
     upcoming_events: InmodePanel_Event_Interface[] | undefined;
-    past_events: InmodePanel_Event_Interface[] | undefined;
+    past_events?: InmodePanel_Event_Interface[] | undefined;
 }
 
 export default EventsLayout;

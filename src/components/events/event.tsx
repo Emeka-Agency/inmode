@@ -19,8 +19,8 @@ const InmodeEvent = ({ event = undefined, prop_key, current_page }:InmodeEvent) 
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
                 <img
                     className="event-pic"
-                    src={event.picture.childImageSharp.fluid.srcWebp}
-                    srcSet={event.picture.childImageSharp.fluid.srcSetWebp}
+                    src={event.picture.localFile.childImageSharp.fluid.srcWebp}
+                    srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp}
                     alt={`event-pic-'${event.title}`}
                 />
             </div>

@@ -75,9 +75,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        // apiURL: `${process.env.STRAPI_URL}`,
-        apiURL: `https://inmodeuk-content.emeka.fr`,
-        contentTypes: [ // List of the Collection Types you want to be able to request from Gatsby.
+        apiURL: `${process.env.STRAPI_URL}`,
+        // apiURL: `https://inmodeuk-content.emeka.fr`,
+        collectionTypes: [ // List of the Collection Types you want to be able to request from Gatsby.
           `addon`,              // Addons
           `product`,            // Products
           `tag`,                // Tags
@@ -85,12 +85,12 @@ module.exports = {
           `treatment`,          // Treatments
           `menu`,               // Menus
           `shop`,               // Shops
-          `clinic-finders`,     // ClinicFinders
+          `clinic-finder`,     // ClinicFinders
           `discount`,           // Dicounts
-          `our-specialists`,    // OurSpecialists
+          `our-specialist`,    // OurSpecialists
           `testimonial`,        // Testimonials
           `press-media`,        // PressMedias
-          `articles`            // BlogPosts
+          `article`            // BlogPosts
         //   `order`            // Orders
         //   `event`            // Events
         ],

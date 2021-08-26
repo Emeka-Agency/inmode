@@ -1,19 +1,19 @@
 import { PressMedia_Interface } from '../components/interfaces';
 import { disableMainScroll, enableMainScroll } from './disable-scroll';
 
-function modale():HTMLElement {
+function modale():HTMLElement|null {
     return document.getElementById('modale');
 }
 
-function modaleContainer():HTMLElement {
+function modaleContainer():HTMLElement|null {
     return document.getElementById('modale-container');
 }
 
-function modaleContent():HTMLElement {
+function modaleContent():HTMLElement|null {
     return document.getElementById('modale-content');
 }
 
-function modaleClose():HTMLElement {
+function modaleClose():HTMLElement|null {
     return document.getElementById('modale-close');
 }
 
@@ -95,8 +95,8 @@ export function pressMedia(datas:pressMedia) {
                                 &&
                                 `<img
                                     class="press-media-modale-picture"
-                                    src="${_press.Picture && _press.Picture.childImageSharp.fluid.srcWebp}"
-                                    srcSet="${_press.Picture && _press.Picture.childImageSharp.fluid.srcSetWebp}"
+                                    src="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcWebp}"
+                                    srcSet="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcSetWebp}"
                                 />`
                             }
                             ${
@@ -147,7 +147,7 @@ export function clinicalStudyPassword(datas:clinicalStudy) {
                 Please first enter the password to get the clinical study
             </div>
             <div class="clinical-study-download-input-zone">
-                <input type="password" id="clinical-study-download-password" placeholder="Type password here"/>
+                <input type="text" id="clinical-study-download-password" placeholder="Type password here"/>
                 <div class="clinical-study-download-input-zone-after"></div>
                 <div id="clinical-study-download-password-status" style="display:none;"></div>
             </div>

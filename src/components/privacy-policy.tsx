@@ -5,7 +5,7 @@ import { useLocalStorage } from "../functions/use-localstorage";
 import { useWindowSize } from "../functions/window-size";
 import { useImages } from './contexts/images-provider';
 
-const PrivacyPolicy = (props) => {
+const PrivacyPolicy = (props:PrivacyPolicy) => {
 
     const images = useImages();
 
@@ -19,7 +19,9 @@ const PrivacyPolicy = (props) => {
     const size = useWindowSize();
     const LocalStorage = useLocalStorage;
 
-    async function process_cookies(e, checked) {
+    async function process_cookies(e:React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) {
+        let temp:HTMLInputElement|null = document.querySelector('#onoffswitch');
+        let checked = temp ? temp.checked : false;
         if(open) {
             setAccepted(checked ? true : false);
             LocalStorage.setItem(analyticsCookies, checked ? 'true' : 'false');
@@ -94,7 +96,7 @@ const PrivacyPolicy = (props) => {
                     </div>
                     <div className="cookies-text">We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. For more information on how these cookies work please see our <AnchorLink to="/mentions-legales#cookies" title="Cookies">'Cookies page'</AnchorLink>. The cookies collect information in an anonymous form.</div>
                 </div>
-                <div className="accept-close" onClick={(e) => {process_cookies(e, document.querySelector('#onoffswitch').checked);}}>
+                <div className="accept-close" onClick={(e) => {process_cookies(e);}}>
                     Accept and close
                 </div>
             </div>
@@ -102,11 +104,7 @@ const PrivacyPolicy = (props) => {
     );
 }
 
-PrivacyPolicy.propTypes = {
-
-}
-
-PrivacyPolicy.defaultProps = {
+interface PrivacyPolicy {
 
 }
 

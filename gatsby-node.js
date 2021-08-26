@@ -1,4 +1,6 @@
-exports.onCreateWebpackConfig = ({
+const { crc32 } = require('crc');
+
+    exports.onCreateWebpackConfig = ({
     actions
 }) => {
     actions.setWebpackConfig({
@@ -103,16 +105,15 @@ exports.createPages = async ({
             }
           }
         }
+        articles: allStrapiArticle(sort: {fields: strapiId, order: DESC}) {
+            nodes {
+                id
+                strapiId
+            }
+        }
       }
     `
     );
-    // articles: allStrapiArticle {
-    //     nodes {
-    //         id
-    //         strapiId
-    //         CustomUrl
-    //     }
-    // }
 
     if (result.errors) {
         throw result.errors
@@ -164,18 +165,25 @@ exports.createPages = async ({
     });
 
     // Create articles pages.
-    // const articles = result.data.articles.nodes;
+    const articles = result.data.articles.nodes;
 
-    // const ArticleTemplates = require.resolve("./src/templates/article.tsx")
+    const ArticleTemplates = require.resolve("./src/templates/article.tsx")
 
-    // articles.forEach((article, index) => {
-    //     // console.log(JSON.stringify(article));
-    //     createPage({
-    //         path: "blog" + (article.CustomUrl || "/" + parseInt(article.strapiId, 10)),
-    //         component: ArticleTemplates,
-    //         context: {
-    //             id: article.id
-    //         },
-    //     })
-    // });
+    articles.forEach((article, index) => {
+        // console.log(JSON.stringify(article));
+        console.log("/////////////////////");
+        console.log("=====================");
+        console.log(crc32("1").toString(16));
+        console.log(crc32("2").toString(16));
+        console.log(crc32("3").toString(16));
+        console.log("=====================");
+        console.log("/////////////////////");
+        createPage({
+            path: "blog" + "/" + (typeof article.strapiId == "number" ? crc32((article.strapiId).toString()).toString(16) : crc32(article.strapiId).toString(16)),
+            component: ArticleTemplates,
+            context: {
+                id: article.id
+            },
+        })
+    });
 }

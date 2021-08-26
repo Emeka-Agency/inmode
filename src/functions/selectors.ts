@@ -2,13 +2,13 @@ function _document():boolean {
     return typeof document == "undefined" ? false : true;
 }
 
-export const oneBySelector = (selector:string, callback?:Function):Element | null => {
+export const oneBySelector = (selector:string, callback?:Function):HTMLElement | null => {
     if(!_document()) {
         return null;
     }
     return callback != null ? callback(document.querySelectorAll(selector)) : document.querySelector(selector);
 }
-export const allBySelector = (selector:string, callback?:Function):NodeListOf<Element> | null => {
+export const allBySelector = (selector:string, callback?:Function):NodeListOf<HTMLElement> | null => {
     if(!_document()) {
         return null;
     }
@@ -28,7 +28,7 @@ export const oneByTag = (selector:string, callback?:Function, index:number = 0):
     }
     return callback != null ? callback(document.getElementsByTagName(selector)) : document.getElementsByTagName(selector)[typeof index == "number" && index >=0 ? index : 0];
 }
-export const allByTag = (selector:string, callback?:Function):HTMLCollectionOf<Element> | null => {
+export const allByTag = (selector:string, callback?:Function):HTMLCollectionOf<HTMLElement> | null => {
     if(!_document()) {
         return null;
     }
@@ -41,7 +41,7 @@ export const oneByName = (selector:string, callback?:Function, index:number = 0)
     }
     return callback != null ? callback(document.getElementsByName(selector)) : document.getElementsByName(selector)[typeof index == "number" && index >=0 ? index : 0];
 }
-export const allByName = (selector:string, callback?:Function):HTMLCollectionOf<Element> | null => {
+export const allByName = (selector:string, callback?:Function):HTMLCollectionOf<HTMLElement> | null => {
     if(!_document()) {
         return null;
     }
@@ -54,7 +54,7 @@ export const oneByClass = (selector:string, callback?:Function, index:number = 0
     }
     return callback != null ? callback(document.getElementsByClassName(selector)) : document.getElementsByClassName(selector)[typeof index == "number" && index >=0 ? index : 0];
 }
-export const allByClass = (selector:string, callback?:Function):HTMLCollectionOf<Element> | null => {
+export const allByClass = (selector:string, callback?:Function):HTMLCollectionOf<HTMLElement> | null => {
     if(!_document()) {
         return null;
     }

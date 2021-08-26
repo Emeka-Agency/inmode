@@ -21,30 +21,30 @@ export const useDiscount = ():DiscountContext_Interface => {
 
 const DiscountProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<DiscountContext_Interface> => {
 
-    const [discounts] = React.useState(
-        Object.fromEntries(
-            useStaticQuery(graphql`
-            {
-                allStrapiDiscount {
-                    nodes {
-                        discount
-                        type
-                        single_use
-                        textual
-                        text
-                        articles {
-                            id
-                            price
-                            reference
-                        }
-                    }
-                }
-            }
-            `).allStrapiDiscount.nodes.map((discount:InmodePanel_Discount_Interface) => {
-                console.log(discount);
-                return discount;
-            }),
-        ),
+    const [discounts] = React.useState({}
+        // Object.fromEntries(
+        //     useStaticQuery(graphql`
+        //     {
+        //         allStrapiDiscount {
+        //             nodes {
+        //                 discount
+        //                 type
+        //                 single_use
+        //                 textual
+        //                 text
+        //                 articles {
+        //                     id
+        //                     price
+        //                     reference
+        //                 }
+        //             }
+        //         }
+        //     }
+        //     `).allStrapiDiscount.nodes.map((discount:InmodePanel_Discount_Interface) => {
+        //         console.log(discount);
+        //         return discount;
+        //     }),
+        // ),
     );
 
     const [discounts_length]:[number, React.Dispatch<number>] = React.useState(discounts.length);

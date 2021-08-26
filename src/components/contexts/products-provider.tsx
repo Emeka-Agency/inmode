@@ -13,80 +13,91 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
 // SELECT * FROM ((product INNER JOIN short_banner ON product.id = short_banner.product) INNER JOIN key_benefits ON key_benefits.product = short_banner.product) INNER JOIN treats ON treats.product = key_benefits.product;
 // graphql-markdown ./path/to/schema.json > schema.md
     const [products]:[InmodePanel_Product_Interface[], React.Dispatch<InmodePanel_Product_Interface[]>] = React.useState(useStaticQuery(graphql`
-        {
-            allStrapiProduct(sort: {order: ASC, fields: position}) {
-                edges {
-                    node {
-                        Name
-                        ShopPicture {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                        short_descr
-                        Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                        MenuParams {
-                            url
-                            internal_link
-                        }
-                        WhatIs {
-                            TitleText {
-                                text
-                            }
-                        }
-                        Addons {
-                            Name
-                            Banner {
-                                left_img {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                        }
-                                    }
-                                }
-                                right_img {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                        }
-                                    }
-                                }
-                                right_text
-                            }
-                            MenuParams {
-                                url
-                                internal_link
-                            }
-                            WhatIs {
-                                picture {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                        }
-                                    }
-                                }
-                                TitleText {
-                                    text
-                                }
-                            }
-                        }
+    {
+        allStrapiProduct(sort: {order: ASC, fields: position}) {
+          edges {
+            node {
+              Name
+              ShopPicture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
+              }
+              short_descr
+              Icon {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      srcWebp
+                      srcSetWebp
+                    }
+                  }
+                }
+              }
+              MenuParams {
+                url
+                internal_link
+              }
+              WhatIs {
+                TitleText {
+                  text
+                }
+              }
+              Addons {
+                Name
+                Banner {
+                  left_img {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          srcWebp
+                          srcSetWebp
+                        }
+                      }
+                    }
+                  }
+                  right_img {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          srcWebp
+                          srcSetWebp
+                        }
+                      }
+                    }
+                  }
+                  right_text
+                }
+                MenuParams {
+                  url
+                  internal_link
+                }
+                WhatIs {
+                  picture {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          srcWebp
+                          srcSetWebp
+                        }
+                      }
+                    }
+                  }
+                  TitleText {
+                    text
+                  }
+                }
+              }
             }
+          }
         }
+      }
+      
     `).allStrapiProduct.edges.map((elem:{node:InmodePanel_Product_Interface}) => elem.node));
 
     const product_navigation = [

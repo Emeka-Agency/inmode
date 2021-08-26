@@ -84,6 +84,21 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
             console.log("Good password");
             let studyZone = document.querySelector('.study-download');
             setAllowed(true);
+            // OPEN THR LINK IN ANOTHER TAB
+            if(typeof window != "undefined") {
+                console.log('Méthode window');
+                window.open(href, '_blank');
+            }
+            else {
+                console.log('Méthode a virtuel');
+                let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
+                    id: 'study-download',
+                    target: '_blank',
+                    href: href,
+                }).click();
+                a.click();
+                a.remove();
+            }
             closeModale();
             scrollTo(0, studyZone ? studyZone.getBoundingClientRect().y : 0);
             return true;
@@ -96,8 +111,8 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
         <div key={prop_key} className="study-slide">
             <div className="study-img">
                 <img
-                    src={study.picture.childImageSharp.fluid.srcWebp}
-                    srcSet={study.picture.childImageSharp.fluid.srcSetWebp}
+                    src={study.picture.localFile.childImageSharp.fluid.srcWebp}
+                    srcSet={study.picture.localFile.childImageSharp.fluid.srcSetWebp}
                     alt="clinical-study"
                 />
             </div>

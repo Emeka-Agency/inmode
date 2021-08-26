@@ -13,8 +13,11 @@ const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
     const imgHTML = (datas:InmodePanel_Testimonial_Interface) => {
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
-                <img className="background-image" src={datas.Picture.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.childImageSharp.fluid.srcSetWebp}/>
-                <div className="testimonial-img-part-doctor">
+                <img className="background-image" src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}/>
+                <div
+                    className="testimonial-img-part-doctor"
+                    style={{left: `calc(100% - ${(datas.Picture.localFile.childImageSharp.fluid.aspectRatio * 500).toFixed(0)}px)`}}
+                >
                     <span>{datas.Name}</span>
                     <span>{datas.Clinic}</span>
                 </div>

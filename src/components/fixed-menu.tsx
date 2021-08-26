@@ -14,10 +14,10 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
     const [menus] = React.useState(React.useContext(MenusContext).header_bottom);
 
-    const [ isVisible, setIsVisible ] = React.useState();
+    const [ isVisible, setIsVisible ]:[boolean, React.Dispatch<boolean>] = React.useState(Boolean(false));
 
     React.useEffect(() => {
-        const handleScroll = _ => { 
+        const handleScroll = (e:Event) => { 
             if (window.pageYOffset > 150 && window.innerWidth > 999) {
                 setIsVisible(true)
             } else {

@@ -13,151 +13,174 @@ export const useMenus = ():MenusContext_Interface => {
 
 const MenusProvider = ({ requested = "", children }:{ requested?:string, children:any }):React.Provider<MenusContext_Interface> => {
     const [datas]:MenusContext_Interface | any = React.useState(useStaticQuery(graphql`
-        {
-            header_top: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
-                nodes {
-                    strapiId
+    {
+        header_top: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
+            nodes {
+                strapiId
+                title
+                url
+                type
+                variant
+                container
+                parent_menu
+                internal_link
+                menus {
+                  id
+                  title
+                  url
+                  type
+                  variant
+                }
+                products {
+                  id
+                  position
+                  MenuParams {
                     title
                     url
                     type
                     variant
-                    container
-                    parent_menu
                     internal_link
-                    menus {
-                        id
-                        title
-                        url
-                        type
-                        variant
-                    }
-                    products {
-                        id
-                        position
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
+                  }
+                  Icon {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          srcWebp
+                          srcSetWebp
                         }
-                        Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
+                      }
                     }
-                    treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
-                    icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
+                  }
                 }
-            }
-            header_bottom: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
-                nodes {
-                    strapiId
+                treatments {
+                  id
+                  MenuParams {
                     title
                     url
                     type
                     variant
-                    container
-                    parent_menu
                     internal_link
-                    menus {
-                        id
-                        title
-                        url
-                        type
-                        variant
+                  }
+                }
+                mini_treatments {
+                  id
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                icon {
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        srcWebp
+                        srcSetWebp
+                      }
                     }
-                    products {
-                        id
-                        position
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                        Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
+                    publicURL
+                  }
+                }
+                icon_hover {
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        srcWebp
+                        srcSetWebp
+                      }
                     }
-                    treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    mini_treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
-                    icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
+                    publicURL
+                  }
                 }
             }
-            footer: strapiFooter {
-                logo {
+        }
+        header_bottom: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
+            nodes {
+                strapiId
+                title
+                url
+                type
+                variant
+                container
+                parent_menu
+                internal_link
+                menus {
+                  id
+                  title
+                  url
+                  type
+                  variant
+                }
+                products {
+                  id
+                  position
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                  Icon {
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          srcWebp
+                          srcSetWebp
+                        }
+                      }
+                    }
+                  }
+                }
+                treatments {
+                  id
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                mini_treatments {
+                  id
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                icon {
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
+                    publicURL
+                  }
+                }
+                icon_hover {
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
+                    publicURL
+                  }
+                }
+            }
+        }
+        footer: strapiFooter {
+            logo {
+                localFile {
                     childImageSharp {
                         fluid {
                             srcWebp
@@ -165,41 +188,31 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         }
                     }
                 }
-                address
-                phone
-                mail
-                social {
-                    icon {
+            }
+            address
+            phone
+            mail
+            social {
+                icon {
+                    localFile {
                         publicURL
                     }
-                    name
-                    url
-                    position
                 }
-                navigation {
-                    name
-                    url
-                }
+                name
+                url
+                position
             }
-            allStrapiProduct(filter: {Addons: {elemMatch: {Page_addon: {eq: true}}}}) {
-                nodes {
-                    strapiId
-                    position
-                    Addons {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                }
+            navigation {
+                name
+                url
             }
-            allStrapiTreatment {
-                nodes {
-                    strapiId
+        }
+        allStrapiProduct(filter: {Addons: {elemMatch: {Page_addon: {eq: true}}}}) {
+            nodes {
+                strapiId
+                position
+                Addons {
+                    id
                     MenuParams {
                         title
                         url
@@ -210,6 +223,20 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
             }
         }
+        allStrapiTreatment {
+            nodes {
+                strapiId
+                MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                }
+            }
+        }
+    }
+      
     `));
 
     const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
@@ -269,7 +296,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
-                        'icon': product.Icon.childImageSharp.fluid || null,
+                        'icon': product.Icon.localFile.childImageSharp.fluid || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };

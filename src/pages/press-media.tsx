@@ -12,14 +12,31 @@ const moverClass = "press-media-caroussel-mover";
 const PressMediaPage = ({ data }:PressMediaPage_Interface) => {
 
     const [pressMedia]:[InmodePanel_PressMedia_Interface[], React.Dispatch<InmodePanel_PressMedia_Interface[]>] = React.useState(data.allStrapiPressMedia.nodes);
+    const [carouselIndex, setCarouselIndex]:[number, React.Dispatch<number>] = React.useState(0);
 
     const moveCarousel = (_left:boolean, _right:boolean, _index:number):void => {
         // console.log(_index);
-        if(_left && _index == 0) {/* console.log('Cas left 1'); */_index = pressMedia.length - 1;}
-        else if(_right && _index + 1 == pressMedia.length) {/* console.log('Cas right 1'); */_index = 0}
-        else {_index += _left ? -1 : 1;}
+        let directMove = undefined;
+        if(_left && _index == 0) {
+            /* console.log('Cas left 1'); */
+            _index = pressMedia.length - 1;
+            directMove = true;
+        }
+        else if(_right && _index + 1 == pressMedia.length) {
+            /* console.log('Cas right 1'); */
+            _index = 0;
+            directMove = true;
+        }
+        else {
+            _index += _left ? -1 : 1;
+        }
+        console.log('directMove = ' + directMove);
         let _temp:any = document.querySelector(`.${moverClass}`);
-        if(_temp){ _temp.style.marginLeft = `calc(100% * -${_index})`;}
+        if(_temp){
+            directMove && _temp.style.setProperty('transition', 'none');
+            !directMove && _temp.style.removeProperty('transition');
+            _temp.style.marginLeft = `calc(100% * -${_index})`;
+        }
         _temp = document.querySelector('.press-media-caroussel-elems');
         _temp && _temp.setAttribute('caroussel-index', _index);
     }
@@ -93,22 +110,25 @@ interface PressMediaPage_Interface {
 export default PressMediaPage;
 
 export const query = graphql`
-    {
-        allStrapiPressMedia(sort: {fields: published_at, order: DESC}) {
-            nodes {
-                Picture {
-                    publicURL
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
-                        }
-                    }
-                }
-                Short
-                Description
-                URL
+{
+    allStrapiPressMedia(sort: {fields: published_at, order: DESC}) {
+      nodes {
+        Picture {
+          localFile {
+            publicURL
+            childImageSharp {
+              fluid {
+                srcWebp
+                srcSetWebp
+              }
             }
+          }
         }
+        Short
+        Description
+        URL
+      }
     }
+  }
+  
 `;

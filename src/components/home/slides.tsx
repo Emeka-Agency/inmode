@@ -89,16 +89,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.Icon.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt='products'
                                     />
                                 </div>

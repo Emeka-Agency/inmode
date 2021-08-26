@@ -7,40 +7,50 @@ import './index.css';
 const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
     
     const [datas] = React.useState(useStaticQuery(graphql`
-        {
-            allStrapiTestimonial {
-                nodes {
-                    strapiId
-                    Name
-                    from
-                    Picture {
-                        publicURL
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                    }
-                    Clinic
-                    Content
+    {
+        allStrapiTestimonial {
+          nodes {
+            strapiId
+            Name
+            from
+            Picture {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid {
+                    srcWebp
+                    srcSetWebp
+                    aspectRatio
+                  }
                 }
+              }
             }
+            Clinic
+            Content
+          }
         }
+      }
+      
     `).allStrapiTestimonial.nodes);
 
     if(!datas) {
         return <></>;
     }
 
-    const imgHTML = (datas:InmodePanel_Testimonial_Interface) => {
+    const LEFT = 0;
+    const RIGHT = 1;
+
+    const imgHTML = (datas:InmodePanel_Testimonial_Interface, side:number = LEFT) => {
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
-                <img className="background-image" src={datas.Picture.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.childImageSharp.fluid.srcSetWebp}/>
+                <img className={`background-image ${side == LEFT ? 'left' : 'right'}`} src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}/>
                 {
                     datas.from == 'practitioner'
                     &&
-                    <div className="testimonial-img-part-doctor">
+                    <div
+                        className={`testimonial-img-part-doctor ${side == LEFT ? 'left' : 'right'}`}
+                        style={side == LEFT ? {} : {left: `calc(100% - ${(datas.Picture.localFile.childImageSharp.fluid.aspectRatio * 500).toFixed(0)}px)`}}
+                    >
                         <span>{datas.Name}</span>
                         <span>{datas.Clinic}</span>
                     </div>
@@ -85,8 +95,8 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
                     console.log((index/2)%2);
                     return (
                         <div className={`testimonial ${testimonial.from}`}>
-                            {(index/2)%2 < 1 || index%2 == 0 ? imgHTML(testimonial) : quoteHTML(testimonial) }
-                            {(index/2)%2 < 1 || index%2 == 0 ? quoteHTML(testimonial) : imgHTML(testimonial) }
+                            {(index/2)%2 < 1 || index%2 == 0 ? imgHTML(testimonial, LEFT) : quoteHTML(testimonial) }
+                            {(index/2)%2 < 1 || index%2 == 0 ? quoteHTML(testimonial) : imgHTML(testimonial, RIGHT) }
                         </div>
                     )
                 })

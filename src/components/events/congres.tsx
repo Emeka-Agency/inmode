@@ -12,8 +12,8 @@ const Conferences = ({ event = undefined }:Conferences) => {
             <div className="img-part">
                 <img
                     className="event-pic"
-                    src={event.picture.childImageSharp.fluid.srcWebp}
-                    srcSet={event.picture.childImageSharp.fluid.srcSetWebp}
+                    src={event.picture.localFile.childImageSharp.fluid.srcWebp}
+                    srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp}
                 />
             </div>
             <div className="descr-part">

@@ -1,3 +1,4 @@
+import { graphql } from "gatsby";
 import React from "react"
 import { InmodePanel_Addon_Interface, InmodePanel_Product_Interface, InmodePanel_TagFamily_Interface } from "../components/interfaces";
 import Layout from "../components/Layout";
@@ -37,7 +38,7 @@ interface WorkstationPage_Interface {
 export default WorkstationPage;
 
 export const query = graphql`
-  {
+{
     allStrapiProduct {
       edges {
         node {
@@ -47,9 +48,11 @@ export const query = graphql`
             internal_link
           }
           ShopPicture {
-            childImageSharp {
-              fluid {
+            localFile {
+              childImageSharp {
+                fluid {
                   srcWebp
+                }
               }
             }
           }
@@ -84,4 +87,5 @@ export const query = graphql`
       }
     }
   }
+  
 `;

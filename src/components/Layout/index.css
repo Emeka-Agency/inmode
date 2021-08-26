@@ -1276,6 +1276,12 @@ header {
         height: 30px;
     }
 
+    .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"],
+    .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"] img {
+        width: 60px;
+        height: 30px;
+    }
+
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li {
         width: 100px;
         height: 50px;
@@ -1479,11 +1485,11 @@ main {
     box-sizing: border-box;
 }
 
-main.testimonials {
+main.testimonials-page {
     padding: 0;
 }
 
-main.article {
+main.article-page {
     padding: 25px 0;
 }
 

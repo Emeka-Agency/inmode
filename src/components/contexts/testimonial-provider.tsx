@@ -22,26 +22,29 @@ export const useTestimonial = ():TestimonialContext_Interface => {
 const TestimonialProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<TestimonialContext_Interface> => {
 
     const [testimonials] = React.useState(useStaticQuery(graphql`
-        {
-            allStrapiTestimonial {
-                nodes {
-                    strapiId
-                    Name
-                    from
-                    Picture {
-                        publicURL
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                    }
-                    Clinic
-                    Content
+    {
+        allStrapiTestimonial {
+          nodes {
+            strapiId
+            Name
+            from
+            Picture {
+              localFile {
+                publicURL
+                childImageSharp {
+                  fluid {
+                    srcWebp
+                    srcSetWebp
+                  }
                 }
+              }
             }
+            Clinic
+            Content
+          }
         }
+      }
+      
     `).allStrapiTestimonial.nodes);
 
     const [testimonials_length]:[number, React.Dispatch<number>] = React.useState(testimonials.length);
@@ -64,9 +67,9 @@ const TestimonialProvider = ({ requested = "", children }:{requested:string, chi
 
 
     const testimonial_index = (hashid:string):number => {
-        return testimonials.map((item:Testimonial_Interface, key) => {
+        return testimonials.map((item:Testimonial_Interface, key:number) => {
             return item.is_ref(hashid) ? key : 0;
-        }).reduce((a, b) => {return a + b;});
+        }).reduce((a:number, b:number) => {return a + b;});
     }
 
     const find_in_testimonials = (hashid:string):Testimonial_Interface | undefined | null => {

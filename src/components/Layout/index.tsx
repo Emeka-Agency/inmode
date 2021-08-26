@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 
 import Header from "../Header/index";
@@ -23,7 +23,7 @@ import ProductsProvider from "../contexts/products-provider";
 import ImagesProvider from "../contexts/images-provider";
 import ArticleProvider from "../contexts/article-provider";
 
-const Layout = ({ children, title }) => {
+const Layout = ({ children, title }:Layout) => {
 
     // TODO régler isMobile pour ouverture cookies
     // const [isMobile, setIsMobile] = React.useState()
@@ -60,7 +60,7 @@ const Layout = ({ children, title }) => {
                 <Header/>
                 <ProductsProvider>
                     <ArticleProvider>
-                        <main id="main" className={title}>
+                        <main id="main" className={title + '-page'}>
                             {children}
                         </main>
                     </ArticleProvider>
@@ -81,8 +81,9 @@ const Layout = ({ children, title }) => {
     )
 }
 
-Layout.propTypes = {
-    children: PropTypes.node.isRequired,
-}
+interface Layout {
+    children: ReactNode;
+    title: string;
+};
 
 export default Layout

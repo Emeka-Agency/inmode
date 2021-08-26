@@ -65,112 +65,71 @@ export const query = graphql`
         strapiProduct(id: {eq: $id}) {
             strapiId
             Banner {
-                left_img {
-                childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              left_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                left_video
-                right_img {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              }
+              left_video
+              right_img {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                mini {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              }
+              mini {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                right_text
+              }
+              right_text
             }
             WhatIs {
-                picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
-                        }
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                TitleText {
-                    text
-                    title
-                }
+              }
+              TitleText {
+                text
+                title
+              }
             }
             BeforeKeyBenefits
             KeyBenefits {
-                texte
+              texte
             }
             Addons {
-                MenuParams {
-                    url
-                    internal_link
-                }
-                ProductPresentation {
-                    left_image {
-                        childImageSharp {
-                            fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                    }
-                    title_image {
-                        childImageSharp {
-                            fluid {
-                                base64
-                                srcWebp
-                            srcSetWebp
-                            }
-                        }
-                    }
-                    title_text
-                    Images {
-                        image {
-                            childImageSharp {
-                                fluid {
-                                    base64
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                        product {
-                            id
-                        }
-                    }
-                    AddonProductsDescr {
-                        descr
-                        product {
-                            id
-                        }
-                    }
-                    ProductPresentationTreats {
-                        treat_short
-                        product {
-                            id
-                        }
-                    }
-                    appears_everywhere
-                  }
-                }
-                Demo {
-                  text
-                  picture {
+              MenuParams {
+                url
+                internal_link
+              }
+              ProductPresentation {
+                left_image {
+                  localFile {
                     childImageSharp {
                       fluid {
                         base64
@@ -180,46 +139,107 @@ export const query = graphql`
                     }
                   }
                 }
-                BeforesAfters {
-                  doctor
+                title_image {
+                  localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
+                  }
+                }
+                title_text
+                Images {
                   image {
-                    childImageSharp {
-                      fluid {
-                        base64
-                        srcWebp
-                        srcSetWebp
+                    localFile {
+                      childImageSharp {
+                        fluid {
+                          base64
+                          srcWebp
+                          srcSetWebp
+                        }
                       }
                     }
                   }
-                  text
+                  product {
+                    id
+                  }
                 }
-                SellingArgs {
-                  SectionTitle
-                  Arg {
-                    texte
+                AddonProductsDescr {
+                  descr
+                  product {
+                    id
+                  }
                 }
+                ProductPresentationTreats {
+                  treat_short
+                  product {
+                    id
+                  }
+                }
+                appears_everywhere
+              }
+            }
+            Demo {
+              text
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
+                    }
+                  }
+                }
+              }
+            }
+            BeforesAfters {
+              doctor
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
+                    }
+                  }
+                }
+              }
+              text
+            }
+            SellingArgs {
+              SectionTitle
+              Arg {
+                texte
+              }
             }
             ClinicalStudies {
-                addons {
-                    Name
-                }
-                author
-                published_date
-                title
-                url
-                picture {
-                    childImageSharp {
-                        fluid {
-                        base64
-                        srcWebp
-                        srcSetWebp
-                        }
+              addons {
+                Name
+              }
+              author
+              published_date
+              title
+              url
+              picture {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      base64
+                      srcWebp
+                      srcSetWebp
                     }
+                  }
                 }
-                publication
+              }
+              publication
             }
             Name
             sensitivity
+          }
         }
-    }
 `;

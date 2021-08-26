@@ -104,6 +104,20 @@ div.article {
     font-style: italic;
 }
 
+.article .article-elements .article-element .article-element-text.url {
+    font-size: 24px;
+    line-height: 32px;
+    padding: 24px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out 0s;
+}
+
+.article .article-elements .article-element .article-element-text.url:hover {
+    text-decoration: underline;
+    color: var(--electric-blue, #59b7b3);
+}
+
 .article .article-elements .article-element .article-element-text.quote::before,
 .article .article-elements .article-element .article-element-text.quote::after {
     content: "\"";
@@ -111,6 +125,17 @@ div.article {
     line-height: 32px;
     font-style: italic;
 }
+
+/* VIDEO CONTENT */
+
+.article .article-elements .article-element .article-element-video {
+    padding: 24px 0;
+    display: block;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+}
+
 
 /* IMAGE ELEMENT */
 
@@ -124,7 +149,27 @@ div.article {
     margin: 0 auto;
 }
 
-/* TEXT + IMAGE ELEMENT */
+/* CAROUSEL ELEMENT */
+
+.article .article-elements .article-element .article-element-carousel {
+    padding: 25px 0;
+}
+
+.article .article-elements .article-element .article-element-carousel img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+/* TEXT, IMAGE, CAROUSEL ELEMENT */
+
+.article .article-elements .article-element .article-element-multiple-text,
+.article .article-elements .article-element .article-element-multiple-image,
+.article .article-elements .article-element .article-element-multiple-carousel {
+    width: calc(50% - 20px);
+    padding: 0 10px;
+    display: inline-block;
+}
 
 .article .article-elements .article-element .article-element-multiple-text {
 
@@ -151,5 +196,17 @@ div.article {
 }
 
 .article .article-elements .article-element .article-element-multiple-image .article-element-image img {
+    
+}
+
+.article .article-elements .article-element .article-element-multiple-carousel {
+
+}
+
+.article .article-elements .article-element .article-element-multiple-carousel .article-element-image {
+    
+}
+
+.article .article-elements .article-element .article-element-multiple-carousel .article-element-image img {
     
 }
