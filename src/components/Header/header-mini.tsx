@@ -20,6 +20,16 @@ const HeaderMini = ({}:HeaderMini) => {
         enableMainScroll();
     }
 
+    React.useEffect(() => {
+        const body = document.querySelector('body');
+        const headerMini = oneById('header-mini');
+        console.log(body);
+        console.log(headerMini);
+        if(body && headerMini) {
+            body.classList.contains('no-scroll') && headerMini.classList.add('opened');
+        }
+    });
+
     return (
         <div id="header-mini" className="header-mini custom-scrollbar">
             <div className="menu-close transition" onClick={(e) => {closeMenu(e);}}>
@@ -33,11 +43,11 @@ const HeaderMini = ({}:HeaderMini) => {
                     for(let i = 0; i < keys.length; i++) {
                         temp[keys[i]] = menu[keys[i]];
                     }
-                    // TODO ajouter autres subs
+                    {/* TODO ajouter autres subs */}
                     if(menu.mini_treatments && menu.mini_treatments.length > 0) {
                         temp.menus = temp.mini_treatments.map((elem:Inmode_MiniMenu_Interface) => {
                             let retour = {id: elem.id, ...elem.MenuParams};
-                            retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').toUpperCase();
+                            retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
                             return retour;
                         });
                     }
