@@ -40,7 +40,7 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                             return (
                                 <div className="distributor" key={key}>
                                     <div className="place">{distributor.place}</div>
-                                    <div className="mail">{distributor.mail}</div>
+                                    <a className="mail" href={`mailto:${distributor.mail}`}>{distributor.mail}</a>
                                 </div>
                             );
                         })
