@@ -8,68 +8,68 @@ import { GatsbyImage_Interface } from "../interfaces";
 
 const FollowInstagram = ({insta_id}:FollowInstagram) => {
 
-    // const [datas] = React.useState(useStaticQuery(graphql`
-    //     {
-    //         allInstaNode(sort: {fields: timestamp, order: DESC}, limit: 4, filter: {username: {eq: "3114668836"}}) {
-    //             edges {
-    //                 node {
-    //                     comments
-    //                     likes
-    //                     caption
-    //                     localFile {
-    //                         childImageSharp {
-    //                             fluid {
-    //                                 srcWebp
-    //                                 srcSetWebp
-    //                             }
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // `).allInstaNode.edges);
-
-    const [datas]:[GatsbyImage_Interface[], React.Dispatch<GatsbyImage_Interface[]>] = React.useState(Object.values(useStaticQuery(graphql`
+    const [datas] = React.useState(useStaticQuery(graphql`
         {
-            _1: file(relativePath: {eq: "insta/20210706/1.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
+            allInstaNode(sort: {fields: timestamp, order: DESC}, limit: 4, filter: {username: {eq: "3114668836"}}) {
+                edges {
+                    node {
+                        comments
+                        likes
+                        caption
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                }
+                            }
+                        }
                     }
                 }
-                publicURL
-            }
-            _2: file(relativePath: {eq: "insta/20210706/2.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
-                publicURL
-            }
-            _3: file(relativePath: {eq: "insta/20210706/3.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
-                publicURL
-            }
-            _4: file(relativePath: {eq: "insta/20210706/4.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
-                publicURL
             }
         }
-    `)));
+    `).allInstaNode.edges);
+
+    // const [datas]:[GatsbyImage_Interface[], React.Dispatch<GatsbyImage_Interface[]>] = React.useState(Object.values(useStaticQuery(graphql`
+    //     {
+    //         _1: file(relativePath: {eq: "insta/20210706/1.jpg"}) {
+    //             childImageSharp {
+    //                 fluid {
+    //                     srcWebp
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //             publicURL
+    //         }
+    //         _2: file(relativePath: {eq: "insta/20210706/2.jpg"}) {
+    //             childImageSharp {
+    //                 fluid {
+    //                     srcWebp
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //             publicURL
+    //         }
+    //         _3: file(relativePath: {eq: "insta/20210706/3.jpg"}) {
+    //             childImageSharp {
+    //                 fluid {
+    //                     srcWebp
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //             publicURL
+    //         }
+    //         _4: file(relativePath: {eq: "insta/20210706/4.jpg"}) {
+    //             childImageSharp {
+    //                 fluid {
+    //                     srcWebp
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //             publicURL
+    //         }
+    //     }
+    // `)));
 
     return (
         <div className="follow-instagram">
@@ -80,7 +80,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                     </a>
                 </h2>
                 <div className="wrapper">
-                    {/* {datas && datas.map((post, key) => {
+                    {datas && datas.map((post:{node : {localFile: GatsbyImage_Interface}}, key:number) => {
                         return(
                             <div key={key} className="elem">
                                 <img
@@ -92,8 +92,8 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
                             </div>
                         );
-                    })} */}
-                    {datas && datas.map((post:GatsbyImage_Interface, key) => {
+                    })}
+                    {/* {datas && datas.map((post:GatsbyImage_Interface, key) => {
                         return(
                             <div key={key} className="elem">
                                 <img
@@ -105,7 +105,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
                             </div>
                         );
-                    })}
+                    })} */}
                 </div>
             {/* </div> */}
         </div>

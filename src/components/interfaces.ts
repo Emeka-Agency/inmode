@@ -750,7 +750,7 @@ export interface BlogArticleContext_Interface {
     article_index(hashid:string):number;
     find_in_articles(ref:string):InmodePanel_BlogArticle_Interface | undefined | null;
     nb_articles():number;
-    readTime(elements:string):number;
+    readTime(article:InmodePanel_BlogArticle_Interface):number;
     articleLink(article:InmodePanel_BlogArticle_Interface):string;
 }
 

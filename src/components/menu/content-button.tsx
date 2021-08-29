@@ -22,8 +22,8 @@ const MenuContentButton = ({menu, prop_key = 0}:MenuContentButton) => {
 
     return (
         <>
+            {/* TODO faire une fonction qui renvoie Link pour les internal sinon a avec les props */}
             {menu.url ?
-                // TODO faire une fonction qui renvoie Link pour les internal sinon a avec les props
                 menu.internal_link ?
                     <Link onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-content menu-button" to={menu.url || "#"} title={format_string(menu.title || '')}>
                         {content(menu)}

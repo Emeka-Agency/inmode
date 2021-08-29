@@ -14,7 +14,8 @@ const MenuContentText = ({menu, prop_key}:MenuContentText) => {
         return (
             <>
                 {format_string(_menu.title || '')}
-                {_menu.menus && _menu.menus.length > 0 && _menu.menus.map((sub, key_sub) => {
+                {
+                    _menu.menus && _menu.menus.length > 0 && _menu.menus.map((sub, key_sub) => {
                         return (<Menu key={key_sub} prop_key={key_sub} menu={sub}/>);
                     })
                 }

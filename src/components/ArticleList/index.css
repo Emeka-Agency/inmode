@@ -4,14 +4,40 @@
 
 .article-list .article-list-elem {
     position: relative;
-    width: 20%;
     height: 452px;
-    margin: 2.5%;
     display: inline-block;
     vertical-align: top;
     box-shadow: #00000050 2px 2px 5px 1px;
     background-color: var(--star-blue, #0a1727);
     border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+    .article-list .article-list-elem {
+        width: 80%;
+        margin: 10%;
+    }
+}
+
+@media (min-width: 768px) {
+    .article-list .article-list-elem {
+        width: 45%;
+        margin: 2.5%;
+    }
+}
+
+@media (min-width: 1280px) {
+    .article-list .article-list-elem {
+        width: 30%;
+        margin: calc(5% / 3);
+    }
+}
+
+@media (min-width: 1400px) {
+    .article-list .article-list-elem {
+        width: 20%;
+        margin: 2.5%;
+    }
 }
 
 .article-list .article-list-elem .article-list-elem-link {
