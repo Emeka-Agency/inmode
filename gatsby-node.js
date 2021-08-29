@@ -171,13 +171,6 @@ exports.createPages = async ({
 
     articles.forEach((article, index) => {
         // console.log(JSON.stringify(article));
-        console.log("/////////////////////");
-        console.log("=====================");
-        console.log(crc32("1").toString(16));
-        console.log(crc32("2").toString(16));
-        console.log(crc32("3").toString(16));
-        console.log("=====================");
-        console.log("/////////////////////");
         createPage({
             path: "blog" + "/" + (typeof article.strapiId == "number" ? crc32((article.strapiId).toString()).toString(16) : crc32(article.strapiId).toString(16)),
             component: ArticleTemplates,
