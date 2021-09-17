@@ -2,11 +2,13 @@
     appearance: auto;
 }
 
-body.no-scroll,
-#main.no-scroll {
-    overflow: hidden;
-    -webkit-overflow-scrolling: touch;
-    max-height: 100vh;
+@media (max-width: 1200px) {
+    body.no-scroll,
+    #main.no-scroll {
+        overflow: hidden;
+        -webkit-overflow-scrolling: touch;
+        max-height: 100vh;
+    }
 }
 
 main {

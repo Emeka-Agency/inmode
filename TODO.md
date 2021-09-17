@@ -17,7 +17,7 @@ DONE
 - Sur contactez nous : ( remplacer selectionner un sujet par " choisir une spécialité )
 DONE
 
-- virer le cadre inmode dans le monde, remettre l'adresse mise en bas du site. )
+- virer le cadre inmode dans le monde, remettre l'adresse mise en bas du site.
     - INMODE DANS LE MONDE => NOUS CONTACTER PAR MAIL
     - Europe, Moyen-Orient, Afrique du Sud emea@inmodemd.com => Inmode France avec mail Inmode France
 DONE
