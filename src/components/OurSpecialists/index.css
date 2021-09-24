@@ -37,6 +37,7 @@
     border-radius: 100%;
     border: 3px solid #fff;
     text-align: center;
+    filter: grayscale(1);
 }
 
 .our-specialist .specialists .specialist .name {
