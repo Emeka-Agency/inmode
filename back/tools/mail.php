@@ -25,12 +25,14 @@
     ];
     
     const SPECIALITY = [
-        "plastic-surgeon" => "Chirurgien plasticien",
-        "facial-surgeon" => "Chirurgien maxillo-facial",
-        "dermatologist" => "Dermatologue",
-        "cosmetic-doctor" => "Médecin esthétique",
-        "gynecologist" => "Gynécologue",
-        "others" => "Autres spécialités",
+        "plastic-surgeon" => "Plastic surgeon",
+        "facial-surgeon" => "Facial surgeon",
+        "dermatologist" => "Dermatologist",
+        "cosmetic-doctor" => "Cosmetic doctor",
+        "gynecologist" => "Gynecologist",
+        "nurse" => "Nurse",
+        "facialist" => "Facialist / Aesthetician",
+        "others" => "Other specialities",
     ];
 
     const MAIL_CONST = [

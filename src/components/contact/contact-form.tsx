@@ -143,6 +143,8 @@ const ContactForm = ({ from }:ContactForm) => {
                         <option value="dermatologist">Dermatologist</option>
                         <option value="cosmetic-doctor">Cosmetic doctor</option>
                         <option value="gynecologist">Gynecologist</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="facialist">Facialist / Aesthetician</option>
                         <option value="others">Others</option>
                     </select>
                 </div>
