@@ -135,4 +135,8 @@ FIXME - image header comme avant
 FIXME - Header media chosen and given in InmodePanel
 DONE - password direct download
 
+Code fiscale : 3 037 661 825 352
+
 https://img.youtube.com/vi/N9CVW4Qw5oQ/maxresdefault.jpg
+
+Yeshayahou Leibowitz

@@ -36,7 +36,7 @@ footer .footer-infos.address {
 }
 
 footer .footer-infos.phone {
-    visibility: hidden;
+    /* visibility: hidden; */
     max-width: calc((100% * 1/6) - 30px);
 }
 
