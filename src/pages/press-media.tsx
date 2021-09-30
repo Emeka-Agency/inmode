@@ -30,7 +30,7 @@ const PressMediaPage = ({ data }:PressMediaPage_Interface) => {
         else {
             _index += _left ? -1 : 1;
         }
-        console.log('directMove = ' + directMove);
+        // console.log('directMove = ' + directMove);
         let _temp:any = document.querySelector(`.${moverClass}`);
         if(_temp){
             directMove && _temp.style.setProperty('transition', 'none');

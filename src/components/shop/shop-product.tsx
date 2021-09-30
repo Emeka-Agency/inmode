@@ -8,8 +8,8 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
     const cart = useCart();
     const article = cart.articles[reference];
 
-    console.log(cart.articles);
-    console.log(article);
+    // console.log(cart.articles);
+    // console.log(article);
 
     let _image = undefined;
     if(Array.isArray(cart.articles[article.reference].pictures)) {

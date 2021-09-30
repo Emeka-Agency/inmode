@@ -23,8 +23,8 @@ const HeaderMini = ({}:HeaderMini) => {
     React.useEffect(() => {
         const body = document.querySelector('body');
         const headerMini = oneById('header-mini');
-        console.log(body);
-        console.log(headerMini);
+        // console.log(body);
+        // console.log(headerMini);
         if(body && headerMini) {
             body.classList.contains('no-scroll') && headerMini.classList.add('opened');
         }
@@ -33,7 +33,7 @@ const HeaderMini = ({}:HeaderMini) => {
     return (
         <div id="header-mini" className="header-mini custom-scrollbar">
             <div className="menu-close transition" onClick={(e) => {closeMenu(e);}}>
-                <span>FERMER</span>
+                <span>CLOSE</span>
                 <img className="close-mini-menu-icon" src={images.getOne('closeWhiteIcon').publicURL} alt="close-white"/>
             </div>
             <div id="header-mini-bottom" className="header-bottom">
@@ -47,7 +47,8 @@ const HeaderMini = ({}:HeaderMini) => {
                     if(menu.mini_treatments && menu.mini_treatments.length > 0) {
                         temp.menus = temp.mini_treatments.map((elem:Inmode_MiniMenu_Interface) => {
                             let retour = {id: elem.id, ...elem.MenuParams};
-                            retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
+                            // retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
+                            retour.title = elem.Name;
                             return retour;
                         });
                     }

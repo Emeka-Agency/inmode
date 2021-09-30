@@ -145,12 +145,12 @@ const ContactUs = () => {
                     </div>
                     <div id="contact-form" className="transition neumorphic custom-scrollbar" hidden={!formOpen}>
                         <form id="contact-mini" onSubmit={(e) => {send_form(e)}} className="custom-scrollbar">
-                            <input type="text" placeholder="Lastname*" name="lastname" required={true}/>
-                            <input type="text" placeholder="Firstname*" name="firstname" required={true}/>
+                            <input type="text" placeholder="Last name*" name="lastname" required={true}/>
+                            <input type="text" placeholder="First name*" name="firstname" required={true}/>
                             <select name="subject" required={true}>
                                 <option value="" selected disabled style={{display: 'none'}}>Choose a speciality*</option>
                                 <option value="plastic-surgeon">Plastic surgeon</option>
-                                <option value="facial-surgeon">Facial surgeon</option>
+                                <option value="cosmetic-surgeon">Cosmetic surgeon</option>
                                 <option value="dermatologist">Dermatologist</option>
                                 <option value="cosmetic-doctor">Cosmetic doctor</option>
                                 <option value="gynecologist">Gynecologist</option>

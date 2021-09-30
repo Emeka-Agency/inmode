@@ -86,7 +86,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
         }
         _test = _test.length() > 0 ? _test.get(critere, null, _rate) : null;
         if(_test != _rate && _test != null) {
-            console.log(_test);
+            // console.log(_test);
             _retour = true;
         }
         if(_retour == false && clinic.street) {

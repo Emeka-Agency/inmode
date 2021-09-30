@@ -32,17 +32,17 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 input && input.addEventListener('keyup', (e) => {
                     // console.log(e);
                     if(e.key == "Enter") {
-                        console.log(1);
+                        // console.log(1);
                         if(input && input.value != "" && inputStatus) {
-                            console.log(2);
+                            // console.log(2);
                             if(!verifyPassword(input.value)) {
-                                console.log(3);
+                                // console.log(3);
                                 inputStatus.innerHTML = "Wrong password";
                                 inputStatus.style.removeProperty('display');
                             }
                         }
                         else if(inputStatus != null) {
-                            console.log(4);
+                            // console.log(4);
                             inputStatus.innerHTML = "Must enter a value";
                             inputStatus.style.removeProperty('display');
                         }
@@ -59,17 +59,17 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 // MODALE BUTTON
                 button && button.addEventListener('click', (e) => {
                     // console.log(e);
-                    console.log(5);
+                    // console.log(5);
                     if(input && input.value != "" && inputStatus) {
-                        console.log(6);
+                        // console.log(6);
                         if(!verifyPassword(input.value)) {
-                            console.log(7);
+                            // console.log(7);
                             inputStatus.innerHTML = "Wrong password";
                             inputStatus.style.removeProperty('display');
                         }
                     }
                     else if(inputStatus != null) {
-                        console.log(8);
+                        // console.log(8);
                         inputStatus.innerHTML = "Must enter a value";
                         inputStatus.style.removeProperty('display');
                     }
@@ -79,18 +79,18 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
     };
 
     const verifyPassword = (pass:string):boolean => {
-        console.log("verifyPassword");
+        // console.log("verifyPassword");
         if(pass == "InModeUK") {
-            console.log("Good password");
+            // console.log("Good password");
             let studyZone = document.querySelector('.study-download');
             setAllowed(true);
             // OPEN THR LINK IN ANOTHER TAB
             if(typeof window != "undefined") {
-                console.log('Méthode window');
+                // console.log('Méthode window');
                 window.open(href, '_blank');
             }
             else {
-                console.log('Méthode a virtuel');
+                // console.log('Méthode a virtuel');
                 let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
                     id: 'study-download',
                     target: '_blank',
@@ -103,7 +103,7 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
             scrollTo(0, studyZone ? studyZone.getBoundingClientRect().y : 0);
             return true;
         }
-        console.log("Bad password");
+        // console.log("Bad password");
         return false;
     }
     

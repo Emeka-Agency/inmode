@@ -54,6 +54,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
                 treatments {
                   id
+                  Name
                   MenuParams {
                     title
                     url
@@ -64,6 +65,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
                 mini_treatments {
                   id
+                  Name
                   MenuParams {
                     title
                     url
@@ -136,6 +138,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
                 treatments {
                   id
+                  Name
                   MenuParams {
                     title
                     url
@@ -146,6 +149,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
                 mini_treatments {
                   id
+                  Name
                   MenuParams {
                     title
                     url

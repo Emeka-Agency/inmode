@@ -123,11 +123,11 @@ const ContactForm = ({ from }:ContactForm) => {
         <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form(e);}} className={`contact-form main-container ${from}`}>
             <div className="mailer-datas">
                 <div className="field">
-                    <label htmlFor="lastname">Lastname*</label>
+                    <label htmlFor="lastname">Last name*</label>
                     <input type="text" name="lastname" required/>
                 </div>
                 <div className="field">
-                    <label htmlFor="firstname">Firstname*</label>
+                    <label htmlFor="firstname">First name*</label>
                     <input type="text" name="firstname" required/>
                 </div>
                 <div className="field">
@@ -139,7 +139,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     <select name="speciality" required={true}>
                         <option value="" disabled selected style={{display: 'none'}}>Speciality</option>
                         <option value="plastic-surgeon">Plastic surgeon</option>
-                        <option value="facial-surgeon">Facial surgeon</option>
+                        <option value="cosmetic-surgeon">Cosmetic surgeon</option>
                         <option value="dermatologist">Dermatologist</option>
                         <option value="cosmetic-doctor">Cosmetic doctor</option>
                         <option value="gynecologist">Gynecologist</option>

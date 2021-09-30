@@ -30,7 +30,7 @@ const OurSpecialist = ({}:OurSpecialistParams) => {
       
     `).allStrapiOurSpecialist.nodes);
 
-    console.log(specialists);
+    // console.log(specialists);
 
     return (
         <div className="our-specialist main-container">

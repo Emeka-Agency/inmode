@@ -63,8 +63,8 @@ const Sitemap = ({ data }) => {
                     {/* TREATMENT */}
                     <div className="sitemap-category">TREATMENTS</div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/hair-removal" title="Hair removal">https://inmodemd.co.uk/treatment/hair-removal</a></div>
-                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-body-contouring" title="Mini invasive body contouring">https://inmodemd.co.uk/treatment/mini-invasive-body-contouring</a></div>
-                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-face-neck-contouring" title="Mini invasive face neck contouring">https://inmodemd.co.uk/treatment/mini-invasive-face-neck-contouring</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-body-contouring" title="Minimally invasive body contouring">https://inmodemd.co.uk/treatment/mini-invasive-body-contouring</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="/treatment/mini-invasive-face-neck-contouring" title="Minimally invasive face neck contouring">https://inmodemd.co.uk/treatment/mini-invasive-face-neck-contouring</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/non-invasive-body-contouring" title="Non invasive body contouring">https://inmodemd.co.uk/treatment/non-invasive-body-contouring</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/non-invasive-face-neck-contouring" title="Non invasive face neck contouring">https://inmodemd.co.uk/treatment/non-invasive-face-neck-contouring</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/treatment/pigmentation" title="Pigmentation">https://inmodemd.co.uk/treatment/pigmentation</a></div>

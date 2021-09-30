@@ -35,7 +35,7 @@ const ArticleList = ({}:ArticleList) => {
     return (
         <div className="article-list container">
             {articleProvider.articles && articleProvider.articles.map((article:InmodePanel_BlogArticle_Interface, key:number) => {
-                console.log(article);
+                // console.log(article);
                 return (
                     <div className="article-list-elem">
                         <a className="article-list-elem-link zone-link" href={articleProvider.articleLink(article)} title={article.Title}></a>

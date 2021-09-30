@@ -92,7 +92,7 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
         <div className="testimonials">
             {
                 datas.map((testimonial:InmodePanel_Testimonial_Interface, index:number) => {
-                    console.log((index/2)%2);
+                    // console.log((index/2)%2);
                     return (
                         <div className={`testimonial ${testimonial.from}`}>
                             {(index/2)%2 < 1 || index%2 == 0 ? imgHTML(testimonial, LEFT) : quoteHTML(testimonial) }

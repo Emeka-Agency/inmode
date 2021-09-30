@@ -35,9 +35,9 @@ const defaultParams = {
     ///// USER
 
     CivilGender: {name: 'vads_cust_title', id: 'vads_cust_title', placeholder: 'Civility'},
-        FullName: {name: 'vads_', id: 'vads_', placeholder: 'Lastname - Firstname'},
-    FirstName: {name: 'vads_cust_first_name', id: 'vads_cust_first_name', placeholder: 'Firstname'},
-    LastName: {name: 'vads_cust_last_name', id: 'vads_cust_last_name', placeholder: 'Lastname'},
+        FullName: {name: 'vads_', id: 'vads_', placeholder: 'Last name - First name'},
+    FirstName: {name: 'vads_cust_first_name', id: 'vads_cust_first_name', placeholder: 'First name'},
+    LastName: {name: 'vads_cust_last_name', id: 'vads_cust_last_name', placeholder: 'Last name'},
     Status: {name: 'vads_cust_status', id: 'vads_cust_status', placeholder: 'Status'},
     Society: {name: 'vads_cust_legal_name', id: 'vads_cust_legal_name', placeholder: 'Society'},
         Address: {name: 'vads_', id: 'vads_', placeholder: 'Address'},
@@ -59,8 +59,8 @@ const defaultParams = {
     DeliveryCity: {name: 'vads_ship_to_city', id: 'vads_ship_to_city', placeholder: 'City'},
     DeliveryState: {name: 'vads_ship_to_state', id: 'vads_ship_to_state', placeholder: 'State/country'},
     DeliveryCountry: {name: 'vads_ship_to_country', id: 'vads_ship_to_country', placeholder: 'Country', countries: defaultCountries},
-    DeliveryFirstName: {name: 'vads_ship_to_first_name', id: 'vads_ship_to_first_name', placeholder: 'Firstname'},
-    DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'Lastname'},
+    DeliveryFirstName: {name: 'vads_ship_to_first_name', id: 'vads_ship_to_first_name', placeholder: 'First name'},
+    DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'Last name'},
     DeliveryPhone: {name: 'vads_ship_to_phone_num', id: 'vads_ship_to_phone_num', placeholder: 'Phone'},
     DeliveryStatus: {name: 'vads_ship_to_status', id: 'vads_ship_to_status', placeholder: 'Status'},
     DeliverySociety: {name: 'vads_ship_to_legal_name', id: 'vads_ship_to_legal_name', placeholder: 'Society'},

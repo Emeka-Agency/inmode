@@ -17,7 +17,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
-    console.log(datas);
+    // console.log(datas);
 
     return (
             <Layout title="products">
