@@ -26,7 +26,7 @@
     
     const SPECIALITY = [
         "plastic-surgeon" => "Plastic surgeon",
-        "facial-surgeon" => "Facial surgeon",
+        "cosmetic-surgeon" => "cosmetic surgeon",
         "dermatologist" => "Dermatologist",
         "cosmetic-doctor" => "Cosmetic doctor",
         "gynecologist" => "Gynecologist",

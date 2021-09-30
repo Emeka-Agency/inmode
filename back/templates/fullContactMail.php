@@ -5,11 +5,11 @@
                 <td>
                     <table>
                         <tr>
-                            <td>firstname</td>
+                            <td>first name</td>
                             <td><?=$_POST['firstname']?></td>
                         </tr>
                         <tr>
-                            <td>lastname</td>
+                            <td>last name</td>
                             <td><?=$_POST['lastname']?></td>
                         </tr>
                         <tr>
