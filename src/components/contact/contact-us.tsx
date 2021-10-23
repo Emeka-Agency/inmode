@@ -5,6 +5,8 @@ import { useImages } from '../contexts/images-provider';
 import LoadingGIF from "../LoadingGIF";
 import { allByClass, oneById, oneBySelector } from "../../functions/selectors";
 
+import { send_form_mini } from "./contact";
+
 const ContactUs = () => {
 
     const images = useImages();
@@ -60,70 +62,6 @@ const ContactUs = () => {
 
     const [submitText, setSubmitText] = React.useState('Send');
 
-    function send_form ( e:React.FormEvent<HTMLFormElement> ) {
-        e.preventDefault();
-        let _temp:any = oneBySelector('#contact-mini .submit');
-        _temp && _temp.setAttribute('disabled', true);
-        _temp = oneBySelector('#mini-contact-gif');
-        if(_temp) {_temp.style.display = 'inline-block';}
-        let body:Object = new Object({});
-        let _form = document.forms.namedItem('contact-mini');
-        Array.from(_form ? _form.elements : []).forEach((elem) => {
-            body[elem.name] = elem.checked || elem.value;
-        });
-        body.action = "contact-us";
-        var myHeaders = new Headers();
-        const fetch_post = {
-            method: 'POST',
-            headers: myHeaders,
-            mode: 'cors',
-            cache: 'default'
-        };
-        _temp = oneBySelector("#contact-mini .req-return.success");
-        if(_temp) {_temp.innerHTML = "";}
-        _temp = oneBySelector("#contact-mini .req-return.error");
-        if(_temp) {_temp.innerHTML = "";}
-        let _request_init:RequestInit = {
-            ...fetch_post,
-            body: JSON.stringify(body)
-        };
-        fetch(
-            `https://inmodeuk.emeka.fr/back/app.php`,
-            _request_init
-        )
-        .then((promise) => {
-            return promise.json();
-        })
-        .then((response) => {
-            let _temp:any = oneBySelector('#mini-contact-gif');
-            if(_temp) {_temp.style.display = 'none';}
-            if(response.status === 'success' && response.type === 'client') {
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.removeAttribute('disabled');
-                _temp = oneBySelector('#contact-mini .req-return.success');
-                if(_temp) {_temp.innerHTML = response.message;}
-                let _form = document.forms.namedItem('contact-mini');
-                _form && _form.reset();
-            }
-            if(response.status === 'fail' && response.type === 'client') {
-                setSubmitText(response.message);
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.setAttribute('disabled', true);
-                _temp = oneBySelector('#contact-mini .req-return.success');
-                if(_temp) {_temp.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";}
-            }
-            if(response.status === 'fail' && response.type === 'server') {
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.setAttribute('disabled', true);
-                _temp = oneBySelector('#contact-mini .req-return.error');
-                if(_temp) {_temp.innerHTML = response.message;}
-            }
-        })
-        .catch(function(error) {
-            
-        });
-    }
-
     return (
         <div id="contact-us" className={`contact-us transition${open ? ' opened' : ''}`}>
             <div className="stamp transition">
@@ -144,7 +82,7 @@ const ContactUs = () => {
                         />
                     </div>
                     <div id="contact-form" className="transition neumorphic custom-scrollbar" hidden={!formOpen}>
-                        <form id="contact-mini" onSubmit={(e) => {send_form(e)}} className="custom-scrollbar">
+                        <form id="contact-mini" onSubmit={(e) => {send_form_mini(e)}} className="custom-scrollbar">
                             <input type="text" placeholder="Last name*" name="lastname" required={true}/>
                             <input type="text" placeholder="First name*" name="firstname" required={true}/>
                             <select name="subject" required={true}>

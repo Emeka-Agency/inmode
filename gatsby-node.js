@@ -28,7 +28,7 @@ exports.onCreatePage = async ({
         return false;
     }
 
-    console.log(page.path);
+    // console.log(page.path);
 
     // {/* SWITCH CART */}
 

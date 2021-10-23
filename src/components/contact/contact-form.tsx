@@ -5,29 +5,33 @@ import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { oneById } from "../../functions/selectors";
 
+import { send_form_large } from "./contact";
+
 const tech_list = [
-    "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",
-    "ACCUTITE | PRECISION CONTOURING",
-    "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",
-    "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",
-    "DIOLAZEXL | HAIR REMOVAL",
-    "EMBRACERF | FACIAL REFINEMENT",
-    "EVOKE | HANDS-FREE FACIAL REMODELING",
-    "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",
-    "FORMA | SKIN REMODELING",
-    "FRACTORA | FRACTIONAL RESURFACING",
-    "LUMECCA | PIGMENT & VASCULAR",
-    "PLUS | SKIN REMODELING FOR LARGER AREAS",
-    "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",
-    "VOTIVA | AVIVA | FEMININE WELLNESS"
+    {name: "morpheus8", label: "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",},
+    {name: "accutite", label: "ACCUTITE | PRECISION CONTOURING",},
+    {name: "bodyfx", label: "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",},
+    {name: "bodytite", label: "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",},
+    {name: "diolazexl", label: "DIOLAZEXL | HAIR REMOVAL",},
+    {name: "embracerf", label: "EMBRACERF | FACIAL REFINEMENT",},
+    {name: "evoke", label: "EVOKE | HANDS-FREE FACIAL REMODELING",},
+    {name: "evolve", label: "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",},
+    {name: "forma", label: "FORMA | SKIN REMODELING",},
+    {name: "fractora", label: "FRACTORA | FRACTIONAL RESURFACING",},
+    {name: "lumecca", label: "LUMECCA | PIGMENT & VASCULAR",},
+    {name: "plus", label: "PLUS | SKIN REMODELING FOR LARGER AREAS",},
+    {name: "triton", label: "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",},
+    {name: "votiva", label: "VOTIVA | AVIVA | FEMININE WELLNESS",},
 ];
 
 const ContactForm = ({ from }:ContactForm) => {
 
+    // console.log(process.env.INMODE_BACK);
+
     const size = useWindowSize();
 
     const resize_panel = (panel:Element | null, close:HTMLElement | null) => {
-        let closed:boolean = close != null ? false : close.classList.contains("opened");
+        let closed:boolean = close == null ? false : close.classList.contains("opened");
         panel && panel.classList.contains('opened') && closed && panel.classList.remove('opened');
         panel && !panel.classList.contains('opened') && !closed && panel.classList.add('opened');
         if (maxHeight && close) {
@@ -50,66 +54,19 @@ const ContactForm = ({ from }:ContactForm) => {
 
     const [submitText, setSubmitText] = React.useState('Send');
 
-    function send_form (e:React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        let _temp1:HTMLElement | null = document.querySelector('#full-contact-form .req-return.success');
-        if(_temp1) _temp1.innerHTML = "";
-        let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.error');
-        if(_temp2) _temp2.innerHTML = "";
-        let _temp3:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-        if(_temp3) _temp3.disabled = true;
-        let body:any = new Object({});
-        if(document.forms.namedItem("full-contact-form") == null) {
-            return false;
-        }
-        let _form:HTMLFormElement | null = document.forms.namedItem("full-contact-form")
-        Array.from(_form ? _form.elements : []).map((elem:HTMLInputElement | any) => {
-            body[elem.name] = elem.checked || elem.value;
-        });
-        body.action = "full-contact";
-        var myHeaders = new Headers();
-        const request_init:RequestInit = {
-            method: 'POST',
-            headers: myHeaders,
-            mode: 'cors',
-            cache: 'default',
-            body: JSON.stringify(body),
-        };
-        fetch(
-            `https://inmodeuk.emeka.fr/back/app.php`,
-            request_init,
-        )
-        .then((promise) => {
-            return promise.json();
-            }
-        )
-        .then((response) => {
-            if(response.status === 'success' && response.type === 'client') {
-                let _temp = document.querySelector('#full-contact-form .submit');
-                _temp && _temp.removeAttribute('disabled');
-                _temp = document.querySelector('#full-contact-form .req-return.success');
-                if(_temp) _temp.innerHTML = response.message;
-                let _form:HTMLFormElement | null = document.forms.namedItem('full-contact-form')
-                _form && _form.reset();
-            }
-            if(response.status === 'fail' && response.type === 'client') {
-                setSubmitText(response.message);
-                let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-                if(_temp1) _temp1.disabled = true;
-                let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.success');
-                if(_temp2) _temp2.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
-            }
-            if(response.status === 'fail' && response.type === 'server') {
-                let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-                if(_temp1) _temp1.disabled = true;
-                let _temp2 = document.querySelector('#full-contact-form .req-return.error');
-                if(_temp2) _temp2.innerHTML = response.message;
-            }
-        })
-        .catch(function(error) {
-            
-          });
-    }
+    // CONSOLE TEST
+    // function getFormDetails() {
+    //     let body = new Object({});
+    //     if(document.forms.namedItem("full-contact-form") == null) {
+    //         return false;
+    //     }
+    //     let _form = document.forms.namedItem("full-contact-form")
+    //     Array.from(_form ? _form.elements : []).map((elem) => {
+    //         body[elem.name] = elem.value ?? elem.checked ?? null;
+    //     });
+    //     body.action = "full-contact";
+    //     return body;
+    // }
 
     const resolveClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         e.currentTarget.classList.toggle('opened');
@@ -120,7 +77,7 @@ const ContactForm = ({ from }:ContactForm) => {
     const max_length = 800;
 
     return (
-        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form(e);}} className={`contact-form main-container ${from}`}>
+        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form_large(e);}} className={`contact-form main-container ${from}`}>
             <div className="mailer-datas">
                 <div className="field">
                     <label htmlFor="lastname">Last name*</label>
@@ -135,8 +92,8 @@ const ContactForm = ({ from }:ContactForm) => {
                     <input type="text" name="company"/>
                 </div>
                 <div className="field">
-                    <label htmlFor="speciality">Choose a speciality*</label>
-                    <select name="speciality" required={true}>
+                    <label htmlFor="subject">Choose a speciality*</label>
+                    <select name="subject" required={true}>
                         <option value="" disabled selected style={{display: 'none'}}>Speciality</option>
                         <option value="plastic-surgeon">Plastic surgeon</option>
                         <option value="cosmetic-surgeon">Cosmetic surgeon</option>
@@ -210,9 +167,9 @@ const ContactForm = ({ from }:ContactForm) => {
                     {tech_list.map((tech, key) => {
                         return (
                             <div key={key} className="key-check">
-                                <label htmlFor={tech}>
-                                    <input type="checkbox" id={tech} name={tech}/>
-                                    {tech}
+                                <label htmlFor={tech.name}>
+                                    <input type="checkbox" id={tech.name} name={tech.name}/>
+                                    {tech.label}
                                 </label>
                             </div>
                         );
