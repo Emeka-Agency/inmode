@@ -86,7 +86,7 @@ export async function scrapingInstagramPosts(username:string | number) {
                 photos.push(edge.node);
             }
         });
-        console.log(photos);
+        // console.log(photos);
         return photos;
     }).catch(err => {
         console.warn(`\nCould not fetch instagram posts. Error status ${err}`);
