@@ -7,8 +7,15 @@ require("dotenv").config({
 });
 
 console.log('STRAPI_URL : ' + process.env.STRAPI_URL);
-console.log('STRAPI_ID : ' + process.env.STRAPI_ID);
-console.log('STRAPI_PASS : ' + process.env.STRAPI_PASS);
+console.log('INMODE_BACK : ' + process.env.INMODE_BACK);
+console.log('URL_SUCCESS : ' + process.env.URL_SUCCESS);
+console.log('URL_CANCEL : ' + process.env.URL_CANCEL);
+console.log('URL_REFUSED : ' + process.env.URL_REFUSED);
+console.log('URL_ERROR : ' + process.env.URL_ERROR);
+console.log('URL_ORDER_CREATE : ' + process.env.URL_ORDER_CREATE);
+console.log('URL_ORDER_LOAD : ' + process.env.URL_ORDER_LOAD);
+console.log('URL_ORDER_CANCEL : ' + process.env.URL_ORDER_CANCEL);
+console.log('URL_ORDER_SIGNATURE : ' + process.env.URL_ORDER_SIGNATURE);
 
 module.exports = {
     siteMetadata: {

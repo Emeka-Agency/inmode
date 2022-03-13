@@ -165,3 +165,57 @@ Strabon, historien grec du 1er siècle avant Jésus-Christ.
 Commandes inmode.emeka.fr
 Events inmode france
 Press-media et blog inmodeuk
+- rajouter search au "Plus d'informations" pour prévoir de pré-remplir les cases dans le formulaire
+- (total_articles + prix_livraison) * taux_tva
+
+
+TEST API SYMF
+
+<!-- let str = "INTERACTIVE+70000+PRODUCTION+978+197 Boulevard National+0667630604+Marseille+FR+mael.fallet@gmail.com+Maël+FALLET+Emeka+13003+2+qtHoEq+PAYMENT+SINGLE+25000+5000+0+24 Pin Fractora tip+Ceintures de fixation Evolve+tva+1+9+1+AG602426A+AS608019A+TVA+GET+Marseille+BE+maël+FALLET+0667630604+197 Boulevard National+13003+53371535+20211125172259+qtHoEq+http://localhost:8000/payment/cancel+http://localhost:8000/payment/refused+http://localhost:8000/payment/paid+V2"; -->
+<!-- let href = "https://localhost:8000/api/orders/order-signature"; -->
+<!-- let vars = {
+    method: "POST",
+//     headers: new Headers({'Content-type': 'application/json'}),
+    mode: 'no-cors',
+    cache: 'default',
+    body: JSON.stringify({string: str})
+}; -->
+<!-- promise = fetch(href, vars); -->
+<!-- promise
+.then((res) => {
+    try {
+        return res.json();
+    }
+    catch(err_json) {
+        console.log(err_json);
+        try {
+            return res.text();
+        }
+        catch(err_text) {
+                console.log(err_text);
+            try {
+                return res.blob();
+            }
+            catch(err_blob) {
+                console.log(err_blob);
+                return "No way to get back the promise";
+            }
+        }
+    }
+}) -->
+<!-- .then((ans) => {
+    console.log(ans);
+}) -->
+<!-- .catch((err) => {
+    console.log(err);
+}); -->
+
+UP - Factoriser les requêtes graphql (fragments pour images par exemple)
+UP - Trouver comment rendre des parties conditionnelles sans erreur dans les requêtes graphql
+UP - Rassembler toutes les requêtes externes dans un seul provider "GeneralProvider"
+UP - Rassembler toutes les requêtes internes dans un seul provider "ImgProvider"
+UP - Créer des classes .ts pour gérer les produits, pièces à main, panier, etc et les instancier dans le GeneralProvider
+
+<input type="file" accept="video/*;capture=camcorder" capture="camcorder" class="file"/>
+GENIAL ! mais en photo ca marche pas 🤔  la photo ne reste que quelques secondes... j'utilise ce code :
+<input type="file" accept="image/*" capture="camera"  class="file"/>
