@@ -11,23 +11,23 @@ const Learn = ({ from = "" }:Learn) => {
     const [datas]:[InmodePanel_AboutUs_Interface, React.Dispatch<InmodePanel_AboutUs_Interface>] = React.useState(useStaticQuery(graphql`
         {
             strapiAboutUs {
-                menus {
-                    title
-                    url
-                }
                 learn_bg {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
                 learn_icon {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -50,8 +50,8 @@ const Learn = ({ from = "" }:Learn) => {
                 </div>
                 <div className="goals">
                     <img
-                        src={datas.learn_icon && datas.learn_icon.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.learn_icon && datas.learn_icon.childImageSharp.fluid.srcSetWebp}
+                        src={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcWebp}
+                        srcSet={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcSetWebp}
                         alt='about-us-learn'
                     />
                     <div className="texts">

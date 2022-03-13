@@ -661,7 +661,7 @@ export const NbProductsField = ({ value, name, id, required, classes, style }:Pa
             style={style || undefined}
             hidden
             type="number"
-            value={value || useCart().formSave[defaultParams.NbProducts.name] || 0}
+            defaultValue={value || useCart().formSave[defaultParams.NbProducts.name] || 0}
             name={name || defaultParams.NbProducts.name}
             id={id || defaultParams.NbProducts.id}
             required={required || false}
@@ -675,7 +675,7 @@ export const ProductLabelField = ({ value, name, id, index, required, classes, s
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductLabel.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductLabel.name] || ""}
             name={name || `${defaultParams.ProductLabel.name}${index}`}
             id={id || `${defaultParams.ProductLabel.id}${index}`}
             required={required || false}
@@ -689,7 +689,7 @@ export const ProductAmountField = ({ value, name, id, index, required, classes, 
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductAmount.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductAmount.name] || ""}
             name={name || `${defaultParams.ProductAmount.name}${index}`}
             id={id || `${defaultParams.ProductAmount.id}${index}`}
             required={required || false}
@@ -703,7 +703,7 @@ export const ProductRefField = ({ value, name, id, index, required, classes, sty
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductRef.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductRef.name] || ""}
             name={name || `${defaultParams.ProductRef.name}${index}`}
             id={id || `${defaultParams.ProductRef.id}${index}`}
             required={required || false}
@@ -717,7 +717,7 @@ export const ProductQtyField = ({ value, name, id, index, required, classes, sty
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductQty.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductQty.name] || ""}
             name={name || `${defaultParams.ProductQty.name}${index}`}
             id={id || `${defaultParams.ProductQty.id}${index}`}
             required={required || false}
@@ -733,7 +733,7 @@ export const BackSignatureField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackSignature.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackSignature.name] || ""}
             name={name || defaultParams.BackSignature.name}
             id={id ||defaultParams.BackSignature.id}
         />
@@ -743,7 +743,7 @@ export const BackActionModeField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackActionMode.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackActionMode.name] || ""}
             name={name || defaultParams.BackActionMode.name}
             id={id ||defaultParams.BackActionMode.id}
         />
@@ -753,7 +753,7 @@ export const BackCtxModeField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackCtxMode.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackCtxMode.name] || ""}
             name={name || defaultParams.BackCtxMode.name}
             id={id ||defaultParams.BackCtxMode.id}
         />
@@ -763,7 +763,7 @@ export const BackCurrencyField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackCurrency.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackCurrency.name] || ""}
             name={name || defaultParams.BackCurrency.name}
             id={id ||defaultParams.BackCurrency.id}
         />
@@ -773,7 +773,7 @@ export const BackPageActionField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackPageAction.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackPageAction.name] || ""}
             name={name || defaultParams.BackPageAction.name}
             id={id ||defaultParams.BackPageAction.id}
         />
@@ -783,7 +783,7 @@ export const BackSiteIdField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackSiteId.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackSiteId.name] || ""}
             name={name || defaultParams.BackSiteId.name}
             id={id ||defaultParams.BackSiteId.id}
         />
@@ -793,7 +793,7 @@ export const BackTransDateField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackTransDate.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackTransDate.name] || ""}
             name={name || defaultParams.BackTransDate.name}
             id={id ||defaultParams.BackTransDate.id}
         />
@@ -803,7 +803,7 @@ export const BackTransIdField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackTransId.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackTransId.name] || ""}
             name={name || defaultParams.BackTransId.name}
             id={id ||defaultParams.BackTransId.id}
         />
@@ -813,7 +813,7 @@ export const BackVersionField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackVersion.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackVersion.name] || ""}
             name={name || defaultParams.BackVersion.name}
             id={id ||defaultParams.BackVersion.id}
         />
@@ -823,7 +823,7 @@ export const BackReferenceField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackReference.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackReference.name] || ""}
             name={name || defaultParams.BackReference.name}
             id={id ||defaultParams.BackReference.id}
         />
@@ -833,7 +833,7 @@ export const BackPaymentConfigField = ({ value, name, id }:PayField_Interface) =
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackPaymentConfig.name] || "SINGLE"}
+            defaultValue={value || useCart().formSave[defaultParams.BackPaymentConfig.name] || "SINGLE"}
             name={name || defaultParams.BackPaymentConfig.name}
             id={name || defaultParams.BackPaymentConfig.id}
         />
@@ -843,7 +843,7 @@ export const BackAmountField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={Math.ceil(value * 100) || 0}
+            defaultValue={Math.floor(value * 100) || 0}
             name={name || defaultParams.BackAmount.name}
             id={name || defaultParams.BackAmount.id}
         />

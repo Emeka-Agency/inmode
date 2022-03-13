@@ -78,7 +78,7 @@ const EventsLayout = ({ children = null, current_page, upcoming_events = undefin
             setMaxHeight(0);
         }
         else {
-            panel.classList.contains("opened") && setMaxHeight(parseInt(`${panel.children.length * 60}px`));
+            panel.classList.contains("opened") && setMaxHeight(parseFloat(`${panel.children.length * 60}px`));
         }
         setOpenedAccordion(true);
     }

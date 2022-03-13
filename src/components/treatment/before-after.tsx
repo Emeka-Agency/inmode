@@ -34,7 +34,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                             return (
                                 <div key={key} className="few-ba">
                                     <img
-                                        src={ba.image.childImageSharp.fluid.srcWebp}
+                                        src={ba.image.localFile.childImageSharp.fluid.srcWebp}
                                         alt="treatment-before-after"
                                     />
                                     <div className="ba-doctor">{ba.doctor}</div>
@@ -52,7 +52,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
-                                                src={ba.image.childImageSharp.fluid.srcWebp}
+                                                src={ba.image.localFile.childImageSharp.fluid.srcWebp}
                                                 alt={`treatment-before-after-${key}`}
                                             />
                                             <div className="ba-doctor">{ba.doctor}</div>

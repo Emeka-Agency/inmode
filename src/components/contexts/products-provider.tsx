@@ -19,19 +19,23 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                     node {
                         Name
                         ShopPicture {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
+                            localFile {
+                                childImageSharp {
+                                    fluid {
+                                        srcWebp
+                                        srcSetWebp
+                                    }
                                 }
                             }
                         }
                         short_descr
                         Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
+                            localFile {
+                                childImageSharp {
+                                    fluid {
+                                        srcWebp
+                                        srcSetWebp
+                                    }
                                 }
                             }
                         }
@@ -48,18 +52,22 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             Name
                             Banner {
                                 left_img {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
+                                    localFile {
+                                        childImageSharp {
+                                            fluid {
+                                                srcWebp
+                                                srcSetWebp
+                                            }
                                         }
                                     }
                                 }
                                 right_img {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
+                                    localFile {
+                                        childImageSharp {
+                                            fluid {
+                                                srcWebp
+                                                srcSetWebp
+                                            }
                                         }
                                     }
                                 }
@@ -71,10 +79,12 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             }
                             WhatIs {
                                 picture {
-                                    childImageSharp {
-                                        fluid {
-                                            srcWebp
-                                            srcSetWebp
+                                    localFile {
+                                        childImageSharp {
+                                            fluid {
+                                                srcWebp
+                                                srcSetWebp
+                                            }
                                         }
                                     }
                                 }

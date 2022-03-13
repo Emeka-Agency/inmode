@@ -4,37 +4,39 @@ import { useWindowSize } from "../../functions/window-size";
 import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { oneById } from "../../functions/selectors";
+import _fetch from "../../functions/fetch";
+import { send_form_large } from "./contact";
 
-const tech_list = [
-    "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",
-    "ACCUTITE | PRECISION CONTOURING",
-    "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",
-    "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",
-    "DIOLAZEXL | HAIR REMOVAL",
-    "EMBRACERF | FACIAL REFINEMENT",
-    "EVOKE | HANDS-FREE FACIAL REMODELING",
-    "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",
-    "FORMA | SKIN REMODELING",
-    "FRACTORA | FRACTIONAL RESURFACING",
-    "LUMECCA | PIGMENT & VASCULAR",
-    "PLUS | SKIN REMODELING FOR LARGER AREAS",
-    "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",
-    "VOTIVA | AVIVA | FEMININE WELLNESS"
-];
+const tech_list = {
+    "morpheus8": "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",
+    "accutite": "ACCUTITE | PRECISION CONTOURING",
+    "bodyfx": "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",
+    "bodytite": "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",
+    "diolazexl": "DIOLAZEXL | HAIR REMOVAL",
+    "embracerf": "EMBRACERF | FACIAL REFINEMENT",
+    "evoke": "EVOKE | HANDS-FREE FACIAL REMODELING",
+    "evolve": "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",
+    "forma": "FORMA | SKIN REMODELING",
+    "fractora": "FRACTORA | FRACTIONAL RESURFACING",
+    "lumecca": "LUMECCA | PIGMENT & VASCULAR",
+    "plus": "PLUS | SKIN REMODELING FOR LARGER AREAS",
+    "triton": "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",
+    "votiva": "VOTIVA | AVIVA | FEMININE WELLNESS"
+};
 
 const ContactForm = ({ from }:ContactForm) => {
 
     const size = useWindowSize();
 
     const resize_panel = (panel:Element | null, close:HTMLElement | null) => {
-        let closed:boolean = close != null ? false : close.classList.contains("opened");
+        let closed:boolean = close ? close.classList.contains("opened") : false;
         panel && panel.classList.contains('opened') && closed && panel.classList.remove('opened');
         panel && !panel.classList.contains('opened') && !closed && panel.classList.add('opened');
         if (maxHeight && close) {
             setMaxHeight(0);
         }
         else {
-            panel && panel.classList.contains("opened") && setMaxHeight(parseInt(panel.scrollHeight + "px", 10));
+            panel && panel.classList.contains("opened") && setMaxHeight(parseFloat(panel.scrollHeight + "px"));
         }
     }
 
@@ -50,70 +52,6 @@ const ContactForm = ({ from }:ContactForm) => {
 
     const [submitText, setSubmitText] = React.useState('Envoyer');
 
-    function send_form (e:React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        let _temp1:HTMLElement | null = document.querySelector('#full-contact-form .req-return.success');
-        if(_temp1) _temp1.innerHTML = "";
-        let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.error');
-        if(_temp2) _temp2.innerHTML = "";
-        let _temp3:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-        if(_temp3) _temp3.disabled = true;
-        let body:any = new Object({});
-        if(document.forms.namedItem("full-contact-form") == null) {
-            return false;
-        }
-        let _form:HTMLFormElement | null = document.forms.namedItem("full-contact-form")
-        Array.from(_form ? _form.elements : []).map((elem:HTMLInputElement | any) => {
-            body[elem.name] = elem.checked || elem.value;
-        });
-        body.action = "full-contact";
-        var myHeaders = new Headers();
-        const request_init:RequestInit = {
-            method: 'POST',
-            headers: myHeaders,
-            mode: 'cors',
-            cache: 'default',
-            body: JSON.stringify(body),
-        };
-        fetch(
-            // SWITCH LOCALHOST
-            // `http://localhost/inmode/back/mails/full-contact`,
-            // `https://inmode.emeka.fr/back/mails/full-contact`,
-            `https://inmodemd.fr/back/mails/full-contact`,
-            request_init,
-        )
-        .then((promise) => {
-            return promise.json();
-            }
-        )
-        .then((response) => {
-            if(response.status === 'success' && response.type === 'client') {
-                let _temp = document.querySelector('#full-contact-form .submit');
-                _temp && _temp.removeAttribute('disabled');
-                _temp = document.querySelector('#full-contact-form .req-return.success');
-                if(_temp) _temp.innerHTML = response.message;
-                let _form:HTMLFormElement | null = document.forms.namedItem('full-contact-form')
-                _form && _form.reset();
-            }
-            if(response.status === 'error' && response.type === 'client') {
-                setSubmitText(response.message);
-                let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-                if(_temp1) _temp1.disabled = true;
-                let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.error');
-                if(_temp2) _temp2.innerHTML = "Une erreur d'envoi du message est survenu. Essayez de raffraîchir la page ou de contacter un administrateur.";
-            }
-            if(response.status === 'error' && response.type === 'server') {
-                let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-                if(_temp1) _temp1.disabled = true;
-                let _temp2 = document.querySelector('#full-contact-form .req-return.error');
-                if(_temp2) _temp2.innerHTML = response.message;
-            }
-        })
-        .catch(function(error) {
-            
-          });
-    }
-
     const resolveClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         e.currentTarget.classList.toggle('opened');
         var panel = e.currentTarget.nextElementSibling;
@@ -123,7 +61,7 @@ const ContactForm = ({ from }:ContactForm) => {
     const max_length = 800;
 
     return (
-        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form(e);}} className={`contact-form main-container ${from}`}>
+        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form_large(e, setSubmitText);}} className={`contact-form main-container ${from}`}>
             <div className="mailer-datas">
                 <div className="field">
                     <label htmlFor="lastname">Nom*</label>
@@ -138,14 +76,15 @@ const ContactForm = ({ from }:ContactForm) => {
                     <input type="text" name="company"/>
                 </div>
                 <div className="field">
-                    <label htmlFor="speciality">Choisir une spécialité*</label>
-                    <select name="speciality" required={true}>
+                    <label htmlFor="subject">Choisir une spécialité*</label>
+                    <select name="subject" required={true}>
                         <option value="" disabled selected style={{display: 'none'}}>Spécialité</option>
                         <option value="plastic-surgeon">Chirurgien plasticien</option>
                         <option value="facial-surgeon">Chirurgien maxillo-facial</option>
                         <option value="dermatologist">Dermatologue</option>
                         <option value="cosmetic-doctor">Médecin esthétique</option>
                         <option value="gynecologist">Gynécologue</option>
+                        <option value="customer">Patient</option>
                         <option value="others">Autres</option>
                     </select>
                 </div>
@@ -208,12 +147,12 @@ const ContactForm = ({ from }:ContactForm) => {
                     className="accordion transition"
                     style={{maxHeight: maxHeight}}
                 >
-                    {tech_list.map((tech, key) => {
+                    {Object.keys(tech_list).map((machine:string, key) => {
                         return (
                             <div key={key} className="key-check">
-                                <label htmlFor={tech}>
-                                    <input type="checkbox" id={tech} name={tech}/>
-                                    {tech}
+                                <label htmlFor={machine}>
+                                    <input type="checkbox" id={machine} name={machine}/>
+                                    {tech_list[machine]}
                                 </label>
                             </div>
                         );

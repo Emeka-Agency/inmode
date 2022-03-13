@@ -92,7 +92,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                       onClick={(e) => {resolveVideoClick(e, video.url || '');}}
                     >
                       <img
-                        src={video.poster && video.poster.childImageSharp.fluid.srcWebp}
+                        src={video.poster && video.poster.localFile.childImageSharp.fluid.srcWebp}
                         alt={`addon-videos-${key}`}
                       />
                       <span className="video-bg"></span>
@@ -117,7 +117,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                           key={key}
                         >
                           <img
-                            src={video.poster && video.poster.childImageSharp.fluid.srcWebp}
+                            src={video.poster && video.poster.localFile.childImageSharp.fluid.srcWebp}
                             alt={`addon-videos-${key}`}
                           />
                           <span className="video-bg"></span>

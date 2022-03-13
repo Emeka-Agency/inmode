@@ -1,8 +1,9 @@
 import React from "react";
 import RequestInformation from "./RequestInformation";
 import { useImages } from './contexts/images-provider';
+import { InmodePanel_Base_SectionTitreText_Interface } from "./interfaces";
 
-const GenericDetails = ({ datas }) => {
+const GenericDetails = ({ datas }:GenericDetails) => {
 
     const images = useImages();
 
@@ -11,12 +12,12 @@ const GenericDetails = ({ datas }) => {
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
-                        src={datas.what_is.picture.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.what_is.picture.childImageSharp.fluid.srcSetWebp}
+                        src={datas.what_is.picture.localFile.childImageSharp.fluid.srcWebp}
+                        srcSet={datas.what_is.picture.localFile.childImageSharp.fluid.srcSetWebp}
                         alt="detail-main-pic"
                     />
                 </div>
-                {datas.what_is.TitleText.map((section, key) => {
+                {datas.what_is.TitleText.map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
                     return (
                         <div key={key}>
                             <div className="title">
@@ -53,12 +54,8 @@ const GenericDetails = ({ datas }) => {
     );
 }
 
-GenericDetails.propTypes = {
-
-};
-
-GenericDetails.defaultProps = {
-
-};
+interface GenericDetails {
+    
+}
 
 export default GenericDetails;

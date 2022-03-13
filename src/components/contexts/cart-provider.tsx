@@ -23,6 +23,7 @@ import {
     Cart_FormSave_Interface
 } from '../interfaces';
 import { openModale, paymentSEPA } from '../../functions/modale';
+import { initWakeup } from '../../functions/fetch';
 
 export const useCart = ():Cart_Interface => {
     return useContext(CartContext);
@@ -55,10 +56,12 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                             price
                             discount
                             picture {
-                                childImageSharp {
-                                    fluid {
-                                        srcWebp
-                                        srcSetWebp
+                                localFile {
+                                    childImageSharp {
+                                        fluid {
+                                            srcWebp
+                                            srcSetWebp
+                                        }
                                     }
                                 }
                             }
@@ -86,15 +89,15 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const [pay_params, setPayParams] = React.useState({
         signature: "",
         actionMode: "INTERACTIVE",
-        vads_ctx_mode: "TEST",
-        // vads_ctx_mode: "PRODUCTION",
+        // vads_ctx_mode: "TEST",
+        vads_ctx_mode: "PRODUCTION",
         currency: currencies.EUR,
         pageAction: "PAYMENT",
         siteId: "",
         transDate: "",
         transId: "",
         version: "V2",
-        Reference: "",
+        reference: "",
         url_success: "",
         url_cancel: "",
         url_refused: "",
@@ -158,6 +161,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const size = useWindowSize();
 
     const open_purchase = ():void => {
+        initWakeup("open_purchase");
         !appeared && setAppeared(true);
         setPurchaseOpened(true);
         size.width < 1200 && disableMainScroll();
@@ -278,36 +282,42 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     // const total_TVA = ():string => {return (count_total() * 0.2 * 0).toFixed(2);}
     // const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() && false ? 50 : 0)).toFixed(2);}
     // /*FRAIS DE LIVRAISON*/
-    const total_TVA = ():string => {return hasTVAIntra() ? (0).toFixed(2) : (count_total() * 0.2).toFixed(2);}
-    const total_TTC = ():string => {return ((count_total() * (hasTVAIntra() ? 1 : 1.2)) + (pay_delivery() ? 50 : 0)).toFixed(2);}
+    const total_TVA = ():string => {return hasTVAIntra() ? (0).toFixed(2) : ((count_total() + (pay_delivery() ? 50 : 0)) * 0.2).toFixed(2);}
+    const total_TTC = ():string => {return (count_total() + (pay_delivery() ? 50 : 0) + parseFloat(total_TVA())).toFixed(2);}
     
     /*PAS DE FRAIS DE LIVRAISON*/
     // const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 && false ? true : false;}
     /*PAS FRAIS DE LIVRAISON*/
-    const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 ? true : false;}
+    const pay_delivery = ():boolean => {return count_total() < 500 ? true : false;}
 
-    const payment_str = (form_fields) => {
-        return Object.keys(form_fields).sort().map((key:string):string => {return form_fields[key]}).join('+');
+    const payment_str = (form_fields:any) => {
+        return Object.keys(form_fields).sort().map((key:string):string => {
+            // console.log(`${key} : ${form_fields[key]}`);
+            return form_fields[key];
+        }).join('+');
     }
 
     const get_signature = async(str:string):Promise<{status:string, signature?:string, message?:string}> => {
-        let promise:Promise<{signature?:string}>;
+        // console.log("get_signature");
+        let promise:Promise<{status:string, signature?:string, message?:string}>;
         let vars:RequestInit = {
             method: "POST",
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({string: str})
         };
         promise = await (await fetch(pay_params.order_signature, vars)).json().catch(err => {});
+        // console.log(promise);
         return promise;
     }
 
-    const form_fields = (form) => {
+    const form_fields = (form:HTMLFormElement) => {
         return _sort_html_list(Array.from(form.elements), 'name', 'up').filter(e => e.name && e.id);
     }
 
     const redirect_payment = async (form_fields:any, sepa:boolean = false):Promise<boolean | void> => {
+        // console.log("redirect_payment");
 
         form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
 
@@ -316,8 +326,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         const date = moment.utc().format('YYYYMMDDHHmmss');
         
         let _temp:SogecommerceOrder = new Object({});
-        form_fields.forEach((elem:{name:string, value:string}) => {
-            _temp = {..._temp, [elem.name]: elem.value};
+        form_fields.forEach((elem:Element) => {
+            _temp = {..._temp, [elem.getAttribute('name')]: elem.getAttribute('value') ?? elem.value};
         });
         
         const order_id = rand_token(6);
@@ -341,21 +351,30 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
         _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
 
-        const _signature = await get_signature(payment_str(_temp));
+        var _signature = '';
 
-        if(_signature.status == 'error' && !sepa) {
-            return false;
+        if(sepa) {
+            _temp['signature'] = '';
         }
+        else {
+            _signature = await get_signature(payment_str(_temp));
+    
+            // console.log(_signature);
+    
+            if(_signature.status == 'error' && !sepa) {
+                return false;
+            }
+    
+            _signature = _signature.signature;
 
-        const signature = _signature.signature;
-
-        _temp['signature'] = signature || '';
+            _temp['signature'] = _signature ?? '';
+        }
 
         setPayParams({
             ...pay_params,
-            signature: signature || '',
+            signature: _signature ?? '',
             transDate: date,
-            Reference: order_id,
+            reference: order_id,
             transId: order_id,
         });
 
@@ -390,42 +409,55 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         if(_country == null) {
             _country = 'FR';
         }
-        
-        // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC(), 10), sepa, _country), pay_params.order_create)).json();
-        let result = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC(), 10), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
-        console.log(result);
-        return false;
-        if(status && status == 'success') {
-            if(sepa) {
-                openModale(
-                    paymentSEPA(
-                        {
-                            reference: order_id,
-                            total: total_TTC(),
-                            RIB: "FR76 3000 3015 7800 0200 1741 805",
-                            BIC: "SOGEFRPP",
-                        },
-                    )
-                );
+
+        try {
+
+            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
+            // let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
+            let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+
+            // console.log(result);
+
+            if(result && result.status == 'success') {
+                if(sepa) {
+                    openModale(
+                        paymentSEPA(
+                            {
+                                reference: order_id,
+                                total: total_TTC(),
+                                RIB: "FR76 3000 3015 7800 0200 1741 805",
+                                BIC: "SOGEFRPP",
+                            },
+                        )
+                    );
+                }
+                else {
+                    fill_redirect_form('payment_form', _temp);
+                    submit_form('payment_form');
+                    // TODO vérifier que la redirection est bien effectuée, sinon afficher erreur et détruire form
+                    // document.getElementById('payment_form').remove();
+                }
+                close_purchase();
+                reset_form_fields();
+                reset_cart();
+                setOtherAddress(false);
+                return true;
             }
             else {
-                fill_redirect_form('payment_form', _temp);
-                submit_form('payment_form');
-                // TODO vérifier que la redirection est bien effectuée, sinon afficher erreur et détruire form
-                // document.getElementById('payment_form').remove();
+                return false;
             }
-            close_purchase();
-            reset_form_fields();
-            reset_cart();
-            setOtherAddress(false);
-            return true;
         }
-        else {
+        catch(err) {
+            // IMPORTANT - Reset formulaire et affiche message
+            console.log(err);
             return false;
         }
+        
     }
 
     const fill_redirect_form = (selector:string, values:Object) => {
+        // console.log("fill_redirect_form");
         if(!selector || typeof selector != 'string') {
             return false;
         }
@@ -440,6 +472,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     }
 
     const submit_form = (selector:string) => {
+        // console.log("submit_form");
         if(!selector || typeof selector != 'string') {
             return false;
         }

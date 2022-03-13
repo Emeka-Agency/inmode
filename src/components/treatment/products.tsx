@@ -1,10 +1,11 @@
 import React from "react";
+import { InmodePanel_Treatment_Interface } from "../interfaces";
 
-const TreatmentProducts = ({ datas }) => {
+const TreatmentProducts = ({ datas }:TreatmentProducts) => {
 
     return (
         <div className="treatment-products">
-            {datas.products.map((bloc, key) => {
+            {datas.products && datas.products.map((bloc, key) => {
                 return (
                     <div key={key} className="workstation-container">
                         {bloc.WhatIsProduct.map((product, key_product) => {
@@ -13,7 +14,7 @@ const TreatmentProducts = ({ datas }) => {
                                     <div key={key_product} className="workstation-details">
                                         <div className="workstation-img">
                                             <img
-                                                src={product.image.childImageSharp.fluid.srcWebp}
+                                                src={product.image && product.image.localFile.childImageSharp.fluid.srcWebp}
                                                 alt={product.title}
                                             />
                                         </div>
@@ -62,12 +63,8 @@ const TreatmentProducts = ({ datas }) => {
     );
 };
 
-TreatmentProducts.propTypes = {
-
-};
-
-TreatmentProducts.defaultProps = {
-
+interface TreatmentProducts {
+    datas: InmodePanel_Treatment_Interface;
 };
 
 export default TreatmentProducts;

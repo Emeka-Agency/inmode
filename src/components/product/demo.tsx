@@ -11,8 +11,8 @@ const ProductDemo = ({ datas }:ProductDemo_Interface) => {
         <div id="demo" className="product-demo">
             <div className="picture">
                 <img
-                    src={datas.picture && datas.picture.childImageSharp.fluid.srcWebp}
-                    srcSet={datas.picture && datas.picture.childImageSharp.fluid.srcSetWebp}
+                    src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp}
+                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp}
                         alt="product-demo"
                 />
             </div>

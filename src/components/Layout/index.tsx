@@ -37,16 +37,16 @@ const Layout = ({ children }) => {
     // });
 
     if(typeof window != "undefined") {
-        console.log('C\'est bon');
+        // console.log('C\'est bon');
         // window.onbeforeunload = function(event) {
         //     // console.log('new pathname', location.pathname)
         //     console.log(event);
         //     useCart().close_cart();
         // }
         window.addEventListener('unload', function(event) {
-            console.log('test');
+            // console.log('test');
             // console.log('new pathname', location.pathname)
-            console.log(event);
+            // console.log(event);
             useCart().close_cart();
         });
     }

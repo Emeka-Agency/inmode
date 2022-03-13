@@ -9,10 +9,12 @@ const Banner = ({ from = "" }:Banner) => {
         {
             strapiAboutUs {
                 banner {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -23,8 +25,8 @@ const Banner = ({ from = "" }:Banner) => {
     return (
         <div className={`full-img-banner${from ? ` ${from}` : ''}`}>
             <img
-                src={datas.banner ? datas.banner.childImageSharp.fluid.srcWebp : ""}
-                srcSet={datas.banner ? datas.banner.childImageSharp.fluid.srcSetWebp : ""}
+                src={datas.banner ? datas.banner.localFile.childImageSharp.fluid.srcWebp : ""}
+                srcSet={datas.banner ? datas.banner.localFile.childImageSharp.fluid.srcSetWebp : ""}
                 alt='about-us-banner'
             />
         </div>

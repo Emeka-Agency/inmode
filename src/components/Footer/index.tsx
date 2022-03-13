@@ -78,7 +78,7 @@ const Footer = ({}:Footer) => {
                             <div
                                 key={key}
                                 className="footer-social-ico background-image"
-                                style={{backgroundImage: 'url('+ (menu.icon ? menu.icon.publicURL : '') +')'}}
+                                style={{backgroundImage: 'url('+ (menu.icon ? menu.icon.localFile.publicURL : '') +')'}}
                             >
                                 <a className="zone-link" href={menu.url || '#'} title={menu.name} target="_blank"></a>
                             </div>

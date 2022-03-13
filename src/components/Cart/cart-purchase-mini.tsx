@@ -81,6 +81,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 fields = [...fields, ...Array.from([...Array.from(_form2 ? _form2.elements : []), ...Array.from(_form3 ? _form3.elements : [])]).filter(e => e.id.includes('vads_'))];
             }
             setIsSubmit(true);
+            document.getElementById('vads_amount').value = cart.total_all_included();
             setIsCreated(await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked) === true ? true : false);
             if(_mini1) _mini1.disabled = false;
             if(_mini2) _mini2.disabled = false;
@@ -186,9 +187,9 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         srcSet={images.getOne('cartBasketIcon').publicURL}
                         alt="Panier"
                     />
-                    <span>{`Panier, ${cart.cart.length} objet${cart.cart.length > 1 ? 's' : ''}`}</span>
+                    <span>{`Panier, ${cart.cart.length} article${cart.cart.length > 1 ? 's' : ''}`}</span>
                 </div>
-                <div className={`cart-content custom-scrollbar${formOpened ? ' purchase' : ''}`}>
+                <div className={`cart-content custom-scrollbar moz-scrollbar${formOpened ? ' purchase' : ''}`}>
                     {cart.cart.map((article, key) => {
                         return (
                             <div key={key} className="cart-article transition">
@@ -203,8 +204,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.childImageSharp.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.childImageSharp.fluid.srcSetWebp}
+                                        src={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt=""
                                     />)}
                                 </div>
@@ -275,7 +276,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
             {/* SECOND PART */}
             <form
                 id="step-2-part"
-                className={`cart-purchase-form custom-scrollbar${formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}
+                className={`cart-purchase-form custom-scrollbar moz-scrollbar${formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}
                 onSubmit={(e) => {
                     e.preventDefault();
                     if(formOpened && otherAddress && !otherAddressOpened){
@@ -310,17 +311,17 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     id="purchase-form"
                     className={`neumorphic ${otherAddress && (' other-address' || '')}`}
                 >
-                    <div id="step-1-part" className="unmorphic custom-scrollbar">
+                    <div id="step-1-part" className="unmorphic custom-scrollbar moz-scrollbar">
                         <LastNameField classes="required form-field step-1" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                         <FirstNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
                         <SocietyField classes="form-field step-1" />
                         <AddressLine1Field classes="required form-field step-1" required={true}/>
+                        <ZipField classes="required form-field step-1" required={true}/>
+                        <CityField classes="required form-field step-1" required={true}/>
                         <CountryField classes="required form-field step-1"/>
                         {
                             cart.differentAddress == false && cart.getTVAIntra() && otherAddress == false && <IntraTVAField classes="required form-field step-1" required={true}/>
                         }
-                        <ZipField classes="required form-field step-1" required={true}/>
-                        <CityField classes="required form-field step-1" required={true}/>
                         <MobilePhoneField classes="required form-field step-1" required={true}/>
                         <MailField classes="required form-field step-1" required={true}/>
                     </div>
@@ -357,17 +358,17 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     <span className={`unmorphic${otherAddressOpened ? ' click' : ''}`}>informations de livraison</span>
                     <hr className="unmorphic"/>
                 </div>
-                <div className="form custom-scrollbar">
+                <div className="form custom-scrollbar moz-scrollbar">
                     <DeliveryLastNameField classes="required form-field step-2" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                     <DeliveryFirstNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
                     <DeliverySocietyField classes="form-field step-2" />
                     <DeliveryAddressLine1Field classes="required form-field step-2" required={true}/>
+                    <DeliveryZipField classes="required form-field step-2" required={true}/>
+                    <DeliveryCityField classes="required form-field step-2" required={true}/>
                     <DeliveryCountryField classes="required form-field step-2"/>
                     {
                         cart.differentAddress == true && cart.getTVAIntra() && otherAddress == true && <IntraTVAField classes="required form-field step-1" required={true}/>
                     }
-                    <DeliveryZipField classes="required form-field step-2" required={true}/>
-                    <DeliveryCityField classes="required form-field step-2" required={true}/>
                     <DeliveryPhoneField classes="required form-field step-2" required={true}/>
                     <DeliveryMailField classes="form-field step-2" required={false}/>
                 </div>
@@ -442,7 +443,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 onClick={(e) => {setFormOpened(true)}}
             >
                 {buttonText()}
-                {isSubmit == true ? <LoadingGIF customClass="payment"/> : null}
+                {isSubmit === true ? <LoadingGIF customClass="payment"/> : null}
             </button>}
         </div>
     );

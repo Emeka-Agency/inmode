@@ -4,6 +4,9 @@ import { disableMainScroll, enableMainScroll } from "../../functions/disable-scr
 import { useImages } from '../contexts/images-provider';
 import LoadingGIF from "../LoadingGIF";
 import { allByClass, oneById, oneBySelector } from "../../functions/selectors";
+import _fetch, { initWakeup } from "../../functions/fetch";
+
+import { send_form_mini} from "./contact";
 
 const ContactUs = () => {
 
@@ -25,7 +28,7 @@ const ContactUs = () => {
             elem.style.transitionDelay = '0.4s';
         });
         let _temp:any = oneById('contact-form');
-        _temp && _temp.classList.remove('custom-scrollbar');
+        _temp && _temp.classList.remove('custom-scrollbar', 'moz-scrollbar');
         _temp = oneBySelector('#contact-form .req-return.success');
         if(_temp) {_temp.innerHTML = "";}
         _temp = oneBySelector('#contact-form .req-return.error');
@@ -37,6 +40,7 @@ const ContactUs = () => {
         // WILL OPEN
         !formOpen && resolve_contact(e);
         !formOpen && size.width <= 480 && disableMainScroll();
+        !formOpen && initWakeup("mini-contact");
         // WILL CLOSE
         formOpen && close_form();
         formOpen && size.width <= 480 && enableMainScroll();
@@ -46,7 +50,7 @@ const ContactUs = () => {
         setFormOpen(!formOpen);
     }
 
-    const resolve_contact = (e) => {
+    const resolve_contact = (e:React.MouseEvent<HTMLDivElement, MouseEvent> | React.MouseEvent<HTMLImageElement, MouseEvent>) => {
         let _choices = allByClass('contact-choice');
         _choices && [].forEach.call(_choices, function(elem:HTMLElement) {
             elem.style.setProperty('width', '0px', 'important');
@@ -54,78 +58,11 @@ const ContactUs = () => {
             elem.style.transitionDelay = '0s';
         });
         let _temp:any = oneById('contact-form');
-        _temp && _temp.classList.add('custom-scrollbar');
+        _temp && _temp.classList.add('custom-scrollbar', 'moz-scrollbar');
         setFormOpen(true);
     }
 
     const [submitText, setSubmitText] = React.useState('Envoyer');
-
-    function send_form ( e ) {
-        e.preventDefault();
-        let _temp:any = oneBySelector('#contact-mini .submit');
-        _temp && _temp.setAttribute('disabled', true);
-        _temp = oneBySelector('#mini-contact-gif');
-        if(_temp) {_temp.style.display = 'inline-block';}
-        let body = new Object({});
-        let _form = document.forms.namedItem('contact-mini');
-        Array.from(_form ? _form.elements : []).forEach((elem) => {
-            body[elem.name] = elem.checked || elem.value;
-        });
-        body.action = "contact-us";
-        var myHeaders = new Headers();
-        const fetch_post = {
-            method: 'POST',
-            headers: myHeaders,
-            mode: 'cors',
-            cache: 'default'
-        };
-        _temp = oneBySelector("#contact-mini .req-return.success");
-        if(_temp) {_temp.innerHTML = "";}
-        _temp = oneBySelector("#contact-mini .req-return.error");
-        if(_temp) {_temp.innerHTML = "";}
-        let _request_init:RequestInit = {
-            ...fetch_post,
-            body: JSON.stringify(body)
-        };
-        fetch(
-            // SWITCH LOCALHOST
-            // `http://localhost/inmode/back/mails/contact-us`,
-            // `https://inmode.emeka.fr/back/mails/contact-us`,
-            `https://inmodemd.fr/back/mails/contact-us`,
-            _request_init
-        )
-        .then((promise) => {
-            return promise.json();
-        })
-        .then((response) => {
-            let _temp:any = oneBySelector('#mini-contact-gif');
-            if(_temp) {_temp.style.display = 'none';}
-            if(response.status === 'success' && response.type === 'client') {
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.removeAttribute('disabled');
-                _temp = oneBySelector('#contact-mini .req-return.success');
-                if(_temp) {_temp.innerHTML = response.message;}
-                let _form = document.forms.namedItem('contact-mini');
-                _form && _form.reset();
-            }
-            if(response.status === 'error' && response.type === 'client') {
-                setSubmitText(response.message);
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.setAttribute('disabled', true);
-                _temp = oneBySelector('#contact-mini .req-return.error');
-                if(_temp) {_temp.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";}
-            }
-            if(response.status === 'error' && response.type === 'server') {
-                _temp = oneBySelector('#contact-mini .submit');
-                _temp.setAttribute('disabled', true);
-                _temp = oneBySelector('#contact-mini .req-return.error');
-                if(_temp) {_temp.innerHTML = response.message;}
-            }
-        })
-        .catch(function(error) {
-            
-        });
-    }
 
     return (
         <div id="contact-us" className={`contact-us transition${open ? ' opened' : ''}`}>
@@ -146,17 +83,18 @@ const ContactUs = () => {
                             alt="hexa-close"
                         />
                     </div>
-                    <div id="contact-form" className="transition neumorphic custom-scrollbar" hidden={!formOpen}>
-                        <form id="contact-mini" onSubmit={(e) => {send_form(e)}} className="custom-scrollbar">
+                    <div id="contact-form" className="transition neumorphic custom-scrollbar moz-scrollbar" hidden={!formOpen}>
+                        <form id="contact-mini" onSubmit={(e) => {send_form_mini(e, setSubmitText)}} className="custom-scrollbar moz-scrollbar">
                             <input type="text" placeholder="Nom*" name="lastname" required={true}/>
                             <input type="text" placeholder="Prénom*" name="firstname" required={true}/>
                             <select name="subject" required={true}>
-                                <option value="" selected disabled style={{display: 'none'}}>Choisir une spécialité*</option>
+                                <option value="" defaultValue="" selected={true} disabled={true} style={{display: 'none'}}>Choisir une spécialité*</option>
                                 <option value="plastic-surgeon">Chirurgien plasticien</option>
                                 <option value="facial-surgeon">Chirurgien maxillo-facial</option>
                                 <option value="dermatologist">Dermatologue</option>
                                 <option value="cosmetic-doctor">Médecin esthétique</option>
                                 <option value="gynecologist">Gynécologue</option>
+                                <option value="customer">Patient</option>
                                 <option value="others">Autres</option>
                             </select>
                             <input type="email" placeholder="Adresse mail*" name="mail" spellCheck={false} required={true}/>
@@ -173,7 +111,7 @@ const ContactUs = () => {
                                 onKeyDown={(e) => {setMsgLength(e.currentTarget.value.length);}}
                                 spellCheck={false}
                                 required={true}
-                                className="custom-scrollbar"
+                                className="custom-scrollbar moz-scrollbar"
                             ></textarea>
                             <div className="current-length" style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}>{`${msgLength} / ${max_length}`}</div>
                             <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>

@@ -196,6 +196,14 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     }
                 }
             }
+            nextImage: file(relativePath: {eq: "products/addons/next.png"}) {
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
+            }
         }
     `));
 

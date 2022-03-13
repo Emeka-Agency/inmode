@@ -34,6 +34,11 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
 
     const cart = useCart();
 
+    // console.log("total : " + cart.total());
+    // console.log("Livraison : " + (cart.pay_delivery() ? 50 : 0));
+    // console.log("TVA : " + cart.total_tva());
+    // console.log("TTC : " + (cart.total() + (cart.pay_delivery() ? 50 : 0) + parseFloat(cart.total_tva())).toFixed(2));
+
     const size = useWindowSize();
 
     const [formOpened, setFormOpened] = React.useState(false);
@@ -66,6 +71,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
         let _sepa:HTMLInputElement | any = oneById('sepa');
         let fields = [...Array.from(document.forms.namedItem("purchase") || []).filter((field:any) => {return field.id.includes('vads_')})];
         setIsSubmit(true);
+        document.getElementById('vads_amount').value = cart.total_all_included();
         setIsCreated(await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked) === true ? true : false);
         _temp = oneById('big-submit');
         if(_temp) { _temp.disabled= false; }
@@ -168,9 +174,9 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         srcSet={images.getOne('cartBasketIcon').publicURL}
                         alt="Panier"
                     />
-                    <span>{`Panier, ${cart.cart.length} objet${cart.cart.length > 1 ? 's' : ''}`}</span>
+                    <span>{`Panier, ${cart.cart.length} article${cart.cart.length > 1 ? 's' : ''}`}</span>
                 </div>
-                <div className={`cart-content custom-scrollbar${formOpened ? ' purchase' : ''}`}>
+                <div className={`cart-content custom-scrollbar moz-scrollbar${formOpened ? ' purchase' : ''}`}>
                     {cart.cart.map((article, key) => {
                         return (
                             <div key={key} className="cart-article transition">
@@ -185,8 +191,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.childImageSharp.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.childImageSharp.fluid.srcSetWebp}
+                                        src={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt=""
                                     />)}
                                 </div>
@@ -255,7 +261,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                 </div>
             </div>
             {/* SECOND PART */}
-            <div className={`cart-purchase-form custom-scrollbar${cart.cart_opened && formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}>
+            <div className={`cart-purchase-form custom-scrollbar moz-scrollbar${cart.cart_opened && formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}>
                 <div className={`title transition${formOpened ? ' opened' : ''}`}>
                     <div
                         className="form-close"
@@ -278,17 +284,17 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     id="purchase-form"
                     className={`neumorphic ${otherAddress && (' other-address' || '')}`}
                 >
-                    <div id="step-1-part" className="unmorphic custom-scrollbar">
+                    <div id="step-1-part" className="unmorphic custom-scrollbar moz-scrollbar">
                         <LastNameField classes="required form-field step-1" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                         <FirstNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
                         <SocietyField classes="form-field step-1"/>
                         <AddressLine1Field classes="required form-field step-1" required={true}/>
+                        <ZipField classes="required form-field step-1" required={true}/>
+                        <CityField classes="required form-field step-1" required={true}/>
                         <CountryField classes="required form-field step-1" required={true}/>
                         {
                             cart.differentAddress == false && cart.getTVAIntra() == true && otherAddress == false && <IntraTVAField classes="required form-field step-1" required={true}/>
                         }
-                        <ZipField classes="required form-field step-1" required={true}/>
-                        <CityField classes="required form-field step-1" required={true}/>
                         <MobilePhoneField classes="required form-field step-1" required={true}/>
                         <MailField classes="required form-field step-1" required={true}/>
                     </div>
@@ -319,17 +325,17 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     <hr className="unmorphic"/>
                 </div>
                 {otherAddress &&
-                    <div className="form custom-scrollbar">
+                    <div className="form custom-scrollbar moz-scrollbar">
                         <DeliveryLastNameField classes="required form-field step-2" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                         <DeliveryFirstNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
                         <DeliverySocietyField classes="form-field step-2"/>
                         <DeliveryAddressLine1Field classes="required form-field step-2" required={true}/>
+                        <DeliveryZipField classes="required form-field step-2" required={true}/>
+                        <DeliveryCityField classes="required form-field step-2" required={true}/>
                         <DeliveryCountryField classes="required form-field step-2" required={true}/>
                         {
                             cart.differentAddress == true && cart.getTVAIntra() == true && otherAddress == true && <IntraTVAField classes="required form-field step-1" required={true}/>
                         }
-                        <DeliveryZipField classes="required form-field step-2" required={true}/>
-                        <DeliveryCityField classes="required form-field step-2" required={true}/>
                         <DeliveryPhoneField classes="required form-field step-2" required={true}/>
                         <DeliveryMailField classes="form-field step-2" required={false}/>
                     </div>
@@ -406,7 +412,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                 }}
             >
                 {buttonText()}
-                {isSubmit == true ? <LoadingGIF customClass="payment"/> : null}
+                {isSubmit === true ? <LoadingGIF customClass="payment"/> : null}
             </button>
         </form>
     );

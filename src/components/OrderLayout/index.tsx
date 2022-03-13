@@ -12,43 +12,13 @@ interface OrderLayoutParams {
     order?: InmodePanel_Order_Interface;
 };
 
-function get_day(day:number):string {
-    try {
-        return ['dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi'][day];
-    }
-    catch(err) {
-        return 'unknown';
-    }
+function capitalize(string:string|null = null) {
+    if(typeof string != "string") {return "";}
+    else {return string.charAt(0).toLocaleUpperCase() + string.slice(1);}
 }
 
-function get_month(month:number):string {
-    try {
-        return ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'][month]
-    }
-    catch(err) {
-        return 'unknown';
-    }
-}
-
-function _getDay(_date:Date) {return get_day(_date.getDay());}
-function _getDate(_date:Date) {return (_date.getDate() < 10 ? `0${_date.getDate()}` : _date.getDate());}
-function _getMonth(_date:Date) {return get_month(_date.getMonth());}
-function _getFull_year(_date:Date) {return _date.getFullYear();}
-function _getHour(_date:Date) {return (_date.getHours() < 10 ? `0${_date.getHours()}` : _date.getHours());}
-function _getMinute(_date:Date) {return (_date.getMinutes() < 10 ? `0${_date.getMinutes()}` : _date.getMinutes());}
-function _getSecond(_date:Date) {return (_date.getSeconds() < 10 ? `0${_date.getSeconds()}` : _date.getSeconds());}
-
-function get_date(date:string):string {
-    const _date = new Date(date);
-    let _temp = "";
-    _temp += _getDay(_date) + ' ';
-    _temp += _getDate(_date) + ' ';
-    _temp += _getMonth(_date) + ' ';
-    _temp += _getFull_year(_date) + ' à ';
-    _temp += _getHour(_date) + ':';
-    _temp += _getMinute(_date) + ':';
-    _temp += _getSecond(_date);
-    return _temp;
+function get_date(date:any):string {
+    return `${capitalize(date["%weekday%"])} ${date["%day%"]} ${capitalize(date["%monthname%"])} ${date["%year%"]} à ${date["%hours%"]}:${date["%minutes%"]}:${date["%seconds%"]}`;
 }
 
 function status_message(status:string):string {
@@ -65,12 +35,12 @@ const OrderLayout = ({ status, order }:OrderLayoutParams) => {
                 <h2>{status}</h2>
                 {!order ? <LoadingGIF/> :
                 <div className="order">
-                    {/* Reference: "geGCkk" */}
-                    {/* <div className="order-id">Order {order.Reference}</div> */}
-                    {/* Article: (3) [{…}, {…}, {…}] */}
+                    {/* reference: "geGCkk" */}
+                    {/* <div className="order-id">Order {order.reference}</div> */}
+                    {/* article: (3) [{…}, {…}, {…}] */}
                     {/* <div className="order-articles">
-                        {order.Article.map((article , key:number):any => {
-                            let _art = cart.article(article.Article.reference);
+                        {order.article.map((article , key:number):any => {
+                            let _art = cart.article(article.article.reference);
                             if(_art) {
                                 return (
                                     <div key={key} className="order-article">
@@ -85,43 +55,43 @@ const OrderLayout = ({ status, order }:OrderLayoutParams) => {
                             return null;
                         }).filter(e => e)}
                     </div> */}
-                    {/* DeliveryTax: 50 */}
+                    {/* delivery_tax: 50 */}
                     {/* <div className="order-delivery"> */}
-                        {/* {order.DeliveryTax == 0 && "Livraison gratuite"} */}
+                        {/* {order.delivery_tax == 0 && "Livraison gratuite"} */}
                         {/* TODO Fonction currency(currency:number):string, ex 978 => '€' */}
-                        {/* {order.DeliveryTax > 0 && `Frais de livraison : ${order.DeliveryTax}€`} */}
+                        {/* {order.delivery_tax > 0 && `Frais de livraison : ${order.delivery_tax}€`} */}
                     {/* </div> */}
-                    {/* Date: "2021-02-26T05:40:43.000Z" */}
+                    {/* date: "2021-02-26T05:40:43.000Z" */}
                     <div className="order-date">
-                        {status} le {get_date(order.Date)} UTC
+                        {status} le {get_date(order.date)}.
                     </div>
-                    {/* Billing: {id: 20, Firstname: "m", Lastname: "m", Phone: "0667630604", Mail: "test@gmail.com", …} */}
-                    {/* {order.Billing && <div className="order-billing">
+                    {/* billing: {id: 20, firstname: "m", lastname: "m", phone: "0667630604", mail: "test@gmail.com", …} */}
+                    {/* {order.billing && <div className="order-billing">
                         <h3>Informations de facturation</h3>
                         <div className="billing-table">
-                            {order.Billing.Firstname && <div className="billing-firstname">{order.Billing.Firstname}</div>}
-                            {order.Billing.Lastname && <div className="billing-lastname">{order.Billing.Lastname}</div>}
-                            {order.Billing.Society && <div className="billing-society">{order.Billing.Society}</div>}
-                            {order.Billing.Address && <div className="billing-address">{order.Billing.Address}</div>}
-                            {order.Billing.Country && <div className="billing-country">{order.Billing.Country}</div>}
-                            {order.Billing.ZIP && <div className="billing-zip">{order.Billing.ZIP}</div>}
-                            {order.Billing.City && <div className="billing-city">{order.Billing.City}</div>}
-                            {order.Billing.Phone && <div className="billing-phone">{order.Billing.Phone}</div>}
-                            {order.Billing.Mail && <div className="billing-mail">{order.Billing.Mail}</div>}
+                            {order.billing.firstname && <div className="billing-firstname">{order.billing.firstname}</div>}
+                            {order.billing.lastname && <div className="billing-lastname">{order.billing.lastname}</div>}
+                            {order.billing.society && <div className="billing-society">{order.billing.society}</div>}
+                            {order.billing.address && <div className="billing-address">{order.billing.address}</div>}
+                            {order.billing.country && <div className="billing-country">{order.billing.country}</div>}
+                            {order.billing.zip && <div className="billing-zip">{order.billing.zip}</div>}
+                            {order.billing.city && <div className="billing-city">{order.billing.city}</div>}
+                            {order.billing.phone && <div className="billing-phone">{order.billing.phone}</div>}
+                            {order.billing.mail && <div className="billing-mail">{order.billing.mail}</div>}
                         </div>
                     </div>} */}
-                    {/* Shipping: null */}
-                    {/* {order.Shipping && <div className="order-shipping">
+                    {/* shipping: null */}
+                    {/* {order.shipping && <div className="order-shipping">
                         <h3>Informations de livraison</h3>
                         <div className="shipping-table">
-                            {order.Shipping.Firstname && <div className="shipping-firstname">{order.Shipping.Firstname}</div>}
-                            {order.Shipping.Lastname && <div className="shipping-lastname">{order.Shipping.Lastname}</div>}
-                            {order.Shipping.Society && <div className="shipping-society">{order.Shipping.Society}</div>}
-                            {order.Shipping.Address && <div className="shipping-address">{order.Shipping.Address}</div>}
-                            {order.Shipping.Country && <div className="shipping-country">{order.Shipping.Country}</div>}
-                            {order.Shipping.ZIP && <div className="shipping-zip">{order.Shipping.ZIP}</div>}
-                            {order.Shipping.City && <div className="shipping-city">{order.Shipping.City}</div>}
-                            {order.Shipping.Phone && <div className="shipping-phone">{order.Shipping.Phone}</div>}
+                            {order.shipping.firstname && <div className="shipping-firstname">{order.shipping.firstname}</div>}
+                            {order.shipping.lastname && <div className="shipping-lastname">{order.shipping.lastname}</div>}
+                            {order.shipping.society && <div className="shipping-society">{order.shipping.society}</div>}
+                            {order.shipping.address && <div className="shipping-address">{order.shipping.address}</div>}
+                            {order.shipping.country && <div className="shipping-country">{order.shipping.country}</div>}
+                            {order.shipping.zip && <div className="shipping-zip">{order.shipping.zip}</div>}
+                            {order.shipping.city && <div className="shipping-city">{order.shipping.city}</div>}
+                            {order.shipping.phone && <div className="shipping-phone">{order.shipping.phone}</div>}
                         </div>
                     </div>} */}
                     {/* TODO Create a function to display a generic message according to the status */}

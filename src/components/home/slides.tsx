@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductView from "./product-view";
 import ProductsContext from "../contexts/products-context";
 import { Link } from "gatsby";
@@ -6,6 +6,7 @@ import Carousel from "../Carousel";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../interfaces";
 import { oneById } from "../../functions/selectors";
+import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
 
 const Slides = ({from}:Slides) => {
 
@@ -29,7 +30,7 @@ const Slides = ({from}:Slides) => {
 
     const view_detail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, key: number | string) => {
         
-    }
+    };
 
     const view_product = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, pos:number) => {
         let _main:any = oneById('main');
@@ -50,7 +51,8 @@ const Slides = ({from}:Slides) => {
         setCurrent(pos);
         _main.style.zIndex = '4';
         setOpen(true);
-    }
+        disableMainScroll();
+    };
 
     
     const close_view = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, elem:any) => {
@@ -67,6 +69,7 @@ const Slides = ({from}:Slides) => {
             _main.style.zIndex = '0';
             setOpen(false);
         }
+        enableMainScroll();
     }
 
     return (
@@ -89,16 +92,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.Icon.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
+                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
                                         alt='product'
                                     />
                                 </div>
@@ -136,7 +139,7 @@ const Slides = ({from}:Slides) => {
                         onClick={(e) => {close_view(e, this);}}
                         key={key}
                     >
-                        <ProductView datas={{'current': current}}>
+                        <ProductView datas={{'current': current, index: key}}>
                             <div className="close">
                                 <img
                                     className="close-product-view"

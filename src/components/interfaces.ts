@@ -23,7 +23,9 @@ export interface InmodePanel_Addon_Interface {
     sensitivity: boolean;
 };
 export interface InmodePanel_Event_Interface {
-    picture: GatsbyImage_Interface;
+    picture: {
+        localFile: GatsbyImage_Interface;
+    };
     title: string;
     short_descr: string;
     address: string;
@@ -46,29 +48,33 @@ export interface InmodePanel_Menu_Interface {
     treatment?: InmodePanel_Treatment_Interface[]
     menus?: InmodePanel_Menu_Interface[];
     parent_menu?: boolean;
-    icon?: GatsbyImage_Interface;
-    icon_hover?: GatsbyImage_Interface;
+    icon?: {
+        localFile: GatsbyImage_Interface;
+    };
+    icon_hover?: {
+        localFile: GatsbyImage_Interface;
+    };
     internal_link?: boolean;
     mini_treatments?: InmodePanel_Treatment_Interface[];
     mini_products?: InmodePanel_Product_Interface[];
     mini_addons?: InmodePanel_Addon_Interface[];
 };
 export interface InmodePanel_Order_Interface {
-    Reference?: string | undefined;
-    Date: string;
-    Article: InmodePanel_Product_BoughtArticle_Interface[];
-    Billing: InmodePanel_Order_Billing_Interface;
-    Shipping?: InmodePanel_Order_Shipping_Interface;
-    Paid: boolean;
-    Status: string;
-    Firstname: string;
-    Lastname: string;
-    Society: string;
-    DeliveryTax: number;
-    Total: string | number;
-    SEPA?: boolean;
-    Country: string;
-    TVA_Intra?: string;
+    reference?: string | undefined;
+    date: string;
+    articles: InmodePanel_Product_BoughtArticle_Interface[];
+    billing: InmodePanel_Order_Billing_Interface;
+    shipping?: InmodePanel_Order_Shipping_Interface;
+    paid: boolean;
+    status: string;
+    firstname: string;
+    lastname: string;
+    society: string;
+    delivery_tax: number;
+    total: string | number;
+    sepa?: boolean;
+    country: string;
+    tva_intra?: string;
 };
 export interface InmodePanel_Product_Interface {
     strapiId: number;
@@ -81,7 +87,9 @@ export interface InmodePanel_Product_Interface {
     ClinicalStudies: InmodePanel_Generic_ClinicalStudies_Interface[];
     Price: Number 	
     ShopDescription: string;
-    Icon: GatsbyImage_Interface;
+    Icon: {
+        localFile: GatsbyImage_Interface;
+    };
     Tags: InmodePanel_Tags_Interface[]; // TODO
     Addons: InmodePanel_Addon_Interface[];
     BeforesAfters: InmodePanel_Generic_BeforeAfter_Interface[];
@@ -89,7 +97,9 @@ export interface InmodePanel_Product_Interface {
     WhatIsProduct: InmodePanel_Product_WhatIsProduct_Interface[];
     Demo: InmodePanel_Generic_Demo_Interface;
     ShopTreats: InmodePanel_Base_Texte_Interface[];
-    ShopPicture: GatsbyImage_Interface;
+    ShopPicture: {
+        localFile: GatsbyImage_Interface;
+    };
     treatments: InmodePanel_Treatment_Interface[];
     RelatedAddonTreatment: InmodePanel_Product_RelatedAddonTreatment_Interface[];
     MenuParams: InmodePanel_Generic_MenuParams_Interface;
@@ -105,7 +115,9 @@ export interface InmodePanel_Shop_Interface {
     pack_type?: string;
     price?: number;
     discount?: number;
-    picture?: GatsbyImage_Interface;
+    picture?: {
+        localFile: GatsbyImage_Interface;
+    };
     relative?: string;
 };
 export interface InmodePanel_TagFamily_Interface {
@@ -134,18 +146,26 @@ export interface InmodePanel_Treatment_Interface {
 // Single types
 
 export interface InmodePanel_AboutUs_Interface {
-    banner?: GatsbyImage_Interface;
+    banner?: {
+        localFile: GatsbyImage_Interface;
+    };
     about_video_url?: string;
     about_txt?: string;
-    learn_bg?: GatsbyImage_Interface | undefined;
-    learn_icon?: GatsbyImage_Interface | undefined;
+    learn_bg?: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
+    learn_icon?: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
     learn_txts?: InmodePanel_Base_SectionTitreText_Interface[];
     learn_values?: InmodePanel_Base_Texte_Interface[];
     staff?: InmodePanel_Generic_Staff_Interface[];
     menus?: InmodePanel_Menu_Interface[];
 };
 export interface InmodePanel_Footer_Interface {
-    logo: GatsbyImage_Interface | undefined;
+    logo: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
     address: string;
     phone: string;
     mail: string;
@@ -153,18 +173,24 @@ export interface InmodePanel_Footer_Interface {
     navigation: InmodePanel_Generic_Navigate_Interface[];
 };
 export interface InmodePanel_NextGeneration_Inteface {
-    picture?: GatsbyImage_Interface;
+    picture?: {
+        localFile: GatsbyImage_Interface;
+    };
     title?: string;
     text?: string;
     source?: string;
 };
 export interface  InmodePanel_SellingArg_Interface {
-    picture?: GatsbyImage_Interface;
+    picture?: {
+        localFile: GatsbyImage_Interface;
+    };
     title?: string;
     arg?: string;
 };
 export interface  InmodePanel_SellingNext_Interface {
-    picture?: GatsbyImage_Interface;
+    picture?: {
+        localFile: GatsbyImage_Interface;
+    };
     title?: string;
     text?: string;
     source?: string;
@@ -180,8 +206,12 @@ export interface  InmodePanel_SellingNext_Interface {
         product?: InmodePanel_Product_Interface;
     };
     export interface InmodePanel_Addon_ProductPresentation_Interface {
-        left_image?: GatsbyImage_Interface;
-        title_image?: GatsbyImage_Interface;
+        left_image?: {
+            localFile: GatsbyImage_Interface;
+        };
+        title_image?: {
+            localFile: GatsbyImage_Interface;
+        };
         appears_everywhere?: boolean;
         products?: InmodePanel_Product_Interface[];
         ProductPresentationTreats?: InmodePanel_Base_Treat_Interface[];
@@ -191,24 +221,36 @@ export interface  InmodePanel_SellingNext_Interface {
     };
     export interface InmodePanel_Addon_Video_Interface {
         url?: string;
-        poster?: GatsbyImage_Interface;
+        poster?: {
+            localFile: GatsbyImage_Interface;
+        };
     };
     export interface InmodePanel_Addon_WhatTreat_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         title?: string;
         text?: string;
     };
 
     // Base
     export interface InmodePanel_Base_Banner_Interface {
-        left_img?: GatsbyImage_Interface;
-        right_img?: GatsbyImage_Interface;
+        left_img?: {
+            localFile: GatsbyImage_Interface;
+        };
+        right_img?: {
+            localFile: GatsbyImage_Interface;
+        };
         left_video?: string;
         right_text?: string;
-        mini?: GatsbyImage_Interface;
+        mini?: {
+            localFile: GatsbyImage_Interface;
+        };
     };
     export interface InmodePanel_Base_Image_Interface {
-        image?: GatsbyImage_Interface;
+        image?: {
+            localFile: GatsbyImage_Interface;
+        };
         product?: InmodePanel_Product_Interface;
     };
     export interface InmodePanel_Base_RelatedAddonTreat_Interface {
@@ -230,12 +272,16 @@ export interface  InmodePanel_SellingNext_Interface {
 
     // Generic
     export interface InmodePanel_Generic_BeforeAfter_Interface {
-        image?: GatsbyImage_Interface;
+        image?: {
+            localFile: GatsbyImage_Interface;
+        };
         doctor?: string;
         text?: string;
     };
     export interface InmodePanel_Generic_ClinicalStudies_Interface {
-        picture: GatsbyImage_Interface;
+        picture: {
+            localFile: GatsbyImage_Interface;
+        };
         title: string;
         url: string;
         author: string;
@@ -244,18 +290,20 @@ export interface  InmodePanel_SellingNext_Interface {
         addons: InmodePanel_Addon_Interface[];
     };
     export interface InmodePanel_Generic_Customer_Interface {
-        Firstname?: string;
-        Lastname?: string;
-        Mail?: string;
-        Phone?: string;
-        Society?: string;
-        Address?: string;
-        Country?: string;
-        ZIP?: string;
-        City?: string;
+        firstname?: string;
+        lastname?: string;
+        mail?: string;
+        phone?: string;
+        society?: string;
+        address?: string;
+        country?: string;
+        zip?: string;
+        city?: string;
     };
     export interface InmodePanel_Generic_Demo_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         text?: string;
     };
     export interface InmodePanel_Generic_MenuParams_Interface {
@@ -272,10 +320,14 @@ export interface  InmodePanel_SellingNext_Interface {
     export interface InmodePanel_Generic_SellingArgs_Interface {
         SectionTitle?: string;
         Arg?: InmodePanel_Base_Texte_Interface[];
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
     };
     export interface InmodePanel_Generic_SellingNewGeneration_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         text?: string;
         source?: string;
         title?: string;
@@ -283,62 +335,68 @@ export interface  InmodePanel_SellingNext_Interface {
     export interface InmodePanel_Generic_Social_Interface {
         url?: string;
         name?: string;
-        icon?: GatsbyImage_Interface;
+        icon?: {
+            localFile: GatsbyImage_Interface;
+        };
         position?: number;
     };
     export interface InmodePanel_Generic_Staff_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         name?: string;
         position?: string;
         short_descr?: string;
     };
     export interface InmodePanel_Generic_WhatIs_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         TitleText?: InmodePanel_Base_SectionTitreText_Interface[];
     };
 
     // Order
     export interface InmodePanel_Order_Billing_Interface {
-        Firstname?: string;
-        Lastname?: string;
-        Phone?: string | number;
-        Mail?: string;
-        Address?: string;
-        Country?: string;
-        ZIP?: string | number;
-        City?: string;
-        Society?: string;
+        firstname?: string;
+        lastname?: string;
+        phone?: string | number;
+        mail?: string;
+        address?: string;
+        country?: string;
+        zip?: string | number;
+        city?: string;
+        society?: string;
     };
     export interface InmodePanel_Order_Shipping_Interface {
-        Firstname?: string;
-        Lastname?: string;
-        Phone?: string | number;
-        Mail?: string;
-        Address?: string;
-        Country?: string;
-        ZIP?: string | number;
-        City?: string;
-        Society?: string;
+        firstname?: string;
+        lastname?: string;
+        phone?: string | number;
+        mail?: string;
+        address?: string;
+        country?: string;
+        zip?: string | number;
+        city?: string;
+        society?: string;
     };
 
     // Product
     export interface InmodePanel_Product_BoughtArticle_Interface {
-        Article?: number;
-        Quantity?: number;
-        Price: number;
-        Name: string;
-        Pack: string;
-        Reference?: string;
+        article?: number;
+        quantity?: number;
+        price: number;
+        name: string;
+        pack: string;
+        reference?: string;
     };
     export interface InmodePanel_Product_Buyer_Interface {
-        Firstname?: string;
-        Lastname?: string;
-        Phone?: string;
-        Address?: string;
-        Country?: string;
-        ZIP?: string;
-        City?: string;
-        Society?: string;
+        firstname?: string;
+        lastname?: string;
+        phone?: string;
+        address?: string;
+        country?: string;
+        zip?: string;
+        city?: string;
+        society?: string;
     };
     export interface InmodePanel_Product_RelatedAddonTreatment_Interface {
         addon?: InmodePanel_Addon_Interface;
@@ -346,7 +404,9 @@ export interface  InmodePanel_SellingNext_Interface {
         short?: InmodePanel_Base_Texte_Interface;
     };
     export interface InmodePanel_Product_WhatIsProduct_Interface {
-        image?: GatsbyImage_Interface;
+        image?: {
+            localFile: GatsbyImage_Interface;
+        };
         title?: string;
         text?: string;
         treatment?: InmodePanel_Treatment_Interface;
@@ -354,7 +414,9 @@ export interface  InmodePanel_SellingNext_Interface {
 
     // Treat
     export interface InmodePanel_Treat_Banner_Interface {
-        picture?: GatsbyImage_Interface;
+        picture?: {
+            localFile: GatsbyImage_Interface;
+        };
         text?: string;
     };
 
@@ -515,7 +577,7 @@ export interface PayParams_Interface {
     transDate: string;
     transId: string;
     version: string;
-    Reference: string;
+    reference: string;
     url_success: string;
     url_cancel: string;
     url_refused: string;
@@ -526,8 +588,8 @@ export interface PayParams_Interface {
 };
 
 export interface Images_Interface {
-    getOne(request:string):GatsbyImage_Interface;
-    getSet(request:string[]):GatsbyImage_Interface;
+    getOne(request:string): GatsbyImage_Interface;
+    getSet(request:string[]): GatsbyImage_Interface[];
 };
 
 export interface GatsbyImage_Interface {
@@ -584,14 +646,20 @@ export interface HeaderTop_Interface {
         id: number;
         position: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
-        Icon: GatsbyImage_Interface | undefined;
+        Icon: {
+            localFile: GatsbyImage_Interface;
+        } | undefined;
     }[];
     treatments: {
         id: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
     }[];
-    icon: GatsbyImage_Interface | undefined;
-    icon_hover: GatsbyImage_Interface | undefined;
+    icon: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
+    icon_hover: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
 };
 
 export interface HeaderBottom_Interface {
@@ -608,7 +676,9 @@ export interface HeaderBottom_Interface {
         id: number;
         position: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
-        Icon: GatsbyImage_Interface | undefined;
+        Icon: {
+            localFile: GatsbyImage_Interface;
+        } | undefined;
     }[];
     treatments: {
         id: number;
@@ -626,8 +696,12 @@ export interface HeaderBottom_Interface {
         id: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
     }[];
-    icon: GatsbyImage_Interface | undefined;
-    icon_hover: GatsbyImage_Interface | undefined;
+    icon: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
+    icon_hover: {
+        localFile: GatsbyImage_Interface;
+    } | undefined;
 };
 
 export interface FlickityOptions_Interface {

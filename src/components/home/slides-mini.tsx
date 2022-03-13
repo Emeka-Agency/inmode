@@ -13,16 +13,16 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                 <div className="slide" key={key}>
                     <div className="product-image">
                         <img
-                            src={product.ShopPicture.childImageSharp.fluid.srcWebp}
-                            srcSet={product.ShopPicture.childImageSharp.fluid.srcSetWebp}
+                            src={product.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
+                            srcSet={product.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
                             alt='product'
                         />
                     </div>
                     <div className="right">
                         <div className="product-icon">
                             <img
-                                src={product.Icon.childImageSharp.fluid.srcWebp}
-                                srcSet={product.Icon.childImageSharp.fluid.srcSetWebp}
+                                src={product.Icon.localFile.childImageSharp.fluid.srcWebp}
+                                srcSet={product.Icon.localFile.childImageSharp.fluid.srcSetWebp}
                                 alt={product.Name}
                             />
                         </div>

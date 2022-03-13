@@ -1,4 +1,5 @@
 import React from "react";
+import testSignature from "../../functions/test";
 import { useWindowSize } from "../../functions/window-size";
 
 const ShopMenu = ({ products, filter, tags }:ShopMenu_Interface) => {
@@ -59,6 +60,17 @@ const ShopMenu = ({ products, filter, tags }:ShopMenu_Interface) => {
                         );
                     // }
                 })}
+                {/* <ul
+                    data-value={"test"}
+                    className={`tab-link menu-title menu-text transition`}
+                    onClick={(e) => {testSignature();}}
+                >
+                    <span
+                        className="menu-title menu-text"
+                    >
+                        Test signature
+                    </span>
+                </ul> */}
             </div>
         </div>
         // <>

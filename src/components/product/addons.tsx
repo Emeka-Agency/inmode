@@ -42,16 +42,16 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                     <div className="addon-description">
                                         <div className="addon-img">
                                             <img
-                                                src={product.left_image && product.left_image.childImageSharp.fluid.srcWebp}
-                                                srcSet={product.left_image && product.left_image.childImageSharp.fluid.srcSetWebp}
+                                                src={product.left_image && product.left_image.localFile.childImageSharp.fluid.srcWebp}
+                                                srcSet={product.left_image && product.left_image.localFile.childImageSharp.fluid.srcSetWebp}
                                                 alt={product.title_text}
                                             />
                                         </div>
                                         <div className="addon-title">
                                             {product.title_image && (
                                                 <img
-                                                    src={product.title_image.childImageSharp.fluid.srcWebp}
-                                                    srcSet={product.title_image.childImageSharp.fluid.srcSetWebp}
+                                                    src={product.title_image.localFile.childImageSharp.fluid.srcWebp}
+                                                    srcSet={product.title_image.localFile.childImageSharp.fluid.srcSetWebp}
                                                     alt={product.title_text}
                                                 />
                                             )}
@@ -91,8 +91,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                     images.length === 1 ?
                                         <img
                                             className="addon-single"
-                                            src={images[0].image ? images[0].image.childImageSharp.fluid.srcWebp : ''}
-                                            srcSet={images[0].image ? images[0].image.childImageSharp.fluid.srcSetWebp : ''}
+                                            src={images[0].image ? images[0].image.localFile.childImageSharp.fluid.srcWebp : ''}
+                                            srcSet={images[0].image ? images[0].image.localFile.childImageSharp.fluid.srcSetWebp : ''}
                                             alt={`morpheus8-${key + 1}-single`}
                                         />
                                         :
@@ -108,8 +108,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                                             <img
                                                                 key={key}
                                                                 className="addon-img"
-                                                                src={image.image ? image.image.childImageSharp.fluid.srcWebp : ''}
-                                                                srcSet={image.image ? image.image.childImageSharp.fluid.srcSetWebp : ''}
+                                                                src={image.image ? image.image.localFile.childImageSharp.fluid.srcWebp : ''}
+                                                                srcSet={image.image ? image.image.localFile.childImageSharp.fluid.srcSetWebp : ''}
                                                                 alt={`${product_title}-slide-${key}`}
                                                             />
                                                         </div>

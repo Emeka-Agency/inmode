@@ -42,10 +42,12 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                             internal_link
                         }
                         Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
+                            localFile {
+                                childImageSharp {
+                                    fluid {
+                                        srcWebp
+                                        srcSetWebp
+                                    }
                                 }
                             }
                         }
@@ -61,22 +63,26 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         }
                     }
                     icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                }
                             }
+                            publicURL
                         }
-                        publicURL
                     }
                     icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                }
                             }
+                            publicURL
                         }
-                        publicURL
                     }
                 }
             }
@@ -108,10 +114,12 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                             internal_link
                         }
                         Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
+                            localFile {
+                                childImageSharp {
+                                    fluid {
+                                        srcWebp
+                                        srcSetWebp
+                                    }
                                 }
                             }
                         }
@@ -137,31 +145,37 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         }
                     }
                     icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                }
                             }
+                            publicURL
                         }
-                        publicURL
                     }
                     icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                }
                             }
+                            publicURL
                         }
-                        publicURL
                     }
                 }
             }
             footer: strapiFooter {
                 logo {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -170,7 +184,9 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 mail
                 social {
                     icon {
-                        publicURL
+                        localFile {
+                            publicURL
+                        }
                     }
                     name
                     url
@@ -268,7 +284,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
-                        'icon': product.Icon.childImageSharp.fluid || null,
+                        'icon': product.Icon.localFile.childImageSharp.fluid || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };
