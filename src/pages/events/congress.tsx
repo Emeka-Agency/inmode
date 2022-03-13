@@ -12,7 +12,7 @@ const CongressPage = ({ data }:CongressPage) =>  {
             <EventsLayout
                 current_page="congrès"
                 upcoming_events={!data ? [] : data.incoming.nodes}
-                past_events={!data ? [] : data.past.nodes}
+                // past_events={!data ? [] : data.past.nodes}
             />
         </Layout>
     );
@@ -40,48 +40,49 @@ export const query = graphql`
                 finish(formatString: "DD MMM. YY, HH:MM")
                 maps_link
                 picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
                 place
-                place_url
                 short_descr
                 title
                 type
                 video_url
-                addons {
-                    Name
-                }
-            }
-        }
-        past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: DESC}) {
-            nodes {
-                address
-                begin(formatString: "DD MMM. YY, HH:MM")
-                finish(formatString: "DD MMM. YY, HH:MM")
-                maps_link
-                picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
-                        }
-                    }
-                }
-                place
-                place_url
-                short_descr
-                title
-                type
-                video_url
-                addons {
-                    Name
-                }
             }
         }
     }
 `;
+
+    // past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: DESC}) {
+    //     nodes {
+    //         address
+    //         begin(formatString: "DD MMM. YY, HH:MM")
+    //         finish(formatString: "DD MMM. YY, HH:MM")
+    //         maps_link
+    //         picture {
+    //             localFile {
+    //                 childImageSharp {
+    //                     fluid {
+    //                         srcWebp
+    //                         srcSetWebp
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //         place
+    //         place_url
+    //         short_descr
+    //         title
+    //         type
+    //         video_url
+    //         addons {
+    //             Name
+    //         }
+    //     }
+    // }

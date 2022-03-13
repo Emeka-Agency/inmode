@@ -50,7 +50,7 @@ const PaymentErrorPage = () => {
         if(typeof reference != 'string') {return false;}
         let { status, order } = await (await fetch(load_url, {
             method: 'POST',
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({reference: reference}),

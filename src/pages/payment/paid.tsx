@@ -46,12 +46,12 @@ const PaymentPaidPage = () => {
     }, []);
 
     const order_load = async(reference:string) => {
-        console.log('order_load with reference : ', reference);
+        // console.log('order_load with reference : ', reference);
         if(!reference) {return false;}
         if(typeof reference != 'string') {return false;}
         let { status, order } = await (await fetch(load_url, {
             method: 'POST',
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({reference: reference}),

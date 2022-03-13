@@ -60,29 +60,35 @@ export const query = graphql`
             Page_addon
             Banner {
                 left_img {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
                 mini {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
                 right_img {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -94,11 +100,13 @@ export const query = graphql`
                     text
                 }
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -110,11 +118,13 @@ export const query = graphql`
             Videos {
                 url
                 poster {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -123,11 +133,13 @@ export const query = graphql`
                 doctor
                 text
                 image {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -136,11 +148,13 @@ export const query = graphql`
                 title
                 text
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -151,11 +165,13 @@ export const query = graphql`
                 }
                 author
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -170,11 +186,13 @@ export const query = graphql`
                     texte
                 }
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -183,11 +201,13 @@ export const query = graphql`
                 title
                 text
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                base64
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }

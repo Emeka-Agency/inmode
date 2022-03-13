@@ -42,10 +42,12 @@ export const query = graphql`
             Name
             Banner {
                 picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                                srcSetWebp
+                            }
                         }
                     }
                 }
@@ -53,9 +55,11 @@ export const query = graphql`
             }
             WhatIsTreat {
                 picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                            }
                         }
                     }
                 }
@@ -71,9 +75,11 @@ export const query = graphql`
             products {
                 WhatIsProduct {
                     image {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
+                        localFile {
+                            childImageSharp {
+                                fluid {
+                                    srcWebp
+                                }
                             }
                         }
                     }
@@ -97,9 +103,11 @@ export const query = graphql`
             }
             BeforesAfters {
                 image {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                            }
                         }
                     }
                 }
@@ -108,9 +116,11 @@ export const query = graphql`
             }
             ClinicalStudies {
                 picture {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                srcWebp
+                            }
                         }
                     }
                 }

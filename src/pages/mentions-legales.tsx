@@ -16,7 +16,7 @@ const PrivacyPolicies = (  ) => {
                         Nom du site web :  Inmodemd
                     </div>
                     <div className="content">
-                        Adresse :  https://inmodemd.fr
+                        Adresse :  <a href="https://inmodemd.fr" target="_blank">https://inmodemd.fr</a>
                     </div>
                     <div className="content">
                         Propriétaire :

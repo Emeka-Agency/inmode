@@ -64,44 +64,52 @@ export const query = graphql`
           strapiId
           Banner {
             left_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             left_video
             right_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             mini {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             right_text
           }
           WhatIs {
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             TitleText {
               text
@@ -119,33 +127,39 @@ export const query = graphql`
             }
             ProductPresentation {
               left_image {
-                childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                      srcSetWebp
+                  localFile {
+                      childImageSharp {
+                        fluid {
+                          base64
+                          srcWebp
+                            srcSetWebp
+                        }
+                      }
                   }
-                }
               }
               title_image {
-                childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                  srcSetWebp
+                  localFile {
+                      childImageSharp {
+                        fluid {
+                          base64
+                          srcWebp
+                        srcSetWebp
+                        }
+                      }
                   }
-                }
               }
               title_text
               Images {
                 image {
-                  childImageSharp {
-                    fluid {
-                      base64
-                      srcWebp
-                      srcSetWebp
+                    localFile {
+                        childImageSharp {
+                          fluid {
+                            base64
+                            srcWebp
+                            srcSetWebp
+                          }
+                        }
                     }
-                  }
                 }
                 product {
                   id
@@ -172,25 +186,29 @@ export const query = graphql`
           Demo {
             text
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
           }
           BeforesAfters {
             doctor
             image {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             text
           }
@@ -209,13 +227,15 @@ export const query = graphql`
             title
             url
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                localFile {
+                    childImageSharp {
+                      fluid {
+                        base64
+                        srcWebp
+                        srcSetWebp
+                      }
+                    }
                 }
-              }
             }
             publication
           }

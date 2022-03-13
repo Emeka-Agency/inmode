@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const Sitemap = ({ data }) => {
+const Sitemap = ({ data }:Sitemap) => {
     
     return (
         <Layout>
@@ -74,6 +74,10 @@ const Sitemap = ({ data }) => {
             </div>
         </Layout>
     )
+};
+
+interface Sitemap {
+    data: any;
 }
 
 export default Sitemap;

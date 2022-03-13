@@ -12,11 +12,11 @@ const PaymentCancelPage = () => {
 
     // TODO ajouter fallback si aucun order provided
 
-    const [cancel_url] = React.useState(useStaticQuery(graphql`
+    const [load_url] = React.useState(useStaticQuery(graphql`
         {
             site {
                 siteMetadata {
-                    url_order_cancel
+                    url_order_load
                 }
             }
         }
@@ -46,9 +46,9 @@ const PaymentCancelPage = () => {
     const order_cancel = async(reference:string) => {
         if(!reference) {return false;}
         if(typeof reference != 'string') {return false;}
-        let { status, order } = await (await fetch(cancel_url, {
+        let { status, order } = await (await fetch(load_url, {
             method: 'POST',
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({reference: reference}),
