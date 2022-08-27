@@ -5,7 +5,7 @@ import { Link } from "gatsby";
 import Carousel from "../Carousel";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../interfaces";
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
 
 const Slides = ({from}:Slides) => {
@@ -33,7 +33,7 @@ const Slides = ({from}:Slides) => {
     };
 
     const view_product = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, pos:number) => {
-        let _main:any = oneById('main');
+        let _main:any = getById('main');
         e.preventDefault();
         if(_main == null) {
             return false;
@@ -57,7 +57,7 @@ const Slides = ({from}:Slides) => {
     
     const close_view = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, elem:any) => {
         e.preventDefault();
-        let _main:any = oneById('main');
+        let _main:any = getById('main');
         if(_main == null) {
             return false;
         }

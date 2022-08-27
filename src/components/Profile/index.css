@@ -1,0 +1,85 @@
+@import url("./tabs/overview.css");
+@import url("./tabs/orders.css");
+
+section#profile {
+    width: 100%;
+    height: 100%;
+}
+
+section#profile #profile-tabs {
+    width: 1200px;
+    height: 40px;
+    background: #59b7b3;
+    padding: 0 calc((100% - 1200px) / 2);
+}
+
+@media (max-width: 1199px) {
+    section#profile #profile-tabs {
+        width: 90%;
+        padding: 0 5%;
+    }
+}
+
+section#profile #profile-tabs .profile-tab {
+    height: 40px;
+    display: inline-block;
+    line-height: 30px;
+    padding: 5px 12px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    transition: border 0.3s ease-in-out 0s,
+                background 0.3s ease-in-out 0s;
+    cursor: pointer;
+}
+
+section#profile #profile-tabs .profile-tab:hover {
+    border-bottom: 2px solid white;
+    transition: border 0.2s ease-in-out 0s,
+                background 0.1s ease-in-out 0s;
+}
+
+section#profile #profile-tabs .profile-tab.current {
+    background-color: white;
+    color: #59b7b3;
+    border-bottom: 2px solid transparent;
+    transition: border 0.2s ease-in-out 0s,
+                background 0.1s ease-in-out 0s;
+}
+
+@media (max-width: 639px) {
+    section#profile #profile-tabs .profile-tab {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-align: center;
+    }
+
+    section#profile #profile-tabs .profile-tab.current {
+        width: 70%;
+    }
+
+    section#profile #profile-tabs .profile-tab:not(.current) {
+        width: 15%;
+    }
+
+}
+
+section#profile #profile-content {
+    width: 1200px;
+    padding: 0 calc((100% - 1200px) / 2);
+}
+
+@media (max-width: 1199px) {
+    section#profile #profile-content {
+        width: 90%;
+        padding: 0 5%;
+    }
+}
+
+section#profile #profile-content > * {
+    padding: 25px 0;
+}

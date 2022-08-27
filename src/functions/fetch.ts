@@ -62,6 +62,9 @@ const _fetch = (
         })
         .then((response) => {
             if(response.status == "error") {
+                if(_onError != null) {
+                    _onError(_elem, response);
+                }
                 throw new Error(response.message ?? "Error");
             }
             if(_onSuccess != null) {
@@ -77,7 +80,7 @@ const _fetch = (
                 _onError(_elem, err);
             }
             return false;
-        })
+        });
     }
     else {
         let _retour = {};

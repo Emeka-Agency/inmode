@@ -219,3 +219,52 @@ UP - Créer des classes .ts pour gérer les produits, pièces à main, panier, e
 <input type="file" accept="video/*;capture=camcorder" capture="camcorder" class="file"/>
 GENIAL ! mais en photo ca marche pas 🤔  la photo ne reste que quelques secondes... j'utilise ce code :
 <input type="file" accept="image/*" capture="camera"  class="file"/>
+
+TEST    - Section "Adresses"
+CANCEL  - Faire fonctionner le cookie
+TODO    - Modale "Se connecter"
+DONE        - Dans le header
+TODO        - Dans le shop
+TODO    - Modale "Créer un compte"
+DONE        - Dans le header
+TODO        - Dans le shop
+CANCEL  - Modale "Ajouter cette adresse / cette configuration"
+DONE    - Modale "Ajouter cette adresse"
+DONE    - CRUD Adresse
+DONE        - C => 
+DONE        - R => 
+DONE        - U => 
+DONE        - D => 
+
+:default	    => considère l'élément défini par défaut parmi des éléments sembables (checked, selected, ...)
+:empty		    => pour les éléments qui ne contiennent pas de texte ou de balises
+:indeterminate 	=> pour le input.indeterminate = true
+:in-range	    => pour les balises interactives (input avec min et max, etc)
+:invalid	    => pour les balises avec un contenu normé
+:valid		    => pour les balises avec un contenu normé
+:only-of-type   => sélectionne à son niveau dans le DOM l'élément qui est le seul de son type. Variations avec nth-last-of-type, nth-of-type, nth-first-of-type, forst-of-type, last-of-type
+:optional       => cible les éléments avec un required != true
+:read-only      => permet de cibler un élément avec readonly == true
+
+::first-letter  => appliqué à la première lettre d'une balise
+::first-line    => appliqué à la première ligne visuelle
+::selected      => appliqué à ce qui a été sélectionné (surtout du texte)
+
+Société ASV
+04 91 71 20 00
+04 91 71 20 01
+
+42
+L size
+Right handed
+
+
+
+- TODO - Remplacer pseudo par titre dans profil
+- TODO - Ajouter nom clinique dans création adresse
+- TODO - Style select pour pays
+- TODO - DOM/TOM sans TVA
+- TODO - IMD France dans le corps du mail
+- TODO - "Veuillez patienter"
+- TODO - Gallerie insta sur WP
+- 

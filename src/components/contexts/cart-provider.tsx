@@ -6,7 +6,7 @@ import CartContext from './cart-context';
 
 import { _sort_html_list, _sort_object } from '../../functions/sort';
 import rand_token from '../../functions/rand_token';
-import { formById, oneById } from '../../functions/selectors';
+import { formById, getById } from '../../functions/selectors';
 
 import moment from 'moment';
 import { filter_object } from '../../functions/filter_object';
@@ -17,17 +17,21 @@ import '../interfaces';
 import {
     Article_Interface,
     NameTable_Interface,
+    Woocommerce_Shop_Interface,
     InmodePanel_Shop_Interface,
     SogecommerceOrder,
     Cart_Interface,
     Cart_FormSave_Interface
 } from '../interfaces';
-import { openModale, paymentSEPA } from '../../functions/modale';
+import { openModale, paymentProblems, paymentSEPA } from '../../functions/modale';
 import { initWakeup } from '../../functions/fetch';
+import { useUser } from './user-provider';
 
 export const useCart = ():Cart_Interface => {
     return useContext(CartContext);
 }
+
+const SECURITY_TIME = 15000;
 
 const CartProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<Cart_Interface> => {
 
@@ -39,7 +43,38 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         unite: ['unité', 'unités']
     };
 
+    const user = useUser();
+
     const [appeared, setAppeared] = React.useState(false);
+
+    
+    // allWcProducts {
+    //     nodes {
+    //         id
+    //         wordpress_id
+    //         name
+    //         price
+    //         tags {
+    //             name
+    //         }
+    //         categories {
+    //             name
+    //         }
+    //         meta_data {
+    //             key
+    //             value
+    //         }
+    //         images {
+    //             localFile {
+    //             childrenImageSharp {
+    //                 fluid {
+    //                     srcSet
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     const [articles] = React.useState(
         Object.fromEntries(
@@ -85,12 +120,14 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         'EUR': 978
     };
 
+    const [payment_launch, setPaymentLaunch]:[boolean, React.Dispatch<boolean>] = React.useState(Boolean(false));
+
     // SWITCH TEST / PRODUCTION MODE
     const [pay_params, setPayParams] = React.useState({
         signature: "",
         actionMode: "INTERACTIVE",
-        // vads_ctx_mode: "TEST",
-        vads_ctx_mode: "PRODUCTION",
+        vads_ctx_mode: "TEST",
+        // vads_ctx_mode: "PRODUCTION",
         currency: currencies.EUR,
         pageAction: "PAYMENT",
         siteId: "",
@@ -264,11 +301,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const total_HT = ():string => {return count_total().toFixed(2);}
     const hasTVAIntra = ():boolean => {
         let i = 0;
-        let _temp = oneById('facture');
+        let _temp = getById('facture');
         const _other_address = _temp ? _temp.checked : false;
-        _temp = oneById('vads_cust_country');
+        _temp = getById('vads_cust_country');
         const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "FR";
-        _temp = oneById('vads_ship_to_country');
+        _temp = getById('vads_ship_to_country');
         const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "FR";
         if(_other_address == false && _part_1_country == "FR") {
             return false;
@@ -316,7 +353,67 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         return _sort_html_list(Array.from(form.elements), 'name', 'up').filter(e => e.name && e.id);
     }
 
+    const security_payment_verify = (force:boolean = true) => {
+        console.log("security_payment_verify");
+        console.log(Date.now());
+        if(payment_launch == true) {
+            console.log("Payment latence");
+            setPaymentLaunch(false);
+            if(typeof window != undefined && window.localStorage.getItem('order') != null) {
+                openModale(
+                    paymentProblems({
+                        order: JSON.parse(window.localStorage.getItem('order') || "")
+                    })
+                );
+            }
+            close_purchase();
+            reset_form_fields();
+            reset_cart();
+            setOtherAddress(false);
+        }
+        else {
+            console.log("No payment latence");
+        }
+    }
+
     const redirect_payment = async (form_fields:any, sepa:boolean = false):Promise<boolean | void> => {
+
+        let _actual = {
+            "vads_cust_last_name": getById("vads_cust_last_name")?.value || "",
+            "vads_cust_first_name": getById("vads_cust_first_name")?.value || "",
+            "vads_cust_legal_name": getById("vads_cust_legal_name")?.value || "",
+            "vads_cust_address": getById("vads_cust_address")?.value || "",
+            "vads_cust_zip": getById("vads_cust_zip")?.value || "",
+            "vads_cust_city": getById("vads_cust_city")?.value || "",
+            "vads_cust_country": getById("vads_cust_country")?.value || "",
+            "vads_cust_cell_phone": getById("vads_cust_cell_phone")?.value || "",
+            "vads_cust_email": getById("vads_cust_email")?.value || "",
+            "vads_ship_to_last_name": getById("vads_ship_to_last_name")?.value || "",
+            "vads_ship_to_first_name": getById("vads_ship_to_first_name")?.value || "",
+            "vads_ship_to_legal_name": getById("vads_ship_to_legal_name")?.value || "",
+            "vads_ship_to_street": getById("vads_ship_to_street")?.value || "",
+            "vads_ship_to_zip": getById("vads_ship_to_zip")?.value || "",
+            "vads_ship_to_city": getById("vads_ship_to_city")?.value || "",
+            "vads_ship_to_country": getById("vads_ship_to_country")?.value || "",
+            "vads_ship_to_phone_num": getById("vads_ship_to_phone_num")?.value || "",
+        };
+
+        updage_global_form_fields(_actual);
+
+        // Vérification adresse de facturation
+        // const exists_billing_address = user.findAddress(getById("cust_address")?.value || null);
+
+        
+        // Vérification adresse d'envoi
+        // const exists_shipping_address = user.findAddress(getById("ship_address")?.value || null);
+
+        setPaymentLaunch(true);
+        let timer = setTimeout(() => {
+            security_payment_verify(true);
+        // }, SECURITY_TIME));
+        }, SECURITY_TIME) || null;
+        // console.log(Date.now());
+
         // console.log("redirect_payment");
 
         form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
@@ -349,6 +446,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         _temp["vads_url_cancel"] = pay_params.url_cancel;
         _temp["vads_url_refused"] = pay_params.url_refused;
 
+        _temp = {..._temp, ..._actual};
+
         _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
 
         var _signature = '';
@@ -370,6 +469,12 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             _temp['signature'] = _signature ?? '';
         }
 
+        
+        _temp["delivery_mail"] = getById("delivery_mail")?.value || "";
+        _temp["user"] = getById("order_user")?.value || null;
+        _temp["cust_address"] = getById("cust_address")?.value || null;
+        _temp["ship_address"] = getById("ship_address")?.value || null;
+
         setPayParams({
             ...pay_params,
             signature: _signature ?? '',
@@ -378,23 +483,25 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             transId: order_id,
         });
 
-        let _delivery_mail:any = oneById('delivery_mail');
+        let _delivery_mail:any = getById('delivery_mail');
         if(_delivery_mail) {
             _temp['delivery_mail'] = _delivery_mail.value;
         }
-        let intra_tva:any = oneById('intra_tva');
+        let intra_tva:any = getById('intra_tva');
         if(intra_tva) {
             _temp['intra_tva'] = intra_tva.value;
         }
+
+        _temp['has_fees'] = parseInt(total_TVA());
         
         let _country:string|undefined = undefined;
         if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
             if(otherAddress == true) {
-                let temp:HTMLSelectElement = oneById('vads_ship_to_country');
+                let temp:HTMLSelectElement = getById('vads_ship_to_country');
                 _country = temp ? temp.value : "FR";
             }
             else {
-                let temp:HTMLSelectElement = oneById('vads_cust_country');
+                let temp:HTMLSelectElement = getById('vads_cust_country');
                 _country = temp ? temp.value : "FR";
             }
         }
@@ -414,8 +521,25 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
             // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
             // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
-            // let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
+            // let result = await (await cwreate_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
             let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+
+            console.log(result);
+
+            // return false;
+
+            if(typeof window != undefined) {
+                window.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
+            }
+
+            console.log(timer);
+
+            if(timer == null) {
+                return false;
+            }
+
+            setPaymentLaunch(false);
+            console.log(Date.now());
 
             // console.log(result);
 
@@ -493,10 +617,18 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     }
 
     const update_form_fields = (e:Event | any):void => {
-        e.preventDefault();
+        console.log(e);
+        e instanceof Event && e.preventDefault();
         setFormFields({
             ...formFields,
             [e.target.name]: e.target.value
+        });
+    }
+
+    const updage_global_form_fields = function(datas):void {
+        setFormFields({
+            ...formFields,
+            ...datas
         });
     }
 
@@ -536,6 +668,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 pay: pay_params,
                 init_shop: init_shop,
                 updateForm: update_form_fields,
+                updateFillAddress: updage_global_form_fields,
                 total_articles: nb_articles,
                 formSave: formFields,
                 formReset: reset_form_fields,

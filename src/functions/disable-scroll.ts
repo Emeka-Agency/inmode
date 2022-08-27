@@ -1,4 +1,4 @@
-export const disableMainScroll = function () {
+export const disableMainScroll = function (elems = []) {
   document.querySelector('body').classList.add('no-scroll');
 }
 

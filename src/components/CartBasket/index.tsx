@@ -27,7 +27,7 @@ const CartBasket = ({  }:CartBasket) => {
                 }}
             />
             <div hidden={cart.total_articles() ? false : true} className="cart-basket-nbr">
-                <span>{cart.total_articles()}</span>
+                {cart.total_articles()}
             </div>
         </div>
     );

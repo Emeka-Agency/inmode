@@ -324,6 +324,7 @@ export const CountryField = ({ value, placeholder, name, id, required, classes, 
     return (
         <select
             onChange={useCart().updateForm}
+            onClick={useCart().updateForm}
             className={classes ||''}
             style={style || undefined}
             defaultValue={value || useCart().formSave[defaultParams.Country.name] || "FR"}
@@ -466,6 +467,7 @@ export const DeliveryCountryField = ({ value, placeholder, name, id, required, c
     return (
         <select
             onChange={useCart().updateForm}
+            onClick={useCart().updateForm}
             className={classes ||''}
             style={style || undefined}
             defaultValue={value || useCart().formSave[defaultParams.DeliveryCountry.name] || "FR"}

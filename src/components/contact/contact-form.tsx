@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { useWindowSize } from "../../functions/window-size";
 import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import _fetch from "../../functions/fetch";
 import { send_form_large } from "./contact";
 
@@ -42,8 +42,8 @@ const ContactForm = ({ from }:ContactForm) => {
 
     React.useEffect(() => {
         resize_panel(
-            oneById("accordion"),
-            oneById("title-accordion")
+            getById("accordion"),
+            getById("title-accordion")
         );
     }, [size.width]);
 

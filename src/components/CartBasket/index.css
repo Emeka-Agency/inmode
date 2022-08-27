@@ -1,3 +1,7 @@
+.header-parts > .header-bottom + div.cart {
+    height: 50px;
+}
+
 .header-parts > .header-bottom + div.cart,
 div.fixed-menus > div.cart {
     position: relative;
@@ -49,7 +53,8 @@ div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr {
     right: 0;
 }
 
-div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr span {
+div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr {
+    content: attr(data-nbr-basket);
     position: absolute;
     width: 18px;
     height: 18px;
@@ -68,11 +73,12 @@ div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr span {
     right: -8px;
 }
 
-.header-mini + div.cart > div.cart-basket-nbr span {
+.header-mini + div.cart > div.cart-basket-nbr {
+    content: attr(data-nbr-basket);
     position: absolute;
     width: 18px;
     height: 18px;
     text-align: center;
-    top: 2px;
-    left: 0;
+    top: -4px;
+    left: 14px;
 }

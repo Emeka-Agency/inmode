@@ -1,6 +1,26 @@
 // Strapi interfaces
 // Collections
 
+import { string } from "../../o2switch/unix_modules/original/strapi/lib/services/entity-validator/validators"
+
+export interface Woocommerce_Shop_Interface {
+    id: string;
+    wordpress_id: number;
+    name: string;
+    price: number;
+    tags: {
+        name: string;
+    }[];
+    categories: {
+        name: string;
+    }[];
+    meta_data: {
+        key: string;
+        value: string;
+    }
+    images: GatsbyImage_Interface[];
+}
+
 export interface InmodePanel_Addon_Interface {
     Name?: string;
     Banner? : InmodePanel_Base_Banner_Interface;
@@ -59,6 +79,7 @@ export interface InmodePanel_Menu_Interface {
     mini_products?: InmodePanel_Product_Interface[];
     mini_addons?: InmodePanel_Addon_Interface[];
 };
+
 export interface InmodePanel_Order_Interface {
     reference?: string | undefined;
     date: string;
@@ -75,7 +96,10 @@ export interface InmodePanel_Order_Interface {
     sepa?: boolean;
     country: string;
     tva_intra?: string;
+    has_fees: number;
+    user: string|null;
 };
+
 export interface InmodePanel_Product_Interface {
     strapiId: number;
     id: number;
@@ -366,6 +390,7 @@ export interface  InmodePanel_SellingNext_Interface {
         zip?: string | number;
         city?: string;
         society?: string;
+        retriever?: string|null;
     };
     export interface InmodePanel_Order_Shipping_Interface {
         firstname?: string;
@@ -377,10 +402,12 @@ export interface  InmodePanel_SellingNext_Interface {
         zip?: string | number;
         city?: string;
         society?: string;
+        retriever?: string|null;
     };
 
     // Product
     export interface InmodePanel_Product_BoughtArticle_Interface {
+        wp_id?: any;
         article?: number;
         quantity?: number;
         price: number;
@@ -501,6 +528,10 @@ export interface SogecommerceOrder {
     vads_product_qty0?: number;// Frais de livraison
     vads_product_qty9999?: number;
     vads_version: string;// "V2"
+    has_fees: number;
+    cust_address: string|null;
+    ship_address: string|null;
+    user: string|null;
 };
 
 export interface Cart_Interface {
@@ -526,6 +557,7 @@ export interface Cart_Interface {
     pay: PayParams_Interface;
     init_shop(shop_id:string, urls:{success: string, cancel: string, refused: string, error: string}, order_urls:{create: string, load:string, signature:string}):Promise<void>;
     updateForm(e:Event | any):void;
+    updateFillAddress(datas:any):void;
     total_articles():number;
     formSave: Cart_FormSave_Interface | any;
     formReset():void,
@@ -591,6 +623,88 @@ export interface Images_Interface {
     getOne(request:string): GatsbyImage_Interface;
     getSet(request:string[]): GatsbyImage_Interface[];
 };
+
+// BACK INTERFACES
+
+export interface User_Interface {
+    email?: string;
+    prenom?: string;
+    nom?: string;
+    pseudo?: string;
+    is_verified?: boolean;
+    is_active?: boolean;
+    society?: string;
+    crit: string;
+    addresses: Address_Interface[];
+}
+
+export interface UserContext_Interface {
+    getMinimals():User_Interface|null;
+    get(_crit:string|null):any;
+    login():void;
+    signin(_datas:UserSigninParams|null):void;
+    update(_elem:Element|null, _datas:Object|null):void;
+    logged():boolean;
+    logout():void;
+    getCountry(retriever:string|null):string;
+    findAddress(datas:FindAddressParams):void;
+    hasAddresses():boolean;
+    updateAddress(datas:UpdateAddressParams|null, elem:Element|null):void;
+    addAddress():void;
+    removeAddress(datas:string|undefined, elem:Element|null):void;
+    shopUseAddress(elem:Element|null):void;
+    fillAddress():void;
+};
+
+export interface UserSigninParams {
+    action: string;
+    datas: User_Interface;
+};
+
+export interface UserUpdateParams {
+    
+};
+
+export interface Address_Interface {
+    address_1: string;
+    address_2?: string;
+    zip: string;
+    city: string;
+    country: string;
+    deleted?: boolean;
+    label?: string;
+    user?: any;
+    nom?: string;
+    prenom?: string;
+    society?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    retriever?: string;
+    crit?: string;
+};
+
+export interface FindAddressParams {
+    address?: string;
+    critere?: string;
+    valeur?: string;
+};
+
+export interface UpdateAddressParams {
+    address: Address_Interface;
+    user: string;
+}
+
+export interface AddAddressParams {
+    address: Address_Interface;
+    user: string;
+}
+
+export interface RemoveAddressParams {
+    retriever: string;
+};
+
+// FIN BACK INTERFACES
 
 export interface GatsbyImage_Interface {
     childImageSharp: {

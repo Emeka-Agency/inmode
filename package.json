@@ -5,11 +5,13 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@pasdo501/gatsby-source-woocommerce": "^0.15.1",
+    "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "axios": "^0.21.4",
-    "body-parser": "^1.19.2",
+    "body-parser": "^1.20.0",
     "crypto-js": "^4.1.1",
     "dotenv": "^8.6.0",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "flickity": "^2.3.0",
     "flickity-as-nav-for": "^2.0.1",
     "gatsby": "^3.14.6",
@@ -28,9 +30,10 @@
     "gatsby-source-graphql": "^2.14.0",
     "gatsby-source-mysql": "^2.2.3",
     "gatsby-source-strapi": "^1.0.3",
+    "gatsby-source-wordpress": "^6.17.0",
     "gatsby-transformer-sharp": "^3.14.0",
     "imagemin-pngquant": "^9.0.2",
-    "moment": "^2.29.1",
+    "moment": "^2.29.3",
     "mysql": "^2.18.1",
     "pngquant-bin": "^6.0.1",
     "prop-types": "^15.8.1",
@@ -39,7 +42,8 @@
     "react-flickity-component": "^3.6.2",
     "react-helmet": "^6.1.0",
     "react-slick": "^0.27.14",
-    "typescript": "^4.5.5",
+    "stream": "0.0.2",
+    "typescript": "^4.7.4",
     "typescript-eslint": "0.0.1-alpha.0"
   },
   "devDependencies": {
@@ -49,7 +53,7 @@
     "eslint": "^7.32.0",
     "gatsby-plugin-sitemap": "^3.3.0",
     "gatsby-source-instagram": "^0.9.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.7.1"
   },
   "keywords": [
     "gatsby"
@@ -64,9 +68,9 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "update_all": "npm update --save/--save-dev -f",
-    "launch_dev": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=development npm run develop",
-    "launch_stage": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=staging npm run develop",
-    "launch_prod": "cls && npm update --save-dev/--save -f && npm audit fix && gatsby clean && NODE_ENV=production npm run build && gatsby serve"
+    "launch_dev": "cls && gatsby clean && NODE_ENV=development npm run develop",
+    "launch_stage": "cls && gatsby clean && NODE_ENV=staging npm run develop",
+    "launch_prod": "cls && gatsby clean && NODE_ENV=production npm run build && gatsby serve"
   },
   "repository": {
     "type": "git",

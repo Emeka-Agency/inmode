@@ -28,9 +28,9 @@ exports.onCreatePage = async ({
 
   // {/* SWITCH CART */}
 
-//   if(page.path == '/shop/') {
-//     return false;
-//   }
+  if(page.path == '/old-shop/') {
+    return false;
+  }
 //   if(page.path == '/payment/cancel/') {
 //     return false;
 //   }
@@ -50,7 +50,7 @@ exports.onCreatePage = async ({
     ...page,
     context: {
       ...page.context,
-      today_string: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-'),
+      today_string: [new Date().getFullYear(), (new Date().getMonth() + 1 > 9 ? new Date().getMonth() + 1 : `0${new Date().getMonth() + 1}`), (new Date().getDate() > 9 ? new Date().getDate() : `0${new Date().getDate()}`)].join('-'),
     },
   })
 }

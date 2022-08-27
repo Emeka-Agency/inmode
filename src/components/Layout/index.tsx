@@ -18,6 +18,7 @@ import ImagesProvider from "../contexts/images-provider";
 import CartPurchase from "../Cart";
 import PayParams from "../Cart/pay_params";
 import { useCart } from "../contexts/cart-provider";
+import { useUser } from "../contexts/user-provider";
 
 // {/* SWITCH CART END */}
 

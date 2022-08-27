@@ -27,15 +27,15 @@ import {
 import LoadingGIF from '../LoadingGIF';
 
 import './mini.css';
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import { useWindowSize } from "../../functions/window-size";
+import { useUser } from "../contexts/user-provider";
 
 const CartPurchaseMini = ({  }:CartPurchaseMini) => {
 
+    const user = useUser();
     const images = useImages();
-
     const cart = useCart();
-
     const size = useWindowSize();
 
     const [formOpened, setFormOpened] = React.useState(false);
@@ -56,7 +56,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
     const manageCheckboxPayment = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(document != undefined) {
             let current:HTMLInputElement = e.currentTarget;
-            let other:any = oneById(current.id == 'sepa' ? 'soge' : 'sepa');
+            let other:any = getById(current.id == 'sepa' ? 'soge' : 'sepa');
             other.checked = !current.checked;
             return true;
         }
@@ -66,10 +66,10 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
     const sendForm = async(e:React.FormEvent<HTMLFormElement>, same_address:boolean = true) => {
         e.preventDefault();
         if(!isSubmit) {
-            let _mini1:any = oneById('mini-submit-1');if(_mini1) _mini1.disabled = true;
-            let _mini2:any = oneById('mini-submit-2');if(_mini2) _mini2.disabled = true;
-            let _mini3:any = oneById('mini-submit-3');if(_mini3) _mini3.disabled = true;
-            let _sepa:any = oneById('sepa');
+            let _mini1:any = getById('mini-submit-1');if(_mini1) _mini1.disabled = true;
+            let _mini2:any = getById('mini-submit-2');if(_mini2) _mini2.disabled = true;
+            let _mini3:any = getById('mini-submit-3');if(_mini3) _mini3.disabled = true;
+            let _sepa:any = getById('sepa');
             let fields:HTMLElement[] | any[] = []; 
             if(same_address) {
                 let _form2 = document.forms.namedItem('step-2-part');
@@ -122,19 +122,19 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     _temp2 && _temp2.reset();
                     let _temp3 = document.forms.namedItem("step-3-part");
                     _temp3 && _temp3.reset();
-                    let _sepa:any = oneById('sepa');
+                    let _sepa:any = getById('sepa');
                     if(_sepa) {
                         _sepa.checked = _sepa.checked ? true : false;
                     }
-                    let _soge:any = oneById('soge');
+                    let _soge:any = getById('soge');
                     if(_soge) {
                         _soge.checked = _soge.checked ? true : false;
                     }
-                    let _facture:any = oneById('facture');
+                    let _facture:any = getById('facture');
                     if(_facture) {
                         _facture.checked = false;
                     }
-                    let _terms:any = oneById('terms');
+                    let _terms:any = getById('terms');
                     if(_terms) {
                         _terms.checked = false;
                     }
@@ -166,6 +166,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 </div>
                 <div className={`progress-bar${otherAddress ? ' other-address' : ''}${otherAddress && otherAddressOpened ? ' other-opened' : ''}`}></div>
             </div>
+            <input id="order_user" value={user.get('user')} style={{display: 'none'}}/>
             {/* FIRST PART */}
             <div className={`cart-purchase transition${cart.cart_opened ? ' opened' : ''}`}>
                 <div className="cart-close"

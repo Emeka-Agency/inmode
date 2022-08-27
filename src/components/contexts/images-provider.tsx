@@ -13,6 +13,18 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     const [images]:[ImagesList, React.Dispatch<ImagesList>] = React.useState(useStaticQuery(graphql `
         {
+            logoutIcon: file(relativePath: {eq: "icons/exit.svg"}) {
+                publicURL
+            }
+            profileIcon: file(relativePath: {eq: "icons/profile.svg"}) {
+                publicURL
+            }
+            whiteEditIcon: file(relativePath: {eq: "icons/edit-white.svg"}) {
+                publicURL
+            }
+            blueEditIcon: file(relativePath: {eq: "icons/edit-blue.svg"}) {
+                publicURL
+            }
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
                 childImageSharp {
                     fluid {
@@ -204,6 +216,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     }
                 }
             }
+            whiteTrash: file(relativePath: {eq: "icons/white-trash.svg"}) {
+                publicURL
+            }
+            redTrash: file(relativePath: {eq: "icons/red-trash.svg"}) {
+                publicURL
+            }
         }
     `));
 
@@ -236,6 +254,10 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 };
 
 interface ImagesList {
+    profileIcon: GatsbyImage_Interface;
+    logoutIcon: GatsbyImage_Interface;
+    whiteEditIcon: GatsbyImage_Interface;
+    blueEditIcon: GatsbyImage_Interface;
     keyBenefitIcon: GatsbyImage_Interface;
     cartBasketIcon: GatsbyImage_Interface;
     closeWhiteIcon: GatsbyImage_Interface;
@@ -265,6 +287,8 @@ interface ImagesList {
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
+    whiteTrash: GatsbyImage_Interface;
+    redTrash: GatsbyImage_Interface;
 }
 
 export default ImagesProvider;

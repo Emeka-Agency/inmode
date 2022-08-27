@@ -7,6 +7,8 @@ import SEO from "../components/seo";
 
 const EventsPage = ({ data }:EventsPage) =>  {
 
+    console.group(data);
+
     return (
         <Layout>
             <SEO title="Événements"/>

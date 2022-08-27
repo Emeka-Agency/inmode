@@ -16,6 +16,12 @@ console.log('URL_ORDER_CREATE : ' + process.env.URL_ORDER_CREATE);
 console.log('URL_ORDER_LOAD : ' + process.env.URL_ORDER_LOAD);
 console.log('URL_ORDER_CANCEL : ' + process.env.URL_ORDER_CANCEL);
 console.log('URL_ORDER_SIGNATURE : ' + process.env.URL_ORDER_SIGNATURE);
+console.log('CLIENT_KEY : ' + process.env.CLIENT_KEY);
+console.log('SECRET_KEY : ' + process.env.SECRET_KEY);
+console.log('WP_DOMAIN : ' + process.env.WP_DOMAIN);
+console.log('WP_URL : ' + process.env.WP_URL);
+console.log('WP_USER : ' + process.env.WP_USER);
+console.log('WP_PASS : ' + process.env.WP_PASS);
 
 module.exports = {
     siteMetadata: {
@@ -85,6 +91,23 @@ module.exports = {
             },
         },
         {
+            resolve: "@pasdo501/gatsby-source-woocommerce",
+            options: {
+                // Base URL of WordPress site
+                api: `shopinfr.emeka.fr`,
+                // true if using https. false otherwise.
+                https: true,
+                api_version: 'wc/v3',
+                encoding: 'utf8',
+                api_keys: {
+                    consumer_key: `${process.env.CLIENT_KEY}`,
+                    consumer_secret: `${process.env.SECRET_KEY}`,
+                },
+                // Array of strings with fields you'd like to create nodes for...
+                fields: ['products'],
+            }
+        },
+        {
             resolve: `gatsby-source-strapi`,
             options: {
                 apiURL: `${process.env.STRAPI_URL}`,
@@ -113,6 +136,57 @@ module.exports = {
                 }
             },
         },
+        // {
+        //     resolve: "gatsby-source-wordpress",
+        //     options: {
+        //         url: `${process.env.WP_DOMAIN}`,
+        //         baseUrl: `${process.env.WP_URL}`,
+        //         protocol: "https",
+        //         hostingWPCOM: false,
+        //         useACF: true,
+        //         acfOptionPageIds: [],
+        //         auth: {
+        //             htaccess_user: `${process.env.WP_USER}`,
+        //             htaccess_pass: `${process.env.WP_PASS}`,
+        //             htaccess_sendImmediately: false,
+        //         },
+        //         // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
+        //         // It can help you debug specific API Endpoints problems.
+        //         verboseOutput: true,
+        //         // Set how many pages are retrieved per API request.
+        //         perPage: 100,
+        //         // Set how many simultaneous requests are sent at once.
+        //         concurrentRequests: 10,
+        //         // Set WP REST API routes whitelists
+        //         // and blacklists using glob patterns.
+        //         // Defaults to whitelist the routes shown
+        //         // in the example below.
+        //         // See: https://github.com/isaacs/minimatch
+        //         // Example:  `["/*/*/comments", "/yoast/**"]`
+        //         // ` will either include or exclude routes ending in `comments` and
+        //         // all routes that begin with `yoast` from fetch.
+        //         // Whitelisted routes using glob patterns
+        //         includedRoutes: [
+        //             "**/categories",
+        //             "**/posts",
+        //             "**/pages",
+        //             "**/media",
+        //             "**/tags",
+        //             "**/taxonomies",
+        //             "**/users",
+        //             "**/products",
+        //             "**/product",
+        //             "**/articles",
+        //             "**/article",
+        //         ],
+        //         // Blacklisted routes using glob patterns
+        //         excludedRoutes: ["**/posts/1456"],
+        //         // use a custom normalizer which is applied after the built-in ones.
+        //         normalizer: function({ entities }) {
+        //             return entities
+        //         },
+        //     },
+        // },
         // {
         //   resolve: `gatsby-source-instagram`,
         //   options: {

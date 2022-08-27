@@ -53,7 +53,8 @@ function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Ord
             (datas && typeof datas.zip == 'number' && datas.zip > 0)
             ? datas.zip : "ErrorZIP",
         city: datas && typeof datas.city == 'string' && datas.city.length  ? datas.city : "ErrorCity",
-        society: datas && typeof datas.society == 'string' && datas.society.length ? datas.society : undefined
+        society: datas && typeof datas.society == 'string' && datas.society.length ? datas.society : undefined,
+        retriever: datas && typeof datas.retriever == 'string' && datas.retriever.length ? datas.retriever : undefined,
     }
 }
 
@@ -98,6 +99,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         date: date_from_transdate(_datas.vads_trans_date),
         articles: cart && cart.map((article:Article_Interface):InmodePanel_Product_BoughtArticle_Interface => {
             return {
+                wp_id: document?.querySelector(`[data-reference="${article.reference}"]`)?.getAttribute('data-wp_id'),
                 article: article.id,
                 quantity: article.quantity,
                 price: article.price,
@@ -116,6 +118,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
             zip: _datas.vads_cust_zip,
             city: _datas.vads_cust_city,
             society: _datas.vads_cust_legal_name,
+            retriever: _datas.cust_address,
         },
         shipping: {
             firstname: _datas.vads_ship_to_first_name,
@@ -127,6 +130,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
             zip: _datas.vads_ship_to_zip,
             city: _datas.vads_ship_to_city,
             society: _datas.vads_ship_to_legal_name,
+            retriever: _datas.ship_address,
         },
         firstname: _datas.vads_cust_first_name,
         lastname: _datas.vads_cust_last_name,
@@ -138,6 +142,8 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         sepa: sepa ? sepa : false,
         country: _countries(country),
         tva_intra: _datas.intra_tva ?? false,
+        has_fees: _datas.has_fees,
+        user: _datas.user,
     };
 
     return filter(_temp);

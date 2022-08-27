@@ -3,16 +3,20 @@ import { useCart } from "../contexts/cart-provider";
 
 import './shop-product.css';
 
-const ShopProduct2 = ({ reference, special }) => {
+const ShopProduct2 = ({ reference, special, wp_id }:ShopProduct2) => {
 
     const cart = useCart();
     const article = cart.articles[reference];
 
     return (
-        <div className={`shop-product2 transition${special ? ' special' : ''}`}>
+        <div
+            data-reference={reference}
+            data-wp_id={wp_id}
+            className={`shop-product2 transition${special ? ' special' : ''}`}
+        >
             <div className={`reference${special ? ' special' : ''}`}>{reference}</div>
             <div className={`name${special ? ' special' : ''}`}>{article.Name}</div>
-            <div className={`pack${special ? ' special' : ''}`}>{article.pack_name()}</div>
+            <div className={`pack${special ? ' special' : ''}`}>{article.pack}</div>
             <div className={`manage${special ? ' special' : ''}`}>
                 <div
                     className={`minus${special ? ' special' : ''}`}
@@ -23,7 +27,7 @@ const ShopProduct2 = ({ reference, special }) => {
                     -
                 </div>
                 <div className={`quantity${special ? ' special' : ''}`}>
-                    {cart.find(reference) ? cart.find(reference).quantity : 0}
+                    {cart.find(reference) ? cart.find(reference)?.quantity : 0}
                 </div>
                 <div
                     className={`add${special ? ' special' : ''}`}
@@ -35,7 +39,7 @@ const ShopProduct2 = ({ reference, special }) => {
                 </div>
             </div>
             <div className={`price${special ? ' special' : ''}`}>
-                {cart.find(reference) ? cart.find(reference).total() : article.price}
+                {cart.find(reference) ? cart.find(reference)?.total() : article.price}
             </div>
             <div
                 className={`purchase${special ? ' special' : ''}`}
@@ -52,12 +56,10 @@ const ShopProduct2 = ({ reference, special }) => {
     );
 }
 
-ShopProduct2.propTypes = {
-
+interface ShopProduct2 {
+    reference: string;
+    special: any;
+    wp_id?: number;
 };
-
-ShopProduct2.defaultProps = {
-
-}
 
 export default ShopProduct2;
