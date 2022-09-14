@@ -66,7 +66,7 @@ const PaymentPaidPage = () => {
     return (
         <Layout>
             <SEO title={page_title}/>
-            <OrderLayout status={page_title} order={order}/>
+            <OrderLayout payment={"paid"} status={page_title} order={order}/>
         </Layout>
     );
 };

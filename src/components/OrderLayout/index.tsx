@@ -10,6 +10,7 @@ import './index.css';
 interface OrderLayoutParams {
     status: string;
     order?: InmodePanel_Order_Interface;
+    payment: string;
 };
 
 function capitalize(string:string|null = null) {
@@ -18,14 +19,16 @@ function capitalize(string:string|null = null) {
 }
 
 function get_date(date:any):string {
-    return `${capitalize(date["%weekday%"])} ${date["%day%"]} ${capitalize(date["%monthname%"])} ${date["%year%"]} à ${date["%hours%"]}:${date["%minutes%"]}:${date["%seconds%"]}`;
+    // return `${capitalize(date["%weekday%"])} ${date["%day%"]} ${capitalize(date["%monthname%"])} ${date["%year%"]} à ${date["%hours%"]}:${date["%minutes%"]}:${date["%seconds%"]}`;
+    const _d = new Date(date);
+    return `0${_d.getDay()}/${_d.getMonth() < 10 ? '0' : ''}${_d.getMonth()}/${_d.getFullYear()} à ${_d.getHours() < 10 ? '0' : ''}${_d.getHours()}:${_d.getMinutes() < 10 ? '0' : ''}${_d.getMinutes()}:${_d.getSeconds() < 10 ? '0' : ''}${_d.getSeconds()}`;
 }
 
 function status_message(status:string):string {
     return status;
 }
 
-const OrderLayout = ({ status, order }:OrderLayoutParams) => {
+const OrderLayout = ({ status, order, payment }:OrderLayoutParams) => {
 
     const cart = useCart();
 
@@ -63,7 +66,11 @@ const OrderLayout = ({ status, order }:OrderLayoutParams) => {
                     {/* </div> */}
                     {/* date: "2021-02-26T05:40:43.000Z" */}
                     <div className="order-date">
-                        {status} le {get_date(order.date)}.
+                        {/* {status} le {get_date(order.date)}. */}
+                        {payment == "paid" ? `Paiement effectué le ${get_date(order.date_modified)}.` : ""}
+                        {payment == "cancel" ? `Paiement annulé le ${get_date(order.date_modified)}.` : ""}
+                        {payment == "refused" ? `Paiement refusé le ${get_date(order.date_modified)}.` : ""}
+                        {payment == "error" ? `Erreur de paiement le ${get_date(order.date_modified)}.` : ""}
                     </div>
                     {/* billing: {id: 20, firstname: "m", lastname: "m", phone: "0667630604", mail: "test@gmail.com", …} */}
                     {/* {order.billing && <div className="order-billing">
