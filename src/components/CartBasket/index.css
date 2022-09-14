@@ -55,12 +55,16 @@ div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr {
 
 div.fixed-menus > div.cart img.cart-basket + div.cart-basket-nbr {
     content: attr(data-nbr-basket);
-    position: absolute;
-    width: 18px;
+    font-size: 12px;
     height: 18px;
+    left: 22px;
+    position: absolute;
+    right: 0;
     text-align: center;
-    top: -12.5px;
-    left: 1px;
+    top: 0;
+    top: -2.5px;
+    width: 18px;
+    line-height: 18px;
 }
 
 /* HEADER-MINI */
