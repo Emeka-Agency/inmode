@@ -556,7 +556,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
             // console.log(result);
 
-            if(result && result.status == 'success') {
+            if(result && result.wp_id != null && result.number != null && result.reference != null) {
                 if(sepa) {
                     openModale(
                         paymentSEPA(

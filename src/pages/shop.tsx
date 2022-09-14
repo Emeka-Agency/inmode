@@ -23,6 +23,9 @@ const ShopPage = ({ data }:ShopPage) => {
                         return {
                             id: node.id,
                             wp_id: node.wordpress_id,
+                            Name: node.name,
+                            // pack: node.
+                            price: node.price,
                             ...Object.fromEntries(
                                 node.meta_data.map(meta => {
                                     return [meta.key, meta.value[0] ?? null];
@@ -130,12 +133,43 @@ export const query = graphql`
                 nodes {
                     id
                     wordpress_id
+                    name
+                    price
+                    regular_price
+                    sale_price
                     meta_data {
                         key
                         value
+                    }
+                    categories {
+                        name
+                        slug
+                    }
+                    images {
+                        localFile {
+                            childrenImageSharp {
+                                fluid {
+                                    srcSet
+                                    srcSetWebp
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
 `;
+    // allWcProducts {
+    //     group(field: categories___name) {
+    //         fieldValue
+    //         nodes {
+    //             id
+    //             wordpress_id
+    //             meta_data {
+    //                 key
+    //                 value
+    //             }
+    //         }
+    //     }
+    // }

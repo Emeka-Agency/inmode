@@ -98,6 +98,13 @@ export interface InmodePanel_Order_Interface {
     tva_intra?: string;
     has_fees: number;
     user: string|null;
+
+    // WP_PART
+    date_paid?: string;
+    date_completed?: string;
+    date_created?: string;
+    date_modified?: string;
+    custom: string|null;
 };
 
 export interface InmodePanel_Product_Interface {
@@ -143,6 +150,12 @@ export interface InmodePanel_Shop_Interface {
         localFile: GatsbyImage_Interface;
     };
     relative?: string;
+    wp_id?: string|number;
+};
+
+export interface InmodePanel_ShopGroup_Interface {
+    fieldValue: string;
+    nodes: InmodePanel_Shop_Interface[];
 };
 export interface InmodePanel_TagFamily_Interface {
     FamilyName: string;

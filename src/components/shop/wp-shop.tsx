@@ -1,7 +1,7 @@
 import React from "react";
 import ShopProduct2 from "./shop-product";
 import ShopMenu from "./shop-menu";
-import { InmodePanel_Shop_Interface } from "../interfaces";
+import { InmodePanel_ShopGroup_Interface } from "../interfaces";
 
 const WPShop = ({ products, special, shop_card }:WPShop) => {
 
@@ -32,7 +32,7 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
             </div>
         <div className={`${shop_card}-products${special ? " special" : ""}`}>
             {/* ///////////////////////////////////////// */}
-            {products instanceof Array && products.map((group, group_key) => {
+            {products instanceof Array && products.map((group:InmodePanel_ShopGroup_Interface, group_key) => {
                 if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
                 return (
                     <div key={group_key} className="shop-addon">
@@ -41,9 +41,9 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
                         return (
                             <ShopProduct2
                                 key={`${group_key}-${key}`}
-                                reference={product.reference}
+                                reference={product.reference || ""}
                                 special={special}
-                                wp_id={product.wp_id}
+                                wp_id={product.wp_id || -1}
                             />
                         );
                     })}
@@ -58,7 +58,7 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
 }
 
 interface WPShop {
-    products: InmodePanel_Shop_Interface[];
+    products: InmodePanel_ShopGroup_Interface[];
     special: any;
     shop_card: string;
 };
