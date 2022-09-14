@@ -26,6 +26,7 @@ import {
 import { openModale, paymentProblems, paymentSEPA } from '../../functions/modale';
 import { initWakeup } from '../../functions/fetch';
 import { useUser } from './user-provider';
+import { err_log } from '../../functions/logging';
 
 export const useCart = ():Cart_Interface => {
     return useContext(CartContext);
@@ -344,7 +345,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             cache: 'default',
             body: JSON.stringify({string: str})
         };
-        promise = await (await fetch(pay_params.order_signature, vars)).json().catch(err => {});
+        promise = await (await fetch(pay_params.order_signature, vars)).json().catch((err:any) => {err_log(err, "components/contexts/cart-provider.tsx:get_signature promise catch");});
         // console.log(promise);
         return promise;
     }
@@ -585,9 +586,9 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 return false;
             }
         }
-        catch(err) {
+        catch(err:any) {
             // IMPORTANT - Reset formulaire et affiche message
-            console.log(err);
+            err_log(err, "components/contexts/cart-provider.tsx:redirect_payment second catch")
             return false;
         }
         

@@ -3,6 +3,8 @@
 // IS-TYPE
 // ================================
 
+import { err_log } from "./logging";
+
 /**
  * @file All needed generic functions to type-check of passed through elements
  */
@@ -11,9 +13,8 @@
     try {
         return _element instanceof Element || _element instanceof HTMLDocument ? true : false;
     }
-    catch(err) {
-        console.trace(err);
-        console.error(err);
+    catch(err:any) {
+        err_log(err, "functions/tools.ts:isElement catch");
         return false
     }
 }
@@ -190,9 +191,8 @@ function strToDom(str:string|any) {
     try {
         return document?.createRange().createContextualFragment(str);
     }
-    catch(_err) {
-        console.trace(_err);
-        console.error(_err);
+    catch(_err:any) {
+        err_log(_err, "functions/tools.ts:preventDefault catch");
         return null;
     }
 }

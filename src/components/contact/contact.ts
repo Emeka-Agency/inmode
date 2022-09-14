@@ -1,3 +1,4 @@
+import { err_log } from "../../functions/logging";
 import { selectOne } from "../../functions/selectors";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
@@ -29,7 +30,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         if(_temp) {_temp.innerHTML = "";}
         let response = await (
             await fetch(
-                `${process.env.INMODE_BACK}/api/mails`,
+                `${process.env.SYMF_BACK}/api/mails`,
                 // `https://localhost:8000/api/mails`,
                 request_init
             )
@@ -66,7 +67,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 }
             })
             .catch(function(error) {
-                console.log(error);
+                err_log(error, "components/contact.ts:send_form_mini response await catch");
                 _temp = selectOne('#contact-mini .submit');
                 _temp.setAttribute('disabled', true);
                 _temp = selectOne('#contact-mini .req-return.error');
@@ -76,7 +77,8 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         // console.log(response);
         // ).json()
     }
-    catch(err) {
+    catch(err:any) {
+        err_log(err, "components/contact.ts:send_form_mini main catch");
         let _temp = selectOne('#contact-mini .submit');
         _temp && _temp.setAttribute('disabled', "true");
         _temp = selectOne('#contact-mini .req-return.error');
@@ -150,7 +152,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 }
             })
             .catch(function(error) {
-                console.log(error);
+                err_log(error, "components/contact.ts:send_form_large response await catch");
                 // setSubmitText(error.message);
                 let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
                 if(_temp1) _temp1.disabled = true;
@@ -162,8 +164,9 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         // console.log(response);
         // ).json()
     }
-    catch(err) {
+    catch(err:any) {
         // setSubmitText(error.message);
+        err_log(err, "components/contact.ts:send_form_large main catch");
         let _temp1:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
         if(_temp1) _temp1.disabled = true;
         let _temp2:HTMLElement | null = document.querySelector('#full-contact-form .req-return.error');
@@ -179,19 +182,22 @@ function handlePromise(promise:Response) {
         // console.log("Try json()");
         retour = promise.json();
     }
-    catch(err_json) {
+    catch(err_json:any) {
+        err_log(err_json, "components/contact.ts:handlePromise catch promise.json() error");
         console.log(err_json);
         try {
             // console.log("Try text()");
             retour = promise.text();
         }
-        catch(err_text) {
+        catch(err_text:any) {
+            err_log(err_text, "components/contact.ts:handlePromise catch promise.text() error");
             console.log(err_text);
             try {
                 // console.log("Try blob()");
                 retour = promise.blob();
             }
-            catch(err_blob) {
+            catch(err_blob:any) {
+                err_log(err_blob, "components/contact.ts:handlePromise catch promise.blob() error");
                 console.log(err_blob);
                 retour = null;
             }

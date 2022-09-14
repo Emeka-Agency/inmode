@@ -3,6 +3,7 @@
  */
 
 import { isElement, isFunction, isNull, isObject, isString } from "./is-type";
+import { err_log } from "./logging";
 
 /**
  * 
@@ -74,8 +75,7 @@ const _fetch = (
             return false;
         })
         .catch((err) => {
-            console.trace(err);
-            console.error(err);
+            err_log(err, "functions/fetch.ts:_fetch fetch catch");
             if(_onError != null) {
                 _onError(_elem, err);
             }
@@ -114,25 +114,25 @@ export const initWakeup = function(from = "unk") {
     };
 
     fetch(
-        `${process.env.INMODE_BACK}/api/launch`,
+        `${process.env.SYMF_BACK}/api/launch`,
         request_init
     )
     .then(function(res) {
         try {
             return res.json();
         }
-        catch(err_json) {
-            console.log(err_json);
+        catch(err_json:any) {
+            err_log(err_json, "functions/fetch.ts:initWakeup catch promise.json() error");
             try {
                 return res.text();
             }
-            catch(err_text) {
-                console.log(err_text);
+            catch(err_text:any) {
+                err_log(err_text, "functions/fetch.ts:initWakeup catch promise.text() error");
                 try {
                     return res.blob();
                 }
-                catch(err_blob) {
-                    console.log(err_blob);
+                catch(err_blob:any) {
+                    err_log(err_blob, "functions/fetch.ts:initWakeup catch promise.blob() error");
                     return null;
                 }
             }
@@ -141,7 +141,7 @@ export const initWakeup = function(from = "unk") {
     .then((res) => {
         // console.log(res);
     })
-    .catch(err => console.log(err));
+    .catch(err => err_log(err, "functions/fetch.ts:initWakeup main catch"));
 
     return true;
 };

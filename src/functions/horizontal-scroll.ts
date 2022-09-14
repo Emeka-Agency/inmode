@@ -1,5 +1,7 @@
 // CONST
 
+import { err_log } from "./logging";
+
 const initialized_particle = "h-initzd";
 
 // INITS
@@ -16,8 +18,8 @@ export const __horizontal_scroll__Init = function(selector?:string, multiple:boo
             try {
                 return initHorScrollElem(elem);
             }
-            catch(err) {
-                console.trace(err);
+            catch(err:any) {
+                err_log(err, "functions/horizontal-scroll.ts:__horizontal_scroll__Init catch");
                 return false;
             }
         }).filter(result => result).length > 0;
@@ -39,8 +41,8 @@ function initHorScrollElem(elem:Element|null = null):boolean {
         });
         return true;
     }
-    catch(err) {
-        console.trace(err);
+    catch(err:any) {
+        err_log(err, "functions/horizontal-scroll.ts:initHorScrollElem catch");
         return false;
     }
 }

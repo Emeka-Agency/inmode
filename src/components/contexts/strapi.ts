@@ -1,3 +1,4 @@
+import { err_log } from "../../functions/logging";
 import {
     Article_Interface,
     InmodePanel_Order_Interface,
@@ -164,7 +165,7 @@ export async function create_object(body:InmodePanel_Order_Interface, url:string
         cache: 'default',
         body: JSON.stringify(body)
     };
-    promise = await fetch(url, vars).catch(err => console.error(err));
+    promise = await fetch(url, vars).catch(err => err_log(err, "components/contexts/strapi.ts:create_object fetch catch"));
     // console.log(promise);
     return promise;
 }

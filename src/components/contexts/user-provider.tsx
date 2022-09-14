@@ -17,6 +17,7 @@ import { getById, selectAll } from '../../functions/selectors';
 import _fetch from '../../functions/fetch';
 import { openModale, loginModale, signinModale, closeModale, createAddressModale, selectAddressModale } from '../../functions/modale';
 import { useCart } from './cart-provider';
+import { err_log } from '../../functions/logging';
 
 export const useUser = ():UserContext_Interface => {
     return useContext(UserContext);
@@ -502,8 +503,8 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 }
             }
         }
-        catch(err) {
-            console.error(err);
+        catch(err:any) {
+            err_log(err, "components/contexts/user-provider.tsx:__fill_address catch")
         }
     };
     

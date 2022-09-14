@@ -1,3 +1,5 @@
+import { err_log } from "./logging";
+
 function initTests() {
     console.log("initTests");
 
@@ -120,18 +122,18 @@ function testPromise(href, datas) {
         try {
             retour = response.json();
         }
-        catch(err_json) {
-            console.log(err_json);
+        catch(err_json:any) {
+            err_log(err_json, "functions/test.ts:testPromise catch promise.json() error");
             try {
                 retour = response.text();
             }
-            catch(err_text) {
-                    console.log(err_text);
+            catch(err_text:any) {
+                    err_log(err_text, "functions/test.ts:testPromise catch promise.text() error");
                 try {
                     retour = response.blob();
                 }
-                catch(err_blob) {
-                    console.log(err_blob);
+                catch(err_blob:any) {
+                    err_log(err_blob, "functions/test.ts:testPromise catch promise.blob() error");
                     retour = "No way to get back the promise";
                 }
             }
@@ -142,8 +144,8 @@ function testPromise(href, datas) {
     .then((datas) => {
         console.log(datas);
     })
-    .catch((error) => {
-        console.log(error);
+    .catch((error:any) => {
+        err_log(error, "functions/test.ts:testPromise main catch");
     });
 
     return true;
