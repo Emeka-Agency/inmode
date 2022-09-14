@@ -186,7 +186,7 @@ export function loginModale(datas:loginModale = {}) {
             <h2>S'identifier</h2>
             <form id="login_form">
                 <div id="user_section">
-                    <label id="user_input_label" for="user_input">Adresse mail / pseudo</label>
+                    <label id="user_input_label" for="user_input">Adresse mail</label>
                     <input type="email" name="user_input" id="user_input" placeholder="Mail..." required/>
                     <span id="user_input_result"></span>
                 </div>

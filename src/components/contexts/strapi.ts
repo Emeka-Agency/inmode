@@ -140,7 +140,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         delivery_tax: _datas.vads_product_qty0 && _datas.vads_product_qty0 == 1 ? 50 : 0,
         paid: false,
         status: 'UNDER_VERIFICATION',
-        total: document.getElementById("vads_amount") instanceof Element ? document.getElementById("vads_amount").getAttribute('value') / 100 : ((_datas.vads_amount ? typeof _datas.vads_amount == 'string' ? parseFloat(_datas.vads_amount) : _datas.vads_amount : 0)/100).toFixed(2) || total,
+        total: document.getElementById("vads_amount") instanceof Element ? document.getElementById("vads_amount")?.getAttribute('value') / 100 : ((_datas.vads_amount ? typeof _datas.vads_amount == 'string' ? parseFloat(_datas.vads_amount) : _datas.vads_amount : 0)/100).toFixed(2) || total,
         sepa: sepa ? sepa : false,
         country: _countries(country),
         tva_intra: _datas.intra_tva ?? false,

@@ -103,6 +103,7 @@
 #modale.create-address-modale #modale-container.create-address-container #modale-content form label {
     font-size: 16px;
     color: white;
+    display: block;
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form input {
@@ -147,7 +148,7 @@
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form input::placeholder {
-    color: white;
+    color: #fff9; /* */
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form #user_section {

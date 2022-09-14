@@ -16,7 +16,7 @@ const ShopProduct2 = ({ reference, special, wp_id }:ShopProduct2) => {
         >
             <div className={`reference${special ? ' special' : ''}`}>{reference}</div>
             <div className={`name${special ? ' special' : ''}`}>{article.Name}</div>
-            <div className={`pack${special ? ' special' : ''}`}>{article.pack}</div>
+            <div className={`pack${special ? ' special' : ''}`}>{article.pack || ""}</div>
             <div className={`manage${special ? ' special' : ''}`}>
                 <div
                     className={`minus${special ? ' special' : ''}`}

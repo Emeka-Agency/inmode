@@ -3263,7 +3263,7 @@ input.neumorphic::placeholder,
 textarea.neumorphic::placeholder,
 .neumorphic textarea::placeholder {
     font-family: 'raleway', sans-serif;
-    color: #fff;
+    color: #fff9; /* */
 }
 
 button.neumorphic,

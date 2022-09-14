@@ -123,7 +123,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input::placeholder {
-    color: white;
+    color: #fff9; /* */
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #user_section {
