@@ -32,6 +32,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     }
                 }
             }
+            orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {
+                publicURL
+            }
             cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {
                 publicURL
             }
@@ -259,6 +262,7 @@ interface ImagesList {
     whiteEditIcon: GatsbyImage_Interface;
     blueEditIcon: GatsbyImage_Interface;
     keyBenefitIcon: GatsbyImage_Interface;
+    orderCreateSpinner: GatsbyImage_Interface;
     cartBasketIcon: GatsbyImage_Interface;
     closeWhiteIcon: GatsbyImage_Interface;
     hexagonalCross: GatsbyImage_Interface;

@@ -84,7 +84,9 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
         let fields = [...Array.from(document.forms.namedItem("purchase") || []).filter((field:any) => {return field.id.includes('vads_')})];
         setIsSubmit(true);
         document.getElementById('vads_amount').value = cart.total_all_included();
-        setIsCreated(await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked) === true ? true : false);
+        let res = await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked);
+        setIsCreated(res === true ? true : false);
+        setIsSubmit(res === true ? false : null);
         _temp = getById('big-submit');
         if(_temp) { _temp.disabled= false; }
     }
@@ -194,6 +196,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
             className={!cart.cart_opened ? "all-close" : !formOpened ? 'step-1' : 'step-2-3'}
             onSubmit={sendForm}
         >
+            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.getOne('orderCreateSpinner')?.publicURL}/></div>
             <input id="order_user" value={user.get('user')} style={{display: 'none'}}/>
             {/* FIRST PART */}
             <div className={`cart-purchase transition${cart.cart_opened ? ' opened' : ''}`}>

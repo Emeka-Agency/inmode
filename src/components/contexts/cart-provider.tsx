@@ -545,11 +545,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 window.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
             }
 
-            console.log(timer);
+            // console.log(timer);
 
-            if(timer == null) {
-                return false;
-            }
+            // if(timer == null) {
+            //     return false;
+            // }
 
             setPaymentLaunch(false);
             console.log(Date.now());

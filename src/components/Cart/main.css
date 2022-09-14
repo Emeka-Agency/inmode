@@ -639,3 +639,18 @@ form#purchase #step-3-part #choose-shipping-address-zone:hover {
     color: white;
     transition: color 0.1s ease-in-out 0s;
 }
+
+/* ORDER-CREATE-WAITER */
+
+form #order-create-waiter {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #0009;
+    z-index: 9;
+}
+
+form #order-create-waiter img {
+    position: absolute;
+    width: 200px;
+}

@@ -157,6 +157,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
             id="purchase-mini"
             className={!cart.cart_opened ? "all-close" : !formOpened ? 'step-1' : 'step-2-3'}
         >
+            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.getOne('orderCreateSpinner')?.publicURL}/></div>
             <div className="stepper">
                 <div id="step-1" className="step">
                     <div className="num">1</div>
