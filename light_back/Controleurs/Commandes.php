@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Modeles\App;
 use App\Modeles\Commande;
 
 class ControleurCommandes {
@@ -17,22 +18,22 @@ class ControleurCommandes {
             case null:
                 return self::afficheCommandes();
             case $GLOBALS["app"]->avoirURL("order-signature"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_signature();}
+                if(App::__request_method() == "POST") {return self::order_signature();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             case $GLOBALS["app"]->avoirURL("order-details"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_details();}
+                if(App::__request_method() == "POST") {return self::order_details();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             case $GLOBALS["app"]->avoirURL("order-payment-update"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_payment_update();}
+                if(App::__request_method() == "POST") {return self::order_payment_update();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             case $GLOBALS["app"]->avoirURL("order-create"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_create();}
+                if(App::__request_method() == "POST") {return self::order_create();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             case $GLOBALS["app"]->avoirURL("order-load"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_load();}
+                if(App::__request_method() == "POST") {return self::order_load();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             case $GLOBALS["app"]->avoirURL("order-cancel"):
-                if($_SERVER["REQUEST_METHOD"] == "POST") {return self::order_cancel();}
+                if(App::__request_method() == "POST") {return self::order_cancel();}
                 else {echo JSONResponse(errorBody("wrong_method")); return false;}
             default: return [];
         }

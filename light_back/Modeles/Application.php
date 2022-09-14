@@ -533,6 +533,9 @@ class App
         {
             case 'home': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/';
 
+            case 'api': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/api';
+            case 'front-logs': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/front-logs';
+
             case 'orders': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/orders';
             case 'order-signature': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-signature';
             case 'order-details': return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/order-details';
@@ -557,6 +560,8 @@ class App
             default: return /*$GLOBALS['particule_url'].($this->estAdminZone() == true ? '/'.$_ENV['particule_admin_secret'] : '').*/'/404';;
         }
     }
+
+    public static function __request_method() {return $_SERVER['REQUEST_METHOD'] ?? null;}
 
     const DEFAULT = [
         'ICONS_PATH' => "private/icons/",

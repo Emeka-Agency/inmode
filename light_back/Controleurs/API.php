@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Modeles\App;
+
 class ControleurAPI {
 
     public static function resolve($path_schema = [])
@@ -12,6 +14,8 @@ class ControleurAPI {
         {
             case "test-room":
                 return self::afficheAPITestRoom();
+            case $GLOBALS["app"]->avoirURL("front-logs"):
+                return self::manageFrontLogs();
             case null:
                 return ControleurBase::afficheHome();
             default: return [];
@@ -20,15 +24,15 @@ class ControleurAPI {
 
     public static function afficheAPITestRoom()
     {
-        logEvent("afficheHome()");
+        logEvent("afficheAPITestRoom()");
         try
         {
             echo $GLOBALS['twig']->render(
-                'pages/home.html.twig',
+                'pages/api.html.twig',
                 [
-                    'page_title' => 'Accueil',
-                    'route' => 'home',
-                    'page_params' => $GLOBALS['app']->getParametresPage("home")
+                    'page_title' => 'API',
+                    'route' => 'test_room',
+                    'page_params' => $GLOBALS['app']->getParametresPage("test_room")
                 ]
             );
             return true;
@@ -36,6 +40,30 @@ class ControleurAPI {
         catch(\Exception $e)
         {
             echo $e->getFile().":".$e->getLine()." => ".$e->getMessage();
+            return false;
+        }
+    }
+
+    public static function manageFrontLogs()
+    {
+        try
+        {
+            switch(App::__request_method() ?? null)
+            {
+                case "GET":
+                case "OPTIONS":
+                default:
+                    http_response_code(405);
+                    echo JSONResponse(errorBody("wrong_method"));
+                    return true;
+            }
+        }
+        catch(\Exception $e)
+        {
+            logEvent($e->getMessage());
+            logError($e->getMessage());
+            http_response_code(405);
+            echo JSONResponse(errorBody());
             return false;
         }
     }

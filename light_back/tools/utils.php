@@ -1,5 +1,7 @@
 <?php
 
+use App\Modeles\App;
+
     require_once('./tools/is_type.php');
     require_once('./tools/log.php');
     require_once('./tools/mysql.php');
@@ -35,7 +37,7 @@
             case "wrong_method":
                 return [
                     "status" => "error",
-                    "message" => "Wrong method used (".$_SERVER["REQUEST_METHOD"].")"
+                    "message" => "Wrong method used (".App::__request_method().")"
                 ];
             case "null_value":
                 return [
