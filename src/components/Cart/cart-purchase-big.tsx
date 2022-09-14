@@ -159,7 +159,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
         if(typeof country == "string") {
             switch(country) {
                 case "Belgique": return 1;
-                case "Luxembourd": return 2;
+                case "Luxembourg": return 2;
+                case "DOM/TOM": return 3;
                 case "France":
                 default:
                     return 0;
@@ -173,7 +174,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
         if(typeof country == "string") {
             switch(country) {
                 case "Belgique": return "BE";
-                case "Luxembourd": return "LU";
+                case "Luxembourg": return "LU";
+                case "DOM/TOM": return "FRDT";
                 case "France":
                 default:
                     return "FR";

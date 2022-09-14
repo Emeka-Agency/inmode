@@ -307,10 +307,10 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "FR";
         _temp = getById('vads_ship_to_country');
         const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "FR";
-        if(_other_address == false && _part_1_country == "FR") {
+        if(_other_address == false && ["FR", "FRDT"].indexOf(_part_1_country) > -1) {
             return false;
         }
-        if(_other_address == true && _part_2_country == "FR") {
+        if(_other_address == true && ["FR", "FRDT"].indexOf(_part_2_country) > -1) {
             return false;
         }
         return true;

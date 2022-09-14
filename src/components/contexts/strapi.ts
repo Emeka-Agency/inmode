@@ -16,6 +16,8 @@ const _countries = (_country:string | undefined | null):string => {
             return 'Belgique';
         case "LU":
             return 'Luxembourg';
+        case "FRDT":
+            return 'DOM/TOM';
         case "FR":
         default:
             return 'France';

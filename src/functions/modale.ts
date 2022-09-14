@@ -309,6 +309,7 @@ export function createAddressModale(datas:createAddressModale = {}) {
                 'FR': 'France',
                 'BE': 'Belgique',
                 'LU': 'Luxembourg',
+                'FRDT': 'DOM/TOM',
             }
         },
         {
