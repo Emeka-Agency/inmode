@@ -161,6 +161,31 @@
 
 }
 
+#modale.create-address-modale #modale-container.create-address-container #modale-content form select {
+    color: white;
+    font-size: 14px;
+    padding-left: 5px;
+    width: calc(var(--field-width) - 40px);
+    margin: 0 5px 0 0;
+    background-color: #0b1a25;
+    outline: transparent;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid transparent;
+    margin-bottom: 3px;
+    transition: border 0.3s ease-in-out 0s, margin 0.3s ease-in-out 0s;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid white;
+}
+
+#modale.create-address-modale #modale-container.create-address-container #modale-content form select option {
+    background: #fff2;
+    color: white;
+    font-size: 13px;
+    font-weight: normal;
+}
+
 #modale.create-address-modale #modale-container.create-address-container #modale-content form > div:not(:first-child) {
     margin-top: 10px;
 }
