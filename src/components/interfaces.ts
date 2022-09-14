@@ -532,6 +532,7 @@ export interface SogecommerceOrder {
     cust_address: string|null;
     ship_address: string|null;
     user: string|null;
+    custom: string|null;
 };
 
 export interface Cart_Interface {
@@ -631,6 +632,7 @@ export interface User_Interface {
     prenom?: string;
     nom?: string;
     pseudo?: string;
+    titre?: string;
     is_verified?: boolean;
     is_active?: boolean;
     society?: string;
@@ -673,6 +675,7 @@ export interface Address_Interface {
     country: string;
     deleted?: boolean;
     label?: string;
+    clinic?: string;
     user?: any;
     nom?: string;
     prenom?: string;
@@ -682,6 +685,7 @@ export interface Address_Interface {
     address?: string;
     retriever?: string;
     crit?: string;
+    custom?: string;
 };
 
 export interface FindAddressParams {
