@@ -48,7 +48,7 @@ const ShopMenu = ({ products, filter, tags }:ShopMenu_Interface) => {
                             <ul
                                 data-value={product.fieldValue}
                                 key={key} 
-                                className={`tab-link menu-title menu-text transition${tags.length > 0 && tags.indexOf(product.fieldValue) >= 0 ? ' selected' : ''}`}
+                                className={`user-select-none tab-link menu-title menu-text transition${tags.length > 0 && tags.indexOf(product.fieldValue) >= 0 ? ' selected' : ''}`}
                                 onClick={(e) => {filter(e);}}
                             >
                                 <span
