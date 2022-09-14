@@ -114,7 +114,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         };
         let response = await (
             await fetch(
-                `${process.env.INMODE_BACK}/api/mails`,
+                `${process.env.SYMF_BACK}/api/mails`,
                 // `https://localhost:8000/api/mails`,
                 request_init,
             )
