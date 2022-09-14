@@ -6,11 +6,15 @@ import LoadingGIF from '../../LoadingGIF';
 import { keyboardUsed } from '../../../functions/tools';
 
 import './address.css';
+import { selectOne } from '../../../functions/selectors';
+import { isElement } from '../../../functions/is-type';
 
 const AddressesTab = ({}:AddressesTab) => {
 
     const user = useUser();
     const images = useImages();
+
+    const max_length = 500;
     
     const fields = {
         "Libellé": "label",
@@ -22,8 +26,10 @@ const AddressesTab = ({}:AddressesTab) => {
         "Nom": "nom",
         "Prénom": "prenom",
         "Société": "society",
+        "Clinique": "clinic",
         "Email": "email",
         "Téléphone": "phone",
+        "Détails": "custom",
     };
 
     const toggleShow = function(_target:EventTarget|null = null, _field = null, _address:Address_Interface|null = null) {
@@ -68,6 +74,14 @@ const AddressesTab = ({}:AddressesTab) => {
         user.addAddress();
     };
 
+    const isSpecialField = function(__field:string|null = null)
+    {
+        if(typeof __field == "string" && ['country', 'custom'].indexOf(__field) > -1) {
+            return true;
+        }
+        return false;
+    }
+
     React.useEffect(() => {
 
     }, [user]);
@@ -85,12 +99,51 @@ const AddressesTab = ({}:AddressesTab) => {
                         </div>
                         <div className="address-content">
                             {Object.keys(fields).map((field:string, key:number) => {
+                                let msgLength = 0;
+                                if(fields[field] == "custom") {
+                                    msgLength = address?.custom?.length || 0;
+                                }
                                 return (
-                                    <div data-for={`address-${address.address}`} className={`address-field ${fields[field] == "country" ? "edit" : "show"}`} key={key} data-field={fields[field]} onClick={(e) => {fields[field] != "country" && toggleShow(e.currentTarget, fields[field], address);}}>
+                                    <div data-for={`address-${address.address}`} className={`address-field ${fields[field] == "country" ? "edit" : "show"}`} key={key} data-field={fields[field]} onClick={(e) => {!isSpecialField(fields[field]) && toggleShow(e.currentTarget, fields[field], address);}}>
                                         <span className="address-field-label">{field}</span>
                                         {
-                                            fields[field] != 'country' &&
-                                            <div className="address-field-value">{address[fields[field]]}</div>
+                                            !isSpecialField(fields[field]) ?
+                                            <div className="address-field-value">{address[fields[field]]}</div> : <></>
+                                        }
+                                        {fields[field] == "custom" ?
+                                            <>
+                                                <textarea
+                                                    onChange={(e) => {
+                                                        let _counter = selectOne(`#addresses-section:nth-child(${index + 1}) .address-content textarea[name="custom"] + .current-length`);
+                                                        if(!isElement(_counter)) {return false;}
+                                                        _counter.innerText = `${e.currentTarget.value.length} / ${max_length}`;
+                                                        _counter.style.color = e.currentTarget.value.length === max_length ? '#f00' : '#59b7b3';
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        // console.log("blur");
+                                                        // return false;
+                                                        document.querySelector(`div[data-field="custom"][data-for="address-${address.address}"] .address-field-change-result`).innerText = "";
+                                                        user.updateAddress(
+                                                            {...address, custom: e.currentTarget.value, retriever: address.address},
+                                                            document?.querySelector(`div[data-field="custom"][data-for="address-${address.address}"]`)
+                                                        );
+                                                    }}
+                                                    className="address-field-change custom-scrollbar moz-scrollbar"
+                                                    placeholder="Entrez les détails de livraison"
+                                                    name="custom"
+                                                    maxLength={max_length}
+                                                    rows={5}
+                                                    spellCheck={false}
+                                                    defaultValue={address.custom ?? ''}
+                                                >
+                                                </textarea>
+                                                <div className="current-length" style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}>{`${msgLength} / ${max_length}`}</div>
+                                            </>
+                                            :
+                                            ["country"].indexOf(fields[field]) < 0 ?
+                                                <input className="address-field-change"/>
+                                                :
+                                                <></>
                                         }
                                         {fields[field] == "country" ?
                                             <select
@@ -107,14 +160,23 @@ const AddressesTab = ({}:AddressesTab) => {
                                                 <option value="FR">France</option>
                                                 <option value="BE">Belgique</option>
                                                 <option value="LU">Luxembourg</option>
+                                                <option value="FRDT">DOM/TOM</option>
                                             </select>
                                             :
-                                            <input className="address-field-change"/>
+                                            ["custom"].indexOf(fields[field]) < 0 ?
+                                                <input className="address-field-change"/>
+                                                :
+                                                <></>
                                         }
-                                        <div className="address-field-edit">
-                                            <img className={`${fields[field] == "country" ? "edit " : ""}init`} src={images.getOne('whiteEditIcon')?.publicURL}/>
-                                            <img className={`${fields[field] == "country" ? "edit " : ""}blue`} src={images.getOne('blueEditIcon')?.publicURL}/>
-                                        </div>
+                                        {
+                                            isSpecialField(fields[field]) ?
+                                            <></>
+                                            :
+                                            <div className="address-field-edit">
+                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}init`} src={images.getOne('whiteEditIcon')?.publicURL}/>
+                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}blue`} src={images.getOne('blueEditIcon')?.publicURL}/>
+                                            </div>
+                                        }
                                         <LoadingGIF customId={`loading-${fields[field]}`} customClass="mini" customStyle={{'display': 'none', 'verticalAlign': 'middle', 'margin': '0', 'left': '15px', 'width': '22px', 'height': '22px'}}/>
                                         <span className="address-field-change-result"></span>
                                     </div>

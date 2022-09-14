@@ -14,7 +14,7 @@ const OverviewTab = ({}:OverviewTab) => {
         "Nom": "nom",
         "Prénom": "prenom",
         "Mail": "email",
-        "Pseudo": "pseudo",
+        "Titre": "titre",
         "Mot de passe": "password",
         "Société": "society",
         "Téléphone": "phone"

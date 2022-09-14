@@ -39,9 +39,11 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             case 'FR': return 'France';
             case 'BE': return 'Belgique';
             case 'LU': return 'Luxembourg';
+            case 'FRDT': return 'DOM/TOM';
             case 'France': return 'FR';
             case 'Belgique': return 'BE';
             case 'Luxembourg': return 'LU';
+            case 'DOM/TOM': return 'FRDT';
             default: return 'FR';
         }
     }
@@ -277,6 +279,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                     let modale = document?.getElementById('create-address');
                     if(modale instanceof Element) {
                         let _label:HTMLInputElement|null = modale.querySelector('#address_label_input');
+                        let _clinic:HTMLInputElement|null = modale.querySelector('#address_clinic_input');
                         let _address_1:HTMLInputElement|null = modale.querySelector('#address_address_1_input');
                         let _address_2:HTMLInputElement|null = modale.querySelector('#address_address_2_input');
                         let _zip:HTMLInputElement|null = modale.querySelector('#address_zip_input');
@@ -285,7 +288,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                         let _form:HTMLInputElement|null = modale.querySelector('#create-address-form');
                         let _submit:HTMLInputElement|null = modale.querySelector('button[type="submit"]');
                         // S'il manque des input pour des champs obligatoires
-                        if([_label, _address_1, _zip, _city, _country, _form, _submit].indexOf(null) > -1) {
+                        if([_label, _clinic, _address_1, _zip, _city, _country, _form, _submit].indexOf(null) > -1) {
                             console.log('test');
                             closeModale();
                             return false;
@@ -299,6 +302,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                                     "datas": {
                                         "user": __get('user'),
                                         "label": _label?.value,
+                                        "clinic": _clinic?.value,
                                         "address_1": _address_1?.value || "NaN",
                                         "address_2": _address_2?.value,
                                         "zip": _zip?.value || "NaN",
@@ -316,6 +320,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                                     "datas": {
                                         "user": __get('user'),
                                         "label": _label?.value,
+                                        "clinic": _clinic?.value,
                                         "address_1": _address_1?.value || "NaN",
                                         "address_2": _address_2?.value,
                                         "zip": _zip?.value || "NaN",
@@ -464,8 +469,11 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
         try {
             if(_elem instanceof Element) {
                 let temp = null;
+                console.log(_address);
                 if(_elem.id == 'step-1-part') {
                     temp = getById("cust_address"); if(temp instanceof HTMLInputElement) {temp.value = _address.address || "";}
+                    temp = getById("ct_society"); if(temp instanceof HTMLInputElement) {temp.value = _address.society || "";}
+                    temp = getById("ct_clinic"); if(temp instanceof HTMLInputElement) {temp.value = _address.clinic || "";}
                     temp = getById("vads_cust_last_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.nom || __get('nom') || "";}
                     temp = getById("vads_cust_first_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.prenom || __get('prenom') || "";}
                     temp = getById("vads_cust_legal_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.society || __get('society') || "";}
@@ -475,9 +483,12 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                     temp = getById("vads_cust_country"); if(temp instanceof HTMLSelectElement) {temp.value = __getCountry(_address.country) || "";}
                     temp = getById("vads_cust_cell_phone"); if(temp instanceof HTMLInputElement) {temp.value = _address.phone || "";}
                     temp = getById("vads_cust_email"); if(temp instanceof HTMLInputElement) {temp.value = _address.email || "";}
+                    temp = getById("custom"); if(temp instanceof HTMLInputElement) {temp.value = _address.custom || "";}
                 }
                 if(_elem.id == 'step-3-part') {
                     temp = getById("ship_address"); if(temp instanceof HTMLInputElement) {temp.value = _address.address || "";}
+                    temp = getById("sp_society"); if(temp instanceof HTMLInputElement) {temp.value = _address.society || "";}
+                    temp = getById("sp_clinic"); if(temp instanceof HTMLInputElement) {temp.value = _address.clinic || "";}
                     temp = getById("vads_ship_to_last_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.nom || __get('nom') || "";}
                     temp = getById("vads_ship_to_first_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.prenom || __get('prenom') || "";}
                     temp = getById("vads_ship_to_legal_name"); if(temp instanceof HTMLInputElement) {temp.value = _address.society || __get('society') || "";}
@@ -487,6 +498,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                     temp = getById("vads_ship_to_country"); if(temp instanceof HTMLSelectElement) {temp.value = __getCountry(_address.country) || "";}
                     temp = getById("vads_ship_to_phone_num"); if(temp instanceof HTMLInputElement) {temp.value = _address.phone || "";}
                     temp = getById("delivery_mail"); if(temp instanceof HTMLInputElement) {temp.value = _address.email || "";}
+                    temp = getById("delivery_custom"); if(temp instanceof HTMLInputElement) {temp.value = _address.custom || "";}
                 }
             }
         }

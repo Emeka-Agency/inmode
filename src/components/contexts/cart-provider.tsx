@@ -378,151 +378,164 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
     const redirect_payment = async (form_fields:any, sepa:boolean = false):Promise<boolean | void> => {
 
-        let _actual = {
-            "vads_cust_last_name": getById("vads_cust_last_name")?.value || "",
-            "vads_cust_first_name": getById("vads_cust_first_name")?.value || "",
-            "vads_cust_legal_name": getById("vads_cust_legal_name")?.value || "",
-            "vads_cust_address": getById("vads_cust_address")?.value || "",
-            "vads_cust_zip": getById("vads_cust_zip")?.value || "",
-            "vads_cust_city": getById("vads_cust_city")?.value || "",
-            "vads_cust_country": getById("vads_cust_country")?.value || "",
-            "vads_cust_cell_phone": getById("vads_cust_cell_phone")?.value || "",
-            "vads_cust_email": getById("vads_cust_email")?.value || "",
-            "vads_ship_to_last_name": getById("vads_ship_to_last_name")?.value || "",
-            "vads_ship_to_first_name": getById("vads_ship_to_first_name")?.value || "",
-            "vads_ship_to_legal_name": getById("vads_ship_to_legal_name")?.value || "",
-            "vads_ship_to_street": getById("vads_ship_to_street")?.value || "",
-            "vads_ship_to_zip": getById("vads_ship_to_zip")?.value || "",
-            "vads_ship_to_city": getById("vads_ship_to_city")?.value || "",
-            "vads_ship_to_country": getById("vads_ship_to_country")?.value || "",
-            "vads_ship_to_phone_num": getById("vads_ship_to_phone_num")?.value || "",
-        };
+        try {
 
-        updage_global_form_fields(_actual);
-
-        // Vérification adresse de facturation
-        // const exists_billing_address = user.findAddress(getById("cust_address")?.value || null);
-
-        
-        // Vérification adresse d'envoi
-        // const exists_shipping_address = user.findAddress(getById("ship_address")?.value || null);
-
-        setPaymentLaunch(true);
-        let timer = setTimeout(() => {
-            security_payment_verify(true);
-        // }, SECURITY_TIME));
-        }, SECURITY_TIME) || null;
-        // console.log(Date.now());
-
-        // console.log("redirect_payment");
-
-        form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
-
-        form_fields = _sort_html_list(form_fields);
-
-        const date = moment.utc().format('YYYYMMDDHHmmss');
-        
-        let _temp:SogecommerceOrder = new Object({});
-        form_fields.forEach((elem:Element) => {
-            _temp = {..._temp, [elem.getAttribute('name')]: elem.getAttribute('value') ?? elem.value};
-        });
-        
-        const order_id = rand_token(6);
-
-        // TODO call back to check if id exists
-
-        _temp["vads_action_mode"] = pay_params.actionMode;
-        _temp["vads_ctx_mode"] = pay_params.vads_ctx_mode;
-        _temp["vads_currency"] = pay_params.currency;
-        _temp["vads_page_action"] = pay_params.pageAction;
-        _temp["vads_site_id"] = pay_params.siteId;
-        _temp["vads_trans_date"] = date;
-        _temp["vads_trans_id"] = order_id;
-        _temp["vads_version"] = pay_params.version;
-        _temp["vads_order_id"] = order_id;
-        _temp["vads_return_mode"] = "GET";
-        // _temp['vads_return_mode'] = "POST";
-        _temp["vads_url_success"] = pay_params.url_success;
-        _temp["vads_url_cancel"] = pay_params.url_cancel;
-        _temp["vads_url_refused"] = pay_params.url_refused;
-
-        _temp = {..._temp, ..._actual};
-
-        _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
-
-        var _signature = '';
-
-        if(sepa) {
-            _temp['signature'] = '';
-        }
-        else {
-            _signature = await get_signature(payment_str(_temp));
+            let _actual = {
+                "vads_cust_last_name": getById("vads_cust_last_name")?.value || "",
+                "vads_cust_first_name": getById("vads_cust_first_name")?.value || "",
+                "vads_cust_legal_name": getById("vads_cust_legal_name")?.value || "",
+                "vads_cust_address": getById("vads_cust_address")?.value || "",
+                "vads_cust_zip": getById("vads_cust_zip")?.value || "",
+                "vads_cust_city": getById("vads_cust_city")?.value || "",
+                "vads_cust_country": getById("vads_cust_country")?.value || "",
+                "vads_cust_cell_phone": getById("vads_cust_cell_phone")?.value || "",
+                "vads_cust_email": getById("vads_cust_email")?.value || "",
+                "vads_ship_to_last_name": getById("vads_ship_to_last_name")?.value || "",
+                "vads_ship_to_first_name": getById("vads_ship_to_first_name")?.value || "",
+                "vads_ship_to_legal_name": getById("vads_ship_to_legal_name")?.value || "",
+                "vads_ship_to_street": getById("vads_ship_to_street")?.value || "",
+                "vads_ship_to_zip": getById("vads_ship_to_zip")?.value || "",
+                "vads_ship_to_city": getById("vads_ship_to_city")?.value || "",
+                "vads_ship_to_country": getById("vads_ship_to_country")?.value || "",
+                "vads_ship_to_phone_num": getById("vads_ship_to_phone_num")?.value || "",
+            };
     
-            // console.log(_signature);
+            updage_global_form_fields(_actual);
     
-            if(_signature.status == 'error' && !sepa) {
-                return false;
-            }
+            // Vérification adresse de facturation
+            // const exists_billing_address = user.findAddress(getById("cust_address")?.value || null);
     
-            _signature = _signature.signature;
-
-            _temp['signature'] = _signature ?? '';
-        }
-
-        
-        _temp["delivery_mail"] = getById("delivery_mail")?.value || "";
-        _temp["user"] = getById("order_user")?.value || null;
-        _temp["cust_address"] = getById("cust_address")?.value || null;
-        _temp["ship_address"] = getById("ship_address")?.value || null;
-
-        setPayParams({
-            ...pay_params,
-            signature: _signature ?? '',
-            transDate: date,
-            reference: order_id,
-            transId: order_id,
-        });
-
-        let _delivery_mail:any = getById('delivery_mail');
-        if(_delivery_mail) {
-            _temp['delivery_mail'] = _delivery_mail.value;
-        }
-        let intra_tva:any = getById('intra_tva');
-        if(intra_tva) {
-            _temp['intra_tva'] = intra_tva.value;
-        }
-
-        _temp['has_fees'] = parseInt(total_TVA());
-        
-        let _country:string|undefined = undefined;
-        if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
-            if(otherAddress == true) {
-                let temp:HTMLSelectElement = getById('vads_ship_to_country');
-                _country = temp ? temp.value : "FR";
+            
+            // Vérification adresse d'envoi
+            // const exists_shipping_address = user.findAddress(getById("ship_address")?.value || null);
+    
+            setPaymentLaunch(true);
+            // let timer = setTimeout(() => {
+                // security_payment_verify(true);
+            // }, SECURITY_TIME));
+            // }, SECURITY_TIME) || null;
+            // console.log(Date.now());
+    
+            // console.log("redirect_payment");
+    
+            form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
+    
+            form_fields = _sort_html_list(form_fields);
+    
+            const date = moment.utc().format('YYYYMMDDHHmmss');
+            
+            let _temp:SogecommerceOrder = new Object({});
+            form_fields.forEach((elem:Element) => {
+                _temp = {..._temp, [elem.getAttribute('name')]: elem.getAttribute('value') ?? elem.value};
+            });
+            
+            const order_id = rand_token(6);
+    
+            // TODO call back to check if id exists
+    
+            _temp["vads_action_mode"] = pay_params.actionMode;
+            _temp["vads_ctx_mode"] = pay_params.vads_ctx_mode;
+            _temp["vads_currency"] = pay_params.currency;
+            _temp["vads_page_action"] = pay_params.pageAction;
+            _temp["vads_site_id"] = pay_params.siteId;
+            _temp["vads_trans_date"] = date;
+            _temp["vads_trans_id"] = order_id;
+            _temp["vads_version"] = pay_params.version;
+            _temp["vads_order_id"] = order_id;
+            _temp["vads_return_mode"] = "GET";
+            // _temp['vads_return_mode'] = "POST";
+            _temp["vads_url_success"] = pay_params.url_success;
+            _temp["vads_url_cancel"] = pay_params.url_cancel;
+            _temp["vads_url_refused"] = pay_params.url_refused;
+    
+            _temp = {..._temp, ..._actual};
+    
+            _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
+    
+            var _signature = '';
+    
+            if(sepa) {
+                _temp['signature'] = '';
             }
             else {
-                let temp:HTMLSelectElement = getById('vads_cust_country');
-                _country = temp ? temp.value : "FR";
+                _signature = await get_signature(payment_str(_temp));
+        
+                // console.log(_signature);
+        
+                if(_signature.status == 'error' && !sepa) {
+                    return false;
+                }
+        
+                _signature = _signature.signature;
+    
+                _temp['signature'] = _signature ?? '';
             }
-        }
-        else {
-            if(otherAddress == true) {
-                _country = formFields.vads_ship_to_country;
+    
+            
+            _temp["delivery_mail"] = getById("delivery_mail")?.value || "";
+            _temp["user"] = getById("order_user")?.value || null;
+            _temp["cust_address"] = getById("cust_address")?.value || null;
+            _temp["ship_address"] = getById("ship_address")?.value || null;
+            _temp["custom"] = getById("custom")?.value || null;
+    
+            setPayParams({
+                ...pay_params,
+                signature: _signature ?? '',
+                transDate: date,
+                reference: order_id,
+                transId: order_id,
+            });
+    
+            let _delivery_mail:any = getById('delivery_mail');
+            if(_delivery_mail) {
+                _temp['delivery_mail'] = _delivery_mail.value;
+            }
+            let intra_tva:any = getById('intra_tva');
+            if(intra_tva) {
+                _temp['intra_tva'] = intra_tva.value;
+            }
+    
+            _temp['has_fees'] = parseInt(total_TVA());
+            
+            let _country:string|undefined = undefined;
+            if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
+                if(otherAddress == true) {
+                    let temp:HTMLSelectElement = getById('vads_ship_to_country');
+                    _country = temp ? temp.value : "FR";
+                }
+                else {
+                    let temp:HTMLSelectElement = getById('vads_cust_country');
+                    _country = temp ? temp.value : "FR";
+                }
             }
             else {
-                _country = formFields.vads_cust_country;
+                if(otherAddress == true) {
+                    _country = formFields.vads_ship_to_country;
+                }
+                else {
+                    _country = formFields.vads_cust_country;
+                }
             }
+            if(_country == null) {
+                _country = 'FR';
+            }
+    
+            // console.log(_temp);
+            // console.log(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country));
+            // return false;
         }
-        if(_country == null) {
-            _country = 'FR';
+        catch(err:any)
+        {
+            err_log(err, "components/contexts/cart-provider.tsx:redirect_payment first catch")
+            return false;
         }
 
         try {
 
-            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => err_log(error, "components/contexts/cart-provider.tsx:redirect_payment create_object catch"));
             // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
             // let result = await (await cwreate_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
-            let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => console.log(error));
+            let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => err_log(error, "components/contexts/cart-provider.tsx:redirect_payment create_object catch"));
 
             console.log(result);
 

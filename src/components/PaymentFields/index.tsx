@@ -26,6 +26,7 @@ const defaultCountries = [
     {label: 'France', code: 'FR'},
     {label: 'Belgique', code: 'BE'},
     {label: 'Luxembourg', code: 'LU'},
+    {label: 'DOM/TOM', code: 'FRDT'},
 ];
 
 const defaultParams = {
@@ -34,9 +35,11 @@ const defaultParams = {
 
     CivilGender: {name: 'vads_cust_title', id: 'vads_cust_title', placeholder: 'Civilité'},
         FullName: {name: 'vads_', id: 'vads_', placeholder: 'Nom - Prénom'},
+    Title: {name: 'ct_title', id: 'ct_titme', placeholder: 'Titre'},
     FirstName: {name: 'vads_cust_first_name', id: 'vads_cust_first_name', placeholder: 'Prénom'},
     LastName: {name: 'vads_cust_last_name', id: 'vads_cust_last_name', placeholder: 'Nom'},
     Status: {name: 'vads_cust_status', id: 'vads_cust_status', placeholder: 'Statut'},
+    Clinic: {name: 'ct_clinic', id: 'ct_clinic', placeholder: 'Clinique'},
     Society: {name: 'vads_cust_legal_name', id: 'vads_cust_legal_name', placeholder: 'Société'},
         Address: {name: 'vads_', id: 'vads_', placeholder: 'Adresse'},
     AddressStreetNumber: {name: 'vads_cust_address_number', id: 'vads_cust_address_number', placeholder: 'Numéro de voie'},
@@ -48,6 +51,7 @@ const defaultParams = {
     State: {name: 'vads_cust_state', id: 'vads_cust_state', placeholder: 'État/région'},
     Country: {name: 'vads_cust_country', id: 'vads_cust_country', placeholder: 'Pays', countries: defaultCountries},
     Intra_TVA: {name: 'intra_tva', id: 'intra_tva', placeholder: 'TVA intracommunautaire'},
+    Custom: {name: 'custom', id: 'custom', placeholder: 'Détails de livraison'},
         DeliveryAddress: {name: 'vads_ship', id: 'vads_ship', placeholder: 'Adresse'},
     DeliveryAddressStreetNumber: {name: 'vads_ship_to_street_number', id: 'vads_ship_to_street_number', placeholder: 'Numéro de voie'},
     // DeliveryAddressLine1: {name: 'vads_ship_to_street', id: 'vads_ship_to_street', placeholder: 'Adresse ligne 1'},
@@ -57,10 +61,12 @@ const defaultParams = {
     DeliveryCity: {name: 'vads_ship_to_city', id: 'vads_ship_to_city', placeholder: 'Ville'},
     DeliveryState: {name: 'vads_ship_to_state', id: 'vads_ship_to_state', placeholder: 'État/région'},
     DeliveryCountry: {name: 'vads_ship_to_country', id: 'vads_ship_to_country', placeholder: 'Pays', countries: defaultCountries},
+    DeliveryTitle: {name: 'sp_title', id: 'sp_title', placeholder: 'Titre'},
     DeliveryFirstName: {name: 'vads_ship_to_first_name', id: 'vads_ship_to_first_name', placeholder: 'Prénom'},
     DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'Nom'},
     DeliveryPhone: {name: 'vads_ship_to_phone_num', id: 'vads_ship_to_phone_num', placeholder: 'Téléphone'},
     DeliveryStatus: {name: 'vads_ship_to_status', id: 'vads_ship_to_status', placeholder: 'Statut'},
+    DeliveryClinic: {name: 'sp_clinic', id: 'sp_clinic', placeholder: 'Clinique'},
     DeliverySociety: {name: 'vads_ship_to_legal_name', id: 'vads_ship_to_legal_name', placeholder: 'Société'},
     DeliveryMail: {name: 'delivery_mail', id: 'delivery_mail', placeholder: 'Mail'},
         Phone: {name: 'vads_', id: 'vads_', placeholder: 'Téléphone'},
@@ -127,6 +133,21 @@ export const FullNameField = ({ value, placeholder, name, id, required, style }:
         />
     );
 };
+export const TitleField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Title.name] || ""}
+            placeholder={placeholder || `${defaultParams.Title.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Title.name}
+            id={id || defaultParams.Title.id}
+            required={required ||false}
+        />
+    );
+};
 export const FirstNameField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
     return (
         <input
@@ -172,6 +193,26 @@ export const StatusField = ({ value, placeholder, name, id, required, classes, s
             required={required ||false}
             // "PRIVATE"
             // "COMPANY"
+        />
+    );
+};
+
+// -----============================--------//
+// -----            CLINIC.         --------//
+// -----============================--------//
+
+export const ClinicField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Clinic.name] || ""}
+            placeholder={placeholder || `${defaultParams.Clinic.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Clinic.name}
+            id={id || defaultParams.Clinic.id}
+            required={required ||false}
         />
     );
 };
@@ -353,6 +394,21 @@ export const CountryField = ({ value, placeholder, name, id, required, classes, 
         </select>
     );
 };
+export const CustomField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Custom.name] || ""}
+            placeholder={placeholder || `${defaultParams.Custom.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Custom.name}
+            id={id || defaultParams.Custom.id}
+            required={required ||false}
+        />
+    );
+};
 
 // -----============================--------//
 // -----       DELIVERY ADDRESS     --------//
@@ -496,6 +552,21 @@ export const DeliveryCountryField = ({ value, placeholder, name, id, required, c
         </select>
     );
 };
+export const DeliveryTitleField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.DeliveryTitle.name] || ""}
+            placeholder={placeholder || `${defaultParams.DeliveryTitle.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.DeliveryTitle.name}
+            id={id || defaultParams.DeliveryTitle.id}
+            required={required ||false}
+        />
+    );
+};
 export const DeliveryFirstNameField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
     return (
         <input
@@ -554,6 +625,21 @@ export const DeliveryPhoneField = ({ value, placeholder, name, id, required, cla
             placeholder={placeholder || `${defaultParams.DeliveryPhone.placeholder}${required ? '*' :''}`}
             name={name || defaultParams.DeliveryPhone.name}
             id={id || defaultParams.DeliveryPhone.id}
+            required={required ||false}
+        />
+    );
+};
+export const DeliveryClinicField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.DeliveryClinic.name] || ""}
+            placeholder={placeholder || `${defaultParams.DeliveryClinic.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.DeliveryClinic.name}
+            id={id || defaultParams.DeliveryClinic.id}
             required={required ||false}
         />
     );

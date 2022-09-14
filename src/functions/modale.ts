@@ -270,6 +270,16 @@ export function createAddressModale(datas:createAddressModale = {}) {
 
     const fields:Field[] = [
         {
+            'slug': 'society',
+            'placeholder': '',
+            'label': 'Société',
+        },
+        {
+            'slug': 'clinic',
+            'placeholder': '',
+            'label': 'Clinique',
+        },
+        {
             'slug': 'address_1',
             'placeholder': '',
             'label': 'Adresse 1',
@@ -375,6 +385,7 @@ export function selectAddressModale(datas:selectAddressModale = {}) {
                                         ${
                                             [
                                                 [address.nom, address.prenom].filter(el => el).join(' '),
+                                                address.clinic,
                                                 address.society,
                                                 [address.address_1, address.address_2, address.zip, address.city, address.country].filter(el => el).join(', ')
                                             ].filter(el => el).join(' ')

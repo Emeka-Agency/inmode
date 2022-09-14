@@ -177,12 +177,14 @@ section#profile #profile-content #addresses-section .address-section .address-co
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit input.address-field-change,
+section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit textarea.address-field-change,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change {
     display: inline-block;
     vertical-align: middle;
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit input.address-field-change:hover,
+section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit textarea.address-field-change:hover,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change:hover {
     border-bottom: 2px solid white;
     margin-bottom: 2px;
@@ -191,13 +193,23 @@ section#profile #profile-content #addresses-section .address-section .address-co
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit input.address-field-change:active,
+section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit textarea.address-field-change:active,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change:active,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit input.address-field-change:focus,
+section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit textarea.address-field-change:focus,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change:focus {
     border-bottom: 3px solid #59b7b3;
     margin-bottom: 1px;
     transition: border 0.2s ease-in-out 0s,
                 margin 0.2s ease-in-out 0s;
+}
+
+section#profile #profile-content #addresses-section .address-section .address-content .address-field textarea.address-field-change {
+    display: block;
+    width: 100%;
+    height: 100%;
+    resize: none;
+    background: #0b1a25;
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change {

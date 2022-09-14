@@ -143,6 +143,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         country: _countries(country),
         tva_intra: _datas.intra_tva ?? false,
         has_fees: _datas.has_fees,
+        custom: _datas.custom,
         user: _datas.user,
     };
 

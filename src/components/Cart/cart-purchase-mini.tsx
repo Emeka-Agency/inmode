@@ -5,16 +5,21 @@ import {
     AddressLine1Field,
     // AddressLine2Field,
     CityField,
+    ClinicField,
     CountryField,
+    CustomField,
     DeliveryAddressLine1Field,
     // DeliveryAddressLine2Field,
     DeliveryCityField,
+    DeliveryClinicField,
     DeliveryCountryField,
+    DeliveryCustomField,
     DeliveryFirstNameField,
     DeliveryLastNameField,
     DeliveryMailField,
     DeliveryPhoneField,
     DeliverySocietyField,
+    DeliveryTitleField,
     DeliveryZipField,
     FirstNameField,
     IntraTVAField,
@@ -22,6 +27,7 @@ import {
     MailField,
     MobilePhoneField,
     SocietyField,
+    TitleField,
     ZipField
 } from "../PaymentFields";
 import LoadingGIF from '../LoadingGIF';
@@ -315,6 +321,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     <div id="step-1-part" className="unmorphic custom-scrollbar moz-scrollbar">
                         <LastNameField classes="required form-field step-1" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                         <FirstNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
+                        <TitleField classes="form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
+                        <ClinicField classes="form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
                         <SocietyField classes="form-field step-1" />
                         <AddressLine1Field classes="required form-field step-1" required={true}/>
                         <ZipField classes="required form-field step-1" required={true}/>
@@ -325,6 +333,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         }
                         <MobilePhoneField classes="required form-field step-1" required={true}/>
                         <MailField classes="required form-field step-1" required={true}/>
+                        {!otherAddress && <CustomField classes="required form-field step-1" required={false}/>}
                     </div>
                 </div>
                 {(formOpened && (!otherAddress || (otherAddress && !otherAddressOpened))) && <button
@@ -362,6 +371,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 <div className="form custom-scrollbar moz-scrollbar">
                     <DeliveryLastNameField classes="required form-field step-2" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
                     <DeliveryFirstNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
+                    <DeliveryTitleField classes="form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
+                    <DeliveryClinicField classes="form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
                     <DeliverySocietyField classes="form-field step-2" />
                     <DeliveryAddressLine1Field classes="required form-field step-2" required={true}/>
                     <DeliveryZipField classes="required form-field step-2" required={true}/>
@@ -372,6 +383,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     }
                     <DeliveryPhoneField classes="required form-field step-2" required={true}/>
                     <DeliveryMailField classes="form-field step-2" required={false}/>
+                    {otherAddress && <CustomField classes="form-field step-2" required={false}/>}
                 </div>
                 {(formOpened && otherAddress && otherAddressOpened) && <button
                     type="submit"
