@@ -103,3 +103,61 @@
         }
         fclose($flux);
     }
+
+    // FRONT LOGS
+
+    $FRONT_LOG_DIRECTORY = './front_logs';
+    $ERROR_FRONT_LOG_FILE = '/ferror.log';
+    $EVENT_FRONT_LOG_FILE = '/fevent.log';
+
+    /**
+    * Short - Log errors
+    *
+    * Detailed - 
+    *
+    * @param Type $name Description
+    *
+    * @return retour
+    */
+    function frontLogError(string $error = "")
+    {
+        try
+        {
+            emmitDir($GLOBALS['FRONT_LOG_DIRECTORY']);
+            error_log(dateTime().' - '.$GLOBALS['request_time'] .' - '.$error.PHP_EOL.PHP_EOL, 3, $GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['ERROR_FRONT_LOG_FILE'], NULL);
+            return true;
+        }
+        catch(\Exception $e)
+        {
+            return false;
+        }
+    }
+
+
+    /**
+    * Short - Log events
+    *
+    * Detailed - 
+    *
+    * @param Type $name Description
+    *
+    * @return retour
+    */
+    function frontLogEvent(string $message = "")
+    {
+        emmitDir($GLOBALS['FRONT_LOG_DIRECTORY']);
+        $flux = fopen($GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['EVENT_FRONT_LOG_FILE'], 'a', false, NULL);
+        try
+        {
+            fwrite($flux, dateTime().' - '.$GLOBALS['request_time'] .' - '.$message.PHP_EOL);
+        }
+        catch (Exception $e)
+        {
+            logEvent("utils frontLogEvent() Exception");
+            logError($e);
+            fclose($flux);
+            return false;
+        }
+        fclose($flux);
+        return true;
+    }
