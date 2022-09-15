@@ -77,11 +77,11 @@ class ControleurAPI {
         try
         {
             $retour = [];
-            if(($datas['event'] ?? false) == true)
+            if(($datas['event'] ?? 'false') == 'true')
             {
                 $retour['event'] = file_get_contents($GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['EVENT_FRONT_LOG_FILE']);
             }
-            if(($datas['error'] ?? false) == true)
+            if(($datas['error'] ?? 'false') == 'true')
             {
                 $retour['error'] = file_get_contents($GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['ERROR_FRONT_LOG_FILE']);
             }
