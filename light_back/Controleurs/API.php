@@ -51,12 +51,16 @@ class ControleurAPI {
             switch(App::__request_method() ?? null)
             {
                 case "GET":
-                case "OPTIONS":
+                    self::resolve_logs_GET($_GET);
+                    break;
+                case "POST":
+                    self::resolve_logs_POST($_POST);
+                    break;
                 default:
                     http_response_code(405);
                     echo JSONResponse(errorBody("wrong_method"));
-                    return true;
             }
+            return true;
         }
         catch(\Exception $e)
         {
@@ -67,4 +71,59 @@ class ControleurAPI {
             return false;
         }
     }
+
+    public static function resolve_logs_GET($datas)
+    {
+        try
+        {
+            $retour = [];
+            if(($datas['event'] ?? false) == true)
+            {
+                $retour['event'] = file_get_contents($GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['EVENT_FRONT_LOG_FILE']);
+            }
+            if(($datas['error'] ?? false) == true)
+            {
+                $retour['error'] = file_get_contents($GLOBALS['FRONT_LOG_DIRECTORY'].$GLOBALS['ERROR_FRONT_LOG_FILE']);
+            }
+            http_response_code(200);
+            echo JSONResponse($retour);
+            return true;
+        }
+        catch(\Exception $e)
+        {
+            logEvent($e->getMessage());
+            logError($e->getMessage());
+            http_response_code(500);
+            echo JSONResponse(errorBody());
+            return false;
+        }
+    }
+    
+    public static function resolve_logs_POST($datas)
+    {
+        try
+        {
+            $retour = [];
+            if(isset($datas['event']))
+            {
+                $retour['event'] = frontLogEvent($datas['event']);
+            }
+            if(isset($datas['error']))
+            {
+                $retour['error'] = frontLogError($datas['error']);
+            }
+            http_response_code(200);
+            echo JSONResponse($retour);
+            return true;
+        }
+        catch(\Exception $e)
+        {
+            logEvent($e->getMessage());
+            logError($e->getMessage());
+            http_response_code(500);
+            echo JSONResponse(errorBody());
+            return false;
+        }
+    }
+    
 }
