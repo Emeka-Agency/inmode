@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
-const Sitemap = ({ data }) => {
+const Sitemap = ({ data }:Sitemap) => {
     
     return (
         <Layout title="sitemap">
@@ -12,8 +12,6 @@ const Sitemap = ({ data }) => {
                     <div className="title">LINKS</div>
                     {/* BASE */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/" title="Home">https://inmodemd.co.uk/</a></div>
-                    {/* SHOP */}
-                    <div className="sitemap-link">- <a className="absolute-link" href="/shop/" title="Shop">https://inmodemd.co.uk/shop/</a></div>
                     {/* ABOUT */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/about-us/" title="About us">https://inmodemd.co.uk/about-us/</a></div>
                     {/* CONTACT */}
@@ -79,7 +77,11 @@ const Sitemap = ({ data }) => {
                 </div>
             </div>
         </Layout>
-    )
-}
+    );
+};
+
+interface Sitemap {
+    data: {};
+};
 
 export default Sitemap;

@@ -18,7 +18,7 @@ const TITLE = 'title';
 // const BUTTON = 'button';
 // const CARD = 'card';
 
-const MenuTitleCard = ({ menu, prop_key }:MenuTitleCard) => {
+const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
 
     return (
         <div key={prop_key} className="menu-title menu-card">
@@ -73,6 +73,7 @@ const MenuTitleCard = ({ menu, prop_key }:MenuTitleCard) => {
 interface MenuTitleCard {
     menu:InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 };
 
 export default MenuTitleCard;

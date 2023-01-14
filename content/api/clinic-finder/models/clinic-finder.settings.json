@@ -50,6 +50,13 @@
         "Ireland",
         "Scotland"
       ]
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "address": {
+      "type": "string"
     }
   }
 }

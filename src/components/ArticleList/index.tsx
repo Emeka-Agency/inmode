@@ -6,6 +6,7 @@ import { useArticle } from "../contexts/article-provider";
 import { useImages } from "../contexts/images-provider";
 
 import "./index.css";
+import { _log } from '../../functions/logger';
 
 const ArticleList = ({}:ArticleList) => {
 
@@ -22,7 +23,8 @@ const ArticleList = ({}:ArticleList) => {
         return (
             <iframe
                 className="article-list-elem-video"
-                allowFullScreen="allowfullscreen" 
+                // allowFullScreen="allowfullscreen" 
+                allowFullScreen={true} 
                 allow="fullscreen" 
                 src={_url} 
                 scrolling="no"
@@ -35,9 +37,9 @@ const ArticleList = ({}:ArticleList) => {
     return (
         <div className="article-list container">
             {articleProvider.articles && articleProvider.articles.map((article:InmodePanel_BlogArticle_Interface, key:number) => {
-                // console.log(article);
+                _log(article);
                 return (
-                    <div className="article-list-elem">
+                    <div className="article-list-elem" key={key}>
                         <a className="article-list-elem-link zone-link" href={articleProvider.articleLink(article)} title={article.Title}></a>
                         <div className={`article-list-elem-thumb-container ${article.Thumbnail ? 'thumbnail' : article.VideoURL ? 'video' : 'default'}`}>
                             {
@@ -53,8 +55,8 @@ const ArticleList = ({}:ArticleList) => {
                                     :
                                     <img
                                         className="article-list-elem-thumbnail"
-                                        src={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcWebp : article.Thumbnail.publicURL}
-                                        srcSet={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcSetWebp : article.Thumbnail.publicURL}
+                                        src={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcWebp : article.Thumbnail.localFile.publicURL}
+                                        srcSet={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcSetWebp : article.Thumbnail.localFile.publicURL}
                                         alt={article.Title}
                                     />
                                 )

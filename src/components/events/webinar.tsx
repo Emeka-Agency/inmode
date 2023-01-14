@@ -15,7 +15,7 @@ const Webinar = ({ event = undefined }:Webinar) => {
             <div className="eseminar-card-tech-list">
                 {["accutite", "facetite", "morpheus8"].join(', ')}
             </div>
-            <div className="descr-part">
+            <div className="descr-part custom-scrollbar moz-scrollbar">
                 <div className="title">
                     Educational Series – Dr. Sherrell Aston with EmbraceRF and Morpheus Prime
                 </div>

@@ -28,33 +28,17 @@ exports.onCreatePage = async ({
         return false;
     }
 
+    if (page.path == '/testimonials/') {
+        return false;
+    }
+
     // console.log(page.path);
-
-    // {/* SWITCH CART */}
-
-      if(page.path == '/shop/') {
-        return false;
-      }
-      if(page.path == '/payment/cancel/') {
-        return false;
-      }
-      if(page.path == '/payment/error/') {
-        return false;
-      }
-      if(page.path == '/payment/paid/') {
-        return false;
-      }
-      if(page.path == '/payment/refused/') {
-        return false;
-      }
-
-    // {/* SWITCH CART END */}
 
     createPage({
         ...page,
         context: {
             ...page.context,
-            today_string: [new Date().getFullYear(), new Date().getMonth() + 1, new Date().getDate()].join('-'),
+            today_string: new Date().toISOString(),
         },
     })
 }

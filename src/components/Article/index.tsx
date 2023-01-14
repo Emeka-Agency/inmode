@@ -4,6 +4,8 @@ import { useArticle } from "../contexts/article-provider";
 import { useImages } from "../contexts/images-provider";
 import { InmodePanel_BlogArticle_Interface, InmodePanel_BlogArticleElement_Interface } from "../interfaces";
 
+import { _log } from "../../functions/logger";
+
 import "./index.css";
 
 const Article = ({id, customURL}:Article) => {
@@ -22,15 +24,15 @@ const Article = ({id, customURL}:Article) => {
     React.useEffect(() => {
         if(typeof window != "undefined") {
             resizeIFrame();
-            window.addEventListener('resize', resizeIFrame);
+            window?.addEventListener('resize', resizeIFrame);
         }
     }, []);
 
     const resizeIFrame = () => {
         if(typeof document != "undefined") {
-            Array.from(document.querySelectorAll('.article-element-video')).forEach((videoElem) => {
-                // console.log(videoElem);
-                // console.log(`${videoElem.offsetWidth * (9/16)}px`);
+            Array.from(document.getElementsByClassName('article-element-video')).forEach((videoElem:HTMLElement) => {
+                _log(videoElem);
+                _log(`${videoElem.offsetWidth * (9/16)}px`);
                 videoElem.style.setProperty('height', `${videoElem.offsetWidth * (9/16)}px`);
             });
             return true;
@@ -48,7 +50,8 @@ const Article = ({id, customURL}:Article) => {
         return (
             <iframe
                 className="article-element-video"
-                allowFullScreen="allowfullscreen" 
+                // allowFullScreen="allowfullscreen" 
+                allowFullScreen={true} 
                 allow="fullscreen" 
                 src={_url} 
                 scrolling="no"
@@ -108,6 +111,7 @@ const Article = ({id, customURL}:Article) => {
             <div className="article-element-carousel">
                 {carousel.length && carousel.map((image, key) => {
                     <img
+                        key={key}
                         src={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcWebp || image.localFile.publicURL : image.localFile.publicURL}
                         srcSet={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcSetWebp || image.localFile.publicURL : image.localFile.publicURL}
                     />
@@ -167,10 +171,10 @@ const Article = ({id, customURL}:Article) => {
                 }
             </div>
             <div className="article-elements">
-                {article.Element && article.Element.length && article.Element.map((element:InmodePanel_BlogArticleElement_Interface) => {
+                {article.Element && article.Element.length && article.Element.map((element:InmodePanel_BlogArticleElement_Interface, key:number) => {
                     if(element.Text && element.Image && element.Carousel) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 <div className="article-element-multiple-text">
                                     {renderArticleTextElement(element.Text)}
                                 </div>
@@ -182,7 +186,7 @@ const Article = ({id, customURL}:Article) => {
                     }
                     else if(element.Text && element.Image) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 <div className="article-element-multiple-text">
                                     {renderArticleTextElement(element.Text)}
                                 </div>
@@ -194,7 +198,7 @@ const Article = ({id, customURL}:Article) => {
                     }
                     else if(element.Text && element.Carousel) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 <div className="article-element-multiple-text">
                                     {renderArticleTextElement(element.Text)}
                                 </div>
@@ -206,14 +210,14 @@ const Article = ({id, customURL}:Article) => {
                     }
                     else if(element.Text) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 {renderArticleTextElement(element.Text)}
                             </div>
                         );
                     }
                     else if(element.Image && element.Carousel) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 <div className="article-element-multiple-text">
                                     {renderArticleImageElement(element.Image)}
                                 </div>
@@ -225,14 +229,14 @@ const Article = ({id, customURL}:Article) => {
                     }
                     else if(element.Image) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 {renderArticleImageElement(element.Image)}
                             </div>
                         );
                     }
                     else if(element.Carousel) {
                         return (
-                            <div className="article-element">
+                            <div className="article-element" key={key}>
                                 {renderArticleCarouselElement(element.Carousel)}
                             </div>
                         );

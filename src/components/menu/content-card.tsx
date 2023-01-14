@@ -5,7 +5,7 @@ import { format_string } from "../../functions/format_string";
 import { InmodePanel_Menu_Interface } from "../interfaces";
 import Menu from "../menu";
 
-const MenuContentCard = ({ menu, prop_key = 0 }:MenuContentCard) => {
+const MenuContentCard = ({ menu, prop_key = 0, openOnClick }:MenuContentCard) => {
     
     const content = (_menu:InmodePanel_Menu_Interface) => {
         return (
@@ -45,7 +45,8 @@ const MenuContentCard = ({ menu, prop_key = 0 }:MenuContentCard) => {
 
 interface MenuContentCard {
     menu: InmodePanel_Menu_Interface;
-    prop_key: number;
+    prop_key?: number;
+    openOnClick?: boolean;
 };
 
 export default MenuContentCard;

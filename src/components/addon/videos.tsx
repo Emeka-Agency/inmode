@@ -90,6 +90,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                       onMouseDown={(e) => {resolveVideoClick(e, video.url || '');}}
                       onMouseUp={(e) => {resolveVideoClick(e, video.url || '');}}
                       onClick={(e) => {resolveVideoClick(e, video.url || '');}}
+                      key={key}
                     >
                       <img
                         src={video.poster && video.poster.localFile.childImageSharp.fluid.srcWebp}

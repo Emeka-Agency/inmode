@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { _log } from './logger';
 
 export async function InstaPost():Promise<string[] | null> {
     var myHeaders = new Headers();
@@ -6,7 +7,7 @@ export async function InstaPost():Promise<string[] | null> {
     const fetch_get:RequestInit = {
         method: 'GET',
         headers: myHeaders,
-        mode: 'no-cors',
+        mode: 'cors',
         cache: 'default'
     };
     return fetch(
@@ -31,11 +32,11 @@ export async function InstaPost():Promise<string[] | null> {
             return photos.filter(e => e);
         }
         catch(err:any) {
-            console.log(err);
+            _log(err);
             return [];
         }
     }).catch((err:any):null => {
-        console.log(`\nCould not fetch instagram posts. Error status ${err}`);
+        _log(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }
@@ -46,7 +47,7 @@ export async function InstagramPosts(insta_id:string | number):Promise<string[] 
     const fetch_get:RequestInit = {
         method: 'GET',
         headers: myHeaders,
-        mode: 'no-cors',
+        mode: 'cors',
         cache: 'default'
     };
     // 1317505554
@@ -69,11 +70,11 @@ export async function InstagramPosts(insta_id:string | number):Promise<string[] 
             return photos.filter(e => e);
         }
         catch(err:any) {
-            console.log(err);
+            _log(err);
             return [];
         }
     }).catch((err:any):null => {
-        console.log(`\nCould not fetch instagram posts. Error status ${err}`);
+        _log(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }
@@ -86,10 +87,10 @@ export async function scrapingInstagramPosts(username:string | number) {
                 photos.push(edge.node);
             }
         });
-        console.log(photos);
+        _log(photos);
         return photos;
     }).catch(err => {
-        console.warn(`\nCould not fetch instagram posts. Error status ${err}`);
+        _warn(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }
@@ -166,7 +167,7 @@ interface Insta_ThumbnailRessource_Interface {
 //         });
 //         return photos;
 //     }).catch(err => {
-//         console.warn(`\nCould not fetch instagram posts. Error status ${err}`);
+//         _warn(`\nCould not fetch instagram posts. Error status ${err}`);
 //         return null;
 //     });
 // }
@@ -183,7 +184,7 @@ interface Insta_ThumbnailRessource_Interface {
 //         });
 //         return photos;
 //     }).catch(err => {
-//         console.warn(`\nCould not fetch instagram posts from hashtag. Error status ${err}`);
+//         _warn(`\nCould not fetch instagram posts from hashtag. Error status ${err}`);
 //         return null;
 //     });
 // }
@@ -207,7 +208,7 @@ interface Insta_ThumbnailRessource_Interface {
 //         };
 //         return infos;
 //     }).catch(err => {
-//         console.warn(`\nCould not fetch instagram user. Error status ${err}`);
+//         _warn(`\nCould not fetch instagram user. Error status ${err}`);
 //         return null;
 //     });
 // }
@@ -263,8 +264,8 @@ interface Insta_ThumbnailRessource_Interface {
 //         const posts = hashtagsEnabled && results ? getHashtags(results) : results;
 //         return maxPosts ? posts.slice(0, maxPosts) : posts;
 //     }).catch(async err => {
-//         console.warn(`\nCould not get instagram posts using the Graph API. Error status ${err}`);
-//         console.warn(`Falling back to public scraping... with ${username}`);
+//         _warn(`\nCould not get instagram posts using the Graph API. Error status ${err}`);
+//         _warn(`Falling back to public scraping... with ${username}`);
 
 //         if (username) {
 //             const photos = await scrapingInstagramPosts({

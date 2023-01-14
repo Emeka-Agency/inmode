@@ -3,8 +3,11 @@ import Menu from '../menu';
 import MenusContext from "../contexts/menus-context";
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { useImages } from '../contexts/images-provider';
-import { HeaderBottom_Interface, Inmode_MiniMenu_Interface } from '../interfaces';
+import { HeaderBottom_Interface } from '../interfaces';
 import { oneById } from '../../functions/selectors';
+import MenuSingleText from '../menu/single-text';
+import MenuSingleImage from '../menu/single-image';
+import { _log } from '../../functions/logger';
 
 const HeaderMini = ({}:HeaderMini) => {
 
@@ -23,15 +26,16 @@ const HeaderMini = ({}:HeaderMini) => {
     React.useEffect(() => {
         const body = document.querySelector('body');
         const headerMini = oneById('header-mini');
-        // console.log(body);
-        // console.log(headerMini);
+        const cookies_opened = document?.querySelector('.privacy-policy.opened');
+        _log(body);
+        _log(headerMini);
         if(body && headerMini) {
-            body.classList.contains('no-scroll') && headerMini.classList.add('opened');
+            body.classList.contains('no-scroll') && cookies_opened == null && headerMini.classList.add('opened');
         }
     });
 
     return (
-        <div id="header-mini" className="header-mini custom-scrollbar">
+        <div id="header-mini" className="header-mini custom-scrollbar moz-scrollbar">
             <div className="menu-close transition" onClick={(e) => {closeMenu(e);}}>
                 <span>CLOSE</span>
                 <img className="close-mini-menu-icon" src={images.getOne('closeWhiteIcon').publicURL} alt="close-white"/>
@@ -44,13 +48,21 @@ const HeaderMini = ({}:HeaderMini) => {
                         temp[keys[i]] = menu[keys[i]];
                     }
                     {/* TODO ajouter autres subs */}
-                    if(menu.mini_treatments && menu.mini_treatments.length > 0) {
-                        temp.menus = temp.mini_treatments.map((elem:Inmode_MiniMenu_Interface) => {
+                    if(menu.mini_addons && menu.mini_addons.length > 0) {
+                        temp.menus = temp.mini_addons.map((elem) => {
                             let retour = {id: elem.id, ...elem.MenuParams};
                             // retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
                             retour.title = elem.Name;
                             return retour;
                         });
+                    }
+                    if(menu.mini_treatments && menu.mini_treatments.length > 0) {
+                        temp.menus = [...temp.menus, ...temp.mini_treatments.map((elem) => {
+                            let retour = {id: elem.id, ...elem.MenuParams};
+                            // retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
+                            retour.title = elem.Name;
+                            return retour;
+                        })];
                     }
                     return (<Menu key={key} prop_key={key} menu={temp} openOnClick={true}/>);
                 })}

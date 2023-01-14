@@ -5,7 +5,7 @@ import { InmodePanel_PressMedia_Interface, PressMedia_Interface } from "../inter
 
 import './index.css';
 
-const PressMedia = ({datas, prop_key, openCarousel}:PressMediaParams) => {
+const PressMedia = ({datas, prop_key = 0, openCarousel}:PressMediaParams) => {
 
     if(!datas) {
         return <></>;
@@ -27,7 +27,7 @@ const PressMedia = ({datas, prop_key, openCarousel}:PressMediaParams) => {
             }
             <div className="press-media-text-zone">
                 {datas.URL && <a className="zone-link" href={datas.URL} target="_blank"></a>}
-                <div className="press-media-down-part custom-scrollbar">
+                <div className="press-media-down-part custom-scrollbar moz-scrollbar">
                     {
                         datas.Short
                         &&
@@ -64,7 +64,7 @@ const PressMedia = ({datas, prop_key, openCarousel}:PressMediaParams) => {
 
 interface PressMediaParams {
     datas: InmodePanel_PressMedia_Interface;
-    prop_key: number;
+    prop_key?: number;
     openCarousel(e:React.MouseEvent<HTMLDivElement, MouseEvent>, index:number):void;
 };
 

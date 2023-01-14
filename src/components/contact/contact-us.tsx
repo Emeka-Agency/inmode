@@ -27,7 +27,7 @@ const ContactUs = () => {
             elem.style.transitionDelay = '0.4s';
         });
         let _temp:any = oneById('contact-form');
-        _temp && _temp.classList.remove('custom-scrollbar');
+        _temp && _temp.classList.remove('custom-scrollbar', 'moz-scrollbar');
         _temp = oneBySelector('#contact-form .req-return.success');
         if(_temp) {_temp.innerHTML = "";}
         _temp = oneBySelector('#contact-form .req-return.error');
@@ -56,7 +56,7 @@ const ContactUs = () => {
             elem.style.transitionDelay = '0s';
         });
         let _temp:any = oneById('contact-form');
-        _temp && _temp.classList.add('custom-scrollbar');
+        _temp && _temp.classList.add('custom-scrollbar', 'moz-scrollbar');
         setFormOpen(true);
     }
 
@@ -81,8 +81,8 @@ const ContactUs = () => {
                             alt="hexa-close"
                         />
                     </div>
-                    <div id="contact-form" className="transition neumorphic custom-scrollbar" hidden={!formOpen}>
-                        <form id="contact-mini" onSubmit={(e) => {send_form_mini(e)}} className="custom-scrollbar">
+                    <div id="contact-form" className="transition neumorphic custom-scrollbar moz-scrollbar" hidden={!formOpen}>
+                        <form id="contact-mini" onSubmit={(e) => {send_form_mini(e, setSubmitText)}} className="custom-scrollbar moz-scrollbar">
                             <input type="text" placeholder="Last name*" name="lastname" required={true}/>
                             <input type="text" placeholder="First name*" name="firstname" required={true}/>
                             <select name="subject" required={true}>
@@ -110,7 +110,7 @@ const ContactUs = () => {
                                 onKeyDown={(e) => {setMsgLength(e.currentTarget.value.length);}}
                                 spellCheck={false}
                                 required={true}
-                                className="custom-scrollbar"
+                                className="custom-scrollbar moz-scrollbar"
                             ></textarea>
                             <div className="current-length" style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}>{`${msgLength} / ${max_length}`}</div>
                             <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>

@@ -5,6 +5,12 @@ import ClinicalStudy from "./clinical-study";
 
 const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
 
+    const [allowed, setAllowed] = React.useState(typeof window != "undefined" ? window?.localStorage.inuk_studies_pass == "true" : false);
+
+    const allowance = (allowed = false) => {
+        setAllowed(allowed);
+    }
+
     const [flickityOptions] = React.useState({
         initialIndex: 0,
         cellAlign: 'left',
@@ -28,7 +34,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
             </div>
             <div className={`clinical-studies-slider${datas.length === 1 ? ' few' : ''}`}>
                 {datas.length === 1 ?
-                    <ClinicalStudy study={datas[0]}/>
+                    <ClinicalStudy study={datas[0]} able={allowed} _setAllowed={allowance}/>
                     :
                     <Carousel
                         id={'carousel-clinical-studies'}
@@ -37,7 +43,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
                     >
                         {/* {[...datas, ...datas].map((study, key) => { */}
                         {datas.map((study, key) => {
-                            return (<ClinicalStudy key={key} prop_key={key} study={study}/>);
+                            return (<ClinicalStudy key={key} prop_key={key} study={study} able={allowed} _setAllowed={allowance}/>);
                         })}
                     </Carousel>
                 }

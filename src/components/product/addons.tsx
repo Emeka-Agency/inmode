@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
+import { _log } from "../../functions/logger";
 import Carousel from "../Carousel";
 import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
@@ -27,12 +28,14 @@ const Addons = ({ datas, sensible = false, name }:Addons) => {
         return temp;
     }
 
+    _log(datas);
+
     return (
         <div id="technologies" className="product-addons">
             <div className="section-title">technologies on the workstation</div>
             {datas.addons.map((addon) => {
                 return addon.ProductPresentation && addon.ProductPresentation.map((product, key) => {
-                    if(product.appears_everywhere || (product.products && product.products[0].id === datas.id)) {
+                    if(product.appears_everywhere || (product.products && product.products.map(el => el.id || -1).indexOf(datas.id) >= 0)) {
                         let images = select_mines(product.Images, datas.id);
                         // TODO ton on evolve => evolve-tone
                         let product_title = product.title_text ? product.title_text.toLowerCase().replace(' on ', '-').replace(/ /g, '-').replace(/\*/g, '').replace(/#/g, '') : "";
@@ -48,15 +51,15 @@ const Addons = ({ datas, sensible = false, name }:Addons) => {
                                             />
                                         </div>
                                         <div className="addon-title">
-                                            {/* {product.title_image && (
+                                            {product.title_image && (
                                                 <img
                                                     src={product.title_image.localFile.childImageSharp.fluid.srcWebp}
                                                     srcSet={product.title_image.localFile.childImageSharp.fluid.srcSetWebp}
                                                     alt={product.title_text}
                                                 />
-                                            )} */}
+                                            )}
                                             {/* {!product.title_image && product.title_text} */}
-                                            {product.title_text}
+                                            {!product.title_image && product.title_text}
                                             {product.appears_everywhere && <Link className="zone-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
                                         </div>
                                         {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {

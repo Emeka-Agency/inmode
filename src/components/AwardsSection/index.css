@@ -1,0 +1,29 @@
+.awards-section {
+    margin: 0 auto;
+    background-color: var(--electric-blue);
+    padding: 25px 10px 38px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+}
+
+.awards-section .awards-title {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--dark-blue);
+}
+
+.awards-section .awards-img {
+    max-width: 200px;
+    width: 100%;
+    margin: 5px 27px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+@media (max-width: 1219px) {
+    .awards-section .awards-img {
+        max-width: 60%;
+    }
+}

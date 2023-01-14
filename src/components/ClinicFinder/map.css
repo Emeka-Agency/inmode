@@ -1,0 +1,20 @@
+main.clinic-finder-page .map-clinic-finder {
+    padding: 35px 0 50px;
+}
+
+main.clinic-finder-page .map-clinic-finder .title,
+main.clinic-finder-page .map-clinic-finder .subtitle {
+    text-align: center;
+}
+ 
+main.clinic-finder-page .map-clinic-finder .title {
+    color: var(--electric-blue, #59b7b3);
+    font-size: 28px;
+    font-weight: 800;
+}
+
+main.clinic-finder-page .map-clinic-finder .subtitle {
+    color: var(--text-white, #f2f2f2);
+    font-size: 16px;
+    font-weight: 400;
+}

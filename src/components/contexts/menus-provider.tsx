@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
 import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
+import { _log } from '../../functions/logger';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
@@ -64,6 +65,17 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                   }
                 }
                 mini_treatments {
+                  id
+                  Name
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                mini_addons {
                   id
                   Name
                   MenuParams {
@@ -148,6 +160,17 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                   }
                 }
                 mini_treatments {
+                  id
+                  Name
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                mini_addons {
                   id
                   Name
                   MenuParams {
@@ -265,6 +288,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': menu.products || [],
                         'treatments': menu.treatments || [],
                         'mini_treatments': menu.mini_treatments || [],
+                        'mini_addons': menu.mini_addons || [],
                         'id': menu.id || menu.strapiId,
                         'parent': elem
                     };
@@ -288,6 +312,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                                     'products': _product.Addons[addon].products || [],
                                     'treatments': _product.Addons[addon].treatments || [],
                                     'mini_treatments': _product.Addons[addon].mini_treatments || [],
+                                    'mini_addons': _product.Addons[addon].mini_addons || [],
                                 });
                             };
                         }
@@ -300,6 +325,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
+                        'mini_addons': product.mini_addons || [],
                         'icon': product.Icon.localFile.childImageSharp.fluid || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
@@ -314,6 +340,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': treatment.products || [],
                         'treatments': treatment.treatments || [],
                         'mini_treatments': treatment.mini_treatments || [],
+                        'mini_addons': treatment.mini_addons || [],
                         'id': treatment.id || treatment.strapiId,
                         'parent': elem
                     };
@@ -321,6 +348,11 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
             }
             if(_object[elem].mini_treatments && _object[elem].mini_treatments.length) {
                 _object[elem].mini_treatments = _object[elem].mini_treatments.map((elem) => {
+                    return {...elem, ...elem.MenuParams};
+                });
+            }
+            if(_object[elem].mini_addons && _object[elem].mini_addons.length) {
+                _object[elem].mini_addons = _object[elem].mini_addons.map((elem) => {
                     return {...elem, ...elem.MenuParams};
                 });
             }
@@ -358,7 +390,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
     const [menusHeaderBottom] = React.useState(process_menu(datas.header_bottom.nodes.map(elem => elem)));
     const [menusFooter] = React.useState(datas.footer);
 
-    // console.log(menusHeaderTop, menusHeaderBottom, menusFooter);
+    _log(menusHeaderTop, menusHeaderBottom, menusFooter);
     
     return (
         <MenusContext.Provider

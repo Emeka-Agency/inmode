@@ -44,7 +44,7 @@ const WorkstationMenu = ({
                         >
                             {tag.FamilyName}
                         </span>
-                        <ul className="dropdown-menu custom-scrollbar">
+                        <ul className="dropdown-menu custom-scrollbar moz-scrollbar">
                             <div className="selection transition">
                             <input
                                 id={`${key}-all`}
@@ -84,7 +84,7 @@ const WorkstationMenu = ({
                 >
                     technologies
                 </span>
-                <ul className="dropdown-menu custom-scrollbar">
+                <ul className="dropdown-menu custom-scrollbar moz-scrollbar">
                     {technologies.map((techno, key) => {
                         return (
                             <div key={key} className="selection transition">

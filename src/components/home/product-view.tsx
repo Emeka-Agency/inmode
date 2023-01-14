@@ -28,7 +28,7 @@ const ProductView = ({children, datas}:ProductView) => {
                 <div className="product-view-descr">
                     {products[datas.current].WhatIs.TitleText[0].text}
                 </div>
-                <div className="addons-view-cards transition custom-scrollbar">
+                <div className="addons-view-cards transition custom-scrollbar moz-scrollbar">
                     {products[datas.current].Addons && products[datas.current].Addons.map((addon, key) => {
                         return (
                             <div key={key} className="addon transition">
@@ -41,7 +41,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                             alt={addon.Name}
                                         />
                                     </div>
-                                    <a className="addon-description custom-scrollbar" title={addon.Name}>{addon.Banner.right_text}</a>
+                                    <a className="addon-description custom-scrollbar moz-scrollbar" title={addon.Name}>{addon.Banner.right_text}</a>
                                     <img
                                         className="addon-picture"
                                         src={addon.Banner.left_img.localFile.childImageSharp.fluid.srcWebp}
@@ -57,7 +57,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                             alt={addon.Name}
                                         />
                                     </div>
-                                    <p className="description custom-scrollbar">
+                                    <p className="description custom-scrollbar moz-scrollbar">
                                         {addon.WhatIs.TitleText[0].text}
                                     </p>
                                     <div className="purchase-infos">

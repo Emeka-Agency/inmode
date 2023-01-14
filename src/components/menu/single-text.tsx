@@ -4,15 +4,7 @@ import { format_string } from '../../functions/format_string';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
 
-const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
-
-    // SWITCH CART
-
-    // if(menu.title && menu.title.toLowerCase() === 'shop') {
-    //     return <></>;
-    // }
-
-    // {/* SWITCH CART END */}
+const MenuSingleText = ({menu, prop_key = undefined, openOnClick}:MenuSingleText) => {
 
     return (
         menu.url ?
@@ -34,6 +26,7 @@ const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
 interface MenuSingleText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 }
 
 export default MenuSingleText;

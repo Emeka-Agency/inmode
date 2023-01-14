@@ -59,9 +59,15 @@ const Footer = ({}:Footer) => {
                                     srcSet={icons(menu)}
                                     alt={menu}
                                 />
-                                {menu === "mail" ? 
-                                    <a href={`mailto:${footer["mail"]}`} className="footer-infos-text" title="Contact us by mail">
-                                        {footer["mail"]}
+                                {
+                                    menu === "mail" ? 
+                                    <a href={`mailto:${footer.mail}`} className="footer-infos-text" title="Contact us by mail">
+                                        {footer.mail}
+                                    </a>
+                                    :
+                                    menu == "phone" ?
+                                    <a href={`tel:${footer.phone}`} className="footer-infos-text" title="Call us directly">
+                                        {footer.phone}
                                     </a>
                                     :
                                     <div className="footer-infos-text">

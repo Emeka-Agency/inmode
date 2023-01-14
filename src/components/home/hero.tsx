@@ -4,6 +4,8 @@ import Img from "gatsby-image";
 import { useImages } from '../contexts/images-provider';
 import { graphql, useStaticQuery } from "gatsby";
 
+import './hero.css';
+
 const Hero = ({}:Hero) => {
 
     const [datas] = React.useState(useStaticQuery(graphql`
@@ -36,16 +38,24 @@ const Hero = ({}:Hero) => {
             // }}
         >
             {/* // TODO ajouter single content */}
-            <div className="hero-left">
-                <div className="top-text">{datas.TopText}</div>
-                {/* {size.width < 670 && <> */}
-                <div className="border-5"></div>
-                <div className="border-4"></div>
-                <div className="border-3"></div>
-                {/* </>} */}
-                <div className="bottom-text">{datas.BottomText}</div>
-            </div>
-            <div className="hero-right">
+            <div className="hero-global">
+                <div className="hero-top">
+                    <div className="top-text">{datas.TopText}</div>
+                    {/* {size.width < 670 && <> */}
+                    <div className="border-5"></div>
+                    <div className="border-4"></div>
+                    <div className="border-3"></div>
+                    <div className="layout-2"></div>
+                    <div className="layout-3"></div>
+                    <div className="layout-4"></div>
+                    <div className="layout-5"></div>
+                    <div className="layout-6"></div>
+                </div>
+                <div className="hero-bottom">
+                    {/* </>} */}
+                    <div className="bottom-text">{datas.BottomText}</div>
+                </div>
+                {/* IMAGE HERO */}
                 <img
                     id="hero-img"
                     src={images.getOne('heroHeader').childImageSharp.fluid.srcWebp}
@@ -54,11 +64,6 @@ const Hero = ({}:Hero) => {
                     alt="hero-right-img"
                 />
             </div>
-            <div className="layout-2"></div>
-            <div className="layout-3"></div>
-            <div className="layout-4"></div>
-            <div className="layout-5"></div>
-            <div className="layout-6"></div>
         </div>
     );
 };

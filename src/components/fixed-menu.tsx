@@ -2,13 +2,8 @@ import React from "react"
 import Menu from "./menu";
 import { Link } from "gatsby";
 import MenusContext from "./contexts/menus-context"
-// {/* SWITCH CART */}
-
-// import CartBasket from "./CartBasket"
-// import { useCart } from './contexts/cart-provider';
-
-// {/* SWITCH CART END */}
 import { useImages } from './contexts/images-provider';
+import MenuSingleText from "./menu/single-text";
 
 const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
@@ -18,24 +13,17 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
     React.useEffect(() => {
         const handleScroll = (e:Event) => { 
-            if (window.pageYOffset > 150 && window.innerWidth > 999) {
+            if (window?.pageYOffset > 150 && window?.innerWidth > 999) {
                 setIsVisible(true)
             } else {
                 setIsVisible(false)
             }
         };
-        window.addEventListener('scroll', handleScroll)
+        window?.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window?.removeEventListener('scroll', handleScroll)
         };
     }, []);
-
-    
-    // {/* SWITCH CART */}
-    
-    // const cart = useCart();
-
-    // {/* SWITCH CART END */}
 
     const images = useImages();
 
@@ -51,16 +39,22 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
                     <Link to="/" className="zone-link" title="Inmode"></Link>
                 </div>
                 <div className="fixed-menus">
+                    <MenuSingleText
+                        menu={{
+                            title: "Home",
+                            url: "/",
+                            type: "text",
+                            variant: "single",
+                            parent_menu: true,
+                            internal_link: true,
+                        }}
+                        prop_key={0}
+                    />
                     {menus && menus.map((menu:any, key:number) => {
                         return (
                             <Menu key={key} prop_key={key} menu={menu} />
                         );
                     })}
-                    {/* SWITCH CART */}
-
-                    {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null } */}
-
-                    {/* SWITCH CART END */}
                 </div>
             </div>
         </div>

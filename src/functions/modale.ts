@@ -53,28 +53,6 @@ function closePart() {
     return `<span id="modale-close">+</span>`;
 }
 
-// Payment SEPA Modale
-
-export function paymentSEPA(datas:paymentSEPA) {
-    return {
-        onOpen: datas.onOpen,
-        onClose: datas.onClose,
-        containerClass: 'payment-sepa',
-        content: `
-            <h2>Order completed</h2>
-            <div class="thanks">
-                Thanks, your order has been well created. We'll ship it to you as soon as possible
-            </div>
-            <div class="info">
-                Your order reference is <span class="reference">${datas.reference}</span>, think about keeping it somewhere
-            </div>
-            <div class="post-scriptum">
-                PS : all the informations related to your order had been sent to the mail address(es) provided during the purchase
-            </div>
-        `.trim()
-    };
-};
-
 // Press media Modale
 
 export function pressMedia(datas:pressMedia) {
@@ -158,14 +136,100 @@ export function clinicalStudyPassword(datas:clinicalStudy) {
     };
 }
 
-interface paymentSEPA {
-    total: string;
-    RIB: string;
-    BIC: string;
-    reference: string;
-    onOpen?: Function;
-    onClose?: Function;
-};
+export function routeCaseStudy(datas:routeCaseStudy) {
+    return {
+        onOpen: datas.onOpen,
+        onClose: datas.onClose,
+        containerClass: "route-case-study-modale-container",
+        content: `
+            <h2>Protected area</h2>
+            <div class="route-case-study-text">
+                Please first enter the password to access the case studies
+            </div>
+            <div class="route-case-study-input-zone">
+                <input type="text" id="route-case-study-password" placeholder="Type password here"/>
+                <div class="route-case-study-input-zone-after"></div>
+                <div id="route-case-study-password-status" style="display:none;"></div>
+            </div>
+            <div class="route-case-study-submit">
+                <button type="submit" id="route-case-study-submit">Submit</button>
+            </div>
+            ${datas.exit == true ? '<a id="route-case-study-exit" href="/">Exit</a>' : null}
+        `.trim()
+    };
+}
+
+export function signupEvent(datas:signupEvent) {
+    return {
+        onOpen: datas.onOpen,
+        onClose: datas.onClose,
+        containerClass: "event-participate-modale-container",
+        content: `
+            <h2>Join the event</h2>
+            <form id="event-signup">
+                <div class="event-participate-input-zone">
+                    <input name="salutation" required type="text" id="event-participate-salutation" placeholder="Salutation" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-salutation-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone">
+                    <input name="firstname" required type="text" id="event-participate-firstname" placeholder="Firstname" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-firstname-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone">
+                    <input name="surname" required type="text" id="event-participate-surname" placeholder="Surname" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-surname-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone">
+                    <input name="mail" required type="text" id="event-participate-email" placeholder="Email" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-email-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone">
+                    <input name="number" required type="text" id="event-participate-contact-number" placeholder="Contact number" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-contact-number-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone specialist-zone" style="display:none;">
+                    <select name="speciality" id="event-participate-speciality" class="form-field">
+                        <option value="" selected disabled style="display:none">Choose a speciality*</option>
+                        <option value="plastic-surgeon">Plastic surgeon</option>
+                        <option value="cosmetic-surgeon">Cosmetic surgeon</option>
+                        <option value="dermatologist">Dermatologist</option>
+                        <option value="cosmetic-doctor">Cosmetic doctor</option>
+                        <option value="gynecologist">Gynecologist</option>
+                        <option value="nurse">Nurse</option>
+                        <option value="facialist">Facialist / Aesthetician</option>
+                        <option value="others">Others</option>
+                    </select>
+                    <div id="event-participate-speciality-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone specialist-zone" style="display:none;">
+                    <input name="clinic_name" type="text" id="event-participate-clinic-name" placeholder="Clinic name" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-clinic-name-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone specialist-zone" style="display:none;">
+                    <input name="clinic_location" type="text" id="event-participate-clinic-location" placeholder="Clinic location" class="form-field"/>
+                    <div class="event-participate-input-zone-after"></div>
+                    <div id="event-participate-clinic-location-status" style="display:none;"></div>
+                </div>
+                <div class="event-participate-input-zone neumorphic">
+                    <input name="is_practitioner" type="checkbox" id="event-participate-is-doctor" class="form-field"/>
+                    <label for="event-participate-is-doctor" class="user-select-none">I am a practitioner</label>
+                    <div id="event-participate-is-doctor-status" style="display:none;"></div>
+                </div>
+                <div class="req-return success" style="color: '#59b7b3', fontSize: 15, fontWeight: 400"></div>
+                <div class="req-return error" style="color: 'red', fontSize: 15, fontWeight: 400"></div>
+                <div class="event-participate-submit">
+                    <button type="submit" id="event-participate-submit" class="submit">Submit</button>
+                </div>
+            </form>
+        `.trim()
+    };
+}
 
 interface pressMedia {
     press: PressMedia_Interface[];
@@ -175,6 +239,17 @@ interface pressMedia {
 };
 
 interface clinicalStudy {
+    onOpen?: Function;
+    onClose?: Function;
+}
+
+interface routeCaseStudy {
+    onOpen?: Function;
+    onClose?: Function;
+    exit?: boolean;
+}
+
+interface signupEvent {
     onOpen?: Function;
     onClose?: Function;
 }

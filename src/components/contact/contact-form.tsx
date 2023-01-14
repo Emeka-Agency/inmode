@@ -4,8 +4,14 @@ import { useWindowSize } from "../../functions/window-size";
 import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 import { oneById } from "../../functions/selectors";
+import LoadingGIF from "../LoadingGIF";
 
 import { send_form_large } from "./contact";
+import { _log } from "../../functions/logger";
+
+// DONE - Changer le type du champ de code postal
+// DONE - Factoriser les composants du formulaire
+// CURRENT - Tester l'envoi de mails
 
 const tech_list = [
     {name: "morpheus8", label: "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",},
@@ -24,9 +30,32 @@ const tech_list = [
     {name: "votiva", label: "VOTIVA | AVIVA | FEMININE WELLNESS",},
 ];
 
-const ContactForm = ({ from }:ContactForm) => {
+const phone_pattern = "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$";
 
-    // console.log(process.env.INMODE_BACK);
+const form_elems = [
+    {"placeholder": "", "validation_message": "Fill in your lastname", "required": true, "label": "Last name", "name" : "lastname", "type" : "text"},
+    {"placeholder": "", "validation_message": "Fill in your firstname", "required": true, "label": "First name", "name" : "firstname", "type" : "text"},
+    {"placeholder": "", "label": "Society", "name" : "company", "type" : "text"},
+    {"placeholder": "", "validation_message": "Choose a speciality", "required": true, "label": "Choose a speciality", "name" : "subject", "type" : "select", "options": [
+        {"value": "", "disabled": true, "selected": true, "style": {'display': 'none'}, "label": "Speciality"},
+        {"value" : "plastic-surgeon", "label": "Plastic surgeon",},
+        {"value" : "cosmetic-surgeon", "label": "Cosmetic surgeon",},
+        {"value" : "dermatologist", "label": "Dermatologist",},
+        {"value" : "cosmetic-doctor", "label": "Cosmetic doctor",},
+        {"value" : "gynecologist", "label": "Gynecologist",},
+        {"value" : "nurse", "label": "Nurse",},
+        {"value" : "facialist", "label": "Facialist / Aesthetician",},
+        {"value" : "others", "label": "Others",}
+    ]},
+    {"placeholder": "", "validation_message": "Fill in your mail", "spellcheck": false, "required": true, "label": "Email", "name" : "mail", "type" : "email"},
+    {"placeholder": "", "validation_message": "Fill in your phone number", "spellcheck": false, "required": true, "label": "Phone", "name" : "phone_number", "type" : "tel", "pattern": phone_pattern},
+    {"placeholder": "", "validation_message": "Fill in your address", "spellcheck": false, "required": true, "label": "Address", "name" : "address", "type" : "text"},
+    {"placeholder": "", "validation_message": "Fill in your zip code", "spellcheck": false, "required": true, "label": "PostCode", "name" : "zip", "type" : "text"},
+    {"placeholder": "", "validation_message": "Fill in your city", "spellcheck": false, "required": true, "label": "City", "name" : "city", "type" : "text"},
+    {"placeholder": "", "validation_message": "Fill in your country", "spellcheck": false, "required": true, "label": "Country", "name" : "country", "type" : "select", "options" : <SelectCountry/>},
+];
+
+const ContactForm = ({ from }:ContactForm) => {
 
     const size = useWindowSize();
 
@@ -47,6 +76,14 @@ const ContactForm = ({ from }:ContactForm) => {
             oneById("accordion"),
             oneById("title-accordion")
         );
+        // EXPLAIN - Pas de setCustomValidity puisque ça définit l'élément comme étant mal rempli
+        // let temp;
+        // (form_elems || []).forEach(elem => {
+        //     temp = document.querySelector(`#full-contact-form [name="${elem.name}"]`);
+        //     if(typeof elem.validation_message == "string" && typeof elem.name == "string" && (temp instanceof HTMLInputElement ||temp instanceof HTMLSelectElement)) {
+        //         temp.setCustomValidity(elem.validation_message);
+        //     }
+        // });
     }, [size.width]);
 
     const [msgLength, setMsgLength] = React.useState(0);
@@ -73,69 +110,107 @@ const ContactForm = ({ from }:ContactForm) => {
         var panel = e.currentTarget.nextElementSibling;
         resize_panel(panel, e.currentTarget);
     }
+
+    const get_for_element = (selector:string|null = null):HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|null => {
+        return selector == null ? null : document.querySelector(selector);
+    }
+
+    const verify_form = () => {
+        console.log("verify_form");
+        return (form_elems || []).map(elem => 
+            !elem.required || (elem.required == true && get_for_element(`#full-contact-form [name="${(elem.name || "")}"]`)?.checkValidity()) ? true : false
+        ).filter(ans => ans).length == form_elems.length;
+    }
+
+    const set_saving = () => {
+        console.log("set_saving");
+        document?.querySelector('#full-contact-form .loading-gif')?.classList.add('active');
+        return true;
+    }
+    const remove_saving = (status = null) => {
+        console.log("remove_saving", status);
+        status == "fail" && setSubmitText("Fail to send");
+        status == "success" && setSubmitText("Sended");
+        status == "error" && setSubmitText("Error on send");
+        document?.querySelector('#full-contact-form .loading-gif')?.classList.remove('active');
+        return true;
+    }
+
+    const reset_form = () => {
+        let _temp = null;
+        _temp = document.querySelector('#full-contact-form .req-return.success');
+        if(_temp instanceof HTMLElement) {_temp.innerHTML = "";}
+        _temp = document.querySelector('#full-contact-form .req-return.error');
+        if(_temp instanceof HTMLElement) {_temp.innerHTML = "";}
+        setSubmitText("Send");
+        _temp = document?.getElementById("full-contact-form");
+        if(_temp instanceof HTMLFormElement) {_temp.reset();}
+    }
     
     const max_length = 800;
 
     return (
-        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form_large(e);}} className={`contact-form main-container ${from}`}>
+        <form
+            id="full-contact-form"
+            name="contact"
+            onSubmit={(e) => {
+                e.preventDefault();
+                // console.log("Submit with " + (verify_form() ? "send" : "report validity"));
+                verify_form() ? set_saving() && send_form_large(e, setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
+            }}
+            className={`contact-form main-container ${from}`}
+            method="POST"
+        >
             <div className="mailer-datas">
-                <div className="field">
-                    <label htmlFor="lastname">Last name*</label>
-                    <input type="text" name="lastname" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="firstname">First name*</label>
-                    <input type="text" name="firstname" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="company">Society</label>
-                    <input type="text" name="company"/>
-                </div>
-                <div className="field">
-                    <label htmlFor="subject">Choose a speciality*</label>
-                    <select name="subject" required={true}>
-                        <option value="" disabled selected style={{display: 'none'}}>Speciality</option>
-                        <option value="plastic-surgeon">Plastic surgeon</option>
-                        <option value="cosmetic-surgeon">Cosmetic surgeon</option>
-                        <option value="dermatologist">Dermatologist</option>
-                        <option value="cosmetic-doctor">Cosmetic doctor</option>
-                        <option value="gynecologist">Gynecologist</option>
-                        <option value="nurse">Nurse</option>
-                        <option value="facialist">Facialist / Aesthetician</option>
-                        <option value="others">Others</option>
-                    </select>
-                </div>
-                <div className="field">
-                    <label htmlFor="mail">Email*</label>
-                    <input spellCheck={false} type="email" name="mail" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="phone_number">Phone*</label>
-                    <input spellCheck={false} type="tel" name="phone_number" required pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"/>
-                </div>
-                <div className="field">
-                    <label htmlFor="address">Address*</label>
-                    <input spellCheck={false} type="text" name="address" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="zip">PostCode*</label>
-                    <input spellCheck={false} type="number" name="zip" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="city">City*</label>
-                    <input spellCheck={false} type="text" name="city" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="country">Country</label>
-                    <SelectCountry/>
-                </div>
+                {form_elems.map((elem, elem_key) => {
+                    if(["email", "tel", "text"].indexOf(elem.type) > -1) {
+                        return (
+                            <div className="field" key={elem_key}>
+                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                <input
+                                    id={elem.name}
+                                    title={elem.label}
+                                    placeholder={elem.placeholder}
+                                    spellCheck={elem.spellcheck ? true : false}
+                                    type={elem.type}
+                                    name={elem.name}
+                                    required={elem.required ? false : false}
+                                    pattern={elem.pattern ? elem.pattern : undefined}
+                                />
+                            </div>
+                        );
+                    }
+                    if(elem.type == "select") {
+                        return (
+                            <div className="field">
+                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                {
+                                    Array.isArray(elem.options) ? 
+                                        <select id={elem.name} name={elem.name} required={elem.required ? false : false}>
+                                            {(elem.options || []).map((option, option_key) => 
+                                                <option
+                                                    value={option.value}
+                                                    disabled={option.disabled ? true : false}
+                                                    selected={option.selected ? true : false}
+                                                    style={option.style || {}}
+                                                    key={option_key}
+                                                >{option.label}</option>
+                                            )}
+                                        </select>
+                                    :
+                                    elem.options
+                                }
+                            </div>
+                        );
+                    }
+                })}
             </div>
             <div className="message-zone">
                 <textarea
                     id="contact-message"
                     placeholder="Enter your message here*"
                     name="message"
-                    className="custom-scrollbar"
+                    className="custom-scrollbar moz-scrollbar"
                     maxLength={max_length}
                     rows={15}
                     onKeyUp={(e) => {setMsgLength(e.currentTarget.value.length);}}
@@ -167,7 +242,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     {tech_list.map((tech, key) => {
                         return (
                             <div key={key} className="key-check">
-                                <label htmlFor={tech.name}>
+                                <label className="user-select-none" htmlFor={tech.name}>
                                     <input type="checkbox" id={tech.name} name={tech.name}/>
                                     {tech.label}
                                 </label>
@@ -183,7 +258,16 @@ const ContactForm = ({ from }:ContactForm) => {
             </div>
             <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-            <button type="submit" className="submit transition">{submitText}</button>
+            <button type="submit" className="submit transition">
+                <div className="label">{submitText}</div>
+                {<LoadingGIF/>}
+            </button>
+            <button
+                type="button"
+                className="submit transition reset"
+                onClick={() => reset_form()}>
+                <div className="label">New mail</div>
+            </button>
         </form>
     );
 };

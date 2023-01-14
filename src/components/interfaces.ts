@@ -2,6 +2,8 @@
 // Collections
 
 export interface InmodePanel_Clinic_Interface {
+    name: string;
+    address: string;
     city: string;
     doctor: string;
     mail: string;
@@ -13,6 +15,38 @@ export interface InmodePanel_Clinic_Interface {
     treatments?: {
         MenuParams: InmodePanel_Generic_MenuParams_Interface
     }[];
+};
+
+export interface Airtable_Clinic_Interface {
+    id: string;
+    doctor: string;
+    name: string;
+    address: string;
+    zip_code: string;
+    city: string;
+    shire: string;
+    url: string;
+    mail: string;
+    number: string;
+    region: string;
+    treatments: string[] | undefined;
+}
+
+export interface Airtable_Event_Interface {
+    id: string;
+    EventName?: string;
+    Start?: string;
+    End?: string;
+    Practitioner?: string;
+    Address?: string;
+    Place?: string;
+    PlaceURL?: string;
+    Addons?: string[];
+    EventType?: string;
+    EventDescription?: string;
+    MapsLink?: string;
+    VideoURL?: string;
+    Picture?: any;
 };
 
 export interface InmodePanel_Addon_Interface {
@@ -38,7 +72,8 @@ export interface InmodePanel_Addon_Interface {
 };
 export interface InmodePanel_Event_Interface {
     picture: {
-        localFile: GatsbyImage_Interface
+        localFile: GatsbyImage_Interface;
+        aspectRatio: number;
     };
     title: string;
     short_descr: string;
@@ -51,6 +86,7 @@ export interface InmodePanel_Event_Interface {
     place_url: string;
     maps_link: string;
     addons: InmodePanel_Addon_Interface[];
+    strapiId: string;
 };
 export interface InmodePanel_Menu_Interface {
     title?: string;
@@ -72,23 +108,6 @@ export interface InmodePanel_Menu_Interface {
     mini_treatments?: InmodePanel_Treatment_Interface[];
     mini_products?: InmodePanel_Product_Interface[];
     mini_addons?: InmodePanel_Addon_Interface[];
-};
-export interface InmodePanel_Order_Interface {
-    Reference?: string | undefined;
-    Date: string;
-    Article: InmodePanel_Product_BoughtArticle_Interface[];
-    Billing: InmodePanel_Order_Billing_Interface;
-    Shipping?: InmodePanel_Order_Shipping_Interface;
-    Paid: boolean;
-    Status: string;
-    Firstname: string;
-    Lastname: string;
-    Society: string;
-    DeliveryTax: number;
-    Total: string | number;
-    SEPA?: boolean;
-    Country: string;
-    TVA_Intra?: string;
 };
 export interface InmodePanel_Product_Interface {
     strapiId: number;
@@ -373,30 +392,6 @@ export interface InmodePanel_Generic_WhatIs_Interface {
     TitleText?: InmodePanel_Base_SectionTitreText_Interface[];
 };
 
-// Order
-export interface InmodePanel_Order_Billing_Interface {
-    Firstname?: string;
-    Lastname?: string;
-    Phone?: string | number;
-    Mail?: string;
-    Address?: string;
-    Country?: string;
-    ZIP?: string | number;
-    City?: string;
-    Society?: string;
-};
-export interface InmodePanel_Order_Shipping_Interface {
-    Firstname?: string;
-    Lastname?: string;
-    Phone?: string | number;
-    Mail?: string;
-    Address?: string;
-    Country?: string;
-    ZIP?: string | number;
-    City?: string;
-    Society?: string;
-};
-
 // Product
 export interface InmodePanel_Product_BoughtArticle_Interface {
     Article?: number;
@@ -557,143 +552,6 @@ export interface NameTable_Interface {
     kit: string[];
     pin: string[];
     unite: string[];
-};
-
-export interface SogecommerceOrder {
-    signature: string;// "szb8I5l+avSYQQ0qWq8E8FhI6WGiAOOOsbo9iyk7uIs="
-    intra_tva: string,
-    vads_action_mode: string;// "INTERACTIVE"
-    vads_amount: string | number;// "86400"
-    vads_ctx_mode: string;// "TEST"
-    vads_currency: string | number;// 978
-    vads_cust_address: string;// "124 Rue de Crimée"
-    vads_cust_country?: string;// ""
-    vads_cust_cell_phone: string | number;// "0667630604"
-    vads_cust_city: string;// "Marseille"
-    vads_cust_email: string;// "mael.fallet@gmail.com"
-    vads_cust_first_name: string;// "Maël"
-    vads_cust_last_name: string;// "FALLET"
-    vads_cust_legal_name: string;// "Emeka"
-    vads_cust_zip: string | number;// "13003"
-    vads_nb_products: string | number;// "2"
-    vads_order_id?: string;// "SLLwPU"
-    vads_page_action: string;// "PAYMENT"
-    vads_payment_config: string;// "SINGLE"
-    // vads_product_amount23: | number string;// "36000"
-    // vads_product_amount25: | number string;// "18000"
-    // vads_product_amount9999: | number string;// "14400"
-    // vads_product_label23: string;// "HP L10 D18 Type 06 FaceTite"
-    // vads_product_label25: string;// "HP L17 D25 Type 03 CelluTite"
-    // vads_product_label9999: string;// "tva"
-    // vads_product_qty23: | number string;// "1"
-    // vads_product_qty25: | number string;// "2"
-    // vads_product_qty9999: | number string;// "1"
-    // vads_product_ref23: string;// "HP101806A"
-    // vads_product_ref25: string;// "HP172503A"
-    // vads_product_ref9999: string;// "TVA"
-    vads_return_mode?: string;// "POST"
-    vads_ship_to_city: string;// "Marseille"
-    vads_ship_to_first_name: string;// "Kévin"
-    vads_ship_to_last_name: string;// "LESIEUTRE"
-    vads_ship_to_legal_name: string;// "Emeka"
-    vads_ship_to_phone_num: string | number;// "0769818682"
-    vads_ship_to_street: string;// "124 Rue de Crimée"
-    vads_ship_to_country: string;// ""
-    vads_ship_to_zip: string | number;// "13003"
-    delivery_mail: string;
-    vads_site_id: string | number;// "53371535"
-    vads_trans_date: string;// "20210225143539"
-    vads_trans_id?: string;// "SLLwPU"
-    vads_url_cancel?: string;// "https://www.inmodemd.co.uk/payment/cancel"
-    vads_url_refused?: string;// "https://www.inmodemd.co.uk/payment/refused"
-    vads_url_success?: string;// "https://www.inmodemd.co.uk/payment/paid"
-    vads_product_qty9999?: number;
-    vads_product_qty0?: number;
-    vads_version: string;// "V2"
-};
-
-export interface Cart_Interface {
-    articles: any;
-    article(ref:string):Article_Interface | undefined | null;
-    cart: Article_Interface[];
-    find(ref:string):Article_Interface | undefined | null;
-    add(ref:string, qnt:number):void;
-    remove(ref:string, qnt:number):void;
-    total():number;
-    delivery_tax():string;
-    total_base():string;
-    total_tva():string;
-    total_all_included():string;
-    pay_delivery():boolean;
-    delete(ref:string):void;
-    cart_opened: boolean;
-    open_cart():void;
-    close_cart():void;
-    toggle_open_cart():void;
-    appeared: boolean;
-    redirectPay(form_fields:any, sepa:Boolean):Promise<boolean | void>;
-    pay: PayParams_Interface;
-    init_shop(shop_id:string, urls:{success: string, cancel: string, refused: string, error: string}, order_urls:{create: string, load:string, signature:string}):Promise<void>;
-    updateForm(e:Event | any):void;
-    total_articles():number;
-    formSave: Cart_FormSave_Interface | any;
-    formReset():void,
-    cartReset():void,
-    differentAddress: Boolean,
-    hasDifferentShipping(_b:boolean):void,
-    getTVAIntra():boolean,
-};
-
-export interface Cart_FormSave_Interface {
-    vads_cust_title?: string;
-    vads_cust_first_name?: string;
-    vads_cust_last_name?: string;
-    vads_cust_status?: string;
-    vads_cust_legal_name?: string;
-    vads_cust_address_number?: string;
-    vads_cust_address?: string;
-    vads_cust_address2?: string;
-    vads_cust_zip?: string;
-    vads_cust_city?: string;
-    vads_cust_state?: string;
-    vads_cust_country?: string;
-    intra_tva?: string;
-    vads_ship?: string;
-    vads_ship_to_street_number?: string;
-    vads_ship_to_street?: string;
-    vads_ship_to_street2?: string;
-    vads_ship_to_zip?: string;
-    vads_ship_to_city?: string;
-    vads_ship_to_state?: string;
-    vads_ship_to_country?: string;
-    vads_ship_to_first_name?: string;
-    vads_ship_to_last_name?: string;
-    vads_ship_to_phone_num?: string;
-    vads_ship_to_status?: string;
-    vads_ship_to_legal_name?: string;
-    delivery_mail?: string;
-    vads_cust_cell_phone?: string;
-    vads_cust_email?: string;
-}
-
-export interface PayParams_Interface {
-    signature: string;
-    actionMode: string;
-    vads_ctx_mode: string;
-    currency: number;
-    pageAction: string;
-    siteId: string;
-    transDate: string;
-    transId: string;
-    version: string;
-    Reference: string;
-    url_success: string;
-    url_cancel: string;
-    url_refused: string;
-    url_error: string;
-    order_create: string;
-    order_load: string;
-    order_signature: string;
 };
 
 export interface Images_Interface {

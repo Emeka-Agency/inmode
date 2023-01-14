@@ -12,12 +12,13 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
+import { _log } from '../functions/logger';
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
-    // console.log(datas);
+    _log(datas);
 
     return (
             <Layout title="products">
@@ -42,7 +43,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 />
                 <Divider position="top"/>
                 <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity} name={datas.Name}/>
-                <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>
+                {datas.Demo == null && datas.BeforesAfters == null && datas.SellingArgs == null && datas.ClinicalStudies == null && <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>}
                 <ProductDemo datas={datas.Demo}/>
                 {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"#0b1a25"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
@@ -180,6 +181,9 @@ export const query = graphql`
                   }
                 }
                 appears_everywhere
+                products {
+                    id
+                }
               }
             }
             Demo {

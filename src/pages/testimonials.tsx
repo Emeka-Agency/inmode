@@ -44,7 +44,7 @@ const TestimonialsPage = () => {
         <SEO title="Testimonials"/>
         {/* {testimonials && testimonials.testimonials && testimonials.testimonials.map(testimonial => <Testimonial datas={testimonial}/>)} */}
         <Testimonial/>
-        {presentation && <OnProductTestimonial datas={presentation}/>}
+        {/* {presentation && <OnProductTestimonial datas={presentation}/>} */}
       </Layout>
     );
 };

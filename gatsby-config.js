@@ -24,14 +24,10 @@ module.exports = {
     twitter_image: ``,
     twitter_creator: `@InModeMD_UK`,
     msapplication_TileImage: ``,
-    shop_id: `${process.env.SHOP_ID}`,
     url_success: `${process.env.URL_SUCCESS}`,
     url_cancel: `${process.env.URL_CANCEL}`,
     url_refused: `${process.env.URL_REFUSED}`,
     url_error: `${process.env.URL_ERROR}`,
-    url_order_create: `${process.env.URL_ORDER_CREATE}`,
-    url_order_load: `${process.env.URL_ORDER_LOAD}`,
-    url_order_signature: `${process.env.URL_ORDER_SIGNATURE}`,
     instagram_id: `${process.env.INSTA_ID}`,
     siteUrl: `https://inmodemd.co.uk`,
   },
@@ -90,9 +86,8 @@ module.exports = {
           `our-specialist`,    // OurSpecialists
           `testimonial`,        // Testimonials
           `press-media`,        // PressMedias
-          `article`            // BlogPosts
-        //   `order`            // Orders
-        //   `event`            // Events
+          `article`,            // BlogPosts
+          `event`            // Events
         ],
         singleTypes: [
           `footer`,                 // Footer

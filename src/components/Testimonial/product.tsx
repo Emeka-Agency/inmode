@@ -11,6 +11,7 @@ const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
     }
 
     const imgHTML = (datas:InmodePanel_Testimonial_Interface) => {
+        if(datas.Picture == null) {return null;}
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
                 <img className="background-image" src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}/>
@@ -40,7 +41,7 @@ const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
         return (
             <div className={`testimonial-quote-part ${datas.from}`}>
                 {quoteSvg()}
-                <blockquote>
+                <blockquote custom-scrollbar moz-scrollbar>
                 {datas.Content}
                 </blockquote>
             </div>

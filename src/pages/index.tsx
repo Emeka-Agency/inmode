@@ -11,6 +11,7 @@ import Alveoles from "../components/home/alveoles";
 import { useWindowSize } from "../functions/window-size";
 import SlidesMini from "../components/home/slides-mini";
 import OurSpecialist from "../components/OurSpecialists";
+import AwardsSection from "../components/AwardsSection";
 import { graphql, useStaticQuery } from "gatsby";
 
 const IndexPage = () => {
@@ -37,6 +38,8 @@ const IndexPage = () => {
         <Alveoles />
         <ClinicalStudies/>
         <OurSpecialist/>
+        {/* CLARIFY Provisoire */}
+        <AwardsSection/>
         <FollowInstagram insta_id={instagram_id}/>
         <Newsletter />
       </Layout>

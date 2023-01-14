@@ -115,7 +115,7 @@ DONE - Neil Wolfenden is the Managing Director for the UK, managing all aspects 
 
 DONE - Mot de passe pour articles
 DONE - Press media datas
-FIXME - Press media style
+DONE - Press media style
 DONE - Blog datas
 DONE - Blog style
 DONE - Intégration lien MailChimp : https://us15.list-manage.com/contact-form?u=b799a9a69ecc0adb83f6ec99a&form_id=ce32ed8d846e4f4be24edcecea370561
@@ -135,8 +135,77 @@ FIXME - image header comme avant
 FIXME - Header media chosen and given in InmodePanel
 DONE - password direct download
 
+UP - En mode dev mettre un faker pour remplir les formulaires
+
+<!-- RÉCAP -->
+
+TODO - Dropdown menu 'Practitioners' et 'Patients' pour 'Testimonials'
+DONE - "This is the clinic name " ??
+UP - Signup docteurs/dentistes
+UP - Page 'Physicians' avec les études cliniques, les workshops/conferences/events, records de webinars, le tout protégé par login
+TODO - Ajouter Morpheus8 dans Face non-invasive
+DONE - Ajouter un dossier avec les images instagram 1.png, x.png
+TODO 1/2 - Aller prendre les testimonials sur le site
+UP - Flux RSS Instagram : https://docs.rsshub.app/en/#instagram OU https://rss.app/rss-feed/create-instagram-rss-feed
+DONE - Neil Wolfenden "UK Managing Director"
+DONE - Password protected case studies section (design rond bdz tenkaichi - events)
+    DONE - Ajouter menu
+    DONE - Ajouter protection (ajouter fonction générale avec case switch appelée aux changements de page)
+CLARIFY - "Please make it 3rd June" ??
+DONE - Logo pour événements sans images
+DONE - Enlever "Aesthetic Awards"
+DONE - "Beyond Beauty Live" conférence
+DONE - "Wigmore conference" conférence
+DONE - "No information right now"
+DONE - Date format DD/MM/YYYY
+DONE - "InMode EMEKA Annual Meeting" conférence
+DONE - "Smart Ideas" conférence
+DONE - Award logo position
+DONE - Ajouter Morpheus8 dans Body et Face (menus)
+DONE - Ajouter Home:
+    - header country
+    - header fixed products
+    - mini header logo maison
+DONE - Remplacer award 2019 par 2021
+KEVIN - Ajouter icône lock/unlock sur les liens avec mot de passe ?
+
+UP - Mettre cliniques sur back (tableau comme orders + modale edit)
+UP - Mettre events sur back (tableau comme orders + modale edit)
+
+1 - Home link       => DONE
+2 - Sign up event   => DONE
+3 - Morpheus8       => DONE
+4 - Case studies    => DONE
+
+<!-- FIN RÉCAP -->
+
 Code fiscale : 3 037 661 825 352
 
 https://img.youtube.com/vi/N9CVW4Qw5oQ/maxresdefault.jpg
 
 Yeshayahou Leibowitz
+
+refinery = {wine, sugar, grain}
+wharf = {naval_supplies, fish, salt, slaves}
+weapons = {copper, iron}
+textile = {wool, cloth, cotton, fur}
+fine_arts_academy = {gold, ivory, chinaware}
+university = {tea, spices, coffee, tobacco
+
+
+contact@inmodemd.co.uk
+eYLzTNH6OYU0
+
+DONE - empowerRF/ Remove blue morpheus 8 blue and replace with black one
+DONE - EvolveX / remove trim
+
+DONE - Under treatments add " empower RF " like votiva.
+
+DONE - treatment/non-invasive/ evolve -> evolvexs  evolve trim -> evolve X transform 
+DONE - In dropdownmenu/evolveX trim-> transform
+
+DONE - Clinic finder -> Alphabetical
+
+CLARIFY - British Isles add to clinic finder
+
+DONE - Add the specialist from the mail -> add practictionner

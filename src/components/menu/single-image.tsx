@@ -4,14 +4,14 @@ import { format_string } from '../../functions/format_string';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
 
-const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
+const MenuSingleImage = ({menu, prop_key = 0, openOnClick}:MenuSingleImage) => {
 
     return (
         <>
             {
                 menu.url ?
                     menu.internal_link ?
-                    <Link key={prop_key} className="menu-single menu-image social-btn" to={menu.url || "#"} onClick={(e) => {enableMainScroll();}} title={format_string(menu.title || '')} target="_blank" rel="noreferrer">
+                    <Link key={prop_key} className="menu-single menu-image social-btn" to={menu.url || "#"} onClick={(e) => {enableMainScroll();}} title={format_string(menu.title || '')} target="_self" rel="noreferrer">
                         <img
                             className="init"
                             src={menu.icon && menu.icon.localFile ? menu.icon.localFile.url || menu.icon.localFile.publicURL : ""}
@@ -56,7 +56,8 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
 
 interface MenuSingleImage {
     menu: InmodePanel_Menu_Interface;
-    prop_key: number;
+    prop_key?: number;
+    openOnClick?: boolean;
 };
 
 export default MenuSingleImage;

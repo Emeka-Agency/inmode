@@ -20,7 +20,7 @@ const AboutUs = ({ from = "" }:AboutUs) => {
                 <div className="title">About InMode</div>
                 <div className="content">
                     <iframe
-                        title="about-us"
+                        title="About us"
                         src={datas.about_video_url}
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen

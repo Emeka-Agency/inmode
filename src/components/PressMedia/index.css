@@ -46,6 +46,7 @@
     height: 250px;
     overflow: hidden;
     background-color: lightgrey;
+    background-color: rgba(11, 26, 37, 0.8);
 }
 
 .press-media .press-media-picture-div .press-media-picture-img {

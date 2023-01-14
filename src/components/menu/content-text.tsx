@@ -4,8 +4,9 @@ import { format_string } from '../../functions/format_string';
 import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
+import { useImages } from '../contexts/images-provider';
 
-const MenuContentText = ({menu, prop_key}:MenuContentText) => {
+const MenuContentText = ({menu, prop_key, openOnClick}:MenuContentText) => {
 
     const content = (_menu:InmodePanel_Menu_Interface) => {
         if(!_menu.menus) {
@@ -19,6 +20,7 @@ const MenuContentText = ({menu, prop_key}:MenuContentText) => {
                         return (<Menu key={key_sub} prop_key={key_sub} menu={sub}/>);
                     })
                 }
+                {menu.url == "/case-studies" && <img src={useImages().getOne("lock").publicURL} className="locked-section"/>}
             </>
         );
     }
@@ -46,6 +48,7 @@ const MenuContentText = ({menu, prop_key}:MenuContentText) => {
 interface MenuContentText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 };
 
 export default MenuContentText;

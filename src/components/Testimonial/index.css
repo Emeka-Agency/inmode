@@ -22,6 +22,10 @@
     position: relative;
 }
 
+.testimonial.patient {
+    height: 300px;
+}
+
 .testimonial.practitioner {
     width: 100%;
     margin-top: 25px;
@@ -35,6 +39,11 @@
     width: 50%;
     vertical-align: top;
     height: 500px;
+}
+
+.testimonial .testimonial-img-part.patient,
+.testimonial .testimonial-quote-part.patient {
+    height: inherit;
 }
 
 .testimonial .testimonial-img-part.practitioner {
@@ -102,7 +111,7 @@
 }
 
 .testimonial .testimonial-quote-part.patient {
-    width: 100%;
+    width: inherit;
 }
 
 .testimonial .testimonial-quote-part blockquote {
@@ -123,10 +132,10 @@
 .testimonial .testimonial-quote-part.patient .testimonial-quote-part-patient {
     top: 125px;
     position: relative;
-    width: 50%;
+    width: 100%;
     color: #fff;
     font-size: 18px;
-    left: 50%;
+    left: 0%;
 }
 
 .testimonial .testimonial-quote-part.patient .testimonial-quote-part-patient::before {
@@ -154,8 +163,8 @@
     line-height: 33px;
     pointer-events: auto;
     text-align: center;
-    width: 50%;
-    left: 50%;
+    width: 100%;
+    left: 0%;
 }
 
 .testimonial .testimonial-quote-part.practitioner blockquote {
@@ -166,4 +175,6 @@
     outline-width: 0px;
     text-align: start;
     padding: 5px 30px;
+    max-height: 350px;
+    overflow: auto;
 }

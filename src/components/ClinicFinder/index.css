@@ -1,25 +1,79 @@
-.clinic-finder {
-    padding: 50px 0;
+main.clinic-finder-page > .container {
+    padding: 35px 0 0;
 }
 
-.clinic-finder .title,
-.clinic-finder .subtitle {
+main.clinic-finder-page .container #clinic-finder-tabs {
+    margin: 0 auto;
+    border: 1px solid var(--electric-blue);
+    background-color: var(--star-blue);
+    border-radius: 5px;
+    width: 352px;
+    box-sizing: border-box;
+}
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics,
+main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
+    font-size: 22px;
+    font-weight: bold;
+    padding: 11px 17px;
+    color: #f2f2f2;
+    cursor: pointer;
+    width: 175px;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    transition: background 0.1s ease-in-out 0s,
+                color 0.1s ease-in-out 0s;
+}
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics:hover,
+main.clinic-finder-page .container #clinic-finder-tabs #tab-map:hover {
+    background-color: var(--electric-blue);
+    transition: background 0.2s ease-in-out 0s,
+                color 0.2s ease-in-out 0s;
+}
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics {
+    border-radius: 3px 0 0 3px;
+}
+
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
+    border-radius: 0 3px 3px 0;
+}
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics.current,
+main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current {
+    background: var(--electric-blue);
+}
+
+main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics.current:hover,
+main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current:hover {
+    color: var(--dark-blue);
+}
+
+main.clinic-finder-page .clinic-finder {
+    padding: 35px 0 50px;
+}
+
+main.clinic-finder-page .clinic-finder .title,
+main.clinic-finder-page .clinic-finder .subtitle {
     text-align: center;
 }
 
-.clinic-finder .title {
+main.clinic-finder-page .clinic-finder .title {
     color: var(--electric-blue, #59b7b3);
     font-size: 28px;
     font-weight: 800;
 }
 
-.clinic-finder .subtitle {
+main.clinic-finder-page .clinic-finder .subtitle {
     color: var(--text-white, #f2f2f2);
     font-size: 16px;
     font-weight: 400;
 }
 
-.clinic-finder #search-clinic-indicator {
+main.clinic-finder-page .clinic-finder #search-clinic-indicator {
     width: 60px;
     text-align: left;
     vertical-align: top;
@@ -30,7 +84,7 @@
     color: var(--electric-blue, #59b7b3);
 }
 
-.clinic-finder #search-clinic-indicator-ui {
+main.clinic-finder-page .clinic-finder #search-clinic-indicator-ui {
     width: 100%;
     height: 10px;
     display: block;
@@ -40,7 +94,7 @@
     box-shadow: #0008 0px 4px 4px;
 }
 
-.clinic-finder #search-clinic-indicator-ui .search-clinic-indicator-ui-back {
+main.clinic-finder-page .clinic-finder #search-clinic-indicator-ui .search-clinic-indicator-ui-back {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -50,9 +104,9 @@
     transition: width 0.5s ease-in-out 0s;
 }
 
-.clinic-finder #clinic-finder-search,
-.clinic-finder #clinic-finder-search-zip {
-    width: calc(50% - 30px);
+main.clinic-finder-page .clinic-finder #clinic-finder-search,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip {
+    width: 100%;
     max-width: 790px;
     margin: 25px auto 15px;
     border: none;
@@ -65,13 +119,20 @@
     font-family: "raleway", sans-serif;
 }
 
-.clinic-finder .clinic-finder-search-zip-span,
-.clinic-finder .clinic-finder-search-span {
+main.clinic-finder-page .clinic-finder #clinic-filter-regions,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span {
     position: relative;
+    width: 30%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-left: 0;
 }
 
-.clinic-finder .clinic-finder-search-zip-span::after,
-.clinic-finder .clinic-finder-search-span::after {
+main.clinic-finder-page .clinic-finder #clinic-filter-regions::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span::after {
     content: "";
     width: 30%;
     background-color: var(--electric-blue, #59b7b3);
@@ -82,25 +143,51 @@
     transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
 }
 
-.clinic-finder .clinic-finder-search-zip-span:hover::after,
-.clinic-finder .clinic-finder-search-span:hover::after,
-.clinic-finder .clinic-finder-search-zip-span:active::after,
-.clinic-finder .clinic-finder-search-span:active::after,
-.clinic-finder .clinic-finder-search-zip-span:focus::after,
-.clinic-finder .clinic-finder-search-span:focus::after,
-.clinic-finder .clinic-finder-search-zip-span:focus-within::after,
-.clinic-finder .clinic-finder-search-span:focus-within::after {
+main.clinic-finder-page .clinic-finder #clinic-filter-regions:hover::after,
+main.clinic-finder-page .clinic-finder #clinic-filter-regions:active::after,
+main.clinic-finder-page .clinic-finder #clinic-filter-regions:focus::after,
+main.clinic-finder-page .clinic-finder #clinic-filter-regions:focus-within::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span:hover::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span:active::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span:focus::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span:focus-within::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span:hover::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span:active::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span:focus::after,
+main.clinic-finder-page .clinic-finder .clinic-finder-search-span:focus-within::after {
     width: 70%;
     left: 0;
 }
 
-.clinic-finder #clinic-finder-search::placeholder,
-.clinic-finder #clinic-finder-search-zip::placeholder {
+main.clinic-finder-page .clinic-finder #clinic-filter-regions {
+    
+}
+
+main.clinic-finder-page .clinic-finder #clinic-filter-regions select {
+    margin: 0;
+    border-radius: 15px;
+    background-color: rgba(240, 240, 240, 0.1);
+    box-shadow: none;
+    padding: 11px;
+    top: 5px;
+    position: relative;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-filter-regions:hover select {
+    border-bottom-left-radius: 0px;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-filter-regions select .clinic-filter-region {
+    background-color: #0b1a25;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-finder-search::placeholder,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip::placeholder {
     color: var(--text-white, #f2f2f2);
 }
 
-.clinic-finder #clinic-finder-search + div.bottom-border,
-.clinic-finder #clinic-finder-search-zip + div.bottom-border {
+main.clinic-finder-page .clinic-finder #clinic-finder-search + div.bottom-border,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip + div.bottom-border {
     width: 100%;
     max-width: 850px;
     margin: 0 auto;
@@ -108,8 +195,8 @@
     position: relative;
 }
 
-.clinic-finder #clinic-finder-search + div.bottom-border::after,
-.clinic-finder #clinic-finder-search-zip + div.bottom-border::after {
+main.clinic-finder-page .clinic-finder #clinic-finder-search + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip + div.bottom-border::after {
     content: "";
     width: 0%;
     height: 2px;
@@ -118,16 +205,16 @@
     transition: width 0.3s ease-in-out 0s;
 }
 
-.clinic-finder #clinic-finder-search:active + div.bottom-border::after,
-.clinic-finder #clinic-finder-search:focus + div.bottom-border::after,
-.clinic-finder #clinic-finder-search:focus-within + div.bottom-border::after,
-.clinic-finder #clinic-finder-search-zip:active + div.bottom-border::after,
-.clinic-finder #clinic-finder-search-zip:focus + div.bottom-border::after,
-.clinic-finder #clinic-finder-search-zip:focus-within + div.bottom-border::after {
+main.clinic-finder-page .clinic-finder #clinic-finder-search:active + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search:focus + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search:focus-within + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip:active + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip:focus + div.bottom-border::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-search-zip:focus-within + div.bottom-border::after {
     width: 100%;
 }
 
-.clinic-finder .clinic-item {
+main.clinic-finder-page .clinic-finder .clinic-item {
     min-height: auto;
     margin: 35px auto;
     border-radius: 10px;
@@ -139,8 +226,8 @@
     overflow: hidden;
 }
 
-.clinic-finder .clinic-item .left-part ,
-.clinic-finder .clinic-item .right-part {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part ,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part {
     width: 50%;
     box-sizing: border-box;
     height: 100%;
@@ -149,66 +236,72 @@
     padding-bottom: 20px;
 }
 
-.clinic-finder .clinic-item .left-part .clinic-street,
-.clinic-finder .clinic-item .left-part .clinic-address,
-.clinic-finder .clinic-item .left-part .clinic-doctor,
-.clinic-finder .clinic-item .right-part .clinic-url,
-.clinic-finder .clinic-item .right-part .clinic-mail,
-.clinic-finder .clinic-item .right-part .clinic-phone,
-.clinic-finder .clinic-item .right-part .clinic-switch-treatments {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-name,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-street,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-address,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-doctor,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-url,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-mail,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     min-height: 20px;
     padding: 8px 0;
     word-break: break-word;
 }
 
-.clinic-finder .clinic-item .left-part .clinic-street,
-.clinic-finder .clinic-item .left-part .clinic-address,
-.clinic-finder .clinic-item .left-part .clinic-doctor,
-.clinic-finder .clinic-item .right-part .clinic-url a,
-.clinic-finder .clinic-item .right-part .clinic-mail a,
-.clinic-finder .clinic-item .right-part .clinic-phone a,
-.clinic-finder .clinic-item .right-part .clinic-switch-treatments {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-name,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-street,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-address,
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-doctor,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-url a,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-mail a,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone a,
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     font-size: 18px;
     font-weight: 500;
     color: var(--text-white, #f2f2f2);
     word-break: break-word;
 }
 
-.clinic-finder .clinic-item .left-part {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part {
     padding-right: 10px;
     text-align: left;
 }
 
-.clinic-finder .clinic-item .right-part {
+main.clinic-finder-page .clinic-finder .clinic-item .right-part {
     padding-left: 10px;
     text-align: right;
 }
 
-.clinic-finder .clinic-item .left-part .clinic-street {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-name {
     
 }
 
-.clinic-finder .clinic-item .left-part .clinic-address {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-street {
+    
+}
+
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-address {
 
 }
 
-.clinic-finder .clinic-item .left-part .clinic-doctor {
+main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-doctor {
     margin-top: 20px;
 }
 
-.clinic-finder .clinic-item .right-part .clinic-url {
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-url {
 
 }
 
-.clinic-finder .clinic-item .right-part .clinic-mail {
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-mail {
 
 }
 
-.clinic-finder .clinic-item .right-part .clinic-phone {
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone {
     margin-bottom: 30px;
 }
 
-.clinic-finder .clinic-item .right-part .clinic-switch-treatments {
+main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     border-radius: 5px;
     background-color: var(--electric-blue, #59b7b3);
     width: fit-content;
@@ -221,7 +314,7 @@
     bottom: 15px;
 }
 
-.clinic-finder .clinic-item .clinic-treatments {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments {
     position: relative;
     width: 100%;
     background-color: var(--electric-blue, #59b7b3);
@@ -232,11 +325,11 @@
     transition: padding 0.3s ease-in-out 0s;
 }
 
-.clinic-finder .clinic-item.treatments .clinic-treatments {
+main.clinic-finder-page .clinic-finder .clinic-item.treatments .clinic-treatments {
     padding: 15px 20px;
 }
 
-.clinic-finder .clinic-item .clinic-treatments span {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span {
     border-radius: 11px;
     position: relative;
     font-size: 15px;
@@ -250,32 +343,32 @@
     cursor: pointer;
 }
 
-.clinic-finder .clinic-item .clinic-treatments span {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span {
     margin: 0 5px;
 }
 
-.clinic-finder .clinic-item .clinic-treatments span:first-child {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span:first-child {
     margin-left: 0;
 }
 
-.clinic-finder .clinic-item .clinic-treatments span:last-child {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span:last-child {
     margin-right: 0;
 }
 
-.clinic-finder .clinic-item.treatments .clinic-treatments span {
+main.clinic-finder-page .clinic-finder .clinic-item.treatments .clinic-treatments span {
     font-size: 15px;
     padding: 3px 10px;
 }
 
-.clinic-finder .clinic-item .clinic-treatments span:hover {
+main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span:hover {
     background: var(--text-white, #f2f2f2);
     padding: 3px 10px;
     color: var(--electric-blue, #59b7b3);
 }
 
 @media (max-width: 999px) {
-    .clinic-finder .clinic-item .left-part ,
-    .clinic-finder .clinic-item .right-part {
+    main.clinic-finder-page .clinic-finder .clinic-item .left-part ,
+    main.clinic-finder-page .clinic-finder .clinic-item .right-part {
         width: 100%;
         box-sizing: border-box;
         height: 100%;
@@ -283,24 +376,28 @@
         text-align: center;
     }
 
-    .clinic-finder .clinic-item .left-part .clinic-street {
+    main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-name {
         display: none;
     }
 
-    .clinic-finder .clinic-item .left-part .clinic-doctor {
+    main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-street {
+        display: none;
+    }
+
+    main.clinic-finder-page .clinic-finder .clinic-item .left-part .clinic-doctor {
         margin-top: 0;
     }
 
-    .clinic-finder .clinic-item .right-part .clinic-phone {
+    main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone {
         margin-bottom: 0;
     }
 
-    .clinic-finder .clinic-item .left-part .no-data,
-    .clinic-finder .clinic-item .right-part .no-data {
+    main.clinic-finder-page .clinic-finder .clinic-item .left-part .no-data,
+    main.clinic-finder-page .clinic-finder .clinic-item .right-part .no-data {
         display: none;
     }
 
-    .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
+    main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
         position: relative;
         left: 0;
         right: 0;

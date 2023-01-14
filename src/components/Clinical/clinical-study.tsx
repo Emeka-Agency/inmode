@@ -1,5 +1,5 @@
 import { Link } from "gatsby";
-import React from "react";
+import React, { useEffect } from "react";
 import { format_title } from "../../functions/format_title";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 
@@ -7,10 +7,10 @@ import { oneById, oneByClass } from "../../functions/selectors";
 import { openModale, clinicalStudyPassword, closeModale } from '../../functions/modale';
 
 import './index.css';
+import { _log } from "../../functions/logger";
 
-const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
+const ClinicalStudy = ({study, prop_key = null, able = false, _setAllowed}:ClinicalStudy) => {
 
-    const [allowed, setAllowed] = React.useState(false);
     const [href, setHref] = React.useState(study.url);
 
     const modalePassword = (e:React.MouseEvent<HTMLDivElement, MouseEvent>):void => {
@@ -30,19 +30,19 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 
                 // MODALE INPUT
                 input && input.addEventListener('keyup', (e) => {
-                    // console.log(e);
+                    _log(e);
                     if(e.key == "Enter") {
-                        // console.log(1);
+                        _log(1);
                         if(input && input.value != "" && inputStatus) {
-                            // console.log(2);
+                            _log(2);
                             if(!verifyPassword(input.value)) {
-                                // console.log(3);
+                                _log(3);
                                 inputStatus.innerHTML = "Wrong password";
                                 inputStatus.style.removeProperty('display');
                             }
                         }
                         else if(inputStatus != null) {
-                            // console.log(4);
+                            _log(4);
                             inputStatus.innerHTML = "Must enter a value";
                             inputStatus.style.removeProperty('display');
                         }
@@ -58,18 +58,18 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 });
                 // MODALE BUTTON
                 button && button.addEventListener('click', (e) => {
-                    // console.log(e);
-                    // console.log(5);
+                    _log(e);
+                    _log(5);
                     if(input && input.value != "" && inputStatus) {
-                        // console.log(6);
+                        _log(6);
                         if(!verifyPassword(input.value)) {
-                            // console.log(7);
+                            _log(7);
                             inputStatus.innerHTML = "Wrong password";
                             inputStatus.style.removeProperty('display');
                         }
                     }
                     else if(inputStatus != null) {
-                        // console.log(8);
+                        _log(8);
                         inputStatus.innerHTML = "Must enter a value";
                         inputStatus.style.removeProperty('display');
                     }
@@ -78,19 +78,27 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
         }));
     };
 
+    function canDownload():boolean {
+        if(typeof window != "undefined") {
+            return window?.localStorage.getItem("inuk_studies_pass") == "true";
+        }
+        return false;
+    }
+
     const verifyPassword = (pass:string):boolean => {
-        // console.log("verifyPassword");
+        _log("verifyPassword");
         if(pass == "InModeUK") {
-            // console.log("Good password");
+            _log("Good password");
             let studyZone = document.querySelector('.study-download');
-            setAllowed(true);
+            _setAllowed(true);
             // OPEN THR LINK IN ANOTHER TAB
             if(typeof window != "undefined") {
-                // console.log('Méthode window');
-                window.open(href, '_blank');
+                _log('Méthode window');
+                window?.open(href, '_blank');
+                window?.localStorage.setItem("inuk_studies_pass", 'true');
             }
             else {
-                // console.log('Méthode a virtuel');
+                _log('Méthode a virtuel');
                 let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
                     id: 'study-download',
                     target: '_blank',
@@ -103,7 +111,7 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
             scrollTo(0, studyZone ? studyZone.getBoundingClientRect().y : 0);
             return true;
         }
-        // console.log("Bad password");
+        _log("Bad password");
         return false;
     }
     
@@ -134,11 +142,11 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 </div>
                 <div className="study-published">Publication date : {study.published_date}</div>
                 <div className="study-publication">Publication : {study.publication}</div>
-                <div className={`study-download ${allowed ? 'allowed' : 'blocked'}`}>
+                <div className={`study-download ${able || canDownload() ? 'allowed' : 'blocked'}`}>
                     {/* TODO Ajouter mot de passe */}
                     Download
                     {
-                        allowed ? 
+                        able || canDownload() ? 
                         <a 
                             className="zone-link"
                             href={href}
@@ -161,6 +169,8 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
 interface ClinicalStudy {
     study: InmodePanel_Generic_ClinicalStudies_Interface;
     prop_key?: number | null;
+    able: boolean;
+    _setAllowed: Function;
 }
 
 export default ClinicalStudy;

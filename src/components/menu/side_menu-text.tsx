@@ -65,6 +65,11 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
                         <Menu key={key_sub} prop_key={key_sub} menu={sub}/>
                     );
                 })}
+                {menu.mini_addons && menu.mini_addons.length > 0 && menu.mini_addons.map((sub, key_sub) => {
+                    return (
+                        <Menu key={key_sub} prop_key={key_sub} menu={sub}/>
+                    );
+                })}
             </ul>
         </ul>
     );

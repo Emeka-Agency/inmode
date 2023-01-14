@@ -1,5 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
+import { _log } from "../../functions/logger";
 import { InmodePanel_Testimonial_Interface } from "../interfaces";
 
 import './index.css';
@@ -8,7 +9,7 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
     
     const [datas] = React.useState(useStaticQuery(graphql`
     {
-        allStrapiTestimonial {
+        allStrapiTestimonial(sort: {fields: from}) {
           nodes {
             strapiId
             Name
@@ -41,6 +42,7 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
     const RIGHT = 1;
 
     const imgHTML = (datas:InmodePanel_Testimonial_Interface, side:number = LEFT) => {
+        if(datas.Picture == null) {return null;}
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
                 <img className={`background-image ${side == LEFT ? 'left' : 'right'}`} src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}/>
@@ -74,7 +76,7 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
         return (
             <div className={`testimonial-quote-part ${datas.from}`}>
                 {datas.from == 'practitioner' && quoteSvg()}
-                <blockquote>
+                <blockquote className="custom-scrollbar moz-scrollbar">
                 {datas.from == 'patient' && '\'\''}{datas.Content}{datas.from == 'patient' && '\'\''}
                 </blockquote>
                 {
@@ -92,7 +94,7 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
         <div className="testimonials">
             {
                 datas.map((testimonial:InmodePanel_Testimonial_Interface, index:number) => {
-                    // console.log((index/2)%2);
+                    _log((index/2)%2);
                     return (
                         <div className={`testimonial ${testimonial.from}`}>
                             {(index/2)%2 < 1 || index%2 == 0 ? imgHTML(testimonial, LEFT) : quoteHTML(testimonial) }

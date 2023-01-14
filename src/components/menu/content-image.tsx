@@ -6,7 +6,7 @@ import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
 
-const MenuContentImage = ({menu, prop_key}:MenuContentImage) => {
+const MenuContentImage = ({menu, prop_key, openOnClick}:MenuContentImage) => {
 
     const content = (_menu:InmodePanel_Menu_Interface) => {
         return (
@@ -43,6 +43,7 @@ const MenuContentImage = ({menu, prop_key}:MenuContentImage) => {
 interface MenuContentImage {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 }
 
 export default MenuContentImage;

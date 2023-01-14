@@ -6,6 +6,7 @@ import Layout from "../components/Layout"
 import PressMedia from "../components/PressMedia";
 import { openModale, pressMedia as pressMediaModale, closeModale } from '../functions/modale';
 import SEO from "../components/seo";
+import { _log } from "../functions/logger";
 
 const moverClass = "press-media-caroussel-mover";
 
@@ -15,22 +16,22 @@ const PressMediaPage = ({ data }:PressMediaPage_Interface) => {
     const [carouselIndex, setCarouselIndex]:[number, React.Dispatch<number>] = React.useState(0);
 
     const moveCarousel = (_left:boolean, _right:boolean, _index:number):void => {
-        // console.log(_index);
+        _log(_index);
         let directMove = undefined;
         if(_left && _index == 0) {
-            /* console.log('Cas left 1'); */
+            _log('Cas left 1');
             _index = pressMedia.length - 1;
             directMove = true;
         }
         else if(_right && _index + 1 == pressMedia.length) {
-            /* console.log('Cas right 1'); */
+            _log('Cas right 1');
             _index = 0;
             directMove = true;
         }
         else {
             _index += _left ? -1 : 1;
         }
-        // console.log('directMove = ' + directMove);
+        _log('directMove = ' + directMove);
         let _temp:any = document.querySelector(`.${moverClass}`);
         if(_temp){
             directMove && _temp.style.setProperty('transition', 'none');

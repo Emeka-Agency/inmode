@@ -451,3 +451,256 @@
     color: var(--text-white, #f2f2f2);
     background: var(--electric-blue, #59b7b3);
 }
+
+/*  ========================================
+    == MODALE PASSWORD ROUTE CASE STUDY ====
+    ========================================
+*/
+
+#modale #modale-container.route-case-study-modale-container {
+    width: auto;
+    height: auto;
+    min-width: 200px;
+    top: 30%;
+    max-width: 500px;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content {
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content h2 {
+    font-size: 25px;
+    color: var(--text-white, #f2f2f2);
+    margin: 10px 0;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-text {
+    margin: 10px 0;
+    font-size: 14px;
+    color: var(--text-white, #f2f2f2);
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone {
+    margin: 10px 0;
+    width: 100%;
+    min-width: 200px;
+    display: inline-block;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone .route-case-study-input-zone-after {
+    content: "";
+    width: 30%;
+    background-color: #59b7b3;
+    height: 3px;
+    top: 45px;
+    left: 20px;
+    transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone:hover .route-case-study-input-zone-after,
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone:active .route-case-study-input-zone-after,
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone:focus .route-case-study-input-zone-after,
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone:focus-within .route-case-study-input-zone-after {
+    width: 60%;
+    left: 0;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone #route-case-study-password {
+    border: none;
+    padding: 6px 10px;
+    background: transparent;
+    outline: none;
+    color: var(--text-white, #f2f2f2);
+    width: 70%;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-input-zone #route-case-study-password-status {
+    font-size: 15px;
+    color: #D62E2D;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-submit {
+    margin: 10px 0;
+    display: inline-block;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content #route-case-study-exit {
+    margin-left: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-submit #route-case-study-submit,
+#modale #modale-container.route-case-study-modale-container #modale-content #route-case-study-exit {
+    outline: transparent;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 13px 55px;
+    color: var(--text-lightgrey, #cccbcd);
+    background: var(--dark-blue, #0b1a25);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out 0s,
+    color 0.2s ease-in-out 0s;
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-submit #route-case-study-submit.able,
+#modale #modale-container.route-case-study-modale-container #modale-content #route-case-study-exit {
+    background: var(--electric-blue-half, #59b7b380);
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-submit #route-case-study-submit:hover {
+    color: var(--text-white, #f2f2f2);
+    background: var(--electric-blue-half, #59b7b380);
+}
+
+#modale #modale-container.route-case-study-modale-container #modale-content .route-case-study-submit #route-case-study-submit.able:hover,
+#modale #modale-container.route-case-study-modale-container #modale-content #route-case-study-exit {
+    color: var(--text-white, #f2f2f2);
+    background: var(--electric-blue, #59b7b3);
+}
+
+/*  ========================================
+    ====== MODALE EVENT PARTICIPATE ========
+    ========================================
+*/
+
+#modale #modale-container.event-participate-modale-container {
+    width: auto;
+    height: auto;
+    min-width: 200px;
+    top: 15%;
+    max-width: 500px;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content {
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content h2 {
+    font-size: 25px;
+    color: var(--text-white, #f2f2f2);
+    margin: 10px 0;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-text {
+    margin: 10px 0;
+    font-size: 14px;
+    color: var(--text-white, #f2f2f2);
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone {
+    margin: 15px 0;
+    width: auto;
+    min-width: 200px;
+    display: block;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone .event-participate-input-zone-after {
+    content: "";
+    width: 30%;
+    background-color: #59b7b3;
+    height: 3px;
+    top: 45px;
+    left: 20px;
+    transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone:hover .event-participate-input-zone-after,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone:active .event-participate-input-zone-after,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone:focus .event-participate-input-zone-after,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone:focus-within .event-participate-input-zone-after {
+    width: 55%;
+    left: 0;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-salutation,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-firstname,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-surname,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-speciality,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-clinic-name,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-clinic-location,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-email,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-contact-number {
+/* #modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-is-doctor { */
+    border: none;
+    padding: 6px 10px;
+    background: transparent;
+    outline: none;
+    color: var(--text-white, #f2f2f2);
+    width: 80%;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-speciality option {
+    background-color: #070707;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-is-doctor {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-is-doctor::before {
+    top: 3px;
+    left: 8px;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-is-doctor + label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-white, #f2f2f2);
+    display: inline-block;
+    vertical-align: middle;
+    left: 15px;
+    cursor: pointer;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-salutation-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-firstname-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-surname-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-speciality-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-clinic-name-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-clinic-location-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-email-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-contact-number-status,
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-input-zone #event-participate-is-doctor-status {
+    font-size: 15px;
+    color: #D62E2D;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-submit {
+    margin: 10px 0;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-submit #event-participate-submit {
+    outline: transparent;
+    padding: 13px 55px;
+    color: var(--text-lightgrey, #cccbcd);
+    background: var(--dark-blue, #0b1a25);
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out 0s,
+    color 0.2s ease-in-out 0s;
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-submit #event-participate-submit.able {
+    background: var(--electric-blue-half, #59b7b380);
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-submit #event-participate-submit:hover {
+    color: var(--text-white, #f2f2f2);
+    background: var(--electric-blue-half, #59b7b380);
+}
+
+#modale #modale-container.event-participate-modale-container #modale-content .event-participate-submit #event-participate-submit.able:hover {
+    color: var(--text-white, #f2f2f2);
+    background: var(--electric-blue, #59b7b3);
+}

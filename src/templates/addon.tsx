@@ -34,12 +34,12 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 <Divider position="top"/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
-                <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>
+                {datas.Videos && datas.Videos.length > 0 ? <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/> : <></>}
                 <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
                 <Divider position="bottom"/>
                 <AddonWhatTreat title="What can you treat ?" WhatTreats={datas.WhatTreats}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
-                <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : []}/>
+                {datas.SellingArgs && <SellingArgs datas={datas?.SellingArgs}/>}
                 <SellingNew datas={datas.SellingNewGeneration}/>
             </Layout>
     );

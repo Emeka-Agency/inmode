@@ -1,237 +1,87 @@
 import React from 'react';
 
-import FuzzySet from 'FuzzySet';
 import { graphql, useStaticQuery } from 'gatsby';
-import { InmodePanel_Clinic_Interface } from '../interfaces';
+import { Airtable_Clinic_Interface } from '../interfaces';
 
 import './index.css';
 import { allByClass, oneById, oneBySelector } from '../../functions/selectors';
+import LoadingGIF from '../LoadingGIF';
+import { element, instanceOf } from 'prop-types';
+import { _error, _log } from '../../functions/logger';
+import ClinicsClinicalFinder from './clinics';
+import MapClinicalFinder from './map';
 
 const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
     const _rate = 0.4;
 
-    const _base_url = typeof window == 'undefined' ? '' : window.location.origin;
+    const _base_url = typeof window == 'undefined' ? '' : window?.location.origin;
 
-    const [clinics]:[any, React.Dispatch<any>] = React.useState(Array.from(useStaticQuery(graphql`
-        {
-            allStrapiClinicFinder {
-                nodes {
-                    city
-                    doctor
-                    mail
-                    number
-                    street
-                    url
-                    url_label
-                    zip_code
-                    treatments {
-                        MenuParams {
-                            title
-                            url
-                        }
-                    }
-                }
-            }
-        }
-    `).allStrapiClinicFinder.nodes));
+    const [tab, setTab]:[string, React.Dispatch<string>] = React.useState("list");
+    const [clinics, setClinics]:[Array<Airtable_Clinic_Interface | []>, React.Dispatch<Array<Airtable_Clinic_Interface | []>>] = React.useState(Array());
+    const [regions, setRegions]:[string[]|[], React.Dispatch<string[]|[]>] = React.useState(Array());
+    const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
 
-    const [search, setSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
-    const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     // const [rest, setRest]:[number, React.Dispatch<number>] = React.useState(0);
 
-    const switchTreatmentsOpened = (e:any) => {
-        e.currentTarget.parentElement.parentElement.classList.contains('treatments') ?
-        e.currentTarget.parentElement.parentElement.classList.remove('treatments') :
-        e.currentTarget.parentElement.parentElement.classList.add('treatments');
-    }
+    const addClinics = function(offset:string|null = null, records:Airtable_Clinic_Interface[]|[] = []) {
 
-    const updateSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setSearch(e.currentTarget.value.toLowerCase());
-    }
+        const fields = ["name", "address", "shire", "city", "zip_code", "doctor", "mail", "url", "number", "treatments", "region"];
+        const sortCriteres = ['name'];
+        const sortDirections = ['desc'];
+        const sortBy = Array(sortCriteres).map((el, index) => 
+            `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
+        ).join('&');
 
-    const updateZipSearch = (e:React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault();
-        setZipSearch(e.currentTarget.value.toLowerCase());
-    }
-
-    const displayable = (clinic:InmodePanel_Clinic_Interface, critere:string):boolean => {
-        // console.log("critere = ", critere);
-        let _retour = false;
-        if(!clinic) {
-            return false;
-        }
-        if(critere == undefined) {
-            return true;
-        }
-        if(typeof critere == "string" && critere.length == 0) {
-            return true;
-        }
-        let _test = FuzzySet();
-        if(_retour == false && clinic.street) {
-            _test.add(clinic.street.toLowerCase());
-        }
-        if(_retour == false && clinic.doctor) {
-            _test.add(clinic.doctor.toLowerCase());
-        }
-        if(_retour == false && clinic.city) {
-            _test.add(clinic.city.toLowerCase());
-        }
-        if(_retour == false && clinic.zip_code) {
-            _test.add(clinic.zip_code.toLowerCase());
-        }
-        if(_retour == false && clinic.treatments && clinic.treatments.length > 0) {
-            _test.add(clinic.treatments.map(treatment => treatment.MenuParams.title).join('').toLowerCase());
-        }
-        _test = _test.length() > 0 ? _test.get(critere, null, _rate) : null;
-        if(_test != _rate && _test != null) {
-            // console.log(_test);
-            _retour = true;
-        }
-        if(_retour == false && clinic.street) {
-            _retour = clinic.street.toLowerCase().includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.doctor) {
-            _retour = clinic.doctor.toLowerCase().includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.city) {
-            _retour = clinic.city.toLowerCase().includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.zip_code) {
-            _retour = clinic.zip_code.toLowerCase().includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.treatments && clinic.treatments.length > 0) {
-            _retour = clinic.treatments.map(treatment => treatment.MenuParams.title).join('').toLowerCase().includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.street && clinic.city && clinic.zip_code) {
-            _retour = `${clinic.street}, ${clinic.city}, .${clinic.zip_code}`.includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.street && clinic.city) {
-            _retour = `${clinic.street}, ${clinic.city}`.includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.street && clinic.zip_code) {
-            _retour = `${clinic.street}, ${clinic.zip_code}`.includes(critere) ? true : false;
-        }
-        if(_retour == false && clinic.city && clinic.zip_code) {
-            _retour = `${clinic.city}, ${clinic.zip_code}`.includes(critere) ? true : false;
-        }
-        return _retour;
+        _log(fields);
+        _log(sortBy);
+        _log(`${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`);
+        
+        fetch(
+            `${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`,
+            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
+        )
+        .then(res => res.json())
+        .then((res:{offset:string|null, records:{fields: Airtable_Clinic_Interface}[]}) => {
+            let reg = regions;
+            res.records && res.records.map((rec: {fields:Airtable_Clinic_Interface}) => {
+                if(rec.fields && rec.fields.region && reg.indexOf(rec.fields.region || "") == -1) {
+                    reg = [...reg, rec.fields.region];
+                }
+            });
+            setRegions(reg);
+            if(res.offset) {
+                addClinics(res.offset, records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
+            }
+            else {
+                setClinics(records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
+                setLoading(false);
+            }
+        })
+        .catch(err => _error(err));
     }
 
     React.useEffect(() => {
-        try {
-            let _part = typeof document != "undefined" ? document.querySelectorAll('.clinic-item').length : 0;
-            let _tot = clinics ? clinics.length : 0;
-            let temp = oneById("search-clinic-indicator");
-            if(temp) {
-                temp.innerText = `${_part}/${_tot}`;
-            }
-            temp = oneBySelector("#search-clinic-indicator-ui .search-clinic-indicator-ui-back");
-            if(temp) {
-                temp.style.width = `${(_part / _tot) * 100}%`;
-            }
-        }
-        catch(err) {
+        _log(clinics);
+    }, [loading]);
 
+    React.useEffect(() => {
+        if(clinics == null || clinics == undefined || (clinics instanceof Array && clinics.length == 0) && typeof window != "undefined") {
+            addClinics();
         }
-    }, [search, zipSearch]);
+    }, []);
 
     return (
         <div className="clinic-finder">
             <div className="container">
-                <h2 className="title">Inmode Clinic Finder</h2>
-                <h3 className="subtitle">Authorised practioner list</h3>
-                {/* <div id="search-clinic-indicator"><span>{rest}</span>/{clinics ? clinics.length : 0}</div> */}
-                {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
-                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Search by postcode" onChange={(e) => updateZipSearch(e)}/></span>
-                <span className="clinic-finder-search-span"><input id="clinic-finder-search" type="search" placeholder="Search by practitioner, city, street, etc" onChange={(e) => updateSearch(e)}/></span>
-                <div id="search-clinic-indicator">{clinics && clinics.length}/{clinics && clinics.length}</div>
-                <div id="search-clinic-indicator-ui">
-                    <div className="search-clinic-indicator-ui-back"></div>
+                <div className="container">
+                    <div id="clinic-finder-tabs">
+                        <div id="tab-clinics" className={tab == "list" ? "current" : ""} onClick={e => setTab("list")}>List</div>
+                        <div id="tab-map" className={tab == "map" ? "current" : ""} onClick={e => setTab("map")}>Map</div>
+                    </div>
                 </div>
-                <div className="bottom-border"></div>
-                {clinics && clinics.map((clinic:InmodePanel_Clinic_Interface) => {
-                    if(clinic && displayable(clinic, search) && displayable(clinic, zipSearch)) {
-                        Object.keys(clinic).forEach((elem) => elem ? elem.length < 2 ? undefined : elem : undefined);
-                        return (
-                            <div className="clinic-item">
-                                <div className="left-part">
-                                    <div className="clinic-street">
-                                        {clinic.street && clinic.street}
-                                    </div>
-                                    <div className="clinic-address">
-                                        {clinic.street && clinic.city && clinic.zip_code && `${clinic.street}, ${clinic.city}, .${clinic.zip_code}`}
-                                        {clinic.street && clinic.city && !clinic.zip_code && `${clinic.street}, ${clinic.city}`}
-                                        {clinic.street && !clinic.city && clinic.zip_code && `${clinic.street}, ${clinic.zip_code}`}
-                                        {clinic.street && !clinic.city && !clinic.zip_code && `${clinic.street}`}
-                                        {!clinic.street && clinic.city && clinic.zip_code && `${clinic.city}, ${clinic.zip_code}`}
-                                        {!clinic.street && clinic.city && !clinic.zip_code && `${clinic.city}`}
-                                        {!clinic.street && !clinic.city && clinic.zip_code && `${clinic.zip_code}`}
-                                        {!clinic.street && !clinic.city && !clinic.zip_code && ``}
-                                    </div>
-                                    <div className="clinic-doctor">
-                                        {clinic.doctor && clinic.doctor}
-                                    </div>
-                                </div>
-                                <div className="right-part">
-                                    <div className={`clinic-url${!clinic.url && !clinic.url_label ? ' no-data' : ''}`}>
-                                        {
-                                            clinic.url || clinic.url_label ?
-                                            <a target="_blank" href={clinic.url || clinic.url_label} title="Clinic website">
-                                                {clinic.url_label || clinic.url && clinic.url.replace('https://', '').replace('http://', '')}
-                                            </a>
-                                            :
-                                            <></>
-                                        }
-                                    </div>
-                                    <div className={`clinic-mail${!clinic.mail ? ' no-data' : ''}`}>
-                                        {
-                                            clinic.mail != undefined ?
-                                            <a href={`mailto:${clinic.mail}`} title="Send a mail">
-                                                {clinic.mail}
-                                            </a>
-                                            :
-                                            <a></a>
-                                        }
-                                    </div>
-                                    <div className={`clinic-phone${!clinic.number ? ' no-data' : ''}`}>
-                                        {
-                                            clinic.number != undefined ?
-                                            <a href={`phone:${clinic.number}`} title="Send a mail">
-                                                {clinic.number}
-                                            </a>
-                                            :
-                                            <a></a>
-                                        }
-                                    </div>
-                                    <button
-                                        className="clinic-switch-treatments"
-                                        onClick={switchTreatmentsOpened}
-                                    >
-                                        Treatments Available
-                                    </button>
-                                </div>
-                                {
-                                    clinic.treatments && clinic.treatments.length > 0
-                                    &&
-                                    <div className="clinic-treatments">
-                                        {
-                                            clinic.treatments.map((treatment) => {
-                                                return (
-                                                    <span>
-                                                        {treatment.MenuParams.title}
-                                                        <a className="zone-link" href={_base_url + treatment.MenuParams.url} title={treatment.MenuParams.title} target="_blank"></a>
-                                                    </span>
-                                                );
-                                            })
-                                        }
-                                    </div>
-                                }
-                            </div>
-                        )
-                    }
-                })}
+                {tab == "list" && <ClinicsClinicalFinder clinics={clinics} regions={regions} loading={loading}/>}
+                {tab == "map" && <MapClinicalFinder clinics={clinics} regions={regions} loading={loading}/>}
             </div>
         </div>
     );

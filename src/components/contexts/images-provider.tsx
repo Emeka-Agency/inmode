@@ -83,6 +83,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             footerLogo: file(relativePath: {eq: "footer-logo.png"}) {
                 childImageSharp {
                     fluid {
+                        aspectRatio
                         srcWebp
                         srcSetWebp
                     }
@@ -126,9 +127,21 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             }
             backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {
                 publicURL
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
             }
             wideBackAlveole: file(relativePath: {eq: "home/wide-bg-alveoles.png"}) {
                 publicURL
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
             }
             alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
                 childImageSharp {
@@ -216,8 +229,87 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     }
                 }
             }
+            eventsNoImg: file(relativePath: {eq: "header-logo.png"}) {
+                childImageSharp {
+                    fluid {
+                        srcWebp
+                        srcSetWebp
+                    }
+                }
+            }
+            awardElle: file(relativePath: {eq: "award-elle.webp"}) {
+                publicURL
+            }
+            awardShape: file(relativePath: {eq: "award-shape.webp"}) {
+                publicURL
+            }
+            awardBeauty: file(relativePath: {eq: "award-beauty.webp"}) {
+                publicURL
+            }
+            award2019: file(relativePath: {eq: "award-2019.gif"}) {
+                publicURL
+            }
+            award2021: file(relativePath: {eq: "award-2021.jpg"}) {
+                publicURL
+            }
+            awardDiamonds: file(relativePath: {eq: "award-diamond.jpg"}) {
+                publicURL
+            }
+            homeIcon: file(relativePath: {eq: "icons/home-icon.svg"}) {
+                publicURL
+            }
+            homeIconHover: file(relativePath: {eq: "icons/home-icon-blue.svg"}) {
+                publicURL
+            }
+            case_01: file(relativePath: {eq: "case/01 . Trikwan case study.webp"}) {
+                publicURL
+            }
+            case_02: file(relativePath: {eq: "case/02 . bodytite_CS1_NW.webp"}) {
+                publicURL
+            }
+            case_03: file(relativePath: {eq: "case/03 . M8_CS2_HD.webp"}) {
+                publicURL
+            }
+            case_04: file(relativePath: {eq: "case/04 . CPullen-case-study.webp"}) {
+                publicURL
+            }
+            case_05: file(relativePath: {eq: "case/05 . Aesthetically You.webp"}) {
+                publicURL
+            }
+            case_06: file(relativePath: {eq: "case/06 . KPA case study.webp"}) {
+                publicURL
+            }
+            case_07: file(relativePath: {eq: "case/07.png"}) {
+                publicURL
+            }
+            case_08: file(relativePath: {eq: "case/08.png"}) {
+                publicURL
+            }
+            case_09: file(relativePath: {eq: "case/09.jpg"}) {
+                publicURL
+            }
+            case_10: file(relativePath: {eq: "case/10.png"}) {
+                publicURL
+            }
+            case_11: file(relativePath: {eq: "case/11.jpg"}) {
+                publicURL
+            }
+            case_12: file(relativePath: {eq: "case/12.png"}) {
+                publicURL
+            }
+            lock: file(relativePath: {eq: "icons/lock.svg"}) {
+                publicURL
+            }
         }
     `));
+    // eventsNoImg: file(relativePath: {eq: "events-no-img.jpg"}) {
+    //     childImageSharp {
+    //         fluid {
+    //             srcWebp
+    //             srcSetWebp
+    //         }
+    //     }
+    // }
 
     const getOneImage = (request:string):GatsbyImage_Interface | null => {
         if(request == null || typeof request != 'string') {
@@ -277,6 +369,28 @@ interface ImagesList {
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
+    eventsNoImg: GatsbyImage_Interface;
+    awardElle: GatsbyImage_Interface;
+    awardShape: GatsbyImage_Interface;
+    awardBeauty: GatsbyImage_Interface;
+    award2019: GatsbyImage_Interface;
+    award2021: GatsbyImage_Interface;
+    awardDiamonds: GatsbyImage_Interface;
+    homeIcon: GatsbyImage_Interface;
+    homeIconHover: GatsbyImage_Interface;
+    case_01: GatsbyImage_Interface;
+    case_02: GatsbyImage_Interface;
+    case_03: GatsbyImage_Interface;
+    case_04: GatsbyImage_Interface;
+    case_05: GatsbyImage_Interface;
+    case_06: GatsbyImage_Interface;
+    case_07: GatsbyImage_Interface;
+    case_08: GatsbyImage_Interface;
+    case_09: GatsbyImage_Interface;
+    case_10: GatsbyImage_Interface;
+    case_11: GatsbyImage_Interface;
+    case_12: GatsbyImage_Interface;
+    lock: GatsbyImage_Interface;
 }
 
 export default ImagesProvider;

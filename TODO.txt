@@ -1,0 +1,6 @@
+Modèle de données:
+	Ajouter appointment_link
+	Ajouter machines
+	Ajouter description/catchphrase
+
+Enlever le "see more" dans strapi

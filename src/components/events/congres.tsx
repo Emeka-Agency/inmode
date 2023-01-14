@@ -16,7 +16,7 @@ const Conferences = ({ event = undefined }:Conferences) => {
                     srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp}
                 />
             </div>
-            <div className="descr-part">
+            <div className="descr-part custom-scrollbar moz-scrollbar">
                 {event.title && <div className="title">
                     {event.title}
                 </div>}

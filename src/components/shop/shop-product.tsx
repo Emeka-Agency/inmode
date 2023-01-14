@@ -1,4 +1,5 @@
 import React from "react";
+import { _log } from "../../functions/logger";
 import { useCart } from "../contexts/cart-provider";
 
 import './shop-product.css';
@@ -8,8 +9,8 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
     const cart = useCart();
     const article = cart.articles[reference];
 
-    // console.log(cart.articles);
-    // console.log(article);
+    _log(cart.articles);
+    _log(article);
 
     let _image = undefined;
     if(Array.isArray(cart.articles[article.reference].pictures)) {

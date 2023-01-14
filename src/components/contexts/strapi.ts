@@ -1,3 +1,4 @@
+import { _error } from "../../functions/logger";
 import {
     Article_Interface,
     InmodePanel_Order_Interface,
@@ -143,7 +144,7 @@ export async function create_object(body:InmodePanel_Order_Interface, url:string
         cache: 'default',
         body: JSON.stringify(body)
     };
-    promise = await fetch(url, vars).catch(err => console.error(err));
+    promise = await fetch(url, vars).catch(err => _error(err));
     return promise;
 }
 

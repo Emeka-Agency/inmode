@@ -43,13 +43,15 @@ const Alveoles = ({}:Alveoles) => {
         <div className="alveoles">
             <div className="back-hex left">
                 <img
-                    src={images.getOne('backAlveole').publicURL}
+                    src={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcWebp : images.getOne('backAlveole').publicURL}
+                    srcSet={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('backAlveole').publicURL}
                     alt="back-left"
                 />
             </div>
             <div className="back-hex right">
                 <img
-                    src={images.getOne('backAlveole').publicURL}
+                    src={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcWebp : images.getOne('backAlveole').publicURL}
+                    srcSet={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('backAlveole').publicURL}
                     alt="back-right"
                 />
             </div>

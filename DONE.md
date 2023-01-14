@@ -19,13 +19,27 @@
   - DONE Style
     - DONE Cutting text at a maximum length to get a clean same size for all
     - DONE Responsive
-  - TODO 
 
-- TODO Blog
+- DONE Blog
   - DONE Got all current articles
   - DONE Style
     - DONE Cutting text at a maximum length to get a clean same size for all
     - DONE Responsive
-  - TODO Styling for different cases (differents combination of txt, img and carousel)
-  - TODO Added on InmodePanel the HeaderArticle element if a specific header is needed
+  - DONE Styling for different cases (differents combination of txt, img and carousel)
+  - DONE Added on InmodePanel the HeaderArticle element if a specific header is needed
   - DONE Reading time on cards
+
+
+==================================================================
+Modifications
+
+Ajouter événements	=> DONE
+Coquilles		=> DONE
+Some Forma press is duplicated a couple of times	=> fusionner ou laisser séparé comme sur le site actuel ?
+Press Medias ajoutés
+Our Specialists ajoutés
+	=> Dr Uma Jeyanathan
+
+About Us
+	=> Neil Wolfenden ajouté
+	=> Adrian ?

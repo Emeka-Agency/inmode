@@ -8,31 +8,31 @@ import { GatsbyImage_Interface } from "../interfaces";
 
 const FollowInstagram = ({insta_id}:FollowInstagram) => {
 
-    const [datas] = React.useState(useStaticQuery(graphql`
-        {
-            allInstaNode(sort: {fields: timestamp, order: DESC}, limit: 4, filter: {username: {eq: "3114668836"}}) {
-                edges {
-                    node {
-                        comments
-                        likes
-                        caption
-                        localFile {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    `).allInstaNode.edges);
+    // const [datas] = React.useState(useStaticQuery(graphql`
+    //     {
+    //         allInstaNode(sort: {fields: timestamp, order: DESC}, limit: 4, filter: {username: {eq: "3114668836"}}) {
+    //             edges {
+    //                 node {
+    //                     comments
+    //                     likes
+    //                     caption
+    //                     localFile {
+    //                         childImageSharp {
+    //                             fluid {
+    //                                 srcWebp
+    //                                 srcSetWebp
+    //                             }
+    //                         }
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // `).allInstaNode.edges);
 
     // const [datas]:[GatsbyImage_Interface[], React.Dispatch<GatsbyImage_Interface[]>] = React.useState(Object.values(useStaticQuery(graphql`
     //     {
-    //         _1: file(relativePath: {eq: "insta/20210706/1.jpg"}) {
+    //         _1: file(relativePath: {eq: "insta/20211115/1.jpg"}) {
     //             childImageSharp {
     //                 fluid {
     //                     srcWebp
@@ -41,7 +41,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
     //             }
     //             publicURL
     //         }
-    //         _2: file(relativePath: {eq: "insta/20210706/2.jpg"}) {
+    //         _2: file(relativePath: {eq: "insta/20211115/2.jpg"}) {
     //             childImageSharp {
     //                 fluid {
     //                     srcWebp
@@ -50,7 +50,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
     //             }
     //             publicURL
     //         }
-    //         _3: file(relativePath: {eq: "insta/20210706/3.jpg"}) {
+    //         _3: file(relativePath: {eq: "insta/20211115/3.jpg"}) {
     //             childImageSharp {
     //                 fluid {
     //                     srcWebp
@@ -59,7 +59,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
     //             }
     //             publicURL
     //         }
-    //         _4: file(relativePath: {eq: "insta/20210706/4.jpg"}) {
+    //         _4: file(relativePath: {eq: "insta/20211115/4.jpg"}) {
     //             childImageSharp {
     //                 fluid {
     //                     srcWebp
@@ -80,7 +80,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                     </a>
                 </h2>
                 <div className="wrapper">
-                    {datas && datas.map((post:{node : {localFile: GatsbyImage_Interface}}, key:number) => {
+                    {/* {datas && datas.map((post:{node : {localFile: GatsbyImage_Interface}}, key:number) => {
                         return(
                             <div key={key} className="elem">
                                 <img
@@ -89,23 +89,26 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                     srcSet={post.node.localFile.childImageSharp.fluid.srcSetWebp}
                                     alt={`insta-${key + 1}`}
                                 />
-                                <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
+                                <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Follow InMode on Instagram"></a>
                             </div>
                         );
-                    })}
-                    {/* {datas && datas.map((post:GatsbyImage_Interface, key) => {
+                    })} */}
+                    {/* {datas && datas.map((post:GatsbyImage_Interface, key) => { */}
+                    {[1, 2, 3, 4].map((index:number, key) => {
                         return(
                             <div key={key} className="elem">
                                 <img
                                     className="background-image"
-                                    src={post.childImageSharp.fluid.srcWebp}
-                                    srcSet={post.childImageSharp.fluid.srcSetWebp}
+                                    // src={`https://back.qtmg5814.odns.fr/assets/instagram/${index}.jpg`}
+                                    src={`https://back.inmodeuk.emeka.fr/assets/instagram/${index}.jpg`}
+                                    // src={post.childImageSharp.fluid.srcWebp}
+                                    // srcSet={post.childImageSharp.fluid.srcSetWebp}
                                     alt={`insta-${key + 1}`}
                                 />
-                                <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
+                                <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Follow InMode on Instagram"></a>
                             </div>
                         );
-                    })} */}
+                    })}
                 </div>
             {/* </div> */}
         </div>
