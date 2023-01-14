@@ -7,7 +7,10 @@ require("dotenv").config({
 });
 
 console.log('STRAPI_URL : ' + process.env.STRAPI_URL);
+console.log('STRAPI_ID : ' + process.env.STRAPI_ID);
+console.log('STRAPI_PASS : ' + process.env.STRAPI_PASS);
 console.log('INMODE_BACK : ' + process.env.INMODE_BACK);
+console.log('SYMF_BACK : ' + process.env.SYMF_BACK);
 console.log('URL_SUCCESS : ' + process.env.URL_SUCCESS);
 console.log('URL_CANCEL : ' + process.env.URL_CANCEL);
 console.log('URL_REFUSED : ' + process.env.URL_REFUSED);
@@ -94,7 +97,7 @@ module.exports = {
             resolve: "@pasdo501/gatsby-source-woocommerce",
             options: {
                 // Base URL of WordPress site
-                api: `shopinfr.emeka.fr`,
+                api: `inmodemd.fr/shop-admin`,
                 // true if using https. false otherwise.
                 https: true,
                 api_version: 'wc/v3',

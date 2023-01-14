@@ -18,7 +18,10 @@ class ControleurAPI {
                 return self::manageFrontLogs();
             case null:
                 return ControleurBase::afficheHome();
-            default: return [];
+            default:
+                http_response_code(200);
+                echo JSONResponse();
+                return false;
         }
     }
 
