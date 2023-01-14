@@ -496,7 +496,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 _temp['intra_tva'] = intra_tva.value;
             }
     
-            _temp['has_fees'] = parseInt(total_TVA());
+            _temp['has_fees'] = parseFloat(total_TVA());
             
             let _country:string|undefined = undefined;
             if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
