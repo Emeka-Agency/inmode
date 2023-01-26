@@ -81,13 +81,13 @@ module.exports = {
           `treatment`,          // Treatments
           `menu`,               // Menus
           `shop`,               // Shops
-          `clinic-finder`,     // ClinicFinders
+          `clinic-finder`,      // ClinicFinders
           `discount`,           // Dicounts
-          `our-specialist`,    // OurSpecialists
+          `our-specialist`,     // OurSpecialists
           `testimonial`,        // Testimonials
           `press-media`,        // PressMedias
           `article`,            // BlogPosts
-          `event`            // Events
+          `event`               // Events
         ],
         singleTypes: [
           `footer`,                 // Footer
@@ -103,13 +103,13 @@ module.exports = {
         }
       },
     },
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `3114668836`,
-        usernameId: `3114668836`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-instagram`,
+    //   options: {
+    //     username: `3114668836`,
+    //     usernameId: `3114668836`,
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
