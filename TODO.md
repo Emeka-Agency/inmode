@@ -260,11 +260,25 @@ Right handed
 
 
 
-- TODO - Remplacer pseudo par titre dans profil
-- TODO - Ajouter nom clinique dans création adresse
-- TODO - Style select pour pays
-- TODO - DOM/TOM sans TVA
+- DONE - FRONT : Remplacer pseudo par titre dans profil
+- DONE - BACK : Remplacer pseudo par titre dans profil
+- DONE - FRONT : Ajouter nom clinique dans création adresse
+- DONE - BACK : Ajouter nom clinique dans création adresse
+- TODO - Ajouter `ct_society` dans les formulaires
+- TODO - Ajouter `ct_clinic` dans les formulaires
+- TODO - Ajouter `sp_society` dans les formulaires
+- TODO - Ajouter `sp_clinic` dans les formulaires
+- DONE - Style select pour pays
+- DONE - DOM/TOM sans TVA
 - TODO - IMD France dans le corps du mail
 - TODO - "Veuillez patienter"
 - TODO - Gallerie insta sur WP
-- 
+
+           453 lignes de paramétrage
+        11 429 lignes de fonction
+        12 515 lignes de composants
+        11 285 lignes de style
+
+         2 636 lignes de back
+
+        38 818 lignes

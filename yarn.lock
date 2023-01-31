@@ -2491,9 +2491,9 @@
   "version" "6.0.1"
   dependencies:
     "@types/http-cache-semantics" "*"
-    "@types/keyv" "*"
+    "@types/keyv" "^3.1.4"
     "@types/node" "*"
-    "@types/responselike" "*"
+    "@types/responselike" "^1.0.0"
 
 "@types/common-tags@^1.8.0", "@types/common-tags@^1.8.1":
   "integrity" "sha512-20R/mDpKSPWdJs5TOpz3e7zqbeCNuMCPhV7Yndk9KU2Rbij2r5W4RzwDPkzC+2lzUqXYu9rFzTktCBnDjHuNQg=="
@@ -14628,7 +14628,7 @@
   "resolved" "https://registry.npmjs.org/yoga-layout-prebuilt/-/yoga-layout-prebuilt-1.10.0.tgz"
   "version" "1.10.0"
   dependencies:
-    "@types/yoga-layout" "1.9.2"
+    "pngjs" "^3.0.0"
 
 "yurnalist@^2.1.0":
   "integrity" "sha512-PgrBqosQLM3gN2xBFIMDLACRTV9c365VqityKKpSTWpwR+U4LAFR3rSVyEoscWlu3EzX9+Y0I86GXUKxpHFl6w=="
