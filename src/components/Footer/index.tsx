@@ -37,7 +37,7 @@ const Footer = ({}:Footer) => {
     return (
         <footer
             style={{
-                backgroundImage: "url(" + images.getOne('bgPattern').childImageSharp.fluid.srcWebp +")"
+                backgroundImage: "url(" + images.getOne('bgPattern').childImageSharp?.fluid.srcWebp +")"
             }}
         >
             <div className="footer-content container">
@@ -45,8 +45,8 @@ const Footer = ({}:Footer) => {
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.getOne('footerLogo').childImageSharp.fluid.srcWebp}
-                            srcSet={images.getOne('footerLogo').childImageSharp.fluid.srcSetWebp}
+                            src={images.getOne('footerLogo').childImageSharp?.fluid.srcWebp}
+                            srcSet={images.getOne('footerLogo').childImageSharp?.fluid.srcSetWebp}
                             alt="footer-logo"
                         />
                     </div>

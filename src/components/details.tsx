@@ -12,8 +12,8 @@ const GenericDetails = ({ datas }:GenericDetails) => {
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
-                        src={datas.what_is.picture.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.what_is.picture.localFile.childImageSharp.fluid.srcSetWebp}
+                        src={datas.what_is.picture.localFile.childImageSharp?.fluid.srcWebp}
+                        srcSet={datas.what_is.picture.localFile.childImageSharp?.fluid.srcSetWebp}
                         alt="detail-main-pic"
                     />
                 </div>
@@ -39,7 +39,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                     return (
                         <div key={key} className="list-elem">
                             {datas.list_icon && <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp || images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp || images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp}
                                 alt={`elem-${key}`}
                                 className="before-text"
                             />}

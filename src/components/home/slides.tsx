@@ -92,16 +92,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.Icon.localFile.childImageSharp?.fluid.srcWebp}
+                                        srcSet={slide.Icon.localFile.childImageSharp?.fluid.srcSetWebp}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
+                                        src={slide.ShopPicture.localFile.childImageSharp?.fluid.srcWebp}
+                                        srcSet={slide.ShopPicture.localFile.childImageSharp?.fluid.srcSetWebp}
                                         alt='product'
                                     />
                                 </div>
@@ -112,8 +112,8 @@ const Slides = ({from}:Slides) => {
                                     Informations produit
                                     <img
                                         className="slide-view-detail-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcWebp}
+                                        srcSet={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcSetWebp}
                                         alt="arrow-right"
                                     />
                                     <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
@@ -122,8 +122,8 @@ const Slides = ({from}:Slides) => {
                                     Pièces à main
                                     <img
                                         className="slide-view-product-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcWebp}
+                                        srcSet={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcSetWebp}
                                         alt="arrow-left"
                                     />
                                 </div> : null}

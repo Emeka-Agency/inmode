@@ -22,7 +22,7 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             <div id="what-is" className="what-is transition">
                 <div className="addon-details-img transition">
                     <img
-                        src={datas.WhatIs && datas.WhatIs.picture && datas.WhatIs.picture.localFile.childImageSharp.fluid.srcWebp}
+                        src={datas.WhatIs && datas.WhatIs.picture && datas.WhatIs.picture.localFile.childImageSharp?.fluid.srcWebp}
                     />
                 </div>
                     {datas.WhatIs && datas.WhatIs.TitleText && datas.WhatIs.TitleText.map((section, key) => {
@@ -46,7 +46,7 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
                     return (
                         <div key={key} className="key">
                             <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp}
                                 alt="key_benefit"
                             />
                             <div className="text">{benefit.text}</div>

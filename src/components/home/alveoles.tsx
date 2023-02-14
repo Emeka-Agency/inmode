@@ -8,31 +8,31 @@ const Alveoles = ({}:Alveoles) => {
 
     const hexs = [
         {
-            'image': images.getOne('alveole1').childImageSharp.fluid,
+            'image': images.getOne('alveole1').childImageSharp?.fluid,
             'target': '_self',
             'text': 'Congrès',
             'link': '/events/congress'
         },
         {
-            'image': images.getOne('alveole2').childImageSharp.fluid,
+            'image': images.getOne('alveole2').childImageSharp?.fluid,
             'target': '_self',
             'text': 'Webinar',
             'link': '/events/webinars'
         },
         {
-            'image': images.getOne('alveole3').childImageSharp.fluid,
+            'image': images.getOne('alveole3').childImageSharp?.fluid,
             'target': '_self',
             'text': 'Workshop',
             'link': '/events/workshops'
         },
         {
-            'image': images.getOne('alveole4').childImageSharp.fluid,
+            'image': images.getOne('alveole4').childImageSharp?.fluid,
             'target': '_self',
             'text': 'Produits',
             'link': '/workstation'
         },
         {
-            'image': images.getOne('alveole5').childImageSharp.fluid,
+            'image': images.getOne('alveole5').childImageSharp?.fluid,
             'target': '_blank',
             'text': 'Avant / Après',
             'link': 'https://inmodemd.com/gallery/'

@@ -17,7 +17,7 @@ const SellingArgs = ({ datas }) => {
                     <div key={key} className="key">
                         {/* TODO single type */}
                         <img
-                            src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                            src={images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp}
                             alt="key_benefit"
                         />
                         <div className="text">{arg.texte}</div>

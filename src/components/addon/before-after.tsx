@@ -34,7 +34,7 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
                             return (
                                 <div key={key} className="few-ba">
                                     <img
-                                        src={ba.image && ba.image.localFile.childImageSharp.fluid.srcWebp}
+                                        src={ba.image && ba.image.localFile.childImageSharp?.fluid.srcWebp}
                                         alt="addon-before-after"
                                     />
                                     <div className="ba-doctor">{ba.doctor}</div>
@@ -52,7 +52,7 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
-                                                src={ba.image && ba.image.localFile.childImageSharp.fluid.srcWebp}
+                                                src={ba.image && ba.image.localFile.childImageSharp?.fluid.srcWebp}
                                                 alt={`addon-before-after-${key}`}
                                             />
                                             <div className="ba-doctor">{ba.doctor}</div>

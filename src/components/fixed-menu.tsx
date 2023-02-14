@@ -44,8 +44,8 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
             <div className="fixed-menu-container">
                 <div className="fixed-menu-logo">
                     <img
-                        src={images.getOne('fixedMenuLogo').childImageSharp.fluid.srcWebp}
-                        srcSet={images.getOne('fixedMenuLogo').childImageSharp.fluid.srcSetWebp}
+                        src={images.getOne('fixedMenuLogo').childImageSharp?.fluid.srcWebp}
+                        srcSet={images.getOne('fixedMenuLogo').childImageSharp?.fluid.srcSetWebp}
                         alt="header-logo"
                     />
                     <Link to="/" className="zone-link" title="Inmode"></Link>

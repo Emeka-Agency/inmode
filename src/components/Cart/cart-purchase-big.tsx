@@ -237,8 +237,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp.fluid.srcSetWebp}
+                                        src={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcWebp}
+                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcSetWebp}
                                         alt=""
                                     />)}
                                 </div>

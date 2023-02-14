@@ -9,8 +9,8 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
         <div key={prop_key} className="study-slide">
             <div className="study-img">
                 <img
-                    src={study.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={study.picture.localFile.childImageSharp.fluid.srcSetWebp}
+                    src={study.picture.localFile.childImageSharp?.fluid.srcWebp}
+                    srcSet={study.picture.localFile.childImageSharp?.fluid.srcSetWebp}
                     alt="clinical-study"
                 />
             </div>

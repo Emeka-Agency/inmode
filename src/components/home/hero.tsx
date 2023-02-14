@@ -58,8 +58,8 @@ const Hero = ({}:Hero) => {
                 {/* IMAGE HERO */}
                 <img
                     id="hero-img"
-                    src={images.getOne('heroHeader').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('heroHeader').childImageSharp.fluid.srcSetWebp}
+                    src={images.getOne('heroHeader').childImageSharp?.fluid.srcWebp}
+                    srcSet={images.getOne('heroHeader').childImageSharp?.fluid.srcSetWebp}
                     style={{"right": img_init_right + 'vw'}}
                     alt="hero-right-img"
                 />

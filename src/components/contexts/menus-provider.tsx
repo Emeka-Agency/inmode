@@ -228,6 +228,8 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }
     `));
 
+    console.log(datas);
+
     const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
         if(!_array) {
             return {};
@@ -284,7 +286,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
-                        'icon': product.Icon.localFile.childImageSharp.fluid || null,
+                        'icon': product.Icon.localFile.childImageSharp?.fluid || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };

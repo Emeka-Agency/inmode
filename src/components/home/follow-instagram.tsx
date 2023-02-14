@@ -85,8 +85,8 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                             <div key={key} className="elem">
                                 <img
                                     className="background-image"
-                                    src={post.node.localFile.childImageSharp.fluid.srcWebp}
-                                    srcSet={post.node.localFile.childImageSharp.fluid.srcSetWebp}
+                                    src={post.node.localFile.childImageSharp?.fluid.srcWebp}
+                                    srcSet={post.node.localFile.childImageSharp?.fluid.srcSetWebp}
                                     alt={`insta-${key + 1}`}
                                 />
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
@@ -101,8 +101,8 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                     className="background-image"
                                     // src={`https://back.infr2333.odns.fr/assets/instagram/${index}.jpg`}
                                     src={`https://back.inmode.emeka.fr/assets/instagram/${index}.jpg`}
-                                    // src={post.childImageSharp.fluid.srcWebp}
-                                    // srcSet={post.childImageSharp.fluid.srcSetWebp}
+                                    // src={post.childImageSharp?.fluid.srcWebp}
+                                    // srcSet={post.childImageSharp?.fluid.srcSetWebp}
                                     alt={`insta-${key + 1}`}
                                 />
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>

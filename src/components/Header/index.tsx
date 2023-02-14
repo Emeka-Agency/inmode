@@ -43,7 +43,7 @@ const Header = ({}:Header) => {
     return (
         <header>
             <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.getOne('headerLogo').childImageSharp.fluid.srcWebp +')'}}>
+                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.getOne('headerLogo').childImageSharp?.fluid.srcWebp +')'}}>
                     <Link to="/" className="zone-link" title="Inmode">
                     </Link>
                 </div>

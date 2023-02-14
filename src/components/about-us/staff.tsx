@@ -52,7 +52,7 @@ const Staff = ({ from = "" }:Staff) => {
                                 className="elem"
                             >
                                 <img
-                                    src={slide.picture ? slide.picture.localFile.childImageSharp.fluid.srcWebp : ""}
+                                    src={slide.picture ? slide.picture.localFile.childImageSharp?.fluid.srcWebp : ""}
                                     alt={`about-us-staff-${key}`}
                                 />
                                 <div className="name">

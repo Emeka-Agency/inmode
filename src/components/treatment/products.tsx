@@ -14,7 +14,7 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
                                     <div key={key_product} className="workstation-details">
                                         <div className="workstation-img">
                                             <img
-                                                src={product.image && product.image.localFile.childImageSharp.fluid.srcWebp}
+                                                src={product.image && product.image.localFile.childImageSharp?.fluid.srcWebp}
                                                 alt={product.title}
                                             />
                                         </div>

@@ -11,7 +11,7 @@ const MenuContentCard = ({ menu, prop_key = 0 }:MenuContentCard) => {
         return (
             <>
                 <img
-                    src={menu.icon ? menu.icon.localFile.publicURL || menu.icon.localFile.childImageSharp.fluid.srcWebp : ""}
+                    src={menu.icon ? menu.icon.localFile.publicURL || menu.icon.localFile.childImageSharp?.fluid.srcWebp : ""}
                     alt="content-card-img"
                 />
                 {format_string(_menu.title || '')}

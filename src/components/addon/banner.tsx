@@ -12,22 +12,22 @@ const AddonBanner = ({ datas }:AddonBanner) => {
             <div className="top-transition"></div>
             <div className="addon-banner-media">
                 <img
-                    src={datas.left_img && datas.left_img.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={datas.left_img && datas.left_img.localFile.childImageSharp.fluid.srcSetWebp || ""}
+                    src={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
+                    srcSet={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcSetWebp || ""}
                     alt="addon-banner"
                 />
             </div>
             <div className="addon-banner-details">
                 <img
                     className="addon-banner-logo"
-                    src={datas.right_img && datas.right_img.localFile.childImageSharp.fluid.srcWebp}
+                    src={datas.right_img && datas.right_img.localFile.childImageSharp?.fluid.srcWebp}
                     alt="addon-logo-text"
                 />
                 <div className="addon-banner-short-descr">{datas.right_text}</div>
             </div>
             <div className="addon-banner-mini">
                 <img
-                    src={datas.mini && datas.mini.localFile.childImageSharp.fluid.srcWebp}
+                    src={datas.mini && datas.mini.localFile.childImageSharp?.fluid.srcWebp}
                     alt="addon-banner-mini"
                 />
             </div>

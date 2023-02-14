@@ -9,8 +9,8 @@ const TreatmentBanner = ({ datas }:TreatmentBanner) => {
             <div className="top-transition"></div>
             <div className="treatment-banner-media">
                 <img
-                    src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp || ''}
-                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp || ''}
+                    src={datas.picture && datas.picture.localFile.childImageSharp?.fluid.srcWebp || ''}
+                    srcSet={datas.picture && datas.picture.localFile.childImageSharp?.fluid.srcSetWebp || ''}
                     alt="banner"
                 />
             </div>
