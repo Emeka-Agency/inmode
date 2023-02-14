@@ -2,20 +2,20 @@ function _document():boolean {
     return typeof document == "undefined" ? false : true;
 }
 
-export const oneBySelector = (selector:string, callback?:Function):HTMLElement | null => {
+export const selectOne = (selector:string, callback?:Function):HTMLElement | null => {
     if(!_document()) {
         return null;
     }
     return callback != null ? callback(document.querySelectorAll(selector)) : document.querySelector(selector);
 }
-export const allBySelector = (selector:string, callback?:Function):NodeListOf<HTMLElement> | null => {
+export const selectAll = (selector:string, callback?:Function):NodeListOf<HTMLElement> | null => {
     if(!_document()) {
         return null;
     }
     return callback != null ? callback(document.querySelectorAll(selector)) : document.querySelectorAll(selector);
 }
 
-export const oneById = (selector:string):HTMLElement | null => {
+export const getById = (selector:string):HTMLElement | null => {
     if(!_document()) {
         return null;
     }
@@ -65,11 +65,11 @@ export const formById = (selector:string) => {
     if(!_document()) {
         return null;
     }
-    return oneById(selector);
+    return getById(selector);
 }
 export const formsByIds = (selectors:Array<string>) => {
     if(!_document()) {
         return null;
     }
-    return selectors.map(selector => oneById(selector));
+    return selectors.map(selector => getById(selector));
 }

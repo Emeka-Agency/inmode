@@ -3,7 +3,7 @@ import { Link } from "gatsby";
 import { useWindowSize } from "../../functions/window-size";
 import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import LoadingGIF from "../LoadingGIF";
 
 import { send_form_large } from "./contact";
@@ -37,7 +37,7 @@ const form_elems = [
     {"placeholder": "", "validation_message": "Fill in your firstname", "required": true, "label": "First name", "name" : "firstname", "type" : "text"},
     {"placeholder": "", "label": "Society", "name" : "company", "type" : "text"},
     {"placeholder": "", "validation_message": "Choose a speciality", "required": true, "label": "Choose a speciality", "name" : "subject", "type" : "select", "options": [
-        {"value": "", "disabled": true, "selected": true, "style": {'display': 'none'}, "label": "Speciality"},
+        {"value": undefined, "disabled": true, "selected": true, "style": {'display': 'none'}, "label": "Speciality"},
         {"value" : "plastic-surgeon", "label": "Plastic surgeon",},
         {"value" : "cosmetic-surgeon", "label": "Cosmetic surgeon",},
         {"value" : "dermatologist", "label": "Dermatologist",},
@@ -61,8 +61,8 @@ const ContactForm = ({ from }:ContactForm) => {
 
     const resize_panel = (panel:Element | null, close:HTMLElement | null) => {
         let closed:boolean = close == null ? false : close.classList.contains("opened");
-        panel && panel.classList.contains('opened') && closed && panel.classList.remove('opened');
-        panel && !panel.classList.contains('opened') && !closed && panel.classList.add('opened');
+        if(panel && panel.classList.contains('opened') && !closed) {panel.classList.remove('opened');}
+        else if(panel && !panel.classList.contains('opened') && closed) {panel.classList.add('opened');}
         if (maxHeight && close) {
             setMaxHeight(0);
         }
@@ -73,8 +73,8 @@ const ContactForm = ({ from }:ContactForm) => {
 
     React.useEffect(() => {
         resize_panel(
-            oneById("accordion"),
-            oneById("title-accordion")
+            getById("accordion"),
+            getById("title-accordion")
         );
         // EXPLAIN - Pas de setCustomValidity puisque ça définit l'élément comme étant mal rempli
         // let temp;

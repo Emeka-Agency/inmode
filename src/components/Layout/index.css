@@ -3970,11 +3970,11 @@ input[type="submit"].neumorphic:hover,
     margin: 50px auto 0;
 }
 
-.product-addons .product-addon.Triton {
+/* .product-addons .product-addon.Triton {
     width: 25%;
     margin: 3%;
     display: inline-block;
-}
+} */
 
 .product-addons .product-addon .addon-details {
     display: inline-block;

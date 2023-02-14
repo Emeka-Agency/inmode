@@ -11,7 +11,6 @@
     "crc": "^4.2.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "flickity": "^3.0.0",
     "gatsby": "^5.4.1",
     "gatsby-plugin-anchor-links": "^1.2.1",
     "gatsby-plugin-image": "^3.4.0",
@@ -44,6 +43,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "update_all": "npm update --save/--save-dev -f",
     "launch_dev": "gatsby clean && NODE_ENV=development npm run develop",
     "launch_stage": "gatsby clean && NODE_ENV=staging npm run develop",
     "launch_prod": "gatsby clean && NODE_ENV=production npm run build && gatsby serve"

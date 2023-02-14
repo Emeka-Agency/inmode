@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import { useImages } from "../contexts/images-provider";
 import { GatsbyImage_Interface } from "../interfaces";
 
@@ -15,7 +15,7 @@ const ShopLogin = ({updateLogged}:ShopLogin_Interface) => {
     );
 
     const submitLog = (e:React.MouseEvent<HTMLButtonElement, MouseEvent> | null = null):void => {
-        let _input:HTMLInputElement | any = oneById('shop-login-input');
+        let _input:HTMLInputElement | any = getById('shop-login-input');
         if(_input && typeof updateLogged == "function") {
             updateLogged(_input.value == password ? true : false);
         }
@@ -28,7 +28,7 @@ const ShopLogin = ({updateLogged}:ShopLogin_Interface) => {
     };
 
     React.useEffect(() => {
-        let _input:HTMLInputElement | any = oneById('shop-login-input');
+        let _input:HTMLInputElement | any = getById('shop-login-input');
         if(_input) {
             _input.focus();
         }

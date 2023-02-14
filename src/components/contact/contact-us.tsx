@@ -3,7 +3,7 @@ import { useWindowSize } from "../../functions/window-size";
 import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
 import { useImages } from '../contexts/images-provider';
 import LoadingGIF from "../LoadingGIF";
-import { allByClass, oneById, oneBySelector } from "../../functions/selectors";
+import { allByClass, getById, selectOne } from "../../functions/selectors";
 
 import { send_form_mini } from "./contact";
 
@@ -26,11 +26,11 @@ const ContactUs = () => {
             elem.style.margin = '0px auto';
             elem.style.transitionDelay = '0.4s';
         });
-        let _temp:any = oneById('contact-form');
+        let _temp:any = getById('contact-form');
         _temp && _temp.classList.remove('custom-scrollbar', 'moz-scrollbar');
-        _temp = oneBySelector('#contact-form .req-return.success');
+        _temp = selectOne('#contact-form .req-return.success');
         if(_temp) {_temp.innerHTML = "";}
-        _temp = oneBySelector('#contact-form .req-return.error');
+        _temp = selectOne('#contact-form .req-return.error');
         if(_temp) {_temp.innerHTML = "";}
     }
 
@@ -43,7 +43,7 @@ const ContactUs = () => {
         formOpen && close_form();
         formOpen && size.width <= 480 && enableMainScroll();
         setOpen(!open);
-        let _temp:any = oneById('contact-us');
+        let _temp:any = getById('contact-us');
         _temp && _temp.classList.toggle('opened');
         setFormOpen(!formOpen);
     }
@@ -55,7 +55,7 @@ const ContactUs = () => {
             elem.style.margin = '0px auto';
             elem.style.transitionDelay = '0s';
         });
-        let _temp:any = oneById('contact-form');
+        let _temp:any = getById('contact-form');
         _temp && _temp.classList.add('custom-scrollbar', 'moz-scrollbar');
         setFormOpen(true);
     }

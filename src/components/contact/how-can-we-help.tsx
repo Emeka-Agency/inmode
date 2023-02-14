@@ -17,7 +17,7 @@ const HowCanWeHelp = ({ from }:HowCanWeHelp) => {
                 Question about <Link to="#" title="Technologies and workstations">technologies and workstations</Link>
             </div>
             <div className="topic">
-                General askings by <a to="mailto:info@inmodemd.co.uk" target="_blank" title="Mail">mail</a> or at <Link to="tel:+18559829199" title="Call us">1.855.982.9199</Link>
+                General askings by <a to="mailto:neil.wolfenden@inmodemd.com" target="_blank" title="Mail">mail</a> or at <Link to="tel:+18559829199" title="Call us">1.855.982.9199</Link>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 import { _error, _log } from "../../functions/logger";
-import { oneById, oneBySelector } from "../../functions/selectors";
+import { getById, selectOne } from "../../functions/selectors";
 import { Airtable_Clinic_Interface } from "../interfaces";
 import LoadingGIF from "../LoadingGIF";
 
@@ -15,11 +15,11 @@ const ClinicsClinicalFinder = ({ clinics, regions, loading }:ClinicsClinicalFind
         _log(`updateIndicator(${_part}, ${_tot})`);
         if(_part == undefined || _tot == undefined) {return false;}
         
-        let temp = oneById("search-clinic-indicator");
+        let temp = getById("search-clinic-indicator");
         if(temp instanceof Element) {
             temp.innerText = `${_part}/${_tot}`;
         }
-        temp = oneBySelector("#search-clinic-indicator-ui .search-clinic-indicator-ui-back");
+        temp = selectOne("#search-clinic-indicator-ui .search-clinic-indicator-ui-back");
         if(temp instanceof Element) {
             temp.style.width = `${(_part / _tot) * 100}%`;
         }

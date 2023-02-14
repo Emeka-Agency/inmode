@@ -1,7 +1,7 @@
 import React from "react";
 import { _log } from "../../functions/logger";
 import { closeModale, openModale, routeCaseStudy } from "../../functions/modale";
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import { useImages } from "../contexts/images-provider";
 import LoadingGIF from "../LoadingGIF";
 
@@ -22,9 +22,9 @@ const CaseStudies = ({ studies }:CaseStudies) => {
                 exit: true,
                 onOpen: () => {
                     // MODALE CONTENT
-                    let input:any = oneById('route-case-study-password');
-                    let inputStatus:any = oneById('route-case-study-password-status');
-                    let button:any = oneById('route-case-study-submit');
+                    let input:any = getById('route-case-study-password');
+                    let inputStatus:any = getById('route-case-study-password-status');
+                    let button:any = getById('route-case-study-submit');
 
                     if(input == null || inputStatus == null || button == null) {
                         return false;

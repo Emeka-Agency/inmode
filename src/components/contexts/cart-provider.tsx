@@ -6,7 +6,7 @@ import CartContext from './cart-context';
 
 import { _sort_html_list, _sort_object } from '../../functions/sort';
 import rand_token from '../../functions/rand_token';
-import { formById, oneById } from '../../functions/selectors';
+import { formById, getById } from '../../functions/selectors';
 
 import moment from 'moment';
 import { filter_object } from '../../functions/filter_object';
@@ -268,11 +268,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const total_HT = ():string => {return count_total().toFixed(2);}
     const hasTVAIntra = ():boolean => {
         let i = 0;
-        let _temp = oneById('facture');
+        let _temp = getById('facture');
         const _other_address = _temp ? _temp.checked : false;
-        _temp = oneById('vads_cust_country');
+        _temp = getById('vads_cust_country');
         const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "GB";
-        _temp = oneById('vads_ship_to_country');
+        _temp = getById('vads_ship_to_country');
         const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "GB";
         if(_other_address == false && _part_1_country == "GB") {
             return false;
@@ -361,11 +361,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             transId: order_id,
         });
 
-        let _delivery_mail:any = oneById('delivery_mail');
+        let _delivery_mail:any = getById('delivery_mail');
         if(_delivery_mail) {
             _temp['delivery_mail'] = _delivery_mail.value;
         }
-        let intra_tva:any = oneById('intra_tva');
+        let intra_tva:any = getById('intra_tva');
         if(intra_tva) {
             _temp['intra_tva'] = intra_tva.value;
         }
@@ -373,10 +373,10 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         let _country = null;
         if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
             if(otherAddress == true) {
-                _country = oneById('vads_ship_to_country');
+                _country = getById('vads_ship_to_country');
             }
             else {
-                _country = oneById('vads_cust_country');
+                _country = getById('vads_cust_country');
             }
         }
         else {

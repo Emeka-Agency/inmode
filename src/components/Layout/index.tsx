@@ -30,11 +30,25 @@ const Layout = ({ children, title }:Layout) => {
     //   }
     // });
 
+    function searchConsole() {
+        if(typeof window == "undefined") {
+            return false;
+        }
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-JFS1WVR7JQ');
+    }
+
     return (
         <ImagesProvider>
             <MenusProvider>
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <Header/>
+                {/* <!-- Google tag (gtag.js) --> */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
+                <script>{searchConsole()}</script>
                 <ProductsProvider>
                     <ArticleProvider>
                         <main id="main" className={title + '-page'}>

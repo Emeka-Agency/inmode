@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { format_title } from "../../functions/format_title";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 
-import { oneById, oneByClass } from "../../functions/selectors";
+import { getById, oneByClass } from "../../functions/selectors";
 import { openModale, clinicalStudyPassword, closeModale } from '../../functions/modale';
 
 import './index.css';
@@ -18,9 +18,9 @@ const ClinicalStudy = ({study, prop_key = null, able = false, _setAllowed}:Clini
         openModale(clinicalStudyPassword({
             onOpen: () => {
                 // MODALE CONTENT
-                let input:HTMLInputElement|null = oneById('clinical-study-download-password');
-                let inputStatus:HTMLSpanElement|null = oneById('clinical-study-download-password-status');
-                let button:HTMLButtonElement|null = oneById('clinical-study-download-submit');
+                let input:HTMLInputElement|null = getById('clinical-study-download-password');
+                let inputStatus:HTMLSpanElement|null = getById('clinical-study-download-password-status');
+                let button:HTMLButtonElement|null = getById('clinical-study-download-submit');
 
                 if(input == null || inputStatus == null || button == null) {
                     return false;

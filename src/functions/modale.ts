@@ -19,14 +19,14 @@ function modaleClose():HTMLElement|null {
 
 export function openModale(params:params) {
     disableMainScroll();
-    modale().classList.add('opened');
-    params.modaleClass != undefined && modale().classList.add(params.modaleClass);
-    params.containerClass != undefined && modaleContainer().classList.add(params.containerClass);
-    params.contentClass != undefined && modaleContent().classList.add(params.contentClass);
+    modale()?.classList.add('opened');
+    params.modaleClass != undefined && modale()?.classList.add(params.modaleClass);
+    params.containerClass != undefined && modaleContainer()?.classList.add(params.containerClass);
+    params.contentClass != undefined && modaleContent()?.classList.add(params.contentClass);
     modaleContent().innerHTML = closePart() + params.content;
     params.onOpen && params.onOpen();
-    modale().addEventListener('click', function(e:MouseEvent) {
-        if(e.target.id == 'modale') {
+    modale()?.addEventListener('click', function(e:MouseEvent) {
+        if(e?.target?.id == 'modale') {
             closeModale(params.onClose);
         }
     });
@@ -35,15 +35,15 @@ export function openModale(params:params) {
             closeModale(params.onClose);
         }
     });
-        modaleClose().addEventListener('click', function(e:MouseEvent) {
+        modaleClose()?.addEventListener('click', function(e:MouseEvent) {
         closeModale(params.onClose);
     });
 }
 
 export function closeModale(onClose:Function|null = null) {
-    modale().classList.remove('opened');
-    modaleContainer().classList.remove(...modaleContainer().classList);
-    modaleContent().classList.remove(...modaleContent().classList);
+    modale()?.classList.remove('opened');
+    modaleContainer()?.classList.remove(...(modaleContainer()?.classList ?? []));
+    modaleContent()?.classList.remove(...(modaleContent()?.classList ?? []));
     modaleContent().innerHTML = "";
     onClose != null && onClose();
     enableMainScroll();
@@ -223,6 +223,7 @@ export function signupEvent(datas:signupEvent) {
                 </div>
                 <div class="req-return success" style="color: '#59b7b3', fontSize: 15, fontWeight: 400"></div>
                 <div class="req-return error" style="color: 'red', fontSize: 15, fontWeight: 400"></div>
+                <input id="event-participate-event-name" value="${datas.event_name}" style="display:none;"/>
                 <div class="event-participate-submit">
                     <button type="submit" id="event-participate-submit" class="submit">Submit</button>
                 </div>
@@ -252,6 +253,7 @@ interface routeCaseStudy {
 interface signupEvent {
     onOpen?: Function;
     onClose?: Function;
+    event_name?: string;
 }
 
 interface params {

@@ -4,7 +4,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { Airtable_Clinic_Interface } from '../interfaces';
 
 import './index.css';
-import { allByClass, oneById, oneBySelector } from '../../functions/selectors';
+import { allByClass, getById, selectOne } from '../../functions/selectors';
 import LoadingGIF from '../LoadingGIF';
 import { element, instanceOf } from 'prop-types';
 import { _error, _log } from '../../functions/logger';

@@ -7,7 +7,7 @@ import { useWindowSize } from "../../functions/window-size";
 import { disableMainScroll } from "../../functions/disable-scroll";
 import { useImages } from '../contexts/images-provider';
 
-import { oneById } from "../../functions/selectors";
+import { getById } from "../../functions/selectors";
 import MenuSingleImage from "../menu/single-image";
 import { closeModale, openModale, routeCaseStudy } from "../../functions/modale";
 import { strToDom } from "../../functions/tools";
@@ -19,7 +19,7 @@ const Header = ({}:Header) => {
 
     const openMenu = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        let _temp:any = oneById('header-mini');
+        let _temp:any = getById('header-mini');
         _temp && _temp.classList.add('opened');
         size.width < 1200 && disableMainScroll();
     }
@@ -40,9 +40,9 @@ const Header = ({}:Header) => {
                     openModale(routeCaseStudy({
                         onOpen: () => {
                             // MODALE CONTENT
-                            let input = oneById('route-case-study-password');
-                            let inputStatus = oneById('route-case-study-password-status');
-                            let button = oneById('route-case-study-submit');
+                            let input = getById('route-case-study-password');
+                            let inputStatus = getById('route-case-study-password-status');
+                            let button = getById('route-case-study-submit');
 
                             if(input instanceof HTMLInputElement && inputStatus instanceof HTMLDivElement && button instanceof HTMLButtonElement) {
                                 input.focus();

@@ -5,6 +5,7 @@ import randomString from "../../functions/randString";
 import { closeModale, openModale, signupEvent } from "../../functions/modale";
 import { useWindowSize } from "../../functions/window-size";
 import { _log } from "../../functions/logger";
+import { getById, selectOne } from "../../functions/selectors";
 
 const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current_page, isPast = false }:InmodeEvent) => {
 
@@ -86,7 +87,51 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         }
     }
 
-    function signupAllRequired() {
+    const records = {
+        salutation: {element: '#event-participate-salutation', field_name: "Salutation", value: "value"},
+        firstname: {element: '#event-participate-firstname', field_name: "Firstname", value: "value"},
+        surname: {element: '#event-participate-surname', field_name: "Surname", value: "value"},
+        speciality: {element: '#event-participate-speciality', field_name: "Speciality", value: "value"},
+        clinic_name: {element: '#event-participate-clinic-name', field_name: "Clinic Name", value: "value"},
+        clinic_location: {element: '#event-participate-clinic-location', field_name: "Clinic Location", value: "value"},
+        email: {element: '#event-participate-email', field_name: "Email", value: "value"},
+        contact_number: {element: '#event-participate-contact-number', field_name: "Contact number", value: "value"},
+        is_doctor: {element: '#event-participate-is-doctor', field_name: "Doctor", value: "checked"},
+    };
+
+    function signup_body() {
+        return Object.fromEntries([
+            ["Event", [selectOne('#event-participate-event-name')?.value]],
+            ...Object.keys(records).map(record => [
+                records[record].field_name, selectOne(records[record].element)[records[record].value] ?? null
+            ])
+        ]);
+    }
+
+    async function save_signup() {
+        await fetch(
+            `${process.env.AIRTABLE_EVENT_SIGNUP}`,
+            {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
+                    "content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    records: [
+                        {
+                            fields: signup_body()
+                        }
+                    ]
+                })
+            }
+        )
+        .then(res => res.json())
+        .then(res => _log(res))
+        .catch(err => _log(err))
+    }
+
+    function signup_all_required() {
         if(typeof document == "undefined") {return false;}
         let container = document.querySelector(".event-participate-modale-container");
         if(container == null) {return false;}
@@ -97,6 +142,12 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                 return true;
             }
             if(elem instanceof HTMLInputElement && elem.required == true && elem.value != null && elem.value != "") {
+                return true;
+            }
+            if(elem instanceof HTMLSelectElement && elem.required == false) {
+                return true;
+            }
+            if(elem instanceof HTMLSelectElement && elem.required == true && elem.value != null && elem.value.length > 0) {
                 return true;
             }
             if(typeof document != undefined) {
@@ -111,32 +162,66 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         .filter(value => value == false).length == 0;
     }
 
-    function joinEvent(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
+    function handle_signup_form_change(e:any, duo:any, form:any , button:any) {
+        _log(e);
+        if((e.key ?? null) == "Enter") {
+            _log(1);
+            if((duo.elem instanceof HTMLInputElement || duo.elem instanceof HTMLSelectElement) && duo.elem.value != "" && duo.status) {
+                _log(2);
+                if(signup_all_required())
+                {
+                    // TODO
+                    save_signup();
+                    closeModale();
+                }
+                else {
+                    form instanceof HTMLFormElement && form.reportValidity();
+                }
+            }
+            else if(duo.status instanceof HTMLSpanElement && (duo.elem instanceof HTMLInputElement || duo.elem instanceof HTMLSelectElement) && duo.elem.required) {
+                _log(4);
+                duo.status.innerHTML = "Must enter datas";
+                duo.status.style.removeProperty('display');
+            }
+        }
+        else {
+            if(signup_all_required()) {
+                button && button.classList.add('able');
+                duo.status && duo.status.style.setProperty('display', 'none');
+            }
+            else {
+                button && button.classList.remove('able');
+            }
+        }
+    }
+
+    function join_event(e:React.MouseEvent<HTMLDivElement, MouseEvent>, event_name?:string) {
         openModale(signupEvent({
+            event_name: event_name,
             onOpen: () => {
                 // CONTAINER
                 let form = document.querySelector('#event-signup');
                 let container = document.querySelector(".event-participate-modale-container");
                 // MODALE CONTENT
-                let salutation:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-salutation') : null;
-                let salutation_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-salutation-status') : null;
-                let firstname:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-firstname') : null;
-                let firstname_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-firstname-status') : null;
-                let surname:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-surname') : null;
-                let surname_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-surname-status') : null;
-                let email:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-email') : null;
-                let email_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-email-status') : null;
-                let contact_number:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-contact-number') : null;
-                let contact_number_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-contact-number-status') : null;
-                let speciality:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-speciality') : null;
-                let speciality_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-speciality-status') : null;
-                let clinic_name:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-clinic-name') : null;
-                let clinic_name_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-clinic-name-status') : null;
-                let clinic_location:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-clinic-location') : null;
-                let clinic_location_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-clinic-location-status') : null;
-                let is_doctor:HTMLElement|HTMLInputElement|null = typeof document != "undefined" ? document.getElementById('event-participate-is-doctor') : null;
-                let is_doctor_status:HTMLSpanElement|null = typeof document != "undefined" ? document.getElementById('event-participate-is-doctor-status') : null;
-                let button:HTMLElement|HTMLButtonElement|null = typeof document != "undefined" ? document.getElementById('event-participate-submit') : null;
+                let salutation:HTMLElement|HTMLInputElement|null = getById('event-participate-salutation');
+                let salutation_status:HTMLSpanElement|null = getById('event-participate-salutation-status');
+                let firstname:HTMLElement|HTMLInputElement|null = getById('event-participate-firstname');
+                let firstname_status:HTMLSpanElement|null = getById('event-participate-firstname-status');
+                let surname:HTMLElement|HTMLInputElement|null = getById('event-participate-surname');
+                let surname_status:HTMLSpanElement|null = getById('event-participate-surname-status');
+                let email:HTMLElement|HTMLInputElement|null = getById('event-participate-email');
+                let email_status:HTMLSpanElement|null = getById('event-participate-email-status');
+                let contact_number:HTMLElement|HTMLInputElement|null = getById('event-participate-contact-number');
+                let contact_number_status:HTMLSpanElement|null = getById('event-participate-contact-number-status');
+                let speciality:HTMLElement|HTMLSelectElement|null = getById('event-participate-speciality');
+                let speciality_status:HTMLSpanElement|null = getById('event-participate-speciality-status');
+                let clinic_name:HTMLElement|HTMLInputElement|null = getById('event-participate-clinic-name');
+                let clinic_name_status:HTMLSpanElement|null = getById('event-participate-clinic-name-status');
+                let clinic_location:HTMLElement|HTMLInputElement|null = getById('event-participate-clinic-location');
+                let clinic_location_status:HTMLSpanElement|null = getById('event-participate-clinic-location-status');
+                let is_doctor:HTMLElement|HTMLInputElement|null = getById('event-participate-is-doctor');
+                let is_doctor_status:HTMLSpanElement|null = getById('event-participate-is-doctor-status');
+                let button:HTMLElement|HTMLButtonElement|null = getById('event-participate-submit');
 
                 if(
                     form == null ||
@@ -159,13 +244,19 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                     document.querySelectorAll('.specialist-zone').forEach(elem => {
                         if(elem instanceof HTMLElement && e.target instanceof HTMLInputElement && e.target.checked) {
                             elem.style.removeProperty('display');
-                            elem.querySelector('input')?.setAttribute('required', 'true');
+                            (elem.querySelector('input') ?? elem.querySelector('select'))?.setAttribute('required', 'true');
                         }
                         else if(elem instanceof HTMLElement) {
                             elem.style.setProperty('display', 'none');
-                            elem.querySelector('input')?.removeAttribute('required');
+                            (elem.querySelector('input') ?? elem.querySelector('select'))?.removeAttribute('required');
                         }
                     });
+                    if(signup_all_required()) {
+                        button && button.classList.add('able');
+                    }
+                    else {
+                        button && button.classList.remove('able');
+                    }
                 });
 
                 form.addEventListener('submit', (e) => {
@@ -175,50 +266,18 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                 
                 // MODALE INPUT
                 [
-                    {input: salutation, status: salutation_status},
-                    {input: firstname, status: firstname_status},
-                    {input: surname, status: surname_status},
-                    {input: speciality, status: speciality_status},
-                    {input: clinic_name, status: clinic_name_status},
-                    {input: clinic_location, status: clinic_location_status},
-                    {input: email, status: email_status},
-                    {input: contact_number, status: contact_number_status},
-                    {input: is_doctor, status: is_doctor_status}
+                    {elem: salutation, status: salutation_status},
+                    {elem: firstname, status: firstname_status},
+                    {elem: surname, status: surname_status},
+                    {elem: email, status: email_status},
+                    {elem: contact_number, status: contact_number_status},
+                    {elem: is_doctor, status: is_doctor_status},
+                    {elem: speciality, status: speciality_status},
+                    {elem: clinic_name, status: clinic_name_status},
+                    {elem: clinic_location, status: clinic_location_status},
                 ].forEach((duo) => {
-                    duo.input && duo.input.addEventListener('keyup', (e) => {
-                        _log(e);
-                        if(e.key == "Enter") {
-                            _log(1);
-                            if(duo.input instanceof HTMLInputElement && duo.input.value != "" && duo.status) {
-                                _log(2);
-                                if(signupAllRequired())
-                                {
-                                    // TODO
-                                    // saveSignup();
-                                    closeModale();
-                                }
-                                // if(!verifyPassword(duo.input.value)) {
-                                    _log(3);
-                                //     duo.status.innerHTML = "Wrong password";
-                                //    duo.status.style.setProperty('display', 'none');
-                                // }
-                            }
-                            else if(duo.status instanceof HTMLSpanElement && duo.input instanceof HTMLInputElement && duo.input.required) {
-                                _log(4);
-                                duo.status.innerHTML = "Must enter datas";
-                                duo.status.style.removeProperty('display');
-                            }
-                        }
-                        else {
-                            if(duo.input instanceof HTMLInputElement && duo.input.value != "") {
-                                button && button.classList.add('able');
-                                duo.status && duo.status.style.setProperty('display', 'none');
-                            }
-                            else {
-                                button && button.classList.remove('able');
-                            }
-                        }
-                    });
+                    duo.elem instanceof HTMLInputElement && duo.elem.addEventListener('keyup', e => handle_signup_form_change(e, duo, form, button));
+                    duo.elem instanceof HTMLSelectElement && duo.elem.addEventListener('change', e => handle_signup_form_change(e, duo, form, button));
                 });
 
                 // MODALE BUTTON
@@ -226,17 +285,15 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                     e.preventDefault();
                     _log(e);
                     _log(5);
-                    if(signupAllRequired())
+                    if(signup_all_required())
                     {
                         _log(6);
+                        // TODO
+                        save_signup();
                         closeModale();
-                        // if(!verifyPassword(duo.input.value)) {
-                            _log(7);
-                        //     duo.status.innerHTML = "Wrong password";
-                        //    duo.status.style.setProperty('display', 'none');
-                        // }
                     }
                     else {
+                        form instanceof HTMLFormElement && form.reportValidity();
                         _log(8);
                     }
                 });
@@ -264,7 +321,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                         {event.EventType === "Webinar" && (event.Addons || []).join(', ')}
                     </div>
                 }
-                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={joinEvent}>
+                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, event?.id)}>
                     SIGN UP
                 </div>}
             </div>
