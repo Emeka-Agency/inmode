@@ -1,7 +1,8 @@
+import { _log } from "./logger";
 import { err_log } from "./logging";
 
 function initTests() {
-    console.log("initTests");
+    _log("initTests");
 
     // testSignature();
     // testContactUs();
@@ -10,7 +11,7 @@ function initTests() {
 }
 
 function testSignature() {
-    console.log("testSignature");
+    _log("testSignature");
 
     if(typeof window == "undefined" && typeof fetch == "undefined") {
         return false;
@@ -23,7 +24,7 @@ function testSignature() {
 }
 
 function testContactUs() {
-    console.log("testContactUs");
+    _log("testContactUs");
 
     if(typeof window == "undefined" && typeof fetch == "undefined") {
         return false;
@@ -47,7 +48,7 @@ function testContactUs() {
 }
 
 function testFullContact() {
-    console.log("testFullContact");
+    _log("testFullContact");
 
     if(typeof window == "undefined" && typeof fetch == "undefined") {
         return false;
@@ -89,7 +90,7 @@ function testFullContact() {
 }
 
 function testOrder() {
-    console.log("testOrder");
+    _log("testOrder");
 
     if(typeof window == "undefined" && typeof fetch == "undefined") {
         return false;
@@ -98,7 +99,7 @@ function testOrder() {
 }
 
 function testPromise(href, datas) {
-    console.log("testPromise");
+    _log("testPromise");
 
     if(typeof href !="string" || typeof datas != "object") {
         return false;
@@ -138,11 +139,11 @@ function testPromise(href, datas) {
                 }
             }
         }
-        console.log(retour);
+        _log(retour);
         return retour;
     })
     .then((datas) => {
-        console.log(datas);
+        _log(datas);
     })
     .catch((error:any) => {
         err_log(error, "functions/test.ts:testPromise main catch");

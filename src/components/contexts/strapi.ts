@@ -1,4 +1,5 @@
 import { err_log } from "../../functions/logging";
+import { oneById } from "../../functions/selectors";
 import {
     Article_Interface,
     InmodePanel_Order_Interface,
@@ -95,7 +96,7 @@ function filter(datas:InmodePanel_Order_Interface):InmodePanel_Order_Interface {
 export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Interface[], total:number, sepa:boolean = false, country:string):InmodePanel_Order_Interface {
     // console.log("create_strapi_order");
 
-    // console.log(_datas);
+    console.log(_datas);
 
     let _temp:InmodePanel_Order_Interface = {
         reference: _datas.vads_order_id,
@@ -123,7 +124,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
             zip: _datas.vads_cust_zip,
             city: _datas.vads_cust_city,
             society: _datas.vads_cust_legal_name,
-            retriever: _datas.cust_address,
+            retriever: _datas.cust_address
         },
         shipping: {
             firstname: _datas.vads_ship_to_first_name,
@@ -137,7 +138,7 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
             zip: _datas.vads_ship_to_zip,
             city: _datas.vads_ship_to_city,
             society: _datas.vads_ship_to_legal_name,
-            retriever: _datas.ship_address,
+            retriever: _datas.ship_address
         },
         firstname: _datas.vads_cust_first_name,
         lastname: _datas.vads_cust_last_name,

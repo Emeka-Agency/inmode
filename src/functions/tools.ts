@@ -3,6 +3,7 @@
 // IS-TYPE
 // ================================
 
+import { _log } from "./logger";
 import { err_log } from "./logging";
 
 /**
@@ -77,12 +78,12 @@ export const resolveEntityPath = function(_entity:Object|null|any = null, _path:
  */
 
 export const avoirURLBase = () => {
-    console.log("avoirURLBase");
+    _log("avoirURLBase");
     return window.location.origin + (window.location.host == "localhost" ? '/c7_back' : '');
 };
 
 export const avoirRelativeURL = () => {
-    console.log("avoirRelativeURL");
+    _log("avoirRelativeURL");
     return window.location.pathname;
 };
 

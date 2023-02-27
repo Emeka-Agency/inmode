@@ -81,7 +81,7 @@ Cart Mini fix graph && open                                                 // T
 WhatTreats                                                                  // TODO FIX         // DONE
 Mettre title sur BACK                                                       // TODO NEW         // DONE
 Mettre le bon RIB                                                           // TODO NEW         // DONE
-Ajouter au panier est un vrai ajout et modale sous icône cart               // TODO US NEW      // KÉVIN ?
+Ajouter au panier est un vrai ajout et modale sous icône cart               // TODO US NEW      // KÉVIN ?  // CANCEL
 Ajout mail dans les informations de livraison (Envoyer mail pour les 2 )    // TODO CLIENT      // DONE
 vignette lorsqu'il y a un nouvel événement.                                 // TODO             // 
 achat - ligne livraison graphique alignement                                // TODO CLIENT      // DONE

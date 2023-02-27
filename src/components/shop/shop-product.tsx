@@ -50,7 +50,7 @@ const ShopProduct2 = ({ reference, special, wp_id }:ShopProduct2) => {
                     }
                 }}
             >
-                Ajouter au panier
+                Ouvrir le panier
             </div>
         </div>
     );

@@ -8,6 +8,7 @@ import { keyboardUsed } from '../../../functions/tools';
 import './address.css';
 import { selectOne } from '../../../functions/selectors';
 import { isElement } from '../../../functions/is-type';
+import { _log } from '../../../functions/logger';
 
 const AddressesTab = ({}:AddressesTab) => {
 
@@ -70,7 +71,7 @@ const AddressesTab = ({}:AddressesTab) => {
     };
 
     const addAddress = function(e:React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        console.log(e.currentTarget);
+        _log(e.currentTarget);
         user.addAddress();
     };
 

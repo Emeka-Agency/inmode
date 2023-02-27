@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
 import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
+import { _log } from '../../functions/logger';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
@@ -228,7 +229,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }
     `));
 
-    console.log(datas);
+    _log(datas);
 
     const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
         if(!_array) {

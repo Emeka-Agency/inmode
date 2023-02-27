@@ -1,3 +1,5 @@
+import { _log, _trace } from "./logger";
+
 export const err_log = function(__err:string|Array<any>|object, __from:string) {
     const body = {
         "error": typeof __err == "string" ? __err : (__err instanceof Array ? Object.fromEntries(__err.map((e, i) => [i, e])) : __err instanceof Object ? __err : __err),
@@ -6,10 +8,10 @@ export const err_log = function(__err:string|Array<any>|object, __from:string) {
     
     if(window?.location.host != "inmodemd.fr") {
         try {
-            console.trace(__err);
+            _trace(__err);
         }
         catch(err) {
-            console.trace(err);
+            _trace(err);
         }
     }
 
@@ -27,6 +29,6 @@ export const err_log = function(__err:string|Array<any>|object, __from:string) {
 
     fetch((process.env.INMODE_BACK || "https://inmodemd.fr/admin") + "/api/front-logs", vars)
     .then(res => res.json())
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(res => _log(res))
+    .catch(err => _log(err));
 }

@@ -4,6 +4,7 @@ import { useUser } from "../../contexts/user-provider";
 import { useImages } from "../../contexts/images-provider";
 import LoadingGIF from "../../LoadingGIF";
 import { keyboardUsed } from "../../../functions/tools";
+import { _log } from "../../../functions/logger";
 
 const OverviewTab = ({}:OverviewTab) => {
 
@@ -24,7 +25,7 @@ const OverviewTab = ({}:OverviewTab) => {
         if(typeof _field != "string") {return false;}
         if(_target instanceof HTMLInputElement) {return false;}
         let _elem = document?.querySelector(`.profile-field[data-field="${_field}"]`);
-        console.log(_elem);
+        _log(_elem);
         if(_elem instanceof Element && _elem.classList.contains('edit')) {
             _elem.classList.replace('edit', 'show');
             _elem?.querySelector('input')?.style.removeProperty('border-bottom-color');

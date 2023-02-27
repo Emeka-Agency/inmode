@@ -18,6 +18,7 @@ import _fetch from '../../functions/fetch';
 import { openModale, loginModale, signinModale, closeModale, createAddressModale, selectAddressModale } from '../../functions/modale';
 import { useCart } from './cart-provider';
 import { err_log } from '../../functions/logging';
+import { _log } from '../../functions/logger';
 
 export const useUser = ():UserContext_Interface => {
     return useContext(UserContext);
@@ -128,7 +129,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             "POST",
             _datas ?? {},
             function(_el:Element|null = null, _res:any) {
-                console.log(_res);
+                _log(_res);
                 modaleSetSaving(false);
                 if(typeof _res.message == "string") {
                     modaleSetSubmit(_res.message);
@@ -140,7 +141,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 }
             },
             function(_el:Element|null = null, _err:any) {
-                console.log(_err);
+                _log(_err);
             },
         );
     };
@@ -192,7 +193,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             "POST",
             {action: 'create', values: _datas} ?? {},
             function(_el:Element|null = null, _res:any) {
-                console.log(_res);
+                _log(_res);
                 modaleSetSaving(false);
                 if(typeof _res.message == "string") {
                     modaleSetSubmit(_res.message);
@@ -204,7 +205,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 modaleSetSaving(false);
             },
             function(_el:Element|null = null, _err:any) {
-                console.log(_err);
+                _log(_err);
                 if(typeof _err.message == "string") {
                     modaleSetSubmit(_err.message);
                 }
@@ -290,7 +291,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                         let _submit:HTMLInputElement|null = modale.querySelector('button[type="submit"]');
                         // S'il manque des input pour des champs obligatoires
                         if([_label, _clinic, _address_1, _zip, _city, _country, _form, _submit].indexOf(null) > -1) {
-                            console.log('test');
+                            _log('test');
                             closeModale();
                             return false;
                         }
@@ -470,7 +471,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
         try {
             if(_elem instanceof Element) {
                 let temp = null;
-                console.log(_address);
+                _log(_address);
                 if(_elem.id == 'step-1-part') {
                     temp = getById("cust_address"); if(temp instanceof HTMLInputElement) {temp.value = _address.address || "";}
                     temp = getById("ct_society"); if(temp instanceof HTMLInputElement) {temp.value = _address.society || "";}

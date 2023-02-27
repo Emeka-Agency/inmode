@@ -35,7 +35,7 @@ const defaultParams = {
 
     CivilGender: {name: 'vads_cust_title', id: 'vads_cust_title', placeholder: 'Civilité'},
         FullName: {name: 'vads_', id: 'vads_', placeholder: 'Nom - Prénom'},
-    Title: {name: 'ct_title', id: 'ct_titme', placeholder: 'Titre'},
+    Title: {name: 'ct_title', id: 'ct_title', placeholder: 'Titre'},
     FirstName: {name: 'vads_cust_first_name', id: 'vads_cust_first_name', placeholder: 'Prénom'},
     LastName: {name: 'vads_cust_last_name', id: 'vads_cust_last_name', placeholder: 'Nom'},
     Status: {name: 'vads_cust_status', id: 'vads_cust_status', placeholder: 'Statut'},

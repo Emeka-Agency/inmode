@@ -6472,7 +6472,14 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     font-weight: 700;
 }
 
-.contact-page.contact-form button[type="submit"] {
+form.contact-page.contact-form button[type="submit"],
+form.contact-page.contact-form button.reset {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.contact-page.contact-form button[type="submit"],
+.contact-page.contact-form button.reset {
     display: block;
     min-width: 150px;
     width: max-content;
@@ -6496,6 +6503,23 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 .contact-page.contact-form input[type="submit"]:hover {
     color: #59b7b3;
     border: 1px solid #59b7b3;
+}
+
+.contact-page.contact-form button[type="submit"] .loading-gif {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-left: 6px;
+    display: none;
+}
+
+.contact-page.contact-form button[type="submit"] .loading-gif.active {
+    display: inline-block;
+}
+
+.contact-page.contact-form button[type="submit"] .loading-gif .loader-circle,
+.contact-page.contact-form button[type="submit"] .loading-gif .loader-bar {
+    box-sizing: border-box;
 }
 
 /* professional-contact */
@@ -7178,8 +7202,8 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 .loading-gif .loader-bar {
     position: absolute;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
 }

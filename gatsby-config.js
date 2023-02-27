@@ -25,6 +25,9 @@ console.log('WP_DOMAIN : ' + process.env.WP_DOMAIN);
 console.log('WP_URL : ' + process.env.WP_URL);
 console.log('WP_USER : ' + process.env.WP_USER);
 console.log('WP_PASS : ' + process.env.WP_PASS);
+console.log('PARDOT_POINT : ' + process.env.PARDOT_POINT);
+console.log('AIRTABLE_MAILS : ' + process.env.AIRTABLE_MAILS);
+console.log('AIRTABLE_KEY : ' + process.env.AIRTABLE_KEY);
 
 module.exports = {
     siteMetadata: {

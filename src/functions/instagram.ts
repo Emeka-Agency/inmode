@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { _warn } from './logger';
 
 export async function InstaPost():Promise<string[] | null> {
     var myHeaders = new Headers();
@@ -31,11 +32,11 @@ export async function InstaPost():Promise<string[] | null> {
             return photos.filter(e => e);
         }
         catch(err:any) {
-            console.log(err);
+            _log(err);
             return [];
         }
     }).catch((err:any):null => {
-        console.log(`\nCould not fetch instagram posts. Error status ${err}`);
+        _log(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }
@@ -69,11 +70,11 @@ export async function InstagramPosts(insta_id:string | number):Promise<string[] 
             return photos.filter(e => e);
         }
         catch(err:any) {
-            console.log(err);
+            _log(err);
             return [];
         }
     }).catch((err:any):null => {
-        console.log(`\nCould not fetch instagram posts. Error status ${err}`);
+        _log(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }
@@ -89,7 +90,7 @@ export async function scrapingInstagramPosts(username:string | number) {
         // console.log(photos);
         return photos;
     }).catch(err => {
-        console.warn(`\nCould not fetch instagram posts. Error status ${err}`);
+        _warn(`\nCould not fetch instagram posts. Error status ${err}`);
         return null;
     });
 }

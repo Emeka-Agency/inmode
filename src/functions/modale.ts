@@ -1,6 +1,7 @@
 import { string } from '../../o2switch/unix_modules/strapi/lib/services/entity-validator/validators';
 import { Address_Interface, InmodePanel_Order_Interface } from '../components/interfaces';
 import { disableMainScroll, enableMainScroll } from './disable-scroll';
+import { _log } from './logger';
 
 function modale():HTMLElement | null {
     return document.getElementById('modale');
@@ -124,7 +125,7 @@ export function paymentProblems(datas:paymentProblems = {
     onOpen: undefined,
     onClose: undefined,
 }) {
-    console.log(datas);
+    _log(datas);
     return {
         onOpen: datas.onOpen,
         onClose: datas.onClose,

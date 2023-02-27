@@ -4,10 +4,11 @@ import EventsLayout from "../components/events/events-layout";
 import { InmodePanel_Event_Interface } from "../components/interfaces";
 import Layout from "../components/Layout"
 import SEO from "../components/seo";
+import { _group } from "../functions/logger";
 
 const EventsPage = ({ data }:EventsPage) =>  {
 
-    console.group(data);
+    _group(data);
 
     return (
         <Layout>
