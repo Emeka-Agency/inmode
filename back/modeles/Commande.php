@@ -1,867 +1,614 @@
 <?php
 
-    namespace InmodeBack\Model;
+namespace App\Modeles;
 
-    class Commande
-    {
-        private $awaiting_mail = null;
-        const ORDERS_DIR = "./save_orders";
+use Automattic\WooCommerce\Client;
+use Automattic\WooCommerce\HttpClient\HttpClientException;
 
-        public function __construct()
-        {
-            
-        }
+class Commande {
+
+    // DB CREATION
+    static $table_name = 'order';
+    static $table_schema = [
         
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @param string|null $_type
-         * @param string|null $_reference
-         * @param array|null $_datas
-         * 
-         * @return bool
-         */
-        private function keep_mail($_type = null, $_reference = null, $name = null) {
+    ]; // DONE change in a map (object) structure to easily get object->keys() and object->values() //
+    static $db_locale = "DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
+    private $db_created = true;
 
-            // IMPORTANT - Vérifier que keep_mail sauvegarde dans le bon dossier
+    // CLASS VALUES
+    private $mode;
+    private $version;
 
-            // IMPORTANT - Vérifier que pursue_mail récupère les bonnes données
+    private $admin_zone;
 
-            // CANCEL - Vérifier que pursue_mail détruise les données une fois envoyées
+    const QUEUE_FILE = "./private/queue.json";
 
-            logEvent('keep_mail()');
-            if($_type == null || $_reference == null || $name == null) {
-                logEvent('There are missing values to keep datas in safety during the payment process. The mail gonna be sent.');
-                return false;
-            }
-            if(gettype($_type) != 'string' || gettype($_reference) != 'string' || gettype($name) != 'string') {
-                logEvent('Values types restrictions are not fullfiled. Datas can\'t be safely kept durung the payment process. The mail gonna be sent.');
-                return false;
-            }
-            try
+    // DONE
+    private static function get_queue()
+    {
+        logEvent("Commande::get_queue()");
+        try
+        {
+            if(!is_file(self::QUEUE_FILE))
             {
-                logEvent('Attempt to create '.\InmodeBack\Model\Mail::KEPT_MAILS_DIR);
-                emmitDir(\InmodeBack\Model\Mail::KEPT_MAILS_DIR);
-                $save = fopen(\InmodeBack\Model\Mail::KEPT_MAILS_DIR.'/save_'.$_reference.'.json', 'w+');
-
-                fwrite($save, json_encode([
-                    'type' => $_type,
-                    'name' => $name,
-                ]));
-
-                fclose($save);
-
-                $this->awaiting_mail = true;
-                return true;
-            }
-            catch(\Exception $e)
-            {
-                $this->awaiting_mail = false;
-                return false;
-            }
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @param string|null $_reference
-         * @param string|null $_status
-         * 
-         * @return bool
-         */
-        private function pursue_mail($_reference = null, $_status = null) {
-            logEvent('pursue_mail()');
-            if($_reference == null) {
-                logEvent('The order reference \'_reference\' was not provided');
-                return false;
-            }
-            if($_status == null) {
-                logEvent('The order status \'_status\' was not provided');
-                return false;
-            }
-            if(gettype($_reference) != 'string') {
-                logEvent('The order reference \'_reference\' was not the correct type');
-                return false;
-            }
-            if(gettype($_status) != 'string') {
-                logEvent('The order status \'_status\' was not the correct type');
-                return false;
-            }
-            try
-            {
-                logEvent('Attempt to create '.\InmodeBack\Model\Mail::KEPT_MAILS_DIR);
-                emmitDir(\InmodeBack\Model\Mail::KEPT_MAILS_DIR);
-                $path = \InmodeBack\Model\Mail::KEPT_MAILS_DIR.'/save_'.$_reference.'.json';
-                $save = fopen($path, 'r');
-
-                if($save != false)
-                {
-                    $content = fread($save, filesize($path));
-
-                    if($content == false) {
-                        fclose($save);
-                        return false;
-                    }
-
-                    $content = json_decode($content, true);
-    
-                    fclose($save);
-    
-                    $this->awaiting_mail = true;
-                    if($this->send_mail($content['type']))
-                    {
-                        // logEvent('Mail for order '.$_reference.' was sended with its new payment status');
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-
-            }
-            catch(\Exception $e)
-            {
-                $this->awaiting_mail = false;
-                return false;
-            }
-            logEvent('An error happened during the mail pursue protocol for the order referenced as '.$_reference);
-            return false;
-        }
-
-        // TODO vars d'erreur
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @param string|null $type
-         * @param array|null $datas
-         * 
-         * @return bool
-         */
-        private function send_mail($type = null, $datas = null) {
-            logEvent('send_mail()');
-            if($type == null || gettype($type) != "string") {
-                return false;
+                $flux = fopen(self::QUEUE_FILE, "w", false, NULL);
+                fwrite($flux, json_encode([], JSON_FORCE_OBJECT));
+                fclose($flux);
             }
             
-            if($datas == null || gettype($datas) != "array") {
-                return false;
-            }
-            
-            /* let mailOptions = {
-                from: process.env.MAILER_USER,
-                to: datas.to,
-                subject: "",
-                // text: "", // for only text content
-                html: "",
-            }; */
-            
-            switch($type) {
-                case "sepa":
-                case "soge":
-                    // mailOptions.subject = "Votre commande Inmode";
-                    // mailOptions.html = MailSOGEPayment(datas.order);
-                    return $GLOBALS['mail']->MailPayment($datas, $type);
-                default:
-                    return false;
-            }
-            
-            /* transporter.sendMail(mailOptions, function(error, info) {
-                if(error) {
-                    return false;
-                }
-                else {
-                    return true;
-                }
-            }); */
-        }
+            $queue = read_file(self::QUEUE_FILE);
 
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order create worked or not
-         */
-        public function orderCreate()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-create');
-            if(empty($_POST)) {
-                logEvent('Form empty. Error 400');
-                http_response_code(400);
-                echo json_encode(
-                    [
-                        'status' => 'error',
-                        'message' => 'Form empty'
-                    ]
-                );
-                return false;
-            }
-            try {
-                $_body = build_order_object();
-                if(isset($_body['error'])) {
-                    throw $_body['error'];
-                }
-                else {
-                    try {
-                        logEvent('Attempt to create '.self::ORDERS_DIR);
-                        emmitDir(self::ORDERS_DIR);
-                        $name = self::ORDERS_DIR.'/'.date('Y-m-d_H:i:s', time()).'-'.$GLOBALS['request_time'].'-'.$_body['Reference'].'.json';
-                        $flux = fopen($name, 'w');
-            
-                        if($flux == false)
-                        {
-                            unset($flux);
-                            lastError();
-                            throw new \Exception('Impossible to create flux of file "'.$name.'"');
-                        }
-                        else {
-                            if(fwrite($flux, trim(json_encode($_body))) == false) {
-                                lastError();
-                                throw new \Exception('Impossible to save mail in file "'.$name.'"');
-                            }
-                            if(fclose($flux) == false) {
-                                lastError();
-                                throw new \Exception('Impossible to close flux of file "'.$name.'"');
-                            }
-                            unset($flux);
-                            echo json_encode([
-                                'status' => 'success',
-                                'message' => 'Order created',
-                            ]);
-                            // SEND MAIL
-                            if($_POST['SEPA']) {
-                                $this->send_mail('sepa', $_body);
-                                return true;
-                            }
-                            else {
-                                // TODO mail order
-                                // DONE mail order
-                                if(!$this->keep_mail('soge', $_body['Reference'], $name)) {
-                                    logEvent('Datas cannot be safely saved so the mails were sended as proof');
-                                    $this->send_mail('soge', $_body);
-                                    return false;
-                                }
-                                else {
-                                    logEvent('Datas were successfully saved. Mail for order '.$_body['Reference'].' will be sent when the payment status will be updated to an authorized status');
-                                    return true;
-                                }
-                            }
-                            return true;
-                        }
-                    }
-                    catch(\Exception $e) {
-                        logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                        echo json_encode([
-                            'status' => 'error',
-                            'message' => 'Impossible to create order'
-                        ]);
-                        return false;
-                    }
-                }
-            }
-            catch (\Exception $e) {
-                logEvent('order-create error');
-                logEvent(json_encode($e));
-                echo json_encode([
-                    'status' => 'error',
-                    'error' => $e,
-                    'message' => 'Impossible to create order'
-                ]);
-                return false;
-            }
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order payment update worked or not
-         */
-        public function orderPaymentUpdate()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-payment-update');
-            if(empty($_POST)) {
-                logEvent('Form empty. Error 400');
-                http_response_code(400);
-                echo json_encode(
-                    [
-                        'status' => 'error',
-                        'message' => 'Form empty'
-                    ]
-                );
-                return false;
-            }
-            if(!is_secured()) {
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Call was not secured',
-                ]);
-                return false;
-            }
-            try {
-                //const token = process.env.BEARER;
-                // $token = $GLOBALS['app']->get_strapi_jwt();
-                try {
-                    // IMPORTANT - save_reference.json
-
-                    $name = \InmodeBack\Model\Mail::KEPT_MAILS_DIR.'/save_'.$_POST['vads_order_id'].'.json';
-                    
-                    $content = file_get_contents($name);
-
-                    if(gettype($content) != "string") {
-                        logEvent('Impossible to read file '.$name);
-                        return false;
-                    }
-
-                    $content = json_decode($content, true);
-
-                    if(!isset($content['name'])) {
-                        logEvent('Name param not set on keep mail file, can\'t find the related order to send a mail');
-                        return false;
-                    }
-
-                    $name = $content['name'];
-                    
-                    $content = file_get_contents($name);
-
-                    if(gettype($content) != "string") {
-                        logEvent('Impossible to read file '.$name);
-                        return false;
-                    }
-
-                    $content = json_decode($content, true);
-
-                    $content['Status'] = $_POST['vads_trans_status'];
-                    $content['Paid'] = isPaid($content['Status']);
-
-                    if(file_put_contents($name, json_encode($content)) == false) {
-                        logEvent('Can\'t overwrite file "'.$name.'"');
-                        return false;
-                    }
-
-                    $_POST = $content;
-
-                    if($this->send_mail('soge', $content)) {
-                        $retour = json_encode([
-                            'status' => 'success',
-                            'message' => 'Order was successfully updated and mails sended'
-                        ]);
-                        logEvent($retour);
-                        echo $retour;
-                        return true;
-                    }
-                    else {
-                        $retour = json_encode([
-                            'status' => 'error',
-                            'message' => 'Order was successfully updated but mails were not sended'
-                        ]);
-                        logEvent($retour);
-                        logError($retour);
-                        echo $retour;
-                        return false;
-                    }
-
-                    return true;
-
-                    // $_post = update_order_payment_status($_POST['vads_order_id'], $_POST['vads_trans_status'], $token);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // logEvent($_post);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // // if(isset(_post['error'])) {
-                    // //     throw _post['error'];
-                    // // }
-                    // if($_post == null || $_post == false || !isset($_post)) {
-                    //     http_response_code(400);
-                    //     echo json_encode(
-                    //         [
-                    //             'status' => 'error',
-                    //             'message' => 'update payment status did not work'
-                    //         ]
-                    //     );
-                    //     return false;
-                    // }
-                    // if(!isset($_post['data']) || count($_post['data']) == 0) {
-                    //     http_response_code(400);
-                    //     echo json_encode(
-                    //         [
-                    //             'status' => 'error',
-                    //             'message' => 'update_payment.data is empty'
-                    //         ]
-                    //     );
-                    //     return false;
-                    // }
-                    // logEvent("Checking if order '".$_POST['vads_order_id']."' has awainting mails");
-                    // try {
-                    //     logEvent(json_encode(array_keys($this->awaiting_mail)));
-                    //     if(isset($this->awaiting_mail[$_POST['vads_order_id']])) {
-                    //         logEvent('Order '.$_POST['vads_order_id'].' got awaiting mails');
-                    //         $this->pursue_mail($_POST['vads_order_id'], $_POST['vads_trans_status']);
-                    //     }
-                    //     else {
-                    //         logEvent('There had not any awaiting mail for order '.$_POST['vads_order_id']);
-                    //     }
-                    // }
-                    // catch(\Exception $e) {
-                    //     logError('Étape '.(++$GLOBALS['index']).' - '."An error happened during mail pursuing for order '".$_POST['vads_order_id']."'");
-                    //     logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                    // }
-                    // http_response_code(200);
-                    // echo json_encode([
-                    //     'status' => 'success',
-                    //     'order' => $_post['data'],
-                    // ]);
-                    // return true;
-                }
-                catch(\Exception $e) {
-                    logError('Étape '.(++$GLOBALS['index']).' - '.'/order-payment-update error');
-                    logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                    http_response_code(500);
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Error during order payment update',
-                        'error' => $e,
-                    ]);
-                    return false;
-                }
-            }
-            catch(\Exception $e) {
-                logError('Étape '.(++$GLOBALS['index']).' - '.'/order-payment-update jwt token error');
-                logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                http_response_code(500);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Error during jwt fetch',
-                    'error' => $e,
-                ]);
-                return false;
-            }
-            return true;
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order update worked or not
-         */
-        public function orderUpdate()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-update');
-            if(empty($_POST)) {
-                logEvent('Form empty. Error 400');
-                http_response_code(400);
-                return 'Form empty';
-            }
-            if(!is_secured()) {
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Call was not secured',
-                ]);
-                return false;
-            }
-            try {
-                //const token = process.env.BEARER;
-                // $token = $GLOBALS['app']->get_strapi_jwt();
-                try {
-                    // $_update = update_order_object($_POST['OrderId'], $token);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // logEvent($_update);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // // if(isset($_update['error'])) {
-                    // //     throw $_update['error'];
-                    // // }
-                    // if(!$_update) {
-                    //     logEvent('Update did not work');
-                    //     http_response_code(500);
-                    //     return 'update did not work';
-                    // }
-                    // if(!isset($_update['data']) || count($_update['data']) == 0) {
-                    //     http_response_code(500);
-                    //     return 'update.data is empty';
-                    // }
-                    // // http_response_code(200).send({
-                    // //     'status': 'success',
-                    // //     order: _update.data,
-                    // // });
-                    // http_response_code(200);
-                    // echo true;
-                    return true;
-                }
-                catch(\Exception $e) {
-                    logError('Étape '.(++$GLOBALS['index']).' - '.'/order-update error');
-                    logError('Étape '.(++$GLOBALS['index']).' - '.$e);
-                    http_response_code(500);
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Error during order update',
-                        'error' => $e,
-                    ]);
-                    return false;
-                }
-            }
-            catch(\Exception $e) {
-                logError('Étape '.(++$GLOBALS['index']).' - '.'/order-update jwt token error');
-                logError('Étape '.(++$GLOBALS['index']).' - '.$e);
-                http_response_code(500);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Error during jwt fetch',
-                    'error' => $e,
-                ]);
-                return false;
-            }
-            return true;
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order load worked or not
-         */
-        public function orderLoad()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-load');
-            if(empty($_POST)) {
-                logEvent('Form empty. Error 400');
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Form empty'
-                ]);
-                return false;
-            }
-            try {
-                //const token = process.env.BEARER;
-                // $token = $GLOBALS['app']->get_strapi_jwt();
-                try {
-
-                    $files = scandir(self::ORDERS_DIR);
-
-                    foreach($files as $file) {
-                        if(substr($file, -11, 6) == $_POST['reference']) {
-
-                            $content = file_get_contents(self::ORDERS_DIR.'/'.$file);
-
-                            if(gettype($content) == 'string') {
-                                echo json_encode([
-                                    'status' => 'success',
-                                    'order' => json_decode($content)
-                                ]);
-                                logEvent('order '.$_POST['reference']. ' was successfully loaded and returned');
-                                return true;
-                            }
-                            else {
-                                logEvent('Can\'t load order '.$_POST['reference']);
-                                logError('Can\'t load order '.$_POST['reference']);
-                                echo json_encode([
-                                    'status' => 'error',
-                                    'order' => null
-                                ]);
-                                return false;
-                            }
-                        }
-                    }
-                    logEvent('order '.$_POST['reference']. ' does not exist');
-                    logError('order '.$_POST['reference']. ' does not exist');
-                    echo json_encode([
-                        'status' => 'error',
-                        'order' => null
-                    ]);
-                    return false;
-
-                    // $_get = load_order_object($_POST['reference'], $token);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // logEvent(json_encode($_get));
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // if(isset($_get['error'])) {
-                    //     throw $_get['error'];
-                    // }
-                    // if($_get == false) {
-                        // http_response_code(400);
-                        // echo json_encode([
-                        //     'status' => 'error',
-                        //     'message' => 'load did not work'
-                        // ]);
-                        // return false;
-                    // }
-                    // if(!isset($_get['data']) || count($_get['data']) == 0) {
-                    //     http_response_code(400);
-                    //     echo json_encode([
-                    //         'status' => 'error',
-                    //         'message' => 'load.data is empty'
-                    //     ]);
-                    //     return false;
-                    // }
-                    // http_response_code(200);
-                    // echo json_encode([
-                    //     'status' => 'success',
-                    //     'order' => $_get['data'][0]
-                    // ]);
-                    // return true;
-                }
-                catch(\Exception $e) {
-                    logError('Étape '.(++$GLOBALS['index']).' - '.'/order-load error');
-                    logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                    http_response_code(500);
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Error during order load',
-                        'error' => $e,
-                        'order' => null
-                    ]);
-                    return false;
-                }
-            }
-            catch(\Exception $e) {
-                logError('Étape '.(++$GLOBALS['index']).' - '.'/order-load jwt token error');
-                logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                http_response_code(500);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Error during jwt fetch',
-                    'error' => $e,
-                    'order' => null
-                ]);
-                return false;
-            }
-            return true;
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order delete worked or not
-         */
-        public function orderDelete()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-delete');
-            if(empty($_POST)) {
-                logEvent('Form empty. Error 400');
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Form empty'
-                ]);
-                return false;
-            }
-            try {
-                //const token = process.env.BEARER;
-                // $token = $GLOBALS['app']->get_strapi_jwt();
-                try {
-                    // $_delete = delete_order_object($_POST['reference'], $token);
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // logEvent(json_encode($_delete));
-                    // logEvent('///////////////////////');
-                    // logEvent('///////////////////////');
-                    // // if(isset($_delete['error'])) {
-                    // //     throw $_delete['error'];
-                    // // }
-                    // if($_delete == false) {
-                        http_response_code(400);
-                        echo json_encode([
-                            'status' => 'error',
-                            'message' => 'delete did not work'
-                        ]);
-                        return false;
-                    // }
-                    // if(!isset($_delete['data']) || count($_delete['data'])) {
-                    //     http_response_code(400);
-                    //     echo json_encode([
-                    //         'status' => 'error',
-                    //         'message' => 'delete.data is empty'
-                    //     ]);
-                    //     return false;
-                    // }
-                    // http_response_code(200);
-                    // echo json_encode([
-                    //     'status' => 'success',
-                    //     'reference' => $_POST['reference']
-                    // ]);
-                    return true;
-                }
-                catch(\Exception $e) {
-                    logError('Étape '.(++$GLOBALS['index']).' - '.'/order-delete error');
-                    logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                    http_response_code(500);
-                    echo json_encode([
-                        'status' => 'error',
-                        'message' => 'Error during order delete',
-                        'error' => $e,
-                    ]);
-                    return false;
-                }
-            }
-            catch(\Exception $e) {
-                logError('Étape '.(++$GLOBALS['index']).' - '.'/order-delete jwt token error');
-                logError('Étape '.(++$GLOBALS['index']).' - '.json_encode($e));
-                http_response_code(500);
-                echo json_encode([
-                    'status' => 'error',
-                    'message' => 'Error during jwt fetch',
-                    'error' => $e,
-                ]);
-                return false;
-            }
-            return true;
-        }
-
-        /**
-         * Short - 
-         * 
-         * Detailed - 
-         * 
-         * @return bool Wether the order signature worked or not
-         */
-        public function orderSignature()
-        {
-            logEvent('/////////////////////////');
-            logEvent('/back/orders/order-signature');
-            // logEvent(JSON.stringify($_POST));
-            // logEvent('$_POST', $_POST);
-            // logEvent('$_POST['string']', $_POST['string']);
-            try {
-                logEvent('try');
-                logEvent('BO_KEY : '.$_ENV['BO_KEY']);
-                logEvent(json_encode($_POST));
-                logEvent(json_encode($_ENV));
-                logEvent('isset($_POST["string"]:'.(isset($_POST["string"]) ? 'true' : 'false'));
-                // $signature = encrypt($_POST['string'].'+'.$_ENV['BO_KEY'], $_ENV['BO_KEY'], 'sha256');
-                $signature = base64_encode(hash_hmac("sha256", $_POST['string'].'+'.$_ENV['BO_KEY'], $_ENV['BO_KEY'], true));
-                logEvent('signature : '.$signature);
-                http_response_code(200);
-                echo json_encode([
-                    'status' => 'success',
-                    'signature' => $signature
-                ]);
-                logEvent(json_encode(['signature' => $signature]));
-                return true;
-            }
-            catch(\Exception $e) {
-                logError(json_encode($e));
-                http_response_code(400);
-                echo json_encode([
-                    'status' => 'error',
-                    'error' => $e,
-                    'signature' => ''
-                ]);
-                return false;
-            }
-            return true;
-        }
-
-        /**
-         * Short - Get the build orders list
-         * 
-         * Detailed - 
-         * 
-         * @return 
-         */
-        public function avoirPresentationCommandes(bool $estConnecte = false)
-        {
-            $estConnecte = $estConnecte == true ? $estConnecte : $GLOBALS['app']->estAdminZone();
-            $temp = [];
-            foreach($this->avoirListeCommandes() as $key => $value) {
-                $value = str_replace($GLOBALS['app']->avoirURLBase().'/', "", $value);
-                $fp = fopen($value, 'r');
-                // No file exists for the provided path
-                if($fp == false) {
-                    logEvent('No file exists for the provided path');
-                    fclose($fp);
-                    continue;
-                }
-                $content = fread($fp, filesize($value));
-                // No content on opened file
-                if($content == false) {
-                    logEvent('No content on opened file');
-                    fclose($fp);
-                    continue;
-                }
-                $content = json_decode($content, true);
-                fclose($fp);
-                array_push($temp, $content);
-            }
-            return $temp;
-        }
-
-        /**
-         * Short - Get the orders list
-         * 
-         * Detailed - 
-         * 
-         * @return 
-         */
-        public function avoirListeCommandes()
-        {
-            $temp = [];
-            emmitDir(self::ORDERS_DIR);
-            logEvent('scandir '.self::ORDERS_DIR);
-            logEvent(json_encode(scandir(self::ORDERS_DIR)));
-            $values = scandir(self::ORDERS_DIR);
-            rsort($values);
-            foreach($values as $value)
+            if($queue == null)
             {
-                !in_array($value, ['.', '..']) && !is_dir(self::ORDERS_DIR.$value) && $temp[pathinfo($value, PATHINFO_FILENAME)] = self::ORDERS_DIR.'/'.$value;
+                throw new \Exception("Can't read from 'queue.json'");
             }
-            return $temp;
-        }
 
-        /**
-         * Short - Get one order
-         * 
-         * Detailed - 
-         * 
-         * @return 
-         */
-        public function avoirCommande($ref)
+            logEvent("Commande::get_queue() : ".$queue);
+            return json_decode($queue, true);
+        }
+        catch (\Exception $e)
         {
-            if(gettype($ref) != "string") {return null;}
-            $path = self::ORDERS_DIR.'_bo_'.$ref.'.json';
-            logEvent('load order at '.$path);
-            if(file_exists($path)) {
-                logEvent('Order exists');
-                $fp = fopen($path, 'r');
-                // No file exists for the provided path
-                if($fp == false) {
-                    logEvent('No file exists for the provided path');
-                    fclose($fp);
-                    return null;
-                }
-                $content = fread($fp, filesize($path));
-                // No content on opened file
-                if($content == false) {
-                    logEvent('No content on opened file');
-                    fclose($fp);
-                    return null;
-                }
-                fclose($fp);
-                return json_decode($content, true);
-            }
+            logEvent("Commande::get_queue : ".$e->getMessage());
+            logError("Commande::get_queue : ".$e->getMessage());
             return null;
         }
-
     }
+
+    // DONE
+    private static function set_queue($content)
+    {
+        logEvent("Commande::set_queue(".(is_string($content) ? $content : json_encode(is_array($content) ? $content : [])).")");
+        try
+        {
+            
+            logEvent("Mise à jour de queue.json");
+            logEvent($content);
+            return file_put_contents(self::QUEUE_FILE, $content);
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::set_queue : ".$e->getMessage());
+            logError("Commande::set_queue : ".$e->getMessage());
+            return null;
+        }
+    }
+
+    // DONE
+    private static function __order__isPaid($status)
+    {
+        logEvent("Commande::__order__isPaid($status)");
+        if(!is_string($status)) {return false;}
+        switch($status) {
+            case 'ACCEPTED':
+            case 'AUTHORISED':
+            case 'AUTHORISED_TO_VALIDATE':
+            case 'CAPTURED':
+            case 'INITIAL':
+            case 'UNDER_VERIFICATION':
+            case 'WAITING_AUTHORISATION':
+            case 'WAITING_AUTHORISATION_TO_VALIDATE':
+            case 'WAITING_FOR_PAYMENT':
+                logEvent("Commande::__order__isPaid($status) : true");
+                return true;
+            case 'ABANDONED':
+            case 'CANCELLED':
+            case 'CAPTURE_FAILED':
+            case 'EXPIRED':
+            case 'REFUSED':
+            case 'SUSPENDED':
+            default:
+                logEvent("Commande::__order__isPaid($status) : false");
+                return false;
+        }
+    }
+
+    private static function soge_to_wp($status)
+    {
+        logEvent("Commande::soge_to_wp($status)");
+        if(!is_string($status)) {return false;}
+        switch($status)
+        {
+            case 'ACCEPTED': logEvent("Commande::soge_to_wp($status) : completed");return "completed";
+            case 'AUTHORISED': logEvent("Commande::soge_to_wp($status) : completed");return "completed";
+            case 'AUTHORISED_TO_VALIDATE': logEvent("Commande::soge_to_wp($status) : completed");return "completed";
+            case 'CAPTURED': logEvent("Commande::soge_to_wp($status) : completed");return "completed";
+            case 'INITIAL': logEvent("Commande::soge_to_wp($status) : completed");return "completed";
+            case 'UNDER_VERIFICATION': logEvent("Commande::soge_to_wp($status) : on-hold");return "on-hold";
+            case 'WAITING_AUTHORISATION': logEvent("Commande::soge_to_wp($status) : on-hold");return "on-hold";
+            case 'WAITING_AUTHORISATION_TO_VALIDATE': logEvent("Commande::soge_to_wp($status) : on-hold");return "on-hold";
+            case 'WAITING_FOR_PAYMENT': logEvent("Commande::soge_to_wp($status) : on-hold");return "on-hold";
+            case 'ABANDONED': logEvent("Commande::soge_to_wp($status) : cancelled");return "cancelled";
+            case 'CANCELLED': logEvent("Commande::soge_to_wp($status) : cancelled");return "cancelled";
+            case 'CAPTURE_FAILED': logEvent("Commande::soge_to_wp($status) : failed");return "failed";
+            case 'EXPIRED': logEvent("Commande::soge_to_wp($status) : failed");return "failed";
+            case 'REFUSED': logEvent("Commande::soge_to_wp($status) : failed");return "failed";
+            case 'SUSPENDED': logEvent("Commande::soge_to_wp($status) : failed");return "failed";
+            default: logEvent("Commande::soge_to_wp($status) : failed");return "failed";
+        }
+    }
+
+    // DONE
+    private static function getClient()
+    {
+        logEvent("Commande::getClient()");
+        logEvent("WP URL : ".$_ENV["woo_url"]);
+
+        try
+        {
+            return new Client(
+                $_ENV["woo_url"], // Your store URL
+                $_ENV["consumer_key"], // Your consumer key
+                $_ENV["secret_key"], // Your consumer secret
+                [
+                    'wp_api' => true, // Enable the WP REST API integration
+                    'version' => 'wc/v3' // WooCommerce WP REST API version
+                ]
+            );
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::getClient() : error : $e->getMessage()");
+            logError("Commande::getClient() : error : $e->getMessage()");
+            return null;
+        }
+    }
+
+    // DONE
+    private static function createOrder($datas = []) {
+        try
+        {
+            
+            logEvent("Commande::createorder(".(json_encode(is_array($datas) ? $datas : [])).")");
+            $errors = [];
+            if(!isset($datas["sepa"])) {$errors ["sepa"]= "missing parameter";}
+            if(!isset($datas["reference"])) {$errors ["reference"]= "missing parameter";}
+            if(!isset($datas["delivery_tax"])) {$errors ["delivery_tax"]= "missing parameter";}
+            if(!isset($datas["total"])) {$errors ["total"]= "missing parameter";}
+            // BILLING
+            if(!isset($datas["billing"])) {$errors ["billing"]= "missing parameter";}
+            else {
+                if(!isset($datas["billing"]["firstname"])) {$errors["billing_firstname"] = "missing parameter";}
+                if(!isset($datas["billing"]["lastname"])) {$errors["billing_lastname"] = "missing parameter";}
+                if(!isset($datas["billing"]["address"])) {$errors["billing_address"] = "missing parameter";}
+                if(!isset($datas["billing"]["city"])) {$errors["billing_city"] = "missing parameter";}
+                if(!isset($datas["billing"]["zip"])) {$errors["billing_zip"] = "missing parameter";}
+                if(!isset($datas["billing"]["country"])) {$errors["billing_country"] = "missing parameter";}
+                if(!isset($datas["billing"]["mail"])) {$errors["billing_mail"] = "missing parameter";}
+                if(!isset($datas["billing"]["phone"])) {$errors["billing_phone"] = "missing parameter";}
+            }
+            // SHIPPING
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["firstname"])) {$errors["shipping_firstname"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["lastname"])) {$errors["shipping_lastname"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["address"])) {$errors["shipping_address"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["city"])) {$errors["shipping_city"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["zip"])) {$errors["shipping_zip"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["country"])) {$errors["shipping_country"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["mail"])) {$errors["shipping_mail"] = "missing parameter";}
+            if(isset($datas["shipping"]) && !isset($datas["shipping"]["phone"])) {$errors["shipping_phone"] = "missing parameter";}
+            // ARTICLES
+            if(!isset($datas["articles"])) {$errors ["articles"]= "missing parameter";}
+            else {
+                foreach($datas["articles"] as $index => $article)
+                {
+                    if(!isset($article["wp_id"])) {$errors["article_".$index."_wp_id"] = "missing parameter";}
+                    if(!isset($article["quantity"])) {$errors["article_".$index."_quantity"] = "missing parameter";}
+                }
+            }
+    
+            if(!isset($datas["delivery_tax"])) {$errors ["delivery_tax"]= "missing parameter";}
+            if(!isset($datas["has_fees"])) {$errors ["has_fees"]= "missing parameter";}
+    
+            if(count($errors) > 0)
+            {
+                logEvent(json_encode($errors));
+                logError(json_encode($errors));
+                http_response_code(400);
+                return [
+                    "status" => "error",
+                    "message" => "Errors in request",
+                    "location" => "Commande::createorder"
+                ];
+            }
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::createOrder() : error : $e->getMessage()");
+            logError("Commande::createOrder() : error : $e->getMessage()");
+        }
+
+        try
+        {
+            logEvent("Commande::createOrder() good return");
+            return array_merge(
+                self::general_part($datas),
+                self::billing_part($datas),
+                self::shipping_part($datas),
+                self::articles_part($datas),
+                self::delivery_tax_part($datas),
+                self::fees_part($datas)
+            );
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::createOrder() : error : $e->getMessage()");
+            logError("Commande::createOrder() : error : $e->getMessage()");
+            http_response_code(500);
+            return [];
+        }
+    }
+    
+    // DONE
+    public static function createWPOrder($datas = [])
+    {
+        logEvent("Commande::createWPOrder(".(json_encode(is_array($datas) ? $datas : [])).")");
+        $woocommerce = self::getClient();
+
+        $order = self::createOrder($datas);
+
+        if(http_response_code() >= 300)
+        {
+            logEvent("Commande::createWPOrder() : error with http_response_code : ".http_response_code());
+            logError("Commande::createWPOrder() : error with http_response_code : ".http_response_code());
+            return $order;
+        }
+
+        try
+        {
+            $wp_result = $woocommerce->post('orders', $order);
+            
+            if(isset($datas['sepa']) && $datas['sepa'] == false)
+            {
+                try
+                {
+                    $queue = self::get_queue();
+                    if(!isset($queue[$datas['reference']]))
+                    {
+                        $queue[$datas['reference']] = $wp_result->id;
+                    }
+                    logEvent("Commande::createOrder(".json_encode($queue).")");
+                    self::set_queue(json_encode($queue));
+                }
+                catch(\Exception $e)
+                {
+                    logEvent($e->getMessage());
+                    logError($e->getMessage());
+                    return [];
+                }
+            }
+            
+            // $queue = self::get_queue();
+            // $queue[$order["order_key"] ?? $_POST["reference"]] = $wp_result->id;
+            // logEvent("Commande::createWPOrder(".json_encode($queue).")");
+            // self::set_queue(json_encode($queue));
+            http_response_code(200);
+            return [
+                "wp_id" => $wp_result->id ?? null,
+                "number" => $wp_result->number ?? null,
+                "reference" => $order["order_key"] ?? $_POST["reference"] ?? null
+            //     "reference" => array_filter(
+            //         array_map(
+            //             function($meta) {
+            //                 if(is_array($meta) && isset($meta["key"]) && isset($meta["value"]) && $meta["key"] == "reference")
+            //                 {
+            //                     return $meta["value"];
+            //                 }
+            //                 return null;
+            //             }, $wp_result->meta_data ?? []
+            //         ),
+            //         function($elem) {
+            //             return gettype($elem) == "string";
+            //         }
+            //     )[0] ?? null
+            ];
+        }
+        // catch(HttpClientException $w_err)
+        // {
+        //     http_response_code(500);
+        //     return [
+        //         "request" => $w_err->getRequest(),
+        //         "response" => $w_err->getResponse(),
+        //     ];
+        // }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::createWPOrder : ".$e->getMessage());
+            logEvent(json_encode(extractError($e, "create_order", "wp_order")));
+            logError("Commande::createWPOrder : ".$e->getMessage());
+            logError(json_encode(extractError($e, "create_order", "wp_order")));
+            http_response_code(500);
+            return [
+                "status" => "error",
+                "datas" => $order,
+                "location" => "Commande::createWPOrder"
+            ];
+        }
+    }
+
+    // DONE
+    private static function getCountry($country = null)
+    {
+        logEvent("Commande::getCountry($country)");
+        if(gettype($country) != "string") {return "FR";}
+        switch(strtolower($country)) {
+            case "lu": return "LU";
+            case "luxembourg": return "LU";
+            case "be": return "BE";
+            case "belgique": return "BE";
+            case "fr":
+            case "france":
+            default: return "FR";
+        }
+    }
+    
+    // DONE
+    public static function orderSignature($datas)
+    {
+        logEvent("Commande::orderSignature(".(json_encode(is_array($datas) ? $datas : [])).")");
+        try
+        {
+            $signature = base64_encode(hash_hmac("sha256", $datas["string"].'+'.$_ENV["bo_key"], $_ENV["bo_key"], true));
+            http_response_code(200);
+            return [
+                "status" => "success",
+                "signature" => $signature
+            ];
+        }
+        catch(\Exception $e)
+        {
+            http_response_code(500);
+            logEvent($e->getMessage());
+            logError($e->getMessage());
+            return [
+                "status" => "error",
+                "message" => "Impossible to create the signature",
+                "location" => "Commande::orderSignature"
+            ];
+        }
+    }
+
+    public static function order_details($content)
+    {
+        logEvent("Commande::order_details(".(json_encode(is_array($content) ? $content : [])).")");
+        return self::order_load($content);
+    }
+
+    private static function get_wp_id($content)
+    {
+        logEvent("Commande::get_wp_id(".(json_encode(is_array($content) ? $content : [])).")");
+        try
+        {
+            $queue = self::get_queue();
+            logEvent("queue : ".json_encode($queue));
+            if(isset($queue[$content["vads_order_id"]]))
+            {
+                $wp_id = $queue[$content["vads_order_id"]];
+                return $wp_id;
+            }
+            else
+            {
+                logEvent(json_encode($content));
+                logError(json_encode($content));
+                throw new \Exception("'vads_order_id' was not properly set in the queue.json file");
+            }
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::order_payment_update error : ".$e->getMessage());
+            logError("Commande::order_payment_update error : ".$e->getMessage());
+            http_response_code(500);
+            return [
+                "status" => "error",
+                "message" => "Something wrong happened",
+                "location" => "Commande::get_wp_id"
+            ];
+        }
+    }
+
+    // DONE
+    public static function order_payment_update($content = null)
+    {
+        logEvent("Commande::order_payment_update(".(json_encode(is_array($content) ? $content : [])).")");
+        if(!is_array($content))
+        {
+            http_response_code(400);
+            return errorBody("null_value");
+        }
+
+        logEvent(json_encode($content));
+
+        $wp_id = self::get_wp_id($content);
+
+        if(!is_integer($wp_id))
+        {
+            return $wp_id;
+        }
+
+        $woocommerce = self::getClient();
+        
+        $data = [
+            "status" => self::soge_to_wp($content['status'] ?? $content['vads_trans_status'] ?? "ABANDONED"),
+            "paid" => self::__order__isPaid($content['status'] ?? $content['vads_trans_status'] ?? "ABANDONED")
+        ];
+
+        try
+        {
+            $wp_result = $woocommerce->put('orders/'.$wp_id, $data);
+    
+            logEvent(json_encode($wp_result));
+    
+            http_response_code(200);
+            return [
+                "status" => "success"
+            ];
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::order_payment_update error : ".$e->getMessage());
+            logError("Commande::order_payment_update error : ".$e->getMessage());
+            http_response_code(500);
+            return [
+                "status" => "error",
+                "location" => "Commande::order_payment_update"
+            ];
+        }
+        
+    }
+
+    // TODO
+    public static function order_load($content = null)
+    {
+        logEvent("Commande::order_load(".(json_encode(is_array($content) ? $content : [])).")");
+        $woocommerce = self::getClient();
+
+        try
+        {
+            $queue = self::get_queue();
+            $wp_result = $woocommerce->get('orders/'.$queue[$content["reference"]]);
+            http_response_code(200);
+            return [
+                "status" => "success",
+                "order" => $wp_result
+            ];
+        }
+        catch(\Exception $e)
+        {
+            logEvent("Commande::order_load() : error : $e->getMessage()");
+            logError("Commande::order_load() : error : $e->getMessage()");
+            http_response_code(500);
+            return [
+                "status" => "error",
+                "message" => $e->getMessage(),
+                "location" => "Commande::order_load"
+            ];
+        }
+    }
+
+    // TODO
+    public static function order_cancel($content)
+    {
+        logEvent("Commande::order_cancel(".(json_encode(is_array($content) ? $content : [])).")");
+        return self::order_payment_update([
+            "vads_order_id" => $content["vads_order_id"],
+            "vads_order_status" => $content["vads_order_status"] ?? $content["status"] ?? "CANCELLED"
+        ]);
+    }
+
+
+    // DONE
+    private static function general_part($datas = [])
+    {
+        logEvent("Commande::general_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return [
+            'payment_method' => isset($datas['sepa']) && $datas['sepa'] == false ? 'sogecommerce' : 'bacs',
+            'payment_method_title' => isset($datas['sepa']) && $datas['sepa'] == false ? 'sogecommerce' : 'bacs',
+            'set_paid' => isset($datas['sepa']) && $datas['sepa'] ? true : false,
+            // EXPLAIN - Si le paiement n'est pas défini ou que c'est un virement, le statut par défaut est complété, confiance client
+            // Vu avec Jarod et Jaws puis reconfirmé le 12/09/2022
+            'status' => isset($datas['sepa']) && $datas['sepa'] == false ? 'pending' : 'completed',
+            // 'status' => isset($datas['sepa']) && $datas['sepa'] == false ? 'pending' : 'on-hold',
+            'currency' => 'EUR',
+            'order_key' => $datas['reference'] ?? null,
+            'transaction_id' => $datas['reference'] ?? null,
+            'shipping_total' => isset($datas['delivery_tax']) ? $datas['delivery_tax'] : 0,
+            'total' => isset($datas['total']) ? $datas['total'] : 0,
+            'customer_note' => isset($datas['custom']) ? $datas['custom'] : null,
+            "meta_data" => [
+                [
+                    "key" => "reference",
+                    "value" => $datas['reference'] ?? null
+                ],
+                [
+                    "key" => "details",
+                    "value" => $datas['custom'] ?? null
+                ]
+            ]
+        ];
+    }
+
+    // DONE
+    private static function billing_part($datas = [])
+    {
+        logEvent("Commande::billing_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return isset($datas['billing']) ?
+            [
+                'billing' => [
+                    'first_name' => $datas['billing']['firstname'] ?? '---',
+                    'last_name' => $datas['billing']['lastname'] ?? '---',
+                    'company' => $datas['billing']['society'] ?? '---',
+                    'address_1' => $datas['billing']['address'] ?? '---',
+                    'city' => $datas['billing']['city'] ?? '---',
+                    'postcode' => $datas['billing']['zip'] ?? '---',
+                    'country' => isset($datas['billing']['country']) ? self::getCountry($datas['billing']['country']) : '---',
+                    'email' => $datas['billing']['mail'] ?? '---',
+                    'phone' => $datas['billing']['phone'] ?? '---'
+                ],
+            ] : [];
+    }
+
+    // DONE
+    private static function shipping_part($datas = [])
+    {
+        logEvent("Commande::shipping_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return isset($datas['shipping']) ?
+            [
+                'shipping' => [
+                    'first_name' => $datas['shipping']['firstname'] ?? '---',
+                    'last_name' => $datas['shipping']['lastname'] ?? '---',
+                    'company' => $datas['shipping']['society'] ?? '---',
+                    'address_1' => $datas['shipping']['address'] ?? '---',
+                    'city' => $datas['shipping']['city'] ?? '---',
+                    'postcode' => $datas['shipping']['zip'] ?? '---',
+                    'country' => isset($datas['shipping']['country']) ? self::getCountry($datas['shipping']['country']) : '---',
+                    'email' => $datas['shipping']['mail'] ?? '---',
+                    'phone' => $datas['shipping']['phone'] ?? '---'
+                ]
+            ] : [];
+    }
+
+    // DONE
+    private static function articles_part($datas = [])
+    {
+        logEvent("Commande::articles_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return isset($datas['articles']) && count($datas['articles']) > 0 ? [
+                'line_items' => array_map(function($article) {
+                    return [
+                        'product_id' => $article['wp_id'] ?? null,
+                        'quantity' => $article['quantity'] ?? 0
+                    ];
+                }, $datas['articles'])
+            ] : [];
+    }
+
+    // DONE
+    private static function delivery_tax_part($datas = [])
+    {
+        logEvent("Commande::delivery_tax_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return isset($datas['delivery_tax']) && $datas['delivery_tax'] > 0 ?
+            [
+                "shipping_lines" => [
+                    [
+                        "method_id" => "flat_rate",
+                        "method_title" => "Expédition",
+                        "total" => "50.00"
+                    ]
+                ]
+            ] : [];
+    }
+
+    // DONE
+    private static function fees_part($datas = [])
+    {
+        logEvent("Commande::fees_part(".(json_encode(is_array($datas) ? $datas : [])).")");
+        return isset($datas['has_fees']) && $datas['has_fees'] > 0 ?
+            [
+                "fee_lines" => [
+                    [
+                        "name" => "TVA applicable",
+                        "tax_status" => "taxable",
+                        "amount" => number_format($datas['has_fees'], 0),
+                        "total" => number_format($datas['has_fees'], 2, ',', ' ')
+                    ]
+                ]
+            ]: [];
+    }
+}

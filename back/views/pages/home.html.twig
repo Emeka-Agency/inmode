@@ -1,11 +1,2 @@
 {% extends "base.html.twig" %}
 
-{% block body %}
-    {% if estConnecte() == true and estAdmin() == true%}
-        
-    {% elseif estConnecte() == true and estAdmin() == false %}
-
-    {% elseif estConnecte() == false %}
-
-    {% endif %}
-{% endblock %}

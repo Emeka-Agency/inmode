@@ -7,12 +7,9 @@
     *
     * Detailed - 
     *
-    * @param string|null $db_name
-    * @param string|null $db_host
-    * @param string|null $user_name
-    * @param string|null $user_password
+    * @param Type $name Description
     *
-    * @return mixed
+    * @return PDO
     */
     function dbConnect($db_name = null, $db_host = null, $user_name = null, $user_password = null)
     {
@@ -26,7 +23,7 @@
             return new \PDO(
                 'mysql:host='.$_ENV['db_host'].';dbname='.$_ENV['db_name'].';charset=utf8',
                 $_ENV['user_name'],
-                $_ENV['user_pass'],
+                $_ENV['user_pass']
                 // array(
                     // \PDO::ATTR_PERSISTENT => true
                 // )
@@ -35,7 +32,7 @@
         catch (\PDOException $e)
         {
             logEvent(" >>>>>>>>>> utils dbConnect() PDOException");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return $GLOBALS['DB_NO_CONNECTION'];
         }
     }
@@ -44,12 +41,8 @@
     * Short - Database connection
     *
     * Detailed - 
-    * 
-    * @param string|null $db_host
-    * @param string|null $user_name
-    * @param string|null $user_password
     *
-    * @return mixed flux mysqli
+    * @return mysqli flux mysqli
     */
     function hostConnect($db_host = null, $user_name = null, $user_password = null)
     {
@@ -60,14 +53,14 @@
         }
         try
         {
-            logEvent('hostConnect()');
-            logEvent(print_r($_ENV));
-            logEvent('user_name : '.print_r($_ENV['user_name']).'<br>');
-            logEvent('user_pass : '.print_r($_ENV['user_pass']).'<br>');
-            logEvent('bd_host : '.print_r($_ENV['bd_host']).'<br>');
-            logEvent('db_port : '.print_r($_ENV['db_port']).'<br>');
-            logEvent('db_name : '.print_r($_ENV['db_name']).'<br>');
-            logEvent("Attempt to connect ".$_ENV['user_name'].":".$_ENV['user_pass']."@".$_ENV['db_host'].":".$_ENV['db_port'].'/'.$_ENV['db_name']);
+            // logEvent('hostConnect()');
+            // logEvent(print_r($_ENV));
+            // logEvent('user_name : '.print_r($_ENV['user_name']).'<br>');
+            // logEvent('user_pass : '.print_r($_ENV['user_pass']).'<br>');
+            // logEvent('db_host : '.print_r($_ENV['db_host']).'<br>');
+            // logEvent('db_port : '.print_r($_ENV['db_port']).'<br>');
+            // logEvent('db_name : '.print_r($_ENV['db_name']).'<br>');
+            // logEvent("Attempt to connect ".$_ENV['user_name'].":".$_ENV['user_pass']."@".$_ENV['db_host'].":".$_ENV['db_port'].'/'.$_ENV['db_name']);
             $conn = new mysqli(
                 $_ENV['db_host'],
                 $_ENV['user_name'],
@@ -79,7 +72,7 @@
             if($conn->connect_error)
             {
                 logEvent(" >>>>>>>>>> utils hostConnect() : ".$GLOBALS['MYSQL_NO_CONNECTION']);
-                logError('Étape '.(++$GLOBALS['index']).' - '.$conn->connect_error);
+                logError($conn->connect_error);
                 throw new Exception($GLOBALS['MYSQL_NO_CONNECTION']);
             }
             return $conn;
@@ -87,13 +80,13 @@
         catch (mysqli_sql_exception $e)
         {
             logEvent(" >>>>>>>>>> utils hostConnect() mysqli_sql_exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return $GLOBALS['MYSQL_THROW_ERROR'];
         }
         catch (Exception $e)
         {
             logEvent(" >>>>>>>>>> utils hostConnect() Exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return $e;
         }
     }
@@ -120,7 +113,7 @@
             if(gettype($conn) == "integer")
             {
                 logEvent(' >>>>>>>>>> Connection trial error');
-                logError('Étape '.(++$GLOBALS['index']).' - '."Connection trial to host ended with status ".$conn);
+                logError("Connection trial to host ended with status ".$conn);
                 throw new Exception($conn);
             }
             $flux = $conn->prepare($request);
@@ -137,13 +130,13 @@
                 $conn = NULL;
             }
             logEvent(' >>>>>>>>>> PDOException');
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return $GLOBALS['DB_REQUEST_ERROR'];
         }
         catch (Exception $e)
         {
             logEvent(' >>>>>>>>>> Exception');
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return $GLOBALS['DB_REQUEST_ERROR'];
         }
     }
@@ -274,7 +267,7 @@
             if(gettype($conn = hostConnect()) == "integer")
             {
                 logEvent(' >>>>>>>>>> App createDb() : connection trial error');
-                logError('Étape '.(++$GLOBALS['index']).' - '."Connection trial to host ended with status ".$conn);
+                logError("Connection trial to host ended with status ".$conn);
                 throw new Exception($conn);
             }
             else
@@ -285,7 +278,7 @@
                 if($conn->query("CREATE DATABASE IF NOT EXISTS ".mysqliSanitizeInput($_ENV['db_name'], $conn)." ".mysqliSanitizeInput($locale != null ? $locale : $GLOBALS['DEFAULT_DB_LOCALE'], $conn)) == false)
                 {
                     logEvent(" >>>>>>>>>> App createDb() : database creation error");
-                    logError('Étape '.(++$GLOBALS['index']).' - '."Database creation failed");
+                    logError("Database creation failed");
                     $error = $conn->error;
                     $conn->close();
                     throw new Exception($error);
@@ -301,13 +294,13 @@
         catch (\mysqli_sql_exception $e)
         {
             logEvent(" >>>>>>>>>> App createDb() mysqli_sql_exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return false;
         }
         catch (\Exception $e)
         {
             logEvent(" >>>>>>>>>> App createDb() Exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
             return false;
         }
     }
@@ -319,7 +312,7 @@
             if(gettype($name) != "string" || gettype($schema) != "string")
             {
                 logEvent(" >>>>>>>>>> createTable() error");
-                logError('Étape '.(++$GLOBALS['index']).' - '."Invalid parameters for createTable(string \$name, string \$schema[, string \$locale])");
+                logError("Invalid parameters for createTable(string \$name, string \$schema[, string \$locale])");
                 throw new Exception($GLOBALS['INVALID_PARAMS']);
             }
             if(!dbExists($_ENV['db_name']))
@@ -359,16 +352,16 @@
         catch (\PDOException $e)
         {
             logEvent(" >>>>>>>>>> App createTable() PDOException");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
         }
         catch (\mysqli_sql_exception $e)
         {
             logEvent(" >>>>>>>>>> App createTable() mysqli_sql_exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
         }
         catch (\Exception $e)
         {
             logEvent(" >>>>>>>>>> App createTable() Exception");
-            logError('Étape '.(++$GLOBALS['index']).' - '.$e);
+            logError($e);
         }
     }

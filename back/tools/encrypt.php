@@ -5,13 +5,11 @@
         *
         * Detailed - 
         *
-        * @param string $str
-        * @param string $method
+        * @param Type $name Description
         *
         * @return string
         */
     function encrypt($str, $method = 'sha256')
     {
-        logEvent('encrypt()');
         return !$str ? NULL : hash($method, $str);
     }
