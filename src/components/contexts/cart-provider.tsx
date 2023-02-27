@@ -384,6 +384,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             let _actual = {
                 "vads_cust_last_name": getById("vads_cust_last_name")?.value || "",
                 "vads_cust_first_name": getById("vads_cust_first_name")?.value || "",
+                "ct_title": getById("ct_title")?.value || "",
+                "ct_clinic": getById("ct_clinic")?.value || "",
                 "vads_cust_legal_name": getById("vads_cust_legal_name")?.value || "",
                 "vads_cust_address": getById("vads_cust_address")?.value || "",
                 "vads_cust_zip": getById("vads_cust_zip")?.value || "",
@@ -391,8 +393,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 "vads_cust_country": getById("vads_cust_country")?.value || "",
                 "vads_cust_cell_phone": getById("vads_cust_cell_phone")?.value || "",
                 "vads_cust_email": getById("vads_cust_email")?.value || "",
+
                 "vads_ship_to_last_name": getById("vads_ship_to_last_name")?.value || "",
                 "vads_ship_to_first_name": getById("vads_ship_to_first_name")?.value || "",
+                "sp_title": getById("sp_title")?.value || "",
+                "sp_clinic": getById("sp_clinic")?.value || "",
                 "vads_ship_to_legal_name": getById("vads_ship_to_legal_name")?.value || "",
                 "vads_ship_to_street": getById("vads_ship_to_street")?.value || "",
                 "vads_ship_to_zip": getById("vads_ship_to_zip")?.value || "",

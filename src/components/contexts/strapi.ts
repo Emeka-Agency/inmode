@@ -114,6 +114,8 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         billing: {
             firstname: _datas.vads_cust_first_name,
             lastname: _datas.vads_cust_last_name,
+            title: _datas.ct_title,
+            clinic: _datas.ct_clinic,
             phone: _datas.vads_cust_cell_phone,
             mail: _datas.vads_cust_email,
             address: _datas.vads_cust_address,
@@ -126,6 +128,8 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
         shipping: {
             firstname: _datas.vads_ship_to_first_name,
             lastname: _datas.vads_ship_to_last_name,
+            title: _datas.sp_title,
+            clinic: _datas.sp_clinic,
             phone: _datas.vads_ship_to_phone_num,
             mail: _datas.delivery_mail,
             address: _datas.vads_ship_to_street,

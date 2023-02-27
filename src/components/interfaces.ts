@@ -1,8 +1,6 @@
 // Strapi interfaces
 // Collections
 
-import { string } from "../../o2switch/unix_modules/original/strapi/lib/services/entity-validator/validators"
-
 export interface Woocommerce_Shop_Interface {
     id: string;
     wordpress_id: number;
@@ -396,6 +394,8 @@ export interface  InmodePanel_SellingNext_Interface {
     export interface InmodePanel_Order_Billing_Interface {
         firstname?: string;
         lastname?: string;
+        title?: string;
+        clinic?: string;
         phone?: string | number;
         mail?: string;
         address?: string;
@@ -408,6 +408,8 @@ export interface  InmodePanel_SellingNext_Interface {
     export interface InmodePanel_Order_Shipping_Interface {
         firstname?: string;
         lastname?: string;
+        title?: string | number;
+        clinic?: string | number;
         phone?: string | number;
         mail?: string;
         address?: string;
@@ -504,6 +506,8 @@ export interface SogecommerceOrder {
     vads_cust_email: string;// "mael.fallet@gmail.com"
     vads_cust_first_name: string;// "Maël"
     vads_cust_last_name: string;// "FALLET"
+    ct_title?: string; // Titre
+    ct_clinic?: string; // Clinique
     vads_cust_legal_name: string;// "Emeka"
     vads_cust_zip: string | number;// "13003"
     vads_nb_products: string | number;// "2"
@@ -526,6 +530,8 @@ export interface SogecommerceOrder {
     vads_ship_to_city: string;// "Marseille"
     vads_ship_to_first_name: string;// "Kévin"
     vads_ship_to_last_name: string;// "LESIEUTRE"
+    sp_title?: string; // Titre
+    sp_clinic?: string; // Clinique
     vads_ship_to_legal_name: string;// "Emeka"
     vads_ship_to_phone_num: string | number;// "0769818682"
     vads_ship_to_street: string;// "124 Rue de Crimée"
