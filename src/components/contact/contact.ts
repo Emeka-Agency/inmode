@@ -21,6 +21,12 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
             "message": _form?.querySelector('#contact-message-mini')?.value,
             "type": "contact-us"
         };
+
+        _log([
+            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+            translate_fields_names(to_get_line(body, "contact"))
+        ].join('?'));
+
         const request_init:RequestInit = {
             method: 'POST',
             headers: {
@@ -129,7 +135,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         if(document.forms.namedItem("full-contact-form") == null) {
             return false;
         }
-        let _form:HTMLFormElement | null = document.forms.namedItem("full-contact-form")
+        let _form:HTMLFormElement | null = document.forms.namedItem("full-contact-form");
         let body:any = {
             "lastname": _form?.querySelector('#lastname')?.value,
             "firstname": _form?.querySelector('#firstname')?.value,
@@ -145,6 +151,11 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map(el => el.checked ? el.name : null).filter(el => el),
             "type": "full-contact"
         };
+
+        _log([
+            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+            translate_fields_names(to_get_line(body, "contact"))
+        ].join('?'));
         
         const request_init:RequestInit = {
             method: 'POST',
@@ -392,6 +403,8 @@ const fields = {
         "zip",
         "message",
         "address",
+        "machines",
+        "company"
     ],
     signup_event: [
 
@@ -400,9 +413,66 @@ const fields = {
 
 function to_get_line(_body = {}, _type:string|null = null) {
     if(_body instanceof Object && typeof _type == "string" && _type in fields) {
-        return Object.keys(_body).map(key => fields[_type].indexOf(key) > -1 ? `${key}=${encodeURI(_body[key] ?? '')}` : null).filter(val => val).join('&')
+        return Object.keys(_body).map((key) => {
+            if(key == "machines" && fields[_type].indexOf(key) > -1) {
+                return encodeURI(_body[key].map((val:string) => {
+                    return front_to_pardot_machines(val) ?? '';
+                }).join(';'));
+            }
+            else {
+                return fields[_type].indexOf(key) > -1 ? `${key}=${encodeURI(_body[key] ?? '')}` : null
+            }
+        }).filter(val => val).join('&')
     }
     return "";
+}
+
+// ACTUAL - morpheus8
+// ACTUAL - accutite
+// ACTUAL - bodyfx
+// ACTUAL - bodytite
+// ACTUAL - diolazexl
+// ACTUAL - embracerf
+// ACTUAL - evoke
+// ACTUAL - evolve
+// ACTUAL - forma
+// ACTUAL - fractora
+// ACTUAL - lumecca
+// ACTUAL - plus
+// ACTUAL - triton
+// ACTUAL - votiva
+// MISSING - contoura
+// MISSING - facetite
+// MISSING - morpheuspro
+// MISSING - evolvex
+// MISSING - empowerrf
+// MISSING - transformx
+
+function front_to_pardot_machines(val?:string) {
+    switch(val) {
+        case "morpheus8": return "Morpheus8 | Facial and Body Fractional Remodeling";
+        case "accutite": return "AccuTite | Precision Contouring";
+        case "bodyfx": return "BodyFX & MiniFX | Non-Invasive Body Treatment";
+        case "bodytite": return "BodyTite | Minimally Invasive Procedure";
+        case "diolazexl": return "DiolazeXL | Hair Removal";
+        case "embracerf": return "EmbraceRF | Facial Refinement";
+        case "evoke": return "Evoke | Hands-Free Facial Remodeling";
+        case "evolve": return "Evolve | Hands-Free Skin and Body Remodeling";
+        case "forma": return "Forma | Skin Remodeling";
+        case "fractora": return "Fractora | Fractional Resurfacing";
+        case "lumecca": return "Lumecca | Pigment & Vascular";
+        case "plus": return "Plus | Skin Remodeling For Larger Areas";
+        case "triton": return "Triton | DuoLight/DuoDark | Hair Removal";
+        case "votiva": return "Votiva | Aviva | Feminine Wellness";
+        
+        case "contoura": return "Contoura";
+        case "facetite": return "FaceTite | Minimally Invasive Procedure";
+        case "morpheuspro": return "MorpheusPro";
+        case "evolvex": return "EvolveX | Hands-Free Skin and Body Remodeling";
+        case "empowerrf": return "EmpowerRF | Aviva | Feminine Wellness";
+        case "transformx": return "TransformX";
+        default: return val;
+    }
 }
 
 function translate_fields_names(_string:string|null = null) {
@@ -417,6 +487,8 @@ function translate_fields_names(_string:string|null = null) {
         _string = _string.replace("message=", "your-message=");
         _string = _string.replace("country=", "your-country=");
         _string = _string.replace("addres=", "your-Address=");
+        _string = _string.replace("addres=", "your-Address=");
+        _string = _string.replace("machines=", "your-machines[]=");
     }
     catch(err) {
         console.error(err);
