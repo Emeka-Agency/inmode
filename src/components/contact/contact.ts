@@ -1,4 +1,4 @@
-import { _log } from "../../functions/logger";
+import { _log, _trace } from "../../functions/logger";
 import { selectOne } from "../../functions/selectors";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
@@ -91,6 +91,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 }
             })
             .catch(function(error) {
+                _trace(error);
                 let _temp:any = selectOne('#mini-contact-gif');
                 if(_temp) {_temp.style.display = 'none';}
                 setSubmitText("Contact issue");
@@ -109,6 +110,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         click_pardot(body);
     }
     catch(err) {
+        _trace(err);
         let _temp:any = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'none';}
         setSubmitText("Contact issue");
@@ -216,6 +218,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
             })
             .catch(function(error) {
+                _trace(error);
                 on_error instanceof Function && on_error("error");
                 setSubmitText("Contact issue");
                 let _success:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
@@ -234,6 +237,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         click_pardot(body);
     }
     catch(err) {
+        _trace(err);
         on_error instanceof Function && on_error("error");
         setSubmitText("Contact issue");
         let _success:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
@@ -310,6 +314,7 @@ export const send_sign_up = async function(e:React.FormEvent<HTMLFormElement>, s
                 }
             })
             .catch(function(error) {
+                _trace(error);
                 let _temp;
                 setSubmitText("Contact issue");
                 let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
@@ -325,6 +330,7 @@ export const send_sign_up = async function(e:React.FormEvent<HTMLFormElement>, s
         // ).json()
     }
     catch(err) {
+        _trace(err);
         let _temp;
         setSubmitText("Contact issue");
         let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
@@ -366,16 +372,22 @@ function handlePromise(promise:Response) {
 }
 
 function click_pardot(body) {
-    let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
-        id: 'send-mail',
-        target: '_self',
-        href: [
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'),
-    }).click();
-    a.click();
-    a.remove();
+    try {
+        let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
+            id: 'send-mail',
+            target: '_self',
+            href: [
+                `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+                translate_fields_names(to_get_line(body, "contact"))
+            ].join('?'),
+        }).click();
+        a.click();
+        a.remove();
+    }
+    catch(err) {
+        
+    }
+    return true;
 }
 
 function strToDom(str:string) {
