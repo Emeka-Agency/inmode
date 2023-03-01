@@ -11,11 +11,17 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _temp && _temp.setAttribute('disabled', true);
         _temp = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'inline-block';}
-        let body:any = {};
         let _form = document.forms.namedItem('contact-mini');
-        Array.from(_form ? _form.elements : []).forEach((elem:any) => {
-            body[elem.name] = ["checkbox", "radio"].indexOf(elem.type) >= 0 ? elem.checked : elem.value;
-        });
+        let body:any = {
+            "lastname": document?.querySelector('#contact-mini [name="lastname"]')?.value,
+            "firstname": document?.querySelector('#contact-mini [name="firstname"]')?.value,
+            "subject": document?.querySelector('#contact-mini [name="subject"]')?.value,
+            "mail": document?.querySelector('#contact-mini [name="mail"]')?.value,
+            "phone_number": document?.querySelector('#contact-mini [name="phone"]')?.value,
+            "zip": document?.querySelector('#contact-mini [name="zip"]')?.value,
+            "city": document?.querySelector('#contact-mini [name="city"]')?.value,
+            "message": document?.querySelector('#contact-mini [name="message"]')?.value,
+        };
         body.type = "contact-us";
 
         _slog("send_form_mini ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
@@ -99,7 +105,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         // console.log(response);
         // ).json()
 
-        click_pardot(body);
+        return click_pardot(body);
     }
     catch(err:any) {
         err_log(err, "components/contact.ts:send_form_mini main catch");
@@ -107,6 +113,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _temp && _temp.setAttribute('disabled', "true");
         _temp = selectOne('#contact-mini .req-return.error');
         if(_temp) {_temp.innerHTML = "Erreur d'envoi du message.";}
+        return false;
     }
 }
 
@@ -214,7 +221,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         // console.log(response);
         // ).json()
         
-        click_pardot(body);
+        return click_pardot(body);
     }
     catch(err:any) {
         // setSubmitText(error.message);
@@ -225,6 +232,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         let _temp2:HTMLElement|null = document.querySelector('#full-contact-form .req-return.error');
         if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;
         // if(_temp2) _temp2.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
+        return false;
     }
 }
 
@@ -260,16 +268,23 @@ function handlePromise(promise:Response) {
 }
 
 function click_pardot(body) {
-    let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
-        id: 'send-mail',
-        target: '_self',
-        href: [
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'),
-    }).click();
-    a.click();
-    a.remove();
+    try {
+        let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
+            id: 'send-mail',
+            target: '_self',
+            href: [
+                `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+                translate_fields_names(to_get_line(body, "contact"))
+            ].join('?'),
+        }).click();
+        a.click();
+        a.remove();
+        return true;
+    }
+    catch(err) {
+        _log(err);
+        return false;
+    }
 }
 
 function get_now_time() {
@@ -300,9 +315,9 @@ function to_get_line(_body = {}, _type:string|null = null) {
     if(_body instanceof Object && typeof _type == "string" && _type in fields) {
         return Object.keys(_body).map((key) => {
             if(key == "machines" && fields[_type].indexOf(key) > -1) {
-                return encodeURI(_body[key].map((val:string) => {
+                return `machines=${_body[key].map((val) => {
                     return front_to_pardot_machines(val) ?? '';
-                }).join(';'));
+                }).join(';')}`;
             }
             else {
                 return fields[_type].indexOf(key) > -1 ? `${key}=${encodeURI(_body[key] ?? '')}` : null
@@ -371,8 +386,7 @@ function translate_fields_names(_string:string|null = null) {
         _string = _string.replace("zip=", "your-zip=");
         _string = _string.replace("message=", "your-message=");
         _string = _string.replace("country=", "your-country=");
-        _string = _string.replace("addres=", "your-Address=");
-        _string = _string.replace("addres=", "your-Address=");
+        _string = _string.replace("address=", "your-Address=");
         _string = _string.replace("machines=", "your-machines[]=");
     }
     catch(err) {
