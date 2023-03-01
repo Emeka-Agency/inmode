@@ -382,6 +382,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             
         let _temp:SogecommerceOrder = new Object({});
         let _country:string|undefined = undefined;
+        const order_id = rand_token(6);
 
         try {
 
@@ -437,8 +438,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             form_fields.forEach((elem:Element) => {
                 _temp = {..._temp, [elem.getAttribute('name')]: elem.getAttribute('value') ?? elem.value};
             });
-            
-            const order_id = rand_token(6);
     
             // TODO call back to check if id exists
     
@@ -551,14 +550,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             // let result = await (await cwreate_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
             let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => err_log(error, "components/contexts/cart-provider.tsx:redirect_payment create_object catch"));
 
-            let test = true;
-
-            test && _slog("result", "color: #00ff00; font-size: 20px; font-weight: bold; text-decoration: underline;");
+            _slog("result", "color: #00ff00; font-size: 20px; font-weight: bold; text-decoration: underline;");
             _log(result);
-
-            if(test) {
-                return true;
-            }
 
             if(typeof window != undefined) {
                 window.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
