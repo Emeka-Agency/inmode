@@ -27,10 +27,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _slog("send_form_mini ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
 
         _log(body);
-        _log([
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'));
+        _log(create_pardot_url(body));
 
         const request_init:RequestInit = {
             method: 'POST',
@@ -150,10 +147,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         _slog("send_form_large ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
 
         _log(body);
-        _log([
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'));
+        _log(create_pardot_url(body));
 
         const request_init:RequestInit = {
             method: 'POST',
@@ -272,14 +266,24 @@ function click_pardot(body) {
         let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
             id: 'send-mail',
             target: '_self',
-            href: [
-                `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-                translate_fields_names(to_get_line(body, "contact"))
-            ].join('?'),
+            href: create_pardot_url(body),
         }).click();
         a.click();
         a.remove();
         return true;
+    }
+    catch(err) {
+        _log(err);
+        return false;
+    }
+}
+
+function create_pardot_url(body) {
+    try {
+        return [
+            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+            translate_fields_names(to_get_line(body, "contact"))
+        ].join('?');
     }
     catch(err) {
         _log(err);
@@ -315,9 +319,9 @@ function to_get_line(_body = {}, _type:string|null = null) {
     if(_body instanceof Object && typeof _type == "string" && _type in fields) {
         return Object.keys(_body).map((key) => {
             if(key == "machines" && fields[_type].indexOf(key) > -1) {
-                return `machines=${_body[key].map((val) => {
+                return `machines=${encodeURI(_body[key].map((val) => {
                     return front_to_pardot_machines(val) ?? '';
-                }).join(';')}`;
+                }).join(';'))}`;
             }
             else {
                 return fields[_type].indexOf(key) > -1 ? `${key}=${encodeURI(_body[key] ?? '')}` : null
@@ -347,6 +351,28 @@ function to_get_line(_body = {}, _type:string|null = null) {
 // MISSING - evolvex
 // MISSING - empowerrf
 // MISSING - transformx
+
+// DONE - Morpheus8 | Facial and Body Fractional Remodeling
+// DONE - AccuTite | Precision Contouring
+// DONE - BodyFX & MiniFX | Non-Invasive Body Treatment
+// DONE - BodyTite | Minimally Invasive Procedure
+// DONE - DiolazeXL | Hair Removal
+// DONE - EmbraceRF | Facial Refinement
+// DONE - Evoke | Hands-Free Facial Remodeling
+// DONE - Evolve | Hands-Free Skin and Body Remodeling
+// DONE - Forma | Skin Remodeling
+// DONE - Fractora | Fractional Resurfacing
+// DONE - Lumecca | Pigment & Vascular
+// DONE - Plus | Skin Remodeling For Larger Areas
+// DONE - Triton | DuoLight/DuoDark | Hair Removal
+// DONE - Votiva | Aviva | Feminine Wellness
+// TODO - Contoura
+// TODO - FaceTite | Minimally Invasive Procedure
+// TODO - MorpheusPro
+// TODO - EvolveX | Hands-Free Skin and Body Remodeling
+// TODO - EmpowerRF | Aviva | Feminine Wellness
+// TODO - TransformX
+// TODO - Bodytite/Facetite | Minimally Invasive Procedures
 
 function front_to_pardot_machines(val?:string) {
     switch(val) {
@@ -387,7 +413,7 @@ function translate_fields_names(_string:string|null = null) {
         _string = _string.replace("message=", "your-message=");
         _string = _string.replace("country=", "your-country=");
         _string = _string.replace("address=", "your-Address=");
-        _string = _string.replace("machines=", "your-machines[]=");
+        _string = _string.replace("machines=", "your-technology[]=");
     }
     catch(err) {
         _error(err);
