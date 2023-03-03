@@ -19,7 +19,7 @@ const Hero = ({}:Hero) => {
 
     const images = useImages();
 
-    // TODO faire un bloc bleu border-radius bottom-right et un bloc down #59b7b3, image en position absolute du hero
+    // TODO faire un bloc bleu border-radius bottom-right et un bloc down var(--teal), image en position absolute du hero
 
     const img_init_right = 3;
 

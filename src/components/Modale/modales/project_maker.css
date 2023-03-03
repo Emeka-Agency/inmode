@@ -44,7 +44,7 @@
     padding: 0 5%;
     height: 100%;
     margin: 0 auto;
-    color: #f2f2f2;
+    color: var(--pearl);
     text-align: center;
     letter-spacing: 1px;
     box-sizing: border-box;
@@ -103,19 +103,19 @@
 }
 
 #modale #modale-container.payment-sepa #modale-content .SEPA td {
-    border: 1px solid #f2f2f2;
+    border: 1px solid var(--pearl);
     padding: 5px 15px;
 }
 
 #modale #modale-container.payment-sepa #modale-content div.RIB,
 #modale #modale-container.payment-sepa #modale-content div.BIC {
-    border: 1px solid #59b7b3;
+    border: 1px solid var(--teal);
     width: 90%;
 }
 
 #modale #modale-container.payment-sepa #modale-content span.RIB,
 #modale #modale-container.payment-sepa #modale-content span.BIC {
-    border-right: 1px solid #59b7b3;
+    border-right: 1px solid var(--teal);
     width: 100px;
 }
 
@@ -151,7 +151,7 @@
 
     #modale #modale-container.payment-sepa #modale-content div.RIB,
     #modale #modale-container.payment-sepa #modale-content div.BIC {
-        border: 1px solid #59b7b3;
+        border: 1px solid var(--teal);
         width: 90%;
     }
 
@@ -179,7 +179,7 @@
 
     #modale #modale-container.payment-sepa #modale-content div.RIB,
     #modale #modale-container.payment-sepa #modale-content div.BIC {
-        border: 1px solid #59b7b3;
+        border: 1px solid var(--teal);
         width: 90%;
     }
 

@@ -13,8 +13,8 @@ img.cart-basket {
 }
 
 div.cart img.cart-basket + div.cart-basket-nbr {
-    background-color: #fff;
-    color: #59b7b3;
+    background-color: var(--pearl);
+    color: var(--teal);
     border-radius: 50%;
     position: absolute;
     text-align: center;

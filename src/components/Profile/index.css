@@ -9,7 +9,7 @@ section#profile {
 section#profile #profile-tabs {
     width: 1200px;
     height: 40px;
-    background: #59b7b3;
+    background: var(--teal);
     padding: 0 calc((100% - 1200px) / 2);
 }
 
@@ -44,7 +44,7 @@ section#profile #profile-tabs .profile-tab:hover {
 
 section#profile #profile-tabs .profile-tab.current {
     background-color: white;
-    color: #59b7b3;
+    color: var(--teal);
     border-bottom: 2px solid transparent;
     transition: border 0.2s ease-in-out 0s,
                 background 0.1s ease-in-out 0s;

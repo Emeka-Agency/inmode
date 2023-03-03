@@ -43,7 +43,7 @@
     padding: 0 5%;
     height: 100%;
     margin: 0 auto;
-    color: #f2f2f2;
+    color: var(--pearl);
     text-align: center;
     letter-spacing: 1px;
 }

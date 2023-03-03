@@ -57,7 +57,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     width: var(--field-width);
     height: 3px;
     margin-bottom: 0px;
-    background-color: #59b7b3;
+    background-color: var(--teal);
     transition: width 0.2s ease-in-out 0s,
                 height 0.2s ease-in-out 0s,
                 margin 0.2s ease-in-out 0s,
@@ -83,7 +83,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 /* change */
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field input.profile-field-change {
-    caret-color: #59b7b3;
+    caret-color: var(--teal);
     color: white;
     font-size: 14px;
     padding-left: 5px;
@@ -91,7 +91,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     width: calc(var(--field-width) - 40px);
     height: 20px;
     margin: 0 5px 0 0;
-    background-color: #fff2;
+    background-color: var(--pearl-25);
     outline: transparent;
     border: none;
     box-sizing: border-box;
@@ -115,7 +115,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:active,
 section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:focus {
-    border-bottom: 3px solid #59b7b3;
+    border-bottom: 3px solid var(--teal);
     margin-bottom: 1px;
     transition: border 0.2s ease-in-out 0s,
                 margin 0.2s ease-in-out 0s;
@@ -137,7 +137,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field:hover .profile-field-edit,
 section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit:hover {
-    /* border: 1px solid #59b7b3; */
+    /* border: 1px solid var(--teal); */
 }
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .init {

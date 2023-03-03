@@ -62,7 +62,7 @@
 
 #modale.signin-modale #modale-container.signin-container #modale-content:hover h2::after {
     width: 50%;
-    background-color: #59b7b3;
+    background-color: var(--teal);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form {
@@ -77,8 +77,8 @@
     width: 100%;
     padding: 5px;
     box-sizing: border-box;
-    caret-color: #59b7b3;
-    color: #59b7b3;
+    caret-color: var(--teal);
+    color: var(--teal);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form label {
@@ -87,7 +87,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input {
-    background-color: #0b1a25;
+    background-color: var(--dusk);
     outline: transparent;
     border: none;
     padding: 10px;
@@ -106,7 +106,7 @@
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input:active,
 #modale.signin-modale #modale-container.signin-container #modale-content form input:focus {
-    border-bottom: 3px solid #59b7b3;
+    border-bottom: 3px solid var(--teal);
     margin-bottom: 5px;
 }
 
@@ -123,7 +123,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input::placeholder {
-    color: #fff9; /* */
+    color: var(--pearl-50); /* */
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #user_section {
@@ -163,7 +163,7 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    color: #59b7b3;
+    color: var(--teal);
     cursor: pointer;
     margin-top: 15px;
 }
@@ -187,7 +187,7 @@
     padding: 7px 12px;
     border-radius: 5px;
     border: none;
-    background-color: #59b7b3;
+    background-color: var(--teal);
     color: white;
     font-size: 18px;
     transition: color 0.3s ease-in-out 0s;
@@ -195,7 +195,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form div#submit_section button#submit_signin:hover {
-    color: #0b1a25;
+    color: var(--dusk);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form div#submit_section .loading-gif.visible {

@@ -1,6 +1,6 @@
 .no-picture,
 .sensible {
-    color: #f2f2f2;
+    color: var(--pearl);
     text-align: center;
     font-size: 18px;
     font-weight: 500;
@@ -37,6 +37,6 @@
         width: 90%;
         height: 3px;
         border-radius: 50%;
-        background: #f2f2f2;
+        background: var(--pearl);
     }
 }

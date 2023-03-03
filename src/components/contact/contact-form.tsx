@@ -222,7 +222,7 @@ const ContactForm = ({ from }:ContactForm) => {
                 </textarea>
                 <div
                     className="current-length"
-                    style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}
+                    style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}
                 >
                     {`${msgLength} / ${max_length}`}
                 </div>
@@ -257,7 +257,7 @@ const ContactForm = ({ from }:ContactForm) => {
                 <input type="checkbox" id="policy" name="policy" value="policy" required/>
                 <label htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
             </div>
-            <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
+            <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
             <button type="submit" className="submit transition">
                 <div className="label">{submitText}</div>

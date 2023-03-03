@@ -118,7 +118,7 @@ const AddressesTab = ({}:AddressesTab) => {
                                                         let _counter = selectOne(`#addresses-section:nth-child(${index + 1}) .address-content textarea[name="custom"] + .current-length`);
                                                         if(!isElement(_counter)) {return false;}
                                                         _counter.innerText = `${e.currentTarget.value.length} / ${max_length}`;
-                                                        _counter.style.color = e.currentTarget.value.length === max_length ? '#f00' : '#59b7b3';
+                                                        _counter.style.color = e.currentTarget.value.length === max_length ? '#f00' : 'var(--teal)';
                                                     }}
                                                     onBlur={(e) => {
                                                         // console.log("blur");
@@ -138,7 +138,7 @@ const AddressesTab = ({}:AddressesTab) => {
                                                     defaultValue={address.custom ?? ''}
                                                 >
                                                 </textarea>
-                                                <div className="current-length" style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}>{`${msgLength} / ${max_length}`}</div>
+                                                <div className="current-length" style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}>{`${msgLength} / ${max_length}`}</div>
                                             </>
                                             :
                                             ["country"].indexOf(fields[field]) < 0 ?

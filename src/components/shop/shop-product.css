@@ -7,7 +7,7 @@
     margin: 25px auto;
     background-color: #0d1e28;
     border-radius: 13px;
-    box-shadow: #0005 3px 3px 9px;
+    box-shadow: var(--pure-black-25) 3px 3px 9px;
     font-size: 0;
     width: 90%;
     user-select: none;
@@ -65,7 +65,7 @@
 
 .shop-products .shop-addon .shop-product2 .manage .minus,
 .shop-products .shop-addon .shop-product2 .manage .add {
-    background-color: #59b7b3;
+    background-color: var(--teal);
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -111,7 +111,7 @@
 
 .shop-products .shop-addon .shop-product2 .purchase {
     width: 15%;
-    background-color: #59b7b3;
+    background-color: var(--teal);
     border-radius: 0 13px 13px 0;
     cursor: pointer;
 }

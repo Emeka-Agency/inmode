@@ -42,7 +42,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
                 <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>
                 <ProductDemo datas={datas.Demo}/>
-                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"#0b1a25"}/>}
+                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"var(--dusk)"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
