@@ -77,7 +77,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                     _temp = selectOne('#contact-mini .submit');
                     _temp.setAttribute('disabled', true);
                     _temp = selectOne('#contact-mini .req-return.success');
-                    if(_temp) {_temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;}
+                    if(_temp) {_temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;}
                 }
                 if(response.status === 'fail' && response.type === 'server') {
                     _temp = selectOne('#contact-mini .submit');
@@ -95,7 +95,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 _temp = selectOne('#contact-mini .req-return.success');
                 if(_temp) {
                     _temp.style.setProperty('white-space', 'normal');
-                    _temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;
+                    _temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
                 }
             })
         );
@@ -191,7 +191,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                     let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
                     if(_temp1) _temp1.disabled = true;
                     let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
-                    if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;
+                    if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
                 }
                 if(response.status === 'fail' && response.type === 'server') {
                     let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
@@ -208,7 +208,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
                 if(_temp2) {
                     _temp2.style.setProperty('white-space', 'normal');
-                    _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;
+                    _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
                 }
             })
         );
@@ -224,7 +224,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         let _temp1:HTMLInputElement|null = document.querySelector('#full-contact-form .submit');
         if(_temp1) _temp1.disabled = true;
         let _temp2:HTMLElement|null = document.querySelector('#full-contact-form .req-return.error');
-        if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:#59b7b3;font-weight:bold;">contactez-nous directement.</a>`;
+        if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
         // if(_temp2) _temp2.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
         return false;
     }
