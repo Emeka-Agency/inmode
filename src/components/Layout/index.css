@@ -601,11 +601,13 @@ header {
     background-position: center;
     padding-top: 25px;
     z-index: 2;
+    position: absolute;
 }
 
 .header-parts {
     vertical-align: top;
     text-align: right;
+    float: right;
 }
 
 .header-logo,
