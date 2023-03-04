@@ -236,8 +236,8 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
             return {};
         }
         return Object.fromEntries(
-            _array.map((elem) => {
-                return [elem.strapiId || elem.id, elem];
+            _array.map((elem, index) => {
+                return [index, {...elem, index: index}];
             })
         );
     }
@@ -253,7 +253,8 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': menu.treatments || [],
                         'mini_treatments': menu.mini_treatments || [],
                         'id': menu.id || menu.strapiId,
-                        'parent': elem
+                        'parent': elem,
+                        ...(Object.values(_object).find(ob => ob.title == menu.title) ?? {})
                     };
                 });
                 recursive_process(array_to_object(_object[elem].menus), main);
@@ -341,7 +342,13 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }).filter(menu => menu);
     }
 
-    const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes));
+    const socials = ['facebook', 'instagram', 'youtube', 'linkedin'];
+
+    // EXPLAIN - Sort socials to the end of the list
+    const [menusHeaderTop] = React.useState(process_menu([
+        ...datas.header_top.nodes.filter((node:HeaderTop_Interface) => socials.indexOf(node.title) < 0),
+        ...datas.header_top.nodes.filter((node:HeaderTop_Interface) => socials.indexOf(node.title) > -1),
+    ]));
     const [menusHeaderBottom] = React.useState(process_menu(datas.header_bottom.nodes.map(elem => elem)));
     const [menusFooter] = React.useState(datas.footer);
     
