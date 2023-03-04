@@ -3357,6 +3357,29 @@ input[type="submit"].neumorphic:hover,
     position: relative;
 }
 
+.alveoles .title {
+    padding: 0 0 30px;
+    font-size: 35px;
+    color: var(--pearl);
+    font-weight: 600;
+    margin: 0;
+    padding: 0 0 50px;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 40px;
+    letter-spacing: 2px;
+    transition: all .3s ease;
+}
+
+@media screen and (max-width: 900px) {
+    .alveoles .title {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: normal;
+        padding-bottom: 30px;
+    }
+}
+
 .alveoles-container {
     display: flex;
     flex-wrap: wrap;

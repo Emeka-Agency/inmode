@@ -25,22 +25,23 @@ const Alveoles = ({}:Alveoles) => {
             'text': 'Workshop',
             'link': '/events/workshops'
         },
-        {
-            'image': images.getOne('alveole4').childImageSharp?.fluid,
-            'target': '_self',
-            'text': 'Produits',
-            'link': '/workstation'
-        },
-        {
-            'image': images.getOne('alveole5').childImageSharp?.fluid,
-            'target': '_blank',
-            'text': 'Avant / Après',
-            'link': 'https://inmodemd.com/gallery/'
-        }
+        // {
+        //     'image': images.getOne('alveole4').childImageSharp?.fluid,
+        //     'target': '_self',
+        //     'text': 'Produits',
+        //     'link': '/workstation'
+        // },
+        // {
+        //     'image': images.getOne('alveole5').childImageSharp?.fluid,
+        //     'target': '_blank',
+        //     'text': 'Avant / Après',
+        //     'link': 'https://inmodemd.com/gallery/'
+        // }
     ];
 
     return (
         <div className="alveoles">
+            <div className="title">Évènements</div>
             <div className="back-hex left">
                 <img
                     src={images.getOne('backAlveole').publicURL}
