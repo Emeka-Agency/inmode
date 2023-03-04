@@ -15,6 +15,25 @@ const ShopPage = ({ data }:ShopPage) => {
     initWakeup("shop");
 
     const processWoocommerce = (datas, woo) => {
+        return woo.map((w) => {
+            return {
+                ...w,
+                nodes: w.nodes.map(node => {
+                    return {
+                        id: node.id,
+                        wp_id: node.wordpress_id,
+                        Name: node.name,
+                        // pack: node.
+                        price: node.price,
+                        ...Object.fromEntries(
+                            node.meta_data.map(meta => {
+                                return [meta.key, meta.value[0] ?? null];
+                            })
+                        )
+                    };
+                })
+            }
+        });
         woo = Object.fromEntries(
             woo.map((w) => {
                 return [
