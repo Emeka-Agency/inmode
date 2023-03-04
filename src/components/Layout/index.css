@@ -524,7 +524,7 @@ header {
 
 @media (max-width: 1199px) {
     header .container .header-parts {
-        max-width: calc(100% - 160px);
+        max-width: 100%;
         width: 100%;
     }
 
@@ -571,7 +571,7 @@ header {
 
 @media (min-width: 800px) {
     header .container .header-parts {
-        max-width: calc(100% - 280px);
+        max-width: 100%;
         width: 100%;
     }
 }
