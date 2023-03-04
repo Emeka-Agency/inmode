@@ -151,6 +151,7 @@ const Slides = ({from}:Slides) => {
                     </div>
                 );
             })}
+            <Link to="/workstation" className="slides-go-workstation">Nos produits</Link>
         </div>
     );
 };

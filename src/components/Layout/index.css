@@ -2498,6 +2498,25 @@ main {
     }
 }
 
+.slides-home .slides-go-workstation {
+    background-color: var(--pearl);
+    color: var(--dusk);
+    padding: 7px 12px;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 45px auto 0;
+    display: block;
+    width: fit-content;
+    transition: background-color 0.2s ease-in-out 0s,
+                color 0.2s ease-in-out 0s;
+}
+
+.slides-home .slides-go-workstation:hover {
+    background-color: var(--dusk);
+    color: var(--pearl);
+    cursor: pointer;
+}
+
 /* CLINICAL STUDIES HOME */
 
 .clinical-studies-home {
