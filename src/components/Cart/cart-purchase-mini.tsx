@@ -88,7 +88,12 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
             }
             setIsSubmit(true);
             document.getElementById('vads_amount').value = cart.total_all_included();
-            setIsCreated(await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked) === true ? true : false);
+            let res = await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked);
+            setIsCreated(res === true ? true : false);
+            setIsSubmit(res === true ? false : null);
+            res == true && setFormOpened(false);
+            res == true && setOtherAddress(false);
+            res == true && setOtherAddressOpened(false);
             if(_mini1) _mini1.disabled = false;
             if(_mini2) _mini2.disabled = false;
             if(_mini3) _mini3.disabled = false;
