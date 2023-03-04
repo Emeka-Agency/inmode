@@ -27,7 +27,7 @@
     height: 70%;
     width: 100%;
     position: relative;
-    background-color: var(--midnight);
+    background-color: var(--dusk);
     z-index: 1;
 }
 
@@ -117,7 +117,7 @@
         position: absolute;
         left: 0;
         bottom: 50px;
-        background-color: #091822;
+        background-color: var(--dusk);
         border-radius: 0 0 100% 0;
         /* height: calc(76% - 140px); */
         height: calc(50% + 50px);
@@ -179,8 +179,8 @@
 .home-hero .hero-global .hero-bottom .bottom-text {
     padding: 5% 2%;
     box-sizing: border-box;
-    background-color: var(--pearl);
-    color: var(--midnight);
+    background-color: var(--teal);
+    color: var(--pearl);
     font-size: 36px;
     font-weight: bold;
     letter-spacing: 2px;
