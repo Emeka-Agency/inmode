@@ -87,6 +87,9 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
         let res = await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked);
         setIsCreated(res === true ? true : false);
         setIsSubmit(res === true ? false : null);
+        res == true && setFormOpened(false);
+        res == true && setOtherAddress(false);
+        res == true && setOtherAddressOpened(false);
         _temp = getById('big-submit');
         if(_temp) { _temp.disabled= false; }
     }
