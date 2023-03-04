@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
 import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
-import { _log } from '../../functions/logger';
+import { _log, _trace } from '../../functions/logger';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
