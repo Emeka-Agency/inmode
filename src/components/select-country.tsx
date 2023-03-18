@@ -4,6 +4,11 @@ const SelectCountry = ({ required = true }) =>{
     return (
         <select name = "country" required={required}>
             <option disabled selected style={{display: 'none'}}>Select a country</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Netherlands">Netherlands</option>
+            <option value="New Zealand">New Zealand</option>
+            <option value="Ukraine">Ukraine</option>
+            <hr />
             <option value="Afghanistan">Afghanistan</option>
             <option value="Aland Islands">Aland Islands</option>
             <option value="Albania">Albania</option>
