@@ -21,24 +21,68 @@
 .our-specialist .specialists .specialist {
     display: inline-block;
     vertical-align: top;
-    width: 30%;
-    margin: 15px 0;
     position: relative;
+}
+
+
+@media (min-width: 769px) {
+    .our-specialist .specialists .specialist {
+        width: 30%;
+        margin: 15px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .our-specialist .specialists .specialist {
+        width: 30%;
+        margin: 15px 0;
+    }
+
+    .our-specialist .specialists .specialist:nth-child(3n - 2) {
+        margin-right: 2.5%;
+    }
+
+    .our-specialist .specialists .specialist:nth-child(3n - 1) {
+        margin-left: 2.5%;
+        margin-right: 2.5%;
+    }
+
+    .our-specialist .specialists .specialist:nth-child(3n) {
+        margin-left: 2.5%;
+    }
+}
+
+@media (max-width: 425px) {
+    .our-specialist .specialists .specialist {
+        width: 80%;
+        margin: 15px 10%;
+    }
 }
 
 .our-specialist .specialists .specialist:nth-child(3n - 1) {
     margin: 15px 5%;
 }
 
-.our-specialist .specialists .specialist img {
+.our-specialist .specialists .specialist .specialist-picture {
     width: 100%;
     max-width: 170px;
     max-height: 170px;
-    border-radius: 100%;
-    border: 3px solid #fff;
-    text-align: center;
-    filter: grayscale(1);
+    border-radius: 50%;
+    border: 3px solid var(--teal);
+    margin: 0 auto;
 }
+
+.our-specialist .specialists .specialist .specialist-picture img {
+    filter: grayscale(1);
+    display: block;
+    width: 100%;
+    border-radius: 50%;
+    transition: filter 0.3s ease-in-out;
+}
+
+/* .our-specialist .specialists .specialist:hover .specialist-picture img {
+    filter: grayscale(0);
+} */
 
 .our-specialist .specialists .specialist .name {
     border-top: 3px solid var(--teal);

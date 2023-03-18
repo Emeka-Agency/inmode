@@ -34,16 +34,18 @@ const OurSpecialist = ({}:OurSpecialistParams) => {
     _log(specialists);
 
     return (
-        <div className="our-specialist main-container">
+        <div className="our-specialist">
             <div className="title">Our specialists</div>
-            <div className="specialists">
+            <div className="specialists main-container">
                 {specialists && specialists.map((specialist:InmodePanel_OurSpecialists_Interface, key:number) => {
                     return (
                         <div className="specialist" key={key}>
-                            <img
-                                src={specialist.Picture.localFile.childImageSharp.fluid.srcWebp}
-                                srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp}
-                            />
+                            <div className="specialist-picture">
+                              <img
+                                  src={specialist.Picture.localFile.childImageSharp.fluid.srcWebp}
+                                  srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp}
+                              />
+                            </div>
                             <div className="name">{specialist.Name}</div>
                             <div className="descr">{specialist.Description}</div>
                         </div>
