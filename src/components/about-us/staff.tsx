@@ -27,8 +27,6 @@ const Staff = ({ from = "" }:Staff) => {
         }
     `).strapiAboutUs);
 
-    console.log(datas);
-
     const [flickityOptions]:[FlickityOptions_Interface, React.Dispatch<any>] = React.useState({
         initialIndex: 0,
         cellAlign: 'left',

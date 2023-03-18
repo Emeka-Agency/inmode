@@ -390,7 +390,9 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
     const [menusHeaderBottom] = React.useState(process_menu(datas.header_bottom.nodes.map(elem => elem)));
     const [menusFooter] = React.useState(datas.footer);
 
-    _log(menusHeaderTop, menusHeaderBottom, menusFooter);
+    _log(menusHeaderTop);
+    _log(menusHeaderBottom);
+    _log(menusFooter);
     
     return (
         <MenusContext.Provider

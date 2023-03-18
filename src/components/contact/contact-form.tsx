@@ -116,19 +116,16 @@ const ContactForm = ({ from }:ContactForm) => {
     }
 
     const verify_form = () => {
-        console.log("verify_form");
         return (form_elems || []).map(elem => 
             !elem.required || (elem.required == true && get_for_element(`#full-contact-form [name="${(elem.name || "")}"]`)?.checkValidity()) ? true : false
         ).filter(ans => ans).length == form_elems.length;
     }
 
     const set_saving = () => {
-        console.log("set_saving");
         document?.querySelector('#full-contact-form .loading-gif')?.classList.add('active');
         return true;
     }
     const remove_saving = (status = null) => {
-        console.log("remove_saving", status);
         status == "fail" && setSubmitText("Fail to send");
         status == "success" && setSubmitText("Sended");
         status == "error" && setSubmitText("Error on send");
