@@ -2,7 +2,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: center;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, .75) 3px 3px 5px;
     position: relative;

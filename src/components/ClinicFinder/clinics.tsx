@@ -234,7 +234,7 @@ const ClinicsClinicalFinder = ({ clinics, regions, loading }:ClinicsClinicalFind
                                 <div className={`clinic-url${!clinic.url ? ' no-data' : ''}`}>
                                     {
                                         clinic.url ?
-                                        <a target="_blank" href={`http://${(clinic.url || "").replace("https://", "").replace("http://", "")}`} title="Clinic website" style={{color: "#59b7b3", cursor: "pointer"}}>
+                                        <a target="_blank" href={`http://${(clinic.url || "").replace("https://", "").replace("http://", "")}`} title="Clinic website" style={{color: "var(--teal)", cursor: "pointer"}}>
                                             Our website
                                         </a>
                                         :

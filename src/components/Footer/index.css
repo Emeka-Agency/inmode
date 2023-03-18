@@ -2,7 +2,7 @@
 
 footer {
     padding: 40px 0;
-    background-color: #0d1f2c;
+    background-color: var(--midnight);
     background-repeat: repeat;
     box-shadow: #000000a8 -4px -4px 12px;
     position: relative;

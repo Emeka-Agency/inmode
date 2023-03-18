@@ -221,7 +221,7 @@ export function signupEvent(datas:signupEvent) {
                     <label for="event-participate-is-doctor" class="user-select-none">I am a practitioner</label>
                     <div id="event-participate-is-doctor-status" style="display:none;"></div>
                 </div>
-                <div class="req-return success" style="color: '#59b7b3', fontSize: 15, fontWeight: 400"></div>
+                <div class="req-return success" style="color: 'var(--teal)', fontSize: 15, fontWeight: 400"></div>
                 <div class="req-return error" style="color: 'red', fontSize: 15, fontWeight: 400"></div>
                 <input id="event-participate-event-name" value="${datas.event_name}" style="display:none;"/>
                 <div class="event-participate-submit">

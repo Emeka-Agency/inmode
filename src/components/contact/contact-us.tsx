@@ -112,8 +112,8 @@ const ContactUs = () => {
                                 required={true}
                                 className="custom-scrollbar moz-scrollbar"
                             ></textarea>
-                            <div className="current-length" style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}>{`${msgLength} / ${max_length}`}</div>
-                            <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
+                            <div className="current-length" style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}>{`${msgLength} / ${max_length}`}</div>
+                            <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
                             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
                             {/* Mettre LoadingGIF en attendant le retour du serveur */}
                             <button type="submit" className="submit">

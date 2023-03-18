@@ -1,6 +1,6 @@
 .awards-section {
     margin: 0 auto;
-    background-color: var(--electric-blue);
+    background-color: var(--teal);
     padding: 25px 10px 38px;
     box-sizing: border-box;
     width: 100%;
@@ -11,7 +11,7 @@
     font-size: 28px;
     font-weight: bold;
     letter-spacing: 1px;
-    color: var(--dark-blue);
+    color: var(--dusk);
 }
 
 .awards-section .awards-img {

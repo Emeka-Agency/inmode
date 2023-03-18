@@ -3,7 +3,7 @@
     display: block;
     min-height: 700px;
     height: calc(100vh - 140px);
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     padding: 0;
     box-sizing: border-box;
     display: inline-flex;
@@ -70,7 +70,7 @@
         position: absolute;
         left: 0;
         bottom: -1px;
-        background-color: #59b7b3;
+        background-color: var(--teal);
         /* height: calc(100% - 140px); */
         height: calc(50% + 0px);
         width: calc(100vw + 40px)!important;
@@ -179,7 +179,7 @@
 .home-hero .hero-global .hero-bottom .bottom-text {
     padding: 5% 2%;
     box-sizing: border-box;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     color: #fff;
     font-size: 36px;
     font-weight: bold;
@@ -231,7 +231,7 @@
     display: block;
     min-height: 700px;
     height: calc(100vh - 140px);
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     padding: 0;
     box-sizing: border-box;
     display: inline-flex;
@@ -279,7 +279,7 @@
     z-index: 2;
     height: calc(100vh - 140px);
     width: calc(100vw + 40px)!important;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
 }
 
 .home-hero .layout-3 {
@@ -363,7 +363,7 @@
     }
 
     .home-hero .hero-left .bottom-text {
-        background-color: var(--electric-blue, #59b7b3);
+        background-color: var(--teal);
         bottom: 1px;
     }
 
@@ -422,7 +422,7 @@
     }
 
     .home-hero .hero-left .bottom-text {
-        background-color: var(--electric-blue, #59b7b3);
+        background-color: var(--teal);
         bottom: 1px;
     }
 
@@ -592,7 +592,7 @@
     width: 150vw;
     height: 100%;
     z-index: 1;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     border-top: 11px solid #fff;
     transform: rotate(-11deg);
 }
@@ -602,7 +602,7 @@
         display: block;
         margin-top: 50px;
         min-height: calc(100vh - 50px);
-        background-color: var(--electric-blue, #59b7b3);
+        background-color: var(--teal);
         padding-left: 0;
     }
 } */

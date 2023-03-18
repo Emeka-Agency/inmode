@@ -51,7 +51,7 @@
 }
 
 .testimonial:not(.product) .testimonial-img-part.practitioner {
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
 }
 
 .product.testimonial .testimonial-img-part.practitioner {
@@ -84,7 +84,7 @@
     top: 0;
     /* box-shadow: rgba(0, 0, 0, 0.6) 1.5px 1.5px 3px 0.5px; */
     padding: 15px 5px 10px 5px;
-    background: var(--electric-blue, #59b7b3);
+    background: var(--teal);
     width: fit-content;
 }
 
@@ -106,7 +106,7 @@
 }
 
 .testimonial .testimonial-quote-part {
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     text-align: center;
 }
 

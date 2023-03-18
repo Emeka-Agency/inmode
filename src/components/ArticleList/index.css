@@ -72,12 +72,12 @@
 }
 
 .article-list .article-list-elem .article-list-elem-title {
-    border-top: 2px solid var(--electric-blue, #59b7b3);
+    border-top: 2px solid var(--teal);
     padding: 5px 10px;
     padding-top: 15px;
     text-align: left;
     font-size: 22px;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: capitalize;
@@ -88,7 +88,7 @@
     padding: 5px 10px;
     text-align: left;
     font-size: 16px;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     font-weight: normal;
     letter-spacing: 1px;
     z-index: 0;
@@ -97,7 +97,7 @@
 .article-list .article-list-elem .article-list-elem-readtime {
     z-index: 0;
     font-size: 15px;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     text-align: right;
     padding: 5px;
     height: 20px;

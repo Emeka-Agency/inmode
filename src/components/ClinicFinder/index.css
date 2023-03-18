@@ -4,7 +4,7 @@ main.clinic-finder-page > .container {
 
 main.clinic-finder-page .container #clinic-finder-tabs {
     margin: 0 auto;
-    border: 1px solid var(--electric-blue);
+    border: 1px solid var(--teal);
     background-color: var(--star-blue);
     border-radius: 5px;
     width: 352px;
@@ -16,7 +16,7 @@ main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
     font-size: 22px;
     font-weight: bold;
     padding: 11px 17px;
-    color: #f2f2f2;
+    color: var(--pearl);
     cursor: pointer;
     width: 175px;
     text-align: center;
@@ -28,7 +28,7 @@ main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
 
 main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics:hover,
 main.clinic-finder-page .container #clinic-finder-tabs #tab-map:hover {
-    background-color: var(--electric-blue);
+    background-color: var(--teal);
     transition: background 0.2s ease-in-out 0s,
                 color 0.2s ease-in-out 0s;
 }
@@ -44,12 +44,12 @@ main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
 
 main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics.current,
 main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current {
-    background: var(--electric-blue);
+    background: var(--teal);
 }
 
 main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics.current:hover,
 main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current:hover {
-    color: var(--dark-blue);
+    color: var(--dusk);
 }
 
 main.clinic-finder-page .clinic-finder {
@@ -62,13 +62,13 @@ main.clinic-finder-page .clinic-finder .subtitle {
 }
 
 main.clinic-finder-page .clinic-finder .title {
-    color: var(--electric-blue, #59b7b3);
+    color: var(--teal);
     font-size: 28px;
     font-weight: 800;
 }
 
 main.clinic-finder-page .clinic-finder .subtitle {
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     font-size: 16px;
     font-weight: 400;
 }
@@ -81,7 +81,7 @@ main.clinic-finder-page .clinic-finder #search-clinic-indicator {
     margin: 25px 0 15px;
     font-size: 15px;
     font-weight: 700;
-    color: var(--electric-blue, #59b7b3);
+    color: var(--teal);
 }
 
 main.clinic-finder-page .clinic-finder #search-clinic-indicator-ui {
@@ -90,7 +90,7 @@ main.clinic-finder-page .clinic-finder #search-clinic-indicator-ui {
     display: block;
     margin: 30px 0 15px;
     position: relative;
-    background-color: var(--electric-blue-half, #59b7b380);
+    background-color: var(--teal-50);
     box-shadow: #0008 0px 4px 4px;
 }
 
@@ -100,7 +100,7 @@ main.clinic-finder-page .clinic-finder #search-clinic-indicator-ui .search-clini
     height: 100%;
     left: 0%;
     top: 0%;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     transition: width 0.5s ease-in-out 0s;
 }
 
@@ -114,7 +114,7 @@ main.clinic-finder-page .clinic-finder #clinic-finder-search-zip {
     outline: transparent;
     display: inline-block;
     vertical-align: top;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     font-weight: bold;
     font-family: "raleway", sans-serif;
 }
@@ -135,7 +135,7 @@ main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span::after,
 main.clinic-finder-page .clinic-finder .clinic-finder-search-span::after {
     content: "";
     width: 30%;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     height: 3px;
     position: absolute;
     top: 45px;
@@ -178,12 +178,12 @@ main.clinic-finder-page .clinic-finder #clinic-filter-regions:hover select {
 }
 
 main.clinic-finder-page .clinic-finder #clinic-filter-regions select .clinic-filter-region {
-    background-color: #0b1a25;
+    background-color: var(--dusk);
 }
 
 main.clinic-finder-page .clinic-finder #clinic-finder-search::placeholder,
 main.clinic-finder-page .clinic-finder #clinic-finder-search-zip::placeholder {
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
 }
 
 main.clinic-finder-page .clinic-finder #clinic-finder-search + div.bottom-border,
@@ -201,7 +201,7 @@ main.clinic-finder-page .clinic-finder #clinic-finder-search-zip + div.bottom-bo
     width: 0%;
     height: 2px;
     display: block;
-    background: var(--text-white, #f2f2f2);
+    background: var(--pearl);
     transition: width 0.3s ease-in-out 0s;
 }
 
@@ -259,7 +259,7 @@ main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone a,
 main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     font-size: 18px;
     font-weight: 500;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     word-break: break-word;
 }
 
@@ -303,7 +303,7 @@ main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-phone {
 
 main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-treatments {
     border-radius: 5px;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     width: fit-content;
     padding: 12px;
     cursor: pointer;
@@ -317,7 +317,7 @@ main.clinic-finder-page .clinic-finder .clinic-item .right-part .clinic-switch-t
 main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments {
     position: relative;
     width: 100%;
-    background-color: var(--electric-blue, #59b7b3);
+    background-color: var(--teal);
     left: -20px;
     transition: top 0.3s ease-in-out 0s;
     padding: 0 20px;
@@ -334,7 +334,7 @@ main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span {
     position: relative;
     font-size: 15px;
     font-weight: 600;
-    color: var(--text-white, #f2f2f2);
+    color: var(--pearl);
     display: inline-block;
     font-size: 0;
     padding: 0px;
@@ -361,9 +361,9 @@ main.clinic-finder-page .clinic-finder .clinic-item.treatments .clinic-treatment
 }
 
 main.clinic-finder-page .clinic-finder .clinic-item .clinic-treatments span:hover {
-    background: var(--text-white, #f2f2f2);
+    background: var(--pearl);
     padding: 3px 10px;
-    color: var(--electric-blue, #59b7b3);
+    color: var(--teal);
 }
 
 @media (max-width: 999px) {

@@ -1,12 +1,12 @@
 .our-specialist {
-    background: var(--dark-blue, #0b1a25);
+    background: var(--pearl);
     text-align: center;
     padding: 25px 0;
 }
 
 .our-specialist .title {
     text-transform: uppercase;
-    color: #fff;
+    color: var(--midnight);
     font-size: 36px;
     font-weight: 700;
     padding: 12px 8px;
@@ -41,16 +41,16 @@
 }
 
 .our-specialist .specialists .specialist .name {
-    border-top: 3px solid var(--electric-blue, #59b7b3);
+    border-top: 3px solid var(--teal);
     padding-top: 10px;
-    color: #fff;
+    color: var(--midnight);
     width: 80%;
     max-width: 220px;
     margin: 10px auto 0;
 }
 
 .our-specialist .specialists .specialist .descr {
-    color: #e0e0e0;
+    color: var(--midnight);
     max-width: 270px;
     margin: 0 auto;
     text-align: center;
