@@ -55,6 +55,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
                             <Menu key={key} prop_key={key} menu={menu} />
                         );
                     })}
+                    <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
                 </div>
             </div>
         </div>

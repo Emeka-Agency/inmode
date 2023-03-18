@@ -40,6 +40,8 @@ const HeaderMini = ({}:HeaderMini) => {
                 <span>CLOSE</span>
                 <img className="close-mini-menu-icon" src={images.getOne('closeWhiteIcon').publicURL} alt="close-white"/>
             </div>
+            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+            <div className="header-mini-divider"></div>
             <div id="header-mini-bottom" className="header-bottom">
                 {menus_bottom && menus_bottom.map((menu:HeaderBottom_Interface, key:number) => {
                     let temp:HeaderBottom_Interface = new Object();

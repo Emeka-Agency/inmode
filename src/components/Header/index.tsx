@@ -13,6 +13,8 @@ import { closeModale, openModale, routeCaseStudy } from "../../functions/modale"
 import { strToDom } from "../../functions/tools";
 import { _log } from "../../functions/logger";
 
+import "./index.css";
+
 const Header = ({}:Header) => {
 
     const images = useImages();

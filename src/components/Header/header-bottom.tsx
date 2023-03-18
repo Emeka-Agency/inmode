@@ -11,6 +11,7 @@ const HeaderBottom = ({}:HeaderBottom) => {
             {menus && menus.map((menu, key) => {
                 return (<Menu key={key} prop_key={key} menu={menu}/>);
             })}
+            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
         </div>
     );
 };

@@ -1,0 +1,64 @@
+/* book a demo */
+
+#book-a-demo {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+#book-a-demo span.label {
+    cursor: pointer;
+    color: var(--pearl);
+    background-color: var(--teal);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--teal);
+    padding: 3px 15px;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    line-height: 2;
+    transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s;
+}
+
+#book-a-demo span.label:hover {
+    color: var(--teal);
+    background-color: var(--pearl);
+}
+
+#book-a-demo:hover {
+    color: var(--teal);
+}
+
+@media (max-width: 1199px) {
+    #book-a-demo {
+        margin-left: 15px;
+        display: block;
+        top: 9px;
+        position: absolute;
+        float: right;
+        font-size: 14px;
+    }
+    
+    #book-a-demo {
+        right: 115px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    #book-a-demo {
+        position: relative;
+        width: 100%;
+        display: block;
+        float: unset;
+        right: 0;
+        margin: 0;
+        height: auto;
+    }
+
+    #book-a-demo {
+        margin-top: 70px;
+    }
+}
