@@ -22,10 +22,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
             "type": "contact-us"
         };
 
-        _log([
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'));
+        _log(create_pardot_url(body));
 
         const request_init:RequestInit = {
             method: 'POST',
@@ -154,10 +151,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             "type": "full-contact"
         };
 
-        _log([
-            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-            translate_fields_names(to_get_line(body, "contact"))
-        ].join('?'));
+        _log(create_pardot_url(body));
         
         const request_init:RequestInit = {
             method: 'POST',
@@ -376,10 +370,7 @@ function click_pardot(body) {
         let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
             id: 'send-mail',
             target: '_self',
-            href: [
-                `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-                translate_fields_names(to_get_line(body, "contact"))
-            ].join('?'),
+            href: create_pardot_url(body),
         }).click();
         a.click();
         a.remove();
@@ -396,6 +387,19 @@ function strToDom(str:string) {
     }
     catch(err) {
         return null;
+    }
+}
+
+function create_pardot_url(body) {
+    try {
+        return [
+            `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+            translate_fields_names(to_get_line(body, "contact"))
+        ].join('?');
+    }
+    catch(err) {
+        _log(err);
+        return false;
     }
 }
 
