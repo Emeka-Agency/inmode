@@ -13,6 +13,8 @@ import SlidesMini from "../components/home/slides-mini";
 import OurSpecialist from "../components/OurSpecialists";
 import AwardsSection from "../components/AwardsSection";
 import { graphql, useStaticQuery } from "gatsby";
+import ContactForm from "../components/contact/contact-form";
+import GetInTouch from "../components/contact/get-in-touch";
 
 const IndexPage = () => {
 
@@ -42,6 +44,8 @@ const IndexPage = () => {
         <AwardsSection/>
         <FollowInstagram insta_id={instagram_id}/>
         <Newsletter />
+        <GetInTouch from="home"/>
+        <ContactForm from="home"/>
       </Layout>
   );
 }

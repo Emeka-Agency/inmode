@@ -13,6 +13,8 @@ import GenericDetails from '../components/details';
 import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
 import { _log } from '../functions/logger';
+import ContactForm from '../components/contact/contact-form';
+import GetInTouch from '../components/contact/get-in-touch';
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
 
@@ -45,10 +47,12 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity} name={datas.Name}/>
                 {datas.Demo == null && datas.BeforesAfters == null && datas.SellingArgs == null && datas.ClinicalStudies == null && <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>}
                 <ProductDemo datas={datas.Demo}/>
-                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"#0b1a25"}/>}
+                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"var(--dusk)"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs ? datas.SellingArgs[0] : null}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
+                <GetInTouch from={`addon-${datas.Name?.toLowerCase()}`}/>
+                <ContactForm from={`addon-${datas.Name?.toLowerCase()}`}/>
             </Layout>
     );
 };
