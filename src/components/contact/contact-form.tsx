@@ -9,6 +9,8 @@ import LoadingGIF from "../LoadingGIF";
 import { send_form_large } from "./contact";
 import { _log } from "../../functions/logger";
 
+import "./contact-form.css";
+
 // DONE - Changer le type du champ de code postal
 // DONE - Factoriser les composants du formulaire
 // CURRENT - Tester l'envoi de mails
@@ -147,125 +149,127 @@ const ContactForm = ({ from }:ContactForm) => {
     const max_length = 800;
 
     return (
-        <form
-            id="full-contact-form"
-            name="contact"
-            onSubmit={(e) => {
-                e.preventDefault();
-                // console.log("Submit with " + (verify_form() ? "send" : "report validity"));
-                verify_form() ? set_saving() && send_form_large(e, setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
-            }}
-            className={`contact-form main-container ${from}`}
-            method="POST"
-        >
-            <div className="mailer-datas">
-                {form_elems.map((elem, elem_key) => {
-                    if(["email", "tel", "text"].indexOf(elem.type) > -1) {
-                        return (
-                            <div className="field" key={elem_key}>
-                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
-                                <input
-                                    id={elem.name}
-                                    title={elem.label}
-                                    placeholder={elem.placeholder}
-                                    spellCheck={elem.spellcheck ? true : false}
-                                    type={elem.type}
-                                    name={elem.name}
-                                    required={elem.required ? false : false}
-                                    pattern={elem.pattern ? elem.pattern : undefined}
-                                />
-                            </div>
-                        );
-                    }
-                    if(elem.type == "select") {
-                        return (
-                            <div className="field">
-                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
-                                {
-                                    Array.isArray(elem.options) ? 
-                                        <select id={elem.name} name={elem.name} required={elem.required ? false : false}>
-                                            {(elem.options || []).map((option, option_key) => 
-                                                <option
-                                                    value={option.value}
-                                                    disabled={option.disabled ? true : false}
-                                                    selected={option.selected ? true : false}
-                                                    style={option.style || {}}
-                                                    key={`option_${option_key}`}
-                                                >{option.label}</option>
-                                            )}
-                                        </select>
-                                    :
-                                    elem.options
-                                }
-                            </div>
-                        );
-                    }
-                })}
-            </div>
-            <div className="message-zone">
-                <textarea
-                    id="contact-message"
-                    placeholder="Enter your message here*"
-                    name="message"
-                    className="custom-scrollbar moz-scrollbar"
-                    maxLength={max_length}
-                    rows={15}
-                    onKeyUp={(e) => {setMsgLength(e.currentTarget.value.length);}}
-                    onKeyDown={(e) => {setMsgLength(e.currentTarget.value.length);}}
-                    spellCheck={false}
-                    required
-                >
-                </textarea>
-                <div
-                    className="current-length"
-                    style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}
-                >
-                    {`${msgLength} / ${max_length}`}
-                </div>
-            </div>
-            <div className="tech-list">
-                <span
-                    id="title-accordion"
-                    className="title title-accordion transition"
-                    onClick={(e) => {resolveClick(e);}}
-                >
-                    What technologies are you interested in?
-                </span>
-                <div
-                    id="accordion"
-                    className="accordion transition"
-                    style={{maxHeight: maxHeight}}
-                >
-                    {tech_list.map((tech, key) => {
-                        return (
-                            <div key={key} className="key-check">
-                                <label className="user-select-none" htmlFor={tech.name}>
-                                    <input type="checkbox" id={tech.name} name={tech.name}/>
-                                    {tech.label}
-                                </label>
-                            </div>
-                        );
+        <section className="full-form-container">
+            <form
+                id="full-contact-form"
+                name="contact"
+                onSubmit={(e) => {
+                    e.preventDefault();
+                    // console.log("Submit with " + (verify_form() ? "send" : "report validity"));
+                    verify_form() ? set_saving() && send_form_large(e, setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
+                }}
+                className={`contact-form main-container ${from}`}
+                method="POST"
+            >
+                <div className="mailer-datas">
+                    {form_elems.map((elem, elem_key) => {
+                        if(["email", "tel", "text"].indexOf(elem.type) > -1) {
+                            return (
+                                <div className="field" key={elem_key}>
+                                    <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                    <input
+                                        id={elem.name}
+                                        title={elem.label}
+                                        placeholder={elem.placeholder}
+                                        spellCheck={elem.spellcheck ? true : false}
+                                        type={elem.type}
+                                        name={elem.name}
+                                        required={elem.required ? false : false}
+                                        pattern={elem.pattern ? elem.pattern : undefined}
+                                    />
+                                </div>
+                            );
+                        }
+                        if(elem.type == "select") {
+                            return (
+                                <div className="field">
+                                    <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                    {
+                                        Array.isArray(elem.options) ? 
+                                            <select id={elem.name} name={elem.name} required={elem.required ? false : false}>
+                                                {(elem.options || []).map((option, option_key) => 
+                                                    <option
+                                                        value={option.value}
+                                                        disabled={option.disabled ? true : false}
+                                                        selected={option.selected ? true : false}
+                                                        style={option.style || {}}
+                                                        key={`option_${option_key}`}
+                                                    >{option.label}</option>
+                                                )}
+                                            </select>
+                                        :
+                                        elem.options
+                                    }
+                                </div>
+                            );
+                        }
                     })}
-                    <hr/>
                 </div>
-            </div>
-            <div className="policy">
-                <input type="checkbox" id="policy" name="policy" value="policy" required/>
-                <label htmlFor={"policy"}>I accept <a href="/mentions-legales#cgu" target="_blank" title="Terms and conditions">T&Cs</a></label>
-            </div>
-            <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
-            <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-            <button type="submit" className="submit transition">
-                <div className="label">{submitText}</div>
-                {<LoadingGIF/>}
-            </button>
-            <button
-                type="button"
-                className="submit transition reset"
-                onClick={() => reset_form()}>
-                <div className="label">New mail</div>
-            </button>
-        </form>
+                <div className="message-zone">
+                    <textarea
+                        id="contact-message"
+                        placeholder="Enter your message here*"
+                        name="message"
+                        className="custom-scrollbar moz-scrollbar"
+                        maxLength={max_length}
+                        rows={15}
+                        onKeyUp={(e) => {setMsgLength(e.currentTarget.value.length);}}
+                        onKeyDown={(e) => {setMsgLength(e.currentTarget.value.length);}}
+                        spellCheck={false}
+                        required
+                    >
+                    </textarea>
+                    <div
+                        className="current-length"
+                        style={{color: msgLength === max_length ? '#f00' : 'var(--midnight)'}}
+                    >
+                        {`${msgLength} / ${max_length}`}
+                    </div>
+                </div>
+                <div className="tech-list">
+                    <span
+                        id="title-accordion"
+                        className="title title-accordion transition"
+                        onClick={(e) => {resolveClick(e);}}
+                    >
+                        What technologies are you interested in?
+                    </span>
+                    <div
+                        id="accordion"
+                        className="accordion transition"
+                        style={{maxHeight: maxHeight}}
+                    >
+                        {tech_list.map((tech, key) => {
+                            return (
+                                <div key={key} className="key-check">
+                                    <label className="user-select-none" htmlFor={tech.name}>
+                                        <input type="checkbox" id={tech.name} name={tech.name}/>
+                                        {tech.label}
+                                    </label>
+                                </div>
+                            );
+                        })}
+                        <hr/>
+                    </div>
+                </div>
+                <div className="policy">
+                    <input type="checkbox" id="policy" name="policy" value="policy" required/>
+                    <label htmlFor={"policy"}>I accept <a href="/mentions-legales#cgu" target="_blank" title="Terms and conditions">T&Cs</a></label>
+                </div>
+                <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
+                <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
+                <button type="submit" className="submit transition">
+                    <div className="label">{submitText}</div>
+                    {<LoadingGIF/>}
+                </button>
+                {/* <button
+                    type="button"
+                    className="submit transition reset"
+                    onClick={() => reset_form()}>
+                    <div className="label">New mail</div>
+                </button> */}
+            </form>
+        </section>
     );
 };
 
