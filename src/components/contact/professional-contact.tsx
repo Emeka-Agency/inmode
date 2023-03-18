@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./professional-contact.css";
+
 const ProfessionalContact = ({ from }:ProfessionalContact) => {
     return (
         <div className={`professional-contact main-container ${from}`}>

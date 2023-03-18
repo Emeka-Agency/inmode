@@ -1,0 +1,83 @@
+/* professional-contact */
+
+.contact-page.professional-contact {
+    box-sizing: border-box;
+    border: 1px solid var(--teal);
+    padding: 35px 20px 50px;
+    overflow: hidden;
+    /* margin: 40px auto; */
+    margin: 40px auto 0;
+}
+
+.contact-page.professional-contact .title {
+    color: var(--midnight);
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+    min-height: 28px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: baseline;
+}
+
+.contact-page.professional-contact hr {
+    width: 90%;
+    margin: 10px auto 25px;
+}
+
+.contact-page.professional-contact .opportunities {
+
+}
+
+.contact-page.professional-contact .opportunities .descr {
+    color: var(--midnight);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    vertical-align: baseline;
+    margin-bottom: 35px;
+}
+
+@media (max-width: 699px) {
+    div.contact-page.professional-contact .distributors,
+    div.contact-page.professional-contact .distributors .distributor {
+        display: block;
+        margin: 0 auto;
+    }
+
+    div.contact-page.professional-contact .distributors .distributor {
+        margin: 15px auto;
+    }
+}
+
+.contact-page.professional-contact .distributors {
+    display: inline-flex;
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+.contact-page.professional-contact .distributors .distributor {
+    flex: 1;
+}
+
+.contact-page.professional-contact .distributors .distributor .place {
+    color: var(--midnight);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.contact-page.professional-contact .distributors .distributor .mail {
+    color: var(--teal);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+.contact-page.professional-contact + .divide-next {
+    width: 100%;
+    height: 40px;
+}
