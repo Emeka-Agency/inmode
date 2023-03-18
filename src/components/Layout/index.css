@@ -1085,16 +1085,6 @@ header .locked-section {
         margin-left: 5px;
     }
 
-    .header-mini.opened .header-mini-divider {
-        height: 2px;
-        background-color: #cccbcb;
-        border-radius: 50%;
-        width: 180px;
-        margin: 0 auto;
-        margin-top: 15px;
-        max-width: calc(100vw - 20px);
-    }
-
     /* HEADER-MINI-BOTTOM */
 
     .header-mini.opened .header-bottom {

@@ -1,0 +1,9 @@
+.header-mini.opened .header-mini-divider {
+    height: 2px;
+    background-color: #cccbcb;
+    border-radius: 50%;
+    width: 180px;
+    margin: 0 auto;
+    margin-top: 15px;
+    max-width: calc(100vw - 20px);
+}

@@ -9,6 +9,9 @@ import MenuSingleText from '../menu/single-text';
 import MenuSingleImage from '../menu/single-image';
 import { _log } from '../../functions/logger';
 
+import "./header-mini.css";
+import { Link } from 'gatsby';
+
 const HeaderMini = ({}:HeaderMini) => {
 
     const images = useImages();
