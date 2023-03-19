@@ -1,4 +1,4 @@
-import { _error } from "./logger";
+import { _error, _slog } from "./logger";
 
 const initWakeup = function(from = "unk") {
 
@@ -6,7 +6,7 @@ const initWakeup = function(from = "unk") {
         return false;
     }
 
-    // console.log(`%cFrom : ${from}`, "color: red; font-size: 16px; font-weight: bold;");
+    _slog(`From : ${from}`, "color: red; font-size: 16px; font-weight: bold;");
 
     const request_init:RequestInit = {
         method: 'POST',

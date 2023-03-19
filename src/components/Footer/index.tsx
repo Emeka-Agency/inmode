@@ -92,7 +92,7 @@ const Footer = ({}:Footer) => {
                     })}
                 </div>
                 <div className="footer-bottom-navigation">
-                    <div className="footer-trademark">© 2021 INMODEMD</div>
+                    <div className="footer-trademark">© {new Date().getUTCFullYear()} INMODEMD</div>
                     <div className="footer-navigation">
                         {footer.navigation && footer.navigation.map((menu, key) => {
                             return (
