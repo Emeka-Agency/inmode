@@ -209,3 +209,29 @@ DONE - Clinic finder -> Alphabetical
 CLARIFY - British Isles add to clinic finder
 
 DONE - Add the specialist from the mail -> add practictionner
+
+
+
+PLUS TARD
+
+Changer les couleurs sur les cards
+
+URGENT
+
+DONE - Faire un bouton Book a demo en fin de barre header-bottom
+DONE - Le bouton Book a demo apparaît en fixed menu
+DONE - Le bouton Book a demo apparaît dans le menu en bas en mini
+DONE - Le bouton Book a demo renvoie sur la page de Contact
+DONE - Inverser blanc pearl et bleu midnight sur la page de contact
+KEVIN - Mettre le formulaire contact us en bas de la page d'accueil à la place de get in touch
+DONE - Mettre le formulaire de contact en bas des pages machines
+DONE - Mettre le formulaire de contact en bas des pages pièces à main
+DONE - Inverser blanc et bleu sur la zone ProfessionalContact de la page de contact
+DONE - Retirer Triton et Votiva (unpublish)
+DONE - Information doit s'appeler About Us
+DONE - Contact Us passe à la fin de la barre
+DONE - Our Specialists :
+    DONE - fond Pearl
+    DONE - écriture midnight
+
+DONE - UK, N-Z, UKR, Pays-Bas en premier dans la liste des pays
