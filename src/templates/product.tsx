@@ -40,9 +40,9 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 />
                 <Divider position="top"/>
                 <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
-                <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>
+                {datas.Demo && (datas.Demo.text || datas.Demo.picture) && <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>}
                 <ProductDemo datas={datas.Demo}/>
-                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"var(--dusk)"}/>}
+                {datas.Demo && (datas.Demo.text || datas.Demo.picture) && <Divider position="top" specialBackground={'darkcyan'} specialFill={"var(--dusk)"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
