@@ -19,6 +19,23 @@ export interface Woocommerce_Shop_Interface {
     images: GatsbyImage_Interface[];
 }
 
+export interface Airtable_Event_Interface {
+    id: string;
+    EventName?: string;
+    Start?: string;
+    End?: string;
+    Practitioner?: string;
+    Address?: string;
+    Place?: string;
+    PlaceURL?: string;
+    Addons?: string[];
+    EventType?: string;
+    EventDescription?: string;
+    MapsLink?: string;
+    VideoURL?: string;
+    Picture?: any;
+};
+
 export interface InmodePanel_Addon_Interface {
     Name?: string;
     Banner? : InmodePanel_Base_Banner_Interface;

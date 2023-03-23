@@ -136,10 +136,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
               fixed {
                 srcWebp
                 srcSetWebp
+                aspectRatio
               }
               fluid {
                 srcWebp
                 srcSetWebp
+                aspectRatio
               }
             }
             publicURL
