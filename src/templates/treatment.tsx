@@ -15,7 +15,7 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
     const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(data.strapiTreatment);
 
     return (
-            <Layout>
+            <Layout title="treatment">
                 <SEO title="Treatment"/>
                 <TreatmentBanner datas={datas.Banner}/>
                 <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': null}}/>

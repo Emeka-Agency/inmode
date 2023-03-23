@@ -63,7 +63,7 @@ const PaymentErrorPage = () => {
     }
     
     return (
-        <Layout>
+        <Layout title="pay-error">
             <SEO title={page_title}/>
             <OrderLayout payment={"error"} status={page_title} order={order}/>
         </Layout>

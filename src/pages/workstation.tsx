@@ -8,7 +8,7 @@ import { edges_to_array } from "../functions/edges_to_array";
 const WorkstationPage = ({ data }) => {
     
     return (
-        <Layout>
+        <Layout title="workstations">
           <SEO title="Gamme"/>
           <Shop
             products={edges_to_array(data.allStrapiProduct.edges)}

@@ -7,7 +7,7 @@ import SEO from "../../components/seo";
 
 const CongressPage = ({ data }:CongressPage) =>  {
     return (
-        <Layout>
+        <Layout title="congrès">
             <SEO title="Congrès"/>
             <EventsLayout
                 current_page="congrès"

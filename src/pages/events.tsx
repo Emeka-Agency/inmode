@@ -11,7 +11,7 @@ const EventsPage = ({ data }:EventsPage) =>  {
     _group(data);
 
     return (
-        <Layout>
+        <Layout title="événements">
             <SEO title="Événements"/>
             <EventsLayout
                 current_page="upcoming events"

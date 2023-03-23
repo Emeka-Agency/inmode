@@ -5,7 +5,7 @@ import SEO from "../components/seo";
 const Sitemap = ({ data }:Sitemap) => {
     
     return (
-        <Layout>
+        <Layout title="sitemap">
             <SEO title="Sitemap"/>
             <div id="sitemap-links" className="container">
                 <div className="sitemap-list">

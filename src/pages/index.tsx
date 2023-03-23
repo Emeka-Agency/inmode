@@ -29,7 +29,7 @@ const IndexPage = () => {
   const size = useWindowSize();
 
   return (
-      <Layout>
+    <Layout title="home">
         <SEO title="Accueil"/>
         <Hero/>
         {size.width > 999 ? <Slides from='home'/> : <SlidesMini from="home"/>}

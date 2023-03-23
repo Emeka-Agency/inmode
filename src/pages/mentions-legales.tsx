@@ -6,7 +6,7 @@ import SEO from '../components/seo';
 
 const PrivacyPolicies = (  ) => {
     return (
-        <Layout>
+        <Layout title="mentions-legales">
             <SEO title="Mentions légales"/>
             <div className="privacy-policies">
                 <div className="container">

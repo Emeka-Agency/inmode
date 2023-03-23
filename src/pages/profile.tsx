@@ -11,7 +11,7 @@ const ProfilePage = () => {
     }
 
     return (
-        <Layout>
+        <Layout title="profil">
             <SEO title="Profil"/>
             <Profile/>
         </Layout>

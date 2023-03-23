@@ -18,7 +18,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
     return (
-            <Layout>
+            <Layout title="products">
                 <SEO title="Product"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation

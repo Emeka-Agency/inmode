@@ -12,7 +12,7 @@ const ContactPage = () => {
     initWakeup("contact");
 
     return (
-      <Layout>
+      <Layout title="contact">
         <SEO title="Contact"/>
         <GetInTouch from="contact-page"/>
         <ContactForm from="contact-page"/>

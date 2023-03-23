@@ -20,7 +20,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
     const [datas]:[InmodePanel_Addon_Interface, React.Dispatch<InmodePanel_Addon_Interface>] = React.useState(data.strapiAddon);
 
     return (
-            <Layout>
+            <Layout title="addon">
                 <SEO title="Addon"/>
                 <AddonBanner datas={datas.Banner}/>
                 <AddonNavigation
