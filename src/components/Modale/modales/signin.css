@@ -4,22 +4,22 @@
 
 #modale.signin-modale #modale-container.signin-container {
     width: 40%;
-    height: 40%;
+    height: auto;
     max-width: 500px;
-    max-height: 330px;
+    /* max-height: 330px; */
     min-width: 300px;
     min-height: 200px;
     top: 40%;
     transform: translateY(-50%);
     padding: 10px;
     box-sizing: border-box;
-    background-color: #070707;
+    background-color: var(--pearl);
     box-shadow: 0 0 5px #0e0e0e;
 }
 
 @media (max-width: 480px) {
     #modale.signin-modale #modale-container.signin-container {
-        height: 100%;
+        height: 400px;
     }
 }
 
@@ -27,9 +27,9 @@
     width: 100%;
     height: 100%;
     top: 0;
-    position: absolute;
+    position: relative;
     left: 0;
-    padding: 25px 15px;
+    padding: 10px 15px 0;
     box-sizing: border-box;
 }
 
@@ -40,7 +40,7 @@
 #modale.signin-modale #modale-container.signin-container #modale-content h2 {
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--midnight);
     padding-bottom: 5px;
     margin: 10px 0 10px;
     height: 20px;
@@ -53,15 +53,15 @@
     display: block;
     position: relative;
     width: 30%;
-    height: 3px;
+    height: 2px;
     margin-top: 5px;
-    background-color: white;
+    background-color: var(--midnight);
     transition: width 0.4s ease-in-out 0s,
                 background 0.2s ease-in-out 0s;
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content:hover h2::after {
-    width: 50%;
+    width: 40%;
     background-color: var(--teal);
 }
 
@@ -83,16 +83,16 @@
 
 #modale.signin-modale #modale-container.signin-container #modale-content form label {
     font-size: 16px;
-    color: white;
+    color: var(--midnight);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input {
-    background-color: var(--dusk);
+    background-color: var(--pearl-50);
     outline: transparent;
     border: none;
     padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--midnight-50);
     margin-bottom: 7px;
     border-radius: 5px 5px 0 0;
     transition: border 0.2s ease-in-out 0s,
@@ -100,14 +100,14 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--midnight-75);
     margin-bottom: 6px;
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input:active,
 #modale.signin-modale #modale-container.signin-container #modale-content form input:focus {
-    border-bottom: 3px solid var(--teal);
-    margin-bottom: 5px;
+    border-bottom: 2px solid var(--midnight);
+    margin-bottom: 6px;
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form span {
@@ -123,7 +123,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form input::placeholder {
-    color: var(--pearl-50); /* */
+    color: var(--midnight-50); /* */
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #user_section {
@@ -135,7 +135,7 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #user_section input#user_input {
-
+    
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #user_section span#user_input_result {
@@ -151,19 +151,19 @@
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #pass_section input#pass_input {
-
+    
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #pass_section span#pass_input_result {
-
+    
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form #login_action {
     display: block;
     text-align: center;
     font-size: 18px;
-    font-weight: bold;
-    color: var(--teal);
+    font-weight: 500;
+    color: var(--dusk);
     cursor: pointer;
     margin-top: 15px;
 }
@@ -173,6 +173,8 @@
     bottom: 15px;
     text-align: center;
     width: 100%;
+    position: relative;
+    margin-top: 15px;
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form div#submit_section span#submit_signin_result {
@@ -187,15 +189,15 @@
     padding: 7px 12px;
     border-radius: 5px;
     border: none;
-    background-color: var(--teal);
-    color: white;
+    background-color: var(--dusk);
+    color: var(--pearl-50);
     font-size: 18px;
     transition: color 0.3s ease-in-out 0s;
     cursor: pointer;
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form div#submit_section button#submit_signin:hover {
-    color: var(--dusk);
+    color: var(--pearl);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form div#submit_section .loading-gif.visible {
