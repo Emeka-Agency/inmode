@@ -2,6 +2,9 @@ import { string } from '../../o2switch/unix_modules/strapi/lib/services/entity-v
 import { Address_Interface, InmodePanel_Order_Interface } from '../components/interfaces';
 import { disableMainScroll, enableMainScroll } from './disable-scroll';
 import { _log } from './logger';
+import { selectOne } from './selectors';
+
+const toBlur = ['header', 'main', '#fixed-menu', '#payment_form', '#privacy-policy', '#contact-us', 'footer'];
 
 function modale():HTMLElement | null {
     return document.getElementById('modale');
@@ -22,11 +25,11 @@ function modaleClose():HTMLElement | null {
 export function openModale(params:ModaleParams) {
     disableMainScroll();
     let _temp = modale();
+    (params.blur ? params.blur : true) && toBlur.forEach(elem => selectOne(elem)?.style.setProperty('filter', 'blur(2px)'));
     _temp && _temp.classList.add('opened');
-    _temp = modale();
-    params.modaleClass != undefined && _temp && _temp.classList.add(params.modaleClass);
+    params.modaleClass != undefined && _temp?.classList.add(params.modaleClass);
     _temp = modaleContainer();
-    params.contentClass != undefined && _temp && _temp.classList.add(params.contentClass);
+    params.contentClass != undefined && _temp?.classList.add(params.contentClass);
     _temp = modaleContent();
     if(_temp) _temp.innerHTML = closePart() + params.content;
     params.onOpen && params.onOpen();
@@ -50,6 +53,7 @@ export function openModale(params:ModaleParams) {
 
 export function closeModale(onClose?:Function) {
     let _temp = modale();
+    toBlur.forEach(elem => selectOne(elem)?.style.removeProperty('filter'));
     _temp && _temp?.classList.replace('opened', 'closing');
     setTimeout(function() {
         let _temp = modale();
@@ -73,6 +77,7 @@ interface ModaleParams {
     contentClass?: string,
     modaleClass?: string,
     content: string,
+    blur?: boolean;
 };
 
 // ////////////////////////
