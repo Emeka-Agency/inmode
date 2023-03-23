@@ -38,12 +38,12 @@ const HeaderMini = ({}:HeaderMini) => {
         <div id="header-mini" className="header-mini custom-scrollbar moz-scrollbar">
             <div className="menu-close transition" onClick={(e) => {closeMenu(e);}}>
                 <span>FERMER</span>
-                <img className="close-mini-menu-icon" src={images.getOne('closeWhiteIcon').publicURL} alt="close-white"/>
+                <img className="close-mini-menu-icon" src={images.resolve_img('closeWhiteIcon')} alt="close-white"/>
             </div>
             {
                 user.logged() &&
                 <Link className="profile-link" to="/profile">
-                    <img src={images.getOne("profileIcon")?.publicURL}/>
+                    <img src={images.resolve_img("profileIcon")}/>
                     <span>Profil</span>
                 </Link>
             }
@@ -51,7 +51,7 @@ const HeaderMini = ({}:HeaderMini) => {
                 user.logged() &&
                 <div className="menu-single menu-text logout" title="Déconnexion" onClick={function() {user.logout();}}>
                     <span>Déconnexion</span>
-                    <img src={images.getOne("logoutIcon")?.publicURL}/>
+                    <img src={images.resolve_img("logoutIcon")}/>
                 </div>
             }
             {

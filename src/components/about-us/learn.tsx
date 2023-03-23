@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { useImages } from '../contexts/images-provider';
 
 import { InmodePanel_AboutUs_Interface } from '../interfaces';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Learn = ({ from = "" }:Learn) => {
 
@@ -12,23 +13,45 @@ const Learn = ({ from = "" }:Learn) => {
         {
             strapiAboutUs {
                 learn_bg {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 learn_icon {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 learn_txts {
@@ -50,8 +73,8 @@ const Learn = ({ from = "" }:Learn) => {
                 </div>
                 <div className="goals">
                     <img
-                        src={datas.learn_icon && datas.learn_icon.localFile.childImageSharp?.fluid.srcWebp}
-                        srcSet={datas.learn_icon && datas.learn_icon.localFile.childImageSharp?.fluid.srcSetWebp}
+                        src={resolveImg(datas.learn_icon)}
+                        srcSet={resolveImgSet(datas.learn_icon)}
                         alt='about-us-learn'
                     />
                     <div className="texts">
@@ -75,7 +98,7 @@ const Learn = ({ from = "" }:Learn) => {
                     return (
                         <div key={key} className="list-elem">
                             <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp}
+                                src={images.resolve_img('keyBenefitIcon')}
                                 alt={`elem-${key}`}
                                 className="before-text"
                             />

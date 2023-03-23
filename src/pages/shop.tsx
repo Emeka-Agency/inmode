@@ -74,7 +74,7 @@ const ShopPage = ({ data }:ShopPage) => {
     }
 
     return (
-        <Layout>
+        <Layout title="produits">
             <SEO title="Produits"/>
             {/* <CartProvider> */}
                 <WPShop
@@ -134,13 +134,24 @@ export const query = graphql`
                     price
                     discount
                     picture {
+                        caption
+                        url
                         localFile {
+                            absolutePath
                             childImageSharp {
                                 fluid {
-                                    srcWebp
-                                    srcSetWebp
+                                srcWebp
+                                srcSetWebp
                                 }
                             }
+                            childrenImageSharp {
+                                fluid {
+                                srcWebp
+                                srcSetWebp
+                                }
+                            }
+                            publicURL
+                            url
                         }
                     }
                 }
@@ -166,12 +177,21 @@ export const query = graphql`
                     }
                     images {
                         localFile {
-                            childrenImageSharp {
+                            absolutePath
+                            childImageSharp {
                                 fluid {
-                                    srcSet
-                                    srcSetWebp
+                                srcWebp
+                                srcSetWebp
                                 }
                             }
+                            childrenImageSharp {
+                                fluid {
+                                srcWebp
+                                srcSetWebp
+                                }
+                            }
+                            publicURL
+                            url
                         }
                     }
                 }

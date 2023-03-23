@@ -1,4 +1,5 @@
 import React from "react"
+import { resolveImg } from "../../functions/tools";
 import { InmodePanel_Base_Banner_Interface } from "../interfaces";
 
 const ProductBanner = ({ datas }:ProductBanner_Interface) => {
@@ -26,7 +27,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             <div className="product-banner-details">
                 <img
                     className="product-banner-logo"
-                    src={datas.right_img && datas.right_img.localFile.childImageSharp?.fluid.srcWebp}
+                    src={resolveImg(datas.right_img)}
                     alt="bodytite-logo-text"
                 />
                 <div className="product-banner-short-descr">
@@ -35,7 +36,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             </div>
             <div className="product-banner-mini">
                 <img
-                    src={datas.mini && datas.mini.localFile.childImageSharp?.fluid.srcWebp}
+                    src={resolveImg(datas.mini)}
                     alt="product-banner-mini"
                 />
             </div>

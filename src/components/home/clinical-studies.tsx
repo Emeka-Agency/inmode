@@ -9,7 +9,7 @@ const ClinicalStudies = ({}:ClinicalStudies) => {
         <div
             className="clinical-studies-home background-image"
             style={{
-                'backgroundImage': 'url(' + images.getOne('homeClinicalBack').publicURL + ')'
+                'backgroundImage': 'url(' + images.resolve_img('homeClinicalBack') + ')'
             }}
         >
             <div className="container">
@@ -17,8 +17,8 @@ const ClinicalStudies = ({}:ClinicalStudies) => {
                     <h2 className="title">Études cliniques</h2>
                     <div className="content">
                         <img
-                            src={images.getOne('homeClinicalStudy').childImageSharp?.fluid.srcWebp}
-                            srcSet={images.getOne('homeClinicalStudy').childImageSharp?.fluid.srcSetWebp}
+                            src={images.resolve_img('homeClinicalStudy')}
+                            srcSet={images.resolve_img('homeClinicalStudy')}
                             alt="studies-img"
                         />
                         <a href="https://inmodemd.com/clinical-papers/" target="_blank" rel="noreferrer" title="Voir les études">

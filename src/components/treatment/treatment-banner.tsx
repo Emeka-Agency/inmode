@@ -1,4 +1,5 @@
 import React from "react";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Treat_Banner_Interface } from "../interfaces";
 
 const TreatmentBanner = ({ datas }:TreatmentBanner) => {
@@ -9,8 +10,8 @@ const TreatmentBanner = ({ datas }:TreatmentBanner) => {
             <div className="top-transition"></div>
             <div className="treatment-banner-media">
                 <img
-                    src={datas.picture && datas.picture.localFile.childImageSharp?.fluid.srcWebp || ''}
-                    srcSet={datas.picture && datas.picture.localFile.childImageSharp?.fluid.srcSetWebp || ''}
+                    src={resolveImg(datas.picture)}
+                    srcSet={resolveImgSet(datas.picture)}
                     alt="banner"
                 />
             </div>

@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 import { enableMainScroll } from "../../functions/disable-scroll";
 import { format_string } from "../../functions/format_string";
+import { resolveImg } from "../../functions/tools";
 import { InmodePanel_Menu_Interface } from "../interfaces";
 import Menu from "../menu";
 
@@ -11,7 +12,7 @@ const MenuContentCard = ({ menu, prop_key = 0 }:MenuContentCard) => {
         return (
             <>
                 <img
-                    src={menu.icon ? menu.icon.localFile.publicURL || menu.icon.localFile.childImageSharp?.fluid.srcWebp : ""}
+                    src={resolveImg(menu.icon)}
                     alt="content-card-img"
                 />
                 {format_string(_menu.title || '')}

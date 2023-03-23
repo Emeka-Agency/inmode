@@ -43,7 +43,7 @@ const Header = ({}:Header) => {
     return (
         <header>
             <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.getOne('headerLogo').childImageSharp?.fluid.srcWebp +')'}}>
+                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo') +')'}}>
                     <Link to="/" className="zone-link" title="Inmode">
                     </Link>
                 </div>
@@ -60,7 +60,7 @@ const Header = ({}:Header) => {
                     {
                         user.logged() && size.width > 480 &&
                         <Link className="profile-link" to="/profile">
-                            <img src={images.getOne("profileIcon")?.publicURL}/>
+                            <img src={images.resolve_img("profileIcon")}/>
                             {size.width > 1199 && <span>Profil</span>}
                         </Link>
                     }
@@ -68,7 +68,7 @@ const Header = ({}:Header) => {
                         user.logged() && size.width > 480 &&
                         <div className="menu-single menu-text logout" title="Déconnexion" onClick={function() {user.logout();}}>
                             {size.width > 1199 && <span>Déconnexion</span>}
-                            <img src={images.getOne("logoutIcon")?.publicURL}/>
+                            <img src={images.resolve_img("logoutIcon")}/>
                         </div>
                     }
                     {

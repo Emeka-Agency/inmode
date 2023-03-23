@@ -1,7 +1,8 @@
 import React from "react";
 import RequestInformation from "./RequestInformation";
 import { useImages } from './contexts/images-provider';
-import { InmodePanel_Base_SectionTitreText_Interface } from "./interfaces";
+import { GatsbyImage_Interface, InmodePanel_Base_SectionTitreText_Interface, InmodePanel_Base_Texte_Interface, InmodePanel_Generic_WhatIs_Interface } from "./interfaces";
+import { resolveImg, resolveImgSet } from "../functions/tools";
 
 const GenericDetails = ({ datas }:GenericDetails) => {
 
@@ -12,12 +13,12 @@ const GenericDetails = ({ datas }:GenericDetails) => {
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
-                        src={datas.what_is.picture.localFile.childImageSharp?.fluid.srcWebp}
-                        srcSet={datas.what_is.picture.localFile.childImageSharp?.fluid.srcSetWebp}
+                        src={resolveImg(datas.what_is?.picture)}
+                        srcSet={resolveImgSet(datas.what_is?.picture)}
                         alt="detail-main-pic"
                     />
                 </div>
-                {datas.what_is.TitleText.map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
+                {(datas.what_is?.TitleText ?? []).map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
                     return (
                         <div key={key}>
                             <div className="title">
@@ -39,7 +40,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                     return (
                         <div key={key} className="list-elem">
                             {datas.list_icon && <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp || images.getOne('keyBenefitIcon').childImageSharp?.fluid.srcWebp}
+                                src={images.resolve_img('keyBenefitIcon')}
                                 alt={`elem-${key}`}
                                 className="before-text"
                             />}

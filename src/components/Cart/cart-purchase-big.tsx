@@ -37,6 +37,7 @@ import { cartFillDatas, closeModale, openModale } from "../../functions/modale";
 import _fetch from "../../functions/fetch";
 import { element } from "prop-types";
 import { useUser } from "../contexts/user-provider";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const CartPurchaseBig = ({  }:CartPurchaseBig) => {
 
@@ -199,7 +200,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
             className={!cart.cart_opened ? "all-close" : !formOpened ? 'step-1' : 'step-2-3'}
             onSubmit={sendForm}
         >
-            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.getOne('orderCreateSpinner')?.publicURL}/></div>
+            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.resolve_img('orderCreateSpinner')}/></div>
             <input id="order_user" value={user.get('user')} style={{display: 'none'}}/>
             {/* FIRST PART */}
             <div className={`cart-purchase transition${cart.cart_opened ? ' opened' : ''}`}>
@@ -212,15 +213,15 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     }}
                 >
                     <img
-                        src={images.getOne('closeWhiteIcon').publicURL}
-                        srcSet={images.getOne('closeWhiteIcon').publicURL}
+                        src={images.resolve_img('closeWhiteIcon')}
+                        srcSet={images.resolve_img_set('closeWhiteIcon')}
                         alt="Close"
                     />
                 </div>
                 <div className="cart-head">
                     <img
-                        src={images.getOne('cartBasketIcon').publicURL}
-                        srcSet={images.getOne('cartBasketIcon').publicURL}
+                        src={images.resolve_img('cartBasketIcon')}
+                        srcSet={images.resolve_img_set('cartBasketIcon')}
                         alt="Panier"
                     />
                     <span>{`Panier, ${cart.cart.length} article${cart.cart.length > 1 ? 's' : ''}`}</span>
@@ -235,13 +236,13 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                         cart.remove(article.reference, article.quantity);
                                     }}
                                 >
-                                    <img className="init" src={images.getOne('rmvInit').publicURL} alt="X"/>
-                                    <img className="blue" src={images.getOne('rmvHover').publicURL} alt="X"/>
+                                    <img className="init" src={images.resolve_img('rmvInit')} alt="X"/>
+                                    <img className="blue" src={images.resolve_img('rmvHover')} alt="X"/>
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcSetWebp}
+                                        src={resolveImg(cart.articles[article.reference].picture)}
+                                        srcSet={resolveImgSet(cart.articles[article.reference].picture)}
                                         alt=""
                                     />)}
                                 </div>
@@ -321,8 +322,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             alt="Close"
                         />
                     </div>
@@ -382,8 +383,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             className="unmorphic"
                             alt="Close"
                         />

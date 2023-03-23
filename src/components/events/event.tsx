@@ -1,5 +1,6 @@
 import React from "react";
 import { InmodePanel_Addon_Interface, InmodePanel_Event_Interface } from "../interfaces";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const InmodeEvent = ({ event = undefined, prop_key, current_page }:InmodeEvent) => {
 
@@ -19,9 +20,9 @@ const InmodeEvent = ({ event = undefined, prop_key, current_page }:InmodeEvent) 
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
                 <img
                     className="event-pic"
-                    src={event.picture.localFile.childImageSharp?.fluid.srcWebp}
-                    srcSet={event.picture.localFile.childImageSharp?.fluid.srcSetWebp}
-                    alt={`event-pic-'${event.title}`}
+                    src={resolveImg(event.Picture) || images.resolve_img("footerLogo")}
+                    srcSet={resolveImgSet(event.Picture) || images.resolve_img_set("footerLogo")}
+                    alt={`event-pic-'${event.EventName}`}
                 />
             </div>
             <div className={`descr-part ${prop_key === 0 ? 'left' : 'right'}`}>

@@ -640,8 +640,10 @@ export interface PayParams_Interface {
 };
 
 export interface Images_Interface {
-    getOne(request:string): GatsbyImage_Interface;
-    getSet(request:string[]): GatsbyImage_Interface[];
+    get_one(request:string): GatsbyImage_Interface;
+    get_set(request:string[]): GatsbyImage_Interface[];
+    resolve_img(request:string):string|undefined;
+    resolve_img_set(request:string):string|undefined;
 };
 
 // BACK INTERFACES
@@ -729,19 +731,28 @@ export interface RemoveAddressParams {
 
 // FIN BACK INTERFACES
 
+export interface External_GatsbyImage_Interface {
+    caption?: string;
+    url?: string;
+    localFile: GatsbyImage_Interface;
+}
+
 export interface GatsbyImage_Interface {
     childImageSharp: {
         fixed: {
+            aspectRatio?: number;
             base64?: string;
             srcWebp?: string;
             srcSetWebp?: string;
         }
         fluid: {
+            aspectRatio?: number;
             base64?: string;
             srcWebp?: string;
             srcSetWebp?: string;
         }
     }
+    absolutePath?: string;
     publicURL?: string;
     url?: string;
     base64?: string;

@@ -1,4 +1,5 @@
 import React from "react";
+import { resolveImg } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { InmodePanel_Generic_BeforeAfter_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
@@ -34,7 +35,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                             return (
                                 <div key={key} className="few-ba">
                                     <img
-                                        src={ba.image.localFile.childImageSharp?.fluid.srcWebp}
+                                        src={resolveImg(ba.image)}
                                         alt="treatment-before-after"
                                     />
                                     <div className="ba-doctor">{ba.doctor}</div>
@@ -52,7 +53,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
-                                                src={ba.image.localFile.childImageSharp?.fluid.srcWebp}
+                                                src={resolveImg(ba.image)}
                                                 alt={`treatment-before-after-${key}`}
                                             />
                                             <div className="ba-doctor">{ba.doctor}</div>

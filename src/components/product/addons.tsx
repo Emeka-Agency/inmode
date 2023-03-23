@@ -1,5 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
@@ -42,16 +43,16 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                     <div className="addon-description">
                                         <div className="addon-img">
                                             <img
-                                                src={product.left_image && product.left_image.localFile.childImageSharp?.fluid.srcWebp}
-                                                srcSet={product.left_image && product.left_image.localFile.childImageSharp?.fluid.srcSetWebp}
+                                                src={resolveImg(product.left_image)}
+                                                srcSet={resolveImgSet(product.left_image)}
                                                 alt={product.title_text}
                                             />
                                         </div>
                                         <div className="addon-title">
                                             {product.title_image && (
                                                 <img
-                                                    src={product.title_image.localFile.childImageSharp?.fluid.srcWebp}
-                                                    srcSet={product.title_image.localFile.childImageSharp?.fluid.srcSetWebp}
+                                                    src={resolveImg(product.title_image)}
+                                                    srcSet={resolveImgSet(product.title_image)}
                                                     alt={product.title_text}
                                                 />
                                             )}
@@ -91,8 +92,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                     images.length === 1 ?
                                         <img
                                             className="addon-single"
-                                            src={images[0].image ? images[0].image.localFile.childImageSharp?.fluid.srcWebp : ''}
-                                            srcSet={images[0].image ? images[0].image.localFile.childImageSharp?.fluid.srcSetWebp : ''}
+                                            src={resolveImg(images[0].image)}
+                                            srcSet={resolveImgSet(images[0].image)}
                                             alt={`morpheus8-${key + 1}-single`}
                                         />
                                         :
@@ -108,8 +109,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                                             <img
                                                                 key={key}
                                                                 className="addon-img"
-                                                                src={image.image ? image.image.localFile.childImageSharp?.fluid.srcWebp : ''}
-                                                                srcSet={image.image ? image.image.localFile.childImageSharp?.fluid.srcSetWebp : ''}
+                                                                src={resolveImg(image.image)}
+                                                                srcSet={resolveImgSet(image.image)}
                                                                 alt={`${product_title}-slide-${key}`}
                                                             />
                                                         </div>

@@ -16,7 +16,7 @@ const CartBasket = ({  }:CartBasket) => {
         <div className="cart opened">
             <img
                 className="cart-basket"
-                src={images.getOne('cartBasketIcon').publicURL}
+                src={images.resolve_img('cartBasketIcon')}
                 onClick={(e) => {
                     if(cart.total_articles()) {
                         cart.toggle_open_cart();

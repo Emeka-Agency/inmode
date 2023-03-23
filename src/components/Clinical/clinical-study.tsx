@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import { format_title } from "../../functions/format_title";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 
 const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
@@ -9,8 +10,8 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
         <div key={prop_key} className="study-slide">
             <div className="study-img">
                 <img
-                    src={study.picture.localFile.childImageSharp?.fluid.srcWebp}
-                    srcSet={study.picture.localFile.childImageSharp?.fluid.srcSetWebp}
+                    src={resolveImg(study.picture)}
+                    srcSet={resolveImgSet(study.picture)}
                     alt="clinical-study"
                 />
             </div>

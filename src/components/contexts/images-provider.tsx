@@ -14,218 +14,137 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const [images]:[ImagesList, React.Dispatch<ImagesList>] = React.useState(useStaticQuery(graphql `
         {
             logoutIcon: file(relativePath: {eq: "icons/exit.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             profileIcon: file(relativePath: {eq: "icons/profile.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             whiteEditIcon: file(relativePath: {eq: "icons/edit-white.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             blueEditIcon: file(relativePath: {eq: "icons/edit-blue.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             closeWhiteIcon: file(relativePath: {eq: "icons/close-white.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             hexagonalCross: file(relativePath: {eq: "icons/closingcross.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcSet
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             rmvInit: file(relativePath: {eq: "icons/rmv-article-init.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             rmvHover: file(relativePath: {eq: "icons/rmv-article-blue.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             contactUsPiece: file(relativePath: {eq: "contact_us.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcSet
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             fixedMenuLogo: file(relativePath: {eq: "header-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             headerLogo: file(relativePath: {eq: "header-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                        base64
-                        tracedSVG
-                    }
-                }
+                ...FileImgFormat
             }
             seoLogo: file(relativePath: {eq: "header-logo.png"}) {
-                img: childImageSharp {
-                    srcProps: fixed(width: 100, height: 100) {
-                        src: srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             seoLogo2: file(relativePath: {eq: "header-logo.png"}) {
-                img: childImageSharp {
-                    srcProps: fluid {
-                        src: srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             footerLogo: file(relativePath: {eq: "footer-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             phoneIcon: file(relativePath: {eq: "icons/icomoon/svg/067-phone.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             mailIcon: file(relativePath: {eq: "icons/icomoon/svg/391-mail5.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             bgPattern: file(relativePath: {eq: "footer-bg-pattern.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             privacyPolicyTriangle: file(relativePath: {eq: "privacy-icon.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             privacyPolicyC: file(relativePath: {eq: "privacy-c.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {
-                publicURL
+                ...FileImgFormat
             }
             alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole2: file(relativePath: {eq: "home/alveole-2.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole3: file(relativePath: {eq: "home/alveole-3.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole4: file(relativePath: {eq: "home/alveole-4.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole5: file(relativePath: {eq: "home/alveole-5.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             homeClinicalBack: file(relativePath: {eq: "home/media-bg.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             homeClinicalStudy: file(relativePath: {eq: "home/studies-img.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             heroHeader: file(relativePath: {eq: "hero-3.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             arrowRightIcon: file(relativePath: {eq: "icons/arrow-right.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             nextImage: file(relativePath: {eq: "products/addons/next.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             whiteTrash: file(relativePath: {eq: "icons/white-trash.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             redTrash: file(relativePath: {eq: "icons/red-trash.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
         }
+
+        fragment FileImgFormat on File {
+            url
+            absolutePath
+            childImageSharp {
+              fixed {
+                srcWebp
+                srcSetWebp
+              }
+              fluid {
+                srcWebp
+                srcSetWebp
+              }
+            }
+            publicURL
+            url
+          }
     `));
 
     const getOneImage = (request:string):GatsbyImage_Interface | null => {
@@ -246,10 +165,34 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
         }
     };
 
+    const resolveImg = (request:string):string|undefined => {
+        const img = getOneImage(request);
+        if(img == null) {return undefined;}
+        return img?.childImageSharp?.fluid?.srcWebp
+        || img?.childImageSharp?.fixed?.srcWebp
+        || img?.publicURL
+        || img?.absolutePath
+        || img?.url
+        || undefined;
+    }
+
+    const resolveImgSet = (request:string):string|undefined => {
+        const img = getOneImage(request);
+        if(img == null) {return undefined;}
+        return img?.childImageSharp?.fluid?.srcSetWebp
+        || img?.childImageSharp?.fixed?.srcSetWebp
+        || img?.publicURL
+        || img?.absolutePath
+        || img?.url
+        || undefined;
+    }
+
     return (
         <ImagesContext.Provider value = {{
-            'getOne': getOneImage,
-            'getSet': getImageSet,
+            'get_one': getOneImage,
+            'get_set': getImageSet,
+            'resolve_img': resolveImg,
+            'resolve_img_set': resolveImgSet
         }}>
             {children}
         </ImagesContext.Provider>

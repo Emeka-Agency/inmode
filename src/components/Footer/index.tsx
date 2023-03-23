@@ -19,14 +19,11 @@ const Footer = ({}:Footer) => {
         let _temp:GatsbyImage_Interface;
         switch(_selector) {
             case 'address':
-                _temp = images.getOne('addressIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('addressIcon') ?? '';
             case 'phone':
-                _temp = images.getOne('phoneIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('phoneIcon') ?? '';
             case 'mail':
-                _temp = images.getOne('mailIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('mailIcon') ?? '';
             default:
                 return '';
         }
@@ -37,7 +34,7 @@ const Footer = ({}:Footer) => {
     return (
         <footer
             style={{
-                backgroundImage: "url(" + images.getOne('bgPattern').childImageSharp?.fluid.srcWebp +")"
+                backgroundImage: "url(" + images.resolve_img('bgPattern') +")"
             }}
         >
             <div className="footer-content container">
@@ -45,8 +42,8 @@ const Footer = ({}:Footer) => {
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.getOne('footerLogo').childImageSharp?.fluid.srcWebp}
-                            srcSet={images.getOne('footerLogo').childImageSharp?.fluid.srcSetWebp}
+                            src={images.resolve_img('footerLogo')}
+                            srcSet={images.resolve_img_set('footerLogo')}
                             alt="footer-logo"
                         />
                     </div>

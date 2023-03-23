@@ -8,31 +8,31 @@ const Alveoles = ({}:Alveoles) => {
 
     const hexs = [
         {
-            'image': images.getOne('alveole1').childImageSharp?.fluid,
+            'image': images.resolve_img('alveole1'),
             'target': '_self',
             'text': 'Congrès',
             'link': '/events/congress'
         },
         {
-            'image': images.getOne('alveole2').childImageSharp?.fluid,
+            'image': images.resolve_img('alveole2'),
             'target': '_self',
             'text': 'Webinar',
             'link': '/events/webinars'
         },
         {
-            'image': images.getOne('alveole3').childImageSharp?.fluid,
+            'image': images.resolve_img('alveole3'),
             'target': '_self',
             'text': 'Workshop',
             'link': '/events/workshops'
         },
         // {
-        //     'image': images.getOne('alveole4').childImageSharp?.fluid,
+        //     'image': images.resolve_img('alveole4'),
         //     'target': '_self',
         //     'text': 'Produits',
         //     'link': '/workstation'
         // },
         // {
-        //     'image': images.getOne('alveole5').childImageSharp?.fluid,
+        //     'image': images.resolve_img('alveole5'),
         //     'target': '_blank',
         //     'text': 'Avant / Après',
         //     'link': 'https://inmodemd.com/gallery/'
@@ -44,13 +44,13 @@ const Alveoles = ({}:Alveoles) => {
             <div className="title">Évènements</div>
             <div className="back-hex left">
                 <img
-                    src={images.getOne('backAlveole').publicURL}
+                    src={images.resolve_img('backAlveole')}
                     alt="back-left"
                 />
             </div>
             <div className="back-hex right">
                 <img
-                    src={images.getOne('backAlveole').publicURL}
+                    src={images.resolve_img('backAlveole')}
                     alt="back-right"
                 />
             </div>
@@ -58,7 +58,7 @@ const Alveoles = ({}:Alveoles) => {
                 {hexs.map((hex, key) => {
                     return (
                         <div key={key} className="alveole">
-                            <img className="first" src={hex.image.srcWebp} srcSet={hex.image.srcSetWebp} alt={hex.text}/>
+                            <img className="first" src={hex.image} srcSet={hex.image} alt={hex.text}/>
                             <div className="alveole-text">{hex.text}</div>
                             {hex.target === '_self' ?
                                 <Link className="zone-link" to={hex.link} title={hex.text}></Link>

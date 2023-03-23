@@ -111,8 +111,8 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:image`,
-          // content: images.getOne('seoLogo').img.srcProps.src,
-          content: images.getOne('seoLogo2').img.srcProps.src,
+          // content: images.resolve_img('seoLogo'),
+          content: images.resolve_img('seoLogo2'),
         },
         {
           name: `twitter:creator`,
@@ -120,8 +120,8 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `msapplication-TileImage`,
-          // content: images.getOne('seoLogo').img.srcProps.src,
-          content: images.getOne('seoLogo2').img.srcProps.src,
+          // content: images.resolve_img('seoLogo'),
+          content: images.resolve_img('seoLogo2'),
         },
       ].concat(meta)}
     />

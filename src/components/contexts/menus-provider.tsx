@@ -43,14 +43,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                             internal_link
                         }
                         Icon {
-                            localFile {
-                                childImageSharp {
-                                    fluid {
-                                        srcWebp
-                                        srcSetWebp
-                                    }
-                                }
-                            }
+                            ...StrapiMenuProductsIconFragment
                         }
                     }
                     treatments {
@@ -64,26 +57,10 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         }
                     }
                     icon {
-                        localFile {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                            publicURL
-                        }
+                        ...StrapiMenuIconFragment
                     }
                     icon_hover {
-                        localFile {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                            publicURL
-                        }
+                       ...StrapiMenuIcon_hoverFragment
                     }
                 }
             }
@@ -115,14 +92,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                             internal_link
                         }
                         Icon {
-                            localFile {
-                                childImageSharp {
-                                    fluid {
-                                        srcWebp
-                                        srcSetWebp
-                                    }
-                                }
-                            }
+                            ...StrapiMenuProductsIconFragment
                         }
                     }
                     treatments {
@@ -146,48 +116,23 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         }
                     }
                     icon {
-                        localFile {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                            publicURL
-                        }
+                        ...StrapiMenuIconFragment
                     }
                     icon_hover {
-                        localFile {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                            publicURL
-                        }
+                        ...StrapiMenuIcon_hoverFragment
                     }
                 }
             }
             footer: strapiFooter {
                 logo {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                    }
+                    ...StrapiFooterLogoFragment
                 }
                 address
                 phone
                 mail
                 social {
                     icon {
-                        localFile {
-                            publicURL
-                        }
+                        ...StrapiFooterSocialIconFragment
                     }
                     name
                     url
@@ -225,6 +170,112 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         internal_link
                     }
                 }
+            }
+        }
+
+        fragment StrapiMenuProductsIconFragment on StrapiMenuProductsIcon {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
+            }
+        }
+        fragment StrapiMenuIconFragment on StrapiMenuIcon {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
+            }
+        }
+        fragment StrapiMenuIcon_hoverFragment on StrapiMenuIcon_hover {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
+            }
+        }
+        fragment StrapiFooterLogoFragment on StrapiFooterLogo {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
+            }
+        }
+        fragment StrapiFooterSocialIconFragment on StrapiFooterSocialIcon {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
             }
         }
     `));
@@ -288,7 +339,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
-                        'icon': product.Icon.localFile.childImageSharp?.fluid || null,
+                        'icon': product?.Icon || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };

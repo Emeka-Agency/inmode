@@ -42,25 +42,48 @@ export const query = graphql`
             Name
             Banner {
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 text
             }
             WhatIsTreat {
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 TitleText {
@@ -75,12 +98,24 @@ export const query = graphql`
             products {
                 WhatIsProduct {
                     image {
+                        caption
+                        url
                         localFile {
+                            absolutePath
                             childImageSharp {
                                 fluid {
-                                    srcWebp
+                                srcWebp
+                                srcSetWebp
                                 }
                             }
+                            childrenImageSharp {
+                                fluid {
+                                srcWebp
+                                srcSetWebp
+                                }
+                            }
+                            publicURL
+                            url
                         }
                     }
                     title
@@ -103,12 +138,24 @@ export const query = graphql`
             }
             BeforesAfters {
                 image {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 doctor
@@ -116,12 +163,24 @@ export const query = graphql`
             }
             ClinicalStudies {
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                srcWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 title

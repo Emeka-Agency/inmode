@@ -36,6 +36,7 @@ import './mini.css';
 import { getById } from "../../functions/selectors";
 import { useWindowSize } from "../../functions/window-size";
 import { useUser } from "../contexts/user-provider";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const CartPurchaseMini = ({  }:CartPurchaseMini) => {
 
@@ -162,7 +163,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
             id="purchase-mini"
             className={!cart.cart_opened ? "all-close" : !formOpened ? 'step-1' : 'step-2-3'}
         >
-            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.getOne('orderCreateSpinner')?.publicURL}/></div>
+            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.resolve_img('orderCreateSpinner')}/></div>
             <div className="stepper">
                 <div id="step-1" className="step">
                     <div className="num">1</div>
@@ -189,15 +190,15 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     }}
                 >
                     <img
-                        src={images.getOne('closeWhiteIcon').publicURL}
-                        srcSet={images.getOne('closeWhiteIcon').publicURL}
+                        src={images.resolve_img('closeWhiteIcon')}
+                        srcSet={images.resolve_img_set('closeWhiteIcon')}
                         alt="Close"
                     />
                 </div>
                 <div className="cart-head">
                     <img
-                        src={images.getOne('cartBasketIcon').publicURL}
-                        srcSet={images.getOne('cartBasketIcon').publicURL}
+                        src={images.resolve_img('cartBasketIcon')}
+                        srcSet={images.resolve_img_set('cartBasketIcon')}
                         alt="Panier"
                     />
                     <span>{`Panier, ${cart.cart.length} article${cart.cart.length > 1 ? 's' : ''}`}</span>
@@ -212,13 +213,13 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                                         cart.remove(article.reference, article.quantity);
                                     }}
                                 >
-                                    <img className="init" src={images.getOne('rmvInit').publicURL} alt="X"/>
-                                    <img className="blue" src={images.getOne('rmvHover').publicURL} alt="X"/>
+                                    <img className="init" src={images.resolve_img('rmvInit')} alt="X"/>
+                                    <img className="blue" src={images.resolve_img('rmvHover')} alt="X"/>
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.localFile.childImageSharp?.fluid.srcSetWebp}
+                                        src={resolveImg(cart.articles[article.reference].picture)}
+                                        srcSet={resolveImgSet(cart.articles[article.reference].picture)}
                                         alt=""
                                     />)}
                                 </div>
@@ -312,8 +313,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             alt="Close"
                         />
                     </div>
@@ -365,8 +366,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             className="unmorphic"
                             alt="Close"
                         />

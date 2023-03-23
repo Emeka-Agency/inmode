@@ -7,6 +7,7 @@ import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../interfaces";
 import { getById } from "../../functions/selectors";
 import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Slides = ({from}:Slides) => {
 
@@ -80,6 +81,7 @@ const Slides = ({from}:Slides) => {
                 classList={'slides-main transition'}
             >
                 {slides && slides.map((slide, key) => {
+                    console.log(slide);
                     return (
                         <div
                             key={key}
@@ -92,16 +94,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.localFile.childImageSharp?.fluid.srcWebp}
-                                        srcSet={slide.Icon.localFile.childImageSharp?.fluid.srcSetWebp}
+                                        src={resolveImg(slide.Icon)}
+                                        srcSet={resolveImgSet(slide.Icon)}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.localFile.childImageSharp?.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.localFile.childImageSharp?.fluid.srcSetWebp}
+                                        src={resolveImg(slide.ShopPicture)}
+                                        srcSet={resolveImgSet(slide.ShopPicture)}
                                         alt='product'
                                     />
                                 </div>
@@ -112,8 +114,8 @@ const Slides = ({from}:Slides) => {
                                     Informations produit
                                     <img
                                         className="slide-view-detail-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
                                     <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
@@ -122,8 +124,8 @@ const Slides = ({from}:Slides) => {
                                     Pièces à main
                                     <img
                                         className="slide-view-product-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp?.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-left"
                                     />
                                 </div> : null}
@@ -143,7 +145,7 @@ const Slides = ({from}:Slides) => {
                             <div className="close">
                                 <img
                                     className="close-product-view"
-                                    src={images.getOne('closeWhiteIcon').publicURL}
+                                    src={images.resolve_img('closeWhiteIcon')}
                                     alt="close-product-view"
                                 />
                             </div>

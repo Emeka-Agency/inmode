@@ -33,13 +33,25 @@ export const query = graphql`
             internal_link
           }
           ShopPicture {
-              localFile {
-                  childImageSharp {
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
                     fluid {
-                        srcWebp
+                    srcWebp
+                    srcSetWebp
                     }
-                  }
-              }
+                }
+                childrenImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
+            }
           }
           ShopDescription
           Addons {

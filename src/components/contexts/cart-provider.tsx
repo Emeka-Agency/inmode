@@ -93,13 +93,24 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                             price
                             discount
                             picture {
+                                caption
+                                url
                                 localFile {
+                                    absolutePath
                                     childImageSharp {
                                         fluid {
-                                            srcWebp
-                                            srcSetWebp
+                                        srcWebp
+                                        srcSetWebp
                                         }
                                     }
+                                    childrenImageSharp {
+                                        fluid {
+                                        srcWebp
+                                        srcSetWebp
+                                        }
+                                    }
+                                    publicURL
+                                    url
                                 }
                             }
                         }

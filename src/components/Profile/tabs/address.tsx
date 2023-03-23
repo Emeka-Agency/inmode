@@ -95,8 +95,8 @@ const AddressesTab = ({}:AddressesTab) => {
                     <div id={`address-${address.address}`} data-crit={address.address} className="address-section" key={index}>
                         <div className="address-name">{address.label || `Adresse ${index + 1}`}</div>
                         <div className="address-delete switcher" data-crit={address.address} onClick={(e) => user.removeAddress(address.address, document?.getElementById(`address-${address.address}`))}>
-                            <img className="init" src={images.getOne('whiteTrash')?.publicURL} title="Supprimer l'adresse"/>
-                            <img className="red" src={images.getOne('redTrash')?.publicURL} title="Supprimer l'adresse"/>
+                            <img className="init" src={images.resolve_img('whiteTrash')} title="Supprimer l'adresse"/>
+                            <img className="red" src={images.resolve_img('redTrash')} title="Supprimer l'adresse"/>
                         </div>
                         <div className="address-content">
                             {Object.keys(fields).map((field:string, key:number) => {
@@ -174,8 +174,8 @@ const AddressesTab = ({}:AddressesTab) => {
                                             <></>
                                             :
                                             <div className="address-field-edit">
-                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}init`} src={images.getOne('whiteEditIcon')?.publicURL}/>
-                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}blue`} src={images.getOne('blueEditIcon')?.publicURL}/>
+                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}init`} src={images.resolve_img('whiteEditIcon')}/>
+                                                <img className={`${isSpecialField(fields[field]) ? "edit " : ""}blue`} src={images.resolve_img('blueEditIcon')}/>
                                             </div>
                                         }
                                         <LoadingGIF customId={`loading-${fields[field]}`} customClass="mini" customStyle={{'display': 'none', 'verticalAlign': 'middle', 'margin': '0', 'left': '15px', 'width': '22px', 'height': '22px'}}/>

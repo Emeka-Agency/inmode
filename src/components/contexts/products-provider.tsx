@@ -19,24 +19,46 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                     node {
                         Name
                         ShopPicture {
+                            caption
+                            url
                             localFile {
+                                absolutePath
                                 childImageSharp {
                                     fluid {
-                                        srcWebp
-                                        srcSetWebp
+                                    srcWebp
+                                    srcSetWebp
                                     }
                                 }
+                                childrenImageSharp {
+                                    fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                    }
+                                }
+                                publicURL
+                                url
                             }
                         }
                         short_descr
                         Icon {
+                            caption
+                            url
                             localFile {
+                                absolutePath
                                 childImageSharp {
                                     fluid {
-                                        srcWebp
-                                        srcSetWebp
+                                    srcWebp
+                                    srcSetWebp
                                     }
                                 }
+                                childrenImageSharp {
+                                    fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                    }
+                                }
+                                publicURL
+                                url
                             }
                         }
                         MenuParams {
@@ -52,23 +74,45 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             Name
                             Banner {
                                 left_img {
+                                    caption
+                                    url
                                     localFile {
+                                        absolutePath
                                         childImageSharp {
                                             fluid {
-                                                srcWebp
-                                                srcSetWebp
+                                            srcWebp
+                                            srcSetWebp
                                             }
                                         }
+                                        childrenImageSharp {
+                                            fluid {
+                                            srcWebp
+                                            srcSetWebp
+                                            }
+                                        }
+                                        publicURL
+                                        url
                                     }
                                 }
                                 right_img {
+                                    caption
+                                    url
                                     localFile {
+                                        absolutePath
                                         childImageSharp {
                                             fluid {
-                                                srcWebp
-                                                srcSetWebp
+                                            srcWebp
+                                            srcSetWebp
                                             }
                                         }
+                                        childrenImageSharp {
+                                            fluid {
+                                            srcWebp
+                                            srcSetWebp
+                                            }
+                                        }
+                                        publicURL
+                                        url
                                     }
                                 }
                                 right_text
@@ -79,13 +123,24 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             }
                             WhatIs {
                                 picture {
+                                    caption
+                                    url
                                     localFile {
+                                        absolutePath
                                         childImageSharp {
                                             fluid {
-                                                srcWebp
-                                                srcSetWebp
+                                            srcWebp
+                                            srcSetWebp
                                             }
                                         }
+                                        childrenImageSharp {
+                                            fluid {
+                                            srcWebp
+                                            srcSetWebp
+                                            }
+                                        }
+                                        publicURL
+                                        url
                                     }
                                 }
                                 TitleText {

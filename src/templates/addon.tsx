@@ -60,36 +60,66 @@ export const query = graphql`
             Page_addon
             Banner {
                 left_img {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 mini {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 right_img {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 right_text
@@ -100,14 +130,24 @@ export const query = graphql`
                     text
                 }
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -118,14 +158,24 @@ export const query = graphql`
             Videos {
                 url
                 poster {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -133,14 +183,24 @@ export const query = graphql`
                 doctor
                 text
                 image {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -148,14 +208,24 @@ export const query = graphql`
                 title
                 text
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -165,14 +235,24 @@ export const query = graphql`
                 }
                 author
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
                 publication
@@ -186,14 +266,24 @@ export const query = graphql`
                     texte
                 }
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -201,14 +291,24 @@ export const query = graphql`
                 title
                 text
                 picture {
+                    caption
+                    url
                     localFile {
+                        absolutePath
                         childImageSharp {
                             fluid {
-                                base64
-                                srcWebp
-                                srcSetWebp
+                            srcWebp
+                            srcSetWebp
                             }
                         }
+                        childrenImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
                 }
             }

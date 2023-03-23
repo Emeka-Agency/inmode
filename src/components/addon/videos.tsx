@@ -1,5 +1,6 @@
 import React from "react";
 import { getById, selectOne, getOneByTag } from "../../functions/selectors";
+import { resolveImg } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Addon_Interface } from "../interfaces";
@@ -54,7 +55,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
       _temp = getById('video-iframe');
       _temp && _temp.classList.add('opened');
       let iframe = '';
-      iframe += '<img class="close-pic" src=' + images.getOne('closeWhiteIcon').publicURL + ' onclick="resolve_click(e)"/>';
+      iframe += '<img class="close-pic" src=' + images.resolve_img('closeWhiteIcon') + ' onclick="resolve_click(e)"/>';
       iframe += '<iframe ';
       iframe += 'allowfullscreen="allowfullscreen" ';
       iframe += 'allow="autoplay; fullscreen" ';
@@ -92,7 +93,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                       onClick={(e) => {resolveVideoClick(e, video.url || '');}}
                     >
                       <img
-                        src={video.poster && video.poster.localFile.childImageSharp?.fluid.srcWebp}
+                        src={resolveImg(video.poster)}
                         alt={`addon-videos-${key}`}
                       />
                       <span className="video-bg"></span>
@@ -117,7 +118,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                           key={key}
                         >
                           <img
-                            src={video.poster && video.poster.localFile.childImageSharp?.fluid.srcWebp}
+                            src={resolveImg(video.poster)}
                             alt={`addon-videos-${key}`}
                           />
                           <span className="video-bg"></span>

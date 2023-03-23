@@ -3,6 +3,7 @@
 // IS-TYPE
 // ================================
 
+import { External_GatsbyImage_Interface, GatsbyImage_Interface } from "../components/interfaces";
 import { _log } from "./logger";
 import { err_log } from "./logging";
 
@@ -349,4 +350,103 @@ export const keyboardUsed = function(__critere:string|null = null, __event:any =
         default:
             return false;
     }
+}
+
+export const resolveImg = (img?:any) => {
+    return typeof img?.localFile == "undefined" ? resolveExternalImg(img) : resolveInternalImg(img);
+}
+export const resolveImgSet = (img?:any) => {
+    return typeof img?.localFile == "undefined" ? resolveExternalImgSet(img) : resolveInternalImgSet(img);
+}
+
+export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|undefined => {
+    if(img == null) {return undefined;}
+    if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fluid?.srcWebp;
+    }
+    if((img?.localFile?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fixed?.srcWebp;
+    }
+    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
+        return img?.localFile?.url;
+    }
+    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+        return img?.localFile?.publicURL;
+    }
+    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
+        return img?.localFile?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    return undefined;
+}
+
+export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):string|undefined => {
+    if(img == null) {return undefined;}
+    if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
+    }
+    if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
+    }
+    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
+        return img?.localFile?.url;
+    }
+    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+        return img?.localFile?.publicURL;
+    }
+    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
+        return img?.localFile?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    return undefined;
+}
+
+export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined => {
+    if(img == null) {return undefined;}
+    if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
+        return img?.childImageSharp?.fluid?.srcWebp;
+    }
+    if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
+        return img?.childImageSharp?.fixed?.srcWebp;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+        return img?.publicURL;
+    }
+    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
+        return img?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    return undefined;
+}
+
+export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefined => {
+    if(img == null) {return undefined;}
+    if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
+        return img?.childImageSharp?.fluid?.srcSetWebp;
+    }
+    if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
+        return img?.childImageSharp?.fixed?.srcSetWebp;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+        return img?.publicURL;
+    }
+    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
+        return img?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        return img?.url;
+    }
+    return undefined;
 }

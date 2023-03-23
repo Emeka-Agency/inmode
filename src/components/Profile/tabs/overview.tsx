@@ -69,8 +69,8 @@ const OverviewTab = ({}:OverviewTab) => {
                             </div>
                             <input className="profile-field-change"/>
                             <div className="profile-field-edit">
-                                <img className="init" src={images.getOne('whiteEditIcon')?.publicURL}/>
-                                <img className="blue" src={images.getOne('blueEditIcon')?.publicURL}/>
+                                <img className="init" src={images.resolve_img('whiteEditIcon')}/>
+                                <img className="blue" src={images.resolve_img('blueEditIcon')}/>
                             </div>
                             <LoadingGIF customId={`loading-${field}`} customClass="mini" customStyle={{'display': 'none', 'verticalAlign': 'middle', 'margin': '0', 'left': '15px', 'width': '22px', 'height': '22px'}}/>
                             <span className="profile-field-change-result"></span>
