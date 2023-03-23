@@ -56,7 +56,13 @@ const GenericDetails = ({ datas }:GenericDetails) => {
 }
 
 interface GenericDetails {
-    
+    datas: {
+        what_is?: InmodePanel_Generic_WhatIs_Interface;
+        anchor_key?: string;
+        list_title?: string;
+        list?: InmodePanel_Base_Texte_Interface[];
+        list_icon: GatsbyImage_Interface|null;
+    }
 }
 
 export default GenericDetails;

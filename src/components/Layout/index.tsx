@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 
 import Header from "../Header/index";
@@ -22,7 +22,7 @@ import { useUser } from "../contexts/user-provider";
 
 // {/* SWITCH CART END */}
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title }:Layout) => {
 
     // TODO régler isMobile pour ouverture cookies
     // const [isMobile, setIsMobile] = React.useState()
@@ -72,7 +72,7 @@ const Layout = ({ children }) => {
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
                 <script>{searchConsole()}</script>
                 <ProductsProvider>
-                <main id="main">
+                <main id="main" className={title + '-page'}>
                     {children}
                 </main>
                 </ProductsProvider>
@@ -92,8 +92,9 @@ const Layout = ({ children }) => {
     )
 }
 
-Layout.propTypes = {
-    children: PropTypes.node.isRequired,
-}
+interface Layout {
+    children: ReactNode;
+    title: string;
+};
 
 export default Layout
