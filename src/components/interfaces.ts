@@ -33,8 +33,33 @@ export interface Airtable_Event_Interface {
     EventDescription?: string;
     MapsLink?: string;
     VideoURL?: string;
-    Picture?: any;
+    Picture?: Airtable_Picture_Interface[];
 };
+
+export interface Airtable_Picture_Interface {
+    width: number;
+    height: number;
+    id: string;
+    thumbnails: {
+        full: {
+            url: string;
+            width: number;
+            height: number;
+        }
+        large: {
+            url: string;
+            width: number;
+            height: number;
+        }
+        small: {
+            url: string;
+            width: number;
+            height: number;
+        }
+    };
+    url: string;
+    type: string;
+}
 
 export interface InmodePanel_Addon_Interface {
     Name?: string;
