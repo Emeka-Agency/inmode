@@ -1,13 +1,30 @@
 /* FOOTER */
 
 footer {
-    padding: 40px 0;
-    background-color: var(--midnight);
+    padding: 40px 0 0;
+    background-color: var(--pearl);
     background-repeat: repeat;
-    box-shadow: var(--pure-black-75) -4px -4px 12px;
+    box-shadow: 2px -8px 10px rgba(0,0,0,.05);
     position: relative;
     line-height: 1;
     min-height: 240px;
+    /* background-blend-mode: soft-light; */
+}
+
+footer .background-hex {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.02;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    z-index: 0;
+}
+
+footer .footer-content {
+    position: relative;
+    z-index: 1;
 }
 
 footer .footer-logo-infos-part {
@@ -18,6 +35,9 @@ footer .footer-logo {
     display: inline-block;
     max-width: 200px;
     width: 100%;
+    /* padding: 5px 15px;
+    border-radius: 15px;
+    background-color: var(--midnight); */
 }
 
 footer .footer-infos {
@@ -56,7 +76,7 @@ footer .footer-mail-ico {
 footer .footer-infos-text {
     font-size: 14px;
     font-weight: 700;
-    color: var(--pearl);
+    color: var(--midnight);
     text-transform: uppercase;
     line-height: 2;
     white-space: pre-wrap;
@@ -87,7 +107,7 @@ footer .footer-trademark {
     display: inline-block;
     font-size: 16px;
     vertical-align: top;
-    color: var(--pearl);
+    color: var(--midnight);
 }
 
 footer .footer-navigation {
@@ -98,14 +118,14 @@ footer .footer-navigation-separator::before {
     content: '|';
     padding: 0 5px;
     font-size: 16px;
-    color: var(--pearl);
+    color: var(--midnight);
 }
 
 footer .footer-navigation-part {
     display: inline-block;
     font-size: 16px;
     vertical-align: top;
-    color: var(--pearl);
+    color: var(--midnight);
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }

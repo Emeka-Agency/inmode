@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Addons from '../components/product/addons';
-import Divider from '../components/divider';
 import ProductBanner from '../components/product/banner';
 import ProductNavigation from '../components/product/navigation';
 import SEO from '../components/seo';
@@ -38,11 +37,8 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'anchor_key': 'key-benefits'
                     }}
                 />
-                <Divider position="top"/>
                 <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
-                {datas.Demo && (datas.Demo.text || datas.Demo.picture) && <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>}
                 <ProductDemo datas={datas.Demo}/>
-                {datas.Demo && (datas.Demo.text || datas.Demo.picture) && <Divider position="top" specialBackground={'darkcyan'} specialFill={"var(--dusk)"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>

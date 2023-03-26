@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Divider from '../components/divider';
 import AddonBanner from '../components/addon/banner';
 import AddonBeforeAfter from '../components/addon/before-after';
 import AddonNavigation from '../components/addon/navigation';
@@ -31,12 +30,10 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                     }}
                 />
                 <GenericDetails datas={{'list': datas.KeyBenefits, 'what_is': datas.WhatIs, 'list_title': 'key benefits', 'list_icon' : 'key_benefit'}}/>
-                <Divider position="top"/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
                 <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>
                 <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
-                <Divider position="bottom"/>
                 <AddonWhatTreat title="What can you treat ?" WhatTreats={datas.WhatTreats}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
                 <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>

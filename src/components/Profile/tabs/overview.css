@@ -13,7 +13,7 @@ section#profile #profile-content #overview-section #personnal-datas {
 section#profile #profile-content #overview-section #personnal-datas h3 {
     font-size: 22px;
     font-weight: bold;
-    color: white;
+    color: var(--midnight);
     padding: 5px 5px;
     box-sizing: border-box;
 }
@@ -34,7 +34,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     width: 100%;
     padding-bottom: 10px;
     font-size: 16px;
-    color: white;
+    color: var(--midnight);
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -45,7 +45,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     width: 5%;
     height: 1px;
     margin-bottom: 2px;
-    background-color: white;
+    background-color: var(--midnight);
     transition: width 0.3s ease-in-out 0s,
                 height 0.3s ease-in-out 0s,
                 margin 0.3s ease-in-out 0s,
@@ -73,7 +73,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     width: calc(var(--field-width) - 40px);
     padding-left: 5px;
     cursor: pointer;
-    color: white;
+    color: var(--midnight);
 }
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit div.profile-field-value {
@@ -84,7 +84,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field input.profile-field-change {
     caret-color: var(--teal);
-    color: white;
+    color: var(--midnight);
     font-size: 14px;
     padding-left: 5px;
     display: none;
@@ -107,7 +107,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 }
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--midnight);
     margin-bottom: 2px;
     transition: border 0.2s ease-in-out 0s,
                 margin 0.2s ease-in-out 0s;
@@ -142,6 +142,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .init {
     width: 100%;
+    filter: invert(1);
 }
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .blue {
@@ -174,7 +175,7 @@ section#profile #profile-content #overview-section #personnal-datas div.profile-
     font-size: 14px;
     line-height: 18px;
     margin-top: 5px;
-    color: white;
+    color: var(--midnight);
 }
 
 section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-change-result.success {

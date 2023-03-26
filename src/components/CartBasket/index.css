@@ -13,8 +13,8 @@ img.cart-basket {
 }
 
 div.cart img.cart-basket + div.cart-basket-nbr {
-    background-color: var(--pearl);
-    color: var(--teal);
+    color: var(--pearl);
+    background-color: var(--midnight);
     border-radius: 50%;
     position: absolute;
     text-align: center;
@@ -35,6 +35,8 @@ div.cart img.cart-basket + div.cart-basket-nbr {
     height: 18px;
     top: -8px;
     right: -8px;
+    color: var(--pearl);
+    background-color: var(--midnight);
 }
 
 /* FIXED-MENUS */

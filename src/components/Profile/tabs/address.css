@@ -15,7 +15,7 @@ section#profile #profile-content #addresses-section .address-section::after {
     content: " ";
     width: 100%;
     height: 2px;
-    background-color: white;
+    background-color: var(--pearl);
     display: block;
 }
 
@@ -63,7 +63,7 @@ section#profile #profile-content #addresses-section .address-section .address-de
 section#profile #profile-content #addresses-section .address-section .address-name {
     font-size: 22px;
     font-weight: bold;
-    color: white;
+    color: var(--pearl);
     padding: 5px 5px;
     box-sizing: border-box;
 }
@@ -113,7 +113,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
     width: 100%;
     padding-bottom: 10px;
     font-size: 16px;
-    color: white;
+    color: var(--midnight);
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -124,7 +124,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
     width: 5%;
     height: 1px;
     margin-bottom: 2px;
-    background-color: white;
+    background-color: var(--midnight);
     transition: width 0.3s ease-in-out 0s,
                 height 0.3s ease-in-out 0s,
                 margin 0.3s ease-in-out 0s,
@@ -150,7 +150,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
     width: calc(var(--field-width) - 40px);
     padding-left: 5px;
     cursor: pointer;
-    color: white;
+    color: var(--midnight);
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit .address-field-value {
@@ -159,7 +159,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field .address-field-change {
     caret-color: var(--teal);
-    color: white;
+    color: var(--midnight);
     font-size: 14px;
     padding-left: 5px;
     display: none;
@@ -186,7 +186,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit input.address-field-change:hover,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit textarea.address-field-change:hover,
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--midnight);
     margin-bottom: 2px;
     transition: border 0.2s ease-in-out 0s,
                 margin 0.2s ease-in-out 0s;
@@ -209,7 +209,9 @@ section#profile #profile-content #addresses-section .address-section .address-co
     width: 100%;
     height: 100%;
     resize: none;
-    background: var(--dusk);
+    color: var(--midnight);
+    background: var(--pearl);
+    border: 1px solid var(--midnight);
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change {
@@ -217,8 +219,8 @@ section#profile #profile-content #addresses-section .address-section .address-co
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field.edit select.address-field-change option {
-    background: var(--dusk);
-    color: white;
+    background: var(--pearl);
+    color: var(--midnight);
     font-size: 13px;
     font-weight: normal;
 }
@@ -234,6 +236,10 @@ section#profile #profile-content #addresses-section .address-section .address-co
     vertical-align: middle;
     margin-left: 5px;
     position: relative;
+}
+
+section#profile #profile-content #addresses-section .address-section .address-content .address-field .address-field-edit .init {
+    filter: invert(1);
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field .address-field-edit .init,
@@ -268,7 +274,7 @@ section#profile #profile-content #addresses-section .address-section .address-co
     font-size: 14px;
     line-height: 18px;
     margin-top: 5px;
-    color: white;
+    color: var(--pearl);
 }
 
 section#profile #profile-content #addresses-section .address-section .address-content .address-field .address-field-change-result.success {
@@ -290,7 +296,7 @@ section#profile #profile-content  #address-add {
     text-align: center;
     background-color: var(--teal-50);
     transition: background 0.3s ease-in-out 0s;
-    color: white;
+    color: var(--pearl);
     text-transform: uppercase;
     font-weight: bold;
 }
@@ -301,23 +307,13 @@ section#profile #profile-content  #address-add:hover {
 }
 
 section#profile #profile-content  #address-add span:first-child {
-    vertical-align: middle;
-    display: inline-block;
-}
-
-section#profile #profile-content  #address-add span:last-child {
     margin-left: 10px;
     font-size: 16px;
     /* font-weight: bold; */
-    border: 2px solid white;
     border-radius: 50%;
-    width: 16px;
     height: 16px;
-    display: inline-block;
     padding: 2px;
     font-family: Roboto;
-    vertical-align: middle;
-    line-height: 1;
 }
 
 @media (max-width: 639px) {

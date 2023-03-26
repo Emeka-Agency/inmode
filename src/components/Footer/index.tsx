@@ -5,6 +5,7 @@ import { useImages } from '../contexts/images-provider';
 
 import './index.css';
 import { GatsbyImage_Interface } from '../interfaces';
+import { resolveImg } from '../../functions/tools';
 
 const Footer = ({}:Footer) => {
 
@@ -32,18 +33,18 @@ const Footer = ({}:Footer) => {
     const menus = ['address', 'phone', 'mail'];;
 
     return (
-        <footer
-            style={{
-                backgroundImage: "url(" + images.resolve_img('bgPattern') +")"
-            }}
-        >
+        <footer>
+            <div className="background-hex" style={{backgroundImage: "url(" + images.resolve_img('bgPattern') +")"}}></div>
             <div className="footer-content container">
                 <div className="footer-logo-infos-part">
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.resolve_img('footerLogo')}
-                            srcSet={images.resolve_img_set('footerLogo')}
+                            src={images.resolve_img('footerLogo2')}
+                            // src={images.resolve_img('headerLogo2')}
+                            // src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
+                            srcSet={images.resolve_img_set('footerLogo2')}
+                            // srcSet={images.resolve_img_set('headerLogo2')}
                             alt="footer-logo"
                         />
                     </div>
@@ -75,7 +76,7 @@ const Footer = ({}:Footer) => {
                             <div
                                 key={key}
                                 className="footer-social-ico background-image"
-                                style={{backgroundImage: 'url('+ (menu.icon ? menu.icon.localFile.publicURL : '') +')'}}
+                                style={{backgroundImage: 'url('+ resolveImg(menu.icon) +')'}}
                             >
                                 <a className="zone-link" href={menu.url || '#'} title={menu.name} target="_blank"></a>
                             </div>

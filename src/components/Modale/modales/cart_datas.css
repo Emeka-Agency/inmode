@@ -16,12 +16,12 @@
 
 #modale #modale-container.cart-fill-datas #modale-content h2 {
     font-size: 18px;
-    color: var(--pearl);
+    color: var(--midnight);
     font-weight: bold;
 }
 
 #modale #modale-container.cart-fill-datas #modale-content .explain {
-    color: var(--pearl);
+    color: var(--midnight);
     font-size: 14px;
     font-weight: normal;
 }
@@ -70,12 +70,12 @@
     height: 200px;
     background: rgba(128, 0, 128, 0.3);
     border-radius: 15px;
-    color: var(--pearl);
+    color: var(--midnight);
 }
 
 #modale #modale-container.cart-fill-datas #modale-content #results-check.datas {
     font-size: 14px;
-    color: var(--pearl);
+    color: var(--midnight);
     font-weight: normal;
 }
 

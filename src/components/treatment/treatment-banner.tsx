@@ -10,8 +10,8 @@ const TreatmentBanner = ({ datas }:TreatmentBanner) => {
             <div className="top-transition"></div>
             <div className="treatment-banner-media">
                 <img
-                    src={resolveImg(datas.picture)}
-                    srcSet={resolveImgSet(datas.picture)}
+                    src={resolveImg(datas?.picture)}
+                    srcSet={resolveImgSet(datas?.picture)}
                     alt="banner"
                 />
             </div>

@@ -78,7 +78,7 @@
     padding: 5px;
     box-sizing: border-box;
     caret-color: var(--teal);
-    color: var(--teal);
+    color: var(--midnight);
 }
 
 #modale.signin-modale #modale-container.signin-container #modale-content form label {
@@ -190,7 +190,7 @@
     border-radius: 5px;
     border: none;
     background-color: var(--dusk);
-    color: var(--pearl-50);
+    color: var(--teal);
     font-size: 18px;
     transition: color 0.3s ease-in-out 0s;
     cursor: pointer;

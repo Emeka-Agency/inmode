@@ -15,8 +15,8 @@
     top: 10%;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #070707;
-    box-shadow: 0 0 5px #0e0e0e;
+    background-color: var(--pearl);
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 4px;
 }
 /* 04 91 72 75 26 */
 /* 04 91 72 75 23 */
@@ -45,7 +45,7 @@
 #modale.create-address-modale #modale-container.create-address-container #modale-content h2 {
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--midnight);
     padding-bottom: 5px;
     margin: 10px 0 10px;
     height: 20px;
@@ -60,7 +60,7 @@
     width: 30%;
     height: 3px;
     margin-top: 5px;
-    background-color: white;
+    background-color: var(--midnight);
     transition: width 0.4s ease-in-out 0s,
                 background 0.2s ease-in-out 0s;
 }
@@ -97,22 +97,22 @@
     padding: 5px;
     box-sizing: border-box;
     caret-color: var(--teal);
-    color: var(--teal);
+    color: var(--midnight);
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form label {
     font-size: 16px;
-    color: white;
+    color: var(--midnight);
     display: block;
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form input {
-    background-color: var(--dusk);
+    background-color: var(--pearl);
     outline: transparent;
     border: none;
     padding: 10px;
     box-sizing: border-box;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--midnight);
     margin-bottom: 7px;
     border-radius: 5px 5px 0 0;
     transition: border 0.2s ease-in-out 0s,
@@ -125,7 +125,7 @@
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form input:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid var(--midnight);
     margin-bottom: 6px;
 }
 
@@ -162,26 +162,25 @@
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form select {
-    color: white;
+    color: var(--midnight);
     font-size: 14px;
     padding-left: 5px;
     width: calc(var(--field-width) - 40px);
     margin: 0 5px 0 0;
-    background-color: var(--dusk);
+    background-color: var(--pearl);
     outline: transparent;
-    border: none;
     box-sizing: border-box;
-    border-bottom: 1px solid transparent;
     margin-bottom: 3px;
     transition: border 0.3s ease-in-out 0s, margin 0.3s ease-in-out 0s;
     width: 100%;
     padding: 10px 0;
-    border-bottom: 1px solid white;
+    border: none;
+    border-bottom: 1px solid var(--midnight);
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form select option {
     background: var(--pearl-25);
-    color: white;
+    color: var(--midnight);
     font-size: 13px;
     font-weight: normal;
 }
@@ -209,8 +208,8 @@
     padding: 7px 12px;
     border-radius: 5px;
     border: none;
-    background-color: var(--dusk);
-    color: white;
+    background-color: var(--midnight);
+    color: var(--teal);
     font-size: 18px;
     transition: color 0.3s ease-in-out 0s;
     cursor: pointer;
@@ -219,7 +218,7 @@
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form div#submit_section button#submit_create_address:hover {
-    color: var(--teal);
+    color: var(--pearl);
 }
 
 #modale.create-address-modale #modale-container.create-address-container #modale-content form div#submit_section .loading-gif.visible {
@@ -241,7 +240,7 @@
 #modale.select-address-modale #modale-container.select-address-container #modale-content #select-address h2 {
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--midnight);
     padding-bottom: 5px;
     margin: 10px 0 10px;
     height: 20px;
@@ -256,7 +255,7 @@
     width: 30%;
     height: 3px;
     margin-top: 5px;
-    background-color: white;
+    background-color: var(--midnight);
     transition: width 0.4s ease-in-out 0s,
                 background 0.2s ease-in-out 0s;
 }
@@ -292,7 +291,7 @@
 #modale.select-address-modale #modale-container.select-address-container #modale-content #select-address #addresses-list .address-select .address-title {
     font-size: 18px;
     font-weight: bold;
-    color: white;
+    color: var(--midnight);
     transition: color 0.3s ease-in-out 0s;
     margin-right: 10px;
 }
@@ -305,5 +304,5 @@
 #modale.select-address-modale #modale-container.select-address-container #modale-content #select-address #addresses-list .address-select .address-detail {
     font-size: 14px;
     font-weight: normal;
-    color: white;
+    color: var(--midnight);
 }

@@ -430,7 +430,7 @@
         min-height: 20px;
         z-index: 5;
         transition: left 0.3s ease-in-out;
-        background-color: var(--dusk);
+        background-color: var(--pearl);
     }
     
     #purchase-mini.step-2-3 > .step-1.neumorphic,

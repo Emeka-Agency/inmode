@@ -42,18 +42,18 @@ const Alveoles = ({}:Alveoles) => {
     return (
         <div className="alveoles">
             <div className="title">Évènements</div>
-            <div className="back-hex left">
+            {/* <div className="back-hex left">
                 <img
                     src={images.resolve_img('backAlveole')}
                     alt="back-left"
                 />
-            </div>
-            <div className="back-hex right">
+            </div> */}
+            {/* <div className="back-hex right">
                 <img
                     src={images.resolve_img('backAlveole')}
                     alt="back-right"
                 />
-            </div>
+            </div> */}
             <div className="alveoles-container">
                 {hexs.map((hex, key) => {
                     return (

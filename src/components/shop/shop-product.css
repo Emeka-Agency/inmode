@@ -5,9 +5,9 @@
 .shop-products .shop-addon .shop-product2 {
     padding-left: 25px;
     margin: 25px auto;
-    background-color: #0d1e28;
+    background-color: var(--pearl);
     border-radius: 13px;
-    box-shadow: var(--pure-black-25) 3px 3px 9px;
+    box-shadow: rgba(0, 0, 0, 0.10) 3px 3px 9px;
     font-size: 0;
     width: 90%;
     user-select: none;
@@ -66,6 +66,8 @@
 .shop-products .shop-addon .shop-product2 .manage .minus,
 .shop-products .shop-addon .shop-product2 .manage .add {
     background-color: var(--teal);
+    color: var(--dusk);
+    font-weight: 500;
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -114,6 +116,14 @@
     background-color: var(--teal);
     border-radius: 0 13px 13px 0;
     cursor: pointer;
+    font-weight: 400;
+    /* transition: color 0.1s ease-in-out 0s; */
+    transition: font-weight 0.1s ease-in-out 0s;
+}
+
+.shop-products .shop-addon .shop-product2 .purchase:hover {
+    /* color: var(--pearl); */
+    font-weight: 600;
 }
 
 @media (max-width: 1199px) {
@@ -137,6 +147,7 @@
         font-family: Roboto, sans-serif;
         height: 100%;
         padding-top: 5px;
+        box-shadow: rgba(0, 0, 0, 0.1) 4px 4px 8px 8px;
     }
 
     .shop-products .shop-addon {

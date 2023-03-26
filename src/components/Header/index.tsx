@@ -42,7 +42,8 @@ const Header = ({}:Header) => {
     return (
         <header>
             <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo') +')'}}>
+                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo3') +')'}}>
+                {/* <div className="header-logo background-image" style={{backgroundImage: 'url(https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png)'}}> */}
                     <Link to="/" className="zone-link" title="Inmode">
                     </Link>
                 </div>
