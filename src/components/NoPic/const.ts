@@ -6,8 +6,8 @@ export const no_pics = {
 };
 
 export const sensible = {
-    'addon-before-after': 'Due to the sensitive nature of these photos we can not display them.',
-    'addon-videos': 'Due to the sensitive nature of these photos we can not display them.',
-    'product-addons': 'Due to the sensitive nature of these photos we can not display them.',
-    'treatment-before-after': 'Due to the sensitive nature of these photos we can not display them.',
+    'addon-before-after': 'En raison de la nature sensible de ces photos, nous ne pouvons pas les afficher.',
+    'addon-videos': 'En raison de la nature sensible de ces photos, nous ne pouvons pas les afficher.',
+    'product-addons': 'En raison de la nature sensible de ces photos, nous ne pouvons pas les afficher.',
+    'treatment-before-after': 'En raison de la nature sensible de ces photos, nous ne pouvons pas les afficher.',
 };
