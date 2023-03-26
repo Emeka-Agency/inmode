@@ -37,6 +37,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                     </div>
                 </div>
             )}
+            <Link to="/workstation" className="slides-go-workstation">Nos produits</Link>
         </div>
     );
 };
