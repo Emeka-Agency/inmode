@@ -55,6 +55,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             headerLogo: file(relativePath: {eq: "header-logo.png"}) {
                 ...FileImgFormat
             }
+            headerLogo2: file(relativePath: {eq: "header-logo-2.png"}) {
+                ...FileImgFormat
+            }
+            headerLogo3: file(relativePath: {eq: "header-logo-3.png"}) {
+                ...FileImgFormat
+            }
             seoLogo: file(relativePath: {eq: "header-logo.png"}) {
                 ...FileImgFormat
             }
@@ -62,6 +68,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 ...FileImgFormat
             }
             footerLogo: file(relativePath: {eq: "footer-logo.png"}) {
+                ...FileImgFormat
+            }
+            footerLogo2: file(relativePath: {eq: "footer-logo2.png"}) {
                 ...FileImgFormat
             }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
@@ -216,8 +225,11 @@ interface ImagesList {
     contactUsPiece: GatsbyImage_Interface;
     fixedMenuLogo: GatsbyImage_Interface;
     headerLogo: GatsbyImage_Interface;
+    headerLogo2: GatsbyImage_Interface;
+    headerLogo3: GatsbyImage_Interface;
     seoLogo: GatsbyImage_Interface;
     footerLogo: GatsbyImage_Interface;
+    footerLogo2: GatsbyImage_Interface;
     addressIcon: GatsbyImage_Interface;
     phoneIcon: GatsbyImage_Interface;
     mailIcon: GatsbyImage_Interface;
