@@ -9,6 +9,8 @@ import { useUser } from '../contexts/user-provider';
 import { Link } from 'gatsby';
 import { useWindowSize } from '../../functions/window-size';
 
+import "./header-mini.css";
+
 const HeaderMini = ({}:HeaderMini) => {
 
     const images = useImages();

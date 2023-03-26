@@ -16,6 +16,8 @@ import CartBasket from "../CartBasket";
 import { getById, selectOne } from "../../functions/selectors";
 import { useUser } from "../contexts/user-provider";
 
+import "./index.css";
+
 const Header = ({}:Header) => {
 
     const images = useImages();

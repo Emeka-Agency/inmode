@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '../menu';
 import MenusContext from "../contexts/menus-context";
 
+import "./header-bottom.css";
 
 const HeaderBottom = ({}:HeaderBottom) => {
 
