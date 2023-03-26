@@ -23,12 +23,6 @@ const Learn = ({ from = "" }:Learn) => {
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -39,12 +33,6 @@ const Learn = ({ from = "" }:Learn) => {
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp

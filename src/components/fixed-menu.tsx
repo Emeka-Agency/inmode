@@ -66,6 +66,6 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
             </div>
         </div>
     );
-}
+};
 
 export default FixedMenu;

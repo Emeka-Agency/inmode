@@ -110,12 +110,6 @@ export const query = graphql`
                                 srcSetWebp
                                 }
                             }
-                            childrenImageSharp {
-                                fluid {
-                                srcWebp
-                                srcSetWebp
-                                }
-                            }
                             publicURL
                             url
                         }
@@ -150,12 +144,6 @@ export const query = graphql`
                                 srcSetWebp
                                 }
                             }
-                            childrenImageSharp {
-                                fluid {
-                                srcWebp
-                                srcSetWebp
-                                }
-                            }
                             publicURL
                             url
                         }
@@ -165,16 +153,3 @@ export const query = graphql`
         }
     }
 `;
-    // allWcProducts {
-    //     group(field: categories___name) {
-    //         fieldValue
-    //         nodes {
-    //             id
-    //             wordpress_id
-    //             meta_data {
-    //                 key
-    //                 value
-    //             }
-    //         }
-    //     }
-    // }

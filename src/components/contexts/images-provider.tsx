@@ -238,6 +238,6 @@ interface ImagesList {
     gatsbyAstronaut: GatsbyImage_Interface;
     whiteTrash: GatsbyImage_Interface;
     redTrash: GatsbyImage_Interface;
-}
+};
 
 export default ImagesProvider;

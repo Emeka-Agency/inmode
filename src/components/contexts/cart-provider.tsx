@@ -103,12 +103,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                                         srcSetWebp
                                         }
                                     }
-                                    childrenImageSharp {
-                                        fluid {
-                                        srcWebp
-                                        srcSetWebp
-                                        }
-                                    }
                                     publicURL
                                     url
                                 }

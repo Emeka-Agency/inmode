@@ -58,12 +58,6 @@ export const query = graphql`
                     srcSetWebp
                     }
                 }
-                childrenImageSharp {
-                    fluid {
-                    srcWebp
-                    srcSetWebp
-                    }
-                }
                 publicURL
                 url
             }

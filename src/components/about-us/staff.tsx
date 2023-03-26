@@ -22,12 +22,6 @@ const Staff = ({ from = "" }:Staff) => {
                                 srcSetWebp
                                 }
                             }
-                            childrenImageSharp {
-                                fluid {
-                                srcWebp
-                                srcSetWebp
-                                }
-                            }
                             publicURL
                             url
                         }

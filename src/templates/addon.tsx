@@ -70,12 +70,6 @@ export const query = graphql`
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -91,12 +85,6 @@ export const query = graphql`
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -107,12 +95,6 @@ export const query = graphql`
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp
@@ -140,12 +122,6 @@ export const query = graphql`
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -163,12 +139,6 @@ export const query = graphql`
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp
@@ -193,12 +163,6 @@ export const query = graphql`
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -213,12 +177,6 @@ export const query = graphql`
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp
@@ -240,12 +198,6 @@ export const query = graphql`
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp
@@ -276,12 +228,6 @@ export const query = graphql`
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
@@ -296,12 +242,6 @@ export const query = graphql`
                     localFile {
                         absolutePath
                         childImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
-                        childrenImageSharp {
                             fluid {
                             srcWebp
                             srcSetWebp

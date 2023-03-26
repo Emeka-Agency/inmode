@@ -29,12 +29,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                                     srcSetWebp
                                     }
                                 }
-                                childrenImageSharp {
-                                    fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                    }
-                                }
                                 publicURL
                                 url
                             }
@@ -46,12 +40,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             localFile {
                                 absolutePath
                                 childImageSharp {
-                                    fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                    }
-                                }
-                                childrenImageSharp {
                                     fluid {
                                     srcWebp
                                     srcSetWebp
@@ -84,12 +72,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                                             srcSetWebp
                                             }
                                         }
-                                        childrenImageSharp {
-                                            fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                            }
-                                        }
                                         publicURL
                                         url
                                     }
@@ -100,12 +82,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                                     localFile {
                                         absolutePath
                                         childImageSharp {
-                                            fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                            }
-                                        }
-                                        childrenImageSharp {
                                             fluid {
                                             srcWebp
                                             srcSetWebp
@@ -128,12 +104,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                                     localFile {
                                         absolutePath
                                         childImageSharp {
-                                            fluid {
-                                            srcWebp
-                                            srcSetWebp
-                                            }
-                                        }
-                                        childrenImageSharp {
                                             fluid {
                                             srcWebp
                                             srcSetWebp

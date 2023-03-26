@@ -20,12 +20,6 @@ const Banner = ({ from = "" }:Banner) => {
                             srcSetWebp
                             }
                         }
-                        childrenImageSharp {
-                            fluid {
-                            srcWebp
-                            srcSetWebp
-                            }
-                        }
                         publicURL
                         url
                     }
