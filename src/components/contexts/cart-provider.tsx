@@ -261,6 +261,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const remove_article = (ref:string, qnt:number):void => {
         let temp = find_in_cart(ref);
         if(nb_articles() <= 1) {
+            enableMainScroll();
             setPurchaseOpened(false);
         }
         if(temp && temp.quantity <= qnt) {
