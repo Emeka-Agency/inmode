@@ -192,6 +192,21 @@ ol {
 }
 
 @font-face {
+    font-family: 'bodoni';
+    src: url("../../fonts/Bodoni-Std-Book-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'brandon-bld';
+    src: url("../../fonts/Brandon_bld.ttf");
+}
+
+@font-face {
+    font-family: 'fk-gothic-regular';
+    src: url("../../fonts/Franklin Gothic Book Regular.ttf");
+}
+
+@font-face {
     font-family: 'raleway';
     src: url("../../fonts/raleway/raleway.woff2")
 }
