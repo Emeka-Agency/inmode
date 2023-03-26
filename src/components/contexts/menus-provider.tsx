@@ -288,8 +288,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': menu.treatments || [],
                         'mini_treatments': menu.mini_treatments || [],
                         'id': menu.id || menu.strapiId,
-                        'parent': elem,
-                        ...(Object.values(_object).find(ob => ob.title == menu.title) ?? {})
+                        'parent': elem
                     };
                 });
                 recursive_process(array_to_object(_object[elem].menus), main);
@@ -379,12 +378,15 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
 
     const socials = ['facebook', 'instagram', 'youtube', 'linkedin'];
 
-    // EXPLAIN - Sort socials to the end of the list
-    const [menusHeaderTop] = React.useState(process_menu([
-        ...datas.header_top.nodes.filter((node:HeaderTop_Interface) => socials.indexOf(node.title) < 0),
-        ...datas.header_top.nodes.filter((node:HeaderTop_Interface) => socials.indexOf(node.title) > -1),
-    ]));
-    const [menusHeaderBottom] = React.useState(process_menu(datas.header_bottom.nodes.map(elem => elem)));
+    // EXPLAIN - Positionne les icônes de réseaux sociaux en fin de liste
+    const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes)
+        .sort((a, b) => socials.indexOf(a.title) > -1 ? 0 : -1)
+    );
+    // EXPLAIN - Positionne le lien /contact en fin de liste
+    const [menusHeaderBottom] = React.useState(
+        process_menu(datas.header_bottom.nodes.map((elem:InmodePanel_Menu_Interface) => elem))
+        .sort((a, b) => b.url == "/contact" ? -1 : 0)
+    );
     const [menusFooter] = React.useState(datas.footer);
     
     return (
