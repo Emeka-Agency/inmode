@@ -46,6 +46,7 @@ const ShopPage = ({ data }:ShopPage) => {
                 <WPShop
                     products={processWoocommerce(data.allStrapiShop.group, data.allWcProducts.group)}
                     shop_card="shop"
+                    special={null}
                 />
             {/* </CartProvider> */}
         </Layout>

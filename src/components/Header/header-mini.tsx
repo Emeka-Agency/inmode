@@ -54,24 +54,24 @@ const HeaderMini = ({}:HeaderMini) => {
                 </div>
             }
             {
-                user.logged() == false && size.width < 600 &&
-                <div className="menu-single menu-text login" title="Connexion" onClick={function() {user.login(null);}}>Connexion</div>
+                user.logged() == false && size.width < 1200 &&
+                <div className="menu-single menu-text login" title="Connexion" onClick={function() {user.login();}}>Connexion</div>
             }
             {
-                user.logged() == false && size.width < 600 &&
+                user.logged() == false && size.width < 1200 &&
                 <div className="menu-single menu-text signin" title="Inscription" onClick={function() {user.signin(null);}}>Inscription</div>
             }
             <div className="header-mini-divider"></div>
             <div id="header-mini-bottom" className="header-bottom">
-                {menus_bottom && menus_bottom.map((menu:HeaderBottom_Interface, key:number) => {
-                    let temp:HeaderBottom_Interface = new Object();
-                    let keys = Object.keys(menu);
+                {menus_bottom && menus_bottom.map((menu:InmodePanel_Menu_Interface, key:number) => {
+                    let temp:InmodePanel_Menu_Interface|any = new Object();
+                    let keys:Array<string> = Object.keys(menu);
                     for(let i = 0; i < keys.length; i++) {
                         temp[keys[i]] = menu[keys[i]];
                     }
                     {/* TODO ajouter autres subs */}
-                    if(menu.mini_treatments && menu.mini_treatments.length > 0) {
-                        temp.menus = temp.mini_treatments.map((elem:Inmode_MiniMenu_Interface) => {
+                    if((menu.mini_treatments || []).length > 0) {
+                        temp.menus = temp.mini_treatments.map((elem:InmodePanel_Generic_SubLinked_MiniTreatments_Interface) => {
                             let retour = {id: elem.id, ...elem.MenuParams};
                             retour.title = retour.url.replace(/treatment/g, '').replace(/-/g, ' ').replace('//', '').toUpperCase();
                             return retour;
