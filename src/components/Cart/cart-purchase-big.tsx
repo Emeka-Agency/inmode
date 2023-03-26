@@ -191,7 +191,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
     }
 
     React.useEffect(() => {
-
+        if(!cart.cart_opened) {setFormOpened(false);}
     }, [cart, user]);
 
     return (
