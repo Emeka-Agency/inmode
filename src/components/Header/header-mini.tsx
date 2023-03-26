@@ -3,8 +3,8 @@ import Menu from '../menu';
 import MenusContext from "../contexts/menus-context";
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { useImages } from '../contexts/images-provider';
-import { HeaderBottom_Interface, Inmode_MiniMenu_Interface } from '../interfaces';
-import { getById } from '../../functions/selectors';
+import { InmodePanel_Generic_SubLinked_MiniTreatments_Interface, InmodePanel_Menu_Interface } from '../interfaces';
+import { getById, selectOne } from '../../functions/selectors';
 import { useUser } from '../contexts/user-provider';
 import { Link } from 'gatsby';
 import { useWindowSize } from '../../functions/window-size';
@@ -19,8 +19,7 @@ const HeaderMini = ({}:HeaderMini) => {
 
     const closeMenu = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.preventDefault();
-        let _temp:any = getById('header-mini');
-        _temp && _temp.classList.remove('opened');
+        getById('header-mini')?.classList.remove('opened');
         enableMainScroll();
     }
 
@@ -29,8 +28,8 @@ const HeaderMini = ({}:HeaderMini) => {
     React.useEffect(() => {
         const body = document.querySelector('body');
         const headerMini = getById('header-mini');
-        if(body && headerMini && false) {
-            body.classList.contains('no-scroll') && headerMini.classList.add('opened');
+        if(body instanceof HTMLBodyElement && headerMini instanceof HTMLElement && false) {
+            body?.classList.contains('no-scroll') && headerMini?.classList.add('opened');
         }
     });
 
@@ -89,7 +88,7 @@ const HeaderMini = ({}:HeaderMini) => {
             </div>
         </div>
     );
-}
+};
 
 interface HeaderMini {
 

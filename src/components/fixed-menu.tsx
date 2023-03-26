@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 import Menu from "./menu";
 import { Link } from "gatsby";
-import MenusContext from "./contexts/menus-context"
+import MenusContext from "./contexts/menus-context";
 // {/* SWITCH CART */}
 
-import CartBasket from "./CartBasket"
+import CartBasket from "./CartBasket";
 import { useCart } from './contexts/cart-provider';
 
 // {/* SWITCH CART END */}
@@ -40,7 +40,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
     const images = useImages();
 
     return (
-        <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible == true ? 0 : -55, boxShadow: isVisible == true ? 'none' : 'unset'}}>
+        <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible == true ? 0 : -55, boxShadow: isVisible == true ? undefined : 'unset'}}>
             <div className="fixed-menu-container">
                 <div className="fixed-menu-logo">
                     <img

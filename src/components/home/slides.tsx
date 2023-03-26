@@ -81,7 +81,6 @@ const Slides = ({from}:Slides) => {
                 classList={'slides-main transition'}
             >
                 {slides && slides.map((slide, key) => {
-                    console.log(slide);
                     return (
                         <div
                             key={key}
@@ -160,6 +159,6 @@ const Slides = ({from}:Slides) => {
 
 interface Slides {
     from: string;
-}
+};
 
 export default Slides;

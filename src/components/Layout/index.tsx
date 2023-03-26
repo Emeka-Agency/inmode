@@ -90,7 +90,7 @@ const Layout = ({ children, title }:Layout) => {
             </MenusProvider>
         </ImagesProvider>
     )
-}
+};
 
 interface Layout {
     children: ReactNode;

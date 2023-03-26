@@ -1,3 +1,4 @@
+import { _log } from "../../functions/logger";
 import { err_log } from "../../functions/logging";
 import { oneById } from "../../functions/selectors";
 import {
@@ -96,7 +97,7 @@ function filter(datas:InmodePanel_Order_Interface):InmodePanel_Order_Interface {
 export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Interface[], total:number, sepa:boolean = false, country:string):InmodePanel_Order_Interface {
     // console.log("create_strapi_order");
 
-    console.log(_datas);
+    _log(_datas);
 
     let _temp:InmodePanel_Order_Interface = {
         reference: _datas.vads_order_id,

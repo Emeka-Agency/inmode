@@ -389,6 +389,6 @@ interface InmodeEvent {
     current_page: string;
     isPast?: boolean;
     givenId?: string;
-}
+};
 
 export default InmodeEvent;

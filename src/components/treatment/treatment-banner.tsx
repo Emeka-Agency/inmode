@@ -15,13 +15,13 @@ const TreatmentBanner = ({ datas }:TreatmentBanner) => {
                     alt="banner"
                 />
             </div>
-            <div className="treatment-banner-short-descr">{datas.text}</div>
+            <div className="treatment-banner-short-descr">{datas?.text}</div>
         </div>
     );
-}
+};
 
 interface TreatmentBanner {
-    datas: InmodePanel_Treat_Banner_Interface;
-}
+    datas?: InmodePanel_Treat_Banner_Interface;
+};
 
 export default TreatmentBanner;

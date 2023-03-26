@@ -15,6 +15,6 @@ interface LoadingGIF {
     customId?: string;
     customClass?: string;
     customStyle?: React.CSSProperties;
-}
+};
 
 export default LoadingGIF;

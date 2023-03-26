@@ -3,7 +3,8 @@ import React from "react";
 import Divider from '../components/divider';
 import GetStarted from "../components/get-started";
 import Layout from "../components/Layout"
-import SEO from "../components/seo"
+import Layout from "../components/Layout";
+import SEO from "../components/seo";
 
 import Banner from "../components/about-us/banner";
 import AboutUs from "../components/about-us/about-us";

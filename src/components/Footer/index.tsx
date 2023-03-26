@@ -1,5 +1,5 @@
 import React from 'react';
-import MenusContext from "../contexts/menus-context"
+import MenusContext from "../contexts/menus-context";
 import { Link } from 'gatsby';
 import { useImages } from '../contexts/images-provider';
 

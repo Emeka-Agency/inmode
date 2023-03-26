@@ -54,12 +54,12 @@ const ShopProduct2 = ({ reference, special, wp_id }:ShopProduct2) => {
             </div>
         </div>
     );
-}
+};
 
 interface ShopProduct2 {
     reference: string;
     special: any;
-    wp_id?: number;
+    wp_id?: string|number;
 };
 
 export default ShopProduct2;

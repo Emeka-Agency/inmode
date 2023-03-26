@@ -926,7 +926,7 @@ export const BackPaymentConfigField = ({ value, name, id }:PayField_Interface) =
             id={name || defaultParams.BackPaymentConfig.id}
         />
     )
-}
+};
 export const BackAmountField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
@@ -936,7 +936,7 @@ export const BackAmountField = ({ value, name, id }:PayField_Interface) => {
             id={name || defaultParams.BackAmount.id}
         />
     )
-}
+};
 
 interface PayField_Interface {
     value?: any,

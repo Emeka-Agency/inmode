@@ -29,6 +29,6 @@ const ShopProduct = ({ product, special }:ShopProduct) => {
 interface ShopProduct {
     product: InmodePanel_Product_Interface;
     special: string;
-}
+};
 
 export default ShopProduct;

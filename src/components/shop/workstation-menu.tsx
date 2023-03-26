@@ -1,5 +1,6 @@
 import React from "react";
 import { useWindowSize } from "../../functions/window-size";
+import { InmodePanel_Addon_Interface, InmodePanel_TagFamily_Interface } from "../interfaces";
 
 const WorkstationMenu = ({
     tag_families,
@@ -8,11 +9,11 @@ const WorkstationMenu = ({
     resolveClick,
     checkbox_resolve_checked_selector,
     resolve_technology
-}) => {
+}:WorkstationMenu) => {
 
     const size = useWindowSize();
 
-    const resolveClickMenu = (e) => {
+    const resolveClickMenu = (e:React.MouseEvent) => {
         if(size.width <= 425) {
             if(e.currentTarget.classList.contains('opened')) {
                 Array.from(document.querySelectorAll('.workstation.menu-title.menu-text')).forEach(function(elem) {
@@ -104,14 +105,15 @@ const WorkstationMenu = ({
             </ul>
         </>
     );
-}
-
-WorkstationMenu.propTypes = {
-
 };
 
-WorkstationMenu.defaultProps = {
-
+interface WorkstationMenu {
+    tag_families: InmodePanel_TagFamily_Interface[];
+    technologies: InmodePanel_Addon_Interface[];
+    allResolve: Function;
+    resolveClick: Function;
+    checkbox_resolve_checked_selector: string;
+    resolve_technology: Function;
 };
 
 export default WorkstationMenu;

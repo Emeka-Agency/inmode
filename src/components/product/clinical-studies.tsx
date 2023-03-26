@@ -41,10 +41,10 @@ const ProductClinicalStudies = ({ datas }:ProductClinicalStudies_Interface) => {
             </div>
         </div>
     );
-}
+};
 
 interface ProductClinicalStudies_Interface {
     datas: InmodePanel_Generic_ClinicalStudies_Interface[];
-}
+};
 
 export default ProductClinicalStudies;

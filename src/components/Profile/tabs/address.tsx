@@ -188,8 +188,7 @@ const AddressesTab = ({}:AddressesTab) => {
                 );
             })}
             <div id="address-add" onClick={(e) => addAddress(e)}>
-                <span>Ajouter une adresse</span>
-                <span>+</span>
+                <span>Ajouter une adresse +</span>
             </div>
         </div>
     );

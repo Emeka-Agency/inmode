@@ -32,14 +32,14 @@ const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
             })}
         </div>
     );
-}
+};
 
 interface ProductNavigation_Interface {
     name: string;
     exist: {
-        'before-after': string;
-        'studies': string;
+        'before-after': boolean;
+        'studies': boolean;
     };
-}
+};
 
 export default ProductNavigation;

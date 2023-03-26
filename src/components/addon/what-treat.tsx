@@ -34,6 +34,6 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
 interface AddonWhatTreat {
   title?: string;
   WhatTreats: InmodePanel_Addon_Interface["WhatTreats"];
-}
+};
 
 export default AddonWhatTreat;

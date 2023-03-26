@@ -58,6 +58,7 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
 interface MenuSingleImage {
     menu: InmodePanel_Menu_Interface;
     prop_key: number;
+    openOnClick?: boolean;
 };
 
 export default MenuSingleImage;

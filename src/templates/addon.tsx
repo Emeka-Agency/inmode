@@ -39,7 +39,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 <Divider position="bottom"/>
                 <AddonWhatTreat title="What can you treat ?" WhatTreats={datas.WhatTreats}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
-                <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : []}/>
+                <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>
                 <SellingNew datas={datas.SellingNewGeneration}/>
             </Layout>
     );

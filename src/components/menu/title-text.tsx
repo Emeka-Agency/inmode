@@ -60,7 +60,7 @@ const MenuTitleText = ({menu, prop_key, openOnClick}:MenuTitleText) => {
                 </div>
             }
             <ul className="dropdown-menu">
-                {menu.menus && menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
+                {(menu.menus || []).map((sub, key_sub) => {
                     return (
                         <Menu key={key_sub} prop_key={key_sub} menu={sub}/>
                     );
@@ -74,6 +74,6 @@ interface MenuTitleText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
     openOnClick?: boolean;
-}
+};
 
 export default MenuTitleText;

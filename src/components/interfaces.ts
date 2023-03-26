@@ -15,8 +15,14 @@ export interface Woocommerce_Shop_Interface {
     meta_data: {
         key: string;
         value: string;
-    }
+    }[];
     images: GatsbyImage_Interface[];
+}
+
+export interface Airtable_Record_Interface {
+    id: string;
+    createdTime: string;
+    fields: Airtable_Event_Interface;
 }
 
 export interface Airtable_Event_Interface {
@@ -105,7 +111,7 @@ export interface InmodePanel_Menu_Interface {
     variant?: string;
     container?: string;
     products?: InmodePanel_Product_Interface[];
-    treatment?: InmodePanel_Treatment_Interface[]
+    treatments?: InmodePanel_Treatment_Interface[]
     menus?: InmodePanel_Menu_Interface[];
     parent_menu?: boolean;
     icon?: {
@@ -115,9 +121,9 @@ export interface InmodePanel_Menu_Interface {
         localFile: GatsbyImage_Interface;
     };
     internal_link?: boolean;
-    mini_treatments?: InmodePanel_Treatment_Interface[];
-    mini_products?: InmodePanel_Product_Interface[];
-    mini_addons?: InmodePanel_Addon_Interface[];
+    mini_treatments?: InmodePanel_Generic_SubLinked_MiniTreatments_Interface[];
+    mini_products?: InmodePanel_Generic_SubLinked_MiniProducts_Interface[];
+    mini_addons?: InmodePanel_Generic_SubLinked_MiniAddons_Interface[];
 };
 
 export interface InmodePanel_Order_Interface {
@@ -207,7 +213,7 @@ export interface InmodePanel_Tags_Interface {
     tag_families: InmodePanel_TagFamily_Interface[];
 };
 export interface InmodePanel_Treatment_Interface {
-    strapiId:number;
+    strapiId?:number;
     Name?: string;
     WhatIsTreat?: InmodePanel_Generic_WhatIs_Interface;
     Banner?: InmodePanel_Treat_Banner_Interface;
@@ -216,8 +222,9 @@ export interface InmodePanel_Treatment_Interface {
     IncludeTitle?: string;
     IncludeList?: InmodePanel_Base_Texte_Interface[];
     products?: InmodePanel_Product_Interface[];
-    MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    sensitivity: boolean;
+    MenuParams?: InmodePanel_Generic_MenuParams_Interface;
+    sensitivity?: boolean;
+    treatment?: string;
 };
 
 // Single types
@@ -390,6 +397,38 @@ export interface  InmodePanel_SellingNext_Interface {
         variant: string;
         internal_link: boolean | null;
     };
+    export interface InmodePanel_Generic_SubLinked_Interface {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    }
+    export interface InmodePanel_Generic_SubLinked_Products_Interface extends InmodePanel_Generic_SubLinked_Interface {
+        products: {
+            id: number;
+            position: number;
+            MenuParams: InmodePanel_Generic_MenuParams_Interface;
+            Icon: {
+                localFile: GatsbyImage_Interface;
+            } | undefined;
+        }[];
+    }
+    export interface InmodePanel_Generic_SubLinked_Treatments_Interface extends InmodePanel_Generic_SubLinked_Interface {
+        treatments: {
+            id: number;
+            MenuParams: InmodePanel_Generic_MenuParams_Interface;
+        }[];
+    }
+    export interface InmodePanel_Generic_SubLinked_MiniTreatments_Interface extends InmodePanel_Generic_SubLinked_Interface {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    };
+    export interface InmodePanel_Generic_SubLinked_MiniProducts_Interface extends InmodePanel_Generic_SubLinked_Interface {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    };
+    export interface InmodePanel_Generic_SubLinked_MiniAddons_Interface extends InmodePanel_Generic_SubLinked_Interface {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    };
     export interface InmodePanel_Generic_Navigate_Interface {
         name?: string;
         url?: string;
@@ -485,7 +524,7 @@ export interface  InmodePanel_SellingNext_Interface {
     export interface InmodePanel_Product_RelatedAddonTreatment_Interface {
         addon?: InmodePanel_Addon_Interface;
         treatment?: InmodePanel_Treatment_Interface;
-        short?: InmodePanel_Base_Texte_Interface;
+        short?: InmodePanel_Base_Texte_Interface[];
     };
     export interface InmodePanel_Product_WhatIsProduct_Interface {
         image?: {
@@ -773,7 +812,7 @@ export interface RemoveAddressParams {
 
 // FIN BACK INTERFACES
 
-export interface External_GatsbyImage_Interface {
+export interface External_GatsbyImage_Interface extends GatsbyImage_Interface {
     caption?: string;
     url?: string;
     localFile: GatsbyImage_Interface;
@@ -815,83 +854,11 @@ export interface ProductsContext_Interface {
 };
 
 export interface MenusContext_Interface {
-    header_top: HeaderTop_Interface[];
-    header_bottom: HeaderBottom_Interface[];
+    header_top: InmodePanel_Menu_Interface[];
+    header_bottom: InmodePanel_Menu_Interface[];
     footer: InmodePanel_Footer_Interface;
     allStrapiProduct?: InmodePanel_Product_Interface[];
     allStrapiTreatment?: InmodePanel_Treatment_Interface[];
-};
-
-export interface HeaderTop_Interface {
-    strapiId: number;
-    title: string;
-    url: string;
-    type: string;
-    variant: string;
-    container: string;
-    parent_menu: boolean;
-    internal_link: boolean | null;
-    menus: InmodePanel_Menu_Interface[];
-    products: {
-        id: number;
-        position: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-        Icon: {
-            localFile: GatsbyImage_Interface;
-        } | undefined;
-    }[];
-    treatments: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    icon: {
-        localFile: GatsbyImage_Interface;
-    } | undefined;
-    icon_hover: {
-        localFile: GatsbyImage_Interface;
-    } | undefined;
-};
-
-export interface HeaderBottom_Interface {
-    strapiId: number;
-    title: string;
-    url: string;
-    type: string;
-    variant: string;
-    container: string;
-    parent_menu: boolean;
-    internal_link: boolean | null;
-    menus: InmodePanel_Menu_Interface[];
-    products: {
-        id: number;
-        position: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-        Icon: {
-            localFile: GatsbyImage_Interface;
-        } | undefined;
-    }[];
-    treatments: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_treatments: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_products: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_addons: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    icon: {
-        localFile: GatsbyImage_Interface;
-    } | undefined;
-    icon_hover: {
-        localFile: GatsbyImage_Interface;
-    } | undefined;
 };
 
 export interface FlickityOptions_Interface {

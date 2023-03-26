@@ -1,6 +1,6 @@
 import { graphql } from "gatsby";
 import { node } from "prop-types";
-import React from "react"
+import React from "react";
 import { string } from "../../o2switch/unix_modules/strapi/lib/services/entity-validator/validators";
 import CartProvider from "../components/contexts/cart-provider";
 import { InmodePanel_Shop_Interface, InmodePanel_TagFamily_Interface, Woocommerce_Shop_Interface } from "../components/interfaces";
@@ -14,7 +14,10 @@ const ShopPage = ({ data }:ShopPage) => {
 
     initWakeup("shop");
 
-    const processWoocommerce = (datas, woo) => {
+    const processWoocommerce = (
+        datas:{fieldValue: string; nodes: InmodePanel_Shop_Interface[];}[],
+        woo:{fieldValue: string; nodes: Woocommerce_Shop_Interface[];}[]
+    ) => {
         return woo.map((w) => {
             return {
                 ...w,
@@ -34,43 +37,6 @@ const ShopPage = ({ data }:ShopPage) => {
                 })
             }
         });
-        woo = Object.fromEntries(
-            woo.map((w) => {
-                return [
-                    w.fieldValue,
-                    w.nodes.map(node => {
-                        return {
-                            id: node.id,
-                            wp_id: node.wordpress_id,
-                            Name: node.name,
-                            // pack: node.
-                            price: node.price,
-                            ...Object.fromEntries(
-                                node.meta_data.map(meta => {
-                                    return [meta.key, meta.value[0] ?? null];
-                                })
-                            )
-                        };
-                    })
-                ];
-            })
-        );
-        if(datas instanceof Array) {
-            return datas.map((data) => {
-                return {
-                    fieldValue: data.fieldValue,
-                    nodes: data.nodes.map(
-                        (node) => {
-                            return woo[node.relative] ? {
-                                ...node,
-                                ...(woo[node.relative].filter(el => el.reference == node.reference)[0])
-                            } : null;
-                        }
-                    ).filter(e => e)
-                };
-            });
-        }
-        return [];
     }
 
     return (
@@ -106,7 +72,7 @@ interface ShopPage {
             }
         };
     }
-}
+};
 
 export default ShopPage;
 

@@ -50,10 +50,10 @@ const ProductDemo = ({ datas }:ProductDemo_Interface) => {
             </div>
         </div>
     );
-}
+};
 
 interface ProductDemo_Interface {
     datas: InmodePanel_Generic_Demo_Interface;
-}
+};
 
 export default ProductDemo;

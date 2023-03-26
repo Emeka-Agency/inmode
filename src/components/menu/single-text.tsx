@@ -29,11 +29,12 @@ const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
             {format_string(menu.title || "")}
         </div>
     );
-}
+};
 
 interface MenuSingleText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
-}
+    openOnClick?: boolean;
+};
 
 export default MenuSingleText;

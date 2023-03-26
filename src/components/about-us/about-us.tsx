@@ -38,6 +38,6 @@ const AboutUs = ({ from = "" }:AboutUs) => {
 
 interface AboutUs {
     from?: string;
-}
+};
 
 export default AboutUs;

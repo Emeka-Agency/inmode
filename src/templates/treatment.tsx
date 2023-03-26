@@ -21,8 +21,8 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
                 <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': null}}/>
                 <Divider position="top"/>
                 <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}}/>
-                <TreatmentBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
                 {!datas.ClinicalStudies || datas.ClinicalStudies.length === 0 ? null : <Divider position="bottom"/>}
+                <TreatmentBeforeAfter datas={datas.BeforesAfters} sensible={datas?.sensitivity || false}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
             </Layout>
     );
@@ -32,7 +32,7 @@ interface TreatmentTemplates {
     data: {
         strapiTreatment: InmodePanel_Treatment_Interface;
     };
-}
+};
 
 export default TreatmentTemplates;
 

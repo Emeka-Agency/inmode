@@ -179,6 +179,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
             {children}
         </ProductsContext.Provider>
     );
-}
+};
 
 export default ProductsProvider;

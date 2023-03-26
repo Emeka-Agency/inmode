@@ -53,16 +53,17 @@ const GenericDetails = ({ datas }:GenericDetails) => {
             <RequestInformation/>
         </div>
     );
-}
+};
 
 interface GenericDetails {
     datas: {
         what_is?: InmodePanel_Generic_WhatIs_Interface;
+        before_keys?: string;
         anchor_key?: string;
         list_title?: string;
         list?: InmodePanel_Base_Texte_Interface[];
-        list_icon: GatsbyImage_Interface|null;
+        list_icon: string|null;
     }
-}
+};
 
 export default GenericDetails;

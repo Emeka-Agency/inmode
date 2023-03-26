@@ -14,6 +14,6 @@ const GetInTouch = ({ from }:GetInTouch) => {
 
 interface GetInTouch {
     from: string;
-}
+};
 
 export default GetInTouch;

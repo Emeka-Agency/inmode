@@ -46,11 +46,11 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
             </div>
         </div>
     );
-}
+};
 
 interface ClinicalStudy {
     study: InmodePanel_Generic_ClinicalStudies_Interface;
     prop_key?: number | null;
-}
+};
 
 export default ClinicalStudy;

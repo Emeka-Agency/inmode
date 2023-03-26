@@ -29,6 +29,6 @@ const WorkstationProduct = ({ product, special }:WorkstationProduct) => {
 interface WorkstationProduct {
     product: InmodePanel_Product_Interface;
     special: string;
-}
+};
 
 export default WorkstationProduct;

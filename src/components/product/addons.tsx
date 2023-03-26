@@ -135,6 +135,6 @@ interface Addons {
         id: number;
     };
     sensible: boolean;
-}
+};
 
 export default Addons;

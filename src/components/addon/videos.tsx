@@ -132,13 +132,13 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
           </div>
         </div>
     );
-}
+};
 
 interface AddonVideos {
   videos: InmodePanel_Addon_Interface["Videos"];
   title: InmodePanel_Addon_Interface["Name"];
   name: string;
   sensible: boolean;
-}
+};
 
 export default AddonVideos;

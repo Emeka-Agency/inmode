@@ -5,13 +5,13 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
+import React from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
+import { useStaticQuery, graphql } from "gatsby";
 import { useImages } from './contexts/images-provider';
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title }:SEO) {
 
   const images = useImages();
 
@@ -123,22 +123,16 @@ function SEO({ description, lang, meta, title }) {
           // content: images.resolve_img('seoLogo'),
           content: images.resolve_img('seoLogo2'),
         },
-      ].concat(meta)}
+      ].concat(meta || [])}
     />
   )
-}
+};
 
-SEO.defaultProps = {
-  lang: `fr`,
-  meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
-}
+interface SEO {
+    description?: string;
+    lang?: string;
+    meta?: Array<Object>;
+    title: string;
+};
 
 export default SEO

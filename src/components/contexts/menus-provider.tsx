@@ -2,8 +2,9 @@ import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
-import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
-import { _log, _trace } from '../../functions/logger';
+import { MenusContext_Interface, InmodePanel_Menu_Interface } from '../interfaces';
+import { _log } from '../../functions/logger';
+import { resolveImg } from '../../functions/tools';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
@@ -280,20 +281,19 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }
     `));
 
-    _log(datas);
-
-    const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
-        if(!_array) {
+    const array_to_object = (_array:Array<any>):InmodePanel_Menu_Interface | {} => {
+        if(!_array || !Array.isArray(_array)) {
             return {};
         }
+        _array = _array.filter(elem => elem);
         return Object.fromEntries(
-            _array.map((elem, index) => {
-                return [index, {...elem, index: index}];
+            _array.map((elem) => {
+                return [elem.strapiId || elem.id, elem];
             })
         );
     }
 
-    const recursive_process = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const recursive_process = (_object:InmodePanel_Menu_Interface[], main:InmodePanel_Menu_Interface[]) => {
         Object.keys(_object).map((elem:number) => {
             if(_object[elem].menus.length) {
                 _object[elem].menus = _object[elem].menus.map((menu) => {
@@ -366,7 +366,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         });
     }
 
-    const resolve_dependance = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const resolve_dependance = (_object:InmodePanel_Menu_Interface[], main:InmodePanel_Menu_Interface[]) => {
         Object.keys(_object).map((menu) => {
             if(_object[menu].parent_menu) {
                 _object[menu].menus.map((_elem, key) => {
@@ -379,7 +379,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         })
     }
 
-    const process_menu = (list: HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const process_menu = (list: InmodePanel_Menu_Interface[]) => {
         let temp = array_to_object(list);
         recursive_process(temp, temp);
         resolve_dependance(temp, temp);

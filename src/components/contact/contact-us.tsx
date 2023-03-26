@@ -8,7 +8,7 @@ import _fetch, { initWakeup } from "../../functions/fetch";
 
 import { send_form_mini} from "./contact";
 
-const ContactUs = () => {
+const ContactUs = (props:ContactUs) => {
 
     const images = useImages();
 
@@ -127,14 +127,10 @@ const ContactUs = () => {
             </div>
         </div>
     );
-}
+};
 
-ContactUs.propTypes = {
+interface ContactUs {
 
-}
-
-ContactUs.defaultProps = {
-    
-}
+};
 
 export default ContactUs;

@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu from '../menu';
-import MenusContext from "../contexts/menus-context"
+import MenusContext from "../contexts/menus-context";
+
 
 const HeaderTop = ({}:HeaderTop) => {
 

@@ -74,6 +74,7 @@ const MenuTitleCard = ({ menu, prop_key }:MenuTitleCard) => {
 interface MenuTitleCard {
     menu:InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 };
 
 export default MenuTitleCard;

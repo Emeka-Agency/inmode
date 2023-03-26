@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const AddonNavigation = ({ name, exist = {} }:AddonNavigation) => {

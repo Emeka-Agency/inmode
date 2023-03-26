@@ -5,7 +5,7 @@ import { useLocalStorage } from "../functions/use-localstorage";
 import { useWindowSize } from "../functions/window-size";
 import { useImages } from './contexts/images-provider';
 
-const PrivacyPolicy = (props) => {
+const PrivacyPolicy = (props:PrivacyPolicy) => {
 
     const images = useImages();
 
@@ -19,7 +19,7 @@ const PrivacyPolicy = (props) => {
     const size = useWindowSize();
     const LocalStorage = useLocalStorage;
 
-    async function process_cookies(e, checked) {
+    async function process_cookies(e:React.MouseEvent, checked:boolean = false) {
         if(open) {
             setAccepted(checked ? true : false);
             LocalStorage.setItem(analyticsCookies, checked ? 'true' : 'false');
@@ -94,20 +94,16 @@ const PrivacyPolicy = (props) => {
                     </div>
                     <div className="cookies-text">Nous aimerions mettre en place des cookies Google Analytics pour nous aider à améliorer l'expérience InMode en ligne en collectant et repotant des informations sur votre usage de ce site. Pour plus d'informations sur la façon dont ces cookies fonctionnent, vous pouvez consulter notre <AnchorLink to="/mentions-legales#cookies" title="Cookies">politique relative aux cookies</AnchorLink>. Les cookies collectent des informations de manière anonyme.</div>
                 </div>
-                <div className="accept-close" onClick={(e) => {process_cookies(e, document.querySelector('#onoffswitch').checked);}}>
+                <div className="accept-close" onClick={(e) => {process_cookies(e, (():HTMLInputElement|any => document.querySelector('#onoffswitch'))()?.checked);}}>
                     Accepter et fermer
                 </div>
             </div>
         </div>
     );
-}
+};
 
-PrivacyPolicy.propTypes = {
+interface PrivacyPolicy {
 
-}
-
-PrivacyPolicy.defaultProps = {
-
-}
+};
 
 export default PrivacyPolicy;

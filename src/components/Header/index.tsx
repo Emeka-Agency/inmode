@@ -13,7 +13,7 @@ import CartBasket from "../CartBasket";
 
 // {/* SWITCH CART END */}
 
-import { getById } from "../../functions/selectors";
+import { getById, selectOne } from "../../functions/selectors";
 import { useUser } from "../contexts/user-provider";
 
 const Header = ({}:Header) => {
@@ -22,8 +22,7 @@ const Header = ({}:Header) => {
 
     const openMenu = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        let _temp:any = getById('header-mini');
-        _temp && _temp.classList.add('opened');
+        getById('header-mini')?.classList.add('opened');
         size.width < 1200 && disableMainScroll();
     }
 
@@ -93,6 +92,6 @@ const Header = ({}:Header) => {
 
 interface Header {
   siteTitle?: string;
-}
+};
 
 export default Header

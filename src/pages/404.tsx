@@ -13,6 +13,6 @@ const NotFoundPage = () => {
       {/* <Slides from="404"/> */}
     </Layout>
   );
-}
+};
 
 export default NotFoundPage

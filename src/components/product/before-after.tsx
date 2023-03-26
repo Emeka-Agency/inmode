@@ -67,10 +67,10 @@ const ProductBeforeAfter = ({ datas }:ProductBeforeAfter_Interface) => {
             <RequestInformation/>
         </div>
     );
-}
+};
 
 interface ProductBeforeAfter_Interface {
     datas: InmodePanel_Generic_BeforeAfter_Interface[];
-}
+};
 
 export default ProductBeforeAfter;

@@ -58,11 +58,11 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             <RequestInformation/>
         </div>
     );
-}
+};
 
 interface AddonDetails {
     name?: string;
     datas: InmodePanel_Addon_Interface;
-}
+};
 
 export default AddonDetails;

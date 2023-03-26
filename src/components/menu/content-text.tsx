@@ -45,6 +45,7 @@ const MenuContentText = ({menu, prop_key}:MenuContentText) => {
 interface MenuContentText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
+    openOnClick?: boolean;
 };
 
 export default MenuContentText;

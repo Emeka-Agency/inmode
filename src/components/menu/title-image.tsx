@@ -74,6 +74,6 @@ interface MenuTitleImage {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
     openOnClick?: boolean;
-}
+};
 
 export default MenuTitleImage;

@@ -5,22 +5,22 @@ import { InmodePanel_ShopGroup_Interface } from "../interfaces";
 
 const WPShop = ({ products, special, shop_card }:WPShop) => {
 
-    const [tags, setTags] = React.useState([]);
+    const [tags, setTags]:[string[], React.Dispatch<string[]>] = React.useState([]);
 
     const filter = (e:React.MouseEvent<HTMLUListElement, MouseEvent>) => {
         e.preventDefault();
         e.currentTarget.classList.toggle('selected');
-        let temp = new Array(...tags);
-        if(tags.indexOf(e.currentTarget.dataset.value) < 0) {
+        let temp:string[] = new Array(...tags);
+        if(typeof e.currentTarget.dataset.value == "string" && tags.indexOf(e.currentTarget.dataset.value) < 0) {
             temp.push(e.currentTarget.dataset.value);
         }
         else {
-            temp = temp.map((tag) => {
+            temp = temp.map((tag):string => {
                 if(e.currentTarget.dataset.value === tag) {
-                    return false;
+                    return "";
                 }
                 return tag;
-            }).filter(tag => tag);
+            }).filter(tag => tag.length);
         }
         setTags(temp);
     }
@@ -55,7 +55,7 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
         </div>
     </div>
   );
-}
+};
 
 interface WPShop {
     products: InmodePanel_ShopGroup_Interface[];

@@ -45,6 +45,6 @@ const Workshop = ({ event = undefined }:Workshop) => {
 
 interface Workshop {
     event: InmodePanel_Event_Interface | undefined;
-}
+};
 
 export default Workshop;

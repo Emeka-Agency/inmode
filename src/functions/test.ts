@@ -98,14 +98,14 @@ function testOrder() {
 
 }
 
-function testPromise(href, datas) {
+function testPromise(href:string, datas:Object) {
     _log("testPromise");
 
     if(typeof href !="string" || typeof datas != "object") {
         return false;
     }
 
-    let vars = {
+    let vars:RequestInit = {
         method: "POST",
         headers: new Headers({
          'content-type': 'application/json',

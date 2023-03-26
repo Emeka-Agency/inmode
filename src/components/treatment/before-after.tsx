@@ -23,15 +23,15 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
             <div className="title">
                 Avant / Après
             </div>
-            <div className={`container-ba${datas.length < 3 ? ' few' : ''}`}>
-                {datas.length == 0 ?
+            <div className={`container-ba${(datas || []).length < 3 ? ' few' : ''}`}>
+                {(datas || []).length == 0 ?
                     sensible ?
                         <Sensible from="treatment-before-after"/>
                         :
                         <NoPicture from ="treatment-before-after"/>
                     :
-                    datas.length < 3 ?
-                        datas.map((ba, key) => {
+                    (datas || []).length < 3 ?
+                        (datas ||[]).map((ba, key) => {
                             return (
                                 <div key={key} className="few-ba">
                                     <img
@@ -49,7 +49,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                             options={flickityOptions}
                             classList={'slides-before-after transition'}
                         >
-                            {datas.map((ba, key) => {
+                            {(datas || []).map((ba, key) => {
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
@@ -73,6 +73,6 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
 interface TreatmentBeforeAfter {
     datas: InmodePanel_Generic_BeforeAfter_Interface[] | undefined;
     sensible: boolean;
-}
+};
 
 export default TreatmentBeforeAfter;

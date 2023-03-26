@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import { resolveImg } from "../../functions/tools";
 import { InmodePanel_Base_Banner_Interface } from "../interfaces";
 
@@ -43,7 +43,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             <div className="product-banner-mask"></div>
         </div>
     );
-}
+};
 
 interface ProductBanner_Interface {
     datas: InmodePanel_Base_Banner_Interface;

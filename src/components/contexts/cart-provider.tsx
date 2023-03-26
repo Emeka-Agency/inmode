@@ -719,7 +719,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             {children}
         </CartContext.Provider>
     );
-}
+};
 
 export default CartProvider;
 

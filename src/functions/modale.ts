@@ -25,7 +25,7 @@ function modaleClose():HTMLElement | null {
 export function openModale(params:ModaleParams) {
     disableMainScroll();
     let _temp = modale();
-    (params.blur ? params.blur : true) && toBlur.forEach(elem => selectOne(elem)?.style.setProperty('filter', 'blur(2px)'));
+    (params.blur ? params.blur : true) && toBlur.forEach(elem => (():HTMLElement|any => selectOne(elem))()?.style.setProperty('filter', 'blur(2px)'));
     _temp && _temp.classList.add('opened');
     params.modaleClass != undefined && _temp?.classList.add(params.modaleClass);
     _temp = modaleContainer();
@@ -35,7 +35,7 @@ export function openModale(params:ModaleParams) {
     params.onOpen && params.onOpen();
     _temp = modale();
     _temp && _temp.addEventListener('click', function(e:Event | MouseEvent) {
-        if(e.target && e.target.id == 'modale') {
+        if(e.target instanceof HTMLElement && e.target.id == 'modale') {
             closeModale(params.onClose);
         }
     });
@@ -53,13 +53,13 @@ export function openModale(params:ModaleParams) {
 
 export function closeModale(onClose?:Function) {
     let _temp = modale();
-    toBlur.forEach(elem => selectOne(elem)?.style.removeProperty('filter'));
+    toBlur.forEach(elem => (():HTMLElement|any => selectOne(elem))()?.style.removeProperty('filter'));
     _temp && _temp?.classList.replace('opened', 'closing');
     setTimeout(function() {
         let _temp = modale();
         _temp?.classList.remove('closing');
         _temp = modaleContainer();
-        _temp && _temp?.classList.remove(..._temp.classList);
+        _temp instanceof HTMLElement && _temp?.classList.forEach(_class => _temp?.classList.remove(_class));
         _temp = modaleContent();
         if(_temp) _temp.innerHTML = "";
         onClose != undefined && onClose();

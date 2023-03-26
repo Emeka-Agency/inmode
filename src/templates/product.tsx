@@ -24,8 +24,8 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 <ProductNavigation
                     name={datas.Name}
                     exist={{
-                        'before-after': datas.BeforesAfters !== [] && datas.BeforesAfters.length > 0,
-                        'studies': datas.ClinicalStudies !== [] && datas.ClinicalStudies.length > 0
+                        'before-after': datas.BeforesAfters.length > 0,
+                        'studies': datas.ClinicalStudies.length > 0
                     }}
                 />
                 <GenericDetails
@@ -54,7 +54,7 @@ interface ProductTemplates {
   data: {
     strapiProduct: InmodePanel_Product_Interface;
   };
-}
+};
 
 export default ProductTemplates;
 

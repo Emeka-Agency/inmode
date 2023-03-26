@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 import { useImages } from "./contexts/images-provider";
 import { InmodePanel_Generic_SellingNewGeneration_Interface } from "./interfaces";
 
 const SellingNew = ({ datas = {} }:SellingNew) => {
     
-    if(!datas || datas.length === 0) {
+    if(!datas || (datas instanceof Object && Object.keys(datas).length === 0)) {
         return <></>;
     }
 
@@ -30,10 +30,10 @@ const SellingNew = ({ datas = {} }:SellingNew) => {
             </div>
         </div>
     );
-}
+};
 
 interface SellingNew {
-    datas: InmodePanel_Generic_SellingNewGeneration_Interface;
-}
+    datas?: InmodePanel_Generic_SellingNewGeneration_Interface;
+};
 
 export default SellingNew;

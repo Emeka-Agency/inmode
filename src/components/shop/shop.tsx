@@ -4,17 +4,18 @@ import ShopProduct2 from "./shop-product";
 import WorkstationMenu from "./workstation-menu";
 import ShopMenu from "./shop-menu";
 import { getAllByClass } from "../../functions/selectors";
+import { InmodePanel_Addon_Interface, InmodePanel_Product_Interface, InmodePanel_TagFamily_Interface } from "../interfaces";
 
-const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
+const Shop = ({ products, tag_families, technologies, special = null, shop_card }:Shop) => {
 
-    const [tags, setTags] = React.useState([]);
-    const [memoryTags, setMemoryTags] = React.useState([]);
+    const [tags, setTags]:[string[], React.Dispatch<string[]>] = React.useState([]);
+    const [memoryTags, setMemoryTags]:[string[], React.Dispatch<string[]>] = React.useState([]);
     
     const [technology, setTechnology] = React.useState([]);
 
     const checkbox_resolve_checked_selector = "shopping-menu-filter-checkbox";
 
-    const resolve_checked = (value, remove = true, classname = checkbox_resolve_checked_selector) => {
+    const resolve_checked = (value:string, remove = true, classname = checkbox_resolve_checked_selector) => {
         let list:any = getAllByClass(classname);
         Object.keys(list).map(elem => {
             if(remove) {
@@ -43,10 +44,10 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
                 if(tag !== e.currentTarget.value){
                 return tag;
                 }
-                return null;
-            }).filter(tag => tag) || [];
+                return "";
+            }).filter(tag => tag.length) || [];
         }
-        if(temp === [] || temp.length === 0) {
+        if(temp.length === 0) {
             resolve_checked('cure-choice', false, 'cure-choice-all');
         }
         setTags(temp);
@@ -72,19 +73,21 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
             }
             else {
                 let elems = getAllByClass('cure-choice');
-                let temp = [];
-                Object.keys(elems).forEach(index => {
-                    elems[index].checked = true;
-                    temp.push(elems[index].value);
-                    resolve_checked(elems[index].value);
+                let temp:string[] = [];
+                Array.from(elems).forEach(elem => {
+                    if(elem instanceof HTMLInputElement) {
+                        elem.checked = true;
+                        temp.push(elem.value);
+                        resolve_checked(elem.value);
+                    }
                 });
                 setTags(temp);
             }
         }
     }
 
-    const resolve_technology = (e) => {
-        let temp = new Array(...technology);
+    const resolve_technology = (e:React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        let temp:string[] = new Array(...technology);
         if(e.currentTarget.checked) {
             temp.push(e.currentTarget.value);
         }
@@ -93,26 +96,26 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
                 if(tech !== e.currentTarget.value){
                     return tech;
                 }
-                return null;
-            }).filter(tech => tech) || [];
+                return "";
+            }).filter(tech => tech.length) || [];
         }
         setTechnology(temp);
     }
 
-    const filter = (e) => {
+    const filter = (e:React.MouseEvent<HTMLUListElement, MouseEvent>) => {
         e.preventDefault();
         e.currentTarget.classList.toggle('selected');
-        let temp = new Array(...tags);
-        if(tags.indexOf(e.currentTarget.dataset.value) < 0) {
+        let temp:string[] = new Array(...tags);
+        if(typeof e.currentTarget.dataset.value == "string" && tags.indexOf(e.currentTarget.dataset.value) < 0) {
             temp.push(e.currentTarget.dataset.value);
         }
         else {
             temp = temp.map((tag) => {
                 if(e.currentTarget.dataset.value === tag) {
-                    return false;
+                    return "";
                 }
                 return tag;
-            }).filter(tag => tag);
+            }).filter(tag => tag.length);
         }
         setTags(temp);
     }
@@ -140,7 +143,7 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
                 filtered_tech = technology.filter(value => product.Addons.map(tech => {return tech.Name;}).includes(value));
             }
             if(
-                (tags === [] || tags.length === 0) && (technology === [] || technology.length === 0)
+                (tags.length === 0 && technology.length === 0)
                 ||
                 filtered_tag.length > 0 || filtered_tech.length > 0
             ) {
@@ -174,14 +177,14 @@ const Shop = ({ products, tag_families, technologies, special, shop_card }) => {
         </div>
     </div>
   );
-}
-
-Shop.propTypes = {
-
 };
 
-Shop.defaultProps = {
-
-}
+interface Shop {
+    products: InmodePanel_Product_Interface[];
+    tag_families: InmodePanel_TagFamily_Interface[];
+    technologies: InmodePanel_Addon_Interface[];
+    special?: any;
+    shop_card: string;
+};
 
 export default Shop;

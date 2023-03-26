@@ -78,6 +78,6 @@ const Sitemap = ({ data }:Sitemap) => {
 
 interface Sitemap {
     data: any;
-}
+};
 
 export default Sitemap;

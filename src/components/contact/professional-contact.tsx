@@ -53,6 +53,6 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
 
 interface ProfessionalContact {
     from: string;
-}
+};
 
 export default ProfessionalContact;

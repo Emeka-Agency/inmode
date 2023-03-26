@@ -36,6 +36,6 @@ const Webinar = ({ event = undefined }:Webinar) => {
 
 interface Webinar {
     event: InmodePanel_Event_Interface | undefined;
-}
+};
 
 export default Webinar;

@@ -152,6 +152,6 @@ interface EventsLayout {
    loading: boolean;
    current_page: string;
    events?: Airtable_Event_Interface[];
-}
+};
 
 export default EventsLayout;

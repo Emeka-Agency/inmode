@@ -1,11 +1,12 @@
 import { graphql } from "gatsby";
-import React from "react"
+import React from "react";
+import { InmodePanel_Addon_Interface, InmodePanel_Product_Interface, InmodePanel_TagFamily_Interface } from "../components/interfaces";
 import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import Shop from "../components/shop/shop";
 import { edges_to_array } from "../functions/edges_to_array";
 
-const WorkstationPage = ({ data }) => {
+const WorkstationPage = ({ data }:WorkStation_Page) => {
     
     return (
         <Layout title="workstations">
@@ -18,9 +19,23 @@ const WorkstationPage = ({ data }) => {
           />
         </Layout>
     )
-}
+};
 
 export default WorkstationPage;
+
+interface WorkStation_Page {
+    data: {
+        allStrapiProduct: {
+            edges: InmodePanel_Product_Interface[];
+        }
+        allStrapiTagFamily: {
+            edges: InmodePanel_TagFamily_Interface[];
+        };
+        allStrapiAddon: {
+            edges: InmodePanel_Addon_Interface[];
+        };
+    };
+};
 
 export const query = graphql`
   {

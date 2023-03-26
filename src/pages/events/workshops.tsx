@@ -1,8 +1,8 @@
 import { graphql } from "gatsby";
 import React from "react";
 import EventsLayout from "../../components/events/events-layout";
-import { Airtable_Event_Interface, InmodePanel_Event_Interface } from "../../components/interfaces";
-import Layout from "../../components/Layout"
+import { Airtable_Record_Interface, Airtable_Event_Interface, InmodePanel_Event_Interface } from "../../components/interfaces";
+import Layout from "../../components/Layout";
 import SEO from "../../components/seo";
 
 import "../../components/events/events.css";
@@ -13,10 +13,10 @@ const WorkshopsPage = (datas:WorkshopsPage) =>  {
     const [events, setEvents]:[Airtable_Event_Interface[]|[], React.Dispatch<Airtable_Event_Interface[]|[]>] = React.useState(Array());
     const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
 
-    const loadEvents = async function(offset:string|null = null, records:Airtable_Event_Interface[]|[] = [], __type:string|null = null) {
+    const loadEvents = async function(offset:string|null = null, records:Airtable_Event_Interface[]|ConcatArray<never> = [], __type:string|null = null) {
         const fields = ["EventName", "Start", "End", "Practitioner", "Address", "Place", "PlaceURL", "Addons", "EventType", "EventDescription", "MapsLink", "VideoURL", "Picture"];
         const sortCriteres = ['Start'];
-        const sortDirections = ['desc'];
+        const sortDirections = ['asc'];
         const sortBy = Array(sortCriteres).map((el, index) => 
             `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
         ).join('&');
@@ -36,7 +36,7 @@ const WorkshopsPage = (datas:WorkshopsPage) =>  {
             {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
         )
         .then(res => res.json())
-        .then((res:{offset:string|null, records:{fields: Airtable_Event_Interface}[]}) => {
+        .then((res:{offset:string|null, records:Airtable_Record_Interface[]}) => {
             _log(res.offset != undefined);
             _log(res.records.length == 0);
             if(res.records.length == 0) {
@@ -76,6 +76,6 @@ const WorkshopsPage = (datas:WorkshopsPage) =>  {
 
 interface WorkshopsPage {
     
-}
+};
 
 export default WorkshopsPage;

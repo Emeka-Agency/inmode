@@ -39,6 +39,6 @@ const IndexPage = () => {
         <GetStarted/>
       </Layout>
   );
-}
+};
 
 export default IndexPage
