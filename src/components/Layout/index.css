@@ -6229,31 +6229,6 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 
 /* CONTACT PAGE */
 
-/* get in touch */
-
-.get-in-touch-container {
-    background-color: var(--pearl);
-    max-width: unset;
-}
-
-.get-in-touch-container .contact-page.get-in-touch {
-        background-color: var(--pearl);
-}
-
-.get-in-touch-container .contact-page.get-in-touch .text {
-    width: 100%;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--midnight);
-    padding: 50px 0 30px;
-    font-weight: 600;
-}
-
-.get-in-touch-container .contact-page.get-in-touch hr {
-    width: 90%;
-    background-color: var(--midnight);
-}
-
 /* {ACCORDION */
 
 .title-accordion.title::after {
