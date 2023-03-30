@@ -1,10 +1,11 @@
 import React from 'react';
-import MenusContext from "../contexts/menus-context"
+import MenusContext from "../contexts/menus-context";
 import { Link } from 'gatsby';
 import { useImages } from '../contexts/images-provider';
 
 import './index.css';
-import { GatsbyImage_Interface } from '../interfaces';
+import { GatsbyImage_Interface, InmodePanel_Footer_Interface } from '../interfaces';
+import { resolveImg } from '../../functions/tools';
 
 const Footer = ({}:Footer) => {
 
@@ -16,17 +17,13 @@ const Footer = ({}:Footer) => {
         if(_selector == undefined || _selector == null) {
             return '';
         }
-        let _temp:GatsbyImage_Interface;
         switch(_selector) {
             case 'address':
-                _temp = images.getOne('addressIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('addressIcon') ?? '';
             case 'phone':
-                _temp = images.getOne('phoneIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('phoneIcon') ?? '';
             case 'mail':
-                _temp = images.getOne('mailIcon');
-                return _temp && _temp.publicURL ? _temp.publicURL : '';
+                return images.resolve_img('mailIcon') ?? '';
             default:
                 return '';
         }
@@ -35,30 +32,30 @@ const Footer = ({}:Footer) => {
     const menus = ['address', 'phone', 'mail'];;
 
     return (
-        <footer
-            style={{
-                backgroundImage: "url(" + images.getOne('bgPattern').childImageSharp.fluid.srcWebp +")"
-            }}
-        >
+        <footer>
+            <div className="background-hex" style={{backgroundImage: "url(" + images.resolve_img('bgPattern') +")"}}></div>
             <div className="footer-content container">
                 <div className="footer-logo-infos-part">
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.getOne('footerLogo').childImageSharp.fluid.srcWebp}
-                            srcSet={images.getOne('footerLogo').childImageSharp.fluid.srcSetWebp}
+                            src={images.resolve_img('footerLogo')}
+                            // src={images.resolve_img('headerLogo2')}
+                            // src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
+                            srcSet={images.resolve_img_set('footerLogo')}
+                            // srcSet={images.resolve_img_set('headerLogo2')}
                             alt="footer-logo"
                         />
                     </div>
                     {menus.map((menu:string, key:number) => {
                         return (
                             <div key={key} className={`footer-infos ${menu}`}>
-                                <img
+                                {icons(menu) ? <img
                                     className={`footer-${menu}-ico background-image`}
                                     src={icons(menu)}
                                     srcSet={icons(menu)}
                                     alt={menu}
-                                />
+                                /> : <div className={`footer-${menu}-ico`}></div>}
                                 {
                                     menu === "mail" ? 
                                     <a href={`mailto:${footer.mail}`} className="footer-infos-text" title="Contact us by mail">
@@ -84,7 +81,7 @@ const Footer = ({}:Footer) => {
                             <div
                                 key={key}
                                 className="footer-social-ico background-image"
-                                style={{backgroundImage: 'url('+ (menu.icon ? menu.icon.localFile.publicURL : '') +')'}}
+                                style={{backgroundImage: 'url('+ resolveImg(menu.icon) +')'}}
                             >
                                 <a className="zone-link" href={menu.url || '#'} title={menu.name} target="_blank"></a>
                             </div>

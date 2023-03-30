@@ -14,7 +14,7 @@ const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
         if(datas.Picture == null) {return null;}
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
-                <img className="background-image" src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}/>
+                <img className="background-image" src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}/>
                 <div
                     className="testimonial-img-part-doctor"
                     style={{left: `calc(100% - ${(datas.Picture.localFile.childImageSharp.fluid.aspectRatio * 500).toFixed(0)}px)`}}

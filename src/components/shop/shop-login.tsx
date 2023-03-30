@@ -10,8 +10,8 @@ const ShopLogin = ({updateLogged}:ShopLogin_Interface) => {
 
     const password = "InModeUK";
 
-    const [closeIcon]:[GatsbyImage_Interface, React.Dispatch<GatsbyImage_Interface>] = React.useState(
-        useImages().getOne('closeWhiteIcon')
+    const [closeIcon]:[string|undefined, React.Dispatch<string|undefined>] = React.useState(
+        useImages().resolve_img('closeWhiteIcon')
     );
 
     const submitLog = (e:React.MouseEvent<HTMLButtonElement, MouseEvent> | null = null):void => {
@@ -39,8 +39,8 @@ const ShopLogin = ({updateLogged}:ShopLogin_Interface) => {
             <div className="container" style={{position: "relative"}}>
                 <div className="shop-close">
                     {
-                        closeIcon.publicURL ?
-                        <img src={closeIcon.publicURL} alt="Close" className="background-image"/>:
+                        closeIcon ?
+                        <img src={closeIcon} alt="Close" className="background-image"/>:
                         <span>X</span>
                     }
                     <Link to="/" title="Home" className="zone-link"></Link>

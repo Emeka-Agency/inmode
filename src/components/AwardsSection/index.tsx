@@ -10,24 +10,24 @@ const AwardsSection = ({}:AwardsSection) => {
     return (
         <div className="awards-section">
             <h2 className="awards-title">AWARD WINNING IDEAS</h2>
-            {images.getOne('awardElle') && <img
-                src={images.getOne('awardElle').publicURL}
+            {images.resolve_img('awardElle') && <img
+                src={images.resolve_img('awardElle')}
                 className="awards-img"
                 />}
-            {images.getOne('awardShape') && <img
-                src={images.getOne('awardShape').publicURL}
+            {images.resolve_img('awardShape') && <img
+                src={images.resolve_img('awardShape')}
                 className="awards-img"
                 />}
-            {images.getOne('awardBeauty') && <img
-                src={images.getOne('awardBeauty').publicURL}
+            {images.resolve_img('awardBeauty') && <img
+                src={images.resolve_img('awardBeauty')}
                 className="awards-img"
             />}
-            {images.getOne('award2021') && <img
-                src={images.getOne('award2021').publicURL}
+            {images.resolve_img('award2021') && <img
+                src={images.resolve_img('award2021')}
                 className="awards-img"
             />}
-            {images.getOne('awardDiamonds') && <img
-                src={images.getOne('awardDiamonds').publicURL}
+            {images.resolve_img('awardDiamonds') && <img
+                src={images.resolve_img('awardDiamonds')}
                 className="awards-img"
             />}
         </div>

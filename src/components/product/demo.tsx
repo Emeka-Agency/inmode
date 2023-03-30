@@ -12,7 +12,7 @@ const ProductDemo = ({ datas }:ProductDemo_Interface) => {
             <div className="picture">
                 <img
                     src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp}
+                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                         alt="product-demo"
                 />
             </div>

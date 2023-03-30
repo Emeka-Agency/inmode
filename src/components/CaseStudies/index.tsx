@@ -131,12 +131,12 @@ const CaseStudies = ({ studies }:CaseStudies) => {
                 studies.length > 0 ?
                     studies.map((study, index) => {
                         _log(study.icon);
-                        _log(images.getOne(study.icon ?? "eventsNoImg").publicURL);
+                        _log(images.resolve_img(study.icon ?? "eventsNoImg"));
                         return (
                             <div className="case-study" key={index}>
                                 <div className="img-case">
                                     <img
-                                        src={study.icon ? images.getOne(study.icon).publicURL : images.getOne("eventsNoImg").publicURL}
+                                        src={study.icon ? images.resolve_img(study.icon) : images.resolve_img("eventsNoImg")}
                                         alt={study.alt ?? `Study ${index + 1}`}
                                     />
                                 </div>

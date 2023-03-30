@@ -15,8 +15,8 @@ const SellingNew = ({ datas = {} }:SellingNew) => {
             <div className="selling-details-img transition">
                 <img
                     // src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp}
-                    src={images.getOne('nextImage').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('nextImage').childImageSharp.fluid.srcSetWebp}
+                    src={images.resolve_img('nextImage')}
+                    srcSet={images.resolve_img('nextImage')}
                     alt="selling-new"
                 />
             </div>

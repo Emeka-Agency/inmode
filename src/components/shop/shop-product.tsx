@@ -105,7 +105,7 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
                     />:
                     <img
                         src={_image.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={_image.localFile.childImageSharp.fluid.srcSetWebp}
+                        srcSet={_image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                         alt={article.name}
                         className="product-icon-img"
                     />

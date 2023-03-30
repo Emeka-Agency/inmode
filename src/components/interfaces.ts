@@ -49,6 +49,31 @@ export interface Airtable_Event_Interface {
     Picture?: any;
 };
 
+export interface Airtable_Picture_Interface {
+    width: number;
+    height: number;
+    id: string;
+    thumbnails: {
+        full: {
+            url: string;
+            width: number;
+            height: number;
+        }
+        large: {
+            url: string;
+            width: number;
+            height: number;
+        }
+        small: {
+            url: string;
+            width: number;
+            height: number;
+        }
+    };
+    url: string;
+    type: string;
+}
+
 export interface InmodePanel_Addon_Interface {
     Name?: string;
     Banner? : InmodePanel_Base_Banner_Interface;
@@ -555,9 +580,17 @@ export interface NameTable_Interface {
 };
 
 export interface Images_Interface {
-    getOne(request:string): GatsbyImage_Interface;
-    getSet(request:string[]): GatsbyImage_Interface[];
+    get_one(request:string): GatsbyImage_Interface;
+    get_set(request:string[]): GatsbyImage_Interface[];
+    resolve_img(request:string):string|undefined;
+    resolve_img_set(request:string):string|undefined;
 };
+
+export interface External_GatsbyImage_Interface extends GatsbyImage_Interface {
+    caption?: string;
+    url?: string;
+    localFile: GatsbyImage_Interface;
+}
 
 export interface GatsbyImage_Interface {
     ext?: string;
@@ -589,11 +622,14 @@ export interface GatsbyImage_Interface {
             aspectRatio?: number;
         }
     }
+    absolutePath?: string;
     publicURL?: string;
     url?: string;
     base64?: string;
     srcWebp?: string;
     srcSetWebp?: string;
+    width?: number;
+    height?: number;
 };
 
 export interface DiscountContext_Interface {

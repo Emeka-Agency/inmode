@@ -71,15 +71,15 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
                         <> 
                             <div className="back-hex left">
                                 <img
-                                    src={images.getOne('wideBackAlveole').childImageSharp ? images.getOne('wideBackAlveole').childImageSharp.fluid.srcWebp : images.getOne('wideBackAlveole').publicURL}
-                                    srcSet={images.getOne('wideBackAlveole').childImageSharp ? images.getOne('wideBackAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('wideBackAlveole').publicURL}
+                                    src={images.resolve_img('wideBackAlveole')}
+                                    srcSet={images.resolve_img('wideBackAlveole')}
                                     alt="back-left"
                                 />
                             </div>
                             <div className="back-hex right">
                                 <img
-                                    src={images.getOne('wideBackAlveole').childImageSharp ? images.getOne('wideBackAlveole').childImageSharp.fluid.srcWebp : images.getOne('wideBackAlveole').publicURL}
-                                    srcSet={images.getOne('wideBackAlveole').childImageSharp ? images.getOne('wideBackAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('wideBackAlveole').publicURL}
+                                    src={images.resolve_img('wideBackAlveole')}
+                                    srcSet={images.resolve_img('wideBackAlveole')}
                                     alt="back-right"
                                 />
                             </div>

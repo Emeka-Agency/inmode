@@ -61,8 +61,8 @@ const PrivacyPolicy = (props:PrivacyPolicy) => {
     return (
         <div className={`privacy-policy transition${open ? ' opened' : ''}`}>
             <button className="open-button" onClick={(e) => {process_cookies(e);}}>
-                <img className="main" src={images.getOne('privacyPolicyTriangle').publicURL} alt="privacy-triangle"/>
-                <img className="content" src={images.getOne('privacyPolicyC').childImageSharp.fluid.srcWebp} alt="privacy-icon"/>
+                <img className="main" src={images.resolve_img('privacyPolicyTriangle')} alt="privacy-triangle"/>
+                <img className="content" src={images.resolve_img('privacyPolicyC')} alt="privacy-icon"/>
             </button>
             <div className="panel cookies transition custom-scrollbar moz-scrollbar">
                 <div className="cookies-our-use">

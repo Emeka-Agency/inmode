@@ -41,7 +41,7 @@ const HeaderMini = ({}:HeaderMini) => {
         <div id="header-mini" className="header-mini custom-scrollbar moz-scrollbar">
             <div className="menu-close transition" onClick={(e) => {closeMenu(e);}}>
                 <span>CLOSE</span>
-                <img className="close-mini-menu-icon" src={images.getOne('closeWhiteIcon').publicURL} alt="close-white"/>
+                <img className="close-mini-menu-icon" src={images.resolve_img('closeWhiteIcon')} alt="close-white"/>
             </div>
             <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
             <div className="header-mini-divider"></div>

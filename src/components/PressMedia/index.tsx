@@ -20,7 +20,7 @@ const PressMedia = ({datas, prop_key = 0, openCarousel}:PressMediaParams) => {
                     <img
                         className="press-media-picture-img"
                         src={datas.Picture && datas.Picture.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.Picture && datas.Picture.localFile.childImageSharp.fluid.srcSetWebp}
+                        srcSet={datas.Picture && datas.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                         onClick={(e) => openCarousel(e, prop_key)}
                     />
                 </div>

@@ -43,7 +43,7 @@ const OurSpecialist = ({}:OurSpecialistParams) => {
                             <div className="specialist-picture">
                               <img
                                   src={specialist.Picture.localFile.childImageSharp.fluid.srcWebp}
-                                  srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp}
+                                  srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                               />
                             </div>
                             <div className="name">{specialist.Name}</div>

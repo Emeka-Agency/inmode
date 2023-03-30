@@ -125,8 +125,8 @@ const Article = ({id, customURL}:Article) => {
             <a className="back-to-articles" href="/blog" title="Go back to articles">
                 <img
                     className="back-to-articles-icon"
-                    src={images.getOne('arrowRightIcon') && images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('arrowRightIcon') && images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                    src={images.resolve_img('arrowRightIcon')}
+                    srcSet={images.resolve_img('arrowRightIcon')}
                     alt={article.Title}
                 />
                 <span className="back-to-articles-text">Articles</span>
@@ -163,8 +163,8 @@ const Article = ({id, customURL}:Article) => {
                         :
                         <img
                             className="article-list-elem-thumbnail default"
-                            src={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcWebp}
-                            srcSet={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcSetWebp}
+                            src={images.resolve_img('learnIcon')}
+                            srcSet={images.resolve_img('learnIcon')}
                             alt={article.Title}
                         />
                     )

@@ -36,7 +36,7 @@ const Header = ({}:Header) => {
         if(typeof document != "undefined") {
             let case_link = document.querySelector('a[href="/case-studies"]');
             if(case_link instanceof Element && window?.localStorage.getItem("case_studies_pass") != "true") {
-                // case_link.parentNode.append(strToDom(`<img src="${images.getOne("lock").publicURL}" className="locked-section"/>`));
+                // case_link.parentNode.append(strToDom(`<img src="${images.resolve_img("lock")}" className="locked-section"/>`));
                 case_link.addEventListener('click', (e) => {
                     e.preventDefault();
                     openModale(routeCaseStudy({
@@ -136,7 +136,7 @@ const Header = ({}:Header) => {
     return (
         <header>
             <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.getOne('headerLogo').childImageSharp.fluid.srcWebp +')'}}>
+                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo') +')'}}>
                     <Link to="/" className="zone-link" title="Inmode">
                     </Link>
                 </div>
@@ -154,8 +154,8 @@ const Header = ({}:Header) => {
                                     variant: "single",
                                     parent_menu: true,
                                     internal_link: true,
-                                    icon: {localFile: useImages().getOne("homeIcon")},
-                                    icon_hover: {localFile: useImages().getOne("homeIconHover")}
+                                    icon: {localFile: useImages().get_one("homeIcon")},
+                                    icon_hover: {localFile: useImages().get_one("homeIconHover")}
                                 }}
                                 prop_key={0}
                             />

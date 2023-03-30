@@ -20,7 +20,7 @@ const MenuContentText = ({menu, prop_key, openOnClick}:MenuContentText) => {
                         return (<Menu key={key_sub} prop_key={key_sub} menu={sub}/>);
                     })
                 }
-                {menu.url == "/case-studies" && <img src={useImages().getOne("lock").publicURL} className="locked-section"/>}
+                {menu.url == "/case-studies" && <img src={useImages().resolve_img("lock")} className="locked-section"/>}
             </>
         );
     }

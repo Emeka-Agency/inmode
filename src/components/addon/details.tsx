@@ -46,7 +46,7 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
                     return (
                         <div key={key} className="key">
                             <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.resolve_img('keyBenefitIcon')}
                                 alt="key_benefit"
                             />
                             <div className="text">{benefit.text}</div>

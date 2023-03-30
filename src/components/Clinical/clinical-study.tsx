@@ -120,7 +120,7 @@ const ClinicalStudy = ({study, prop_key = null, able = false, _setAllowed}:Clini
             <div className="study-img">
                 <img
                     src={study.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={study.picture.localFile.childImageSharp.fluid.srcSetWebp}
+                    srcSet={study.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                     alt="clinical-study"
                 />
             </div>

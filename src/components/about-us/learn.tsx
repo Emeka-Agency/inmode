@@ -51,7 +51,7 @@ const Learn = ({ from = "" }:Learn) => {
                 <div className="goals">
                     <img
                         src={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcSetWebp}
+                        srcSet={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                         alt='about-us-learn'
                     />
                     <div className="texts">
@@ -75,7 +75,7 @@ const Learn = ({ from = "" }:Learn) => {
                     return (
                         <div key={key} className="list-elem">
                             <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.resolve_img('keyBenefitIcon')}
                                 alt={`elem-${key}`}
                                 className="before-text"
                             />

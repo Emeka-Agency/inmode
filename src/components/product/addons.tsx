@@ -46,7 +46,7 @@ const Addons = ({ datas, sensible = false, name }:Addons) => {
                                         <div className="addon-img">
                                             <img
                                                 src={product.left_image && product.left_image.localFile.childImageSharp.fluid.srcWebp}
-                                                srcSet={product.left_image && product.left_image.localFile.childImageSharp.fluid.srcSetWebp}
+                                                srcSet={product.left_image && product.left_image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                                 alt={product.title_text}
                                             />
                                         </div>
@@ -54,7 +54,7 @@ const Addons = ({ datas, sensible = false, name }:Addons) => {
                                             {product.title_image && (
                                                 <img
                                                     src={product.title_image.localFile.childImageSharp.fluid.srcWebp}
-                                                    srcSet={product.title_image.localFile.childImageSharp.fluid.srcSetWebp}
+                                                    srcSet={product.title_image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                                     alt={product.title_text}
                                                 />
                                             )}

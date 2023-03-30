@@ -68,16 +68,16 @@ const ContactUs = () => {
                 <img
                     id="piece"
                     className="transition"
-                    src={images.getOne('contactUsPiece').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('contactUsPiece').childImageSharp.fluid.srcSetWebp}
+                    src={images.resolve_img('contactUsPiece')}
+                    srcSet={images.resolve_img('contactUsPiece')}
                     alt="contact-us"
                     onClick={(e) => {resolve_click(e)}}
                 />
                 <div className="content">
                     <div id="close" className="close-contact-us transition" onClick={(e) => {resolve_click(e)}}>
                         <img
-                            src={images.getOne('hexagonalCross').childImageSharp.fluid.srcWebp}
-                            srcSet={images.getOne('hexagonalCross').childImageSharp.fluid.srcSetWebp}
+                            src={images.resolve_img('hexagonalCross')}
+                            srcSet={images.resolve_img('hexagonalCross')}
                             alt="hexa-close"
                         />
                     </div>

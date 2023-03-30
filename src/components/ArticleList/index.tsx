@@ -72,8 +72,8 @@ const ArticleList = ({}:ArticleList) => {
                                     :
                                     <img
                                         className="article-list-elem-thumbnail default"
-                                        src={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('learnIcon') && images.getOne('learnIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.resolve_img('learnIcon')}
+                                        srcSet={images.resolve_img('learnIcon')}
                                         alt={article.Title}
                                     />
                                 )

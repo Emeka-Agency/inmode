@@ -1,5 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
+import { _log } from "../../functions/logger";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { useImages } from '../contexts/images-provider';
 
 const Alveoles = ({}:Alveoles) => {
@@ -8,50 +10,57 @@ const Alveoles = ({}:Alveoles) => {
 
     const hexs = [
         {
-            'image': images.getOne('alveole1').childImageSharp.fluid,
+            'src': images.resolve_img('alveole1'),
+            'src_set': images.resolve_img_set('alveole1'),
             'target': '_self',
             'text': 'Conferences',
             'link': '/events/conferences'
         },
         {
-            'image': images.getOne('alveole2').childImageSharp.fluid,
+            'src': images.resolve_img('alveole2'),
+            'src_set': images.resolve_img_set('alveole2'),
             'target': '_self',
             'text': 'Webinars',
             'link': '/events/webinars'
         },
         {
-            'image': images.getOne('alveole3').childImageSharp.fluid,
+            'src': images.resolve_img('alveole3'),
+            'src_set': images.resolve_img_set('alveole3'),
             'target': '_self',
             'text': 'Workshops',
             'link': '/events/workshops'
         },
         {
-            'image': images.getOne('alveole4').childImageSharp.fluid,
+            'src': images.resolve_img('alveole4'),
+            'src_set': images.resolve_img_set('alveole4'),
             'target': '_self',
             'text': 'Products',
             'link': '/workstation'
         },
         {
-            'image': images.getOne('alveole5').childImageSharp.fluid,
+            'src': images.resolve_img('alveole5'),
+            'src_set': images.resolve_img_set('alveole5'),
             'target': '_blank',
             'text': 'Before / After',
             'link': 'https://inmodemd.com/gallery/'
         }
     ];
 
+    _log(hexs);
+
     return (
         <div className="alveoles">
             <div className="back-hex left">
                 <img
-                    src={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcWebp : images.getOne('backAlveole').publicURL}
-                    srcSet={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('backAlveole').publicURL}
+                    src={images.resolve_img('backAlveole')}
+                    srcSet={images.resolve_img('backAlveole')}
                     alt="back-left"
                 />
             </div>
             <div className="back-hex right">
                 <img
-                    src={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcWebp : images.getOne('backAlveole').publicURL}
-                    srcSet={images.getOne('backAlveole').childImageSharp ? images.getOne('backAlveole').childImageSharp.fluid.srcSetWebp : images.getOne('backAlveole').publicURL}
+                    src={images.resolve_img('backAlveole')}
+                    srcSet={images.resolve_img('backAlveole')}
                     alt="back-right"
                 />
             </div>
@@ -59,7 +68,7 @@ const Alveoles = ({}:Alveoles) => {
                 {hexs.map((hex, key) => {
                     return (
                         <div key={key} className="alveole">
-                            <img className="first" src={hex.image.srcWebp} srcSet={hex.image.srcSetWebp} alt={hex.text}/>
+                            <img className="first" src={hex.src} srcSet={hex.src_set} alt={hex.text}/>
                             <div className="alveole-text">{hex.text}</div>
                             {hex.target === '_self' ?
                                 <Link className="zone-link" to={hex.link} title={hex.text}></Link>

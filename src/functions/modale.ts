@@ -74,7 +74,7 @@ export function pressMedia(datas:pressMedia) {
                                 `<img
                                     class="press-media-modale-picture"
                                     src="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcWebp}"
-                                    srcSet="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcSetWebp}"
+                                    srcSet="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}"
                                 />`
                             }
                             ${

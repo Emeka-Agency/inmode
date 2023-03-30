@@ -19,7 +19,7 @@ const ProductView = ({children, datas}:ProductView) => {
             <div className="product-view-img">
                 <img
                     src={products[datas.current].ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={products[datas.current].ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
+                    srcSet={products[datas.current].ShopPicture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                     alt='products'
                 />
             </div>
@@ -37,7 +37,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                         <img
                                             className="addon-title"
                                             src={addon.Banner.right_img.localFile.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp}
+                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                             alt={addon.Name}
                                         />
                                     </div>
@@ -45,7 +45,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                     <img
                                         className="addon-picture"
                                         src={addon.Banner.left_img.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={addon.Banner.left_img.localFile.childImageSharp.fluid.srcSetWebp}
+                                        srcSet={addon.Banner.left_img.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                         alt={addon.Name}/>
                                 </div>
                                 <div className="addon-details transition">
@@ -53,7 +53,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                         <img
                                             className="addon-title"
                                             src={addon.Banner.right_img.localFile.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp}
+                                            srcSet={addon.Banner.right_img.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                             alt={addon.Name}
                                         />
                                     </div>
@@ -66,8 +66,8 @@ const ProductView = ({children, datas}:ProductView) => {
                                             Details
                                             <img
                                                 className="detail-view-addon-arrow transition"
-                                                src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                                srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                                src={images.resolve_img('arrowRightIcon')}
+                                                srcSet={images.resolve_img('arrowRightIcon')}
                                                 alt="arrow-left"
                                             />
                                         </Link>
@@ -79,7 +79,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                         {/* <div className="add-to-cart"><button>Ajouter</button></div> */}
                                     </div>
                                 </div>
-                                <img src={images.getOne('plusIcon').publicURL} className="show-more" alt="add"/>
+                                <img src={images.resolve_img('plusIcon')} className="show-more" alt="add"/>
                             </div>
                         );
                     })}

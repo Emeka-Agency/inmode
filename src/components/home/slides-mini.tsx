@@ -14,7 +14,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                     <div className="product-image">
                         <img
                             src={product.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                            srcSet={product.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
+                            srcSet={product.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                             alt='products'
                         />
                     </div>
@@ -22,7 +22,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                         <div className="product-icon">
                             <img
                                 src={product.Icon.localFile.childImageSharp.fluid.srcWebp}
-                                srcSet={product.Icon.localFile.childImageSharp.fluid.srcSetWebp}
+                                srcSet={product.Icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                 alt={product.Name}
                             />
                         </div>

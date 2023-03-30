@@ -13,7 +13,7 @@ const Workshop = ({ event = undefined }:Workshop) => {
                 <img
                     className="event-pic"
                     src={event.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp}
+                    srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                 />
             </div>
             <div className="descr-part custom-scrollbar moz-scrollbar">

@@ -90,7 +90,7 @@ const Slides = ({from}:Slides) => {
                                     <img
                                         className="slide-bg-img"
                                         src={slide.Icon.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp}
+                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                         alt={slide.Name}
                                     />
                                 </div>
@@ -98,7 +98,7 @@ const Slides = ({from}:Slides) => {
                                     <img
                                         className="slide-bg-img"
                                         src={slide.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp}
+                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                         alt='products'
                                     />
                                 </div>
@@ -109,8 +109,8 @@ const Slides = ({from}:Slides) => {
                                     Product information
                                     <img
                                         className="slide-view-detail-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
                                     <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
@@ -119,8 +119,8 @@ const Slides = ({from}:Slides) => {
                                     Workstation addons
                                     <img
                                         className="slide-view-product-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img('arrowRightIcon')}
                                         alt="arrow-left"
                                     />
                                 </div> : null}
@@ -140,7 +140,7 @@ const Slides = ({from}:Slides) => {
                             <div className="close">
                                 <img
                                     className="close-product-view"
-                                    src={images.getOne('closeWhiteIcon').publicURL}
+                                    src={images.resolve_img('closeWhiteIcon')}
                                     alt="close-product-view"
                                 />
                             </div>

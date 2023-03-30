@@ -1,10 +1,11 @@
 import React, { MouseEventHandler } from "react";
 import { useImages } from '../contexts/images-provider';
-import { Airtable_Event_Interface, InmodePanel_Addon_Interface, InmodePanel_Event_Interface } from "../interfaces";
+import { Airtable_Event_Interface, Airtable_Picture_Interface, InmodePanel_Addon_Interface, InmodePanel_Event_Interface } from "../interfaces";
 import randomString from "../../functions/randString";
 import { closeModale, openModale, signupEvent } from "../../functions/modale";
 import { useWindowSize } from "../../functions/window-size";
 import { _log } from "../../functions/logger";
+import { resolveImg } from "../../functions/tools";
 import { getById, selectOne } from "../../functions/selectors";
 
 const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current_page, isPast = false }:InmodeEvent) => {
@@ -303,6 +304,24 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         }));
     }
 
+    function resolve_picture_ratio(picture:Airtable_Picture_Interface|undefined) {
+        if(picture == null) {return 1;}
+        if(picture?.thumbnails?.large?.url) {return picture?.thumbnails?.large?.height / picture?.thumbnails?.large?.width;}
+        if(picture?.thumbnails?.full?.url) {return picture?.thumbnails?.full?.height / picture?.thumbnails?.full?.width;}
+        if(picture?.thumbnails?.small?.url) {return picture?.thumbnails?.small?.height / picture?.thumbnails?.small?.width;}
+        if(picture?.url) {return picture?.height / picture?.width;}
+        return 1;
+    }
+
+    function resolve_picture(picture:Airtable_Picture_Interface|undefined) {
+        if(picture == null) {return undefined;}
+        if(picture?.thumbnails?.large?.url) {return picture?.thumbnails?.large?.url;}
+        if(picture?.thumbnails?.full?.url) {return picture?.thumbnails?.full?.url;}
+        if(picture?.thumbnails?.small?.url) {return picture?.thumbnails?.small?.url;}
+        if(picture?.url) {return picture?.url;}
+        return undefined;
+    }
+
     _log(event);
     _log(prop_key);
     _log(current_page);
@@ -331,14 +350,14 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
                 <img
                     className="event-pic"
-                    src={event.Picture ? event.Picture.localFile.childImageSharp.fluid.srcWebp : images.getOne("footerLogo").childImageSharp.fluid.srcWebp}
-                    srcSet={event.Picture ? event.Picture.localFile.childImageSharp.fluid.srcSetWebp : images.getOne("footerLogo").childImageSharp.fluid.srcSetWebp}
+                    src={event.Picture ? resolveImg(event.Picture) : images.resolve_img("footerLogo")}
+                    srcSet={event.Picture ? resolveImg(event.Picture) : images.resolve_img("footerLogo")}
                     alt={`event-pic-'${event.EventName}`}
                 />
             </div>
             <div
                 className={`descr-part ${prop_key === 0 ? 'left' : 'right'} custom-scrollbar moz-scrollbar`}
-                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? event.Picture.aspectRatio * 150 : (images.getOne("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 55px))`} : {}}
+                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? event.Picture.aspectRatio * 150 : (images.get_one("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 55px))`} : {}}
                 // 15 du padding gauche, 15 du padding droit, 5 de la custom-scrollbar, 20 pour être sûr
             >
                 <div className="title">

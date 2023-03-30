@@ -14,292 +14,189 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const [images]:[ImagesList, React.Dispatch<ImagesList>] = React.useState(useStaticQuery(graphql `
         {
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             closeWhiteIcon: file(relativePath: {eq: "icons/close-white.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             hexagonalCross: file(relativePath: {eq: "icons/closingcross.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcSet
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             rmvInit: file(relativePath: {eq: "icons/rmv-article-init.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             rmvHover: file(relativePath: {eq: "icons/rmv-article-blue.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             contactUsPiece: file(relativePath: {eq: "contact_us.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcSet
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             fixedMenuLogo: file(relativePath: {eq: "header-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             headerLogo: file(relativePath: {eq: "header-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                        base64
-                        tracedSVG
-                    }
-                }
+                ...FileImgFormat
             }
             seoLogo: file(relativePath: {eq: "header-logo.png"}) {
-                img: childImageSharp {
-                    srcProps: fixed(width: 100, height: 100) {
-                        src: srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             seoLogo2: file(relativePath: {eq: "header-logo.png"}) {
-                img: childImageSharp {
-                    srcProps: fluid {
-                        src: srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             footerLogo: file(relativePath: {eq: "footer-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        aspectRatio
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             phoneIcon: file(relativePath: {eq: "icons/icomoon/svg/067-phone.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             mailIcon: file(relativePath: {eq: "icons/icomoon/svg/391-mail5.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             bgPattern: file(relativePath: {eq: "footer-bg-pattern.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             privacyPolicyTriangle: file(relativePath: {eq: "privacy-icon.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             privacyPolicyC: file(relativePath: {eq: "privacy-c.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                    }
-                }
+                ...FileImgFormat
             }
             learnIcon: file(relativePath: {eq: "about-us/learn-icon.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
-                publicURL
+                ...FileImgFormat
             }
             backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {
-                publicURL
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             wideBackAlveole: file(relativePath: {eq: "home/wide-bg-alveoles.png"}) {
-                publicURL
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole2: file(relativePath: {eq: "home/alveole-2.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole3: file(relativePath: {eq: "home/alveole-3.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole4: file(relativePath: {eq: "home/alveole-4.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             alveole5: file(relativePath: {eq: "home/alveole-5.jpg"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             homeClinicalBack: file(relativePath: {eq: "home/media-bg.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             homeClinicalStudy: file(relativePath: {eq: "home/studies-img.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             heroHeader: file(relativePath: {eq: "hero-3.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             arrowRightIcon: file(relativePath: {eq: "icons/arrow-right.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             nextImage: file(relativePath: {eq: "products/addons/next.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             eventsNoImg: file(relativePath: {eq: "header-logo.png"}) {
-                childImageSharp {
-                    fluid {
-                        srcWebp
-                        srcSetWebp
-                    }
-                }
+                ...FileImgFormat
             }
             awardElle: file(relativePath: {eq: "award-elle.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             awardShape: file(relativePath: {eq: "award-shape.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             awardBeauty: file(relativePath: {eq: "award-beauty.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             award2019: file(relativePath: {eq: "award-2019.gif"}) {
-                publicURL
+                ...FileImgFormat
             }
             award2021: file(relativePath: {eq: "award-2021.jpg"}) {
-                publicURL
+                ...FileImgFormat
             }
             awardDiamonds: file(relativePath: {eq: "award-diamond.jpg"}) {
-                publicURL
+                ...FileImgFormat
             }
             homeIcon: file(relativePath: {eq: "icons/home-icon.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             homeIconHover: file(relativePath: {eq: "icons/home-icon-blue.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_01: file(relativePath: {eq: "case/01 . Trikwan case study.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_02: file(relativePath: {eq: "case/02 . bodytite_CS1_NW.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_03: file(relativePath: {eq: "case/03 . M8_CS2_HD.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_04: file(relativePath: {eq: "case/04 . CPullen-case-study.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_05: file(relativePath: {eq: "case/05 . Aesthetically You.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_06: file(relativePath: {eq: "case/06 . KPA case study.webp"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_07: file(relativePath: {eq: "case/07.png"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_08: file(relativePath: {eq: "case/08.png"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_09: file(relativePath: {eq: "case/09.jpg"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_10: file(relativePath: {eq: "case/10.png"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_11: file(relativePath: {eq: "case/11.jpg"}) {
-                publicURL
+                ...FileImgFormat
             }
             case_12: file(relativePath: {eq: "case/12.png"}) {
-                publicURL
+                ...FileImgFormat
             }
             lock: file(relativePath: {eq: "icons/lock.svg"}) {
-                publicURL
+                ...FileImgFormat
             }
+        }
+
+        fragment FileImgFormat on File {
+            url
+            absolutePath
+            childImageSharp {
+                fixed {
+                    srcWebp
+                    srcSetWebp
+                    aspectRatio
+                }
+                fluid {
+                    srcWebp
+                    srcSetWebp
+                    aspectRatio
+                }
+            }
+            publicURL
+            url
         }
     `));
     // eventsNoImg: file(relativePath: {eq: "events-no-img.jpg"}) {
@@ -329,10 +226,34 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
         }
     };
 
+    const resolveImg = (request:string):string|undefined => {
+        const img = getOneImage(request);
+        if(img == null) {return undefined;}
+        return img?.childImageSharp?.fluid?.srcWebp
+        || img?.childImageSharp?.fixed?.srcWebp
+        || img?.publicURL
+        || img?.absolutePath
+        || img?.url
+        || undefined;
+    }
+
+    const resolveImgSet = (request:string):string|undefined => {
+        const img = getOneImage(request);
+        if(img == null) {return undefined;}
+        return img?.childImageSharp?.fluid?.srcSetWebp
+        || img?.childImageSharp?.fixed?.srcSetWebp
+        || img?.publicURL
+        || img?.absolutePath
+        || img?.url
+        || undefined;
+    }
+
     return (
         <ImagesContext.Provider value = {{
-            'getOne': getOneImage,
-            'getSet': getImageSet,
+            'get_one': getOneImage,
+            'get_set': getImageSet,
+            'resolve_img': resolveImg,
+            'resolve_img_set': resolveImgSet
         }}>
             {children}
         </ImagesContext.Provider>

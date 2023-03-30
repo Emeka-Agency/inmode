@@ -26,8 +26,8 @@ const Webinar = ({ event = undefined }:Webinar) => {
             <div className="img-part">
                 <img
                     className="event-pic"
-                    src={images.getOne('gatsbyAstronaut').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('gatsbyAstronaut').childImageSharp.fluid.srcSetWebp}
+                    src={images.resolve_img('gatsbyAstronaut')}
+                    srcSet={images.resolve_img('gatsbyAstronaut')}
                 />
             </div>
         </div>

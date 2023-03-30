@@ -86,7 +86,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                 <img
                                     className="background-image"
                                     src={post.node.localFile.childImageSharp.fluid.srcWebp}
-                                    srcSet={post.node.localFile.childImageSharp.fluid.srcSetWebp}
+                                    srcSet={post.node.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                     alt={`insta-${key + 1}`}
                                 />
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Follow InMode on Instagram"></a>
@@ -102,7 +102,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                     // src={`https://back.qtmg5814.odns.fr/assets/instagram/${index}.jpg`}
                                     src={`https://back.inmodeuk.emeka.fr/assets/instagram/${index}.jpg`}
                                     // src={post.childImageSharp.fluid.srcWebp}
-                                    // srcSet={post.childImageSharp.fluid.srcSetWebp}
+                                    // srcSet={post.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
                                     alt={`insta-${key + 1}`}
                                 />
                                 <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Follow InMode on Instagram"></a>
