@@ -28,9 +28,9 @@ exports.onCreatePage = async ({
         return false;
     }
 
-    if (page.path == '/testimonials/') {
-        return false;
-    }
+    // if (page.path == '/testimonials/') {
+    //     return false;
+    // }
 
     // console.log(page.path);
 
