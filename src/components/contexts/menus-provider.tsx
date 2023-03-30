@@ -389,7 +389,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
     const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes));
     const [menusHeaderBottom] = React.useState(
       process_menu(datas.header_bottom.nodes.map(elem => elem))
-      .sort((a, b) => a.url == "/contact" ? 1 : -1)
+      .sort((a, b) => b.url == "/contact" ? -1 : 0)
     );
     const [menusFooter] = React.useState(datas.footer);
 
