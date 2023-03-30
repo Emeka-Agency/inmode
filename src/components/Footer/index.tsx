@@ -39,10 +39,10 @@ const Footer = ({}:Footer) => {
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.resolve_img('footerLogo')}
+                            src={images.resolve_img('footerLogo3')}
                             // src={images.resolve_img('headerLogo2')}
                             // src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
-                            srcSet={images.resolve_img_set('footerLogo')}
+                            srcSet={images.resolve_img_set('footerLogo3')}
                             // srcSet={images.resolve_img_set('headerLogo2')}
                             alt="footer-logo"
                         />
