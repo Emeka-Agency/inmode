@@ -782,6 +782,12 @@ export interface FlickityOptions_Interface {
     selectedAttraction?: number;
     friction?: number;
     percentPosition?: boolean;
-    autoPlay?: boolean;
-    wrapAround?: any;
+    autoPlay?: boolean|number;
+    wrapAround?: boolean;
+    groupCells?: boolean|number,
+    draggable?: boolean,
+    freeScroll?: boolean,
+    prevNextButtons?: boolean,
+    adaptiveHeight?: boolean,
+    imagesLoaded?: boolean,
 };

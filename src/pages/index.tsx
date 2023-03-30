@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import Hero from "../components/home/hero";
 import ClinicalStudies from "../components/home/clinical-studies";
+import WhyInmode from "../components/home/why-inmode";
 import FollowInstagram from "../components/home/follow-instagram";
 import Newsletter from "../components/newsletter";
 import Slides from "../components/home/slides";
@@ -38,6 +39,7 @@ const IndexPage = () => {
         {size.width > 999 ? <Slides from='home'/> : <SlidesMini from="home"/>}
         <Alveoles />
         <ClinicalStudies/>
+        <WhyInmode/>
         <OurSpecialist/>
         {/* CLARIFY Provisoire */}
         <AwardsSection/>

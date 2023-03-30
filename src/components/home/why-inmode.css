@@ -1,0 +1,189 @@
+:root {
+    --top-corner: 25%;
+    --bottom-corner: 75%;
+}
+
+section.why-inmode-home {
+    padding: 25px 70px 50px;
+}
+
+@media (max-width: 1199px) {
+    section.why-inmode-home {
+        padding: 25px 70px 50px;
+    }
+}
+
+@media (max-width: 999px) {
+    section.why-inmode-home {
+        padding: 20px 50px 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    section.why-inmode-home {
+        padding: 15px 20px 35px;
+    }
+}
+
+@media (max-width: 465px) {
+    section.why-inmode-home {
+        padding: 10px 10px 25px;
+    }
+}
+
+section.why-inmode-home .why-inmode-title {
+    color: var(--pearl);
+    text-align: center;
+    margin: 0 auto 20px;
+    display: block;
+    font-size: 36px;
+    font-weight: 700;
+    padding: 0 8px 12px;
+    width: fit-content;
+    margin: 0 auto 30px;
+    border-bottom: 2px solid var(--pearl);
+}
+
+section.why-inmode-home .carousel-why-inmode {
+    overflow: hidden;
+}
+
+section.why-inmode-home .carousel-why-inmode .flickity-slider {
+    transition: unset;
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks {
+    text-align: center;
+    width: 100%;
+    display: inline-flex;
+    flex: 1 1;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transition: unset;
+}
+
+@media (max-width: 768px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks {
+        
+    }
+}
+
+@media (max-width: 465px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks {
+
+    }
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block {
+    display: flex;
+    vertical-align: middle;
+    transition: unset;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: calc((100vw - 140px) * 0.15);
+    /* width: 300px; */
+    height: calc((100vw - 140px) * 0.15);
+    /* height: 300px; */
+    margin: 0;
+    padding: 15px;
+    clip-path: polygon(0 var(--top-corner), 50% 0, 100% var(--top-corner), 100% var(--bottom-corner), 50% 100%, 0 var(--bottom-corner), 0 var(--top-corner));
+    overflow: hidden;
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block:nth-child(3n - 1) {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3,
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+    display: block;
+    margin: 0;
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+@media (max-width: 1199px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block {
+        width: 30%;
+        height: calc((100vw - 100px) * 0.3);
+        padding: 15px 10px;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3 {
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 999px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block {
+        padding: 15px 10px;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3 {
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 768px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block {
+        width: 32%;
+        height: calc((100vw - 40px) * 0.3);
+        padding: 15px 7px;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block:nth-child(3n - 1) {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3 {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+@media (max-width: 465px) {
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block {
+        height: calc((100vw - 20px) * 0.3);
+        padding: 15px 5px;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block h3 {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    section.why-inmode-home .carousel-why-inmode .why-blocks .why-block p {
+        font-size: 12px;
+        font-weight: 500;
+    }
+}
