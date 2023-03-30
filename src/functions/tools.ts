@@ -2,6 +2,7 @@
  * @file Page informations and useful tools
  */
 
+import { External_GatsbyImage_Interface, GatsbyImage_Interface } from "../components/interfaces";
 import { _error, _log } from "./logger";
 
 export function avoirURLBase() {
@@ -40,7 +41,7 @@ export function get_url_search(as_array = true) {
 };
 export function get_url_hash() {if(typeof window != undefined) {return window?.location.hash;}else {return {};}};
 
-export function url_from_params(_params) {
+export function url_from_params(_params:any) {
     if(!(_params instanceof Object)) {
         return '';
     }
@@ -53,7 +54,7 @@ export function url_from_params(_params) {
     return _retour;
 }
 
-export function indexElement(_elem) {
+export function indexElement(_elem:HTMLElement|null) {
     if(_elem instanceof Element) {
         let _parent = _elem.parentElement;
         if(_parent instanceof Element) {
@@ -84,7 +85,7 @@ export function randomString(length = 10, letters = true, numbers = true)
     let charactersLength = characters.length;
     let randomString = '';
     for (let i = 0; i < length; i++) {
-        randomString += characters[(Math.random() * charactersLength - 1).toFixed(0)];
+        randomString += characters[Math.trunc(Math.random() * charactersLength - 1)];
     }
     return randomString;
 }
@@ -108,16 +109,18 @@ export function strToDom(str: string) {
     }
 }
 
-export function htmlToElement(html: string) {
+export function htmlToElement(html:DocumentFragment|string|null = null) {
+    if(html == null) {return "";}
     var template = document.createElement('template');
-    html = html.trim(); // Never return a text node of whitespace as the result
-    template.append(strToDom(html));
+    html = typeof html == "string" ? html.trim() : html; // Never return a text node of whitespace as the result
+    template.append(typeof html == "string" && html != null ? strToDom(html) ?? "" : html != null ? html : "");
     return template.content.firstChild;
 }
 
-export function htmlToElements(html: string) {
+export function htmlToElements(html:DocumentFragment|string|null = null) {
+    if(html == null) {return "";}
     var template = document.createElement('template');
-    template.append(strToDom(html));
+    template.append(typeof html == "string" && html != null ? strToDom(html) ?? "" : html != null ? html : "");
     return template.content.childNodes;
 }
 
@@ -137,30 +140,31 @@ export function getOS() {
     return undefined;
 }
 
-export function scrollX(_dx = null, _elems = null) {
+export function scrollX(_dx = null, _elems:Array<any>|null = null) {
     if(_dx == null || _dx == 0 || _elems == null || !Array.isArray(_elems) || _elems.length == 0) {
         return false;
     }
-    _elems.forEach(_elem => {
+    (_elems ?? []).forEach(_elem => {
         _elem.scrollLeft += _dx;
     });
 }
 
-export function scrollY(_dy = null, _elems = null) {
+export function scrollY(_dy = null, _elems:Array<any>|null = null) {
     if(_dy == null || _dy == 0 || _elems == null || !Array.isArray(_elems) || _elems.length == 0) {
         return false;
     }
-    _elems.forEach(_elem => {
+    (_elems ?? []).forEach(_elem => {
         _elem.scrollTop += _dy;
     });
 }
 
-export function insertAfter(newNode, existingNode) {
-    existingNode.parentNode.insertBefore(newNode, existingNode.nextSibling);
+export function insertAfter(newNode:HTMLElement, existingNode:HTMLElement) {
+    existingNode.parentNode?.insertBefore(newNode, existingNode.nextSibling);
 }
 
-export function insertBefore(newNode, existingNode) {
-    existingNode.parentNode.insertBefore(newNode, existingNode);
+export function insertBefore(newNode:HTMLElement, existingNode:HTMLElement) {
+    existingNode.parentNode?.insertBefore(newNode, existingNode);
+}
 
 export const sanitize_url = (_url:string|null = null) => {
     if(typeof _url != "string") {return "";}
