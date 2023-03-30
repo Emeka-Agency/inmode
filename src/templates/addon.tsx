@@ -15,7 +15,6 @@ import GenericDetails from '../components/details';
 import { InmodePanel_Addon_Interface } from '../components/interfaces';
 import rand_token from '../functions/rand_token';
 import ContactForm from '../components/contact/contact-form';
-import GetInTouch from '../components/contact/get-in-touch';
 
 const AddonTemplates = ({ data }:AddonTemplates) => {
 
@@ -43,7 +42,6 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
                 {datas.SellingArgs && <SellingArgs datas={datas?.SellingArgs}/>}
                 <SellingNew datas={datas.SellingNewGeneration}/>
-                <GetInTouch from={`addon-${datas.Name?.toLowerCase()}`}/>
                 <ContactForm from={`addon-${datas.Name?.toLowerCase()}`}/>
             </Layout>
     );

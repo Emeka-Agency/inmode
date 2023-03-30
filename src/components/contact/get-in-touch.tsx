@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./get-in-touch.css";
+
 const GetInTouch = ({ from }:GetInTouch) => {
     return (
         // TODO rajouter main-container pour les container 1170px

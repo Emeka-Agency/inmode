@@ -14,7 +14,6 @@ import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
 import { _log } from '../functions/logger';
 import ContactForm from '../components/contact/contact-form';
-import GetInTouch from '../components/contact/get-in-touch';
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
 
@@ -51,7 +50,6 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs ? datas.SellingArgs[0] : null}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
-                <GetInTouch from={`addon-${datas.Name?.toLowerCase()}`}/>
                 <ContactForm from={`addon-${datas.Name?.toLowerCase()}`}/>
             </Layout>
     );

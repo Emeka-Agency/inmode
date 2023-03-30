@@ -150,6 +150,10 @@ const ContactForm = ({ from }:ContactForm) => {
 
     return (
         <section className="full-form-container">
+            <div className={`form-get-in-touch main-container ${from}`}>
+                <div className="text">Get in touch</div>
+                <hr/>
+            </div>
             <form
                 id="full-contact-form"
                 name="contact"
@@ -220,7 +224,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     >
                     </textarea>
                     <div
-                        className="current-length"
+                        className="current-length user-select-none"
                         style={{color: msgLength === max_length ? '#f00' : 'var(--midnight)'}}
                     >
                         {`${msgLength} / ${max_length}`}
@@ -229,7 +233,7 @@ const ContactForm = ({ from }:ContactForm) => {
                 <div className="tech-list">
                     <span
                         id="title-accordion"
-                        className="title title-accordion transition"
+                        className="title title-accordion transition user-select-none"
                         onClick={(e) => {resolveClick(e);}}
                     >
                         What technologies are you interested in?

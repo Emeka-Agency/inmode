@@ -3,16 +3,36 @@
 .full-form-container {
     background-color: var(--pearl);
     max-width: unset;
-    padding: 50px 0;
-}
-
-.full-form-container:last-child {
-    margin-top: 40px;
+    padding-bottom: 40px;
 }
 
 .full-form-container:last-child + footer {
     box-shadow: #0000001f -4px -4px 12px;
 }
+
+
+/* get in touch */
+
+.full-form-container .form-get-in-touch {
+        background-color: var(--pearl);
+}
+
+.full-form-container .form-get-in-touch .text {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--midnight);
+    padding: 30px 0 10px;
+    font-weight: 600;
+}
+
+.full-form-container .form-get-in-touch hr {
+    width: 90%;
+    background-color: var(--midnight);
+    margin-bottom: 15px;
+}
+
+/* contact form */
 
 .full-form-container .contact-form {
     box-sizing: border-box;
@@ -108,7 +128,6 @@
 
 .full-form-container .contact-form .message-zone textarea {
     width: 100%;
-    border-radius: 3px;
     border: 1px solid var(--pearl);
     background-color: var(--pearl);
     color: var(--midnight);
@@ -118,12 +137,6 @@
     caret-color: var(--midnight);
     outline: transparent;
     border: 1px solid var(--midnight);
-    transition: border-bottom 0s ease-in-out;
-}
-
-.full-form-container .contact-form .message-zone:focus textarea,
-.full-form-container .contact-form .message-zone:hover textarea {
-    border-bottom: 2px solid var(--midnight);
 }
 
 .full-form-container .contact-form .message-zone textarea::placeholder {

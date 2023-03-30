@@ -1,0 +1,24 @@
+/* get in touch */
+
+.get-in-touch-container {
+    background-color: var(--pearl);
+    max-width: unset;
+}
+
+.get-in-touch-container .get-in-touch {
+        background-color: var(--pearl);
+}
+
+.get-in-touch-container .get-in-touch .text {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--midnight);
+    padding: 50px 0 30px;
+    font-weight: 600;
+}
+
+.get-in-touch-container .get-in-touch hr {
+    width: 90%;
+    background-color: var(--midnight);
+}
