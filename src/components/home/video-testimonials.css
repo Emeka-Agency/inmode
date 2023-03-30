@@ -1,0 +1,203 @@
+section.video-testimonials {
+    background-color: var(--pearl);
+    padding: 25px 70px;
+}
+
+@media (max-width: 768px) {
+    section.video-testimonials {
+        padding: 25px 50px;
+    }
+}
+
+@media (max-width: 425px) {
+    section.video-testimonials {
+        padding: 15px 20px;
+    }
+}
+
+section.video-testimonials .title {
+    color: var(--midnight);
+    font-size: 36px;
+    font-weight: 700;
+}
+
+section.video-testimonials .descr {
+    color: var(--platinum);
+    font-size: 24px;
+    font-weight: 500;
+    margin-top: 16px;
+}
+
+section.video-testimonials .testimonials {
+    width: 100%;
+    display: inline-flex;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-top: 48px;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 1099px) {
+    section.video-testimonials .testimonials {
+        flex-: column;
+    }
+}
+
+@media (max-width: 768px) {
+    section.video-testimonials .testimonials {
+        flex-direction: column;
+    }
+}
+
+section.video-testimonials .testimonials .video-testimonial {
+    display: inline-block;
+    width: 30%;
+    padding: 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1200px) {
+    section.video-testimonials .testimonials .video-testimonial:nth-child(3n - 2),
+    section.video-testimonials .testimonials .video-testimonial:nth-child(3n - 1) {
+        margin-right: 5%;
+    }
+}
+
+@media (max-width: 1199px) {
+    section.video-testimonials .testimonials .video-testimonial:nth-child(n) {
+        width: 45%;
+        margin: 2.5%;
+    }
+}
+
+@media (max-width: 768px) {
+    section.video-testimonials .testimonials .video-testimonial:nth-child(n) {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
+@media (max-width: 425px) {
+    section.video-testimonials .testimonials .video-testimonial:nth-child(n) {
+        display: block;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+section.video-testimonials .testimonials .video-testimonial .testimonial-video {
+
+}
+
+section.video-testimonials .testimonials .video-testimonial .testimonial-video .video-poster {
+    box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    width: 100%;
+    height: calc((100vw - 140px) * 0.15);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (max-width: 1199px) {
+    section.video-testimonials .testimonials .video-testimonial .testimonial-video .video-poster {
+        height: calc((100vw - 140px) * 0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    section.video-testimonials .testimonials .video-testimonial .testimonial-video .video-poster {
+        height: calc((100vw - 140px) * 0.5);
+        background-position: center center;
+    }
+}
+
+@media (max-width: 425px) {
+    section.video-testimonials .testimonials .video-testimonial .testimonial-video .video-poster {
+        height: calc(100vw - 100px);
+    }
+}
+
+section.video-testimonials .testimonials .video-testimonial .client {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--midnight);
+    margin-top: 16px;
+}
+
+section.video-testimonials .testimonials .video-testimonial .origin {
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--teal);
+    margin-top: 4px;
+}
+
+/* book a demo */
+
+section.video-testimonials #book-a-demo {
+    display: inline-block;
+    margin-left: 5px;
+    margin: 25px auto 0;
+    display: block;
+}
+
+section.video-testimonials #book-a-demo span.label {
+    cursor: pointer;
+    color: var(--teal);
+    border-top: 2px solid var(--teal);
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: var(--pearl);
+    padding: 7px 15px;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    line-height: 2;
+    transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s;
+}
+
+section.video-testimonials #book-a-demo span.label:hover {
+    color: var(--pearl);
+    background-color: var(--teal);
+}
+
+section.video-testimonials #book-a-demo:hover {
+    color: var(--teal);
+}
+
+@media (max-width: 1199px) {
+    section.video-testimonials #book-a-demo {
+        margin-left: 15px;
+        display: block;
+        top: 9px;
+        position: absolute;
+        float: right;
+        font-size: 14px;
+    }
+    
+    section.video-testimonials #book-a-demo {
+        right: 115px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    section.video-testimonials #book-a-demo {
+        position: relative;
+        width: 100%;
+        display: block;
+        float: unset;
+        right: 0;
+        margin: 0;
+        height: auto;
+    }
+
+    section.video-testimonials #book-a-demo {
+        margin-top: 70px;
+    }
+}

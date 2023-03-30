@@ -5,6 +5,7 @@ import SEO from "../components/seo";
 import Hero from "../components/home/hero";
 import ClinicalStudies from "../components/home/clinical-studies";
 import WhyInmode from "../components/home/why-inmode";
+import VideoTestimonials from "../components/home/video-testimonials";
 import FollowInstagram from "../components/home/follow-instagram";
 import Newsletter from "../components/newsletter";
 import Slides from "../components/home/slides";
@@ -40,6 +41,7 @@ const IndexPage = () => {
         <Alveoles />
         <ClinicalStudies/>
         <WhyInmode/>
+        <VideoTestimonials/>
         <OurSpecialist/>
         {/* CLARIFY Provisoire */}
         <AwardsSection/>
