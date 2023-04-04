@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import { useImages } from '../contexts/images-provider';
 
 import './index.css';
-import { GatsbyImage_Interface } from '../interfaces';
+import { GatsbyImage_Interface, InmodePanel_Footer_Interface } from '../interfaces';
 import { resolveImg } from '../../functions/tools';
 
 const Footer = ({}:Footer) => {
@@ -13,14 +13,15 @@ const Footer = ({}:Footer) => {
 
     const [footer] = React.useState(React.useContext(MenusContext).footer);
 
-    const icons = (_selector:string | undefined | null):string => {
+    const icons = (_selector:string | undefined | null):string|undefined => {
         if(_selector == undefined || _selector == null) {
             return '';
         }
         let _temp:GatsbyImage_Interface;
         switch(_selector) {
             case 'address':
-                return images.resolve_img('addressIcon') ?? '';
+                // return images.resolve_img('addressIcon') ?? '';
+                return undefined;
             case 'phone':
                 return images.resolve_img('phoneIcon') ?? '';
             case 'mail':
@@ -40,10 +41,10 @@ const Footer = ({}:Footer) => {
                     <div className="footer-infos logo">
                         <img
                             className="footer-logo background-image"
-                            src={images.resolve_img('footerLogo2')}
+                            src={images.resolve_img('footerLogo3')}
                             // src={images.resolve_img('headerLogo2')}
                             // src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
-                            srcSet={images.resolve_img_set('footerLogo2')}
+                            srcSet={images.resolve_img_set('footerLogo3')}
                             // srcSet={images.resolve_img_set('headerLogo2')}
                             alt="footer-logo"
                         />
@@ -51,12 +52,12 @@ const Footer = ({}:Footer) => {
                     {menus.map((menu:string, key:number) => {
                         return (
                             <div key={key} className={`footer-infos ${menu}`}>
-                                <img
+                                {icons(menu) && <img
                                     className={`footer-${menu}-ico background-image`}
                                     src={icons(menu)}
                                     srcSet={icons(menu)}
                                     alt={menu}
-                                />
+                                />}
                                 {menu === "mail" ? 
                                     <a href={`mailto:${footer["mail"]}`} className="footer-infos-text" title="Nous contacter par mail">
                                         {footer["mail"]}

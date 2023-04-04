@@ -68,9 +68,11 @@ footer .footer-address-ico,
 footer .footer-phone-ico,
 footer .footer-mail-ico {
     font-family: 'icomoon';
-    display: block;
+    display: inline-block;
+    vertical-align: middle;
     width: 20px;
     height: 20px;
+    margin-right: 5px;
 }
 
 footer .footer-infos-text {
@@ -78,6 +80,8 @@ footer .footer-infos-text {
     font-weight: 700;
     color: var(--midnight);
     text-transform: uppercase;
+    display: inline-block;
+    vertical-align: middle;
     line-height: 2;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
