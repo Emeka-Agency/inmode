@@ -1870,7 +1870,7 @@ main {
     background-color: var(--pearl);
     z-index: 0;
     position: relative;
-    min-height: calc(100vh - (140px + 320px));
+    min-height: calc(100vh - ((var(--header-h) + var(--header-pt) + var(--header-pb)) + 320px));
 }
 
 @media (max-width: 1199px) {
