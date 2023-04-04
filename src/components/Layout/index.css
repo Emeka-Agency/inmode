@@ -5390,6 +5390,24 @@ input[type="submit"].neumorphic:hover,
     margin-top: 10px;
 }
 
+.clinical-studies[data-variant="teal"] .clinical-studies-slider .slide-studies .flickity-viewport,
+.clinical-studies[data-variant="teal"] .clinical-studies-slider.few .study-slide[data-variant="teal"] {
+    border-color: var(--teal);
+}
+
+.study-slide[data-variant="teal"] .study-text .study-download {
+    background-color: var(--teal);
+}
+
+.clinical-studies[data-variant="dusty-rose"] .clinical-studies-slider .slide-studies .flickity-viewport,
+.clinical-studies[data-variant="dusty-rose"] .clinical-studies-slider.few .study-slide[data-variant="dusty-rose"] {
+    border-color: var(--dusty-rose);
+}
+
+.study-slide[data-variant="dusty-rose"] .study-text .study-download {
+    background-color: var(--dusty-rose);
+}
+
 @media (max-width: 768px) {
     .study-slide {
         width: 100%;
@@ -6407,7 +6425,14 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     top: 0;
     box-sizing: border-box;
     align-items: center;
+}
+
+.treatment-banner .treatment-banner-short-descr.variant-teal {
     background-color: var(--teal-50);
+}
+
+.treatment-banner .treatment-banner-short-descr.variant-dusty-rose {
+    background-color: var(--dusty-rose-50);
 }
 
 .treatment-products {
@@ -6479,7 +6504,15 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 .treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-title {
+    
+}
+
+.treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-title[data-variant="teal"] {
     background: var(--teal);
+}
+
+.treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-title[data-variant="dusty-rose"] {
+    background: var(--dusty-rose);
 }
 
 .treatment-products .workstation-container .workstation-addons .treatment-addon > div {
@@ -6546,6 +6579,24 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 .treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-list div.text:last-child span {
     display: block;
     padding: 5px 0;
+}
+
+.treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-list div.text:last-child span::before {
+    content: "•";
+    vertical-align: middle;
+    display: inline-block;
+    font-size: 24px;
+    position: relative;
+    left: -10px;
+    text-align: center;
+}
+
+.treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-list[data-variant="teal"] div.text:last-child span::before {
+    color: var(--teal);
+}
+
+.treatment-products .workstation-container .workstation-addons .treatment-addon .treatment-list[data-variant="dusty-rose"] div.text:last-child span::before {
+    color: var(--dusty-rose);
 }
 
 @media (max-width: 1199px) {
