@@ -13,6 +13,8 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
 
     const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(data.strapiTreatment);
 
+    console.log(data);
+
     return (
             <Layout title="treatment" variant={datas.Name == "women s health" ? "teal" : "teal"}>
                 <SEO title="Treatment"/>
@@ -37,6 +39,13 @@ export const query = graphql`
     query Treatment($id: String!) {
         strapiTreatment(id: {eq: $id}) {
             Name
+            MenuParams {
+                url
+                title
+                internal_link
+                variant
+                type
+            }
             Banner {
                 picture {
                     caption
@@ -114,6 +123,7 @@ export const query = graphql`
                         texte
                     }
                     addon {
+                        id
                         Name
                     }
                     treatment {
