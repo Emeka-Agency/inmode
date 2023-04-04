@@ -5491,15 +5491,18 @@ input[type="submit"].neumorphic:hover,
 .shopping-menu .menu ul.workstation {
     display: inline-block;
     vertical-align: middle;
-    width: 32%;
+    width: 30%;
     padding: 0;
     text-align: center;
     position: relative;
     outline: transparent;
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    border-radius: 3px;
 }
 
 .shopping-menu .menu ul.workstation:nth-child(2) {
-    margin: 0 2%;
+    margin: 0 5%;
 }
 
 .shopping-menu .menu .tab-link.menu-title.menu-text {
@@ -5551,9 +5554,25 @@ input[type="submit"].neumorphic:hover,
     line-height: 20px;
     cursor: pointer;
     border-radius: 5px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     position: relative;
-    padding: 16px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 16px 0;
+}
+
+.shopping-menu .menu > .menu-title.menu-text .menu-title.menu-text::after {
+    content: "";
+    border-right: 2px solid var(--midnight);
+    border-bottom: 2px solid var(--midnight);
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    transform: rotate(45deg);
+    margin-bottom: 3px;
+    margin-left: 10px;
 }
 
 @media (min-width: 425px) {
@@ -5563,7 +5582,7 @@ input[type="submit"].neumorphic:hover,
     .shopping-menu .menu .menu-title.menu-text .dropdown-menu.shown {
         display: block;
         position: absolute;
-        top: 36px;
+        top: 52px;
         text-align: left;
         padding: 0 0 15px;
         left: 50%;
@@ -5571,10 +5590,11 @@ input[type="submit"].neumorphic:hover,
         width: 100%;
         box-sizing: border-box;
         background-image: linear-gradient(180deg, var(--pearl), var(--pearl));
-        box-shadow: var(--pure-black-50) 0px 4px 4px;
+        box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.1);
         z-index: 3;
         overflow-y: auto;
         max-height: 500px;
+        direction: rtl;
     }
 }
 
@@ -5646,6 +5666,7 @@ input[type="submit"].neumorphic:hover,
 
 .shopping-menu .menu .menu-title.menu-text .dropdown-menu .selection {
     padding: 0 35px;
+    direction: ltr;
 }
 
 .shopping-menu .menu .menu-title.menu-text .dropdown-menu:hover .selection {
