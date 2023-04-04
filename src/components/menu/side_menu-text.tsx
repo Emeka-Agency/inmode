@@ -22,6 +22,26 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
         }
     }
 
+    if(menu.id == 9) {
+        menu.menus = [
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 4),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 2),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 6),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 7),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 1),
+        ].filter(el => el != undefined);
+    }
+
+    if(menu.id == 10) {
+        menu.menus = [
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 5),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 3),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 6),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 7),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 1),
+        ].filter(el => el != undefined);
+    }
+
     return (
         <ul key={prop_key} className="menu-side-menu menu-text transition">
             {menu.url ?
