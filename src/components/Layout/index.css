@@ -1902,7 +1902,7 @@ main {
     overflow-x: hidden;
     width: 100%;
     padding: 50px 50px 75px;
-    background-color: var(--teal);
+    background-color: var(--pearl);
     position: relative;
     max-width: calc(100% - 100px);
     height: 520px;
@@ -2027,13 +2027,14 @@ main {
 
 .slides-home .slide .slide-title {
     font-weight: 800;
-    color: var(--pearl);
+    color: var(--midnight);
     position: relative;
     font-size: 22px;
     line-height: 22px;
     height: 22px;
     letter-spacing: 1.2px;
     font-weight: 600;
+    text-transform: uppercase;
 }
 
 .slides-home .slide .slide-content {
@@ -2044,7 +2045,7 @@ main {
     background-color: var(--pearl);
     box-sizing: border-box;
     position: relative;
-    box-shadow: 5px 5px 10px rgb(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
 }
 
@@ -2053,7 +2054,7 @@ main {
 }
 
 .slides-home .slide .slide-content .slide-background-ico .slide-bg-img {
-    width: 80px;
+    /* width: 80px; */
     height: 80px;
     position: relative;
 }
@@ -2197,22 +2198,38 @@ main {
 }
 
 .slides-mini-home .slides-go-workstation {
-    background-color: var(--pearl);
-    color: var(--dusk);
-    padding: 7px 12px;
-    font-size: 24px;
-    font-weight: bold;
+    /* background-color: var(--pearl); */
+    /* color: var(--dusk); */
+    /* padding: 7px 12px; */
+    /* font-size: 24px; */
+    /* font-weight: bold; */
+    /* margin: 25px auto 0; */
+    /* display: block; */
+    /* width: fit-content; */
+    /* transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s; */
     margin: 25px auto 0;
+    text-transform: uppercase;
+    color: var(--pearl);
+    font-weight: 400;
     display: block;
+    vertical-align: top;
+    background-position: center center;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 15px 25px;
+    border-radius: 0;
     width: fit-content;
-    transition: background-color 0.2s ease-in-out 0s,
-                color 0.2s ease-in-out 0s;
+    position: relative;
+    background-color: #142321;
 }
 
 .slides-mini-home .slides-go-workstation:hover {
-    background-color: var(--dusk);
-    color: var(--pearl);
-    cursor: pointer;
+    /* background-color: var(--dusk); */
+    /* color: var(--pearl); */
+    /* cursor: pointer; */
+    color: var(--teal);
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 @media (min-width: 769px) {
@@ -2317,7 +2334,6 @@ main {
 
 @media (max-width: 425px) {
     .slides-mini-home .slide {
-        min-height: 150px;
         height: unset;
         transition: height 0.3s ease-in-out 0s;
         margin: 60px auto;
@@ -2705,22 +2721,39 @@ main {
 }
 
 .slides-home .slides-go-workstation {
-    background-color: var(--pearl);
-    color: var(--dusk);
-    padding: 7px 12px;
-    font-size: 24px;
-    font-weight: bold;
+    /* background-color: var(--pearl); */
+    /* color: var(--dusk); */
+    /* padding: 7px 12px; */
+    /* font-size: 24px; */
+    /* font-weight: bold; */
+    /* margin: 45px auto 0; */
+    /* display: block; */
+    /* width: fit-content; */
+    /* border-top: 2px solid var(--midnight); */
+    /* transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s; */
     margin: 45px auto 0;
+    text-transform: uppercase;
+    color: var(--pearl);
+    font-weight: 400;
     display: block;
+    vertical-align: top;
+    background-position: center center;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 15px 25px;
+    border-radius: 0;
     width: fit-content;
-    transition: background-color 0.2s ease-in-out 0s,
-                color 0.2s ease-in-out 0s;
+    position: relative;
+    background-color: #142321;
 }
 
 .slides-home .slides-go-workstation:hover {
-    background-color: var(--dusk);
-    color: var(--pearl);
-    cursor: pointer;
+    /* background-color: var(--dusk); */
+    /* color: var(--pearl); */
+    /* cursor: pointer; */
+    color: var(--teal);
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* CLINICAL STUDIES HOME */
