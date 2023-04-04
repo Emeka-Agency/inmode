@@ -9,7 +9,7 @@ const ClinicalStudies = ({}:ClinicalStudies) => {
         <div
             className="clinical-studies-home background-image"
             style={{
-                'backgroundImage': 'url(' + images.resolve_img('homeClinicalBack') + ')'
+                'backgroundImage': 'url(' + images.get_one('homeClinicalBack2')?.publicURL + ')'
             }}
         >
             <div className="container">
