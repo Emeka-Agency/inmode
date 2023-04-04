@@ -351,6 +351,32 @@ ol {
     }
 }
 
+/* INMODE BTN */
+
+
+:root {
+    --arr-height-top: 4px;
+    --arr-height-bottom: 3px;
+    --arr-left: calc(50% - 4px);
+    --arr-right: calc(50% + 4px);
+}
+
+.inmode-btn {
+    clip-path: polygon(0% 0%, var(--arr-left) 0%, 50% var(--arr-height-top), var(--arr-right) 0%, 100% 0%, 100% 100%, var(--arr-right) 100%, 50% calc(100% - var(--arr-height-bottom)), var(--arr-left) 100%, 0% 100%, 0% 0%);
+    background-color: var(--teal);
+    color: var(--pearl);
+    font-size: 12px;
+    line-height: 17px;
+    letter-spacing: 0.135em;
+    font-weight: 400;
+    width: 201px;
+    padding: 13px 13px 12px;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 3px;
+    font-family: fk-gothic-regular;
+}
+
 /* TOOLS */
 
 .width-10 {width: 10%;}
