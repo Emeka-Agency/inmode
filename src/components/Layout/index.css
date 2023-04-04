@@ -5127,7 +5127,6 @@ input[type="submit"].neumorphic:hover,
 }
 
 .before-after .request-informations {
-    background-color: var(--teal);
     box-sizing: border-box;
     color: var(--midnight);
     cursor: pointer;
@@ -5215,7 +5214,6 @@ input[type="submit"].neumorphic:hover,
 }
 
 .addon-what-treat .request-informations {
-    background-color: var(--teal);
     box-sizing: border-box;
     color: var(--pearl);
     cursor: pointer;
@@ -5375,7 +5373,6 @@ input[type="submit"].neumorphic:hover,
 }
 
 .study-slide .study-text .study-download {
-    background-color: var(--teal);
     box-sizing: border-box;
     color: var(--pearl);
     cursor: pointer;
@@ -5442,7 +5439,8 @@ input[type="submit"].neumorphic:hover,
         max-width: unset;
     }
 
-    .study-slide .study-img img {
+    .study-slide .study-img img,
+    .study-slide .study-img div {
         width: unset;
         margin: 0 auto;
     }
@@ -5473,7 +5471,6 @@ input[type="submit"].neumorphic:hover,
     display: block;
     margin: 0 auto;
     width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
     min-height: 50px;
     position: relative;
     border-radius: 10px 10px 0 0;
