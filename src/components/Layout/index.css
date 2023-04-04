@@ -5193,7 +5193,7 @@ input[type="submit"].neumorphic:hover,
     }
 }
 
-.addon-what-treat .treats .treat-part img {
+.addon-what-treat .treats .treat-part .what-treats-img {
     width: 100%;
 }
 

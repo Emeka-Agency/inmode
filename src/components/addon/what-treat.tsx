@@ -19,6 +19,7 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
                   <img
                     src={resolveImg(treat.picture)}
                     alt="addon-what-treat"
+                    className="what-treats-img"
                   />
                   <div className="it-treats">{treat.title}</div>
                   <div className="treat-descr">{treat.text}</div>
