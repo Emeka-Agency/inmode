@@ -2,6 +2,7 @@ import { Link } from "gatsby";
 import React from "react";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
 import Carousel from "../Carousel";
+import { useImages } from "../contexts/images-provider";
 import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
@@ -28,12 +29,14 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
         return temp;
     }
 
+    const images_provider = useImages();
+
     return (
         <div id="technologies" className="product-addons">
-            <div className="section-title">technologies on the workstation</div>
+            <div className="section-title">technologies associées</div>
             {datas.addons.map((addon) => {
                 return addon.ProductPresentation && addon.ProductPresentation.map((product, key) => {
-                    if(product.appears_everywhere || (product.products && product.products[0].id === datas.id)) {
+                    if(product.appears_everywhere || (product.products && (product.products.map(el => el.id)).indexOf(datas.id) > -1)) {
                         let images = select_mines(product.Images, datas.id);
                         // TODO ton on evolve => evolve-tone
                         let product_title = product.title_text ? product.title_text.toLowerCase().replace(' on ', '-').replace(/ /g, '-').replace(/\*/g, '').replace(/#/g, '') : "";
@@ -92,7 +95,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
                                     </div>
                                 </div>
                                 {images.length == 0 ?
-                                    sensible ?
+                                    addon.sensitivity ?
                                         <Sensible from="product-addons"/>
                                         :
                                         <NoPicture from ="product-addons"/>
@@ -142,7 +145,7 @@ interface Addons {
         addons: InmodePanel_Addon_Interface[];
         id: number;
     };
-    sensible: boolean;
+    sensible?: boolean;
     variant?: string;
 };
 
