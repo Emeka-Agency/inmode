@@ -25,6 +25,8 @@ const Staff = ({ from = "" }:Staff) => {
                             publicURL
                             url
                         }
+                        width
+                        height
                     }
                     name
                     position

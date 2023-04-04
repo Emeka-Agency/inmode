@@ -112,6 +112,8 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                                         publicURL
                                         url
                                     }
+                                    width
+                                    height
                                 }
                                 TitleText {
                                     text

@@ -123,6 +123,8 @@ export const query = graphql`
                     publicURL
                     url
                 }
+                width
+                height
             }
             TitleText {
               text
@@ -224,6 +226,8 @@ export const query = graphql`
                     publicURL
                     url
                 }
+                width
+                height
             }
           }
           BeforesAfters {
@@ -273,6 +277,8 @@ export const query = graphql`
                     publicURL
                     url
                 }
+                width
+                height
             }
             publication
           }

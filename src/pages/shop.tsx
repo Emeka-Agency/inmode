@@ -114,6 +114,8 @@ export const query = graphql`
                             publicURL
                             url
                         }
+                        width
+                        height
                     }
                 }
             }

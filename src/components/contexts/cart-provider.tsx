@@ -106,6 +106,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                                     publicURL
                                     url
                                 }
+                                width
+                                height
                             }
                         }
                     }

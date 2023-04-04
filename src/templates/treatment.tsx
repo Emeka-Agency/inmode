@@ -52,11 +52,15 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
                 text
             }
             WhatIsTreat {
                 picture {
+                    width
+                    height
                     caption
                     url
                     localFile {
@@ -70,6 +74,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
                 TitleText {
                         title
@@ -149,6 +155,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
                 title
                 author

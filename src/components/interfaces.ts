@@ -839,6 +839,8 @@ export interface GatsbyImage_Interface {
     base64?: string;
     srcWebp?: string;
     srcSetWebp?: string;
+    width?: number;
+    height?: number;
 };
 
 export interface ProductsContext_Interface {

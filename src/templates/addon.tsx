@@ -122,6 +122,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
             }
             KeyBenefits {
@@ -182,6 +184,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
             }
             ClinicalStudies {
@@ -203,6 +207,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
                 publication
                 published_date
@@ -228,6 +234,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
             }
             SellingNewGeneration {
@@ -247,6 +255,8 @@ export const query = graphql`
                         publicURL
                         url
                     }
+                    width
+                    height
                 }
             }
             sensitivity
