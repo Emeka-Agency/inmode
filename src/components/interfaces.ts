@@ -68,6 +68,8 @@ export interface Airtable_Picture_Interface {
 }
 
 export interface InmodePanel_Addon_Interface {
+    id?: string;
+    strapiId?: string;
     Name?: string;
     Banner? : InmodePanel_Base_Banner_Interface;
     WhatIs?: InmodePanel_Generic_WhatIs_Interface;
@@ -105,6 +107,8 @@ export interface InmodePanel_Event_Interface {
     addons: InmodePanel_Addon_Interface[];
 };
 export interface InmodePanel_Menu_Interface {
+    strapiId?: number;
+    id?: number;
     title?: string;
     url?: string;
     type?: string;
@@ -871,6 +875,36 @@ export interface FlickityOptions_Interface {
     selectedAttraction?: number;
     friction?: number;
     percentPosition?: boolean;
-    autoPlay?: boolean;
-    wrapAround?: any;
+    autoPlay?: number|boolean;
+    wrapAround?: boolean;
+    contain?: boolean;
+    groupCells?: number|boolean;
+    draggable?: boolean;
+    freeScroll?: boolean;
+    prevNextButtons?: boolean;
+    adaptiveHeight?: boolean;
+    imagesLoaded?: boolean;
+};
+
+export interface Contact_Interface {
+    lastname?: string;
+    firstname?: string;
+    subject?: string;
+    mail?: string;
+    phone_number?: string;
+    zip?: string;
+    city?: string;
+    message?: string;
+    type?: string;
+}
+
+export interface ContactMini_Interface extends Contact_Interface {
+
+};
+
+export interface ContactFull_Interface extends Contact_Interface {
+    company?: string;
+    address?: string;
+    country?: string;
+    machines?: string[];
 };
