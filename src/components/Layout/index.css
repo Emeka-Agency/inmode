@@ -6254,24 +6254,24 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 #what-is.details .text {
-    color: var(--platinum);
+    color: var(--dark-platinum);
     display: block;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     letter-spacing: 1px;
     line-height: 28px;
     vertical-align: baseline;
     margin: 0 auto;
     padding-bottom: 30px;
+    white-space: break-spaces;
 }
 
 #what-is.details div.details-img {
     position: absolute;
-    top: 0;
+    top: 68px;
     left: 0;
     max-width: 33%;
     width: 100%;
-    height: 100%;
     padding-right: 35px;
     box-sizing: border-box;
 }
@@ -6279,6 +6279,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 #what-is.details div.details-img img {
     max-height: 100%;
     max-width: 100%;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
 }
 
 #what-is.details .what-is,
@@ -6320,7 +6321,6 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 #what-is.details .request-informations {
-    background-color: var(--teal);
     box-sizing: border-box;
     color:var(--pearl);
     cursor:pointer;
@@ -6388,6 +6388,8 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     background-image: linear-gradient(90deg, transparent, black, transparent, black);
     top: 0px;
     position: relative;
+    height: calc(100vh - 320px);
+    overflow: hidden;
 }
 
 .treatment-banner .top-transition {
@@ -6407,6 +6409,14 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 
 .treatment-banner .treatment-banner-media img {
     width: 100vw;
+    position: relative;
+    top: -100px;
+}
+
+@media (max-width: 425px) {
+    .treatment-banner .treatment-banner-media img {
+        top: 0;
+    }
 }
 
 .treatment-banner .treatment-banner-short-descr {
