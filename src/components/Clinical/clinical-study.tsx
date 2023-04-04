@@ -9,11 +9,11 @@ const ClinicalStudy = ({study, prop_key = null, variant = "teal"}:ClinicalStudy)
     return (
         <div key={prop_key} className="study-slide" data-variant={variant}>
             <div className="study-img">
-                <img
+                {resolveImg(study.picture) ? <img
                     src={resolveImg(study.picture)}
                     srcSet={resolveImgSet(study.picture)}
                     alt="clinical-study"
-                />
+                /> : <div></div>}
             </div>
             <div className="study-text">
                 <div className="study-name">{study.title}</div>
