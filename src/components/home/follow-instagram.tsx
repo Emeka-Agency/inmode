@@ -15,7 +15,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                         <div key={key} className="elem">
                             <img
                                 className="background-image"
-                                src={`https://back.inmode.emeka.fr/assets/instagram/${index}.jpg`}
+                                src={`https://inmodemd.fr/public/instagram/${index}.jpg`}
                                 alt={`insta-${key + 1}`}
                             />
                             <a href="https://www.instagram.com/inmodeaesthetics/" className="zone-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
