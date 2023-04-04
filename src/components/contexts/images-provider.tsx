@@ -28,6 +28,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
                 ...FileImgFormat
             }
+            keyBenefitIconTeal: file(relativePath: {eq: "icons/key_benefit_teal.png"}) {
+                ...FileImgFormat
+            }
+            keyBenefitIconRose: file(relativePath: {eq: "icons/key_benefit_dusty.png"}) {
+                ...FileImgFormat
+            }
             orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {
                 ...FileImgFormat
             }
@@ -61,6 +67,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             headerLogo3: file(relativePath: {eq: "header-logo-3.png"}) {
                 ...FileImgFormat
             }
+            headerLogo4: file(relativePath: {eq: "header-logo-4.png"}) {
+                ...FileImgFormat
+            }
             seoLogo: file(relativePath: {eq: "header-logo.png"}) {
                 ...FileImgFormat
             }
@@ -71,6 +80,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 ...FileImgFormat
             }
             footerLogo2: file(relativePath: {eq: "footer-logo2.png"}) {
+                ...FileImgFormat
+            }
+            footerLogo3: file(relativePath: {eq: "footer-logo-3.png"}) {
                 ...FileImgFormat
             }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
@@ -97,7 +109,13 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
                 ...FileImgFormat
             }
+            new_alveole1: file(relativePath: {eq: "home/alveole congres.jpg"}) {
+                ...FileImgFormat
+            }
             alveole2: file(relativePath: {eq: "home/alveole-2.jpg"}) {
+                ...FileImgFormat
+            }
+            new_alveole2: file(relativePath: {eq: "home/alveole webinar.jpg"}) {
                 ...FileImgFormat
             }
             alveole3: file(relativePath: {eq: "home/alveole-3.jpg"}) {
@@ -112,10 +130,22 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             homeClinicalBack: file(relativePath: {eq: "home/media-bg.webp"}) {
                 ...FileImgFormat
             }
+            homeClinicalBack2: file(relativePath: {eq: "home/media-bg-2.jpg"}) {
+                ...FileImgFormat
+            }
             homeClinicalStudy: file(relativePath: {eq: "home/studies-img.png"}) {
                 ...FileImgFormat
             }
             heroHeader: file(relativePath: {eq: "hero-3.png"}) {
+                ...FileImgFormat
+            }
+            hero1: file(relativePath: {eq: "home/hero-1.jpg"}) {
+                ...FileImgFormat
+            }
+            hero2: file(relativePath: {eq: "home/hero-2.jpg"}) {
+                ...FileImgFormat
+            }
+            hero3: file(relativePath: {eq: "home/hero-3.jpg"}) {
                 ...FileImgFormat
             }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
@@ -142,20 +172,20 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             url
             absolutePath
             childImageSharp {
-              fixed {
-                srcWebp
-                srcSetWebp
-                aspectRatio
-              }
-              fluid {
-                srcWebp
-                srcSetWebp
-                aspectRatio
-              }
+                fixed {
+                    srcWebp
+                    srcSetWebp
+                    aspectRatio
+                }
+                fluid {
+                    srcWebp
+                    srcSetWebp
+                    aspectRatio
+                }
             }
             publicURL
             url
-          }
+        }
     `));
 
     const getOneImage = (request:string):GatsbyImage_Interface | null => {
@@ -216,6 +246,8 @@ interface ImagesList {
     whiteEditIcon: GatsbyImage_Interface;
     blueEditIcon: GatsbyImage_Interface;
     keyBenefitIcon: GatsbyImage_Interface;
+    keyBenefitIconTeal: GatsbyImage_Interface;
+    keyBenefitIconRose: GatsbyImage_Interface;
     orderCreateSpinner: GatsbyImage_Interface;
     cartBasketIcon: GatsbyImage_Interface;
     closeWhiteIcon: GatsbyImage_Interface;
@@ -227,9 +259,11 @@ interface ImagesList {
     headerLogo: GatsbyImage_Interface;
     headerLogo2: GatsbyImage_Interface;
     headerLogo3: GatsbyImage_Interface;
+    headerLogo4: GatsbyImage_Interface;
     seoLogo: GatsbyImage_Interface;
     footerLogo: GatsbyImage_Interface;
     footerLogo2: GatsbyImage_Interface;
+    footerLogo3: GatsbyImage_Interface;
     addressIcon: GatsbyImage_Interface;
     phoneIcon: GatsbyImage_Interface;
     mailIcon: GatsbyImage_Interface;
@@ -238,13 +272,19 @@ interface ImagesList {
     privacyPolicyC: GatsbyImage_Interface;
     backAlveole: GatsbyImage_Interface;
     alveole1: GatsbyImage_Interface;
+    new_alveole1: GatsbyImage_Interface;
     alveole2: GatsbyImage_Interface;
+    new_alveole2: GatsbyImage_Interface;
     alveole3: GatsbyImage_Interface;
     alveole4: GatsbyImage_Interface;
     alveole5: GatsbyImage_Interface;
     homeClinicalBack: GatsbyImage_Interface;
+    homeClinicalBack2: GatsbyImage_Interface;
     homeClinicalStudy: GatsbyImage_Interface;
     heroHeader: GatsbyImage_Interface;
+    hero1: GatsbyImage_Interface;
+    hero2: GatsbyImage_Interface;
+    hero3: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
