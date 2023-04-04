@@ -71,7 +71,7 @@ const HeaderMini = ({}:HeaderMini) => {
                     for(let i = 0; i < keys.length; i++) {
                         temp[keys[i]] = menu[keys[i]];
                     }
-                    {/* TODO ajouter autres subs */}
+                    {/* DONE ajouter autres subs */}
                     if((menu.mini_treatments || []).length > 0) {
                         temp.menus = temp.mini_treatments.map((elem:InmodePanel_Generic_SubLinked_MiniTreatments_Interface) => {
                             let retour = {id: elem.id, ...elem.MenuParams};

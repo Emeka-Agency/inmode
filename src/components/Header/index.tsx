@@ -42,16 +42,17 @@ const Header = ({variant = "teal"}:Header) => {
     }, [user]);
 
     return (
-            <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo3') +')'}}>
-                {/* <div className="header-logo background-image" style={{backgroundImage: 'url(https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png)'}}> */}
-                    <Link to="/" className="zone-link" title="Inmode">
-                    </Link>
-                </div>
         <header data-variant={variant}>
+            <div className="header-content">
                 <div className={`header-parts${user.logged() ? ' logged' : ''}`}>
                     {size.width > 1199 && <HeaderTop/>}
                     {size.width > 1199 && <HeaderBottom/>}
+                    {
+                        size.width < 1200 && 
+                        <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
+                            <Link to="/" className="zone-link" title="Inmode"></Link>
+                        </div>
+                    }
                     {size.width < 1200 && <HeaderMini/>}
                     {/* SWITCH CART */}
 

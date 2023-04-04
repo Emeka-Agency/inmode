@@ -44,9 +44,8 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
             <div className="fixed-menu-container">
                 <div className="fixed-menu-logo">
                     <img
-                        src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
-                        // src={images.resolve_img('fixedMenuLogo')}
-                        // srcSet={images.resolve_img_set('fixedMenuLogo')}
+                        src={images.resolve_img('footerLogo3')}
+                        srcSet={images.resolve_img_set('footerLogo3')}
                         alt="header-logo"
                     />
                     <Link to="/" className="zone-link" title="Inmode"></Link>
