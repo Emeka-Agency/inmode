@@ -4,10 +4,10 @@ import { format_title } from "../../functions/format_title";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 
-const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
+const ClinicalStudy = ({study, prop_key = null, variant = "teal"}:ClinicalStudy) => {
     
     return (
-        <div key={prop_key} className="study-slide">
+        <div key={prop_key} className="study-slide" data-variant={variant}>
             <div className="study-img">
                 <img
                     src={resolveImg(study.picture)}
@@ -33,7 +33,7 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
                 </div>
                 <div className="study-published">Date de publication : {study.published_date}</div>
                 <div className="study-publication">Publication : {study.publication}</div>
-                <div className="study-download">
+                <div className="study-download" data-variant={variant}>
                     Télécharger
                     <a 
                         className="zone-link"
@@ -51,6 +51,7 @@ const ClinicalStudy = ({study, prop_key = null}:ClinicalStudy) => {
 interface ClinicalStudy {
     study: InmodePanel_Generic_ClinicalStudies_Interface;
     prop_key?: number | null;
+    variant?: string;
 };
 
 export default ClinicalStudy;

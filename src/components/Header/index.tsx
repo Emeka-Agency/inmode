@@ -18,7 +18,7 @@ import { useUser } from "../contexts/user-provider";
 
 import "./index.css";
 
-const Header = ({}:Header) => {
+const Header = ({variant = "teal"}:Header) => {
 
     const images = useImages();
 
@@ -42,13 +42,13 @@ const Header = ({}:Header) => {
     }, [user]);
 
     return (
-        <header>
             <div className="header-content container">
                 <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo3') +')'}}>
                 {/* <div className="header-logo background-image" style={{backgroundImage: 'url(https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png)'}}> */}
                     <Link to="/" className="zone-link" title="Inmode">
                     </Link>
                 </div>
+        <header data-variant={variant}>
                 <div className={`header-parts${user.logged() ? ' logged' : ''}`}>
                     {size.width > 1199 && <HeaderTop/>}
                     {size.width > 1199 && <HeaderBottom/>}
@@ -95,6 +95,7 @@ const Header = ({}:Header) => {
 
 interface Header {
   siteTitle?: string;
+  variant?: string;
 };
 
 export default Header

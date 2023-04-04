@@ -3,7 +3,7 @@ import Carousel from "../Carousel";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 import ClinicalStudy from "./clinical-study";
 
-const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
+const ClinicalStudies = ({ datas, variant = "teal" }:ClinicalStudies_Interface) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -22,13 +22,13 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
     }
 
     return (
-        <div id="studies" className="clinical-studies">
+        <div id="studies" className="clinical-studies" data-variant={variant}>
             <div className="title">
                 études cliniques
             </div>
             <div className={`clinical-studies-slider${datas.length === 1 ? ' few' : ''}`}>
                 {datas.length === 1 ?
-                    <ClinicalStudy study={datas[0]}/>
+                    <ClinicalStudy study={datas[0]} variant={variant}/>
                     :
                     <Carousel
                         id={'carousel-clinical-studies'}
@@ -37,7 +37,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
                     >
                         {/* {[...datas, ...datas].map((study, key) => { */}
                         {datas.map((study, key) => {
-                            return (<ClinicalStudy key={key} prop_key={key} study={study}/>);
+                            return (<ClinicalStudy key={key} prop_key={key} study={study} variant={variant}/>);
                         })}
                     </Carousel>
                 }
@@ -48,6 +48,7 @@ const ClinicalStudies = ({ datas }:ClinicalStudies_Interface) => {
 
 interface ClinicalStudies_Interface {
     datas?: InmodePanel_Generic_ClinicalStudies_Interface[];
+    variant?: string;
 };
 
 export default ClinicalStudies;

@@ -17,7 +17,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
     return (
-            <Layout title="products">
+            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}>
                 <SEO title="Product"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation
@@ -34,14 +34,15 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'list': datas.KeyBenefits,
                         'list_title': 'key benefits',
                         'list_icon': 'key_benefit',
-                        'anchor_key': 'key-benefits'
+                        'anchor_key': 'key-benefits',
+                        'variant': datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"
                     }}
                 />
-                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
+                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
                 <ProductDemo datas={datas.Demo}/>
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
-                <ClinicalStudies datas={datas.ClinicalStudies}/>
+                <ClinicalStudies datas={datas.ClinicalStudies} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
             </Layout>
     );
 };

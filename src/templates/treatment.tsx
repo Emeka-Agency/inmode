@@ -14,13 +14,13 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
     const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(data.strapiTreatment);
 
     return (
-            <Layout title="treatment">
+            <Layout title="treatment" variant={datas.Name == "women s health" ? "teal" : "teal"}>
                 <SEO title="Treatment"/>
-                <TreatmentBanner datas={datas.Banner}/>
-                <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': null}}/>
-                <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}}/>
-                <TreatmentBeforeAfter datas={datas.BeforesAfters} sensible={datas?.sensitivity || false}/>
-                <ClinicalStudies datas={datas.ClinicalStudies}/>
+                <TreatmentBanner datas={datas.Banner} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
+                <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': 'key_benefit', variant: datas.Name == "women s health" ? "dusty-rose" : "teal"}}/>
+                <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
+                {data.strapiTreatment.MenuParams?.url != "/treatment/women-s-health" && <TreatmentBeforeAfter variant={datas.Name == "women s health" ? "dusty-rose" : "teal"} datas={datas.BeforesAfters} sensible={datas?.sensitivity || false}/>}
+                <ClinicalStudies datas={datas.ClinicalStudies} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
             </Layout>
     );
 };

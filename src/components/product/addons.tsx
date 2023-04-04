@@ -6,7 +6,7 @@ import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from ".
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
-const Addons = ({ datas, sensible = false }:Addons) => {
+const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -68,18 +68,26 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                             return <></>;
                                         })}
                                         <div className="addon-what-can-i-treat">
-                                            <div className="title">
-                                                Que puis-je traiter ?
-                                            </div>
-                                            <ul>
-                                            {product.ProductPresentationTreats && product.ProductPresentationTreats.map((descr, key) => {
-                                                if(descr.product && descr.product.id === datas.id) {
-                                                    return (
-                                                        <li key={key}>{descr.treat_short}</li>
-                                                    );
-                                                }
-                                            })}
-                                            </ul>
+                                            {
+                                                (product.ProductPresentationTreats ?? []).length > 0 &&
+                                                <>
+                                                    <div className={`title variant-${variant}`}>
+                                                        Que puis-je traiter ?
+                                                    </div>
+                                                    <ul>
+                                                        {(product.ProductPresentationTreats ?? [])?.map((descr, key) => {
+                                                            if(descr.product && descr.product.id === datas.id) {
+                                                                return (
+                                                                    <li key={key}>
+                                                                        {/* <img src={images_provider.resolve_img(variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')} alt="" className="puce" /> */}
+                                                                        <span>{descr.treat_short}</span>
+                                                                    </li>
+                                                                );
+                                                            }
+                                                        })}
+                                                    </ul>
+                                                </>
+                                            }
                                         </div>
                                     </div>
                                 </div>
@@ -135,6 +143,7 @@ interface Addons {
         id: number;
     };
     sensible: boolean;
+    variant?: string;
 };
 
 export default Addons;

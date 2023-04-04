@@ -6,7 +6,7 @@ import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 import RequestInformation from "../RequestInformation";
 
-const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) => {
+const TreatmentBeforeAfter = ({ datas, sensible = false, variant = "teal"}:TreatmentBeforeAfter) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -65,7 +65,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                         </Carousel>
                 }
             </div>
-            <RequestInformation/>
+            <RequestInformation variant={variant}/>
         </div>
     );
 };
@@ -73,6 +73,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
 interface TreatmentBeforeAfter {
     datas: InmodePanel_Generic_BeforeAfter_Interface[] | undefined;
     sensible: boolean;
+    variant: string;
 };
 
 export default TreatmentBeforeAfter;

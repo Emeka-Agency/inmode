@@ -40,7 +40,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                     return (
                         <div key={key} className="list-elem">
                             {datas.list_icon && <img
-                                src={images.resolve_img('keyBenefitIcon')}
+                                src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
                                 alt={`elem-${key}`}
                                 className="before-text"
                             />}
@@ -50,7 +50,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                     );
                 })}
             </div>
-            <RequestInformation/>
+            <RequestInformation variant={datas.variant}/>
         </div>
     );
 };
@@ -63,6 +63,7 @@ interface GenericDetails {
         list_title?: string;
         list?: InmodePanel_Base_Texte_Interface[];
         list_icon: string|null;
+        variant?: string;
     }
 };
 

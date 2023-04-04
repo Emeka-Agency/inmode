@@ -2,7 +2,8 @@ import React from "react";
 import { resolveImg } from "../../functions/tools";
 import { InmodePanel_Treatment_Interface } from "../interfaces";
 
-const TreatmentProducts = ({ datas }:TreatmentProducts) => {
+const TreatmentProducts = ({ datas, variant = "teal" }:TreatmentProducts) => {
+
 
     return (
         <div className="treatment-products">
@@ -33,11 +34,11 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
                         })}
                         <div className="workstation-addons">
                             <div className="treatment-addon">
-                                <div className="treatment-title">
                                     <div>Technologie</div>
+                                <div className="treatment-title" data-variant={variant}>
                                     <div>Traitement</div>
                                 </div>
-                                <div className="treatment-list">
+                                <div className="treatment-list" data-variant={variant}>
                                     {bloc.RelatedAddonTreatment.map((treat, key_treat) => {
                                         if(treat.treatment?.Name === datas?.treatment) {
                                             return (
@@ -66,6 +67,7 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
 
 interface TreatmentProducts {
     datas?: InmodePanel_Treatment_Interface;
+    variant?: string;
 };
 
 export default TreatmentProducts;
