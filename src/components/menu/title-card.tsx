@@ -3,7 +3,7 @@ import React from "react";
 import { enableMainScroll } from "../../functions/disable-scroll";
 import { format_string } from "../../functions/format_string";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
-import { InmodePanel_Menu_Interface } from "../interfaces";
+import { InmodePanel_Addon_Interface, InmodePanel_Menu_Interface } from "../interfaces";
 import Menu from "../menu";
 
 // VARIANT
