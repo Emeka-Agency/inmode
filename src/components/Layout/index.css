@@ -3121,27 +3121,7 @@ main {
 }
 
 .get-started a {
-    /* background-color: var(--pearl); */
-    /* border-color: var(--teal); */
-    /* box-sizing: border-box; */
-    /* color: var(--teal); */
-    /* cursor: pointer; */
-    /* display: block; */
-    /* font-size: 12px; */
-    /* font-weight: 400; */
-    /* min-height: 30px; */
-    /* letter-spacing: 1.5px; */
-    /* line-height: 15px; */
     margin: 10px auto;
-    /* max-width: 200px; */
-    /* padding: 6px 8px; */
-    /* text-align: center; */
-    /* text-decoration-color: var(--teal); */
-    /* text-decoration-style: solid; */
-    /* text-transform: uppercase; */
-    /* touch-action: manipulation; */
-    /* width: 100%; */
-    
     transition: color .3s ease-in-out, font-weight .3s ease-in-out, letter-spacing .3s ease-in-out;
     text-transform: uppercase;
     color: var(--pearl);
