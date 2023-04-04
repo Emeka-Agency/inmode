@@ -4,13 +4,13 @@ import { AnchorLink } from "gatsby-plugin-anchor-links";
 const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
 
     let temp = [
-        {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'key benefits', 'url': '#key-benefits'},
-        {'name': 'technologies on the workstation', 'url': '#technologies'},
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avantages', 'url': '#key-benefits'},
+        {'name': 'technologies associées', 'url': '#technologies'},
     ];
 
     if(exist['studies']) {
-        temp.push({'name': 'clinical studies', 'url': '#studies'});
+        temp.push({'name': 'études cliniques', 'url': '#studies'});
     }
 
     if(exist['before-after']) {

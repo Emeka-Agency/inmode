@@ -127,17 +127,17 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
     `).allStrapiProduct.edges.map((elem:{node:InmodePanel_Product_Interface}) => elem.node));
 
     const product_navigation = [
-        {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'key benefits', 'url': '#key-benefits'},
-        {'name': 'technologies on the workstation', 'url': '#technologies'},
-        {'name': 'clinical studies', 'url': '#studies'}
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avantages', 'url': '#key-benefits'},
+        {'name': 'technologies associées', 'url': '#technologies'},
+        {'name': 'études cliniques', 'url': '#studies'}
     ];
 
     const addon_navigation = [
-        {'name': 'what is it', 'url': '#what-is'},
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
         {'name': 'before and after\'s', 'url': '#before-after'},
         {'name': 'what can you treat', 'url': '#what-treat'},
-        {'name': 'clinical studies', 'url': '#studies'}
+        {'name': 'études cliniques', 'url': '#studies'}
     ];
     
     return (

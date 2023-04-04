@@ -41,8 +41,8 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             </div>
             <div className="key-benefits transition">
                 <div className="title">
-                    {'key benefits:'}
-                </div>key_benefit
+                    {'avantages:'}
+                </div>avantages
                 {datas.BeforesAfters && datas.BeforesAfters.map((benefit, key:number) => {
                     return (
                         <div key={key} className="key">

@@ -34,8 +34,8 @@ const TreatmentProducts = ({ datas, variant = "teal" }:TreatmentProducts) => {
                         })}
                         <div className="workstation-addons">
                             <div className="treatment-addon">
-                                    <div>Technologie</div>
                                 <div className="treatment-title" data-variant={variant}>
+                                    <div>Technologies</div>
                                     <div>Traitement</div>
                                 </div>
                                 <div className="treatment-list" data-variant={variant}>

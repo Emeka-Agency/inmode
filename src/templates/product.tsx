@@ -32,7 +32,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'what_is': datas.WhatIs,
                         'before_keys': datas.BeforeKeyBenefits,
                         'list': datas.KeyBenefits,
-                        'list_title': 'key benefits',
+                        'list_title': 'avantages',
                         'list_icon': 'key_benefit',
                         'anchor_key': 'key-benefits',
                         'variant': datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"

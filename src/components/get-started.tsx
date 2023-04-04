@@ -7,7 +7,7 @@ const GetStarted = ({ from = null }:GetStarted) => {
             <div className="container">
                 <p>Lancez-vous</p>
                 <h2>Laquelle de nos technologies pourrait vous être utile ?</h2>
-                <Link to="/contact" title="Contactez-nous">Contactez nous</Link>
+                <Link to="/contact" title="Contactez-nous">Contactez-nous</Link>
             </div>
         </div>
     );
