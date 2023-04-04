@@ -7,6 +7,8 @@ import { resolveImg } from '../../functions/tools';
 
 const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
 
+    return <></>;
+
     return (
         <>
             {
@@ -20,7 +22,8 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                         />
                         <img
                             className="blue"
-                            src={resolveImg(menu.icon_hover)}
+                            // src={resolveImg(menu.icon_hover)}
+                            src={resolveImg(menu.icon)}
                             alt={format_string(menu.title || '')}
                         />
                     </Link>
@@ -33,7 +36,8 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                         />
                         <img
                             className="blue"
-                            src={resolveImg(menu.icon_hover)}
+                            // src={resolveImg(menu.icon_hover)}
+                            src={resolveImg(menu.icon)}
                             alt={format_string(menu.title || '')}
                         />
                     </a>
@@ -46,7 +50,8 @@ const MenuSingleImage = ({menu, prop_key = 0}:MenuSingleImage) => {
                     />
                     <img
                         className="blue"
-                        src={resolveImg(menu.icon_hover)}
+                        // src={resolveImg(menu.icon_hover)}
+                        src={resolveImg(menu.icon)}
                         alt={format_string(menu.title || '')}
                     />
                 </div>
