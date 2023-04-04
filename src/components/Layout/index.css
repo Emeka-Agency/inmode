@@ -5316,7 +5316,8 @@ input[type="submit"].neumorphic:hover,
     max-height: 200px;
 }
 
-.study-slide .study-img img {
+.study-slide .study-img img,
+.study-slide .study-img div {
     position: absolute;
     width: 100%;
     height: 100%;
