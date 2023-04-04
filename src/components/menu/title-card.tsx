@@ -21,6 +21,17 @@ const TITLE = 'title';
 
 const MenuTitleCard = ({ menu, prop_key }:MenuTitleCard) => {
 
+    if(menu.url == "/workstation/empowerrf") {
+        menu.menus = [
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 23),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 12),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 22),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 3),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 1),
+            menu.menus?.find((el:InmodePanel_Menu_Interface):boolean => el.id == 8),
+        ].filter(el => el != undefined);
+    }
+
     return (
         <div key={prop_key} className="menu-title menu-card">
             {
