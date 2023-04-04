@@ -1,0 +1,7 @@
+.request-informations[data-variant="teal"] {
+    background-color: var(--teal);
+}
+
+.request-informations[data-variant="dusty-rose"] {
+    background-color: var(--dusty-rose);
+}
