@@ -3616,7 +3616,7 @@ input[type="submit"].neumorphic:hover,
 /* ALVEOLES */
 
 .alveoles {
-    background-color: var(--pearl);
+    background-color: var(--platinum-25);
     width: 100%;
     padding: 50px;
     box-sizing: border-box;
@@ -3700,26 +3700,28 @@ input[type="submit"].neumorphic:hover,
     max-height: 300px;
 }
 
-.alveoles .alveole img {
+.alveoles .alveole .first {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     z-index: 1;
+    background-position: center;
+    background-size: cover;
 }
 
-.alveoles .alveole img.first {
+.alveoles .alveole .first {
     filter: grayscale(1);
     transition: filter 0.25s ease-in-out 0s;
 }
 
-.alveoles .alveole:hover img.first {
+.alveoles .alveole:hover .first {
     filter: unset;
     transition: filter 0.25s ease-in-out 0s;
 }
 
-/* .alveoles .alveole img.first,
+/* .alveoles .alveole .first,
 .alveoles .alveole:hover img.hover {
     display: block;
 }
