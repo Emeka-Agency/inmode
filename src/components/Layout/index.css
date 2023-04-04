@@ -4318,7 +4318,7 @@ input[type="submit"].neumorphic:hover,
     background: var(--pearl);
     padding: 50px 0;
     text-align: center;
-    box-shadow: rgba(0, 0, 0, .5) 2px 2px 5px;
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, .05);
     position: relative;
     z-index: 1;
 }
@@ -4460,17 +4460,26 @@ input[type="submit"].neumorphic:hover,
     margin-block-end: 30px;
     margin-bottom: 30px;
     padding-inline-start: 40px;
-    padding-left: 40px;
+    padding-left: 0;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li {
+    
+}
+
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li:not(:first-child) {
+    margin-top: 5px;
+}
+
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li span {
+    vertical-align: middle;
+    display: inline-block;
     box-sizing: border-box;
     color: rgb(99, 100, 102);
     font-size: 20px;
     font-weight: 400;
     letter-spacing: 1px;
     line-height: 28px;
-    margin-bottom: 5px;
     text-align: left;
 }
 
@@ -4478,21 +4487,31 @@ input[type="submit"].neumorphic:hover,
     content: "•";
     vertical-align: middle;
     display: inline-block;
-    color: var(--pearl);
+    color: var(--teal);
+    font-size: 24px;
     position: relative;
     left: -10px;
     text-align: center;
 }
 
+
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title {
     box-sizing: border-box;
-    color: rgb(124, 181, 178);
     display: block;
     font-size: 24px;
     font-weight: 400;
     letter-spacing: 1px;
     line-height: 32px;
     padding-bottom: 20px;
+}
+
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title.variant-teal {
+    color: var(--teal);
+}
+
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title.variant-dusty-rose {
+    /* color: var(--dusty-rose); */
+    color: var(--teal);
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before {
