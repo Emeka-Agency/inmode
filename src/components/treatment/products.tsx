@@ -1,9 +1,25 @@
+import { graphql, Link, useStaticQuery } from "gatsby";
 import React from "react";
 import { resolveImg } from "../../functions/tools";
-import { InmodePanel_Treatment_Interface } from "../interfaces";
+import { InmodePanel_Addon_Interface, InmodePanel_Treatment_Interface } from "../interfaces";
 
 const TreatmentProducts = ({ datas, variant = "teal" }:TreatmentProducts) => {
 
+    const [addons]:[InmodePanel_Addon_Interface[], React.Dispatch<InmodePanel_Addon_Interface[]>] = React.useState(useStaticQuery(graphql`
+        {
+            allStrapiAddon {
+                edges {
+                    node {
+                        id
+                        strapiId
+                        MenuParams {
+                            url
+                        }
+                    }
+                }
+            }
+        }
+    `).allStrapiAddon.edges.map((edge: {node: InmodePanel_Addon_Interface}) => {return edge.node}));
 
     return (
         <div className="treatment-products">
@@ -43,7 +59,7 @@ const TreatmentProducts = ({ datas, variant = "teal" }:TreatmentProducts) => {
                                         if(treat.treatment?.Name === datas?.treatment) {
                                             return (
                                                 <div className="treat-elem" key={key_treat}>
-                                                    <div className="addon text">{treat.addon?.Name}</div>
+                                                    <div className="addon text"><Link to={addons.find(add => add.strapiId == treat.addon?.id)?.MenuParams.url ?? ""}>{treat.addon?.Name}</Link></div>
                                                     <div className="treat text">
                                                         {(treat?.short || []).map((treat_elem, key_treat_elem) => {
                                                             return (

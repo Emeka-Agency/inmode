@@ -59,6 +59,7 @@ export const query = graphql`
     query Product($id: String!) {
         strapiProduct(id: {eq: $id}) {
           strapiId
+          Name
           Banner {
             left_img {
                 caption
