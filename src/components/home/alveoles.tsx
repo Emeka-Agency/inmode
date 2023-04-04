@@ -8,13 +8,15 @@ const Alveoles = ({}:Alveoles) => {
 
     const hexs = [
         {
-            'image': images.resolve_img('alveole1'),
+            // 'image': images.resolve_img('alveole1'),
+            'image': images.resolve_img('new_alveole1'),
             'target': '_self',
             'text': 'Congrès',
             'link': '/events/congress'
         },
         {
-            'image': images.resolve_img('alveole2'),
+            // 'image': images.resolve_img('alveole2'),
+            'image': images.resolve_img('new_alveole2'),
             'target': '_self',
             'text': 'Webinar',
             'link': '/events/webinars'
@@ -58,7 +60,13 @@ const Alveoles = ({}:Alveoles) => {
                 {hexs.map((hex, key) => {
                     return (
                         <div key={key} className="alveole">
-                            <img className="first" src={hex.image} srcSet={hex.image} alt={hex.text}/>
+                            <div
+                                className="first"
+                                style={{
+                                    backgroundImage: `url(${hex.image})`,
+                                    backgroundPositionY: "center"
+                                }}
+                            ></div>
                             <div className="alveole-text">{hex.text}</div>
                             {hex.target === '_self' ?
                                 <Link className="zone-link" to={hex.link} title={hex.text}></Link>
