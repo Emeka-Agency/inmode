@@ -1,6 +1,7 @@
 import { _error, _log, _slog } from "../../functions/logger";
 import { err_log } from "../../functions/logging";
 import { selectOne } from "../../functions/selectors";
+import { ContactFull_Interface, ContactMini_Interface } from "../interfaces";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
     // console.log("send_form_mini");
@@ -12,15 +13,15 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _temp = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'inline-block';}
         let _form = document.forms.namedItem('contact-mini');
-        let body:any = {
-            "lastname": document?.querySelector('#contact-mini [name="lastname"]')?.value,
-            "firstname": document?.querySelector('#contact-mini [name="firstname"]')?.value,
-            "subject": document?.querySelector('#contact-mini [name="subject"]')?.value,
-            "mail": document?.querySelector('#contact-mini [name="mail"]')?.value,
-            "phone_number": document?.querySelector('#contact-mini [name="phone"]')?.value,
-            "zip": document?.querySelector('#contact-mini [name="zip"]')?.value,
-            "city": document?.querySelector('#contact-mini [name="city"]')?.value,
-            "message": document?.querySelector('#contact-mini [name="message"]')?.value,
+        let body:ContactMini_Interface = {
+            "lastname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="lastname"]'))()?.value,
+            "firstname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="firstname"]'))()?.value,
+            "subject": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="subject"]'))()?.value,
+            "mail": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="mail"]'))()?.value,
+            "phone_number": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="phone"]'))()?.value,
+            "zip": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="zip"]'))()?.value,
+            "city": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="city"]'))()?.value,
+            "message": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="message"]'))()?.value,
         };
         body.type = "contact-us";
 
@@ -128,19 +129,19 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             return false;
         }
         let _form:HTMLFormElement|null = document.forms.namedItem("full-contact-form");
-        let body:any = {
-            "lastname": _form?.querySelector('#lastname')?.value,
-            "firstname": _form?.querySelector('#firstname')?.value,
-            "company": _form?.querySelector('#company')?.value,
-            "subject": _form?.querySelector('#subject')?.value,
-            "mail": _form?.querySelector('#mail')?.value,
-            "phone_number": _form?.querySelector('#phone_number')?.value,
-            "address": _form?.querySelector('#address')?.value,
-            "zip": _form?.querySelector('#zip')?.value,
-            "city": _form?.querySelector('#city')?.value,
-            "country": _form?.querySelector('select[name="country"]')?.value,
-            "message": _form?.querySelector('#contact-message')?.value,
-            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map(el => el.checked ? el.name : null).filter(el => el),
+        let body:ContactFull_Interface = {
+            "lastname": (():HTMLInputElement|null|undefined => _form?.querySelector('#lastname'))()?.value,
+            "firstname": (():HTMLInputElement|null|undefined => _form?.querySelector('#firstname'))()?.value,
+            "company": (():HTMLInputElement|null|undefined => _form?.querySelector('#company'))()?.value,
+            "subject": (():HTMLInputElement|null|undefined => _form?.querySelector('#subject'))()?.value,
+            "mail": (():HTMLInputElement|null|undefined => _form?.querySelector('#mail'))()?.value,
+            "phone_number": (():HTMLInputElement|null|undefined => _form?.querySelector('#phone_number'))()?.value,
+            "address": (():HTMLInputElement|null|undefined => _form?.querySelector('#address'))()?.value,
+            "zip": (():HTMLInputElement|null|undefined => _form?.querySelector('#zip'))()?.value,
+            "city": (():HTMLInputElement|null|undefined => _form?.querySelector('#city'))()?.value,
+            "country": (():HTMLInputElement|null|undefined => _form?.querySelector('select[name="country"]'))()?.value,
+            "message": (():HTMLInputElement|null|undefined => _form?.querySelector('#contact-message'))()?.value,
+            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map((el:any) => el.checked ? el.name : null).filter(el => el),
             "type": "full-contact"
         };
 
@@ -261,13 +262,13 @@ function handlePromise(promise:Response) {
     return retour;
 }
 
-function click_pardot(body) {
+function click_pardot(body:Object) {
     try {
-        let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
+        let a:HTMLAnchorElement = Object.assign(document.createElement('a'), {
             id: 'send-mail',
             target: '_self',
             href: create_pardot_url(body),
-        }).click();
+        });
         a.click();
         a.remove();
         return true;
@@ -278,7 +279,7 @@ function click_pardot(body) {
     }
 }
 
-function create_pardot_url(body) {
+function create_pardot_url(body:Object) {
     try {
         return [
             `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
@@ -315,9 +316,9 @@ const fields = {
     ]
 };
 
-function to_get_line(_body = {}, _type:string|null = null) {
+function to_get_line(_body:ContactMini_Interface|ContactFull_Interface = {}, _type:"contact"|"signup_event"|null = null) {
     if(_body instanceof Object && typeof _type == "string" && _type in fields) {
-        return Object.keys(_body).map((key) => {
+        return Object.keys(_body).map((key:never) => {
             if(key == "machines" && fields[_type].indexOf(key) > -1) {
                 return `machines=${encodeURI(_body[key].map((val) => {
                     return front_to_pardot_machines(val) ?? '';
@@ -366,13 +367,13 @@ function to_get_line(_body = {}, _type:string|null = null) {
 // DONE - Plus | Skin Remodeling For Larger Areas
 // DONE - Triton | DuoLight/DuoDark | Hair Removal
 // DONE - Votiva | Aviva | Feminine Wellness
-// TODO - Contoura
-// TODO - FaceTite | Minimally Invasive Procedure
-// TODO - MorpheusPro
-// TODO - EvolveX | Hands-Free Skin and Body Remodeling
-// TODO - EmpowerRF | Aviva | Feminine Wellness
-// TODO - TransformX
-// TODO - Bodytite/Facetite | Minimally Invasive Procedures
+// DONE - Contoura
+// DONE - FaceTite | Minimally Invasive Procedure
+// DONE - MorpheusPro
+// DONE - EvolveX | Hands-Free Skin and Body Remodeling
+// DONE - EmpowerRF | Aviva | Feminine Wellness
+// DONE - TransformX
+// DONE - Bodytite/Facetite | Minimally Invasive Procedures
 
 function front_to_pardot_machines(val?:string) {
     switch(val) {

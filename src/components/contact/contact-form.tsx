@@ -11,7 +11,7 @@ import { _log } from "../../functions/logger";
 
 // DONE - Changer le type du champ de code postal
 // DONE - Factoriser les composants du formulaire
-// CURRENT - Tester l'envoi de mails
+// DONE - Tester l'envoi de mails
 
 const tech_list = [
     {name: "morpheus8", label: "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",},
@@ -123,7 +123,7 @@ const ContactForm = ({ from }:ContactForm) => {
 
     const set_saving = () => {
         _log("set_saving");
-        document?.querySelector('#full-contact-form button.submit .label')?.style.setProperty('display', 'none');
+        (():HTMLElement|null => document?.querySelector('#full-contact-form button.submit .label'))()?.style.setProperty('display', 'none');
         document?.querySelector('#full-contact-form .loading-gif')?.classList.add('active');
         return true;
     }
@@ -132,7 +132,7 @@ const ContactForm = ({ from }:ContactForm) => {
         status == "fail" && setSubmitText("Erreur d'envoi");
         status == "success" && setSubmitText("Envoyé");
         status == "error" && setSubmitText("Erreur à l'envoi");
-        document?.querySelector('#full-contact-form button.submit .label')?.style.removeProperty('display');
+        (():HTMLElement|null => document?.querySelector('#full-contact-form button.submit .label'))()?.style.removeProperty('display');
         document?.querySelector('#full-contact-form .loading-gif')?.classList.remove('active');
         return true;
     }

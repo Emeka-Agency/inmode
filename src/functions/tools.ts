@@ -360,7 +360,6 @@ export const sanitize_url = (_url:string|null = null) => {
 }
 
 export const resolveImg = (img?:any) => {
-    console.log(img);
     return typeof img?.localFile == "undefined" ? sanitize_url(resolveExternalImg(img)) : sanitize_url(resolveInternalImg(img));
 }
 export const resolveImgSet = (img?:any) => {

@@ -47,7 +47,16 @@ const Slides = ({from}:Slides) => {
             selectedAttraction: 0.01,
             friction: 0.15,
             percentPosition: false,
-            // autoPlay: false
+            autoPlay: false,
+            wrapAround: true,
+            contain: true,
+            // groupCells: 1,
+            draggable: true,
+            freeScroll: true,
+            prevNextButtons: true,
+            adaptiveHeight: true,
+            imagesLoaded: true,
+
         });
         setCurrent(pos);
         _main.style.zIndex = '4';

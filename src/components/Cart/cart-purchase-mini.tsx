@@ -13,7 +13,6 @@ import {
     DeliveryCityField,
     DeliveryClinicField,
     DeliveryCountryField,
-    DeliveryCustomField,
     DeliveryFirstNameField,
     DeliveryLastNameField,
     DeliveryMailField,
@@ -88,7 +87,10 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 fields = [...fields, ...Array.from([...Array.from(_form2 ? _form2.elements : []), ...Array.from(_form3 ? _form3.elements : [])]).filter(e => e.id.includes('vads_'))];
             }
             setIsSubmit(true);
-            document.getElementById('vads_amount').value = cart.total_all_included();
+            let temp = document.getElementById('vads_amount');
+            if(temp instanceof HTMLInputElement) {
+                temp.value = cart.total_all_included();
+            }
             let res = await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked);
             setIsCreated(res === true ? true : false);
             setIsSubmit(res === true ? false : null);

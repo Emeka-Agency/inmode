@@ -11,7 +11,6 @@ import {
     DeliveryCityField,
     DeliveryClinicField,
     DeliveryCountryField,
-    DeliveryCustomField,
     DeliveryFirstNameField,
     DeliveryLastNameField,
     DeliveryMailField,
@@ -339,7 +338,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                             <div
                                 id="add-address-zone"
                                 className="neumorphic"
-                                // TODO
+                                // DONE
                                 onClick={function() {
                                     user.logged() ? user.addAddress() : user.login();
                                 }}
@@ -398,7 +397,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                             <div
                                 id="add-address-zone"
                                 className="neumorphic"
-                                // TODO
+                                // DONE
                                 onClick={function() {
                                     user.logged() ? user.addAddress() : user.login();
                                 }}

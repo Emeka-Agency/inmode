@@ -20,6 +20,7 @@ const RequestInformation = ({search, hash, variant = "teal"}:RequestInformation_
 interface RequestInformation_Interface {
     search?: string;
     hash?: string;
+    variant?: string;
 };
 
 export default RequestInformation;

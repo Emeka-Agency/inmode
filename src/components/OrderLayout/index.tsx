@@ -101,7 +101,7 @@ const OrderLayout = ({ status, order, payment }:OrderLayoutParams) => {
                             {order.shipping.phone && <div className="shipping-phone">{order.shipping.phone}</div>}
                         </div>
                     </div>} */}
-                    {/* TODO Create a function to display a generic message according to the status */}
+                    {/* DONE Create a function to display a generic message according to the status */}
                     {/* Statut: "ACCEPTED" */}
                     {/* <div className="order-status">
                         {status_message(order.Statut)}
