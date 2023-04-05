@@ -197,6 +197,10 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     srcSetWebp
                     aspectRatio
                 }
+                original {
+                    width
+                    height
+                }
             }
             publicURL
             url
@@ -209,7 +213,17 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     //             srcSetWebp
     //         }
     //     }
+    //     width
+    //     height
     // }
+
+    const getImageRatio = (request:string):number => {
+        let image = getOneImage(request);
+        if(image && image.childImageSharp?.original) {
+            return (image.childImageSharp.original.height ?? 1) / (image.childImageSharp.original.width ?? 1);
+        }
+        return 1;
+    };
 
     const getOneImage = (request:string):GatsbyImage_Interface | null => {
         if(request == null || typeof request != 'string') {
@@ -253,6 +267,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     return (
         <ImagesContext.Provider value = {{
+            'get_ratio': getImageRatio,
             'get_one': getOneImage,
             'get_set': getImageSet,
             'resolve_img': resolveImg,

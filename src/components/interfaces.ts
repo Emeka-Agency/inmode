@@ -580,6 +580,7 @@ export interface NameTable_Interface {
 };
 
 export interface Images_Interface {
+    get_ratio(request:string): number;
     get_one(request:string): GatsbyImage_Interface;
     get_set(request:string[]): GatsbyImage_Interface[];
     resolve_img(request:string):string|undefined;
@@ -594,7 +595,7 @@ export interface External_GatsbyImage_Interface extends GatsbyImage_Interface {
 
 export interface GatsbyImage_Interface {
     ext?: string;
-    childImageSharp: {
+    childImageSharp?: {
         fixed: {
             base64?: string;
             srcWebp?: string;
@@ -606,6 +607,14 @@ export interface GatsbyImage_Interface {
             srcWebp?: string;
             srcSetWebp?: string;
             aspectRatio?: number;
+        }
+        original: {
+            width?: number;
+            height?: number;
+        }
+        resize: {
+            width?: number;
+            height?: number;
         }
     };
     childrenImageSharp: {
@@ -620,6 +629,14 @@ export interface GatsbyImage_Interface {
             srcWebp?: string;
             srcSetWebp?: string;
             aspectRatio?: number;
+        }
+        original: {
+            width?: number;
+            height?: number;
+        }
+        resize: {
+            width?: number;
+            height?: number;
         }
     }
     absolutePath?: string;
