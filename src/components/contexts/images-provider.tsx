@@ -103,6 +103,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             heroHeader: file(relativePath: {eq: "hero-3.png"}) {
                 ...FileImgFormat
             }
+            heroFull: file(relativePath: {eq: "home/hero.jpg"}) {
+                ...FileImgFormat
+            }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
                 ...FileImgFormat
             }
@@ -306,6 +309,7 @@ interface ImagesList {
     homeClinicalBack: GatsbyImage_Interface;
     homeClinicalStudy: GatsbyImage_Interface;
     heroHeader: GatsbyImage_Interface;
+    heroFull: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
