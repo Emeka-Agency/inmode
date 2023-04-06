@@ -1,5 +1,6 @@
 import React from "react";
 import { InmodePanel_Generic_Demo_Interface } from "../interfaces";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const ProductDemo = ({ datas }:ProductDemo_Interface) => {
 
@@ -11,8 +12,8 @@ const ProductDemo = ({ datas }:ProductDemo_Interface) => {
         <div id="demo" className="product-demo">
             <div className="picture">
                 <img
-                    src={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={datas.picture && datas.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                    src={resolveImg(datas.picture)}
+                    srcSet={resolveImgSet(datas.picture)}
                         alt="product-demo"
                 />
             </div>

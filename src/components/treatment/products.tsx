@@ -1,5 +1,6 @@
 import React from "react";
 import { InmodePanel_Base_Texte_Interface, InmodePanel_Treatment_Interface } from "../interfaces";
+import { resolveImg } from "../../functions/tools";
 
 const TreatmentProducts = ({ datas }:TreatmentProducts) => {
 
@@ -18,7 +19,7 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
                                     <div key={key_product} className="workstation-details">
                                         <div className="workstation-img">
                                             <img
-                                                src={product.image && product.image.localFile.childImageSharp.fluid.srcWebp}
+                                                src={resolveImg(product.image)}
                                                 alt={product.title}
                                             />
                                         </div>

@@ -8,6 +8,7 @@ import { openModale, clinicalStudyPassword, closeModale } from '../../functions/
 
 import './index.css';
 import { _log } from "../../functions/logger";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const ClinicalStudy = ({study, prop_key = null, able = false, _setAllowed}:ClinicalStudy) => {
 
@@ -119,8 +120,8 @@ const ClinicalStudy = ({study, prop_key = null, able = false, _setAllowed}:Clini
         <div key={prop_key} className="study-slide">
             <div className="study-img">
                 <img
-                    src={study.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={study.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                    src={resolveImg(study.picture)}
+                    srcSet={resolveImgSet(study.picture)}
                     alt="clinical-study"
                 />
             </div>

@@ -65,7 +65,6 @@ const TestimonialProvider = ({ requested = "", children }:{requested:string, chi
         };
     }
 
-
     const testimonial_index = (hashid:string):number => {
         return testimonials.map((item:Testimonial_Interface, key:number) => {
             return item.is_ref(hashid) ? key : 0;
@@ -81,7 +80,6 @@ const TestimonialProvider = ({ requested = "", children }:{requested:string, chi
         }
         return testimonials[hashid] || null;
     }
-
 
     const nb_testimonials = ():number => {
         return testimonials_length;

@@ -3,6 +3,7 @@ import { _log } from "../../functions/logger";
 import { useCart } from "../contexts/cart-provider";
 
 import './shop-product.css';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
 
@@ -104,13 +105,12 @@ const ShopProduct = ({ reference, special }:ShopProduct_Interface) => {
                         className="product-icon-img"
                     />:
                     <img
-                        src={_image.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={_image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                        src={resolveImg(_image.localFile)}
+                        srcSet={resolveImgSet(_image.localFile)}
                         alt={article.name}
                         className="product-icon-img"
                     />
                 }
-                {/* <div className="back-product-icon"></div> */}
             </div>
             <div className="production-name">
                 {article.Name}

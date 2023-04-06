@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import { InmodePanel_AboutUs_Interface } from "../interfaces";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Banner = ({ from = "" }:Banner) => {
 
@@ -25,8 +26,8 @@ const Banner = ({ from = "" }:Banner) => {
     return (
         <div className={`full-img-banner${from ? ` ${from}` : ''}`}>
             <img
-                src={datas.banner ? datas.banner.localFile.childImageSharp.fluid.srcWebp : ""}
-                srcSet={datas.banner ? datas.banner.localFile.childImageSharp.fluid.srcSetWebp : ""}
+                src={resolveImg(datas.banner)}
+                srcSet={resolveImgSet(datas.banner)}
                 alt='about-us-banner'
             />
         </div>

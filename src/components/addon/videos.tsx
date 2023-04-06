@@ -1,5 +1,4 @@
 import React from "react";
-import { resolve_video_click } from "../../functions/video";
 import Carousel from "../Carousel";
 import Video from "../Video";
 import { useImages } from '../contexts/images-provider';
@@ -24,7 +23,6 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
 
     return (
         <div className="videos-slide">
-          <div id="video-iframe" onClick={(e) => {resolve_video_click(e);}}></div>
           <div className="title">
             {title}
           </div>

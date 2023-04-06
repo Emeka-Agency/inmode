@@ -2,6 +2,7 @@ import React from "react";
 import RequestInformation from "./RequestInformation";
 import { useImages } from './contexts/images-provider';
 import { InmodePanel_Base_SectionTitreText_Interface } from "./interfaces";
+import { resolveImg, resolveImgSet } from "../functions/tools";
 
 const GenericDetails = ({ datas }:GenericDetails) => {
 
@@ -12,8 +13,8 @@ const GenericDetails = ({ datas }:GenericDetails) => {
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
-                        src={datas.what_is.picture.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.what_is.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                        src={resolveImg(datas.what_is.picture)}
+                        srcSet={resolveImgSet(datas.what_is.picture)}
                         alt="detail-main-pic"
                     />
                 </div>

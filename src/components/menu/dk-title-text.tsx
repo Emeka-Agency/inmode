@@ -72,14 +72,14 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
                             <div className="back-hex left">
                                 <img
                                     src={images.resolve_img('wideBackAlveole')}
-                                    srcSet={images.resolve_img('wideBackAlveole')}
+                                    srcSet={images.resolve_img_set('wideBackAlveole')}
                                     alt="back-left"
                                 />
                             </div>
                             <div className="back-hex right">
                                 <img
                                     src={images.resolve_img('wideBackAlveole')}
-                                    srcSet={images.resolve_img('wideBackAlveole')}
+                                    srcSet={images.resolve_img_set('wideBackAlveole')}
                                     alt="back-right"
                                 />
                             </div>

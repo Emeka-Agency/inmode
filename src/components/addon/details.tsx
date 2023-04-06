@@ -2,6 +2,7 @@ import React from "react";
 import RequestInformation from "../RequestInformation";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Addon_Interface } from "../interfaces";
+import { resolveImg } from "../../functions/tools";
 
 const AddonDetails = ({ name = "", datas }:AddonDetails) => {
 
@@ -22,7 +23,7 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             <div id="what-is" className="what-is transition">
                 <div className="addon-details-img transition">
                     <img
-                        src={datas.WhatIs && datas.WhatIs.picture && datas.WhatIs.picture.localFile.childImageSharp.fluid.srcWebp}
+                        src={resolveImg(datas.WhatIs?.picture)}
                     />
                 </div>
                     {datas.WhatIs && datas.WhatIs.TitleText && datas.WhatIs.TitleText.map((section, key) => {

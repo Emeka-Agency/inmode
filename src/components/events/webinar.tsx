@@ -27,7 +27,7 @@ const Webinar = ({ event = undefined }:Webinar) => {
                 <img
                     className="event-pic"
                     src={images.resolve_img('gatsbyAstronaut')}
-                    srcSet={images.resolve_img('gatsbyAstronaut')}
+                    srcSet={images.resolve_img_set('gatsbyAstronaut')}
                 />
             </div>
         </div>

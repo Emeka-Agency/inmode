@@ -3,6 +3,7 @@ import React from "react";
 import { InmodePanel_Testimonial_Interface } from "../interfaces";
 
 import './index.css';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
 
@@ -14,7 +15,7 @@ const OnProductTestimonial = ({ datas }:Testimonial_Params) => {
         if(datas.Picture == null) {return null;}
         return (
             <div className={`testimonial-img-part ${datas.from}`}>
-                <img className="background-image" src={datas.Picture.localFile.childImageSharp.fluid.srcWebp} srcSet={datas.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}/>
+                <img className="background-image" src={resolveImg(datas.Picture)} srcSet={resolveImgSet(datas.Picture)}/>
                 <div
                     className="testimonial-img-part-doctor"
                     style={{left: `calc(100% - ${(datas.Picture.localFile.childImageSharp.fluid.aspectRatio * 500).toFixed(0)}px)`}}

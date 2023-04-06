@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ProductsContext from "../contexts/products-context";
 import { Link } from "gatsby";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
 
@@ -13,16 +14,16 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                 <div className="slide" key={key}>
                     <div className="product-image">
                         <img
-                            src={product.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                            srcSet={product.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                            src={resolveImg(product.ShopPicture)}
+                            srcSet={resolveImgSet(product.ShopPicture)}
                             alt='products'
                         />
                     </div>
                     <div className="right">
                         <div className="product-icon">
                             <img
-                                src={product.Icon.localFile.childImageSharp.fluid.srcWebp}
-                                srcSet={product.Icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                src={resolveImg(product.Icon)}
+                                srcSet={resolveImgSet(product.Icon)}
                                 alt={product.Name}
                             />
                         </div>

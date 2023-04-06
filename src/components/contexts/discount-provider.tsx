@@ -66,7 +66,6 @@ const DiscountProvider = ({ requested = "", children }:{requested:string, childr
         };
     }
 
-
     const discount_index = (hashid:string):number => {
         return discounts.map((item:Discount_Interface, key) => {
             return item.is_ref(hashid) ? key : 0;
@@ -82,7 +81,6 @@ const DiscountProvider = ({ requested = "", children }:{requested:string, childr
         }
         return discounts[hashid] || null;
     }
-
 
     const nb_discounts = ():number => {
         return discounts_length;

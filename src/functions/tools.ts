@@ -171,7 +171,7 @@ export const sanitize_url = (_url:string|null = null) => {
     try {
         let temp = new URL(_url);
         temp.pathname.replace(/\/\//gi, '/');
-        return temp.toLocaleString();
+        return decodeURI(temp.toLocaleString());
     }
     catch(err) {
         return _url;

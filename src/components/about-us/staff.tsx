@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Carousel from "../Carousel";
 
 import { FlickityOptions_Interface, InmodePanel_AboutUs_Interface } from "../interfaces";
+import { resolveImg } from "../../functions/tools";
 
 const Staff = ({ from = "" }:Staff) => {
 
@@ -52,7 +53,7 @@ const Staff = ({ from = "" }:Staff) => {
                                 className="elem"
                             >
                                 <img
-                                    src={slide.picture ? slide.picture.localFile.childImageSharp.fluid.srcWebp : ""}
+                                    src={resolveImg(slide.picture)}
                                     alt={`about-us-staff-${key}`}
                                 />
                                 <div className="name">

@@ -1,5 +1,6 @@
 import { PressMedia_Interface } from '../components/interfaces';
 import { disableMainScroll, enableMainScroll } from './disable-scroll';
+import { resolveImg, resolveImgSet } from './tools';
 
 function modale():HTMLElement|null {
     return document.getElementById('modale');
@@ -73,8 +74,8 @@ export function pressMedia(datas:pressMedia) {
                                 &&
                                 `<img
                                     class="press-media-modale-picture"
-                                    src="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcWebp}"
-                                    srcSet="${_press.Picture && _press.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}"
+                                    src="${resolveImg(_press.Picture)}"
+                                    srcSet="${resolveImgSet(_press.Picture)}"
                                 />`
                             }
                             ${

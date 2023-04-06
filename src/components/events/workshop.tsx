@@ -1,5 +1,6 @@
 import React from "react";
 import { InmodePanel_Event_Interface } from "../interfaces";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Workshop = ({ event = undefined }:Workshop) => {
 
@@ -12,8 +13,8 @@ const Workshop = ({ event = undefined }:Workshop) => {
             <div className="img-part">
                 <img
                     className="event-pic"
-                    src={event.picture.localFile.childImageSharp.fluid.srcWebp}
-                    srcSet={event.picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                    src={resolveImg(event.picture)}
+                    srcSet={resolveImgSet(event.picture)}
                 />
             </div>
             <div className="descr-part custom-scrollbar moz-scrollbar">

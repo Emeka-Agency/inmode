@@ -6,6 +6,7 @@ import Carousel from "../Carousel";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../interfaces";
 import { getById } from "../../functions/selectors";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Slides = ({from}:Slides) => {
 
@@ -89,16 +90,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                        src={resolveImg(slide.Icon)}
+                                        srcSet={resolveImgSet(slide.Icon)}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.localFile.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                        src={resolveImg(slide.ShopPicture)}
+                                        srcSet={resolveImgSet(slide.ShopPicture)}
                                         alt='products'
                                     />
                                 </div>
@@ -110,7 +111,7 @@ const Slides = ({from}:Slides) => {
                                     <img
                                         className="slide-view-detail-arrow transition"
                                         src={images.resolve_img('arrowRightIcon')}
-                                        srcSet={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
                                     <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
@@ -120,7 +121,7 @@ const Slides = ({from}:Slides) => {
                                     <img
                                         className="slide-view-product-arrow transition"
                                         src={images.resolve_img('arrowRightIcon')}
-                                        srcSet={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-left"
                                     />
                                 </div> : null}

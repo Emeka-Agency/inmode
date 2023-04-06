@@ -69,7 +69,7 @@ const ContactUs = () => {
                     id="piece"
                     className="transition"
                     src={images.resolve_img('contactUsPiece')}
-                    srcSet={images.resolve_img('contactUsPiece')}
+                    srcSet={images.resolve_img_set('contactUsPiece')}
                     alt="contact-us"
                     onClick={(e) => {resolve_click(e)}}
                 />
@@ -77,7 +77,7 @@ const ContactUs = () => {
                     <div id="close" className="close-contact-us transition" onClick={(e) => {resolve_click(e)}}>
                         <img
                             src={images.resolve_img('hexagonalCross')}
-                            srcSet={images.resolve_img('hexagonalCross')}
+                            srcSet={images.resolve_img_set('hexagonalCross')}
                             alt="hexa-close"
                         />
                     </div>

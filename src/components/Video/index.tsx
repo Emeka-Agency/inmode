@@ -1,7 +1,7 @@
 import React from "react";
 import { GatsbyImage_Interface } from "../interfaces";
 import { resolveImg } from "../../functions/tools";
-import { resolveVideoClick } from "../../functions/video";
+import { resolveVideoClick, resolve_video_click } from "../../functions/video";
 
 import "./index.css";
 import { _log } from "../../functions/logger";
@@ -18,6 +18,7 @@ const Video = ({ video = {}, few = false, key = null, ...props }:Video) => {
             onClick={(e) => {resolveVideoClick(e, video.url || '');}}
             key={key}
         >
+            <div id="video-iframe" onClick={(e) => {resolve_video_click(e);}}></div>
             <div
                 className="video-poster"
                 style={{backgroundImage: `url(${video.poster_link == "external" && typeof video.poster == "string" ? video.poster : resolveImg(video.poster)})`}}

@@ -1,6 +1,7 @@
 import React from "react";
 import { InmodePanel_Addon_Interface } from "../interfaces";
 import RequestInformation from "../RequestInformation";
+import { resolveImg } from "../../functions/tools";
 
 const AddonWhatTreat = (datas:AddonWhatTreat) => {
     
@@ -16,7 +17,7 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
               return (
                 <div key={key} className="treat-part">
                   <img
-                    src={treat.picture && treat.picture.localFile.childImageSharp.fluid.srcWebp}
+                    src={resolveImg(treat.picture)}
                     alt="addon-what-treat"
                   />
                   <div className="it-treats">{treat.title}</div>

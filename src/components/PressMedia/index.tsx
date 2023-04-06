@@ -4,6 +4,7 @@ import { openModale, pressMedia } from "../../functions/modale";
 import { InmodePanel_PressMedia_Interface, PressMedia_Interface } from "../interfaces";
 
 import './index.css';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const PressMedia = ({datas, prop_key = 0, openCarousel}:PressMediaParams) => {
 
@@ -19,8 +20,8 @@ const PressMedia = ({datas, prop_key = 0, openCarousel}:PressMediaParams) => {
                 <div className="press-media-picture-div">
                     <img
                         className="press-media-picture-img"
-                        src={datas.Picture && datas.Picture.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.Picture && datas.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                        src={resolveImg(datas.Picture)}
+                        srcSet={resolveImgSet(datas.Picture)}
                         onClick={(e) => openCarousel(e, prop_key)}
                     />
                 </div>

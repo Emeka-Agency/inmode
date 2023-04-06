@@ -90,7 +90,6 @@ const ArticleProvider = ({ requested = "", children }:{requested:string, childre
         };
     }
 
-
     const article_index = (hashid:string):number => {
         return articles.map((item:BlogArticle_Interface, key:number) => {
             return item.is_ref(hashid) ? key : 0;
@@ -106,7 +105,6 @@ const ArticleProvider = ({ requested = "", children }:{requested:string, childre
         }
         return articles[articleMap["/blog/" + (typeof hashid == "number" ? crc32((hashid).toString()).toString(16) : crc32(hashid).toString(16))]];
     }
-
 
     const nb_articles = ():number => {
         return articles_length;

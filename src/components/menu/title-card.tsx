@@ -4,6 +4,7 @@ import { enableMainScroll } from "../../functions/disable-scroll";
 import { format_string } from "../../functions/format_string";
 import { InmodePanel_Menu_Interface } from "../interfaces";
 import Menu from "../menu";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 // VARIANT
 // const SINGLE = 'single';
@@ -28,8 +29,8 @@ const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
                     <Link onClick={(e) => {enableMainScroll();}} to={menu.url} title={format_string(menu.title || "")}>
                         <img
                             className="menu-title menu-card picture transition"
-                            src={menu.icon ? menu.icon.srcWebp : ""}
-                            srcSet={menu.icon ? menu.icon.srcSetWebp : ""}
+                            src={resolveImg(menu.icon)}
+                            srcSet={resolveImgSet(menu.icon)}
                             alt={format_string(menu.title || "")}
                         />
                         <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
@@ -38,8 +39,8 @@ const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
                     <a onClick={(e) => {enableMainScroll();}} href={menu.url} title={format_string(menu.title || "")} target="_blank" rel="noreferrer">
                         <img
                             className="menu-title menu-card picture transition"
-                            src={menu.icon ? menu.icon.srcWebp : ""}
-                            srcSet={menu.icon ? menu.icon.srcSetWebp : ""}
+                            src={resolveImg(menu.icon)}
+                            srcSet={resolveImgSet(menu.icon)}
                             alt={format_string(menu.title || "")}
                         />
                         <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
@@ -48,8 +49,8 @@ const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
                 <div>
                     <img
                         className="menu-title menu-card picture transition"
-                        src={menu.icon ? menu.icon.srcWebp : ""}
-                        srcSet={menu.icon ? menu.icon.srcSetWebp : ""}
+                        src={resolveImg(menu.icon)}
+                        srcSet={resolveImgSet(menu.icon)}
                         alt={format_string(menu.title || "")}
                     />
                     <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>

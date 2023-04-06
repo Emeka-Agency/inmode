@@ -2,6 +2,7 @@ import React from "react";
 import Carousel from "../Carousel";
 import { InmodePanel_Generic_BeforeAfter_Interface } from "../interfaces";
 import RequestInformation from "../RequestInformation";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const ProductBeforeAfter = ({ datas }:ProductBeforeAfter_Interface) => {
 
@@ -30,8 +31,8 @@ const ProductBeforeAfter = ({ datas }:ProductBeforeAfter_Interface) => {
                         return (
                             <div key={key} className="few-ba">
                                 <img
-                                    src={ba.image && ba.image.localFile.childImageSharp.fluid.srcWebp}
-                                    srcSet={ba.image && ba.image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                    src={resolveImg(ba.image)}
+                                    srcSet={resolveImgSet(ba.image)}
                                     alt="product-before-after"
                                 />
                                 <div className="ba-doctor">{ba.doctor}</div>
@@ -50,8 +51,8 @@ const ProductBeforeAfter = ({ datas }:ProductBeforeAfter_Interface) => {
                                 return (
                                     <div key={key} className="ba-slide">
                                         <img
-                                            src={ba.image && ba.image.localFile.childImageSharp.fluid.srcWebp}
-                                            srcSet={ba.image && ba.image.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                            src={resolveImg(ba.image)}
+                                            srcSet={resolveImgSet(ba.image)}
                                             alt={`product-before-after-${key}`}
                                         />
                                         <div className="ba-doctor">{ba.doctor}</div>

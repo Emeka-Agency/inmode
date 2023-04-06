@@ -7,6 +7,7 @@ import { InmodePanel_BlogArticle_Interface, InmodePanel_BlogArticleElement_Inter
 import { _log } from "../../functions/logger";
 
 import "./index.css";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Article = ({id, customURL}:Article) => {
 
@@ -95,8 +96,8 @@ const Article = ({id, customURL}:Article) => {
         return (
             <div className="article-element-image">
                 <img
-                    src={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcWebp || image.localFile.publicURL : image.localFile.publicURL}
-                    srcSet={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcSetWebp || image.localFile.publicURL : image.localFile.publicURL}
+                    src={resolveImg(image)}
+                    srcSet={resolveImgSet(image)}
                 />
             </div>
         );
@@ -112,8 +113,8 @@ const Article = ({id, customURL}:Article) => {
                 {carousel.length && carousel.map((image, key) => {
                     <img
                         key={key}
-                        src={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcWebp || image.localFile.publicURL : image.localFile.publicURL}
-                        srcSet={image.localFile.ext == '.gif' ? image.localFile.publicURL : image.localFile.childImageSharp ? image.localFile.childImageSharp.fluid.srcSetWebp || image.localFile.publicURL : image.localFile.publicURL}
+                        src={resolveImg(image)}
+                        srcSet={resolveImgSet(image)}
                     />
                 })}
             </div>
@@ -126,7 +127,7 @@ const Article = ({id, customURL}:Article) => {
                 <img
                     className="back-to-articles-icon"
                     src={images.resolve_img('arrowRightIcon')}
-                    srcSet={images.resolve_img('arrowRightIcon')}
+                    srcSet={images.resolve_img_set('arrowRightIcon')}
                     alt={article.Title}
                 />
                 <span className="back-to-articles-text">Articles</span>
@@ -139,15 +140,15 @@ const Article = ({id, customURL}:Article) => {
                         article.Thumbnail.localFile.ext == ".gif" ?
                         <img
                             className="article-list-elem-thumbnail"
-                            src={article.Thumbnail.localFile.publicURL}
-                            srcSet={article.Thumbnail.localFile.publicURL}
+                            src={resolveImg(article.Thumbnail)}
+                            srcSet={resolveImgSet(article.Thumbnail)}
                             alt={article.Title}
                         />
                         :
                         <img
                             className="article-list-elem-thumbnail"
-                            src={article.Thumbnail.localFile.childImageSharp.fluid ? article.Thumbnail.localFile.childImageSharp.fluid.srcWebp : article.Thumbnail.localFile.publicURL}
-                            srcSet={article.Thumbnail.localFile.childImageSharp.fluid ? article.Thumbnail.localFile.childImageSharp.fluid.srcSetWebp : article.Thumbnail.localFile.publicURL}
+                            src={resolveImg(article.Thumbnail)}
+                            srcSet={resolveImgSet(article.Thumbnail)}
                             alt={article.Title}
                         />
                     )
@@ -164,7 +165,7 @@ const Article = ({id, customURL}:Article) => {
                         <img
                             className="article-list-elem-thumbnail default"
                             src={images.resolve_img('learnIcon')}
-                            srcSet={images.resolve_img('learnIcon')}
+                            srcSet={images.resolve_img_set('learnIcon')}
                             alt={article.Title}
                         />
                     )

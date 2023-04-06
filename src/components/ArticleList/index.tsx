@@ -7,6 +7,7 @@ import { useImages } from "../contexts/images-provider";
 
 import "./index.css";
 import { _log } from '../../functions/logger';
+import { resolveImg, resolveImgSet } from '../../functions/tools';
 
 const ArticleList = ({}:ArticleList) => {
 
@@ -48,15 +49,15 @@ const ArticleList = ({}:ArticleList) => {
                                     article.Thumbnail.localFile.ext == ".gif" ?
                                     <img
                                         className="article-list-elem-thumbnail"
-                                        src={article.Thumbnail.localFile.publicURL}
-                                        srcSet={article.Thumbnail.localFile.publicURL}
+                                        src={resolveImg(article.Thumbnail)}
+                                        srcSet={resolveImgSet(article.Thumbnail)}
                                         alt={article.Title}
                                     />
                                     :
                                     <img
                                         className="article-list-elem-thumbnail"
-                                        src={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcWebp : article.Thumbnail.localFile.publicURL}
-                                        srcSet={article.Thumbnail.localFile.childImageSharp ? article.Thumbnail.localFile.childImageSharp.fluid.srcSetWebp : article.Thumbnail.localFile.publicURL}
+                                        src={resolveImg(article.Thumbnail)}
+                                        srcSet={resolveImgSet(article.Thumbnail)}
                                         alt={article.Title}
                                     />
                                 )
@@ -73,7 +74,7 @@ const ArticleList = ({}:ArticleList) => {
                                     <img
                                         className="article-list-elem-thumbnail default"
                                         src={images.resolve_img('learnIcon')}
-                                        srcSet={images.resolve_img('learnIcon')}
+                                        srcSet={images.resolve_img_set('learnIcon')}
                                         alt={article.Title}
                                     />
                                 )

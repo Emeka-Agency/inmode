@@ -1,6 +1,7 @@
 import { Link } from "gatsby";
 import React from "react";
 import { InmodePanel_Product_Interface } from "../interfaces";
+import { resolveImg } from "../../functions/tools";
 
 const WorkstationProduct = ({ product, special }:WorkstationProduct) => {
 
@@ -8,7 +9,7 @@ const WorkstationProduct = ({ product, special }:WorkstationProduct) => {
         <div className={`workstation-product transition${special ? " special" : ""}`}>
             <div className={`workstation-front transition${special ? " special" : ""}`}>
                 <div className={`workstation-picture${special ? " special" : ""}`}>
-                    <img src={product.ShopPicture.localFile.childImageSharp.fluid.srcWebp} alt={`${product.Name}-pic`} className="transition"/>
+                    <img src={resolveImg(product.ShopPicture)} alt={`${product.Name}-pic`} className="transition"/>
                 </div>
                 <div className={`workstation-name transition${special ? " special" : ""}`}>
                     {product.Name}

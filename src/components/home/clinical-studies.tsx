@@ -18,7 +18,7 @@ const ClinicalStudies = ({}:ClinicalStudies) => {
                     <div className="content">
                         <img
                             src={images.resolve_img('homeClinicalStudy')}
-                            srcSet={images.resolve_img('homeClinicalStudy')}
+                            srcSet={images.resolve_img_set('homeClinicalStudy')}
                             alt="studies-img"
                         />
                         <a href="https://inmodemd.com/clinical-papers/" target="_blank" rel="noreferrer" title="See the studies">

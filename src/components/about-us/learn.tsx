@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { useImages } from '../contexts/images-provider';
 
 import { InmodePanel_AboutUs_Interface } from '../interfaces';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Learn = ({ from = "" }:Learn) => {
 
@@ -50,8 +51,8 @@ const Learn = ({ from = "" }:Learn) => {
                 </div>
                 <div className="goals">
                     <img
-                        src={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.learn_icon && datas.learn_icon.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                        src={resolveImg(datas.learn_icon)}
+                        srcSet={resolveImgSet(datas.learn_icon)}
                         alt='about-us-learn'
                     />
                     <div className="texts">

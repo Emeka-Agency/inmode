@@ -4,6 +4,7 @@ import { _log } from "../../functions/logger";
 import { InmodePanel_OurSpecialists_Interface, OurSpecialist_Interface } from "../interfaces";
 
 import './index.css';
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const OurSpecialist = ({}:OurSpecialistParams) => {
 
@@ -42,8 +43,8 @@ const OurSpecialist = ({}:OurSpecialistParams) => {
                         <div className="specialist" key={key}>
                             <div className="specialist-picture">
                               <img
-                                  src={specialist.Picture.localFile.childImageSharp.fluid.srcWebp}
-                                  srcSet={specialist.Picture.localFile.childImageSharp.fluid.srcSetWebp?.replace('\n', '')}
+                                  src={resolveImg(specialist.Picture)}
+                                  srcSet={resolveImgSet(specialist.Picture)}
                               />
                             </div>
                             <div className="name">{specialist.Name}</div>

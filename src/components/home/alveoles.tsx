@@ -45,22 +45,20 @@ const Alveoles = ({}:Alveoles) => {
             'link': 'https://inmodemd.com/gallery/'
         }
     ];
-
-    _log(hexs);
-
+    
     return (
         <div className="alveoles">
             <div className="back-hex left">
                 <img
                     src={images.resolve_img('backAlveole')}
-                    srcSet={images.resolve_img('backAlveole')}
+                    srcSet={images.resolve_img_set('backAlveole')}
                     alt="back-left"
                 />
             </div>
             <div className="back-hex right">
                 <img
                     src={images.resolve_img('backAlveole')}
-                    srcSet={images.resolve_img('backAlveole')}
+                    srcSet={images.resolve_img_set('backAlveole')}
                     alt="back-right"
                 />
             </div>

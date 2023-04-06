@@ -4,6 +4,7 @@ import { InmodePanel_Generic_BeforeAfter_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 import RequestInformation from "../RequestInformation";
+import { resolveImg } from "../../functions/tools";
 
 const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) => {
 
@@ -34,7 +35,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                             return (
                                 <div key={key} className="few-ba">
                                     <img
-                                        src={ba.image.localFile.childImageSharp.fluid.srcWebp}
+                                        src={resolveImg(ba.image)}
                                         alt="treatment-before-after"
                                     />
                                     <div className="ba-doctor">{ba.doctor}</div>
@@ -52,7 +53,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
-                                                src={ba.image.localFile.childImageSharp.fluid.srcWebp}
+                                                src={resolveImg(ba.image)}
                                                 alt={`treatment-before-after-${key}`}
                                             />
                                             <div className="ba-doctor">{ba.doctor}</div>
