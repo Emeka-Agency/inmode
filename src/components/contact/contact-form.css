@@ -10,7 +10,6 @@
     box-shadow: #0000001f -4px -4px 12px;
 }
 
-
 /* get in touch */
 
 .full-form-container .form-get-in-touch {
@@ -113,7 +112,6 @@
     border-bottom: 1px solid var(--midnight);
     transition: border-bottom 0s ease-in-out;
 }
-
 
 .full-form-container .contact-form .mailer-datas .field:focus input,
 .full-form-container .contact-form .mailer-datas .field:hover input,

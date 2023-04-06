@@ -103,56 +103,5 @@ module.exports = {
         }
       },
     },
-    // {
-    //   resolve: `gatsby-source-instagram`,
-    //   options: {
-    //     username: `3114668836`,
-    //     usernameId: `3114668836`,
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
-
-  // TYPESCRIPT PART
-  // parser: '@typescript-eslint/parser',
-  // extends: [
-  //   'eslint:recommended',
-  //   'plugin:react/recommended',
-  //   'plugin:@typescript-eslint/recommended',
-  //   'prettier/@typescript-eslint',
-  //   'plugin:prettier/recommended'
-  // ],
-  // settings: {
-  //   react: {
-  //     version: 'detect'
-  //   }
-  // },
-  // env: {
-  //   browser: true,
-  //   node: true,
-  //   es6: true
-  // },
-  // parserOptions: {
-  //   ecmaFeatures: {
-  //     jsx: true
-  //   },
-  //   ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
-  //   sourceType: 'module' // Allows for the use of imports
-  // },
-  // rules: {
-  //   'react/prop-types': 'off', // Disable prop-types as we use TypeScript for type checking
-  //   '@typescript-eslint/explicit-function-return-type': 'off'
-  // },
-  // overrides: [
-  //   // Override some TypeScript rules just for .js files
-  //   {
-  //     files: ['*.js'],
-  //     rules: {
-  //       '@typescript-eslint/no-var-requires': 'off' //
-  //     }
-  //   }
-  // ],
-  // END OF TYPESCRIPT PART
 }
