@@ -3,21 +3,22 @@ import Menu from '../menu';
 import MenusContext from "../contexts/menus-context";
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { useImages } from '../contexts/images-provider';
-import { HeaderBottom_Interface } from '../interfaces';
+import { HeaderRight_Interface } from '../interfaces';
 import { getById } from '../../functions/selectors';
 import MenuSingleText from '../menu/single-text';
 import MenuSingleImage from '../menu/single-image';
 import { _log } from '../../functions/logger';
+import { Link } from 'gatsby';
 
 import "./header-mini.css";
-import { Link } from 'gatsby';
+
 
 const HeaderMini = ({}:HeaderMini) => {
 
     const images = useImages();
 
-    const [menus_top] = React.useState(React.useContext(MenusContext).header_top);
-    const [menus_bottom] = React.useState(React.useContext(MenusContext).header_bottom);
+    const [menus_left] = React.useState(React.useContext(MenusContext).header_left);
+    const [menus_right] = React.useState(React.useContext(MenusContext).header_right);
 
     const closeMenu = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.preventDefault();
@@ -45,9 +46,9 @@ const HeaderMini = ({}:HeaderMini) => {
             </div>
             <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
             <div className="header-mini-divider"></div>
-            <div id="header-mini-bottom" className="header-bottom">
-                {menus_bottom && menus_bottom.map((menu:HeaderBottom_Interface, key:number) => {
-                    let temp:HeaderBottom_Interface = new Object();
+            <div id="header-mini-bottom" className="header-right">
+                {menus_right && menus_right.map((menu:HeaderRight_Interface, key:number) => {
+                    let temp:HeaderRight_Interface = new Object();
                     let keys = Object.keys(menu);
                     for(let i = 0; i < keys.length; i++) {
                         temp[keys[i]] = menu[keys[i]];
@@ -73,8 +74,8 @@ const HeaderMini = ({}:HeaderMini) => {
                 })}
             </div>
             <div className="header-mini-divider"></div>
-            <div id="header-mini-top" className="header-top">
-                {menus_top && menus_top.map((menu, key) => {
+            <div id="header-mini-top" className="header-left">
+                {menus_left && menus_left.map((menu, key) => {
                     return (<Menu key={key} prop_key={key} menu={menu} openOnClick={true}/>);
                 })}
             </div>

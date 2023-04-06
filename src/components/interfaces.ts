@@ -114,13 +114,15 @@ export interface InmodePanel_Event_Interface {
     strapiId: string;
 };
 export interface InmodePanel_Menu_Interface {
+    id?: string;
+    strapiId?: string;
     title?: string;
     url?: string;
     type?: string;
     variant?: string;
     container?: string;
     products?: InmodePanel_Product_Interface[];
-    treatment?: InmodePanel_Treatment_Interface[]
+    treatments?: InmodePanel_Treatment_Interface[]
     menus?: InmodePanel_Menu_Interface[];
     parent_menu?: boolean;
     icon?: {
@@ -678,11 +680,21 @@ export interface ProductsContext_Interface {
 };
 
 export interface MenusContext_Interface {
-    header_top: HeaderTop_Interface[];
-    header_bottom: HeaderBottom_Interface[];
-    footer: InmodePanel_Footer_Interface;
-    allStrapiProduct?: InmodePanel_Product_Interface[];
-    allStrapiTreatment?: InmodePanel_Treatment_Interface[];
+    header_left: {
+        nodes: HeaderLeft_Interface[];
+    };
+    header_right: {
+        nodes: HeaderRight_Interface[];
+    };
+    footer: {
+        nodes: InmodePanel_Footer_Interface;
+    };
+    allStrapiProduct?:{
+        nodes:  InmodePanel_Product_Interface[];
+    };
+    allStrapiTreatment?:{
+        nodes:  InmodePanel_Treatment_Interface[];
+    };
 };
 
 export interface Testimonial_Interface {
@@ -719,17 +731,17 @@ export interface TestimonialContext_Interface {
     nb_testimonials():number;
 };
 
-export interface HeaderTop_Interface {
-    strapiId: number;
-    title: string;
-    url: string;
-    type: string;
-    variant: string;
-    container: string;
-    parent_menu: boolean;
-    internal_link: boolean | null;
-    menus: InmodePanel_Menu_Interface[];
-    products: {
+export interface HeaderMenus_Interface {
+    strapiId?: number;
+    title?: string;
+    url?: string;
+    type?: string;
+    variant?: string;
+    container?: string;
+    parent_menu?: boolean;
+    internal_link?: boolean | null;
+    menus?: InmodePanel_Menu_Interface[];
+    products?: {
         id: number;
         position: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
@@ -737,58 +749,36 @@ export interface HeaderTop_Interface {
             localFile: GatsbyImage_Interface;
         } | undefined;
     }[];
-    treatments: {
+    treatments?: {
         id: number;
         MenuParams: InmodePanel_Generic_MenuParams_Interface;
     }[];
-    icon: {
+    icon?: {
         localFile: GatsbyImage_Interface
     } | undefined;
-    icon_hover: {
+    icon_hover?: {
         localFile: GatsbyImage_Interface
     } | undefined;
+    mini_treatments?: {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    }[];
+    mini_products?: {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    }[];
+    mini_addons?: {
+        id: number;
+        MenuParams: InmodePanel_Generic_MenuParams_Interface;
+    }[];
+}
+
+export interface HeaderLeft_Interface extends HeaderMenus_Interface {
+
 };
 
-export interface HeaderBottom_Interface {
-    strapiId: number;
-    title: string;
-    url: string;
-    type: string;
-    variant: string;
-    container: string;
-    parent_menu: boolean;
-    internal_link: boolean | null;
-    menus: InmodePanel_Menu_Interface[];
-    products: {
-        id: number;
-        position: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-        Icon: {
-            localFile: GatsbyImage_Interface;
-        } | undefined;
-    }[];
-    treatments: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_treatments: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_products: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    mini_addons: {
-        id: number;
-        MenuParams: InmodePanel_Generic_MenuParams_Interface;
-    }[];
-    icon: {
-        localFile: GatsbyImage_Interface
-    } | undefined;
-    icon_hover: {
-        localFile: GatsbyImage_Interface
-    } | undefined;
+export interface HeaderRight_Interface extends HeaderMenus_Interface {
+    
 };
 
 export interface FlickityOptions_Interface {

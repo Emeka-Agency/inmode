@@ -1,4 +1,4 @@
-.header-parts > .header-bottom + div.cart,
+.header-parts > .header-right + div.cart,
 div.fixed-menus > div.cart {
     position: relative;
     display: inline-block;
@@ -14,13 +14,13 @@ div.cart img.cart-basket + div.cart-basket-nbr {
 
 /* HEADER-PARTS */
 
-.header-parts > .header-bottom + div.cart,
-.header-parts > .header-bottom + div.cart img.cart-basket {
+.header-parts > .header-right + div.cart,
+.header-parts > .header-right + div.cart img.cart-basket {
     width: 22px;
     height: 22px;
 }
 
-.header-parts > .header-bottom + div.cart img.cart-basket + div.cart-basket-nbr {
+.header-parts > .header-right + div.cart img.cart-basket + div.cart-basket-nbr {
     font-size: 14px;
     width: 18px;
     height: 18px;

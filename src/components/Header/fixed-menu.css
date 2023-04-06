@@ -1,0 +1,253 @@
+/* FIXED-MENU */
+
+#fixed-menu .dk-item-sub.dropdown-menu {
+    top: 70px;
+    width: max-content;
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex.left {
+    left: 0;
+    transform: scaleX(-1);
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex.right {
+    right: 0;
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex img {
+    height: 100%;
+    max-width: 100%;
+    width: auto;
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex.left img {
+    position: absolute;
+    right: 0;
+}
+
+#fixed-menu .dk-dropdown-menu .dk-sub-container .back-hex.right img {
+    position: absolute;
+    right: 0;
+}
+
+#fixed-menu .menu-title.menu-card .menu-title.menu-card.sub {
+    padding: 25px 0;
+    display: none;
+    background-color: var(--midnight);
+}
+#fixed-menu .menu-title.menu-card:hover .menu-title.menu-card.sub {
+    display: block;
+    position: absolute;
+    left: 0px;
+    z-index: 2;
+    left: 50%;
+    transform: translate(-50%, -1px);
+    min-width: 150px;
+    box-shadow: rgba(0, 0, 0, .5) 4px 12px 12px;
+}
+#fixed-menu .menu-title.menu-card.sub.dropdown-menu .menu-content {
+    letter-spacing: 0;
+    display: block;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 10px 25px;
+    margin: 0;
+}
+
+#fixed-menu .menu-side-menu .dropside-menu .menu-content.menu-text {
+    background-color: var(--dusk);
+}
+
+@media (max-width: 1199px) {
+    #fixed-menu {
+        display: none;
+    }
+}
+
+@media (min-width: 1200px) {
+    #fixed-menu {
+        position: fixed;
+        margin: 0 auto;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 50px;
+        z-index: 3;
+        background-color: var(--dusk);
+        box-shadow: #000000 1px 1px 10px;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+
+    #fixed-menu .fixed-menu-container {
+        max-width: 1170px;
+        width: 100%;
+        height: 40px;
+        margin: 0 auto;
+        position: relative;
+        text-align: right;
+        font-size: 0;
+    }
+
+    #fixed-menu .fixed-menu-logo {
+        position: absolute;
+        left: 0;
+    }
+
+    #fixed-menu .fixed-menu-logo img {
+        height: 40px;
+        width: 250px;
+    }
+
+    #fixed-menu .fixed-menus {
+        line-height: 1;
+    }
+
+    #fixed-menu .fixed-menus>* {
+        display: inline-block;
+    }
+
+    #fixed-menu .menu-dk-title ul.dk-dropdown-menu,
+    #fixed-menu .menu-title ul.dropdown-menu {
+        display: none;
+    }
+
+    #fixed-menu .fixed-menus .menu-single,
+    #fixed-menu .fixed-menus .menu-title,
+    #fixed-menu .fixed-menus ul.menu-dk-title,
+    #fixed-menu .fixed-menus div.cart {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 600;
+        font-size: 11px;
+        line-height: 40px;
+        letter-spacing: 1px;
+        padding: 5px 10px 0;
+        margin: 0;
+        position: relative;
+    }
+
+    #fixed-menu .fixed-menus .menu-title .menu-title {
+        line-height: 1;
+    }
+
+    #fixed-menu .fixed-menus ul.menu-title div.menu-title {
+        height: 25px;
+    }
+
+    #fixed-menu .fixed-menus ul.menu-dk-title a.menu-dk-title,
+    #fixed-menu .fixed-menus ul.menu-dk-title div.menu-dk-title {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 600;
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    #fixed-menu .fixed-menus ul.menu-dk-title:hover ul.dk-dropdown-menu {
+        display: block;
+    }
+
+    #fixed-menu .dk-dropdown-menu .dk-sub-container {
+        width: 100vw;
+        padding: 10px;
+        padding-bottom: 0;
+        background-color: var(--midnight);
+        position: fixed;
+        left: 0;
+        text-align: center;
+        top: 50px;
+        z-index: 4;
+        box-shadow: rgba(0, 0, 0, .5) 3px 3px 25px;
+        display: inline-block;
+    }
+
+    #fixed-menu .dk-dropdown-menu .dk-sub-container > .menu-title.menu-card {
+        flex: 1;
+        position: relative;
+        padding-bottom: 10px;
+        max-width: 200px;
+        width: 100%;
+        display: inline-block;
+    }
+
+    #fixed-menu .dk-dropdown-menu .dk-sub-container .menu-title.menu-card .picture {
+        width: 30px;
+        height: 30px;
+        margin: 0 auto;
+        display: inline;
+    }
+
+    #fixed-menu .dk-dropdown-menu .dk-sub-container .menu-title.menu-card .picture:hover {
+        transform: scale(0.9);
+    }
+
+    #fixed-menu .dk-dropdown-menu .dk-sub-container .menu-title.menu-card .title {
+        margin-top: 4px;
+        line-height: 11px;
+        font-weight: 500;
+        font-size: 11px;
+        color: #ffffff;
+        text-transform: capitalize;
+        display: block;
+    }
+
+    #fixed-menu .dk-dropdown-menu {}
+
+    #fixed-menu ul.menu-title:hover ul.dropdown-menu {
+        display: block;
+        position: absolute;
+        width: max-content;
+        background-color: var(--dusk);
+        padding: 15px 0;
+        transform: translate(-50%, -1px);
+        left: 50%;
+    }
+
+    #fixed-menu ul.menu-title:hover ul.dropdown-menu li {
+        display: block;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        min-width: 150px;
+    }
+
+    #fixed-menu ul.menu-title:hover ul.dropdown-menu .menu-content {
+        letter-spacing: 0;
+        display: block;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.1;
+        text-decoration: none;
+        white-space: nowrap;
+        padding: 10px 15px;
+        margin: 0;
+        min-height: 36px;
+        box-sizing: border-box;
+    }
+
+    #fixed-menu ul.menu-title:hover ul.dropdown-menu .menu-content:hover,
+    #fixed-menu .menu-title.menu-card.sub.dropdown-menu .menu-content:hover {
+        background-color: var(--teal-75);
+        text-decoration: none;
+        color: #fff;
+    }
+
+    #fixed-menu .fixed-menus div.cart {
+        width: 20px;
+        height: 20px;
+        top: 5px;
+    }
+}

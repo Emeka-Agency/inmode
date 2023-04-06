@@ -1,7 +1,8 @@
 import { Link } from "gatsby";
 import React from "react";
 import HeaderTop from "./header-top";
-import HeaderBottom from "./header-bottom";
+import HeaderLeft from "./header-left";
+import HeaderRight from "./header-right";
 import HeaderMini from "./header-mini";
 import { useWindowSize } from "../../functions/window-size";
 import { disableMainScroll } from "../../functions/disable-scroll";
@@ -119,11 +120,11 @@ const Header = ({}:Header) => {
             }
             else {
                 _log('Méthode a virtuel');
-                let a:HTMLLinkElement = Object.assign(document.createElement('a'), {
+                let a:HTMLAnchorElement = Object.assign(document.createElement('a'), {
                     id: 'case-studies',
                     target: '_blank',
                     href: "/case-studies",
-                }).click();
+                });
                 a.click();
                 a.remove();
             }
@@ -135,32 +136,12 @@ const Header = ({}:Header) => {
     
     return (
         <header>
-            <div className="header-content container">
-                <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo') +')'}}>
-                    <Link to="/" className="zone-link" title="Inmode">
-                    </Link>
-                </div>
+            <div className="header-content">
+                <HeaderTop/>
                 <div className="header-parts">
-                    {size.width > 1199 && <HeaderTop/>}
-                    {size.width > 1199 && <HeaderBottom/>}
+                    {size.width > 1199 && <HeaderLeft/>}
+                    {size.width > 1199 && <HeaderRight/>}
                     {size.width < 1200 && <HeaderMini/>}
-                    {size.width < 1200 && 
-                        <div className="mini-home-link">
-                            <MenuSingleImage
-                                menu={{
-                                    title: "Home",
-                                    url: "/",
-                                    type: "image",
-                                    variant: "single",
-                                    parent_menu: true,
-                                    internal_link: true,
-                                    icon: {localFile: useImages().get_one("homeIcon")},
-                                    icon_hover: {localFile: useImages().get_one("homeIconHover")}
-                                }}
-                                prop_key={0}
-                            />
-                        </div>
-                    }
                     <button
                         className="header-mini-menu"
                         onClick={(e)=>{openMenu(e)}}

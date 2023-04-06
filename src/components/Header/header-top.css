@@ -1,0 +1,97 @@
+section.header-top {
+    height: 120px;
+    width: 100%;
+    padding: var(--header-pt) var(--header-pr) var(--header-pb) var(--header-pl);
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 6px 4px;
+}
+
+section.header-top .header-logo {
+    display: flex;
+    width: unset;
+    position: relative;
+}
+
+section.header-top .header-logo img {
+    height: 54px;
+}
+
+section.header-top .header-logo .zone-link {
+
+}
+
+/* book a demo */
+
+section.header-top #book-a-demo {
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--midnight);
+    background-color: var(--teal);
+    font-family: 'raleway';
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    transition: color 0.2s ease-in-out 0s;
+}
+
+section.header-top #book-a-demo:hover {
+    color: var(--pearl);
+}
+
+@media (max-width: 1199px) {
+    section.header-top #book-a-demo {
+        
+    }
+    
+    section.header-top #book-a-demo {
+    }
+
+}
+
+@media (max-width: 480px) {
+    section.header-top #book-a-demo {
+        
+    }
+
+    section.header-top #book-a-demo {
+        
+    }
+}
+
+@media (max-width: 1199px) {
+    .header-logo {
+        height: 40px;
+        width: 250px;
+        background-size: 100%;
+        top: 0;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 425px) {
+    .header-logo {
+        left: -65px;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-logo {
+        left: -50px;
+    }
+}
+
+@media (max-width: 279px) {
+    .header-logo {height: 40px;
+        width: 250px;
+        background-size: 100%;
+        top: -3px;
+        width: 100%;
+        background-size: 100%;
+    }
+}

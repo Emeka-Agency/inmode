@@ -1,64 +1,248 @@
-/* book a demo */
-
-#book-a-demo {
-    display: inline-block;
-    margin-left: 5px;
+:root {
+    --header-pt: 36px;
+    --header-pr: 64px;
+    --header-pb: 24px;
+    --header-pl: 96px;
 }
 
-#book-a-demo span.label {
-    cursor: pointer;
-    color: var(--pearl);
-    background-color: var(--teal);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: var(--teal);
-    padding: 3px 15px;
-    display: block;
-    width: fit-content;
+/* HEADER */
+
+header {
     margin: 0 auto;
-    line-height: 2;
-    transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s;
+    width: 100%;
+    background-color: var(--dusk);
+    box-shadow: 3px 5px 10px rgb(0, 0, 0, 0.55);
+    position: relative;
+    z-index: 1;
+    height: 180px;
 }
 
-#book-a-demo span.label:hover {
-    color: var(--teal);
-    background-color: var(--pearl);
+.header-parts {
+    height: 60px;
+    width: 100%;
+    vertical-align: top;
+    text-align: right;
+    padding: 19px var(--header-pr) 19px var(--header-pl);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#book-a-demo:hover {
-    color: var(--teal);
+header .locked-section {
+    margin-left: 5px;
+    width: 16px;
+}
+
+@media (min-width: 1200px) {
+    header .header-content .header-parts > div.cart {
+        display: none;
+    }
+    
+    header .header-content .header-parts > div.cart.opened {
+        display: inline-block;
+    }
 }
 
 @media (max-width: 1199px) {
-    #book-a-demo {
-        margin-left: 15px;
+    header .header-content .header-parts {
+        
+    }
+
+    header .header-content .header-parts > div.cart {
         display: block;
+        right: 120px;
         top: 9px;
         position: absolute;
         float: right;
-        font-size: 14px;
+        width: 22px;
+        height: 22px;
     }
-    
-    #book-a-demo {
-        right: 115px;
-    }
-
 }
 
-@media (max-width: 480px) {
-    #book-a-demo {
-        position: relative;
-        width: 100%;
-        display: block;
-        float: unset;
-        right: 0;
-        margin: 0;
-        height: auto;
+@media (min-width: 800px) {
+    header .header-content .header-parts {
+        
+    }
+}
+
+.header-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+@media (max-width: 1199px) {
+    .header-content {
+        max-width: 100%;
+        height: 40px;
+        padding: 0 5px;
+        box-sizing: border-box;
+    }
+}
+
+.header-parts>.footer ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: inline-block;
+}
+
+.header-mini-menu {
+    display: none;
+}
+
+@media (max-width: 1199px) {
+    header {
+        position: fixed;
+        top: 0px;
+        left: 0;
+        padding: 5px 0;
+        width: 100vw;
+        height: 40px;
+        box-shadow: #000000 1px 1px 10px;
+        z-index: 5;
+        transition: height 0.3s ease-in-out,
+                    top 0.3s ease-out 0s;
     }
 
-    #book-a-demo {
-        margin-top: 70px;
+    header.video-opened {
+        top: -50px;
+        transition: top 0.3s ease-in 0s;
+    }
+
+    .header-content .header-parts .mini-home-link {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 7px;
+        right: 120px;
+    }
+
+    .header-content .header-parts .mini-home-link a {
+        display: block;
+    }
+
+    .header-content .header-parts .header-mini-menu {
+        background-color: rgba(85, 85, 86, 0);
+        border: 1px solid #ffffff59;
+        box-sizing: border-box;
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        display: inline-block;
+        font-family: raleway, sans-serif;
+        font-weight: 700;
+        letter-spacing: 2px;
+        line-height: 8px;
+        padding: 15px 25px;
+        position: absolute;
+        right: 5px;
+        text-align: center;
+        text-transform: uppercase;
+        top: 0px;
+        vertical-align: middle;
+        white-space: nowrap;
+        z-index: 0;
+        outline: none;
+        transition: top 0.3s ease-out 0s;
+    }
+
+    .header-content .header-parts .header-mini-menu.video-opened {
+        top: -50px;
+        transition: top 0.3s ease-in 0s;
+    }
+}
+
+@media (max-width: 329px) {
+    header .header-content .header-parts {
+        max-width: 100%;
+        position: fixed;
+        top: 5px;
+        right: 5px;
+        z-index: 1;
+    }
+
+    .header-content .header-parts .header-mini-menu {
+        display: inline-block;
+        position: relative;
+        margin: 0 auto 20px;
+        right: 0;
+        top: 0;
+        /* width: 100px; */
+    }
+}
+
+.header-parts .menu-title.menu-card.sub.dropdown-menu {
+    top: 110px;
+    width: max-content;
+}
+
+/* HEADER-MINI */
+
+.header-mini {
+    display: none;
+    background-color: transparent;
+    width: 0%;
+    height: 0%;
+    opacity: 0;
+}
+
+@media (max-width: 1199px) {
+    .header-mini.opened {
+        display: block;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: calc(100% - 30px);
+        z-index: 1;
+        cursor: default;
+        text-align: center;
+        opacity: 0.9;
+        background-color: #000;
+        overflow-y: auto;
+        padding: 0 0 30px;
+    }
+
+    .header-mini.opened .menu-close {
+        right: 50px;
+        top: 45px;
+        text-align: right;
+        display: inline-block;
+        vertical-align: middle;
+        opacity: .5;
+        position: absolute;
+        text-shadow: none;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+    }
+
+    .header-mini.opened .menu-close:hover {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    .header-mini.opened .menu-close span {
+        vertical-align: middle;
+    }
+
+    .header-mini.opened .menu-close .close-mini-menu-icon {
+        display: inline-block;
+        vertical-align: middle;
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
+    }
+    
+    .header-mini.opened .menu-dk-title.opened .menu-title.menu-card .menu-title.menu-card.sub,
+    .header-mini.opened .menu-dk-title.opened .menu-title.menu-card:hover .menu-title.menu-card.sub {
+        display: none;
     }
 }

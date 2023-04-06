@@ -1,29 +1,22 @@
-import React from 'react';
-import Menu from '../menu';
-import MenusContext from "../contexts/menus-context"
-import MenuSingleText from '../menu/single-text';
+import React from "react";
+import { Link } from "gatsby";
+import { useImages } from "../contexts/images-provider";
 
-const HeaderTop = ({}:HeaderTop) => {
+import "./header-top.css";
 
-  const [menus] = React.useState(React.useContext(MenusContext).header_top);
+const HeaderTop = (props:HeaderTop) => {
+
+    const images = useImages();
 
     return (
-        <div id="header-top" className="header-top">
-            <MenuSingleText
-                menu={{
-                    title: "Home",
-                    url: "/",
-                    type: "text",
-                    variant: "single",
-                    parent_menu: true,
-                    internal_link: true,
-                }}
-                prop_key={0}
-            />
-            {menus && menus.map((menu, key) => {
-                return (<Menu key={key} prop_key={key} menu={menu}/>);
-            })}
-        </div>
+        <section className="header-top">
+            <div className="header-logo background-image">
+                <img src={images.resolve_img('headerLogo')} alt="inmode-logo"/>
+                <Link to="/" className="zone-link" title="Inmode">
+                </Link>
+            </div>
+            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+        </section>
     );
 };
 

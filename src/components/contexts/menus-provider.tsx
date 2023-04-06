@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
-import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
-import { _log } from '../../functions/logger';
+import { MenusContext_Interface, HeaderLeft_Interface, HeaderRight_Interface, InmodePanel_Menu_Interface } from '../interfaces';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
@@ -13,9 +12,9 @@ export const useMenus = ():MenusContext_Interface => {
 }
 
 const MenusProvider = ({ requested = "", children }:{ requested?:string, children:any }):React.Provider<MenusContext_Interface> => {
-    const [datas]:MenusContext_Interface | any = React.useState(useStaticQuery(graphql`
+    const [datas]:[MenusContext_Interface, React.Dispatch<MenusContext_Interface>] = React.useState(useStaticQuery(graphql`
     {
-        header_top: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
+        header_left: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
             nodes {
                 strapiId
                 title
@@ -87,17 +86,6 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                   }
                 }
                 icon {
-                  localFile {
-                    childImageSharp {
-                      fluid {
-                        srcWebp
-                        srcSetWebp
-                      }
-                    }
-                    publicURL
-                  }
-                }
-                icon_hover {
                   localFile {
                     childImageSharp {
                       fluid {
@@ -110,7 +98,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
             }
         }
-        header_bottom: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
+        header_right: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
             nodes {
                 strapiId
                 title
@@ -182,17 +170,6 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                   }
                 }
                 icon {
-                  localFile {
-                    childImageSharp {
-                      fluid {
-                        srcWebp
-                        srcSetWebp
-                      }
-                    }
-                    publicURL
-                  }
-                }
-                icon_hover {
                   localFile {
                     childImageSharp {
                       fluid {
@@ -262,11 +239,9 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
             }
         }
-    }
-      
-    `));
+    }`));
 
-    const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
+    const array_to_object = (_array:Array<any>):HeaderLeft_Interface | HeaderRight_Interface => {
         if(!_array || !Array.isArray(_array)) {
             return {};
         }
@@ -278,10 +253,13 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         );
     }
 
-    const recursive_process = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const recursive_process = (_object:HeaderLeft_Interface | HeaderRight_Interface, main:HeaderLeft_Interface | HeaderRight_Interface) => {
         Object.keys(_object).map((elem:number) => {
             if(_object[elem].menus.length) {
                 _object[elem].menus = _object[elem].menus.map((menu) => {
+                    if(_object[elem].title == "Select a country") {
+                        console.log(_object[elem].menus.map(el => el.icon));
+                    }
                     return {
                         ...menu,
                         'menus': menu.menus || [],
@@ -289,6 +267,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': menu.treatments || [],
                         'mini_treatments': menu.mini_treatments || [],
                         'mini_addons': menu.mini_addons || [],
+                        // 'icon': menu.icon,
                         'id': menu.id || menu.strapiId,
                         'parent': elem
                     };
@@ -301,7 +280,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                     temp[_object[elem].products[i].position - 1] = _object[elem].products[i];
                 }
                 _object[elem].menus = _object[elem].menus.concat(temp.map((product) => {
-                    product.menus = datas.allStrapiProduct.nodes.map((_product) => {
+                    product.menus = datas.allStrapiProduct?.nodes.map((_product) => {
                         let temp = [];
                         if(JSON.stringify([product.id, product.strapiId].sort()) === JSON.stringify([_product.id, _product.strapiId].sort())) {
                             for(const addon in _product.Addons) {
@@ -313,6 +292,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                                     'treatments': _product.Addons[addon].treatments || [],
                                     'mini_treatments': _product.Addons[addon].mini_treatments || [],
                                     'mini_addons': _product.Addons[addon].mini_addons || [],
+                                    'icon': product.Icon || null,
                                 });
                             };
                         }
@@ -326,7 +306,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
                         'mini_addons': product.mini_addons || [],
-                        'icon': product.Icon.localFile.childImageSharp.fluid || null,
+                        'icon': product.Icon || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };
@@ -359,7 +339,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         });
     }
 
-    const resolve_dependance = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const resolve_dependance = (_object:HeaderLeft_Interface[] | HeaderRight_Interface[], main:HeaderLeft_Interface[] | HeaderRight_Interface[]) => {
         Object.keys(_object).map((menu) => {
             if(_object[menu].parent_menu) {
                 _object[menu].menus.map((_elem, key) => {
@@ -372,7 +352,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         })
     }
 
-    const process_menu = (list: HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const process_menu = (list: HeaderLeft_Interface[] | HeaderRight_Interface[]) => {
         let temp = array_to_object(list);
         recursive_process(temp, temp);
         resolve_dependance(temp, temp);
@@ -386,22 +366,18 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }).filter(menu => menu);
     }
 
-    const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes));
-    const [menusHeaderBottom] = React.useState(
-      process_menu(datas.header_bottom.nodes.map(elem => elem))
-      .sort((a, b) => b.url == "/contact" ? -1 : 0)
+    const [menusHeaderLeft] = React.useState(process_menu(datas.header_left.nodes));
+    const [menusHeaderRight] = React.useState(
+      process_menu(datas.header_right.nodes.map(elem => elem))
+      .sort((a:any, b:any) => b.url == "/contact" ? -1 : 0)
     );
     const [menusFooter] = React.useState(datas.footer);
-
-    _log(menusHeaderTop);
-    _log(menusHeaderBottom);
-    _log(menusFooter);
     
     return (
         <MenusContext.Provider
             value={{
-                'header_top': menusHeaderTop,
-                'header_bottom': menusHeaderBottom,
+                'header_left': menusHeaderLeft,
+                'header_right': menusHeaderRight,
                 'footer': menusFooter,
 
             }}
