@@ -5,7 +5,7 @@ import Header from "../Header/index";
 import Footer from "../Footer";
 import ContactUs from "../Contact/contact-us";
 import PrivacyPolicy from "../privacy-policy";
-import FixedMenu from "../fixed-menu";
+import FixedMenu from "../Header/fixed-menu";
 import Modale from "../Modale";
 
 import "./index.css";

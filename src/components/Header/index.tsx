@@ -137,7 +137,14 @@ const Header = ({}:Header) => {
     return (
         <header>
             <div className="header-content">
-                <HeaderTop/>
+                {
+                    size.width < 1200 &&
+                    <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('headerLogo') +')'}}>
+                        <Link to="/" className="zone-link" title="Inmode">
+                        </Link>
+                    </div>
+                }
+                {size.width > 1199 && <HeaderTop/>}
                 <div className="header-parts">
                     {size.width > 1199 && <HeaderLeft/>}
                     {size.width > 1199 && <HeaderRight/>}

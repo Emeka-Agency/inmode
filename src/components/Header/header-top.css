@@ -62,36 +62,3 @@ section.header-top #book-a-demo:hover {
         
     }
 }
-
-@media (max-width: 1199px) {
-    .header-logo {
-        height: 40px;
-        width: 250px;
-        background-size: 100%;
-        top: 0;
-        padding: 0;
-        transition: all 0.3s ease-in-out;
-    }
-}
-
-@media (max-width: 425px) {
-    .header-logo {
-        left: -65px;
-    }
-}
-
-@media (max-width: 320px) {
-    .header-logo {
-        left: -50px;
-    }
-}
-
-@media (max-width: 279px) {
-    .header-logo {height: 40px;
-        width: 250px;
-        background-size: 100%;
-        top: -3px;
-        width: 100%;
-        background-size: 100%;
-    }
-}

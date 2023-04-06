@@ -76,8 +76,14 @@ header .locked-section {
     .header-content {
         max-width: 100%;
         height: 40px;
-        padding: 0 5px;
+        padding: 0 25px;
         box-sizing: border-box;
+    }
+}
+
+@media (max-width: 425px) {
+    .header-content {
+        padding: 0;
     }
 }
 
@@ -164,8 +170,8 @@ header .locked-section {
     }
 
     .header-content .header-parts .header-mini-menu {
-        display: inline-block;
-        position: relative;
+        display: block;
+        position: absolute;
         margin: 0 auto 20px;
         right: 0;
         top: 0;
@@ -244,5 +250,43 @@ header .locked-section {
     .header-mini.opened .menu-dk-title.opened .menu-title.menu-card .menu-title.menu-card.sub,
     .header-mini.opened .menu-dk-title.opened .menu-title.menu-card:hover .menu-title.menu-card.sub {
         display: none;
+    }
+}
+
+.header-logo {
+    position: relative;
+}
+
+@media (max-width: 1199px) {
+    .header-logo {
+        height: 40px;
+        width: 250px;
+        background-size: 100%;
+        top: 0;
+        padding: 0;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+@media (max-width: 425px) {
+    .header-logo.background-image {
+        background-position: -65px;
+    }
+}
+
+@media (max-width: 320px) {
+    .header-logo.background-image {
+        background-position: -65px;
+    }
+}
+
+@media (max-width: 279px) {
+    .header-logo.background-image {
+        height: 40px;
+        width: 250px;
+        background-size: 100%;
+        top: -3px;
+        width: 100%;
+        background-size: 100%;
     }
 }
