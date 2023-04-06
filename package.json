@@ -8,6 +8,8 @@
     "gatsby"
   ],
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
     "@pasdo501/gatsby-source-woocommerce": "^0.17.2",
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "axios": "^1.2.3",
@@ -22,14 +24,15 @@
     "gatsby-plugin-sharp": "^5.4.0",
     "gatsby-plugin-sitemap": "^6.4.0",
     "gatsby-source-filesystem": "^5.4.0",
-    "gatsby-source-strapi": "^1.0.3",
+    "gatsby-source-strapi": "1.0.3",
     "gatsby-transformer-remark": "^6.4.0",
     "gatsby-transformer-sharp": "^5.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flickity-component": "^4.0.0",
     "react-hash-string": "^1.0.0",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-simply-carousel": "^8.5.5"
   },
   "scripts": {
     "build": "gatsby build",
@@ -43,5 +46,11 @@
     "launch_dev": "gatsby clean && NODE_ENV=development npm run develop",
     "launch_stage": "gatsby clean && NODE_ENV=staging npm run develop",
     "launch_prod": "gatsby clean && NODE_ENV=production npm run build && gatsby serve"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "gatsby-plugin-postcss": "^6.8.0",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.3.0"
   }
 }
