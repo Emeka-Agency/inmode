@@ -1397,7 +1397,7 @@ main.article-page {
 
 .slides-home .addons-view-cards .addon:hover .addon-general,
 .slides-home .addons-view-cards .addon:hover .addon-details {
-    transition-delay: 0.6s;
+    transition-delay: 0.4s;
 }
 
 .slides-home .addons-view-cards .addon .addon-general {
@@ -1602,6 +1602,7 @@ main.article-page {
     margin: 0;
     text-align: center;
 }
+
 .clinical-studies-home .studies .title {
     padding: 0 0 30px;
     font-size: 35px;
@@ -1879,8 +1880,6 @@ main.article-page {
     font-weight: 700;
     color: #fff;
 }
-
-
 
 @media screen and (max-width: 1200px) {
     .follow-instagram h2 a {
@@ -2546,7 +2545,6 @@ input[type="submit"].neumorphic:hover,
     right: 0;
 }
 
-
 .alveoles .alveole {
     clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     position: relative;
@@ -2772,7 +2770,6 @@ input[type="submit"].neumorphic:hover,
     padding: 0 10px;
 }
 
-
 /* PRIVACY-POLICY */
 
 .privacy-policy {
@@ -2883,6 +2880,7 @@ input[type="submit"].neumorphic:hover,
 .switch-checkbox:checked + .switch .switch-inner {
     margin-left: 0;
 }
+
 .switch-inner {
     display: block;
     width: 200%;
@@ -3025,7 +3023,6 @@ input[type="submit"].neumorphic:hover,
     color: var(--teal);
     transition: none;
 }
-
 
 /* 404 PAGE */
 
@@ -3484,7 +3481,6 @@ input[type="submit"].neumorphic:hover,
     padding-bottom: 30px;
     min-height: 46px;
 }
-
 
 /* product demo */
 
@@ -4097,8 +4093,6 @@ input[type="submit"].neumorphic:hover,
     margin-top: 30px;
 }
 
-
-
 /* addon clinical studies */
 
 .addon-clinical-studies {
@@ -4395,7 +4389,6 @@ input[type="submit"].neumorphic:hover,
 .shopping-menu.shop .menu > .menu-title.menu-text.selected {
     background-color: var(--teal);
 }
-
 
 .shopping-menu .menu > .menu-title.menu-text .menu-title.menu-text {
     font-size: 18px;
@@ -5223,7 +5216,6 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
         width: 100%;
     }
 }
-
 
 /* TREATMENTS */
 
