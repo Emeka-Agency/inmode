@@ -1,6 +1,7 @@
 section.video-testimonials {
     background-color: var(--pearl);
     padding: 25px 70px;
+    position: relative;
 }
 
 @media (max-width: 768px) {

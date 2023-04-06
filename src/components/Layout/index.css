@@ -3729,7 +3729,7 @@ input[type="submit"].neumorphic:hover,
 
 /* 1, 2 */
 
-.videos-slide #video-iframe.opened {
+#video-iframe.opened {
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -3739,7 +3739,7 @@ input[type="submit"].neumorphic:hover,
     background-color: #0008;
 }
 
-.videos-slide #video-iframe.opened iframe {
+#video-iframe.opened iframe {
     width: 90%;
     height: 90%;
     outline: transparent;
@@ -3751,7 +3751,7 @@ input[type="submit"].neumorphic:hover,
     background-color: #000;
 }
 
-.videos-slide #video-iframe.opened .close-pic {
+#video-iframe.opened .close-pic {
     position: fixed;
     top: 25px;
     right: 25px;
@@ -3762,7 +3762,7 @@ input[type="submit"].neumorphic:hover,
     transition: filter 0.3s ease-in-out 0s;
 }
 
-.videos-slide #video-iframe.opened .close-pic:hover {
+#video-iframe.opened .close-pic:hover {
     filter: brightness(3);
     transition: filter 0.3s ease-in-out 0s;
 }
@@ -3783,35 +3783,35 @@ input[type="submit"].neumorphic:hover,
 
 /* @media (max-width: 768px) { */
 @media (max-width: 425px) {
-    .videos-slide #video-iframe.opened {
+    #video-iframe.opened {
         top: 0;
         height: 100vh;
     }
-    .videos-slide #video-iframe.opened iframe {
+    #video-iframe.opened iframe {
         width: 90%;
         height: unset;
         top: 50%;
         transform: translateY(-50%);
         left: 5%;
     }
-    .videos-slide #video-iframe.opened .close-pic {
+    #video-iframe.opened .close-pic {
         top: 70px;
         right: 15px;
     }
 }
 
 @media (max-height: 425px) {
-    .videos-slide #video-iframe.opened {
+    #video-iframe.opened {
         top: 0;
         height: 100vh;
     }
-    .videos-slide #video-iframe.opened iframe {
+    #video-iframe.opened iframe {
         width: calc(100% - 60px);
         height: calc(100% - 60px);
         top: 30px;
         left: 30px;
     }
-    .videos-slide #video-iframe.opened .close-pic {
+    #video-iframe.opened .close-pic {
         top: 7.5px;
         right: 7.5px;
         width: 20px;

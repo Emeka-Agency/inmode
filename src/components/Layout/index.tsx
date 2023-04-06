@@ -14,6 +14,7 @@ import MenusProvider from "../contexts/menus-provider";
 import ProductsProvider from "../contexts/products-provider";
 import ImagesProvider from "../contexts/images-provider";
 import ArticleProvider from "../contexts/article-provider";
+import { resolve_video_click } from "../../functions/video";
 
 const Layout = ({ children, title }:Layout) => {
 
@@ -61,6 +62,7 @@ const Layout = ({ children, title }:Layout) => {
                 <ContactUs/>
                 <Footer/>
                 <Modale/>
+                <div id="video-iframe" onClick={(e) => {resolve_video_click(e);}}></div>
             </MenusProvider>
         </ImagesProvider>
     )

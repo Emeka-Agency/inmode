@@ -41,9 +41,7 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                     options={flickityOptions}
                     classList={'carousel-videos transition'}
                 >
-                  {/* {[...(videos), ...(videos)].map((video, index) => { */}
-                  {videos.map((video, key) => <Video few={false} video={{...video, alt: `addon-videos-${key}`}} key={key}/>)
-                  }
+                  {videos.map((video, key) => <Video few={false} video={{...video, alt: `addon-videos-${key}`}} key={key}/>)}
                 </Carousel>
             }
           </div>

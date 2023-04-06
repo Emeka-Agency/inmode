@@ -1,10 +1,10 @@
 import React from "react";
 import { GatsbyImage_Interface } from "../interfaces";
 import { resolveImg } from "../../functions/tools";
-import { resolveVideoClick, resolve_video_click } from "../../functions/video";
+import { resolveVideoClick } from "../../functions/video";
+import { _log } from "../../functions/logger";
 
 import "./index.css";
-import { _log } from "../../functions/logger";
 
 const Video = ({ video = {}, few = false, key = null, ...props }:Video) => {
 
@@ -13,15 +13,14 @@ const Video = ({ video = {}, few = false, key = null, ...props }:Video) => {
     return (
         <div
             className={`${few ? 'few-videos' : ''} poster video ${props.className}`}
-            onMouseDown={(e) => {resolveVideoClick(e, video.url || '');}}
-            onMouseUp={(e) => {resolveVideoClick(e, video.url || '');}}
             onClick={(e) => {resolveVideoClick(e, video.url || '');}}
             key={key}
         >
-            <div id="video-iframe" onClick={(e) => {resolve_video_click(e);}}></div>
             <div
-                className="video-poster"
-                style={{backgroundImage: `url(${video.poster_link == "external" && typeof video.poster == "string" ? video.poster : resolveImg(video.poster)})`}}
+                className="video-poster background-image"
+                style={{
+                    backgroundImage: `url(${video.poster_link == "external" && typeof video.poster == "string" ? video.poster : resolveImg(video.poster)})`
+                }}
             >
                 <span className="video-bg"></span>
             </div>
