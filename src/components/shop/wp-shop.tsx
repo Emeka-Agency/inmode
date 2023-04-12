@@ -36,12 +36,12 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
                 if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
                 return (
                     <div key={group_key} className="shop-addon">
-                    <div className="addon-name">{group.fieldValue}</div>
+                    <div className="addon-name user-select-none">{group.fieldValue}</div>
                     {group.nodes.map((product, key) => {
                         return (
                             <ShopProduct2
                                 key={`${group_key}-${key}`}
-                                reference={product.reference || ""}
+                                product={product}
                                 special={special}
                                 wp_id={product.wp_id || -1}
                             />

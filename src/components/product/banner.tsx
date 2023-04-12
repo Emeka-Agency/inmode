@@ -14,7 +14,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
                     autoPlay={true}
                     loop={true}
                     muted={true}
-                    poster={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
+                    // poster={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
                     height={380}
                 >
                     <source

@@ -14,7 +14,7 @@
         height: calc(100% - 150px);
     }
     
-    #purchase-mini .cart-purchase >*:not(.cart-head) {}
+    #purchase-mini .cart-purchase  > *:not(.cart-head) {}
     
     #purchase-mini .cart-purchase.opened {
         right: 0;
@@ -288,7 +288,7 @@
         transition: right 0.3s ease-in-out 0s;
     }
     
-    #purchase-mini .cart-purchase-form.opened > .title {}
+    #purchase-mini .cart-purchase-form.opened  >  .title {}
     
     #purchase-mini .cart-purchase-form.opened .title hr,
     #purchase-mini #step-3-part .title hr {}
@@ -384,9 +384,9 @@
     #purchase-mini .cart-purchase-form.opened div#purchase-form.neumorphic .end-purchase,
     #purchase-mini .cart-purchase-form.opened div#purchase-form.neumorphic .address-purchase {}
 
-    #purchase-mini > .step-1.neumorphic.sepa.soge input,
-    #purchase-mini > .step-1.neumorphic.sepa.soge label,
-    #purchase-mini > .step-1.neumorphic.sepa.soge div {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge input,
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge label,
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge div {
         display: inline-block;
         vertical-align: middle;
         width: max-content;
@@ -394,23 +394,23 @@
         height: 20px;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge div {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge div {
         margin: 10px 0;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge .choice:first-child {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge .choice:first-child {
         margin-left: 0px;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge .choice {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge .choice {
         margin-left: 10px;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge .choice input {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge .choice input {
         width: 20px;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge .choice-label {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge .choice-label {
         margin-left: 10px;
     }
     
@@ -420,10 +420,10 @@
     #purchase-mini.step-2-3 #purchase-mini #step-3-part.other-opened + .facture + .cgu {}
     #purchase-mini.step-2-3 #purchase-mini #step-3-part.other-opened + .sepa.soge + .facture + .cgu {}
     
-    #purchase-mini.all-close > .step-1.neumorphic,
-    #purchase-mini > .step-1.neumorphic.sepa.soge,
-    #purchase-mini > .step-1.neumorphic.facture,
-    #purchase-mini > .step-1.neumorphic.cgu {
+    #purchase-mini.all-close  >  .step-1.neumorphic,
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge,
+    #purchase-mini  >  .step-1.neumorphic.facture,
+    #purchase-mini  >  .step-1.neumorphic.cgu {
         position: fixed;
         width: 90%;
         left: -100%;
@@ -433,29 +433,29 @@
         background-color: var(--pearl);
     }
     
-    #purchase-mini.step-2-3 > .step-1.neumorphic,
-    #purchase-mini.step-2-3 > .step-1.neumorphic.sepa.soge,
-    #purchase-mini.step-2-3 > .step-1.neumorphic.facture,
-    #purchase-mini.step-2-3 > .step-1.neumorphic.cgu {
+    #purchase-mini.step-2-3  >  .step-1.neumorphic,
+    #purchase-mini.step-2-3  >  .step-1.neumorphic.sepa.soge,
+    #purchase-mini.step-2-3  >  .step-1.neumorphic.facture,
+    #purchase-mini.step-2-3  >  .step-1.neumorphic.cgu {
         left: 10%;
         transition: left 0.3s ease-in-out;
     }
     
-    #purchase-mini > .step-1.neumorphic.sepa.soge {
+    #purchase-mini  >  .step-1.neumorphic.sepa.soge {
         bottom: 140px;
     }
     
-    #purchase-mini > .step-1.neumorphic.facture {
+    #purchase-mini  >  .step-1.neumorphic.facture {
         bottom: 110px;
     }
     
-    #purchase-mini > .step-1.neumorphic.cgu {
+    #purchase-mini  >  .step-1.neumorphic.cgu {
         bottom: 80px;
     }
     
-    #purchase-mini.step-1 > .step-1.neumorphic {}
+    #purchase-mini.step-1  >  .step-1.neumorphic {}
     
-    #purchase-mini.step-2-3 > .step-1.neumorphic {}
+    #purchase-mini.step-2-3  >  .step-1.neumorphic {}
     
     #purchase-mini button.cart-validate {}
 }

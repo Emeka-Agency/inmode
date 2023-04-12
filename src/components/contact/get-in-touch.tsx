@@ -4,7 +4,7 @@ const GetInTouch = ({ from }:GetInTouch) => {
     // TODO rajouter main-container pour les container 1170px
     return (
         <div className={`get-in-touch main-container ${from}`}>
-            <div className="text">
+            <div className="text user-select-none">
                 Get in touch
             </div>
             <hr/>

@@ -27,7 +27,7 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
             {menu.url ?
                 menu.internal_link ?
                     <Link
-                        className="menu-dk-title menu-text"
+                        className="menu-dk-title menu-text user-select-none"
                         to={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -39,7 +39,7 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
                     </Link>
                     :
                     <a
-                        className="menu-dk-title menu-text"
+                        className="menu-dk-title menu-text user-select-none"
                         href={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -53,7 +53,7 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
                     </a>
                 :
                 <div
-                    className="menu-dk-title menu-text"
+                    className="menu-dk-title menu-text user-select-none"
                     onClick={(e) => {resolveOnClick(e, false);}}
                 >
                     {format_string(menu.title || '')}

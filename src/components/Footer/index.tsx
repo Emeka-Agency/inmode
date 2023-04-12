@@ -40,7 +40,7 @@ const Footer = ({}:Footer) => {
                 <div className="footer-logo-infos-part">
                     <div className="footer-infos logo">
                         <img
-                            className="footer-logo background-image"
+                            className="footer-logo background-image user-select-none"
                             src={images.resolve_img('footerLogo3')}
                             // src={images.resolve_img('headerLogo2')}
                             // src={"https://www.inmodemd.com/wp-content/uploads/2017/08/logo.png"}
@@ -53,17 +53,17 @@ const Footer = ({}:Footer) => {
                         return (
                             <div key={key} className={`footer-infos ${menu}`}>
                                 {icons(menu) && <img
-                                    className={`footer-${menu}-ico background-image`}
+                                    className={`footer-${menu}-ico background-image user-select-none`}
                                     src={icons(menu)}
                                     srcSet={icons(menu)}
                                     alt={menu}
                                 />}
                                 {menu === "mail" ? 
-                                    <a href={`mailto:${footer["mail"]}`} className="footer-infos-text" title="Nous contacter par mail">
+                                    <a href={`mailto:${footer["mail"]}`} className="footer-infos-text user-select-none" title="Nous contacter par mail">
                                         {footer["mail"]}
                                     </a>
                                     :
-                                    <div className="footer-infos-text">
+                                    <div className="footer-infos-text user-select-none">
                                         {footer[menu]}
                                     </div>
                                 }
@@ -79,19 +79,19 @@ const Footer = ({}:Footer) => {
                                 className="footer-social-ico background-image"
                                 style={{backgroundImage: 'url('+ resolveImg(menu.icon) +')'}}
                             >
-                                <a className="zone-link" href={menu.url || '#'} title={menu.name} target="_blank"></a>
+                                <a className="absolute-link" href={menu.url || '#'} title={menu.name} target="_blank"></a>
                             </div>
                         );
                     })}
                 </div>
                 <div className="footer-bottom-navigation">
-                    <div className="footer-trademark">© {new Date().getUTCFullYear()} INMODE</div>
+                    <div className="footer-trademark user-select-none">© {new Date().getUTCFullYear()} INMODE</div>
                     <div className="footer-navigation">
                         {footer.navigation && footer.navigation.map((menu, key) => {
                             return (
                                 <span key={key}>
                                     <span className="footer-navigation-separator"></span>
-                                    <Link to={menu.url || '#'} className="footer-navigation-part" title={menu.name}>
+                                    <Link to={menu.url || '#'} className="footer-navigation-part user-select-none" title={menu.name}>
                                         {menu.name}
                                     </Link>
                                 </span>

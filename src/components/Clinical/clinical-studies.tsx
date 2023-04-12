@@ -23,7 +23,7 @@ const ClinicalStudies = ({ datas, variant = "teal" }:ClinicalStudies_Interface) 
 
     return (
         <div id="studies" className="clinical-studies" data-variant={variant}>
-            <div className="title">
+            <div className="title user-select-none">
                 études cliniques
             </div>
             <div className={`clinical-studies-slider${datas.length === 1 ? ' few' : ''}`}>

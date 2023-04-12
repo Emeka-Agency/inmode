@@ -28,15 +28,15 @@ const MenuContentCard = ({ menu, prop_key = 0 }:MenuContentCard) => {
         <>
             {menu.url ?
                 menu.internal_link ?
-                    <Link onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-content menu-card" to={menu.url || "#"} title={format_string(menu.title || '')}>
+                    <Link onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-content menu-card user-select-none" to={menu.url || "#"} title={format_string(menu.title || '')}>
                         {content(menu)}
                     </Link>
                     :
-                    <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-content menu-card" href={menu.url || "#"} target="_blank" rel="noreferrer" title={format_string(menu.title || '')}>
+                    <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-content menu-card user-select-none" href={menu.url || "#"} target="_blank" rel="noreferrer" title={format_string(menu.title || '')}>
                         {content(menu)}
                     </a>
                 :
-                <div key={prop_key} className="menu-content menu-card">
+                <div key={prop_key} className="menu-content menu-card user-select-none">
                     {content(menu)}
                 </div>
             }

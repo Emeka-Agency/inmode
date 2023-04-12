@@ -220,8 +220,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             "POST",
             {..._datas ?? {}, user: __get('user')},
             function(_el:Element|null = null, _res:any) {
-                // console.log(_el);
-                // console.log(_res);
                 if(_el instanceof Element) {
                     _el.querySelector('.loading-gif')?.style.setProperty('display', 'none');
                     _el.querySelector('input')?.style.removeProperty('display');
@@ -235,8 +233,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 __setUser({..._res.saved, user: _res.user});
             },
             function(_el:Element|null = null, _err:any) {
-                // console.log(_el);
-                // console.log(_err);
                 if(_el instanceof Element) {
                     _el.querySelector('.loading-gif')?.style.setProperty('display', 'none');
                     _el.querySelector('input')?.style.removeProperty('display');
@@ -351,10 +347,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
 
     const __address_manage = function(_datas:{datas:Address_Interface|any}, _action:string, _elem:Element|null = null) {
         modaleSetSaving(true);
-        // console.log(_datas);
-        // console.log(_action);
-        // console.log(_elem);
-        // return false;
         _fetch(
             `${process.env.SYMF_BACK}/api/address/${_action}`,
             "POST",
@@ -378,8 +370,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
     };
 
     const __manage_update_address = function(_el:Element|null = null, _res:any) {
-        // console.log(_el);
-        // console.log(_res);
         if(!(_el instanceof Element) && typeof _res?.saved?.address == "string") {
             _el = document?.getElementById(`address-${_res?.saved?.address}`);
         }
@@ -414,8 +404,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
     };
     
     const __manage_add_address = function(_el:Element|null = null, _res:any) {
-        // console.log(_el);
-        // console.log(_res);
         if(!(_el instanceof Element) && typeof _res?.saved?.address == "string") {
             _el = document?.getElementById(`address-${_res?.saved?.address}`);
         }
@@ -430,8 +418,6 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
     };
     
     const __manage_remove_address = function(_el:Element|null = null, _res:any) {
-        // console.log(_el);
-        // console.log(_res);
         if(!(_el instanceof Element) && typeof _res?.saved?.address == "string") {
             _el = document?.getElementById(`address-${_res?.saved?.address}`);
         }

@@ -337,6 +337,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': treatment.treatments || [],
                         'mini_treatments': treatment.mini_treatments || [],
                         'id': treatment.id || treatment.strapiId,
+                        'from': _object[elem].title,
                         'parent': elem
                     };
                 }));
@@ -386,6 +387,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
     const [menusHeaderBottom] = React.useState(
         process_menu(datas.header_bottom.nodes.map((elem:InmodePanel_Menu_Interface) => elem))
         .sort((a, b) => b.url == "/contact" ? -1 : 0)
+        .sort((a, b) => a.id == 8 || a.title == "Traitements" ? -1 : 0)
     );
     const [menusFooter] = React.useState(datas.footer);
     

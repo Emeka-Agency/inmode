@@ -50,7 +50,7 @@ const Header = ({variant = "teal"}:Header) => {
                     {
                         size.width < 1200 && 
                         <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
-                            <Link to="/" className="zone-link" title="Inmode"></Link>
+                            <Link to="/" className="absolute-link" title="Inmode"></Link>
                         </div>
                     }
                     {size.width < 1200 && <HeaderMini/>}
@@ -69,14 +69,14 @@ const Header = ({variant = "teal"}:Header) => {
                     }
                     {
                         user.logged() && size.width > 480 &&
-                        <div className="menu-single menu-text logout" title="Déconnexion" onClick={function() {user.logout();}}>
+                        <div className="menu-single menu-text logout user-select-none" title="Déconnexion" onClick={function() {user.logout();}}>
                             {size.width > 1199 && <span>Déconnexion</span>}
                             <img src={images.resolve_img("logoutIcon")}/>
                         </div>
                     }
                     {
                         user.logged() == false && size.width >= 600 &&
-                        <div className="menu-single menu-text login" title="Connexion" onClick={function() {user.login(null);}}>Connexion</div>
+                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login(null);}}>Connexion</div>
                     }
                     {/* {
                         user.logged() == false && size.width >= 600 &&

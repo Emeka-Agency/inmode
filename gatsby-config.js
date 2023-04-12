@@ -6,29 +6,6 @@ require("dotenv").config({
     // path: `.env`,
 });
 
-console.log('STRAPI_URL : ' + process.env.STRAPI_URL);
-console.log('STRAPI_ID : ' + process.env.STRAPI_ID);
-console.log('STRAPI_PASS : ' + process.env.STRAPI_PASS);
-console.log('INMODE_BACK : ' + process.env.INMODE_BACK);
-console.log('SYMF_BACK : ' + process.env.SYMF_BACK);
-console.log('URL_SUCCESS : ' + process.env.URL_SUCCESS);
-console.log('URL_CANCEL : ' + process.env.URL_CANCEL);
-console.log('URL_REFUSED : ' + process.env.URL_REFUSED);
-console.log('URL_ERROR : ' + process.env.URL_ERROR);
-console.log('URL_ORDER_CREATE : ' + process.env.URL_ORDER_CREATE);
-console.log('URL_ORDER_LOAD : ' + process.env.URL_ORDER_LOAD);
-console.log('URL_ORDER_CANCEL : ' + process.env.URL_ORDER_CANCEL);
-console.log('URL_ORDER_SIGNATURE : ' + process.env.URL_ORDER_SIGNATURE);
-console.log('CLIENT_KEY : ' + process.env.CLIENT_KEY);
-console.log('SECRET_KEY : ' + process.env.SECRET_KEY);
-console.log('WP_DOMAIN : ' + process.env.WP_DOMAIN);
-console.log('WP_URL : ' + process.env.WP_URL);
-console.log('WP_USER : ' + process.env.WP_USER);
-console.log('WP_PASS : ' + process.env.WP_PASS);
-console.log('PARDOT_POINT : ' + process.env.PARDOT_POINT);
-console.log('AIRTABLE_MAILS : ' + process.env.AIRTABLE_MAILS);
-console.log('AIRTABLE_KEY : ' + process.env.AIRTABLE_KEY);
-
 module.exports = {
     siteMetadata: {
         description: `InMode offers cutting edge medical devices for minimally-invasive & non-invasive procedures that provide amazing results for the patient and the practice.`,
@@ -105,6 +82,7 @@ module.exports = {
                 https: true,
                 api_version: 'wc/v3',
                 encoding: 'utf8',
+                per_page: 100,
                 api_keys: {
                     consumer_key: `${process.env.CLIENT_KEY}`,
                     consumer_secret: `${process.env.SECRET_KEY}`,

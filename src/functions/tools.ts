@@ -63,7 +63,6 @@ export const areEmptyArray = (_values:any[]) => {return isArray(_values) == fals
 // ================================
 
 export const resolveEntityPath = function(_entity:Object|null|any = null, _path:string|null = null) {
-    // console.log("resolveEntityPath");
     if(typeof _entity != "object" || typeof _path != "string") {return null;}
     let index = 0;
     let path = _path.split('__');
@@ -80,12 +79,12 @@ export const resolveEntityPath = function(_entity:Object|null|any = null, _path:
 
 export const avoirURLBase = () => {
     _log("avoirURLBase");
-    return window.location.origin + (window.location.host == "localhost" ? '/c7_back' : '');
+    return window?.location.origin + (window?.location.host == "localhost" ? '/c7_back' : '');
 };
 
 export const avoirRelativeURL = () => {
     _log("avoirRelativeURL");
-    return window.location.pathname;
+    return window?.location.pathname;
 };
 
 /**
@@ -119,23 +118,23 @@ export const get_url_params = () => {
 // protocol + :// + host + pathname + search + hash
 // protocol + :// + hostname + port + pathname + search + hash
 
-export const get_url_port = () => {if(typeof window != undefined) {return window.location.port;}else {return {};}};
-export const get_url_pathname = () => {if(typeof window != undefined) {return window.location.pathname;}else {return {};}};
+export const get_url_port = () => {if(typeof window != undefined) {return window?.location.port;}else {return {};}};
+export const get_url_pathname = () => {if(typeof window != undefined) {return window?.location.pathname;}else {return {};}};
 export const get_url_search = (as_array = true) => {
     if(typeof window != undefined) {
-        return as_array ? Object.fromEntries(window.location.search.replace('?', '').split('&').map(elem => elem.split('='))) : window.location.search;
+        return as_array ? Object.fromEntries(window?.location.search.replace('?', '').split('&').map(elem => elem.split('='))) : window?.location.search;
     }
     else {return {};}
 };
-export const get_url_hash = () => {if(typeof window != undefined) {return window.location.hash;}else {return {};}};
-export const clean_url_search = () => typeof window != undefined && typeof document != undefined && typeof history != undefined && history.pushState('', document.title, window.location.href.replace(window.location.search, ''));
-export const set_url_search = (_search?:string) => typeof window != undefined && typeof document != undefined && typeof history != undefined && history.pushState('', document.title, window.location.href + (_search || ''))
+export const get_url_hash = () => {if(typeof window != undefined) {return window?.location.hash;}else {return {};}};
+export const clean_url_search = () => typeof window != undefined && typeof document != undefined && typeof history != undefined && history.pushState('', document.title, window?.location.href.replace(window?.location.search, ''));
+export const set_url_search = (_search?:string) => typeof window != undefined && typeof document != undefined && typeof history != undefined && history.pushState('', document.title, window?.location.href + (_search || ''))
 
 export const url_from_params = (_params:Object|any) => {
     if(!isObject(_params)) {
         return '';
     }
-    let _retour = window.location.pathname + (Object.keys(_params).length > 0 ? '?' : '');
+    let _retour = window?.location.pathname + (Object.keys(_params).length > 0 ? '?' : '');
     Object.keys(_params).forEach((_param, _i) => {
         if(_params[_param]) {
             _retour += `${_i > 0 ? '&' : ''}${_param}=${_params[_param]}`;
@@ -256,9 +255,6 @@ function scrollY(_dy = null, _elems:Array<Element>|any = null) {
 }
 
 function insertFirst(newNode:any, parent:any) {
-    // console.log("insertFirst");
-    // console.log(newNode);
-    // console.log(parent);
     if((newNode instanceof Node || newNode instanceof Element) && parent instanceof Element) {
         if(parent.childElementCount == 0) {insertLast(newNode, parent);}
         else {
@@ -267,27 +263,18 @@ function insertFirst(newNode:any, parent:any) {
     }
 }
 function insertLast(newNode:any, parent:any) {
-    // console.log("insertLast");
-    // console.log(newNode);
-    // console.log(parent);
     if((newNode instanceof Node || newNode instanceof Element) && parent instanceof Element) {
         parent.appendChild(newNode);
     }
 }
 
 function insertAfter(newNode:any, existingNode:any) {
-    // console.log("insertAfter");
-    // console.log(newNode);
-    // console.log(existingNode);
     if((newNode instanceof Node || newNode instanceof Element) && existingNode instanceof Element && existingNode.parentElement instanceof Element) {
         existingNode.parentElement.insertBefore(newNode, existingNode.nextSibling);
     }
 }
 
 function insertBefore(newNode:any, existingNode:any) {
-    // console.log("insertBefore");
-    // console.log(newNode);
-    // console.log(existingNode);
     if((newNode instanceof Node || newNode instanceof Element) && existingNode instanceof Element && existingNode.parentElement instanceof Element) {
         existingNode.parentElement.insertBefore(newNode, existingNode);
     }
@@ -354,9 +341,14 @@ export const keyboardUsed = function(__critere:string|null = null, __event:any =
 
 export const sanitize_url = (_url:string|null = null) => {
     if(typeof _url != "string") {return "";}
-    let temp = new URL(_url);
-    temp.pathname.replace(/\/\//gi, '/');
-    return temp.toLocaleString();
+    try {
+        let temp = new URL(_url);
+        temp.pathname.replace(/\/\//gi, '/');
+        return decodeURI(temp.toLocaleString());
+    }
+    catch(err) {
+        return _url;
+    }
 }
 
 export const resolveImg = (img?:any) => {
@@ -369,28 +361,31 @@ export const resolveImgSet = (img?:any) => {
 export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fluid?.srcWebp;
-    }
-    if((img?.localFile?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fixed?.srcWebp;
-    }
-    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        retour = img?.localFile?.url;
-    }
-    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
         retour = img?.localFile?.publicURL;
     }
-    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
+    else if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
+        retour = img?.localFile?.childImageSharp?.fluid?.srcWebp;
+    }
+    else if((img?.localFile?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
+        retour = img?.localFile?.childImageSharp?.fixed?.srcWebp;
+    }
+    else if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
+        retour = img?.localFile?.url;
+    }
+    else if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+        retour = img?.localFile?.publicURL;
+    }
+    else if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
         retour = img?.localFile?.absolutePath;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
         retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
-    if(typeof retour == "string" && retour.indexOf("http") == -1) {
+    else if(typeof retour == "string" && retour.indexOf("http") == -1) {
         retour = `${window?.location.origin}${retour}`;
     }
-    if(retour == undefined) {
+    else if(retour == undefined) {
         retour = sanitize_url(resolveExternalImg(img));
     }
     return retour;
@@ -399,28 +394,31 @@ export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|u
 export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
-    }
-    if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
-    }
-    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        retour = img?.localFile?.url;
-    }
-    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
         retour = img?.localFile?.publicURL;
     }
-    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
+    else if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
+        retour = img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
+    }
+    else if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
+        retour = img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
+    }
+    else if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
+        retour = img?.localFile?.url;
+    }
+    else if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
+        retour = img?.localFile?.publicURL;
+    }
+    else if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
         retour = img?.localFile?.absolutePath;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
         retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
-    if(typeof retour == "string" && retour.indexOf("http") == -1) {
+    else if(typeof retour == "string" && retour.indexOf("http") == -1) {
         retour = `${window?.location.origin}${retour}`;
     }
-    if(retour == undefined) {
+    else if(retour == undefined) {
         retour = sanitize_url(resolveExternalImgSet(img));
     }
     return retour;
@@ -429,22 +427,25 @@ export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):strin
 export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fluid?.srcWebp;
-    }
-    if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fixed?.srcWebp;
-    }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = img?.url;
-    }
-    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+    if((img?.ext == ".svg") || (img?.extension == "svg")) {
         retour = img?.publicURL;
     }
-    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
+    else if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
+        retour = img?.childImageSharp?.fluid?.srcWebp;
+    }
+    else if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
+        retour = img?.childImageSharp?.fixed?.srcWebp;
+    }
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        retour = img?.url;
+    }
+    else if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+        retour = img?.publicURL;
+    }
+    else if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
         retour = img?.absolutePath;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
         retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
@@ -453,23 +454,40 @@ export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined 
 export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fluid?.srcSetWebp;
-    }
-    if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fixed?.srcSetWebp;
-    }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = img?.url;
-    }
-    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+    if((img?.ext == ".svg") || (img?.extension == "svg")) {
         retour = img?.publicURL;
     }
-    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
+    else if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
+        retour = img?.childImageSharp?.fluid?.srcSetWebp;
+    }
+    else if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
+        retour = img?.childImageSharp?.fixed?.srcSetWebp;
+    }
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+        retour = img?.url;
+    }
+    else if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
+        retour = img?.publicURL;
+    }
+    else if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
         retour = img?.absolutePath;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
+    else if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
         retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
 }
+
+export const resolveImageRatio = (image?:GatsbyImage_Interface):number|undefined => {
+    if(!image) {return undefined;}
+    if(image && image.childImageSharp?.fluid?.aspectRatio) {
+        return image.childImageSharp?.fluid?.aspectRatio;
+    }
+    if(image && image.childImageSharp?.fixed?.aspectRatio) {
+        return image.childImageSharp?.fixed?.aspectRatio;
+    }
+    if(image && image.childImageSharp?.original) {
+        return (image.childImageSharp.original.height ?? 1) / (image.childImageSharp.original.width ?? 1);
+    }
+    return undefined;
+};

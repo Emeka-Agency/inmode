@@ -18,7 +18,6 @@ export const err_log = function(__err:string|Array<any>|object, __from:string) {
     let promise:void | Response;
 
     let headers = new Headers();
-    // console.log(headers.get('content-type'));
     let vars:RequestInit = {
         method: "POST",
         headers: headers,

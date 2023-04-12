@@ -76,16 +76,16 @@
     position: relative;
 }
 
-#modale.create-address-modale #modale-container.create-address-container #modale-content form > div {
+#modale.create-address-modale #modale-container.create-address-container #modale-content form  >  div {
     width: 47.5%;
     display: inline-block;
 }
 
-#modale.create-address-modale #modale-container.create-address-container #modale-content form > div:nth-child(2n - 1) {
+#modale.create-address-modale #modale-container.create-address-container #modale-content form  >  div:nth-child(2n - 1) {
     margin-right: 2.5%;
 }
 
-#modale.create-address-modale #modale-container.create-address-container #modale-content form > div:nth-child(2n) {
+#modale.create-address-modale #modale-container.create-address-container #modale-content form  >  div:nth-child(2n) {
     margin-left: 2.5%;
 }
 
@@ -185,7 +185,7 @@
     font-weight: normal;
 }
 
-#modale.create-address-modale #modale-container.create-address-container #modale-content form > div:not(:first-child) {
+#modale.create-address-modale #modale-container.create-address-container #modale-content form  >  div:not(:first-child) {
     margin-top: 10px;
 }
 

@@ -27,7 +27,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
             {menu.url ?
                 menu.internal_link ?
                     <Link
-                        className="menu-title menu-image"
+                        className="menu-title menu-image user-select-none"
                         to={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -39,7 +39,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
                     </Link>
                     :
                     <a
-                        className="menu-title menu-image"
+                        className="menu-title menu-image user-select-none"
                         href={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -53,7 +53,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
                     </a>
                 :
                 <div
-                    className="menu-title menu-image"
+                    className="menu-title menu-image user-select-none"
                     onClick={(e) => {resolveOnClick(e, false);}}
                 >
                     {format_string(menu.title || '')}

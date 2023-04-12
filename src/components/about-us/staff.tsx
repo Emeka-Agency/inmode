@@ -61,16 +61,17 @@ const Staff = ({ from = "" }:Staff) => {
                                 className="elem"
                             >
                                 <img
+                                    className="user-select-none"
                                     src={resolveImg(slide.picture)}
                                     alt={`about-us-staff-${key}`}
                                 />
-                                <div className="name">
+                                <div className="name user-select-none">
                                     {slide.name}
                                 </div>
-                                <div className="position">
+                                <div className="position user-select-none">
                                     {slide.position}
                                 </div>
-                                <div className="descr">
+                                <div className="descr user-select-none">
                                     {slide.short_descr}
                                 </div>
                             </div>

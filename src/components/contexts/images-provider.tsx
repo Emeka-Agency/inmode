@@ -28,7 +28,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
                 ...FileImgFormat
             }
-            keyBenefitIconTeal: file(relativePath: {eq: "icons/key_benefit_teal.png"}) {
+            keyBenefitIconTeal: file(relativePath: {eq: "icons/key_benefit_teal.svg"}) {
                 ...FileImgFormat
             }
             keyBenefitIconRose: file(relativePath: {eq: "icons/key_benefit_dusty.png"}) {
@@ -182,11 +182,30 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                     srcSetWebp
                     aspectRatio
                 }
+                original {
+                    width
+                    height
+                }
             }
             publicURL
-            url
+            ext
+            extension
         }
     `));
+
+    const getImageRatio = (request:string):number|undefined => {
+        let image = getOneImage(request);
+        if(image && image.childImageSharp?.fluid?.aspectRatio) {
+            return image.childImageSharp?.fluid?.aspectRatio;
+        }
+        if(image && image.childImageSharp?.fixed?.aspectRatio) {
+            return image.childImageSharp?.fixed?.aspectRatio;
+        }
+        if(image && image.childImageSharp?.original) {
+            return (image.childImageSharp.original.height ?? 1) / (image.childImageSharp.original.width ?? 1);
+        }
+        return undefined;
+    };
 
     const getOneImage = (request:string):GatsbyImage_Interface | null => {
         if(request == null || typeof request != 'string') {
@@ -209,7 +228,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const resolveImg = (request:string):string|undefined => {
         const img = getOneImage(request);
         if(img == null) {return undefined;}
-        return img?.childImageSharp?.fluid?.srcWebp
+        return img.ext == ".svg" || img.extension == "svg" ? img.publicURL : img?.childImageSharp?.fluid?.srcWebp
         || img?.childImageSharp?.fixed?.srcWebp
         || img?.publicURL
         || img?.absolutePath
@@ -220,7 +239,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const resolveImgSet = (request:string):string|undefined => {
         const img = getOneImage(request);
         if(img == null) {return undefined;}
-        return img?.childImageSharp?.fluid?.srcSetWebp
+        return img.ext == ".svg" || img.extension == "svg" ? img.publicURL : img?.childImageSharp?.fluid?.srcSetWebp
         || img?.childImageSharp?.fixed?.srcSetWebp
         || img?.publicURL
         || img?.absolutePath
@@ -230,6 +249,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     return (
         <ImagesContext.Provider value = {{
+            'get_ratio': getImageRatio,
             'get_one': getOneImage,
             'get_set': getImageSet,
             'resolve_img': resolveImg,

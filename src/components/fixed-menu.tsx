@@ -18,15 +18,15 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
     React.useEffect(() => {
         const handleScroll = (e:Event) => { 
-            if (window.pageYOffset > 150 && window.innerWidth > 999) {
+            if (window?.pageYOffset > 150 && window?.innerWidth > 999) {
                 setIsVisible(true)
             } else {
                 setIsVisible(false)
             }
         };
-        window.addEventListener('scroll', handleScroll)
+        window?.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window?.removeEventListener('scroll', handleScroll)
         };
     }, []);
 
@@ -42,13 +42,13 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
     return (
         <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible == true ? 0 : -55, boxShadow: isVisible == true ? undefined : 'unset'}}>
             <div className="fixed-menu-container">
-                <div className="fixed-menu-logo">
+                <div className="fixed-menu-logo user-select-none">
                     <img
                         src={images.resolve_img('footerLogo3')}
                         srcSet={images.resolve_img_set('footerLogo3')}
                         alt="header-logo"
                     />
-                    <Link to="/" className="zone-link" title="Inmode"></Link>
+                    <Link to="/" className="absolute-link" title="Inmode"></Link>
                 </div>
                 <div className="fixed-menus">
                     {menus && menus.map((menu:any, key:number) => {

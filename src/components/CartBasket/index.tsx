@@ -15,7 +15,7 @@ const CartBasket = ({  }:CartBasket) => {
     return (
         <div className="cart opened">
             <img
-                className="cart-basket"
+                className="cart-basket user-select-none"
                 src={images.resolve_img('cartBasketIcon')}
                 onClick={(e) => {
                     if(cart.total_articles()) {

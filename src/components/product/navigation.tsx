@@ -14,7 +14,7 @@ const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
     }
 
     if(exist['before-after']) {
-        temp.splice(3, 0, {'name': 'before and after\'s', 'url': '#before-after'}).join();
+        temp.splice(3, 0, {'name': 'avant / après', 'url': '#before-after'}).join();
     }
     
     const [menus] = React.useState(temp);

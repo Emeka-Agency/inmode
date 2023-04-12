@@ -15,7 +15,7 @@ const HeaderBottom = ({}:HeaderBottom) => {
     return (
         <div id="header-bottom" className="header-bottom">
             <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
-                <Link to="/" className="zone-link" title="Inmode"></Link>
+                <Link to="/" className="absolute-link" title="Inmode"></Link>
             </div>
             <div className="header-bottom-menus">
                 {menus && menus.map((menu, key) => {

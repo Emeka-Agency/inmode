@@ -5,8 +5,8 @@ const AddonNavigation = ({ name, exist = {} }:AddonNavigation) => {
 
     let temp = [
         {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
-        {'name': 'before and after\'s', 'url': '#before-after'},
-        {'name': 'what can you treat', 'url': '#what-treat'},
+        {'name': 'avant / après', 'url': '#before-after'},
+        {'name': 'quelles zones peuvent être traitées', 'url': '#what-treat'},
     ];
 
     if(exist['studies']) {

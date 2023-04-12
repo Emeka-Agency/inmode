@@ -117,13 +117,14 @@
     border-radius: 0 13px 13px 0;
     cursor: pointer;
     font-weight: 400;
+    font-size: 20px;
     /* transition: color 0.1s ease-in-out 0s; */
-    transition: font-weight 0.1s ease-in-out 0s;
+    /* transition: font-weight 0.1s ease-in-out 0s; */
 }
 
 .shop-products .shop-addon .shop-product2 .purchase:hover {
-    /* color: var(--pearl); */
-    font-weight: 600;
+    color: var(--pearl);
+    font-weight: 500;
 }
 
 @media (max-width: 1199px) {

@@ -23,7 +23,7 @@ const ProductBeforeAfter = ({ datas }:ProductBeforeAfter_Interface) => {
     return (
         <div id="before-after" className="before-after">
             <div className="title">
-                before and after
+                avant / après
             </div>
             <div className={`container-ba${datas.length < 3 ? ' few' : ''}`}>
                 {datas.length < 3 ?

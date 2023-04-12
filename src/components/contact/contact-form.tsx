@@ -156,7 +156,6 @@ const ContactForm = ({ from }:ContactForm) => {
             name="contact"
             onSubmit={(e) => {
                 e.preventDefault();
-                // console.log("Submit with " + (verify_form() ? "Envoyer" : "report validity"));
                 verify_form() ? set_saving() && send_form_large(e, setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
             }}
             className={`contact-form main-container ${from}`}
@@ -167,7 +166,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     if(["email", "tel", "text"].indexOf(elem.type) > -1) {
                         return (
                             <div className="field" key={elem_key}>
-                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                <label className="user-select-none" htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
                                 <input
                                     id={elem.name}
                                     title={elem.label}
@@ -184,12 +183,13 @@ const ContactForm = ({ from }:ContactForm) => {
                     if(elem.type == "select") {
                         return (
                             <div className="field">
-                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                <label className="user-select-none" htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
                                 {
                                     Array.isArray(elem.options) ? 
-                                        <select id={elem.name} name={elem.name} required={elem.required ? false : false}>
+                                        <select className="user-select-none" id={elem.name} name={elem.name} required={elem.required ? false : false}>
                                             {(elem.options || []).map((option, option_key) => 
                                                 <option
+                                                    className="user-select-none"
                                                     value={option.value}
                                                     disabled={option.disabled ? true : false}
                                                     selected={option.selected ? true : false}
@@ -211,7 +211,7 @@ const ContactForm = ({ from }:ContactForm) => {
                     id="contact-message"
                     placeholder="Entrez votre message ici*"
                     name="message"
-                    className="custom-scrollbar moz-scrollbar"
+                    className="custom-scrollbar moz-scrollbar user-select-none"
                     maxLength={max_length}
                     rows={15}
                     onKeyUp={(e) => {setMsgLength(e.currentTarget.value.length);}}
@@ -221,7 +221,7 @@ const ContactForm = ({ from }:ContactForm) => {
                 >
                 </textarea>
                 <div
-                    className="current-length"
+                    className="current-length user-select-none"
                     style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}
                 >
                     {`${msgLength} / ${max_length}`}
@@ -230,7 +230,7 @@ const ContactForm = ({ from }:ContactForm) => {
             <div className="tech-list">
                 <span
                     id="title-accordion"
-                    className="title title-accordion transition"
+                    className="title title-accordion transition user-select-none"
                     onClick={(e) => {resolveClick(e);}}
                 >
                     Quelles technologies vous intéressent ?
@@ -255,19 +255,19 @@ const ContactForm = ({ from }:ContactForm) => {
             </div>
             <div className="policy">
                 <input type="checkbox" id="policy" name="policy" value="policy" required/>
-                <label htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
+                <label className="user-select-none" htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
             </div>
             <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
             <button type="submit" className="submit transition">
-                <div className="label">{submitText}</div>
+                <div className="label user-select-none">{submitText}</div>
                 {<LoadingGIF/>}
             </button>
             <button
                 type="button"
                 className="submit transition reset"
                 onClick={() => reset_form()}>
-                <div className="label">Nouveau message</div>
+                <div className="label user-select-none">Nouveau message</div>
             </button>
         </form>
     );

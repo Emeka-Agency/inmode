@@ -104,8 +104,6 @@ export const initWakeup = function(from = "unk") {
         return false;
     }
 
-    // console.log(`%cFrom : ${from}`, "color: red; font-size: 16px; font-weight: bold;");
-
     const request_init:RequestInit = {
         method: 'POST',
         headers: {},
@@ -139,7 +137,6 @@ export const initWakeup = function(from = "unk") {
         }
     })
     .then((res) => {
-        // console.log(res);
     })
     .catch(err => err_log(err, "functions/fetch.ts:initWakeup main catch"));
 

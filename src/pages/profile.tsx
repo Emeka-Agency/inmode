@@ -7,7 +7,7 @@ import { useUser } from "../components/contexts/user-provider";
 const ProfilePage = () => {
 
     if(useUser().logged() == false && typeof window != "undefined") {
-        return window.location.href = "/";
+        window.location.href = "/";
     }
 
     return (

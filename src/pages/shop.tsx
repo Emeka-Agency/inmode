@@ -4,7 +4,7 @@ import React from "react";
 import { string } from "../../o2switch/unix_modules/strapi/lib/services/entity-validator/validators";
 import CartProvider from "../components/contexts/cart-provider";
 import { InmodePanel_Shop_Interface, InmodePanel_TagFamily_Interface, Woocommerce_Shop_Interface } from "../components/interfaces";
-import Layout from "../components/layout";
+import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import WPShop from "../components/shop/wp-shop";
 import { edges_to_array } from "../functions/edges_to_array";

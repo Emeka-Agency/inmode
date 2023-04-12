@@ -176,10 +176,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             price: articles[ref].price,
             discount: articles[ref].discount || 0,
             total():number {return this.price * this.quantity * (1 + this.discount / 100);},
-            // 'delete': (function() {
-            //     // console.log("HARA KIRI KIRI !")
-            //     delete this;
-            // })
         };
     }
 
@@ -339,13 +335,11 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
     const payment_str = (form_fields:any) => {
         return Object.keys(form_fields).sort().map((key:string):string => {
-            // console.log(`${key} : ${form_fields[key]}`);
             return form_fields[key];
         }).join('+');
     }
 
     const get_signature = async(str:string):Promise<{status:string, signature?:string, message?:string}> => {
-        // console.log("get_signature");
         let promise:Promise<{status:string, signature?:string, message?:string}>;
         let vars:RequestInit = {
             method: "POST",
@@ -355,7 +349,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             body: JSON.stringify({string: str})
         };
         promise = await (await fetch(pay_params.order_signature, vars)).json().catch((err:any) => {err_log(err, "components/contexts/cart-provider.tsx:get_signature promise catch");});
-        // console.log(promise);
         return promise;
     }
 
@@ -369,10 +362,10 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         if(payment_launch == true) {
             _log("Payment latence");
             setPaymentLaunch(false);
-            if(typeof window != undefined && window.localStorage.getItem('order') != null) {
+            if(typeof window != undefined && window?.localStorage.getItem('order') != null) {
                 openModale(
                     paymentProblems({
-                        order: JSON.parse(window.localStorage.getItem('order') || "")
+                        order: JSON.parse(window?.localStorage.getItem('order') || "")
                     })
                 );
             }
@@ -429,9 +422,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 // security_payment_verify(true);
             // }, SECURITY_TIME));
             // }, SECURITY_TIME) || null;
-            // console.log(Date.now());
     
-            // console.log("redirect_payment");
     
             form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
     
@@ -472,8 +463,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             else {
                 try {
                     _signature = await get_signature(payment_str(_temp));
-            
-                    // console.log(_signature);
             
                     if(_signature.status == 'error' && !sepa) {
                         return false;
@@ -541,9 +530,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             if(_country == null) {
                 _country = 'FR';
             }
-    
-            // console.log(_temp);
-            // console.log(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country));
             // return false;
         }
         catch(err:any)
@@ -564,10 +550,8 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             _log(result);
 
             if(typeof window != undefined) {
-                window.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
+                window?.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
             }
-
-            // console.log(timer);
 
             // if(timer == null) {
             //     return false;
@@ -575,8 +559,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
 
             setPaymentLaunch(false);
             _log(Date.now());
-
-            // console.log(result);
 
             if(result && result.wp_id != null && result.number != null && result.reference != null) {
                 if(sepa) {
@@ -616,7 +598,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     }
 
     const fill_redirect_form = (selector:string, values:Object) => {
-        // console.log("fill_redirect_form");
         if(!selector || typeof selector != 'string') {
             return false;
         }
@@ -631,7 +612,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     }
 
     const submit_form = (selector:string) => {
-        // console.log("submit_form");
         if(!selector || typeof selector != 'string') {
             return false;
         }

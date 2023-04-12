@@ -47,7 +47,7 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
             {menu.url ?
                 menu.internal_link ?
                     <Link
-                        className="menu-side-menu menu-text"
+                        className="menu-side-menu menu-text user-select-none"
                         to={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -59,7 +59,7 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
                     </Link>
                     :
                     <a
-                        className="menu-side-menu menu-text"
+                        className="menu-side-menu menu-text user-select-none"
                         href={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -73,7 +73,7 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
                     </a>
                 :
                 <div
-                    className="menu-side-menu menu-text"
+                    className="menu-side-menu menu-text user-select-none"
                     onClick={(e) => {resolveOnClick(e, false);}}
                 >
                     {format_string(menu.title || '')}

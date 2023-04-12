@@ -28,7 +28,6 @@ const _countries = (_country:string | undefined | null):string => {
 };
 
 function date_from_transdate(_transdate:string):string {
-    // console.log("date_from_transdate");
     let str_date:string = "";
     str_date += _transdate.substring(0, 4) + '-';
     str_date += _transdate.substring(4, 6) + '-';
@@ -40,7 +39,6 @@ function date_from_transdate(_transdate:string):string {
 }
 
 function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Order_Billing_Interface {
-    // console.log("fill_billing");
     return {
         firstname: datas && typeof datas.firstname == 'string' && datas.firstname.length > 0 ? datas.firstname : "ErrorFirstname",
         lastname: datas && typeof datas.lastname == 'string' && datas.lastname.length > 0 ? datas.lastname : "ErrorLastname",
@@ -64,7 +62,6 @@ function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Ord
 }
 
 function fill_shipping(datas:InmodePanel_Order_Shipping_Interface | undefined):InmodePanel_Order_Shipping_Interface | undefined {
-    // console.log("fill_shipping");
     if(
         (datas && typeof datas.firstname == 'string' && datas.firstname.length > 0) &&
         (datas && typeof datas.lastname == 'string' && datas.lastname.length > 0) &&
@@ -88,14 +85,12 @@ function fill_shipping(datas:InmodePanel_Order_Shipping_Interface | undefined):I
 }
 
 function filter(datas:InmodePanel_Order_Interface):InmodePanel_Order_Interface {
-    // console.log("filter");
     datas.billing = fill_billing(datas.billing);
     datas.shipping = fill_shipping(datas.shipping);
     return datas;
 }
 
 export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Interface[], total:number, sepa:boolean = false, country:string):InmodePanel_Order_Interface {
-    // console.log("create_strapi_order");
 
     _log(_datas);
 
@@ -160,10 +155,8 @@ export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Inter
 }
 
 export async function create_object(body:InmodePanel_Order_Interface, url:string):Promise<void | Response> {
-    // console.log("create_object");
     let promise:void | Response;
     let headers = new Headers();
-    // console.log(headers.get('content-type'));
     let vars:RequestInit = {
         method: "POST",
         headers: headers,
@@ -172,15 +165,12 @@ export async function create_object(body:InmodePanel_Order_Interface, url:string
         body: JSON.stringify(body)
     };
     promise = await fetch(url, vars).catch(err => err_log(err, "components/contexts/strapi.ts:create_object fetch catch"));
-    // console.log(promise);
     return promise;
 }
 
 export async function load_object(reference:string, url:string):Promise<Response> {
-    // console.log("load_object");
     let promise:Promise<Response>;
     let headers = new Headers();
-    // console.log(headers.get('content-type'));
     let vars:RequestInit = {
         method: "POST",
         headers: headers,

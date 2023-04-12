@@ -2,7 +2,7 @@ import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 import { InmodePanel_AboutUs_Interface } from "../interfaces";
-import { resolveImg, resolveImgSet } from "../../functions/tools";
+import { resolveImageRatio, resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Banner = ({ from = "" }:Banner) => {
 
@@ -16,8 +16,9 @@ const Banner = ({ from = "" }:Banner) => {
                         absolutePath
                         childImageSharp {
                             fluid {
-                            srcWebp
-                            srcSetWebp
+                                srcWebp
+                                srcSetWebp
+                                aspectRatio
                             }
                         }
                         publicURL
@@ -29,11 +30,13 @@ const Banner = ({ from = "" }:Banner) => {
     `).strapiAboutUs);
 
     return (
-        <div className={`full-img-banner${from ? ` ${from}` : ''}`}>
+        <div className={`user-select-none full-img-banner${from ? ` ${from}` : ''}`}>
             <img
+                className="user-select-none"
                 src={resolveImg(datas.banner)}
                 srcSet={resolveImgSet(datas.banner)}
                 alt='about-us-banner'
+                style={{aspectRatio: resolveImageRatio(datas?.banner?.localFile)}}
             />
         </div>
     );

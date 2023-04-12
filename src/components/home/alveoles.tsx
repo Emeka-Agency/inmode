@@ -69,9 +69,9 @@ const Alveoles = ({}:Alveoles) => {
                             ></div>
                             <div className="alveole-text">{hex.text}</div>
                             {hex.target === '_self' ?
-                                <Link className="zone-link" to={hex.link} title={hex.text}></Link>
+                                <Link className="absolute-link" to={hex.link} title={hex.text}></Link>
                                 :
-                                <a className="zone-link" target="_blank" href={hex.link} rel="noreferrer" title={hex.text}></a>
+                                <a className="absolute-link" target="_blank" href={hex.link} rel="noreferrer" title={hex.text}></a>
                             }
                         </div>
                     );

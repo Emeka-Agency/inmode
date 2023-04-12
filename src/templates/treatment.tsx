@@ -13,8 +13,6 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
 
     const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(data.strapiTreatment);
 
-    console.log(data);
-
     return (
             <Layout title="treatment" variant={datas.Name == "women s health" ? "teal" : "teal"}>
                 <SEO title="Treatment"/>

@@ -6,7 +6,7 @@ import { InmodePanel_Menu_Interface } from '../interfaces';
 const MenuSingleButton = ({menu, prop_key = 0}:MenuSingleButton) => {
 
     return (
-        <div key={prop_key} className="menu-single menu-button">
+        <div key={prop_key} className="menu-single menu-button user-select-none">
             {format_string(menu.title || '')}
         </div>
     );

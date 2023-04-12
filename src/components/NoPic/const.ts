@@ -1,8 +1,8 @@
 export const no_pics = {
-    'addon-before-after': 'No pics available',
-    'addon-videos': 'No pics available',
-    'product-addons': 'No pics available',
-    'treatment-before-after': 'No pics available',
+    'addon-before-after': 'Aucune image disponible',
+    'addon-videos': 'Aucune image disponible',
+    'product-addons': 'Aucune image disponible',
+    'treatment-before-after': 'Aucune image disponible',
 };
 
 export const sensible = {

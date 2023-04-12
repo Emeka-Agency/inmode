@@ -128,6 +128,7 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
 
     const product_navigation = [
         {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avant / après', 'url': '#before-after'},
         {'name': 'avantages', 'url': '#key-benefits'},
         {'name': 'technologies associées', 'url': '#technologies'},
         {'name': 'études cliniques', 'url': '#studies'}
@@ -135,8 +136,8 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
 
     const addon_navigation = [
         {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
-        {'name': 'before and after\'s', 'url': '#before-after'},
-        {'name': 'what can you treat', 'url': '#what-treat'},
+        {'name': 'avant / après', 'url': '#before-after'},
+        {'name': 'quelles zones peuvent être traitées', 'url': '#what-treat'},
         {'name': 'études cliniques', 'url': '#studies'}
     ];
     

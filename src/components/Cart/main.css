@@ -11,7 +11,7 @@
     box-sizing: border-box;
 }
 
-.cart-purchase >*:not(.cart-head) {
+.cart-purchase  > *:not(.cart-head) {
     padding: 16px;
 }
 
@@ -384,7 +384,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
     height: 100px;
 }
 
-.cart-purchase-form.opened > .title {
+.cart-purchase-form.opened  >  .title {
 
 }
 
@@ -538,7 +538,7 @@ form#purchase .sepa div {
     margin: 10px 0;
 }
 
-form#purchase .sepa div > * {
+form#purchase .sepa div  >  * {
     margin: 0;
 }
 
@@ -569,10 +569,10 @@ form#purchase.step-2-3 #step-3-part.other-opened + .sepa + .facture + .cgu {
     transition: bottom 0.3s ease-in-out 0.1s;
 }
 
-form#purchase.all-close > .step-1.neumorphic,
-form#purchase > .step-1.neumorphic.sepa,
-form#purchase > .step-1.neumorphic.facture,
-form#purchase > .step-1.neumorphic.cgu {
+form#purchase.all-close  >  .step-1.neumorphic,
+form#purchase  >  .step-1.neumorphic.sepa,
+form#purchase  >  .step-1.neumorphic.facture,
+form#purchase  >  .step-1.neumorphic.cgu {
     position: fixed;
     right: -400px;
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
@@ -580,32 +580,32 @@ form#purchase > .step-1.neumorphic.cgu {
     width: 400px;
 }
 
-form#purchase > .step-1.neumorphic.sepa {
+form#purchase  >  .step-1.neumorphic.sepa {
     padding-top: 10px;
     bottom: 140px;
     background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase > .step-1.neumorphic.facture {
+form#purchase  >  .step-1.neumorphic.facture {
     padding-top: 10px;
     bottom: 100px;
     background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase > .step-1.neumorphic.cgu {
+form#purchase  >  .step-1.neumorphic.cgu {
     bottom: 60px;
     background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase.step-1 > .step-1.neumorphic {
+form#purchase.step-1  >  .step-1.neumorphic {
     right: 0px;
     transition: right 0.3s ease-in-out 0s;
 }
 
-form#purchase.step-2-3 > .step-1.neumorphic {
+form#purchase.step-2-3  >  .step-1.neumorphic {
     right: 400px;
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }

@@ -38,7 +38,6 @@ const AddressesTab = ({}:AddressesTab) => {
         if(typeof _field != "string") {return false;}
         if(_address == null) {return false;}
         let _elem = document?.querySelector(`.address-field[data-field="${_field}"][data-for="address-${_address.address}"]`);
-        // console.log(_elem);
         if(_elem instanceof Element && _elem.classList.contains('edit') && _field) {
             _elem.classList.replace('edit', 'show');
             _elem?.querySelector('input')?.style.removeProperty('border-bottom-color');
@@ -90,7 +89,6 @@ const AddressesTab = ({}:AddressesTab) => {
     return (
         <div id="addresses-section">
             {user.get('addresses')?.map(function(address:Address_Interface, index:number) {
-                // console.log(address);
                 return (
                     <div id={`address-${address.address}`} data-crit={address.address} className="address-section" key={index}>
                         <div className="address-name">{address.label || `Adresse ${index + 1}`}</div>
@@ -121,7 +119,6 @@ const AddressesTab = ({}:AddressesTab) => {
                                                         _counter.style.color = e.currentTarget.value.length === max_length ? '#f00' : 'var(--teal)';
                                                     }}
                                                     onBlur={(e) => {
-                                                        // console.log("blur");
                                                         // return false;
                                                         document.querySelector(`div[data-field="custom"][data-for="address-${address.address}"] .address-field-change-result`).innerText = "";
                                                         user.updateAddress(

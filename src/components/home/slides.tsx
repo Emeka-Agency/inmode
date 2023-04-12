@@ -126,7 +126,7 @@ const Slides = ({from}:Slides) => {
                                         srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
-                                    <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
+                                    <Link className="absolute-link" to={slide.MenuParams.url} title={slide.Name}></Link>
                                 </div>
                                 {slide.Addons ? <div className="slide-view-product" onClick={(e) => {view_product(e, key);}}>
                                     Pièces à main

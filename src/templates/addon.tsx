@@ -34,7 +34,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
                 <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>
                 <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
-                <AddonWhatTreat title="What can you treat ?" WhatTreats={datas.WhatTreats}/>
+                <AddonWhatTreat title="Quelles zones peuvent être traitées ?" WhatTreats={datas.WhatTreats}/>
                 <ClinicalStudies datas={datas.ClinicalStudies}/>
                 <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>
                 <SellingNew datas={datas.SellingNewGeneration}/>

@@ -35,11 +35,11 @@ const PaymentCancelPage = () => {
             &&
             (_test.vads_order_id == undefined || _test.vads_order_id == null)
         ) {
-            window.location.href = window.location.origin;
+            window.location.href = window?.location.origin;
         }
         else {
             order_cancel(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
-            window.history.pushState('', page_title, '/payment/cancel/');
+            window?.history.pushState('', page_title, '/payment/cancel/');
         }
     }, []);
 

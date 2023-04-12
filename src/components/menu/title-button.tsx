@@ -27,7 +27,7 @@ const MenuTitleButton = ({menu, prop_key = undefined, openOnClick = false}:MenuT
             {menu.url ?
                 menu.internal_link ?
                     <Link
-                        className="menu-title menu-button"
+                        className="menu-title menu-button user-select-none"
                         to={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -39,7 +39,7 @@ const MenuTitleButton = ({menu, prop_key = undefined, openOnClick = false}:MenuT
                     </Link>
                     :
                     <a
-                        className="menu-title menu-button"
+                        className="menu-title menu-button user-select-none"
                         href={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -53,7 +53,7 @@ const MenuTitleButton = ({menu, prop_key = undefined, openOnClick = false}:MenuT
                     </a>
                 :
                 <div
-                    className="menu-title menu-button"
+                    className="menu-title menu-button user-select-none"
                     onClick={(e) => {resolveOnClick(e, false);}}
                 >
                     {format_string(menu.title || '')}

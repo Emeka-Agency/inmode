@@ -57,7 +57,7 @@ const PrivacyPolicy = (props:PrivacyPolicy) => {
     }
 
     return (
-        <div className={`privacy-policy transition${open ? ' opened' : ''}`}>
+        <div className={`privacy-policy transition user-select-none${open ? ' opened' : ''}`}>
             <button className="open-button" onClick={(e) => {process_cookies(e);}}>
                 <img className="main" src={images.resolve_img('privacyPolicyTriangle')} alt="privacy-triangle"/>
                 <img className="content" src={images.resolve_img('privacyPolicyC')} alt="privacy-icon"/>

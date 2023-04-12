@@ -12,7 +12,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
     const [flickityOptions] = React.useState({
         initialIndex: 0,
         cellAlign: 'left',
-        pageDots: true,
+        pageDots: false,
         accessibility: true,
         selectedAttraction: 0.01,
         friction: 0.15,
@@ -60,7 +60,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
                                                 />
                                             )}
                                             {!product.title_image && product.title_text}
-                                            {product.appears_everywhere && <Link className="zone-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
+                                            {product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
                                         </div>
                                         {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {
                                             if(descr.product && descr.product.id === datas.id) {
@@ -108,7 +108,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
                                             alt={`morpheus8-${key + 1}-single`}
                                         />
                                         :
-                                        <div className="addon-carousel">
+                                        <div className="addon-carousel user-select-none">
                                             <Carousel
                                                 id={`carousel-addons-${product_title}`}
                                                 options={flickityOptions}

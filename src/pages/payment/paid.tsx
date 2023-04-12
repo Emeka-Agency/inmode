@@ -37,16 +37,15 @@ const PaymentPaidPage = () => {
             &&
             (_test.vads_order_id == undefined || _test.vads_order_id == null)
         ) {
-            window.location.href = window.location.origin;
+            window.location.href = window?.location.origin;
         }
         else {
             order_load(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
-            window.history.pushState('', page_title, '/payment/paid/');
+            window?.history.pushState('', page_title, '/payment/paid/');
         }
     }, []);
 
     const order_load = async(reference:string) => {
-        // console.log('order_load with reference : ', reference);
         if(!reference) {return false;}
         if(typeof reference != 'string') {return false;}
         let { status, order } = await (await fetch(load_url, {

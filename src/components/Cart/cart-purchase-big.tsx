@@ -45,11 +45,6 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
     const cart = useCart();
     const size = useWindowSize();
 
-    // console.log("total : " + cart.total());
-    // console.log("Livraison : " + (cart.pay_delivery() ? 50 : 0));
-    // console.log("TVA : " + cart.total_tva());
-    // console.log("TTC : " + (cart.total() + (cart.pay_delivery() ? 50 : 0) + parseFloat(cart.total_tva())).toFixed(2));
-
 
     const [formOpened, setFormOpened] = React.useState(false);
     const [otherAddress, setOtherAddress] = React.useState(false);
@@ -96,12 +91,12 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
 
     const submitClasses = ():string => {
         if(formOpened && !otherAddress) {
-            return "cart-validate form-transition";
+            return "user-select-none cart-validate form-transition";
         }
         if((formOpened && otherAddress && otherAddressOpened) || (formOpened && otherAddress)) {
-            return "cart-validate form-transition other-address-transition";
+            return "user-select-none cart-validate form-transition other-address-transition";
         }
-        return `cart-validate${formOpened && otherAddress && otherAddressOpened ? ' other-address-transition' : formOpened ? ' form-transition' : ''}`;
+        return `user-select-none cart-validate${formOpened && otherAddress && otherAddressOpened ? ' other-address-transition' : formOpened ? ' form-transition' : ''}`;
     }
 
     const buttonText = ():string => {
@@ -212,12 +207,13 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     }}
                 >
                     <img
+                        className="user-select-none"
                         src={images.resolve_img('closeWhiteIcon')}
                         srcSet={images.resolve_img_set('closeWhiteIcon')}
                         alt="Close"
                     />
                 </div>
-                <div className="cart-head">
+                <div className="cart-head user-select-none">
                     <img
                         src={images.resolve_img('cartBasketIcon')}
                         srcSet={images.resolve_img_set('cartBasketIcon')}
@@ -235,21 +231,22 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                                         cart.remove(article.reference, article.quantity);
                                     }}
                                 >
-                                    <img className="init" src={images.resolve_img('rmvInit')} alt="X"/>
-                                    <img className="blue" src={images.resolve_img('rmvHover')} alt="X"/>
+                                    <img className="init user-select-none" src={images.resolve_img('rmvInit')} alt="X"/>
+                                    <img className="blue user-select-none" src={images.resolve_img('rmvHover')} alt="X"/>
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
+                                        className="user-select-none"
                                         src={resolveImg(cart.articles[article.reference].picture)}
                                         srcSet={resolveImgSet(cart.articles[article.reference].picture)}
                                         alt=""
                                     />)}
                                 </div>
                                 <div className="details">
-                                    <div className="reference">{article.reference}</div>
-                                    <div className="name">{article.name}</div>
+                                    <div className="reference user-select-none">{article.reference}</div>
+                                    <div className="name user-select-none">{article.name}</div>
                                     <div className="qnts">
-                                        <div className="pack">{cart.articles[article.reference].pack_name()}</div>
+                                        <div className="pack user-select-none">{cart.articles[article.reference].pack_name()}</div>
                                         <div className="manage">
                                             <div
                                                 className="minus"
@@ -281,8 +278,8 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         {/*PAS DE FRAIS DE LIVRAISON*/}
                         {/* <div className="text">Livraison{cart.pay_delivery() && false ? '' : ' gratuite'}</div> */}
                         {/*FRAIS DE LIVRAISON*/}
-                        <div className="text">Livraison{cart.pay_delivery() ? '' : ' gratuite'}</div>
-                        {cart.pay_delivery() ? <div className="price">
+                        <div className="text user-select-none">Livraison{cart.pay_delivery() ? '' : ' gratuite'}</div>
+                        {cart.pay_delivery() ? <div className="price user-select-none">
                             {/*PAS DE FRAIS DE LIVRAISON*/}
                             {/* {(cart.delivery_tax() && false) || 0} */}
                             {/*FRAIS DE LIVRAISON*/}
@@ -290,20 +287,20 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         </div>: null }
                     </div>
                     <div className="cart-sub-total">
-                        <div className="text">sous total (HT)</div>
-                        <div className="price">
+                        <div className="text user-select-none">sous total (HT)</div>
+                        <div className="price user-select-none">
                             {cart.total_base()}
                         </div>
                     </div>
                     <div className="cart-tva">
-                        <div className="text">tva</div>
-                        <div className="price">
+                        <div className="text user-select-none">tva</div>
+                        <div className="price user-select-none">
                             {cart.total_tva()}
                         </div>
                     </div>
                     <div className="cart-total">
-                        <div className="text">total ttc</div>
-                        <div className="price">
+                        <div className="text user-select-none">total ttc</div>
+                        <div className="price user-select-none">
                             {cart.total_all_included()}
                         </div>
                     </div>
@@ -321,12 +318,13 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         }}
                     >
                         <img
+                            className="user-select-none"
                             src={images.resolve_img('closeWhiteIcon')}
                             srcSet={images.resolve_img_set('closeWhiteIcon')}
                             alt="Close"
                         />
                     </div>
-                    <span className={`${otherAddress ? 'click' : ''}`}>adresse de facturation</span>
+                    <span className={`user-select-none ${otherAddress ? 'click' : ''}`}>adresse de facturation</span>
                     <hr/>
                 </div>
                 <div
@@ -337,7 +335,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         {
                             <div
                                 id="add-address-zone"
-                                className="neumorphic"
+                                className="neumorphic user-select-none"
                                 // DONE
                                 onClick={function() {
                                     user.logged() ? user.addAddress() : user.login();
@@ -384,11 +382,11 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         <img
                             src={images.resolve_img('closeWhiteIcon')}
                             srcSet={images.resolve_img_set('closeWhiteIcon')}
-                            className="unmorphic"
+                            className="unmorphic user-select-none"
                             alt="Close"
                         />
                     </div>
-                    <span className={`unmorphic${otherAddressOpened ? ' click' : ''}`}>informations de livraison</span>
+                    <span className={`user-select-none unmorphic${otherAddressOpened ? ' click' : ''}`}>informations de livraison</span>
                     <hr className="unmorphic"/>
                 </div>
                 {otherAddress &&
@@ -436,7 +434,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     className="form-field"
                     onChange={(e) => {manageCheckboxPayment(e)}}
                 /></div>
-                <div className="choice-label"><label htmlFor="sepa">Virement</label></div>
+                <div className="choice-label user-select-none"><label htmlFor="sepa">Virement</label></div>
                 <div className="choice"><input
                     id="soge"
                     name="soge"
@@ -446,7 +444,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     className="form-field"
                     onChange={(e) => {manageCheckboxPayment(e)}}
                 /></div>
-                <div className="choice-label"><label htmlFor="soge">Paiement par carte</label></div>
+                <div className="choice-label user-select-none"><label htmlFor="soge">Paiement par carte</label></div>
             </div>
             <div className="step-1 facture neumorphic">
                 <input
@@ -459,7 +457,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                         manageChange(e);
                     }}
                 />
-                <label htmlFor="facture">
+                <label htmlFor="facture" className="user-select-none">
                     Adresse de livraison différente
                 </label>
             </div>
@@ -472,7 +470,7 @@ const CartPurchaseBig = ({  }:CartPurchaseBig) => {
                     className="form-field"
                     required
                 />
-                <label htmlFor="terms">
+                <label htmlFor="terms" className="user-select-none">
                     J'accepte les CGV
                 </label>
             </div>

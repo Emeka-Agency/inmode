@@ -4,7 +4,6 @@ import { selectOne } from "../../functions/selectors";
 import { ContactFull_Interface, ContactMini_Interface } from "../interfaces";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
-    // console.log("send_form_mini");
     e.preventDefault();
     try {
 
@@ -57,7 +56,6 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 request_init
             )
             .then((promise) => {
-                // console.log(promise);
                 return handlePromise(promise);
             })
             // .then(res => res.text())
@@ -100,7 +98,6 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 }
             })
         );
-        // console.log(response);
         // ).json()
 
         return click_pardot(body);
@@ -116,7 +113,6 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
 }
 
 export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>, on_success:Function|null = null, on_error:Function|null = null) {
-    // console.log("send_form_large");
     e.preventDefault();
     try {
         let _temp1:HTMLElement|null = document.querySelector('#full-contact-form .req-return.success');
@@ -173,7 +169,6 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 request_init,
             )
             .then((promise) => {
-                // console.log(promise);
                 return handlePromise(promise);
             })
             // .then(res => res.text())
@@ -213,7 +208,6 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 }
             })
         );
-        // console.log(response);
         // ).json()
         
         return click_pardot(body);
@@ -232,24 +226,20 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
 }
 
 function handlePromise(promise:Response) {
-    // console.log("handlePromise");
     let retour = null;
     try {
-        // console.log("Try json()");
         retour = promise.json();
     }
     catch(err_json:any) {
         err_log(err_json, "components/contact.ts:handlePromise catch promise.json() error");
         _log(err_json);
         try {
-            // console.log("Try text()");
             retour = promise.text();
         }
         catch(err_text:any) {
             err_log(err_text, "components/contact.ts:handlePromise catch promise.text() error");
             _log(err_text);
             try {
-                // console.log("Try blob()");
                 retour = promise.blob();
             }
             catch(err_blob:any) {

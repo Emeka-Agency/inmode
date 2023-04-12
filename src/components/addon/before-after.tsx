@@ -21,7 +21,7 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
     return (
         <div id="before-after" className="before-after">
             <div className="title">
-                before and after
+                avant / après
             </div>
             <div className={`container-ba${datas && datas.length < 3 ? ' few' : ''}`}>
                 {datas && datas.length == 0 ?

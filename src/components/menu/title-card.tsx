@@ -39,32 +39,32 @@ const MenuTitleCard = ({ menu, prop_key }:MenuTitleCard) => {
                     menu.internal_link ?
                     <Link onClick={(e) => {enableMainScroll();}} to={menu.url} title={format_string(menu.title || "")}>
                         <img
-                            className="menu-title menu-card picture transition"
+                            className="menu-title menu-card picture transition user-select-none"
                             src={resolveImg(menu.icon)}
                             srcSet={resolveImgSet(menu.icon)}
                             alt={format_string(menu.title || "")}
                         />
-                        <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
+                        <span className="menu-title menu-card title user-select-none">{format_string(menu.title || "")}</span>
                     </Link>
                     :
                     <a onClick={(e) => {enableMainScroll();}} href={menu.url} title={format_string(menu.title || "")} target="_blank" rel="noreferrer">
                         <img
-                            className="menu-title menu-card picture transition"
+                            className="menu-title menu-card picture transition user-select-none"
                             src={resolveImg(menu.icon)}
                             srcSet={resolveImgSet(menu.icon)}
                             alt={format_string(menu.title || "")}
                         />
-                        <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
+                        <span className="menu-title menu-card title user-select-none">{format_string(menu.title || "")}</span>
                     </a>
                 :
                 <div>
                     <img
-                        className="menu-title menu-card picture transition"
+                        className="menu-title menu-card picture transition user-select-none"
                         src={resolveImg(menu.icon)}
                         srcSet={resolveImgSet(menu.icon)}
                         alt={format_string(menu.title || "")}
                     />
-                    <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
+                    <span className="menu-title menu-card title user-select-none">{format_string(menu.title || "")}</span>
                 </div>
             }
             {menu.menus && menu.menus.length > 0 ?

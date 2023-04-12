@@ -4,11 +4,10 @@ import { Link } from 'gatsby';
 import "./index.css";
 
 const RequestInformation = ({search, hash, variant = "teal"}:RequestInformation_Interface) => {
-    // console.log(typeof window == "undefined" ? null : window.location);
     return (
         <Link
             data-variant={variant}
-            className="request-informations"
+            className="request-informations user-select-none"
             to={`/contact${search ? '?' + search : ''}${hash ? '#' + hash : ''}`}
             title="Plus d'informations"
         >

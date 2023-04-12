@@ -20,7 +20,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false, variant = "teal"}:Treat
 
     return (
         <div id="before-after" className="before-after">
-            <div className="title">
+            <div className="title user-select-none">
                 Avant / Après
             </div>
             <div className={`container-ba${(datas || []).length < 3 ? ' few' : ''}`}>
@@ -35,11 +35,12 @@ const TreatmentBeforeAfter = ({ datas, sensible = false, variant = "teal"}:Treat
                             return (
                                 <div key={key} className="few-ba">
                                     <img
+                                        className="user-select-none"
                                         src={resolveImg(ba.image)}
                                         alt="treatment-before-after"
                                     />
-                                    <div className="ba-doctor">{ba.doctor}</div>
-                                    <div className="ba-descr">{ba.text}</div>
+                                    <div className="ba-doctor user-select-none">{ba.doctor}</div>
+                                    <div className="ba-descr user-select-none">{ba.text}</div>
                                 </div>
                             );
                         })
@@ -53,11 +54,12 @@ const TreatmentBeforeAfter = ({ datas, sensible = false, variant = "teal"}:Treat
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
+                                                className="user-select-none"
                                                 src={resolveImg(ba.image)}
                                                 alt={`treatment-before-after-${key}`}
                                             />
-                                            <div className="ba-doctor">{ba.doctor}</div>
-                                            <div className="ba-descr">{ba.text}</div>
+                                            <div className="ba-doctor user-select-none">{ba.doctor}</div>
+                                            <div className="ba-descr user-select-none">{ba.text}</div>
                                         </div>
                                     );
                                 })

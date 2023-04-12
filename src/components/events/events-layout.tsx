@@ -121,7 +121,7 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                     {tabs.map((tab, key) => {
                         if(tab.name !== current_page || size.width >= accordion_width) {
                             return (
-                                <Link className={`tab-link${tab.name===current_page ? ' current' : '' }`} to={tab.url} key={key} title={tab.name}>
+                                <Link className={`user-select-none tab-link${tab.name===current_page ? ' current' : '' }`} to={tab.url} key={key} title={tab.name}>
                                     {tab.name}
                                 </Link>
                             );

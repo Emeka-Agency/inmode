@@ -128,6 +128,7 @@ export interface InmodePanel_Menu_Interface {
     mini_treatments?: InmodePanel_Generic_SubLinked_MiniTreatments_Interface[];
     mini_products?: InmodePanel_Generic_SubLinked_MiniProducts_Interface[];
     mini_addons?: InmodePanel_Generic_SubLinked_MiniAddons_Interface[];
+    from?: string;
 };
 
 export interface InmodePanel_Order_Interface {
@@ -190,7 +191,7 @@ export interface InmodePanel_Product_Interface {
 };
 export interface InmodePanel_Shop_Interface {
     strapiId?: number;
-    reference?: string;
+    reference: string;
     Name?: string;
     pack_size?: number;
     pack_type?: string;
@@ -725,6 +726,7 @@ export interface PayParams_Interface {
 };
 
 export interface Images_Interface {
+    get_ratio(request:string): number|undefined;
     get_one(request:string): GatsbyImage_Interface;
     get_set(request:string[]): GatsbyImage_Interface[];
     resolve_img(request:string):string|undefined;
@@ -823,19 +825,55 @@ export interface External_GatsbyImage_Interface extends GatsbyImage_Interface {
 }
 
 export interface GatsbyImage_Interface {
-    childImageSharp: {
+    ext?: string;
+    extension?: string;
+    childImageSharp?: {
         fixed: {
-            aspectRatio?: number;
             base64?: string;
             srcWebp?: string;
             srcSetWebp?: string;
+            aspectRatio?: number;
         }
         fluid: {
-            aspectRatio?: number;
             base64?: string;
             srcWebp?: string;
             srcSetWebp?: string;
+            aspectRatio?: number;
         }
+        original: {
+            width?: number;
+            height?: number;
+        }
+        resize: {
+            width?: number;
+            height?: number;
+        }
+        ext?: string;
+        extension?: string;
+    };
+    childrenImageSharp: {
+        fixed: {
+            base64?: string;
+            srcWebp?: string;
+            srcSetWebp?: string;
+            aspectRatio?: number;
+        }
+        fluid: {
+            base64?: string;
+            srcWebp?: string;
+            srcSetWebp?: string;
+            aspectRatio?: number;
+        }
+        original: {
+            width?: number;
+            height?: number;
+        }
+        resize: {
+            width?: number;
+            height?: number;
+        }
+        ext?: string;
+        extension?: string;
     }
     absolutePath?: string;
     publicURL?: string;

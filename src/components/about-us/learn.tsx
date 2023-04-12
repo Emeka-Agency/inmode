@@ -56,11 +56,12 @@ const Learn = ({ from = "" }:Learn) => {
     return (
         <div className={`learn${from ? ` ${from}` : ''}`}>
             <div className="container">
-                <div className="know-more">
+                <div className="know-more user-select-none">
                     <span>En savoir plus sur:</span>
                 </div>
                 <div className="goals">
                     <img
+                        className="user-select-none"
                         src={resolveImg(datas.learn_icon)}
                         srcSet={resolveImgSet(datas.learn_icon)}
                         alt='about-us-learn'
@@ -69,10 +70,10 @@ const Learn = ({ from = "" }:Learn) => {
                         {datas.learn_txts && datas.learn_txts.map((txt, key) => {
                             return (
                                 <span key={key}>
-                                    <div key={`${key}-title`} className="title">
+                                    <div key={`${key}-title`} className="title user-select-none">
                                         {txt.title}
                                     </div>
-                                    <div key={`${key}-text`} className="text">
+                                    <div key={`${key}-text`} className="text user-select-none">
                                         {txt.text}
                                     </div>
                                 </span>
@@ -81,16 +82,16 @@ const Learn = ({ from = "" }:Learn) => {
                     </div>
                 </div>
                 <div className="values">
-                    <div className="title">FUNDAMENTAL VALUES:</div>
+                    <div className="title user-select-none">NOS VALEURS FONDAMENTALES:</div>
                     {datas.learn_values && datas.learn_values.map((value, key) => {
                     return (
                         <div key={key} className="list-elem">
                             <img
                                 src={images.resolve_img('keyBenefitIcon')}
                                 alt={`elem-${key}`}
-                                className="before-text"
+                                className="before-text user-select-none"
                             />
-                            <div className="text">{value.texte}</div>
+                            <div className="text user-select-none">{value.texte}</div>
                         </div>
                     );
                     })}

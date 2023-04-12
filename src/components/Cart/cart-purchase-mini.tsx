@@ -197,7 +197,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         alt="Close"
                     />
                 </div>
-                <div className="cart-head">
+                <div className="cart-head user-select-none">
                     <img
                         src={images.resolve_img('cartBasketIcon')}
                         srcSet={images.resolve_img_set('cartBasketIcon')}

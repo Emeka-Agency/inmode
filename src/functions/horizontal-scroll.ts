@@ -7,9 +7,6 @@ const initialized_particle = "h-initzd";
 // INITS
 
 export const __horizontal_scroll__Init = function(selector?:string, multiple:boolean = false):boolean {
-    // console.log("__horizontal_scroll__Init");
-
-    // console.log(selector);
 
     if(typeof "string" != "string" || typeof multiple != "boolean") {return false;}
 
@@ -28,15 +25,10 @@ export const __horizontal_scroll__Init = function(selector?:string, multiple:boo
 }
 
 function initHorScrollElem(elem:Element|null = null):boolean {
-    // console.log("initHorScrollElem");
-    // console.log(elem);
     try {
         if(!(elem instanceof Element)) {return false;}
         elem.addEventListener('wheel', (e:any) => {
             e.preventDefault();
-            // console.log(e);
-            // console.log(e.target);
-            // console.log(e.currentTarget);
             scrollX(e.deltaY != 0 ? e.deltaY : e.deltaX, e.currentTarget);
         });
         return true;

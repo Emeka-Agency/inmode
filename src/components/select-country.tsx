@@ -2,7 +2,7 @@ import React from "react";
 
 const SelectCountry = ({ required = true }) =>{
     return (
-        <select name = "country" required={required}>
+        <select className="user-select-none" name="country" required={required}>
             <option disabled selected style={{display: 'none'}}>Choisir un pays</option>
             <option value="Afghanistan">Afghanistan</option>
             <option value="Aland Islands">Aland Islands</option>

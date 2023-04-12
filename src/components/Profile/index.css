@@ -80,6 +80,6 @@ section#profile #profile-content {
     }
 }
 
-section#profile #profile-content > * {
+section#profile #profile-content  >  * {
     padding: 25px 0;
 }

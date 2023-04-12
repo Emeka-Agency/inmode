@@ -69,14 +69,14 @@ const ContactUs = (props:ContactUs) => {
             <div className="stamp transition">
                 <img
                     id="piece"
-                    className="transition"
+                    className="transition user-select-none"
                     src={images.resolve_img('contactUsPiece')}
                     srcSet={images.resolve_img_set('contactUsPiece')}
                     alt="contact-us"
                     onClick={(e) => {resolve_click(e)}}
                 />
                 <div className="content">
-                    <div id="close" className="close-contact-us transition" onClick={(e) => {resolve_click(e)}}>
+                    <div id="close" className="close-contact-us transition user-select-none" onClick={(e) => {resolve_click(e)}}>
                         <img
                             src={images.resolve_img('hexagonalCross')}
                             srcSet={images.resolve_img_set('hexagonalCross')}
@@ -113,7 +113,7 @@ const ContactUs = (props:ContactUs) => {
                                 required={true}
                                 className="custom-scrollbar moz-scrollbar"
                             ></textarea>
-                            <div className="current-length" style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}>{`${msgLength} / ${max_length}`}</div>
+                            <div className="current-length user-select-none" style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}>{`${msgLength} / ${max_length}`}</div>
                             <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
                             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
                             {/* Mettre LoadingGIF en attendant le retour du serveur */}
