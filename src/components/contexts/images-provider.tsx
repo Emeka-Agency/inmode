@@ -52,6 +52,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             footerLogo3: file(relativePath: {eq: "footer-logo-3.png"}) {
                 ...FileImgFormat
             }
+            footerFR: file(relativePath: {eq: "icons/country/FR.svg"}) {
+                ...FileImgFormat
+            }
+            footerES: file(relativePath: {eq: "icons/country/es.png"}) {
+                ...FileImgFormat
+            }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
                 ...FileImgFormat
             }
@@ -104,6 +110,15 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 ...FileImgFormat
             }
             heroFull: file(relativePath: {eq: "home/hero.jpg"}) {
+                ...FileImgFormat
+            }
+            heroMini: file(relativePath: {eq: "home/hero-mini.jpg"}) {
+                ...FileImgFormat
+            }
+            whyInmodePoster: file(relativePath: {eq: "home/why-inmode.jpg"}) {
+                ...FileImgFormat
+            }
+            whyInmodePoster2: file(relativePath: {eq: "home/why-inmode2.jpg"}) {
                 ...FileImgFormat
             }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
@@ -184,9 +199,29 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             lock: file(relativePath: {eq: "icons/lock.svg"}) {
                 ...FileImgFormat
             }
+            bodytite_midnight: file(relativePath: {eq: "products/bodytite_midnight.png"}) {
+                ...FileImgFormat
+            }
+            contoura_midnight: file(relativePath: {eq: "products/contoura_midnight.png"}) {
+                ...FileImgFormat
+            }
+            empowerrf_dusty_rose: file(relativePath: {eq: "products/empowerrf_dusty_rose.png"}) {
+                ...FileImgFormat
+            }
+            evoke_midnight: file(relativePath: {eq: "products/evoke_midnight.png"}) {
+                ...FileImgFormat
+            }
+            evolve_midnight: file(relativePath: {eq: "products/evolve_midnight.png"}) {
+                ...FileImgFormat
+            }
+            optimas_midnight: file(relativePath: {eq: "products/optimas_midnight.png"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
+            ext
+            extension
             url
             absolutePath
             childImageSharp {
@@ -222,6 +257,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     const getImageRatio = (request:string):number => {
         let image = getOneImage(request);
+        if(image && image.childImageSharp?.fluid?.aspectRatio) {
+            return image.childImageSharp?.fluid?.aspectRatio;
+        }
+        if(image && image.childImageSharp?.fixed?.aspectRatio) {
+            return image.childImageSharp?.fixed?.aspectRatio;
+        }
         if(image && image.childImageSharp?.original) {
             return (image.childImageSharp.original.height ?? 1) / (image.childImageSharp.original.width ?? 1);
         }
@@ -249,7 +290,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const resolveImg = (request:string):string|undefined => {
         const img = getOneImage(request);
         if(img == null) {return undefined;}
-        return img?.childImageSharp?.fluid?.srcWebp
+        return img.ext == ".svg" || img.extension == "svg" ? img.publicURL : img?.childImageSharp?.fluid?.srcWebp
         || img?.childImageSharp?.fixed?.srcWebp
         || img?.publicURL
         || img?.absolutePath
@@ -260,7 +301,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
     const resolveImgSet = (request:string):string|undefined => {
         const img = getOneImage(request);
         if(img == null) {return undefined;}
-        return img?.childImageSharp?.fluid?.srcSetWebp
+        return img.ext == ".svg" || img.extension == "svg" ? img.publicURL : img?.childImageSharp?.fluid?.srcSetWebp
         || img?.childImageSharp?.fixed?.srcSetWebp
         || img?.publicURL
         || img?.absolutePath
@@ -310,6 +351,9 @@ interface ImagesList {
     homeClinicalStudy: GatsbyImage_Interface;
     heroHeader: GatsbyImage_Interface;
     heroFull: GatsbyImage_Interface;
+    heroMini: GatsbyImage_Interface;
+    whyInmodePoster: GatsbyImage_Interface;
+    whyInmodePoster2: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
@@ -335,6 +379,12 @@ interface ImagesList {
     case_11: GatsbyImage_Interface;
     case_12: GatsbyImage_Interface;
     lock: GatsbyImage_Interface;
+    bodytite_midnight: GatsbyImage_Interface;
+    contoura_midnight: GatsbyImage_Interface;
+    empowerrf_dusty_rose: GatsbyImage_Interface;
+    evoke_midnight: GatsbyImage_Interface;
+    evolve_midnight: GatsbyImage_Interface;
+    optimas_midnight: GatsbyImage_Interface;
 }
 
 export default ImagesProvider;

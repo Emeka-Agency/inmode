@@ -5,6 +5,7 @@ import { format_string } from "../../functions/format_string";
 import { InmodePanel_Menu_Interface } from "../interfaces";
 import Menu from "../menu";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
+import { useWindowSize } from "../../functions/window-size";
 
 // VARIANT
 // const SINGLE = 'single';
@@ -20,6 +21,8 @@ const TITLE = 'title';
 // const CARD = 'card';
 
 const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
+
+    const size = useWindowSize();
 
     return (
         <div key={prop_key} className="menu-title menu-card">
@@ -56,7 +59,7 @@ const MenuTitleCard = ({ menu, prop_key, openOnClick }:MenuTitleCard) => {
                     <span className="menu-title menu-card title">{format_string(menu.title || "")}</span>
                 </div>
             }
-            {menu.menus && menu.menus.length > 0 ?
+            {size.width > 1199 && menu.menus && menu.menus.length > 0 ?
                 <div className={`menu-title menu-card sub ${menu.variant === TITLE ? 'dropdown-menu' : 'menu-title menu-card dropdown-menu'}`}>
                     {
                         menu.menus.map((sub, key_sub) => {

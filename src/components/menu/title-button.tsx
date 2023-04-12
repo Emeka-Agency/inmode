@@ -1,26 +1,12 @@
 import React from 'react';
 import { Link } from "gatsby";
-import { resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
+import { resolveOnClick, resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
 import { format_string } from '../../functions/format_string';
 import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
 
 const MenuTitleButton = ({menu, prop_key = undefined, openOnClick = false}:MenuTitleButton) => {
-
-    const resolveOnClick = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent> | any, is_link:boolean) => {
-        if(openOnClick === true) {
-            !is_link && e.preventDefault();
-            if(e.target.parentNode.classList.contains('opened')) {
-                e.target.parentNode.classList.remove('opened');
-            }
-            else {
-                e.preventDefault();
-                resolve_mini_menu_opened();
-                e.target.parentNode.classList.add('opened')
-            }
-        }
-    }
 
     return (
         <ul key={prop_key} className="menu-title menu-button">

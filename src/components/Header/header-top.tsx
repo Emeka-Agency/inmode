@@ -3,6 +3,9 @@ import { Link } from "gatsby";
 import { useImages } from "../contexts/images-provider";
 
 import "./header-top.css";
+import { getById } from "../../functions/selectors";
+import { resolveOnClick } from "../../functions/resolve_mini_menu_opened";
+import MenuSingleButton from "../menu/single-button";
 
 const HeaderTop = (props:HeaderTop) => {
 
@@ -15,7 +18,9 @@ const HeaderTop = (props:HeaderTop) => {
                 <Link to="/" className="zone-link" title="Inmode">
                 </Link>
             </div>
-            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+            <Link id="book-a-demo" to="/contact" title="Book a demo">
+                book a demo
+            </Link>
         </section>
     );
 };

@@ -1,26 +1,12 @@
 import React from 'react';
 import { Link } from "gatsby";
-import { resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
+import { resolveOnClick, resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
 import { format_string } from '../../functions/format_string';
 import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
 import { InmodePanel_Menu_Interface } from '../interfaces';
 
 const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
-
-    const resolveOnClick = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent> | any, is_link:boolean) => {
-        if(openOnClick === true) {
-            !is_link && e.preventDefault();
-            if(e.target.parentNode.classList.contains('opened')) {
-                e.target.parentNode.classList.remove('opened');
-            }
-            else {
-                e.preventDefault();
-                resolve_mini_menu_opened();
-                e.target.parentNode.classList.add('opened')
-            }
-        }
-    }
 
     return (
         <ul key={prop_key} className="menu-title menu-image">
@@ -30,7 +16,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
                         className="menu-title menu-image"
                         to={menu.url || "#"}
                         onClick={(e) => {
-                            resolveOnClick(e, true);
+                            resolveOnClick(e, true, openOnClick);
                             enableMainScroll();
                         }}
                         title={format_string(menu.title || '')}
@@ -42,7 +28,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
                         className="menu-title menu-image"
                         href={menu.url || "#"}
                         onClick={(e) => {
-                            resolveOnClick(e, true);
+                            resolveOnClick(e, true, openOnClick);
                             enableMainScroll();
                         }}
                         target="_blank"
@@ -54,7 +40,7 @@ const MenuTitleImage = ({menu, prop_key, openOnClick}:MenuTitleImage) => {
                 :
                 <div
                     className="menu-title menu-image"
-                    onClick={(e) => {resolveOnClick(e, false);}}
+                    onClick={(e) => {resolveOnClick(e, false, openOnClick);}}
                 >
                     {format_string(menu.title || '')}
                 </div>

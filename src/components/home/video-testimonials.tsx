@@ -3,6 +3,9 @@ import React from "react";
 import Video from "../Video";
 
 import "./video-testimonials.css";
+import { getById } from "../../functions/selectors";
+import { resolveOnClick } from "../../functions/resolve_mini_menu_opened";
+import MenuSingleButton from "../menu/single-button";
 
 const VideoTestimonials = (props:VideoTestimonials) => {
 
@@ -43,7 +46,9 @@ const VideoTestimonials = (props:VideoTestimonials) => {
                     </div>
                 ))}
             </div>
-            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+            <Link id="book-a-demo" to="/contact" title="Book a demo">
+                book a demo
+            </Link>
         </section>
     );
 };

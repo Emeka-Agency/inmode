@@ -7,3 +7,23 @@
     margin-top: 15px;
     max-width: calc(100vw - 20px);
 }
+
+/* book a demo */
+
+#header-mini #book-a-demo {
+    background-color: var(--teal);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 220px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 50px;
+}

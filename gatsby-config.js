@@ -32,7 +32,7 @@ module.exports = {
     siteUrl: `https://inmodemd.co.uk`,
   },
   plugins: [
-    // '@typescript-eslint/eslint-plugin',
+    'gatsby-plugin-postcss',
     // 'react',
     {
       resolve: `gatsby-plugin-sitemap`,

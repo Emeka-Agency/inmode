@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "gatsby";
-import { resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
+import { resolveOnClick, resolve_mini_menu_opened } from '../../functions/resolve_mini_menu_opened';
 import { format_string } from '../../functions/format_string';
 import Menu from '../menu';
 import { enableMainScroll } from '../../functions/disable-scroll';
@@ -8,31 +8,18 @@ import { InmodePanel_Menu_Interface } from '../interfaces';
 
 const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:MenuSideMenuText) => {
 
-    const resolveOnClick = (e:React.MouseEvent<HTMLAnchorElement, MouseEvent> | any, is_link:boolean) => {
-        if(openOnClick === true) {
-            !is_link && e.preventDefault();
-            if(e.target.parentNode.classList.contains('opened')) {
-                e.target.parentNode.classList.remove('opened');
-            }
-            else {
-                e.preventDefault();
-                resolve_mini_menu_opened();
-                e.target.parentNode.classList.add('opened')
-            }
-        }
-    }
-
     return (
         <ul key={prop_key} className="menu-side-menu menu-text transition">
             {menu.url ?
-                menu.internal_link ?
+                menu.internal_link == true ?
                     <Link
                         className="menu-side-menu menu-text"
                         to={menu.url || "#"}
                         onClick={(e) => {
-                            resolveOnClick(e, true);
+                            resolveOnClick(e, true, openOnClick);
                             enableMainScroll();
                         }}
+                        target="_self"
                         title={format_string(menu.title || '')}
                     >
                         {format_string(menu.title || '')}
@@ -42,7 +29,7 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
                         className="menu-side-menu menu-text"
                         href={menu.url || "#"}
                         onClick={(e) => {
-                            resolveOnClick(e, true);
+                            resolveOnClick(e, true, openOnClick);
                             enableMainScroll();
                         }}
                         target="_blank"
@@ -54,7 +41,7 @@ const MenuSideMenuText = ({menu, prop_key = undefined, openOnClick = false}:Menu
                 :
                 <div
                     className="menu-side-menu menu-text"
-                    onClick={(e) => {resolveOnClick(e, false);}}
+                    onClick={(e) => {resolveOnClick(e, false, openOnClick);}}
                 >
                     {format_string(menu.title || '')}
                 </div>

@@ -1,6 +1,6 @@
 section.video-testimonials {
     background-color: var(--pearl);
-    padding: 25px 70px;
+    padding: 85px;
     position: relative;
 }
 
@@ -17,13 +17,16 @@ section.video-testimonials {
 }
 
 section.video-testimonials .title {
+    text-transform: uppercase;
+    font-family: 'raleway';
+    font-size: 35px;
     color: var(--midnight);
-    font-size: 36px;
-    font-weight: 700;
+    font-weight: 600;
+    margin: 0 auto;
 }
 
 section.video-testimonials .descr {
-    color: var(--platinum);
+    color: var(--teal);
     font-size: 24px;
     font-weight: 500;
     margin-top: 16px;
@@ -40,7 +43,7 @@ section.video-testimonials .testimonials {
 
 @media (max-width: 1099px) {
     section.video-testimonials .testimonials {
-        flex-: column;
+        flex-direction: column;
     }
 }
 
@@ -140,49 +143,29 @@ section.video-testimonials .testimonials .video-testimonial .origin {
 /* book a demo */
 
 section.video-testimonials #book-a-demo {
-    display: inline-block;
-    margin-left: 5px;
-    margin: 25px auto 0;
-    display: block;
-}
-
-section.video-testimonials #book-a-demo span.label {
-    cursor: pointer;
-    color: var(--teal);
-    border-top: 2px solid var(--teal);
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: uppercase;
-    background-color: var(--pearl);
-    padding: 7px 15px;
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
-    line-height: 2;
-    transition: background-color 0.2s ease-in-out 0s, color 0.2s ease-in-out 0s;
-}
-
-section.video-testimonials #book-a-demo span.label:hover {
-    color: var(--pearl);
     background-color: var(--teal);
-}
-
-section.video-testimonials #book-a-demo:hover {
-    color: var(--teal);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 220px;
+    max-width: 220px;
+    display: block;
+    margin: 30px auto 45px;
 }
 
 @media (max-width: 1199px) {
     section.video-testimonials #book-a-demo {
-        margin-left: 15px;
         display: block;
         top: 9px;
-        position: absolute;
-        float: right;
+        position: relative;
         font-size: 14px;
-    }
-    
-    section.video-testimonials #book-a-demo {
-        right: 115px;
     }
 
 }
@@ -190,11 +173,9 @@ section.video-testimonials #book-a-demo:hover {
 @media (max-width: 480px) {
     section.video-testimonials #book-a-demo {
         position: relative;
-        width: 100%;
         display: block;
         float: unset;
         right: 0;
-        margin: 0;
         height: auto;
     }
 

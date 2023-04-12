@@ -28,6 +28,13 @@ const IMAGE = 'image';
 const BUTTON = 'button';
 const CARD = 'card';
 
+// IMPORTANT - Créer une fonction qui renvoie un appel de base <Menu .../> ou un <ul><Menu .../></ul> selon le besoin
+// CURRENT - Créer une fonction qui renvoie un appel de base <Menu .../> ou un <ul><Menu .../></ul> selon le besoin
+// menu.variant === CONTENT && menu.type === TEXT
+// menu.variant === CONTENT && menu.type === IMAGE
+// menu.variant === CONTENT && menu.type === BUTTON
+// menu.variant === CONTENT && menu.type === CARD
+
 const Menu = ({menu, prop_key, openOnClick}:Menu) => {
 
     // if(menu.url == "/testimonials") {return null;}

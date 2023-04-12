@@ -43,3 +43,12 @@ Our Specialists ajoutés
 About Us
 	=> Neil Wolfenden ajouté
 	=> Adrian ?
+
+
+05/04/2023
+
+Header                      => 7h
+Hero section                => 1h 30m
+Why inmode                  => 2h
+Slides                      => 2h
+Subscribe                   => 30min

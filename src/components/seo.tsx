@@ -9,6 +9,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { Script } from "gatsby"
 import { useImages } from './contexts/images-provider';
 
 function SEO({ description, lang, meta, title }) {
@@ -49,8 +50,23 @@ function SEO({ description, lang, meta, title }) {
     `
   );
 
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata?.title
+  const metaDescription = description || site.siteMetadata.description;
+  const defaultTitle = site.siteMetadata?.title;
+
+  const head_tag = function(w:any, d:any, s:any, l:any, i:any) {
+        if(w == undefined) {return;}
+        if(d == undefined) {return;}
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start': new Date().getTime(),
+            event:'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l! = 'dataLayer'?'&l=' + l : '';
+        j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j,f);
+    }
 
   return (
     <Helmet
@@ -124,7 +140,13 @@ function SEO({ description, lang, meta, title }) {
           content: images.resolve_img('seoLogo2'),
         },
       ].concat(meta)}
-    />
+    >
+        {/* <!-- Google Tag Manager --> */}
+        <Script>
+            {head_tag(typeof window != "undefined" ? window : undefined, typeof document != "undefined" ? document : undefined, 'script', 'dataLayer', 'GTM-WVWLZ2L')}
+        </Script>
+        {/* <!-- End Google Tag Manager --> */}
+    </Helmet>
   )
 }
 

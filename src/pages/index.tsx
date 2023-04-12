@@ -37,17 +37,16 @@ const IndexPage = () => {
       <Layout title="home">
         <SEO/>
         <Hero/>
+        <WhyInmode/>
         {size.width > 999 ? <Slides from='home'/> : <SlidesMini from="home"/>}
         <Alveoles />
-        <ClinicalStudies/>
-        <WhyInmode/>
+        {/* <ClinicalStudies/> */}
         <VideoTestimonials/>
-        <OurSpecialist/>
-        {/* CLARIFY Provisoire */}
+        {/* <OurSpecialist/> */}
         <AwardsSection/>
-        <FollowInstagram insta_id={instagram_id}/>
+        {/* <FollowInstagram insta_id={instagram_id}/> */}
         <Newsletter />
-        <ContactForm from="home"/>
+        {/* <ContactForm from="home"/> */}
       </Layout>
   );
 }

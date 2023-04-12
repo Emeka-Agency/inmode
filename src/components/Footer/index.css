@@ -11,6 +11,10 @@ footer {
     /* background-blend-mode: soft-light; */
 }
 
+body > footer {
+    display: none;
+}
+
 footer .background-hex {
     position: absolute;
     width: 100%;

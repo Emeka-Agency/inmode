@@ -8,6 +8,8 @@ import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../int
 import { getById } from "../../functions/selectors";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
 
+import "./slides.css";
+
 const Slides = ({from}:Slides) => {
 
     const images = useImages();
@@ -70,8 +72,19 @@ const Slides = ({from}:Slides) => {
         }
     }
 
+    const icons = {
+        "BodyTite": 'bodytite_midnight',
+        "Optimas": 'optimas_midnight',
+        "EvolveX": 'evolve_midnight',
+        "Evoke": 'evoke_midnight',
+        "Contoura": 'contoura_midnight',
+        "Empower RF": 'empowerrf_dusty_rose',
+    }
+
     return (
         <div className={`slides-${from} ${current > -1 && open === true ? 'show' : ''}`}>
+            <h2 className="title">Our products</h2>
+            <h3 className="subtitle">Aesthetic treatments for the face, body, skin and women's health and well-being.</h3>
             <Carousel
                 id={`carousel-${from}`}
                 options={flickityOptions}
@@ -83,17 +96,22 @@ const Slides = ({from}:Slides) => {
                             key={key}
                             className={"slide transition gallery-cell" + (current === key && open === true ? ' show' : '')}
                         >
-                            <div className="slide-title">
-                                {slide.short_descr}
-                            </div>
                             <div className="slide-content">
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={resolveImg(slide.Icon)}
-                                        srcSet={resolveImgSet(slide.Icon)}
+                                        src={images.resolve_img(icons[slide.Name])}
+                                        srcSet={images.resolve_img_set(icons[slide.Name])}
                                         alt={slide.Name}
                                     />
+                                    <div className="slide-txts">
+                                        <div className="slide-title">
+                                            {slide.Name}
+                                        </div>
+                                        <div className="slide-short-descr">
+                                            {slide.short_descr}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div className="slide-background-product">
                                     <img
@@ -103,27 +121,12 @@ const Slides = ({from}:Slides) => {
                                         alt='products'
                                     />
                                 </div>
-                                <div className="slide-short-descr">
-                                    {slide.Name}
-                                </div>
                                 <div className="slide-view-detail" onClick={(e) => {view_detail(e, key);}}>
                                     Product information
-                                    <img
-                                        className="slide-view-detail-arrow transition"
-                                        src={images.resolve_img('arrowRightIcon')}
-                                        srcSet={images.resolve_img_set('arrowRightIcon')}
-                                        alt="arrow-right"
-                                    />
                                     <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
                                 </div>
                                 {slide.Addons ? <div className="slide-view-product" onClick={(e) => {view_product(e, key);}}>
                                     Workstation addons
-                                    <img
-                                        className="slide-view-product-arrow transition"
-                                        src={images.resolve_img('arrowRightIcon')}
-                                        srcSet={images.resolve_img_set('arrowRightIcon')}
-                                        alt="arrow-left"
-                                    />
                                 </div> : null}
                             </div>
                         </div>

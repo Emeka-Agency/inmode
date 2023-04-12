@@ -6,6 +6,9 @@ import { useImages } from '../contexts/images-provider';
 import MenuSingleText from "../menu/single-text";
 
 import "./fixed-menu.css";
+import { getById } from "../../functions/selectors";
+import { resolveOnClick } from "../../functions/resolve_mini_menu_opened";
+import MenuSingleButton from "../menu/single-button";
 
 const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
@@ -46,7 +49,9 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
                             <Menu key={key} prop_key={key} menu={menu} />
                         );
                     })}
-                    <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+                    <Link id="book-a-demo" to="/contact" title="Book a demo">
+                        book a demo
+                    </Link>
                 </div>
             </div>
         </div>

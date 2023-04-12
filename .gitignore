@@ -104,3 +104,5 @@ tests/clinic-finder-script.js
 .PROD
 strapi/
 strapi-modules/
+content/*
+.old/

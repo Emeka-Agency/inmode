@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import PropTypes from "prop-types";
 
 import Header from "../Header/index";
 import Footer from "../Footer";
@@ -7,14 +6,16 @@ import ContactUs from "../Contact/contact-us";
 import PrivacyPolicy from "../privacy-policy";
 import FixedMenu from "../Header/fixed-menu";
 import Modale from "../Modale";
-
-import "./index.css";
-
+import VideoFrame from "../Video/frame";
 import MenusProvider from "../contexts/menus-provider";
 import ProductsProvider from "../contexts/products-provider";
-import ImagesProvider from "../contexts/images-provider";
+import ImagesProvider, { useImages } from "../contexts/images-provider";
 import ArticleProvider from "../contexts/article-provider";
-import { resolve_video_click } from "../../functions/video";
+
+import "./index.css";
+import { selectOne } from "../../functions/selectors";
+import { strToDom } from "../../functions/tools";
+
 
 const Layout = ({ children, title }:Layout) => {
 
@@ -45,6 +46,12 @@ const Layout = ({ children, title }:Layout) => {
     return (
         <ImagesProvider>
             <MenusProvider>
+                {/* // <!-- Google Tag Manager (noscript) --> */}
+                <noscript>
+                    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVWLZ2L" height="0" width="0" style={{display: "none", visibility: "hidden"}}>
+                    </iframe>
+                </noscript>
+                {/* // <!-- End Google Tag Manager (noscript) --> */}
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <Header/>
                 {/* <!-- Google tag (gtag.js) --> */}
@@ -62,7 +69,7 @@ const Layout = ({ children, title }:Layout) => {
                 <ContactUs/>
                 <Footer/>
                 <Modale/>
-                <div id="video-iframe" onClick={(e) => {resolve_video_click(e);}}></div>
+                <VideoFrame/>
             </MenusProvider>
         </ImagesProvider>
     )

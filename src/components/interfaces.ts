@@ -75,6 +75,8 @@ export interface Airtable_Picture_Interface {
 }
 
 export interface InmodePanel_Addon_Interface {
+    id?: string;
+    strapiId?: string;
     Name?: string;
     Banner? : InmodePanel_Base_Banner_Interface;
     WhatIs?: InmodePanel_Generic_WhatIs_Interface;
@@ -94,6 +96,12 @@ export interface InmodePanel_Addon_Interface {
     RelatedAddonTreats?: InmodePanel_Base_RelatedAddonTreat_Interface[];
     MenuParams: InmodePanel_Generic_MenuParams_Interface;
     sensitivity: boolean;
+    menus?: InmodePanel_Menu_Interface[];
+    products?: InmodePanel_Product_Interface[];
+    treatments?: InmodePanel_Treatment_Interface[];
+    mini_treatments?: InmodePanel_Treatment_Interface[];
+    mini_products?: InmodePanel_Product_Interface[];
+    mini_addons?: InmodePanel_Addon_Interface[];
 };
 export interface InmodePanel_Event_Interface {
     picture: {
@@ -114,8 +122,8 @@ export interface InmodePanel_Event_Interface {
     strapiId: string;
 };
 export interface InmodePanel_Menu_Interface {
-    id?: string;
-    strapiId?: string;
+    id?: string|number;
+    strapiId?: string|number;
     title?: string;
     url?: string;
     type?: string;
@@ -597,6 +605,7 @@ export interface External_GatsbyImage_Interface extends GatsbyImage_Interface {
 
 export interface GatsbyImage_Interface {
     ext?: string;
+    extension?: string;
     childImageSharp?: {
         fixed: {
             base64?: string;
@@ -618,6 +627,8 @@ export interface GatsbyImage_Interface {
             width?: number;
             height?: number;
         }
+        ext?: string;
+        extension?: string;
     };
     childrenImageSharp: {
         fixed: {
@@ -640,6 +651,8 @@ export interface GatsbyImage_Interface {
             width?: number;
             height?: number;
         }
+        ext?: string;
+        extension?: string;
     }
     absolutePath?: string;
     publicURL?: string;

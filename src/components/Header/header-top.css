@@ -26,39 +26,17 @@ section.header-top .header-logo .zone-link {
 /* book a demo */
 
 section.header-top #book-a-demo {
-    display: flex;
-    border-radius: 5px;
+    display: block;
     cursor: pointer;
-    color: var(--midnight);
+    color: var(--white);
     background-color: var(--teal);
-    font-family: 'raleway';
     font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
-    padding: 14px 28px;
-    transition: color 0.2s ease-in-out 0s;
-}
-
-section.header-top #book-a-demo:hover {
-    color: var(--pearl);
-}
-
-@media (max-width: 1199px) {
-    section.header-top #book-a-demo {
-        
-    }
-    
-    section.header-top #book-a-demo {
-    }
-
-}
-
-@media (max-width: 480px) {
-    section.header-top #book-a-demo {
-        
-    }
-
-    section.header-top #book-a-demo {
-        
-    }
+    box-sizing: border-box;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    width: 220px;
 }

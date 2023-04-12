@@ -188,6 +188,9 @@ export const resolveImgSet = (img?:any) => {
 export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
+        retour = img?.localFile?.publicURL;
+    }
     if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
         retour = img?.localFile?.childImageSharp?.fluid?.srcWebp;
     }
@@ -218,6 +221,9 @@ export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|u
 export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
+        retour = img?.localFile?.publicURL;
+    }
     if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
         retour = img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
     }
@@ -248,6 +254,9 @@ export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):strin
 export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
+    if((img?.ext == ".svg") || (img?.extension == "svg")) {
+        retour = img?.publicURL;
+    }
     if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
         retour = img?.childImageSharp?.fluid?.srcWebp;
     }
@@ -272,6 +281,9 @@ export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined 
 export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
+    if((img?.ext == ".svg") || (img?.extension == "svg")) {
+        retour = img?.publicURL;
+    }
     if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
         retour = img?.childImageSharp?.fluid?.srcSetWebp;
     }

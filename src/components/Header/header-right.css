@@ -57,7 +57,7 @@
 .header-parts > .header-right ul div.menu-text.menu-title,
 .header-parts > .header-right ul div.menu-text.menu-dk-title {
     text-transform: uppercase;
-    color: #d8d8d8;
+    color: var(--pearl);
     font-family: 'raleway';
     font-weight: 600;
     font-size: 14px;
@@ -175,7 +175,7 @@
     /* HEADER-MINI-RIGHT */
 
     .header-mini.opened .header-right {
-        padding-top: 70px;
+        padding-top: 15px;
     }
 
     .header-mini.opened .header-right ul.menu-title,
@@ -379,7 +379,7 @@
 
 .header-parts > .header-right .menu-text,
 .header-parts > .header-right .menu-content {
-    text-transform: uppercase;
+    text-transform: unset;
 }
 
 .header-parts > .header-right .menu-text.menu-title:hover {
@@ -473,6 +473,7 @@
 
     .header-mini.opened .header-right ul.menu-title .menu-title::after,
     .header-mini.opened .header-right a.menu-title::after,
+    .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu div.menu-text::after,
     .header-mini.opened .header-right div.menu-title::after {
         content: "";
         border-right: 2px solid #fff;
@@ -510,25 +511,25 @@
 
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"],
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"] img {
-        width: 60px;
-        height: 40px;
+        /* width: 60px; */
+        /* height: 40px; */
     }
 
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"],
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"] img {
-        width: 60px;
-        height: 30px;
+        /* width: 60px; */
+        /* height: 30px; */
     }
 
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"],
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"] img {
-        width: 60px;
-        height: 30px;
+        /* width: 60px; */
+        /* height: 30px; */
     }
 
     .header-mini.opened .header-right ul.menu-title.opened .dropdown-menu li {
-        width: 100px;
-        height: 50px;
+        width: auto;
+        height: auto;
         margin: 0 auto;
     }
 }

@@ -2,6 +2,15 @@ main.clinic-finder-page > .container {
     padding: 35px 0 0;
 }
 
+@media (max-width: 1199px) {
+    main.clinic-finder-page .container .container {
+        padding: 0;
+    }
+}
+
+/* CLINIC TABS
+---------------------- */
+
 main.clinic-finder-page .container #clinic-finder-tabs {
     margin: 0 auto;
     border: 1px solid var(--teal);
@@ -9,6 +18,12 @@ main.clinic-finder-page .container #clinic-finder-tabs {
     border-radius: 5px;
     width: 352px;
     box-sizing: border-box;
+}
+
+@media (max-width: 425px) {
+    main.clinic-finder-page .container #clinic-finder-tabs {
+        width: 100%;
+    }
 }
 
 main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics,
@@ -50,6 +65,25 @@ main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics.current:hove
 main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current:hover {
     color: var(--dusk);
 }
+
+@media (max-width: 465px) {
+    main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics,
+    main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
+        display: block;
+        width: 100%;
+    }
+
+    main.clinic-finder-page .container #clinic-finder-tabs #tab-clinics {
+        border-radius: 3px 3px 0 0;
+    }
+    
+    main.clinic-finder-page .container #clinic-finder-tabs #tab-map {
+        border-radius: 0 0 3px 3px;
+    }
+}
+
+/* CLINIC FINDER
+---------------------- */
 
 main.clinic-finder-page .clinic-finder {
     padding: 35px 0 50px;
@@ -118,6 +152,9 @@ main.clinic-finder-page .clinic-finder #clinic-finder-search-zip {
     font-family: "raleway", sans-serif;
 }
 
+/* CLINIC FILTER
+---------------------- */
+
 main.clinic-finder-page .clinic-finder #clinic-filter-regions,
 main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span,
 main.clinic-finder-page .clinic-finder .clinic-finder-search-span {
@@ -127,6 +164,20 @@ main.clinic-finder-page .clinic-finder .clinic-finder-search-span {
     vertical-align: middle;
     margin-right: 10px;
     margin-left: 0;
+}
+
+@media (max-width: 465px) {
+    main.clinic-finder-page .clinic-finder #clinic-filter-regions,
+    main.clinic-finder-page .clinic-finder .clinic-finder-search-zip-span,
+    main.clinic-finder-page .clinic-finder .clinic-finder-search-span {
+        width: 100%;
+        display: block;
+        margin: 10px 0 0;
+    }
+
+    main.clinic-finder-page .clinic-finder #clinic-filter-regions select {
+        width: 100%;
+    }
 }
 
 main.clinic-finder-page .clinic-finder #clinic-filter-regions::after,
@@ -213,6 +264,9 @@ main.clinic-finder-page .clinic-finder #clinic-finder-search-zip:focus-within + 
     width: 100%;
 }
 
+/* CLINICS
+---------------------- */
+
 main.clinic-finder-page .clinic-finder .clinic-item {
     min-height: auto;
     margin: 35px auto;
@@ -221,7 +275,7 @@ main.clinic-finder-page .clinic-finder .clinic-item {
     background-color: var(--star-blue, #0a1727);
     padding: 15px 20px 0 20px;
     position: relative;
-    max-width: 850px;
+    max-width: 100%;
     overflow: hidden;
 }
 

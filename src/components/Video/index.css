@@ -3,9 +3,13 @@
 .video.poster {
     position: relative;
     cursor: pointer;
+    width: 100%;
+    height: 100%;
 }
 
 .video.poster .video-poster {
+    position: relative;
+    cursor: pointer;
     width: 100%;
     height: 100%;
 }
@@ -47,6 +51,14 @@
 }
 
 /* video iframe */
+
+#video-iframe {
+    display: none;
+}
+
+body > #video-iframe {
+    display: none;
+}
 
 #video-iframe.opened {
     position: fixed;

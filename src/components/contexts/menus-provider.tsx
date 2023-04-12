@@ -257,9 +257,6 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         Object.keys(_object).map((elem:number) => {
             if(_object[elem].menus.length) {
                 _object[elem].menus = _object[elem].menus.map((menu) => {
-                    if(_object[elem].title == "Select a country") {
-                        console.log(_object[elem].menus.map(el => el.icon));
-                    }
                     return {
                         ...menu,
                         'menus': menu.menus || [],
@@ -366,9 +363,39 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }).filter(menu => menu);
     }
 
+    const find_in_menu = (menus:InmodePanel_Menu_Interface[]|null = null, id:any = null) => {
+        if(!Array.isArray(menus)) {return null;}
+        if(id == null) {return null;}
+        return menus.find((el:InmodePanel_Menu_Interface):boolean => el["id"] == id) ?? null;
+    }
+
     const [menusHeaderLeft] = React.useState(process_menu(datas.header_left.nodes));
     const [menusHeaderRight] = React.useState(
       process_menu(datas.header_right.nodes.map(elem => elem))
+      .map((menu:HeaderRight_Interface) => {
+        if(menu.url == "/contact") {return menu;}
+        return {
+            ...menu,
+            menus: [
+                find_in_menu(menu.menus, 18),
+                {
+                    ...find_in_menu(menu.menus, 21),
+                    menus: [
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 20),
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 22),
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 4),
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 6),
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 38),
+                        find_in_menu((find_in_menu(menu.menus, 21)?.menus ?? []), 37),
+                    ]
+                },
+                find_in_menu(menu.menus, 33),
+                find_in_menu(menu.menus, 23),
+                find_in_menu(menu.menus, 35),
+                find_in_menu(menu.menus, 34),
+            ]
+        };
+      })
       .sort((a:any, b:any) => b.url == "/contact" ? -1 : 0)
     );
     const [menusFooter] = React.useState(datas.footer);

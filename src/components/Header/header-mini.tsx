@@ -11,6 +11,8 @@ import { _log } from '../../functions/logger';
 import { Link } from 'gatsby';
 
 import "./header-mini.css";
+import { resolveOnClick } from '../../functions/resolve_mini_menu_opened';
+import MenuSingleButton from '../menu/single-button';
 
 
 const HeaderMini = ({}:HeaderMini) => {
@@ -44,7 +46,9 @@ const HeaderMini = ({}:HeaderMini) => {
                 <span>CLOSE</span>
                 <img className="close-mini-menu-icon" src={images.resolve_img('closeWhiteIcon')} alt="close-white"/>
             </div>
-            <Link id="book-a-demo" to="/contact"><span className="label">book a demo</span></Link>
+            <Link id="book-a-demo" to="/contact" title="Book a demo">
+                book a demo
+            </Link>
             <div className="header-mini-divider"></div>
             <div id="header-mini-bottom" className="header-right">
                 {menus_right && menus_right.map((menu:HeaderRight_Interface, key:number) => {

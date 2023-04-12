@@ -8,18 +8,17 @@ import "./index.css";
 
 const Video = ({ video = {}, few = false, key = null, ...props }:Video) => {
 
-    _log(video);
-
     return (
         <div
-            className={`${few ? 'few-videos' : ''} poster video ${props.className}`}
+            className={`${few ? 'few-videos' : ''} poster video ${props.className ?? ""}`}
             onClick={(e) => {resolveVideoClick(e, video.url || '');}}
             key={key}
         >
             <div
                 className="video-poster background-image"
                 style={{
-                    backgroundImage: `url(${video.poster_link == "external" && typeof video.poster == "string" ? video.poster : resolveImg(video.poster)})`
+                    backgroundImage: `url(${video.poster_link == "external" && typeof video.poster == "string" ? video.poster : resolveImg(video.poster)})`,
+                    aspectRatio: video.poster_ratio ?? 'unset'
                 }}
             >
                 <span className="video-bg"></span>
@@ -36,6 +35,7 @@ interface Video {
         url?: string;
         poster?: {localFile: GatsbyImage_Interface} | GatsbyImage_Interface | string;
         poster_link?: string;
+        poster_ratio?: number;
         alt?: string;
     }
     few?: boolean;

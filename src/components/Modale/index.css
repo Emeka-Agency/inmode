@@ -9,6 +9,10 @@
     opacity: 0;
 }
 
+body > #modale {
+    display: none;
+}
+
 #modale.opened {
     z-index: 6;
     opacity: 1;

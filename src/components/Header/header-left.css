@@ -57,7 +57,7 @@
 .header-parts > .header-left ul div.menu-text.menu-title,
 .header-parts > .header-left ul div.menu-text.menu-dk-title {
     text-transform: uppercase;
-    color: #d8d8d8;
+    color: var(--pearl);
     font-family: 'raleway';
     font-weight: 600;
     font-size: 14px;
@@ -175,7 +175,7 @@
     /* HEADER-MINI-RIGHT */
 
     .header-mini.opened .header-left {
-        padding-top: 70px;
+        padding-top: 15px;
     }
 
     .header-mini.opened .header-left ul.menu-title,
@@ -209,7 +209,7 @@
     }
 
     .header-mini.opened .header-left ul.menu-dk-title.opened .dk-dropdown-menu {
-        padding: 15px 0 0;
+        padding: 15px 50px 0;
         height: unset;
     }
 
@@ -267,7 +267,7 @@
         width: 70px;
         padding: 5px 0;
         position: relative;
-        min-height: 90px;
+        min-height: unset;
         vertical-align: top;
     }
 
@@ -283,6 +283,11 @@
     .header-mini.opened .header-left ul.menu-dk-title.opened .dk-dropdown-menu .menu-title.menu-card .title {
         color: #ffffff;
         margin-top: 5px;
+    }
+
+    .header-mini.opened .header-left ul.menu-dk-title.opened .dk-dropdown-menu .dk-sub-container > .menu-title.menu-card a {
+        width: 100%;
+        display: block;
     }
 }
 
@@ -473,7 +478,8 @@
 
     .header-mini.opened .header-left ul.menu-title .menu-title::after,
     .header-mini.opened .header-left a.menu-title::after,
-    .header-mini.opened .header-left div.menu-title::after {
+    .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu div.menu-text::after,
+    .header-mini.opened .header-left :not(.dk-dropdown-menu) div.menu-title:not(.menu-card)::after {
         content: "";
         border-right: 2px solid #fff;
         border-bottom: 2px solid #fff;
@@ -483,6 +489,10 @@
         transform: rotate(45deg);
         margin-bottom: 3px;
         margin-left: 10px;
+    }
+
+    .header-mini.opened .menu-title.menu-car::after {
+        margin-left: 0px;
     }
 
     .header-mini.opened .header-left ul.menu-title .dropdown-menu {
@@ -510,25 +520,25 @@
 
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"],
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"] img {
-        width: 60px;
-        height: 40px;
+        /* width: 60px; */
+        /* height: 40px; */
     }
 
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"],
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"] img {
-        width: 60px;
-        height: 30px;
+        /* width: 60px; */
+        /* height: 30px; */
     }
 
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"],
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.fr/"] img {
-        width: 60px;
-        height: 30px;
+        /* width: 60px; */
+        /* height: 30px; */
     }
 
     .header-mini.opened .header-left ul.menu-title.opened .dropdown-menu li {
-        width: 100px;
-        height: 50px;
+        width: auto;
+        height: auto;
         margin: 0 auto;
     }
 }
