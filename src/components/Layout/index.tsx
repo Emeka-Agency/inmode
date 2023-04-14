@@ -22,7 +22,7 @@ import { useUser } from "../contexts/user-provider";
 
 // {/* SWITCH CART END */}
 
-const Layout = ({ children, title, variant = "teal" }:Layout) => {
+const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
 
     // TODO régler isMobile pour ouverture cookies
     // const [isMobile, setIsMobile] = React.useState()
@@ -66,7 +66,7 @@ const Layout = ({ children, title, variant = "teal" }:Layout) => {
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
                 <script>{searchConsole()}</script>
                 <ProductsProvider>
-                <main id="main" className={title + '-page'}>
+                <main id="main" className={title + '-page'} {...rest}>
                     {children}
                 </main>
                 </ProductsProvider>
@@ -90,6 +90,7 @@ interface Layout {
     children: ReactNode;
     title: string;
     variant?: string;
+    rest: Object;
 };
 
 export default Layout

@@ -6455,13 +6455,35 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     width: 100%;
     padding-right: 35px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 #what-is.details div.details-img img {
     max-height: 100%;
-    max-width: 100%;
+    max-width: 72px;
     filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
 }
+
+.addon-page[data-addon="Aviva"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="BodyFX"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="DiolazeXL"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="EvolveX Tite"] #what-is.details div.details-img img {max-width: 300px;}
+.addon-page[data-addon="EvolveX Tone"] #what-is.details div.details-img img {max-width: 300px;}
+.addon-page[data-addon="EvolveX Transform "] #what-is.details div.details-img img {max-width: 300px;}
+.addon-page[data-addon="Lumecca"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="MiniFX"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="Morpheus8"] #what-is.details div.details-img img {max-width: 300px;}
+.addon-page[data-addon="Morpheus8V"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="Plus"] #what-is.details div.details-img img {max-width: 200px;}
+.addon-page[data-addon="ToneV"] #what-is.details div.details-img img {max-width: 350px;}
+.addon-page[data-addon="Vasculaze"] #what-is.details div.details-img img {max-width: 200px;}
+
+.products-page[data-addon="BodyTite"] #what-is.details div.details-img img {max-width: 350px;}
+.products-page[data-addon="Optimas"] #what-is.details div.details-img img {max-width: 350px;}
+.products-page[data-addon="Contoura"] #what-is.details div.details-img img {max-width: 350px;}
+.products-page[data-addon="EvolveX"] #what-is.details div.details-img img {max-width: 350px;}
+.products-page[data-addon="Evoke"] #what-is.details div.details-img img {max-width: 350px;}
+.products-page[data-addon="EmpowerRF"] #what-is.details div.details-img img {max-width: 350px;}
 
 #what-is.details .what-is,
 #what-is.details .text-list {

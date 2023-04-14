@@ -17,7 +17,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
     return (
-            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}>
+            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"} rest={{"data-addon": datas.Name}}>
                 <SEO title="Product"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation
