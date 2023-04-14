@@ -1185,38 +1185,36 @@ header[data-variant="dusty-rose"] .header-parts .signin:hover {
 }
 
 @media (max-width: 1199px) {
-    header .header-parts .login,
-    header .header-parts .signin {
-        margin-left: 15px;
-        display: block;
-        top: 9px;
-        position: absolute;
-        float: right;
-        font-size: 14px;
-    }
-    
-    header .header-parts .login {
-        right: 115px;
-    }
-
-    header .header-parts .signin {
-        right: 200px;
-    }
-
     header .header-parts #header-mini .login,
     header .header-parts #header-mini .signin {
+        display: block;
         top: 9px;
-        font-size: 14px;
-        height: 20px;
-        margin: 0 0 15px;
-        vertical-align: middle;
         position: relative;
-        float: unset;
+        font-size: 14px;
+        width: fit-content;
+        height: auto;
+        margin: 16px auto;
+    }
+    
+    header .header-parts > .login {
+        right: 120px;
+        display: block;
+        position: absolute;
+        top: 10px;
+        width: fit-content;
+    }
+
+    header .header-parts #header-mini .login:first-child,
+    header .header-parts #header-mini .signin:first-child {
+        margin-top: 32px;
     }
     
     header .header-parts #header-mini .login {
-        right: unset;
-        margin-top: 60px;
+        right: 0;
+    }
+
+    header .header-parts #header-mini .signin {
+        right: 0;
     }
 
     header .header-parts #header-mini .signin {
@@ -1296,16 +1294,20 @@ header .header-parts .profile-link span {
 @media (max-width: 1199px) {
     header .header-parts .profile-link {
         display: block;
-        right: 160px;
-        top: 8px;
-        position: absolute;
-        float: right;
-        width: 22px;
-        height: 22px;
+        right: 0;
+        top: 0;
+        position: relative;
+        width: auto;
+        height: auto;
+        margin-top: 16px;
+    }
+
+    header .header-parts .profile-link:first-child {
+        margin-top: 32px;
     }
 
     header .header-parts .profile-link img {
-        width: 100%;
+        width: 22px;
     }
 }
 
@@ -1366,16 +1368,20 @@ header .header-parts .logout span {
 @media (max-width: 1199px) {
     header .header-parts .logout {
         display: block;
-        right: 120px;
-        top: 8px;
-        position: absolute;
-        float: right;
-        width: 28px;
-        height: 28px;
+        right: 0;
+        top: 0;
+        position: relative;
+        width: auto;
+        height: auto;
+        margin-top: 16px;
+    }
+
+    header .header-parts .logout:first-child {
+        margin-top: 32px;
     }
     
     header .header-parts .logout img {
-        width: 100%;
+        width: 22px;
     }
 }
 
@@ -1465,13 +1471,19 @@ header .header-parts .logout span {
         margin-left: 5px;
     }
 
+    header .header-parts #header-mini.header-mini.opened .menu-close + .login,
+    header .header-parts #header-mini.header-mini.opened .menu-close + .signin,
+    header .header-parts #header-mini.header-mini.opened .menu-close + .logout {
+        margin-top: 48px;
+    }
+
     .header-mini.opened .header-mini-divider {
         height: 2px;
         background-color: var(--platinum);
         border-radius: 50%;
         width: 180px;
         margin: 0 auto;
-        margin-top: 5px;
+        margin-top: 16px;
         max-width: calc(100vw - 20px);
     }
 
@@ -1716,14 +1728,16 @@ header .header-parts .logout span {
 
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"],
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://inmodemd.es/"] img {
-        width: 60px;
-        height: 40px;
+        width: 24px;
+        margin-right: 6px;
+        vertical-align: middle;
     }
 
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"],
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li a[href="https://www.inmodemd.co.uk/"] img {
-        width: 60px;
-        height: 30px;
+        width: 24px;
+        margin-right: 6px;
+        vertical-align: middle;
     }
 
     .header-mini.opened .header-top ul.menu-title.opened .dropdown-menu li {
