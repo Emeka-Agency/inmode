@@ -14,46 +14,45 @@ import { useImages } from './contexts/images-provider';
 
 function SEO({ description, lang, meta, title }) {
 
-  const images = useImages();
+    const images = useImages();
 
-  const { site, strapiSeoMeta } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            description
-            og_locale
-            og_type
-            og_title
-            og_description
-            og_image
-            og_url
-            og_site_name
-            twitter_card
-            twitter_description
-            twitter_title
-            twitter_site
-            twitter_image
-            twitter_creator
-            msapplication_TileImage
-          }
+    const { site, strapiSeoMeta } = useStaticQuery(
+        graphql`
+        query {
+            site {
+                siteMetadata {
+                    description
+                    og_locale
+                    og_type
+                    og_title
+                    og_description
+                    og_image
+                    og_url
+                    og_site_name
+                    twitter_card
+                    twitter_description
+                    twitter_title
+                    twitter_site
+                    twitter_image
+                    twitter_creator
+                    msapplication_TileImage
+                }
+            }
+            strapiSeoMeta {
+                PageTitle
+                Description
+                OG_Title
+                OG_Description
+                Twitter_Title
+                Twitter_Description
+            }
         }
-        strapiSeoMeta {
-          PageTitle
-          Description
-          OG_Title
-          OG_Description
-          Twitter_Title
-          Twitter_Description
-        }
-      }
-    `
-  );
+    `);
 
-  const metaDescription = description || site.siteMetadata.description;
-  const defaultTitle = site.siteMetadata?.title;
+    const metaDescription = description || site.siteMetadata.description;
+    const defaultTitle = site.siteMetadata?.title;
 
-  const head_tag = function(w:any, d:any, s:any, l:any, i:any) {
+    const head_tag = function(w:any, d:any, s:any, l:any, i:any) {
         if(w == undefined) {return;}
         if(d == undefined) {return;}
         w[l] = w[l] || [];
@@ -68,86 +67,100 @@ function SEO({ description, lang, meta, title }) {
         f.parentNode.insertBefore(j,f);
     }
 
-  return (
-    <Helmet
-      htmlAttributes={{
-        lang,
-      }}
-      title={`${title ? title + ' | ' : ''}${strapiSeoMeta.PageTitle}`}
-      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-      meta={[
-        {
-          name: `description`,
-          // content: site.siteMetadata.description,
-          content: strapiSeoMeta.Description,
-        },
-        {
-          property: `og:locale`,
-          content: site.siteMetadata.og_locale,
-        },
-        {
-          property: `og:type`,
-          content: site.siteMetadata.og_type,
-        },
-        {
-          property: `og:title`,
-          // content: site.siteMetadata.og_title,
-          content: strapiSeoMeta.OG_Title,
-        },
-        {
-          property: `og:description`,
-          // content: site.siteMetadata.og_description,
-          content: strapiSeoMeta.OG_Description,
-        },
-        {
-          property: `og:url`,
-          content: site.siteMetadata.og_url,
-        },
-        {
-          property: `og:site_name`,
-          content: site.siteMetadata.og_site_name,
-        },
-        {
-          name: `twitter:card`,
-          content: site.siteMetadata.twitter_card,
-        },
-        {
-          name: `twitter:title`,
-          // content: site.siteMetadata.twitter_title,
-          content: strapiSeoMeta.Twitter_Title,
-        },
-        {
-          name: `twitter:description`,
-          // content: site.siteMetadata.twitter_description,
-          content: strapiSeoMeta.Twitter_Description,
-        },
-        {
-          name: `twitter:site`,
-          content: site.siteMetadata.twitter_site,
-        },
-        {
-          name: `twitter:image`,
-          // content: images.resolve_img('seoLogo'),
-          content: images.resolve_img('seoLogo2'),
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.twitter_creator,
-        },
-        {
-          name: `msapplication-TileImage`,
-          // content: images.resolve_img('seoLogo'),
-          content: images.resolve_img('seoLogo2'),
-        },
-      ].concat(meta)}
-    >
-        {/* <!-- Google Tag Manager --> */}
-        <Script>
-            {head_tag(typeof window != "undefined" ? window : undefined, typeof document != "undefined" ? document : undefined, 'script', 'dataLayer', 'GTM-WVWLZ2L')}
-        </Script>
-        {/* <!-- End Google Tag Manager --> */}
-    </Helmet>
-  )
+    const script_tag = function(w:any, d:any, s:any, src:any, id:any) {
+        if(w == undefined) {return;}
+        if(d == undefined) {return;}
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        j.async=true;j.src=src;j.id=id;
+        f.parentNode.insertBefore(j,f);
+    }
+
+    return (
+        <Helmet
+            htmlAttributes={{
+                lang,
+            }}
+            title={`${title ? title + ' | ' : ''}${strapiSeoMeta.PageTitle}`}
+            titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+            meta={[
+                {
+                name: `description`,
+                // content: site.siteMetadata.description,
+                content: strapiSeoMeta.Description,
+                },
+                {
+                property: `og:locale`,
+                content: site.siteMetadata.og_locale,
+                },
+                {
+                property: `og:type`,
+                content: site.siteMetadata.og_type,
+                },
+                {
+                property: `og:title`,
+                // content: site.siteMetadata.og_title,
+                content: strapiSeoMeta.OG_Title,
+                },
+                {
+                property: `og:description`,
+                // content: site.siteMetadata.og_description,
+                content: strapiSeoMeta.OG_Description,
+                },
+                {
+                property: `og:url`,
+                content: site.siteMetadata.og_url,
+                },
+                {
+                property: `og:site_name`,
+                content: site.siteMetadata.og_site_name,
+                },
+                {
+                name: `twitter:card`,
+                content: site.siteMetadata.twitter_card,
+                },
+                {
+                name: `twitter:title`,
+                // content: site.siteMetadata.twitter_title,
+                content: strapiSeoMeta.Twitter_Title,
+                },
+                {
+                name: `twitter:description`,
+                // content: site.siteMetadata.twitter_description,
+                content: strapiSeoMeta.Twitter_Description,
+                },
+                {
+                name: `twitter:site`,
+                content: site.siteMetadata.twitter_site,
+                },
+                {
+                name: `twitter:image`,
+                // content: images.resolve_img('seoLogo'),
+                content: images.resolve_img('seoLogo2'),
+                },
+                {
+                name: `twitter:creator`,
+                content: site.siteMetadata.twitter_creator,
+                },
+                {
+                name: `msapplication-TileImage`,
+                // content: images.resolve_img('seoLogo'),
+                content: images.resolve_img('seoLogo2'),
+                },
+            ].concat(meta)}
+        >
+            {/* <!-- Google Tag Manager --> */}
+            <Script>
+                {head_tag(typeof window != "undefined" ? window : undefined, typeof document != "undefined" ? document : undefined, 'script', 'dataLayer', 'GTM-WVWLZ2L')}
+            </Script>
+            {/* <!-- End Google Tag Manager --> */}
+            {/* <!-- LEAD FORENSICS --> */}
+            <Script>
+                {script_tag(typeof window != "undefined" ? window : undefined, typeof document != "undefined" ? document : undefined, 'script', 'https://secure.intelligentdataintuition.com/js/780395.js', 'leadforensics')}
+            </Script>
+            {/* <!-- End LEAD FORENSICS --> */}
+        </Helmet>
+    )
 }
 
 SEO.defaultProps = {

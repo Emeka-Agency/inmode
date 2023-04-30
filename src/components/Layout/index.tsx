@@ -57,6 +57,10 @@ const Layout = ({ children, title }:Layout) => {
                 {/* <!-- Google tag (gtag.js) --> */}
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
                 <script>{searchConsole()}</script>
+                {/* <!-- End Google tag (gtag.js) --> */}
+                {/* <!-- LEAD FORENSICS --> */}
+                <noscript><img alt="" src="https://secure.intelligentdataintuition.com/780395.png" style={{display:"none"}}/></noscript>
+                {/* <!-- End LEAD FORENSICS --> */}
                 <ProductsProvider>
                     <ArticleProvider>
                         <main id="main" className={title + '-page'}>
