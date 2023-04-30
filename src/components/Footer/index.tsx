@@ -97,9 +97,15 @@ const Footer = ({}:Footer) => {
                                     <span className="footer-navigation-separator"></span>
                                     {menu.name == "FR" && <img height={16} style={{display: "inline-block", verticalAlign: "top", marginRight: "5px"}} src={images.resolve_img("footerFR")} title="FR"/>}
                                     {menu.name == "ES" && <img height={16} style={{display: "inline-block", verticalAlign: "top", marginRight: "5px"}} src={images.resolve_img("footerES")} title="ES"/>}
-                                    <Link to={menu.url || '#'} className="footer-navigation-part" title={menu.name}>
-                                        {menu.name}
-                                    </Link>
+                                    {menu.name == "FR" || menu.name == "ES" ? 
+                                        <a href={menu.url || '#'} className="footer-navigation-part" title={menu.name}>
+                                            {menu.name}
+                                        </a>
+                                        :
+                                        <Link to={menu.url || '#'} className="footer-navigation-part" title={menu.name}>
+                                            {menu.name}
+                                        </Link>
+                                    }
                                 </span>
                             );
                         })}
