@@ -33,9 +33,9 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
             `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
         ).join('&');
 
-        _log(fields);
-        _log(sortBy);
-        _log(`${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`);
+        // _log(fields);
+        // _log(sortBy);
+        // _log(`${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`);
         
         fetch(
             `${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`,
@@ -62,7 +62,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
     }
 
     React.useEffect(() => {
-        _log(clinics);
+        // _log(clinics);
     }, [loading]);
 
     React.useEffect(() => {
