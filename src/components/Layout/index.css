@@ -863,6 +863,10 @@ main.article-page {
     padding: 25px 0;
 }
 
+main.articles-page {
+    background-color: var(--teal);
+}
+
 @media (max-width: 1199px) {
     main {
         margin-top: 50px;

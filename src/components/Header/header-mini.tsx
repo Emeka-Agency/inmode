@@ -33,8 +33,8 @@ const HeaderMini = ({}:HeaderMini) => {
         const body = document.querySelector('body');
         const headerMini = getById('header-mini');
         const cookies_opened = document?.querySelector('.privacy-policy.opened');
-        _log(body);
-        _log(headerMini);
+        // _log(body);
+        // _log(headerMini);
         if(body && headerMini) {
             body.classList.contains('no-scroll') && cookies_opened == null && headerMini.classList.add('opened');
         }

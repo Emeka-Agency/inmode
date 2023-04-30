@@ -9,7 +9,7 @@
 import React from 'react';
 
 export function onClientEntry () {
-  window.addEventListener('load', () => {
+  typeof window != "undefined" && window?.addEventListener('load', () => {
     document.body.className = document.body.className.replace(/\bno-js\b/, '');
   });
 }

@@ -235,3 +235,26 @@ DONE - Our Specialists :
     DONE - écriture midnight
 
 DONE - UK, N-Z, UKR, Pays-Bas en premier dans la liste des pays
+
+24/04/2023
+
+1. TODO - Add Doctor Bejma Blog  -  same copy and at the end we could do a hyperlink to go to her Website.
+https://drbejma.com/break-the-taboo-lets-talk-womens-menopause-urinery-health-concerns
+Could we have a hyperlink here or a button in the women wellness page that say See our Women Blog.
+https://www.inmodemd.co.uk/treatment/womens-wellbeing/
+Using this photo or video
+https://www.youtube.com/watch?v=QDWqcDwJm_c
+
+2. TODO - Add more customer testimonial videos here are the links:
+Here is the YouTube link for the other videos:
+https://www.youtube.com/watch?v=bsF4rZ69B5U
+https://www.youtube.com/watch?v=nImq4IJgP0w
+https://www.youtube.com/watch?v=8ogRQyJNgK4&t=2s
+https://www.youtube.com/watch?v=vWGYcm7mw80
+https://www.youtube.com/watch?v=9rx5SKnj9UI&t=2s
+
+3. DONE - Add a filter in the Clinical Finder per treatment.
+
+4. TODO - Create a registration page for Events linked with Airtable that we could use for further events.
+
+5. DONE - Section blog avec l'arrière-plan en var(--teal)

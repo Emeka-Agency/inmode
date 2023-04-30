@@ -19,6 +19,14 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
                 <SEO title="Treatment"/>
                 <TreatmentBanner datas={datas.Banner}/>
                 <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': null}}/>
+                {/* {
+                    data.Name == "womens wellbeing" &&
+                    <div>
+                        <a href="https://drbejma.com/break-the-taboo-lets-talk-womens-menopause-urinery-health-concerns" target="_blank">
+                            See our Women Blog
+                        </a>
+                    </div>
+                } */}
                 <Divider position="top"/>
                 <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}}/>
                 <TreatmentBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
