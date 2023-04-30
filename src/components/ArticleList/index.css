@@ -4,12 +4,14 @@
 
 .article-list .article-list-elem {
     position: relative;
-    height: 452px;
+    height: 460px;
     display: inline-block;
     vertical-align: top;
-    box-shadow: #00000050 2px 2px 5px 1px;
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 6px 4px;
     background-color: var(--star-blue, #0a1727);
     border-radius: 10px;
+    /* border: 2px solid var(--pearl); */
+    /* box-sizing: border-box; */
 }
 
 @media (max-width: 768px) {
@@ -71,8 +73,29 @@
     filter: brightness(2);
 }
 
+.article-list .article-list-elem .article-list-elem-read-it {
+    height: 2px;
+    width: 100%;
+    background-color: var(--pearl);
+    font-size: 16px;
+    padding: 0 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--teal);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition: height 0.3s ease-in-out 0s,
+                padding 0.3s ease-in-out 0s;
+}
+
+.article-list .article-list-elem:hover .article-list-elem-read-it {
+    height: 32px;
+    padding: 8px 0;
+}
+
 .article-list .article-list-elem .article-list-elem-title {
-    border-top: 2px solid var(--teal);
     padding: 5px 10px;
     padding-top: 15px;
     text-align: left;

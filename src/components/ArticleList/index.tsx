@@ -80,6 +80,7 @@ const ArticleList = ({}:ArticleList) => {
                                 )
                             }
                         </div>
+                        <div className="article-list-elem-read-it">read it</div>
                         {
                             article.Title
                             &&
