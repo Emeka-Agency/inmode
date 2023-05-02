@@ -9,24 +9,18 @@ import TreatmentProducts from '../components/treatment/products';
 import TreatmentBeforeAfter from '../components/treatment/before-after';
 import { graphql } from 'gatsby';
 import { InmodePanel_Treatment_Interface } from '../components/interfaces';
+import OurBlogBejma from '../components/treatment/our-blog-bejma';
 
-const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
+const TreatmentTemplates = ({ data: {strapiTreatment} }:TreatmentTemplates) => {
 
-    const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(data.strapiTreatment);
+    const [datas]:[InmodePanel_Treatment_Interface, React.Dispatch<InmodePanel_Treatment_Interface>] = React.useState(strapiTreatment);
 
     return (
             <Layout title="treatment">
                 <SEO title="Treatment"/>
                 <TreatmentBanner datas={datas.Banner}/>
                 <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': null}}/>
-                {/* {
-                    data.Name == "womens wellbeing" &&
-                    <div>
-                        <a href="https://drbejma.com/break-the-taboo-lets-talk-womens-menopause-urinery-health-concerns" target="_blank">
-                            See our Women Blog
-                        </a>
-                    </div>
-                } */}
+                {datas.Name == "womens wellbeing" && <OurBlogBejma/>}
                 <Divider position="top"/>
                 <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}}/>
                 <TreatmentBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>

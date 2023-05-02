@@ -811,3 +811,15 @@ export interface FlickityOptions_Interface {
     adaptiveHeight?: boolean,
     imagesLoaded?: boolean,
 };
+
+export interface ColorExtractor_Interface {
+    hex: string;
+    red: number;
+    green: number;
+    blue: number;
+    area: number;
+    hue: number;
+    saturation: number;
+    lightness: number;
+    intensity: number;
+}

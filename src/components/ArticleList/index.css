@@ -7,8 +7,8 @@
     height: 460px;
     display: inline-block;
     vertical-align: top;
-    box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 6px 4px;
-    background-color: var(--star-blue, #0a1727);
+    box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 4px;
+    background-color: var(--teal);
     border-radius: 10px;
     /* border: 2px solid var(--pearl); */
     /* box-sizing: border-box; */
@@ -64,9 +64,15 @@
     max-width: 200px;
     max-height: 200px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: scale(1) translateY(-50%);
     position: relative;
     z-index: 0;
+    transition: transform 0.3s ease-in-out 0s;
+}
+
+.article-list .article-list-elem:hover .article-list-elem-thumb-container .article-list-elem-thumbnail,
+.article-list .article-list-elem:hover .article-list-elem-thumb-container .article-list-elem-video {
+    transform: scale(1.05) translateY(-50%);
 }
 
 .article-list .article-list-elem .article-list-elem-thumbnail.default {
@@ -100,18 +106,23 @@
     padding-top: 15px;
     text-align: left;
     font-size: 22px;
-    color: var(--pearl);
+    color: var(--midnight);
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: capitalize;
     z-index: 0;
+    transition: color 0.3s ease-in-out 0s;
+}
+
+.article-list .article-list-elem:hover .article-list-elem-title {
+    color: var(--pearl);
 }
 
 .article-list .article-list-elem .article-list-elem-short {
     padding: 5px 10px;
     text-align: left;
     font-size: 16px;
-    color: var(--pearl);
+    color: var(--midnight);
     font-weight: normal;
     letter-spacing: 1px;
     z-index: 0;
@@ -120,7 +131,7 @@
 .article-list .article-list-elem .article-list-elem-readtime {
     z-index: 0;
     font-size: 15px;
-    color: var(--pearl);
+    color: var(--midnight);
     text-align: right;
     padding: 5px;
     height: 20px;

@@ -1,0 +1,90 @@
+#our-blog-bejma {
+    margin: 0 auto;
+}
+
+#our-blog-bejma .video.poster {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+#our-blog-bejma #our-blog-bejma-link {
+    display: block;
+    margin: 10px auto;
+}
+
+#our-blog-bejma #our-blog-bejma-link a {
+    padding: 5px 12px;
+    background-color: var(--pearl);
+    margin: 10px auto;
+    width: fit-content;
+    color: var(--teal);
+    font-size: 18px;
+    font-weight: 500;
+    display: block;
+}
+
+@media (min-width: 425px) {
+    #our-blog-bejma {
+        max-width: 100%;
+        width: calc(100% - 30px);
+    }
+
+    #our-blog-bejma .video.poster {
+        max-width: 300px;
+        max-height: 300px;
+    }
+
+    #our-blog-bejma #our-blog-bejma-link {
+        
+    }
+
+    #our-blog-bejma #our-blog-bejma-link a {
+    
+    }
+}
+@media (min-width: 768px) {
+    #our-blog-bejma {
+        max-width: 100%;
+        width: calc(100% - 40px);
+    }
+
+    #our-blog-bejma .video.poster {
+        max-width: 400px;
+        max-height: 400px;
+    }
+
+    #our-blog-bejma #our-blog-bejma-link {
+        margin: 15px auto;
+    }
+
+    #our-blog-bejma #our-blog-bejma-link a {
+        background-color: var(--pearl);
+        color: var(--teal);
+        font-size: 20px;
+        font-weight: 600;
+    }
+}
+@media (min-width: 1200px) {
+    #our-blog-bejma {
+        max-width: 1200px;
+        width: calc(100% - 60px);
+    }
+
+    #our-blog-bejma .video.poster {
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    #our-blog-bejma #our-blog-bejma-link {
+        margin: 25px auto;
+    }
+
+    #our-blog-bejma #our-blog-bejma-link a {
+        background-color: var(--pearl);
+        color: var(--teal);
+        font-size: 22px;
+        font-weight: 700;
+    }
+}

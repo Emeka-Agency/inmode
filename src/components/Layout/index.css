@@ -861,10 +861,11 @@ main.contact-us-page {
 
 main.article-page {
     padding: 25px 0;
+    background-color: var(--pearl);
 }
 
 main.articles-page {
-    background-color: var(--teal);
+    background-color: var(--pearl);
 }
 
 @media (max-width: 1199px) {

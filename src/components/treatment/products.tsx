@@ -1,10 +1,10 @@
 import React from "react";
-import { InmodePanel_Base_Texte_Interface, InmodePanel_Treatment_Interface } from "../interfaces";
+import { InmodePanel_Base_Texte_Interface, InmodePanel_Product_Interface, InmodePanel_Treatment_Interface } from "../interfaces";
 import { resolveImg } from "../../functions/tools";
 
 const TreatmentProducts = ({ datas }:TreatmentProducts) => {
 
-    if(datas.length == 0) {
+    if(!datas || !datas.products || !datas.treatment) {
         return <></>;
     }
 
@@ -14,7 +14,7 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
                 return (
                     <div key={key} className="workstation-container">
                         {bloc.WhatIsProduct.map((product, key_product) => {
-                            if(product.treatment.Name === datas.treatment) {
+                            if(product.treatment?.Name === datas.treatment) {
                                 return (
                                     <div key={key_product} className="workstation-details">
                                         <div className="workstation-img">
@@ -43,12 +43,12 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
                                 </div>
                                 <div className="treatment-list">
                                     {bloc.RelatedAddonTreatment.map((treat, key_treat) => {
-                                        if(treat.treatment.Name === datas.treatment) {
+                                        if(treat.treatment?.Name === datas.treatment) {
                                             return (
                                                 <div className="treat-elem" key={key_treat}>
                                                     <div className="addon text">{treat.addon && treat.addon.Name}</div>
                                                     <div className="treat text">
-                                                        {treat.short && treat.short.map((treat_elem:InmodePanel_Base_Texte_Interface, key_treat_elem:number) => {
+                                                        {(treat.short ?? []).map((treat_elem:InmodePanel_Base_Texte_Interface, key_treat_elem:number) => {
                                                             return (
                                                                 <span key={key_treat_elem}>{treat_elem.texte}</span>
                                                             );
@@ -69,7 +69,10 @@ const TreatmentProducts = ({ datas }:TreatmentProducts) => {
 };
 
 interface TreatmentProducts {
-    datas: InmodePanel_Treatment_Interface;
+    datas: {
+        treatment?: string;
+        products?: InmodePanel_Product_Interface[];
+    };
 }
 
 export default TreatmentProducts;

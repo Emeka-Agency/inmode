@@ -1,8 +1,9 @@
 import { Link } from "gatsby";
 import React from "react";
+var imageToGradient = require('image-to-gradient');
 import { useArticle } from "../contexts/article-provider";
 import { useImages } from "../contexts/images-provider";
-import { InmodePanel_BlogArticle_Interface, InmodePanel_BlogArticleElement_Interface } from "../interfaces";
+import { ColorExtractor_Interface, InmodePanel_BlogArticle_Interface, InmodePanel_BlogArticleElement_Interface } from "../interfaces";
 
 import { _log } from "../../functions/logger";
 
@@ -17,10 +18,13 @@ const Article = ({id, customURL}:Article) => {
 
     const articles = useArticle();
     const [article]:[InmodePanel_BlogArticle_Interface | null | undefined, React.Dispatch<InmodePanel_BlogArticle_Interface | null | undefined>] = React.useState(articles.find_in_articles(customURL ?? (id).toString()));
+    const [mainPicColors, setMainPicColors]:[{hex:string, percent:number}[], React.Dispatch<{hex:string, percent:number}[]>] = React.useState([]);
 
     if(!article) {
         return <></>;
     }
+
+    const [cssGradient, setCSSGradient]:[string, React.Dispatch<string>] = React.useState("");
 
     React.useEffect(() => {
         if(typeof window != "undefined") {
@@ -121,6 +125,28 @@ const Article = ({id, customURL}:Article) => {
         );
     }
 
+    React.useEffect(() => {
+        if(typeof window != "undefined") {
+            window.scrollTo(0, 0);
+        }
+        // if(article.Thumbnail) {
+        //     imageToGradient(
+        //         resolveImg(article.Thumbnail),
+        //         {
+        //             angle: 10,
+        //             steps: 64
+        //         },
+        //         (err:any, gradient:string) => {
+        //             if(err) {
+        //                 _log(err);
+        //                 return;
+        //             }
+        //             setCSSGradient(gradient);
+        //         }
+        //     );
+        // }
+    }, [article]);
+
     return (
         <div className="article container">
             <a className="back-to-articles" href="/blog" title="Go back to articles">
@@ -133,23 +159,27 @@ const Article = ({id, customURL}:Article) => {
                 <span className="back-to-articles-text">Articles</span>
             </a>
             <h1 className="article-title">{article.Title}</h1>
-            <div className="article-main-pic">
+            <div className="article-main-pic" style={{background: cssGradient}}>
                 {
                     article.Thumbnail ?
                     (
                         article.Thumbnail.localFile.ext == ".gif" ?
                         <img
                             className="article-list-elem-thumbnail"
+                            // style={{backgroundImage: `url("${resolveImg(article.Thumbnail)}")`}}
+                            // title={article.Title}
                             src={resolveImg(article.Thumbnail)}
-                            srcSet={resolveImgSet(article.Thumbnail)}
                             alt={article.Title}
+                        // ></div>
                         />
                         :
                         <img
                             className="article-list-elem-thumbnail"
+                            // style={{backgroundImage: `url("${resolveImg(article.Thumbnail)}")`}}
+                            // title={article.Title}
                             src={resolveImg(article.Thumbnail)}
-                            srcSet={resolveImgSet(article.Thumbnail)}
                             alt={article.Title}
+                        // ></div>
                         />
                     )
                     :
@@ -157,16 +187,21 @@ const Article = ({id, customURL}:Article) => {
                         article.VideoURL ?
                         // videoFrame(article.VideoURL)
                         <img
-                            className="article-list-elem-thumbnail"
+                            className="article-list-elem-video"
+                            // style={{backgroundImage: `url(https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`}}
+                            // title={article.Title}
                             src={`https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`}
                             alt={article.Title}
+                        // ></div>
                         />
                         :
                         <img
-                            className="article-list-elem-thumbnail default"
+                            className="article-list-elem-video default"
+                            // style={{backgroundImage: `url(${images.resolve_img('learnIcon')})`}}
+                            // title={article.Title}
                             src={images.resolve_img('learnIcon')}
-                            srcSet={images.resolve_img_set('learnIcon')}
                             alt={article.Title}
+                        // ></div>
                         />
                     )
                 }
