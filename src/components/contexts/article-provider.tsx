@@ -38,6 +38,7 @@ const ArticleProvider = ({ requested = "", children }:{requested:string, childre
                                     fluid {
                                         srcWebp
                                         srcSetWebp
+                                        aspectRatio
                                     }
                                 }
                             }
@@ -57,6 +58,7 @@ const ArticleProvider = ({ requested = "", children }:{requested:string, childre
                                         fluid {
                                             srcWebp
                                             srcSetWebp
+                                            aspectRatio
                                         }
                                     }
                                 }

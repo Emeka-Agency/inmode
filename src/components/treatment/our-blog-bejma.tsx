@@ -18,11 +18,7 @@ const OurBlogBejma = (datas:OurBlogBejma) => {
                     poster_ratio: images.get_ratio('womenBejmaPoster')
                 }}
             />
-            <div id="our-blog-bejma-link">
-                <a href="https://drbejma.com/break-the-taboo-lets-talk-womens-menopause-urinery-health-concerns" target="_blank">
-                    See our Women Blog
-                </a>
-            </div>
+            <a id="our-blog-bejma-link" title="Book a demo" href="https://drbejma.com/break-the-taboo-lets-talk-womens-menopause-urinery-health-concerns">See our Women Blog</a>
         </div>
     );
 };

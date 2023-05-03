@@ -13,11 +13,13 @@ import { Link } from 'gatsby';
 import "./header-mini.css";
 import { resolveOnClick } from '../../functions/resolve_mini_menu_opened';
 import MenuSingleButton from '../menu/single-button';
+import { useWindowSize } from '../../functions/window-size';
 
 
 const HeaderMini = ({}:HeaderMini) => {
 
     const images = useImages();
+    const window = useWindowSize();
 
     const [menus_left] = React.useState(React.useContext(MenusContext).header_left);
     const [menus_right] = React.useState(React.useContext(MenusContext).header_right);
@@ -35,7 +37,7 @@ const HeaderMini = ({}:HeaderMini) => {
         const cookies_opened = document?.querySelector('.privacy-policy.opened');
         // _log(body);
         // _log(headerMini);
-        if(body && headerMini) {
+        if(body instanceof HTMLBodyElement && headerMini instanceof HTMLElement && window.width < 1200) {
             body.classList.contains('no-scroll') && cookies_opened == null && headerMini.classList.add('opened');
         }
     });

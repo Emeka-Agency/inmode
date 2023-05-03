@@ -33,7 +33,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
     const images = useImages();
 
     return (
-        <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible ? 0 : -55, boxShadow: isVisible ? 'none' : 'unset'}}>
+        <div id="fixed-menu" className={["transition", customClass ?? ''].join(' ')} style={{top: isVisible ? 0 : -55, boxShadow: isVisible ? 'none' : 'unset'}}>
             <div className="fixed-menu-container">
                 <div className="fixed-menu-logo">
                     <img

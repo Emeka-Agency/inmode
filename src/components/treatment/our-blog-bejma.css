@@ -11,18 +11,19 @@
 
 #our-blog-bejma #our-blog-bejma-link {
     display: block;
-    margin: 10px auto;
-}
-
-#our-blog-bejma #our-blog-bejma-link a {
-    padding: 5px 12px;
-    background-color: var(--pearl);
-    margin: 10px auto;
-    width: fit-content;
-    color: var(--teal);
-    font-size: 18px;
-    font-weight: 500;
-    display: block;
+    cursor: pointer;
+    color: var(--white);
+    background-color: var(--teal);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    width: 220px;
+    margin: 0 auto;
 }
 
 @media (min-width: 425px) {

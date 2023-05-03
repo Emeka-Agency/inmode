@@ -9,6 +9,7 @@ import { _log } from "../../functions/logger";
 
 import "./index.css";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
+import Video from "../Video";
 
 const Article = ({id, customURL}:Article) => {
 
@@ -47,7 +48,7 @@ const Article = ({id, customURL}:Article) => {
 
     const videoFrame = (_url:string):JSX.Element => {
         if(_url.includes('youtube')) {
-            _url = _url.replace('watch?v=', 'embed/') + '?autoplay=0&amp;&amp;autohide=1&amp;fs=1&amp;rel=0&amp;hd=1&amp;wmode=transparent&amp;enablejsapi=1&amp;html5=1';
+            _url = _url.replace('watch?v=', 'embed/') + '?autoplay=1&amp;cc_load_policy=1&amp;color=turquoise&amp;controls=0&amp;disablekb=1&amp;autohide=1&amp;hl=en&amp;iv_load_policy=3&amp;loop=1&amp;modestbranding=1&amp;fs=1&amp;rel=0&amp;hd=1&amp;wmode=transparent&amp;enablejsapi=0&amp;html5=1';
         }
         else if(_url.includes('vimeo')) {
             _url = _url.replace('https://vimeo.com/', '//player.vimeo.com/video/') + '?autoplay=1&hd=1&show_title=1&show_byline=1&show_portrait=0&fullscreen=1';
@@ -161,6 +162,32 @@ const Article = ({id, customURL}:Article) => {
             <h1 className="article-title">{article.Title}</h1>
             <div className="article-main-pic" style={{background: cssGradient}}>
                 {
+                    article.VideoURL && !article.Thumbnail ?
+                    (
+                        <div className="article-list-elem-video">
+                            <Video
+                                video={{
+                                    url: article.VideoURL,
+                                    poster: `https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`,
+                                    poster_link: "external",
+                                }}
+                            />
+                        </div> 
+                    )
+                    :
+                    article.VideoURL && article.Thumbnail ?
+                    (
+                        <div className="article-list-elem-video">
+                            <Video
+                                video={{
+                                    url: article.VideoURL,
+                                    poster: article.Thumbnail,
+                                    poster_link: "internal",
+                                }}
+                            />
+                        </div> 
+                    )
+                    :
                     article.Thumbnail ?
                     (
                         article.Thumbnail.localFile.ext == ".gif" ?
@@ -187,7 +214,7 @@ const Article = ({id, customURL}:Article) => {
                         article.VideoURL ?
                         // videoFrame(article.VideoURL)
                         <img
-                            className="article-list-elem-video"
+                            className="article-list-elem-thumbnail"
                             // style={{backgroundImage: `url(https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`}}
                             // title={article.Title}
                             src={`https://img.youtube.com/vi/${article.VideoURL.replace("https://www.youtube.com/watch?v=", "")}/maxresdefault.jpg`}
@@ -196,7 +223,7 @@ const Article = ({id, customURL}:Article) => {
                         />
                         :
                         <img
-                            className="article-list-elem-video default"
+                            className="article-list-elem-thumbnail default"
                             // style={{backgroundImage: `url(${images.resolve_img('learnIcon')})`}}
                             // title={article.Title}
                             src={images.resolve_img('learnIcon')}
