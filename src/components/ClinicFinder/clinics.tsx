@@ -109,12 +109,13 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             // _slog("elem", "background:black;font-weight:bold;font-size:16px;color:yellow");
             if(
                 (clinic.Client && clinic.Client.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
-                (clinic.Nom && clinic.Nom.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
+                // (clinic.Nom && clinic.Nom.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Adresse && clinic.Adresse.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.CodePostal && clinic.CodePostal.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Ville && clinic.Ville.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Pays && clinic.Pays.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Telephone && clinic.Telephone.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
+                (clinic.Telephone && clinic.Telephone.replace(/ /gi, '').includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Email && clinic.Email.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.Site && clinic.Site.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 clinic.Machines instanceof Array && clinic.Machines.map((treat) => {
