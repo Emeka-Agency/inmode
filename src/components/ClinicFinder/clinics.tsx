@@ -126,6 +126,7 @@ const ClinicsClinicalFinder = ({ clinics, regions, loading }:ClinicsClinicalFind
                 (clinic.url && clinic.url.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.mail && clinic.mail.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
                 (clinic.number && clinic.number.toLowerCase().includes(elem.value.toLowerCase()) == true) ||
+                (clinic.number && clinic.number.replace(/ /gi, '').includes(elem.value.toLowerCase()) == true) ||
                 clinic.treatments instanceof Array && clinic.treatments.map((treat) => {
                     let elem = document?.querySelector('input#clinic-finder-search');
                     if(elem instanceof HTMLInputElement) {
