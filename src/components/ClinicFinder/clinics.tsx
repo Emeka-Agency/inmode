@@ -253,7 +253,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                                     {[clinic.Adresse, [clinic.CodePostal ?? "", clinic.Ville ?? ""].join(', ')].join('\n')}
                                 </div>
                                 <div className="clinic-doctor">
-                                    {clinic.Nom && clinic.Nom}
+                                    {/* {clinic.Nom && clinic.Nom} */}{""}
                                 </div>
                             </div>
                             <div className="right-part">
