@@ -1,0 +1,187 @@
+:root {
+    --field-width: 50%;
+}
+
+section#profile #profile-content #overview-section #personnal-datas {
+    
+}
+
+section#profile #profile-content #overview-section #personnal-datas {
+
+}
+
+section#profile #profile-content #overview-section #personnal-datas h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--midnight);
+    padding: 5px 5px;
+    box-sizing: border-box;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field {
+    width: 50%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px 0 5px;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+/* label */
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-label {
+    display: block;
+    width: 100%;
+    padding-bottom: 10px;
+    font-size: 16px;
+    color: var(--midnight);
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-label::after {
+    content: " ";
+    display: block;
+    width: 5%;
+    height: 1px;
+    margin-bottom: 2px;
+    background-color: var(--midnight);
+    transition: width 0.3s ease-in-out 0s,
+                height 0.3s ease-in-out 0s,
+                margin 0.3s ease-in-out 0s,
+                background 0.3s ease-in-out 0s;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field:hover span.profile-field-label::after {
+    content: "";
+    width: var(--field-width);
+    height: 3px;
+    margin-bottom: 0px;
+    background-color: var(--teal);
+    transition: width 0.2s ease-in-out 0s,
+                height 0.2s ease-in-out 0s,
+                margin 0.2s ease-in-out 0s,
+                background 0.2s ease-in-out 0s;
+}
+
+/* value */
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.show div.profile-field-value {
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    width: calc(var(--field-width) - 40px);
+    padding-left: 5px;
+    cursor: pointer;
+    color: var(--midnight);
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit div.profile-field-value {
+    display: none;
+}
+
+/* change */
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field input.profile-field-change {
+    caret-color: var(--teal);
+    color: var(--midnight);
+    font-size: 14px;
+    padding-left: 5px;
+    display: none;
+    width: calc(var(--field-width) - 40px);
+    height: 20px;
+    margin: 0 5px 0 0;
+    background-color: var(--pearl-25);
+    outline: transparent;
+    border: none;
+    box-sizing: border-box;
+    border-bottom: 1px solid transparent;
+    margin-bottom: 3px;
+    transition: border 0.3s ease-in-out 0s,
+                margin 0.3s ease-in-out 0s;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:hover {
+    border-bottom: 2px solid var(--midnight);
+    margin-bottom: 2px;
+    transition: border 0.2s ease-in-out 0s,
+                margin 0.2s ease-in-out 0s;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:active,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit input.profile-field-change:focus {
+    border-bottom: 3px solid var(--teal);
+    margin-bottom: 1px;
+    transition: border 0.2s ease-in-out 0s,
+                margin 0.2s ease-in-out 0s;
+}
+
+/* icon */
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit {
+    width: 22px;
+    height: 22px;
+    /* border: 1px solid transparent; */
+    border-radius: 50%;
+    /* transition: border 0.2s ease-in-out 0s; */
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field:hover .profile-field-edit,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit:hover {
+    /* border: 1px solid var(--teal); */
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .init {
+    width: 100%;
+    filter: invert(1);
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .blue {
+    width: 100%;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .init,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.show .profile-field-edit .init,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.show:hover .profile-field-edit .blue,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit .profile-field-edit .blue,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field:hover .profile-field-edit .blue,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit:hover .blue {
+    display: block;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit:hover .init,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.edit .profile-field-edit .init,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field.show .profile-field-edit .blue,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field:hover .profile-field-edit .init,
+section#profile #profile-content #overview-section #personnal-datas div.profile-field .profile-field-edit .blue {
+    display: none;
+}
+
+/* change result */
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-change-result {
+    display: block;
+    width: 100%;
+    height: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-top: 5px;
+    color: var(--midnight);
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-change-result.success {
+    color: green;
+}
+
+section#profile #profile-content #overview-section #personnal-datas div.profile-field span.profile-field-change-result.error {
+    color: red;
+}

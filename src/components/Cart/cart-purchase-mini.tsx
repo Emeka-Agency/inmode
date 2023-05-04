@@ -5,16 +5,20 @@ import {
     AddressLine1Field,
     // AddressLine2Field,
     CityField,
+    ClinicField,
     CountryField,
+    CustomField,
     DeliveryAddressLine1Field,
     // DeliveryAddressLine2Field,
     DeliveryCityField,
+    DeliveryClinicField,
     DeliveryCountryField,
     DeliveryFirstNameField,
     DeliveryLastNameField,
     DeliveryMailField,
     DeliveryPhoneField,
     DeliverySocietyField,
+    DeliveryTitleField,
     DeliveryZipField,
     FirstNameField,
     IntraTVAField,
@@ -22,17 +26,23 @@ import {
     MailField,
     MobilePhoneField,
     SocietyField,
+    TitleField,
     ZipField
 } from "../PaymentFields";
 import LoadingGIF from '../LoadingGIF';
 
 import './mini.css';
+import { getById } from "../../functions/selectors";
+import { useWindowSize } from "../../functions/window-size";
+import { useUser } from "../contexts/user-provider";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const CartPurchaseMini = ({  }:CartPurchaseMini) => {
 
+    const user = useUser();
     const images = useImages();
-
     const cart = useCart();
+    const size = useWindowSize();
 
     const [formOpened, setFormOpened] = React.useState(false);
     const [otherAddress, setOtherAddress] = React.useState(false);
@@ -52,9 +62,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
     const manageCheckboxPayment = (e:React.ChangeEvent<HTMLInputElement>) => {
         if(document != undefined) {
             let current:HTMLInputElement = e.currentTarget;
-            console.log(`current : ${current.id}`);
-            let other:HTMLInputElement = document.getElementById(current.id == 'sepa' ? 'soge' : 'sepa');
-            console.log(`other : ${other.id}`);
+            let other:any = getById(current.id == 'sepa' ? 'soge' : 'sepa');
             other.checked = !current.checked;
             return true;
         }
@@ -64,27 +72,31 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
     const sendForm = async(e:React.FormEvent<HTMLFormElement>, same_address:boolean = true) => {
         e.preventDefault();
         if(!isSubmit) {
-            let _mini1 = document.getElementById('mini-submit-1');if(_mini1) _mini1.disabled = true;
-            let _mini2 = document.getElementById('mini-submit-2');if(_mini2) _mini2.disabled = true;
-            let _mini3 = document.getElementById('mini-submit-3');if(_mini3) _mini3.disabled = true;
-            let _sepa:HTMLInputElement | any = document.getElementById('sepa');
+            let _mini1:any = getById('mini-submit-1');if(_mini1) _mini1.disabled = true;
+            let _mini2:any = getById('mini-submit-2');if(_mini2) _mini2.disabled = true;
+            let _mini3:any = getById('mini-submit-3');if(_mini3) _mini3.disabled = true;
+            let _sepa:any = getById('sepa');
             let fields:HTMLElement[] | any[] = []; 
-            // fields.push([...Array.from(document.forms['purchase']).filter(field => field.id.includes('vads_'))]);
-            // fields.push(...Array.from(document.forms['purchase']).filter(field => field.id.includes('vads_') && e.value));
             if(same_address) {
-                console.log(Array.from(document.forms['step-2-part'].elements).filter((e:HTMLElement | Element | any) => e.id.includes('vads_')));
-                // console.log(Array.from(document.forms['step-2-part'].elements).filter(e => e.id.includes('vads_') && e.value));
-                fields = [...Array.from(document.forms['step-2-part'].elements).filter((e:HTMLElement | Element | any) => e.id.includes('vads_'))];
-                // fields.push(...Array.from(document.forms['step-2-part'].elements).filter(e => e.id.includes('vads_') && e.value));
+                let _form2 = document.forms.namedItem('step-2-part');
+                fields = [...Array.from(_form2 ? _form2.elements : []).filter((e:HTMLElement | Element | any) => e.id.includes('vads_'))];
             }
             else {
-                console.log([...fields, ...Array.from([...document.forms['step-2-part'].elements, ...document.forms['step-3-part'].elements]).filter(e => e.id.includes('vads_'))]);
-                // console.log(Array.from([...document.forms['step-2-part'].elements, ...document.forms['step-3-part'].elements]).filter(e => e.id.includes('vads_') && e.value));
-                fields = [...fields, ...Array.from([...document.forms['step-2-part'].elements, ...document.forms['step-3-part'].elements]).filter(e => e.id.includes('vads_'))];
-                // fields.push(...Array.from([...document.forms['step-2-part'].elements, ...document.forms['step-3-part'].elements]).filter(e => e.id.includes('vads_') && e.value));
+                let _form2 = document.forms.namedItem('step-2-part');
+                let _form3 = document.forms.namedItem('step-3-part');
+                fields = [...fields, ...Array.from([...Array.from(_form2 ? _form2.elements : []), ...Array.from(_form3 ? _form3.elements : [])]).filter(e => e.id.includes('vads_'))];
             }
             setIsSubmit(true);
-            setIsCreated(await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked) === true ? true : false);
+            let temp = document.getElementById('vads_amount');
+            if(temp instanceof HTMLInputElement) {
+                temp.value = cart.total_all_included();
+            }
+            let res = await cart.redirectPay(fields, _sepa == null ? false : _sepa.checked);
+            setIsCreated(res === true ? true : false);
+            setIsSubmit(res === true ? false : null);
+            res == true && setFormOpened(false);
+            res == true && setOtherAddress(false);
+            res == true && setOtherAddressOpened(false);
             if(_mini1) _mini1.disabled = false;
             if(_mini2) _mini2.disabled = false;
             if(_mini3) _mini3.disabled = false;
@@ -113,11 +125,6 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
     React.useEffect(() => {
         if(isSubmit === true) {
             if(isCreated === true) {
-                // setIsSubmit(false);
-                // setIsCreated(false);
-                // setFormOpened(false);
-                // setOtherAddress(false);
-                // cart.hasDifferentShipping(false);
                 setIsSubmit(false);
                 setIsCreated(false);
                 setFormOpened(false);
@@ -125,21 +132,23 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 cart.hasDifferentShipping(false);
                 setOtherAddressOpened(false);
                 if(typeof document !== "undefined") {
-                    document.forms["step-2-part"] && document.forms["step-2-part"].reset();
-                    document.forms["step-3-part"] && document.forms["step-3-part"].reset();
-                    let _sepa = document.getElementById('sepa')
+                    let _temp2 = document.forms.namedItem("step-2-part");
+                    _temp2 && _temp2.reset();
+                    let _temp3 = document.forms.namedItem("step-3-part");
+                    _temp3 && _temp3.reset();
+                    let _sepa:any = getById('sepa');
                     if(_sepa) {
                         _sepa.checked = _sepa.checked ? true : false;
-                    } // removeAttribute('checked');
-                    let _soge = document.getElementById('soge')
+                    }
+                    let _soge:any = getById('soge');
                     if(_soge) {
                         _soge.checked = _soge.checked ? true : false;
-                    } // setAttribute('checked', 'true');
-                    let _facture = document.getElementById('facture');
+                    }
+                    let _facture:any = getById('facture');
                     if(_facture) {
                         _facture.checked = false;
                     }
-                    let _terms = document.getElementById('terms');
+                    let _terms:any = getById('terms');
                     if(_terms) {
                         _terms.checked = false;
                     }
@@ -151,15 +160,12 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
         }
     }, [isCreated]);
 
-    // console.log(`isSubmit : ${isSubmit}, typeof isSubmit : ${typeof isSubmit}`);
-    // console.log(`isCreated : ${isCreated}, typeof isCreated : ${typeof isCreated}`);
-    // console.log(`formOpened : ${formOpened}, typeof formOpened : ${typeof formOpened}`);
-
     return (
         <div
             id="purchase-mini"
             className={!cart.cart_opened ? "all-close" : !formOpened ? 'step-1' : 'step-2-3'}
         >
+            <div id="order-create-waiter" hidden={isSubmit ? false: true}><img src={images.resolve_img('orderCreateSpinner')}/></div>
             <div className="stepper">
                 <div id="step-1" className="step">
                     <div className="num">1</div>
@@ -175,6 +181,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 </div>
                 <div className={`progress-bar${otherAddress ? ' other-address' : ''}${otherAddress && otherAddressOpened ? ' other-opened' : ''}`}></div>
             </div>
+            <input id="order_user" value={user.get('user')} style={{display: 'none'}}/>
             {/* FIRST PART */}
             <div className={`cart-purchase transition${cart.cart_opened ? ' opened' : ''}`}>
                 <div className="cart-close"
@@ -185,20 +192,20 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     }}
                 >
                     <img
-                        src={images.getOne('closeWhiteIcon').publicURL}
-                        srcSet={images.getOne('closeWhiteIcon').publicURL}
+                        src={images.resolve_img('closeWhiteIcon')}
+                        srcSet={images.resolve_img_set('closeWhiteIcon')}
                         alt="Close"
                     />
                 </div>
-                <div className="cart-head">
+                <div className="cart-head user-select-none">
                     <img
-                        src={images.getOne('cartBasketIcon').publicURL}
-                        srcSet={images.getOne('cartBasketIcon').publicURL}
+                        src={images.resolve_img('cartBasketIcon')}
+                        srcSet={images.resolve_img_set('cartBasketIcon')}
                         alt="Panier"
                     />
-                    <span>{`Panier, ${cart.cart.length} objet${cart.cart.length > 1 ? 's' : ''}`}</span>
+                    <span>{`Panier, ${cart.cart.length} article${cart.cart.length > 1 ? 's' : ''}`}</span>
                 </div>
-                <div className={`cart-content custom-scrollbar${formOpened ? ' purchase' : ''}`}>
+                <div className={`cart-content custom-scrollbar moz-scrollbar${formOpened ? ' purchase' : ''}`}>
                     {cart.cart.map((article, key) => {
                         return (
                             <div key={key} className="cart-article transition">
@@ -208,13 +215,13 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                                         cart.remove(article.reference, article.quantity);
                                     }}
                                 >
-                                    <img className="init" src={images.getOne('rmvInit').publicURL} alt="X"/>
-                                    <img className="blue" src={images.getOne('rmvHover').publicURL} alt="X"/>
+                                    <img className="init" src={images.resolve_img('rmvInit')} alt="X"/>
+                                    <img className="blue" src={images.resolve_img('rmvHover')} alt="X"/>
                                 </div>
                                 <div className="addon">
                                     {cart.articles[article.reference].picture && (<img
-                                        src={cart.articles[article.reference].picture.childImageSharp.fluid.srcWebp}
-                                        srcSet={cart.articles[article.reference].picture.childImageSharp.fluid.srcSetWebp}
+                                        src={resolveImg(cart.articles[article.reference].picture)}
+                                        srcSet={resolveImgSet(cart.articles[article.reference].picture)}
                                         alt=""
                                     />)}
                                 </div>
@@ -252,14 +259,14 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 <div className={`cart-final${formOpened ? ' purchase' : ''}`}>
                     <div className="cart-discount">
                         {/*PAS DE FRAIS DE LIVRAISON*/}
-                        <div className="text">Livraison{cart.pay_delivery() && false ? '' : ' gratuite'}</div>
+                        {/* <div className="text">Livraison{cart.pay_delivery() && false ? '' : ' gratuite'}</div> */}
                         {/*FRAIS DE LIVRAISON*/}
-                        {/* <div className="text">Livraison{cart.pay_delivery() ? '' : ' gratuite'}</div> */}
+                        <div className="text">Livraison{cart.pay_delivery() ? '' : ' gratuite'}</div>
                         {cart.pay_delivery() ? <div className="price">
                             {/*PAS DE FRAIS DE LIVRAISON*/}
-                            {(cart.delivery_tax() && false) || 0}
+                            {/* {(cart.delivery_tax() && false) || 0} */}
                             {/*FRAIS DE LIVRAISON*/}
-                            {/* {cart.delivery_tax()} */}
+                            {cart.delivery_tax()}
                         </div>: null }
                     </div>
                     <div className="cart-sub-total">
@@ -285,7 +292,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
             {/* SECOND PART */}
             <form
                 id="step-2-part"
-                className={`cart-purchase-form custom-scrollbar${formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}
+                className={`cart-purchase-form custom-scrollbar moz-scrollbar${formOpened ? ' opened' : ''}${otherAddressOpened ? ' other-opened' : ''}`}
                 onSubmit={(e) => {
                     e.preventDefault();
                     if(formOpened && otherAddress && !otherAddressOpened){
@@ -308,8 +315,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             alt="Close"
                         />
                     </div>
@@ -320,27 +327,22 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     id="purchase-form"
                     className={`neumorphic ${otherAddress && (' other-address' || '')}`}
                 >
-                    <div id="step-1-part" className="unmorphic custom-scrollbar">
-                        <FirstNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 20px 20px', display: 'inline-block'}} required={true}/>
-                        <LastNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
-                        {/* <input className="required form-field step-1" name="name" type="text" required placeholder="Nom"/> */}
+                    <div id="step-1-part" className="unmorphic custom-scrollbar moz-scrollbar">
+                        <LastNameField classes="required form-field step-1" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
+                        <FirstNameField classes="required form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
+                        <TitleField classes="form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
+                        <ClinicField classes="form-field step-1" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
                         <SocietyField classes="form-field step-1" />
-                        {/* <input className="form-field step-1" name="society" type="text" placeholder="Société"/> */}
                         <AddressLine1Field classes="required form-field step-1" required={true}/>
-                        {/* <AddressLine2Field classes="required form-field step-1"/> */}
+                        <ZipField classes="required form-field step-1" required={true}/>
+                        <CityField classes="required form-field step-1" required={true}/>
                         <CountryField classes="required form-field step-1"/>
                         {
                             cart.differentAddress == false && cart.getTVAIntra() && otherAddress == false && <IntraTVAField classes="required form-field step-1" required={true}/>
                         }
-                        {/* <textarea className="required form-field step-1" name="adresse1" type="text" required placeholder="Adresse" rows="3"></textarea> */}
-                        <ZipField classes="required form-field step-1" required={true}/>
-                        {/* <input className="required form-field step-1" name="zip" type="text" required placeholder="Code postal"/> */}
-                        <CityField classes="required form-field step-1" required={true}/>
-                        {/* <input className="required form-field step-1" name="city" type="text" required placeholder="Ville"/> */}
                         <MobilePhoneField classes="required form-field step-1" required={true}/>
-                        {/* <input className="required form-field step-1" name="phone" type="tel" required placeholder="Téléphone"/> */}
                         <MailField classes="required form-field step-1" required={true}/>
-                        {/* <input className="required form-field step-1" name="mail" type="email" required placeholder="Mail"/> */}
+                        {!otherAddress && <CustomField classes="required form-field step-1" required={false}/>}
                     </div>
                 </div>
                 {(formOpened && (!otherAddress || (otherAddress && !otherAddressOpened))) && <button
@@ -366,8 +368,8 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                         }}
                     >
                         <img
-                            src={images.getOne('closeWhiteIcon').publicURL}
-                            srcSet={images.getOne('closeWhiteIcon').publicURL}
+                            src={images.resolve_img('closeWhiteIcon')}
+                            srcSet={images.resolve_img_set('closeWhiteIcon')}
                             className="unmorphic"
                             alt="Close"
                         />
@@ -375,28 +377,22 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     <span className={`unmorphic${otherAddressOpened ? ' click' : ''}`}>informations de livraison</span>
                     <hr className="unmorphic"/>
                 </div>
-                <div className="form custom-scrollbar">
-                    <DeliveryFirstNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 20px 20px', display: 'inline-block'}} required={true}/>
-                    <DeliveryLastNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
-                    {/* <input className="required form-field step-2" name="other-name" type="text" required placeholder="Nom"/> */}
+                <div className="form custom-scrollbar moz-scrollbar">
+                    <DeliveryLastNameField classes="required form-field step-2" style={{width: '43%', margin: `10px 0 20px ${size.width <1200 ? '5%' : '20px'}`, display: 'inline-block'}} required={true}/>
+                    <DeliveryFirstNameField classes="required form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}} required={true}/>
+                    <DeliveryTitleField classes="form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
+                    <DeliveryClinicField classes="form-field step-2" style={{width: '43%', margin: '10px 0 24px 4%', display: 'inline-block'}}/>
                     <DeliverySocietyField classes="form-field step-2" />
-                    {/* <input className="form-field step-2" name="other-society" type="text" placeholder="Société"/> */}
                     <DeliveryAddressLine1Field classes="required form-field step-2" required={true}/>
-                    {/* <DeliveryAddressLine2Field classes="required form-field step-2"/> */}
+                    <DeliveryZipField classes="required form-field step-2" required={true}/>
+                    <DeliveryCityField classes="required form-field step-2" required={true}/>
                     <DeliveryCountryField classes="required form-field step-2"/>
                     {
                         cart.differentAddress == true && cart.getTVAIntra() && otherAddress == true && <IntraTVAField classes="required form-field step-1" required={true}/>
                     }
-                    {/* <textarea className="required form-field step-2" name="other-adresse1" type="text" required placeholder="Adresse" rows="3"></textarea> */}
-                    <DeliveryZipField classes="required form-field step-2" required={true}/>
-                    {/* <input className="required form-field step-2" name="other-zip" type="text" required placeholder="Code postal"/> */}
-                    <DeliveryCityField classes="required form-field step-2" required={true}/>
-                    {/* <input className="required form-field step-2" name="other-city" type="text" required placeholder="Ville"/> */}
                     <DeliveryPhoneField classes="required form-field step-2" required={true}/>
-                    {/* <input className="required form-field step-2" name="other-phone" type="tel" required placeholder="Téléphone"/> */}
-                    {/* <input className="required form-field step-2" name="other-mail" type="email" required placeholder="Mail"/> */}
                     <DeliveryMailField classes="form-field step-2" required={false}/>
-                    {/* <input className="form-field step-2" name="mail" type="email" placeholder="Mail"/> */}
+                    {otherAddress && <CustomField classes="form-field step-2" required={false}/>}
                 </div>
                 {(formOpened && otherAddress && otherAddressOpened) && <button
                     type="submit"
@@ -456,7 +452,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                     form={formOpened ? otherAddress ? "step-3-part" : "step-2-part" : ''}
                 />
                 <label htmlFor="terms">
-                    J'accepte les CGV et les CGU
+                    J'accepte les CGV
                 </label>
             </div>
             {/* VALIDATE */}
@@ -469,7 +465,7 @@ const CartPurchaseMini = ({  }:CartPurchaseMini) => {
                 onClick={(e) => {setFormOpened(true)}}
             >
                 {buttonText()}
-                {isSubmit == true ? <LoadingGIF customClass="payment"/> : null}
+                {isSubmit === true ? <LoadingGIF customClass="payment"/> : null}
             </button>}
         </div>
     );

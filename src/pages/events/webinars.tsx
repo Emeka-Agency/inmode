@@ -1,74 +1,82 @@
+import { graphql } from "gatsby";
 import React from "react";
 import EventsLayout from "../../components/events/events-layout";
-import Layout from "../../components/Layout"
+import { Airtable_Record_Interface, Airtable_Event_Interface, InmodePanel_Event_Interface } from "../../components/interfaces";
+import Layout from "../../components/Layout";
 import SEO from "../../components/seo";
 
-const WebinarsPage = ({ data }) =>  {
+import "../../components/events/events.css";
+import { _error, _group, _groupEnd, _log } from "../../functions/logger";
+
+const WebinarsPage = (datas:WebinarsPage) =>  {
+
+    const [events, setEvents]:[Airtable_Event_Interface[]|[], React.Dispatch<Airtable_Event_Interface[]|[]>] = React.useState(Array());
+    const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
+
+    const loadEvents = async function(offset:string|null = null, records:Airtable_Event_Interface[]|ConcatArray<never> = [], __type:string|null = null) {
+        const fields = ["EventName", "Start", "End", "Practitioner", "Address", "Place", "PlaceURL", "Addons", "EventType", "EventDescription", "MapsLink", "VideoURL", "Picture"];
+        const sortCriteres = ['Start'];
+        const sortDirections = ['asc'];
+        const sortBy = Array(sortCriteres).map((el, index) => 
+            `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
+        ).join('&');
+        var filterBy = '';
+        if(typeof __type == "string") {
+            filterBy = `&filterByFormula={EventType}='${__type}'`;
+        }
+    
+        _group(fields);
+        _log(sortBy);
+        _log(filterBy);
+        _log(`${process.env.AIRTABLE_EVENTS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}${filterBy}`);
+        _groupEnd();
+        
+        await fetch(
+            `${process.env.AIRTABLE_EVENTS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}${filterBy}`,
+            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
+        )
+        .then(res => res.json())
+        .then((res:{offset:string|null, records:Airtable_Record_Interface[]}) => {
+            _log(res.offset != undefined);
+            _log(res.records.length == 0);
+            if(res.records.length == 0) {
+                setLoading(false);
+                return false;
+            }
+            if(res.offset != undefined) {
+                // let news = res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec);
+                // loadEvents(res.offset, [...records]);
+                loadEvents(res.offset, records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
+                return true;
+            }
+            else {
+                setLoading(false);
+                setEvents(records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
+                return true;
+            }
+        })
+        .catch(err => _error(err));
+    }
+
+    React.useEffect(() => {
+        loading && loadEvents(null, [], "Webinar");
+    }, [events]);
+
     return (
-        <Layout>
+        <Layout title="webinars">
             <SEO title="Webinars"/>
             <EventsLayout
+                loading={loading}
                 current_page="webinars"
-                upcoming_events={!data ? {} : data.incoming.nodes}
-                // past_events={!data ? {} : data.past.nodes}
+                events={events}
             />
         </Layout>
     );
 };
 
+interface WebinarsPage {
+    
+};
+
 export default WebinarsPage;
 
-// export const query = graphql`
-//     query WebinarsPage($today_string: Date!) {
-//         incoming: allStrapiEvent(filter: {begin: {gte: $today_string}, type: {eq: "webinar"}}, sort: {fields: begin, order: ASC}) {
-//             nodes {
-//                 address
-//                 begin(formatString: "DD MMM. YY, HH:MM")
-//                 finish(formatString: "DD MMM. YY, HH:MM")
-//                 maps_link
-//                 picture {
-//                     childImageSharp {
-//                         fluid {
-//                             srcWebp
-//                             srcSetWebp
-//                         }
-//                     }
-//                 }
-//                 place
-//                 place_url
-//                 short_descr
-//                 title
-//                 type
-//                 video_url
-//                 addons {
-//                     Name
-//                 }
-//             }
-//         }
-//         past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "webinar"}}, sort: {fields: begin, order: DESC}) {
-//             nodes {
-//                 address
-//                 begin(formatString: "DD MMM. YY, HH:MM")
-//                 finish(formatString: "DD MMM. YY, HH:MM")
-//                 maps_link
-//                 picture {
-//                     childImageSharp {
-//                         fluid {
-//                             srcWebp
-//                             srcSetWebp
-//                         }
-//                     }
-//                 }
-//                 place
-//                 place_url
-//                 short_descr
-//                 title
-//                 type
-//                 video_url
-//                 addons {
-//                     Name
-//                 }
-//             }
-//         }
-//     }
-// `;

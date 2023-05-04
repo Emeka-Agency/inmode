@@ -17,23 +17,24 @@ const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
     return (
         menu.url ?
             menu.internal_link ?
-            <Link onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text" to={menu.url || "#"} title={format_string(menu.title || "")}>
+            <Link onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text user-select-none" to={menu.url || "#"} title={format_string(menu.title || "")}>
                 {format_string(menu.title || "")}
             </Link>
             :
-            <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text" href={menu.url || "#"} target="_blank" rel="noreferrer"> title={format_string(menu.title || "")}
+            <a onClick={(e) => {enableMainScroll();}} key={prop_key} className="menu-single menu-text user-select-none" href={menu.url || "#"} target="_blank" rel="noreferrer" title={format_string(menu.title || "")}>
                 {format_string(menu.title || "")}
             </a>
         :
-        <div key={prop_key} className="menu-single menu-text">
+        <div key={prop_key} className="menu-single menu-text user-select-none">
             {format_string(menu.title || "")}
         </div>
     );
-}
+};
 
 interface MenuSingleText {
     menu: InmodePanel_Menu_Interface;
     prop_key: number | undefined;
-}
+    openOnClick?: boolean;
+};
 
 export default MenuSingleText;

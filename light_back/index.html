@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>InmodeMD France - Site en maintenance</title>
+    <style>
+        :root {
+            --header-height: 50px;
+            --footer-height: 40px;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0px;
+            border: none;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0b1a25;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: Roboto, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            height: var(--header-height);;
+            background-color: #072e49;
+        }
+        header h1 {
+            margin-top: 0px;
+            font-size: 22px;
+            line-height: 50px;
+            padding-left: 50px;
+            font-weight: bold;
+            color: #59b7b3;
+        }
+
+        main {
+            width: 100%;
+            height: calc(100% - (var(--header-height) + var(--footer-height)));
+        }
+        main p {
+            font-weight: bold;
+            font-size: 28px;
+            color: #fff;
+            padding-top: 50px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        footer {
+            width: 100vw;
+            height: var(--footer-height);
+            background-color: #072e49;
+            text-align: center;
+        }
+
+        footer .footer-link {
+            color: #fff;
+            font-size: 16px;
+            line-height: var(--footer-height);
+            font-weight: bold;
+            transition: color 0.2s ease-in-out 0s;
+            padding-left: 10px;
+        }
+
+        footer .footer-link:hover {
+            color: #59b7b3;
+            transition: color 0s ease-in-out 0s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>InmodeMD France</h1>
+    </header>
+    <main>
+        <p>Le site est actuellement en maintenance.</p>
+        <p>En cas de maintenance longue, le service commercial reste toujours joignable.</p>
+        <p>Cordialement, l'équipe IMD France.</p>
+    </main>
+    <footer>
+        <a class="footer-link" href="mailto:contact.fr@inmodemd.com">Mail</a>
+        <a class="footer-link" href="https://www.facebook.com/inmode.france">Facebook</a>
+        <a class="footer-link" href="https://www.instagram.com/inmode.france">Instagram</a>
+        <a class="footer-link" href="https://www.youtube.com/user/InModeSolutions">Youtube</a>
+        <a class="footer-link" href="https://www.linkedin.com/company/inmode-solutions-france/">Linkedin</a>
+    </footer>
+</body>
+
+</html>

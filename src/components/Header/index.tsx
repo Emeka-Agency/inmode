@@ -13,54 +13,90 @@ import CartBasket from "../CartBasket";
 
 // {/* SWITCH CART END */}
 
-const Header = ({}:Header) => {
+import { getById, selectOne } from "../../functions/selectors";
+import { useUser } from "../contexts/user-provider";
 
-  const images = useImages();
+import "./index.css";
 
-  const openMenu = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    document.getElementById('header-mini').classList.add('opened');
-    size.width < 1000 && disableMainScroll();
-  }
+const Header = ({variant = "teal"}:Header) => {
 
-  // {/* SWITCH CART */}
-    
-  const cart = useCart();
+    const images = useImages();
 
-  // {/* SWITCH CART END */}
+    const openMenu = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        getById('header-mini')?.classList.add('opened');
+        size.width < 1200 && disableMainScroll();
+    }
 
-  const size = useWindowSize();
+    // {/* SWITCH CART */}
+        
+    const cart = useCart();
 
-  return (
-    <header>
-      <div className="header-content container">
-        <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.getOne('headerLogo').childImageSharp.fluid.srcWebp +')'}}>
-          <Link to="/" className="zone-link" title="Inmode">
-          </Link>
-        </div>
-        <div className="header-parts">
-          {size.width > 1199 && <HeaderTop/>}
-          {size.width > 1199 && <HeaderBottom/>}
-          {size.width < 1200 && <HeaderMini/>}
-          {/* SWITCH CART */}
+    // {/* SWITCH CART END */}
 
-          { cart.cart.length > 0 || cart.appeared ? <CartBasket/>: null }
+    const user = useUser();
+    const size = useWindowSize();
 
-          {/* SWITCH CART END */}
-          <button
-            className="header-mini-menu"
-            onClick={(e)=>{openMenu(e)}}
-          >
-            Menu
-          </button>
-        </div>
-      </div>
-    </header>
-  );
+    React.useEffect(() => {
+
+    }, [user]);
+
+    return (
+        <header data-variant={variant}>
+            <div className="header-content">
+                <div className={`header-parts${user.logged() ? ' logged' : ''}`}>
+                    {size.width > 1199 && <HeaderTop/>}
+                    {size.width > 1199 && <HeaderBottom/>}
+                    {
+                        size.width < 1200 && 
+                        <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
+                            <Link to="/" className="absolute-link" title="Inmode"></Link>
+                        </div>
+                    }
+                    {size.width < 1200 && <HeaderMini/>}
+                    {/* SWITCH CART */}
+
+                    {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/>: null } */}
+                    <CartBasket/>
+
+                    {/* SWITCH CART END */}
+                    {
+                        user.logged() && size.width > 480 &&
+                        <Link className="profile-link" to="/profile">
+                            <img src={images.resolve_img("profileIcon")}/>
+                            {size.width > 1199 && <span>Profil</span>}
+                        </Link>
+                    }
+                    {
+                        user.logged() && size.width > 480 &&
+                        <div className="menu-single menu-text logout user-select-none" title="Déconnexion" onClick={function() {user.logout();}}>
+                            {size.width > 1199 && <span>Déconnexion</span>}
+                            <img src={images.resolve_img("logoutIcon")}/>
+                        </div>
+                    }
+                    {
+                        user.logged() == false && size.width >= 600 &&
+                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login(null);}}>Connexion</div>
+                    }
+                    {/* {
+                        user.logged() == false && size.width >= 600 &&
+                        <div className="menu-single menu-text signin" title="Inscription" onClick={function() {user.signin(null);}}>Inscription</div>
+                    } */}
+                    <button
+                        className="header-mini-menu"
+                        onClick={(e)=>{openMenu(e)}}
+                    >
+                        Menu
+                    </button>
+                </div>
+            </div>
+        </header>
+    );
 };
 
 interface Header {
   siteTitle?: string;
-}
+  variant?: string;
+};
 
 export default Header

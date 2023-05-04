@@ -2,7 +2,9 @@ import React, { useContext } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
 import MenusContext from "./menus-context";
-import { MenusContext_Interface, HeaderTop_Interface, HeaderBottom_Interface } from '../interfaces';
+import { MenusContext_Interface, InmodePanel_Menu_Interface } from '../interfaces';
+import { _log } from '../../functions/logger';
+import { resolveImg } from '../../functions/tools';
 
 // const _TYPES = ['text', 'image', 'button', 'card'];
 // const _VARIANTS = ['single', 'title', 'content', 'dk_title', 'side_menu'];
@@ -13,193 +15,155 @@ export const useMenus = ():MenusContext_Interface => {
 
 const MenusProvider = ({ requested = "", children }:{ requested?:string, children:any }):React.Provider<MenusContext_Interface> => {
     const [datas]:MenusContext_Interface | any = React.useState(useStaticQuery(graphql`
-        {
-            header_top: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
-                nodes {
-                    strapiId
+    {
+        header_top: allStrapiMenu(filter: {container: {eq: "header_top"}}) {
+            nodes {
+                strapiId
+                title
+                url
+                type
+                variant
+                container
+                parent_menu
+                internal_link
+                menus {
+                  id
+                  title
+                  url
+                  type
+                  variant
+                }
+                products {
+                  id
+                  position
+                  MenuParams {
                     title
                     url
                     type
                     variant
-                    container
-                    parent_menu
                     internal_link
-                    menus {
-                        id
-                        title
-                        url
-                        type
-                        variant
-                    }
-                    products {
-                        id
-                        position
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                        Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                    }
-                    treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
-                    icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
+                  }
+                  Icon {
+                    ...StrapiMenuProductsIconFragment
+                  }
                 }
-            }
-            header_bottom: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
-                nodes {
-                    strapiId
+                treatments {
+                  id
+                  Name
+                  MenuParams {
                     title
                     url
                     type
                     variant
-                    container
-                    parent_menu
                     internal_link
-                    menus {
-                        id
-                        title
-                        url
-                        type
-                        variant
-                    }
-                    products {
-                        id
-                        position
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                        Icon {
-                            childImageSharp {
-                                fluid {
-                                    srcWebp
-                                    srcSetWebp
-                                }
-                            }
-                        }
-                    }
-                    treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    mini_treatments {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                    icon {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
-                    icon_hover {
-                        childImageSharp {
-                            fluid {
-                                srcWebp
-                                srcSetWebp
-                            }
-                        }
-                        publicURL
-                    }
+                  }
                 }
-            }
-            footer: strapiFooter {
-                logo {
-                    childImageSharp {
-                        fluid {
-                            srcWebp
-                            srcSetWebp
-                        }
-                    }
-                }
-                address
-                phone
-                mail
-                social {
-                    icon {
-                        publicURL
-                    }
-                    name
+                mini_treatments {
+                  id
+                  Name
+                  MenuParams {
+                    title
                     url
-                    position
+                    type
+                    variant
+                    internal_link
+                  }
                 }
-                navigation {
-                    name
+                icon {
+                  ...StrapiMenuIconFragment
+                }
+                icon_hover {
+                  ...StrapiMenuIcon_hoverFragment
+                }
+            }
+        }
+        header_bottom: allStrapiMenu(filter: {container: {eq: "header_bottom"}}) {
+            nodes {
+                strapiId
+                title
+                url
+                type
+                variant
+                container
+                parent_menu
+                internal_link
+                menus {
+                  id
+                  title
+                  url
+                  type
+                  variant
+                }
+                products {
+                  id
+                  position
+                  MenuParams {
+                    title
                     url
+                    type
+                    variant
+                    internal_link
+                  }
+                  Icon {
+                    ...StrapiMenuProductsIconFragment
+                  }
+                }
+                treatments {
+                  id
+                  Name
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                mini_treatments {
+                  id
+                  Name
+                  MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                  }
+                }
+                icon {
+                  ...StrapiMenuIconFragment
+                }
+                icon_hover {
+                  ...StrapiMenuIcon_hoverFragment
                 }
             }
-            allStrapiProduct(filter: {Addons: {elemMatch: {Page_addon: {eq: true}}}}) {
-                nodes {
-                    strapiId
-                    position
-                    Addons {
-                        id
-                        MenuParams {
-                            title
-                            url
-                            type
-                            variant
-                            internal_link
-                        }
-                    }
-                }
+        }
+        footer: strapiFooter {
+            logo {
+                ...StrapiFooterLogoFragment
             }
-            allStrapiTreatment {
-                nodes {
-                    strapiId
+            address
+            phone
+            mail
+            social {
+                icon {
+                    ...StrapiFooterSocialIconFragment
+                }
+                name
+                url
+                position
+            }
+            navigation {
+                name
+                url
+            }
+        }
+        allStrapiProduct(filter: {Addons: {elemMatch: {Page_addon: {eq: true}}}}) {
+            nodes {
+                strapiId
+                position
+                Addons {
+                    id
                     MenuParams {
                         title
                         url
@@ -210,12 +174,102 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                 }
             }
         }
+        allStrapiTreatment {
+            nodes {
+                strapiId
+                MenuParams {
+                    title
+                    url
+                    type
+                    variant
+                    internal_link
+                }
+            }
+        }
+    }
+      
+    fragment StrapiMenuProductsIconFragment on StrapiMenuProductsIcon {
+        caption
+        url
+        localFile {
+            absolutePath
+            childImageSharp {
+                fluid {
+                srcWebp
+                srcSetWebp
+                }
+            }
+            publicURL
+            url
+        }
+    }
+    fragment StrapiMenuIconFragment on StrapiMenuIcon {
+        caption
+        url
+        localFile {
+            absolutePath
+            childImageSharp {
+                fluid {
+                srcWebp
+                srcSetWebp
+                }
+            }
+            publicURL
+            url
+        }
+    }
+    fragment StrapiMenuIcon_hoverFragment on StrapiMenuIcon_hover {
+        caption
+        url
+        localFile {
+            absolutePath
+            childImageSharp {
+                fluid {
+                srcWebp
+                srcSetWebp
+                }
+            }
+            publicURL
+            url
+        }
+    }
+    fragment StrapiFooterLogoFragment on StrapiFooterLogo {
+        caption
+        url
+        localFile {
+            absolutePath
+            childImageSharp {
+                fluid {
+                srcWebp
+                srcSetWebp
+                }
+            }
+            publicURL
+            url
+        }
+    }
+    fragment StrapiFooterSocialIconFragment on StrapiFooterSocialIcon {
+        caption
+        url
+        localFile {
+            absolutePath
+            childImageSharp {
+                fluid {
+                srcWebp
+                srcSetWebp
+                }
+            }
+            publicURL
+            url
+        }
+    }
     `));
 
-    const array_to_object = (_array:Array<any>):HeaderTop_Interface | HeaderBottom_Interface | {} => {
-        if(!_array) {
+    const array_to_object = (_array:Array<any>):InmodePanel_Menu_Interface | {} => {
+        if(!_array || !Array.isArray(_array)) {
             return {};
         }
+        _array = _array.filter(elem => elem);
         return Object.fromEntries(
             _array.map((elem) => {
                 return [elem.strapiId || elem.id, elem];
@@ -223,7 +277,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         );
     }
 
-    const recursive_process = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const recursive_process = (_object:InmodePanel_Menu_Interface[], main:InmodePanel_Menu_Interface[]) => {
         Object.keys(_object).map((elem:number) => {
             if(_object[elem].menus.length) {
                 _object[elem].menus = _object[elem].menus.map((menu) => {
@@ -268,7 +322,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'products': product.products || [],
                         'treatments': product.treatments || [],
                         'mini_treatments': product.mini_treatments || [],
-                        'icon': product.Icon.childImageSharp.fluid || null,
+                        'icon': product?.Icon || null,
                         'id': product.id || product.strapiId,
                         'parent': elem
                     };
@@ -283,6 +337,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
                         'treatments': treatment.treatments || [],
                         'mini_treatments': treatment.mini_treatments || [],
                         'id': treatment.id || treatment.strapiId,
+                        'from': _object[elem].title,
                         'parent': elem
                     };
                 }));
@@ -295,7 +350,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         });
     }
 
-    const resolve_dependance = (_object:HeaderTop_Interface[] | HeaderBottom_Interface[], main:HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const resolve_dependance = (_object:InmodePanel_Menu_Interface[], main:InmodePanel_Menu_Interface[]) => {
         Object.keys(_object).map((menu) => {
             if(_object[menu].parent_menu) {
                 _object[menu].menus.map((_elem, key) => {
@@ -308,7 +363,7 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         })
     }
 
-    const process_menu = (list: HeaderTop_Interface[] | HeaderBottom_Interface[]) => {
+    const process_menu = (list: InmodePanel_Menu_Interface[]) => {
         let temp = array_to_object(list);
         recursive_process(temp, temp);
         resolve_dependance(temp, temp);
@@ -322,8 +377,18 @@ const MenusProvider = ({ requested = "", children }:{ requested?:string, childre
         }).filter(menu => menu);
     }
 
-    const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes));
-    const [menusHeaderBottom] = React.useState(process_menu(datas.header_bottom.nodes.map(elem => elem)));
+    const socials = ['facebook', 'instagram', 'youtube', 'linkedin'];
+
+    // EXPLAIN - Positionne les icônes de réseaux sociaux en fin de liste
+    const [menusHeaderTop] = React.useState(process_menu(datas.header_top.nodes)
+        .sort((a, b) => socials.indexOf(a.title) > -1 ? 0 : -1)
+    );
+    // EXPLAIN - Positionne le lien /contact en fin de liste
+    const [menusHeaderBottom] = React.useState(
+        process_menu(datas.header_bottom.nodes.map((elem:InmodePanel_Menu_Interface) => elem))
+        .sort((a, b) => b.url == "/contact" ? -1 : 0)
+        .sort((a, b) => a.id == 8 || a.title == "Traitements" ? -1 : 0)
+    );
     const [menusFooter] = React.useState(datas.footer);
     
     return (

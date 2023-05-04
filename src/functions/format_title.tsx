@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 export const format_title = (text = "", full_string = false) => {
     if(full_string) {

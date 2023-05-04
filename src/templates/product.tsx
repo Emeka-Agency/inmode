@@ -1,7 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
 import Addons from '../components/product/addons';
-import Divider from '../components/divider';
 import ProductBanner from '../components/product/banner';
 import ProductNavigation from '../components/product/navigation';
 import SEO from '../components/seo';
@@ -18,14 +17,14 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
     return (
-            <Layout>
+            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}>
                 <SEO title="Product"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation
-                    name={datas.name}
+                    name={datas.Name}
                     exist={{
-                        'before-after': datas.BeforesAfters !== [] && datas.BeforesAfters.length > 0,
-                        'studies': datas.ClinicalStudies !== [] && datas.ClinicalStudies.length > 0
+                        'before-after': datas.BeforesAfters.length > 0,
+                        'studies': datas.ClinicalStudies.length > 0
                     }}
                 />
                 <GenericDetails
@@ -33,19 +32,17 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'what_is': datas.WhatIs,
                         'before_keys': datas.BeforeKeyBenefits,
                         'list': datas.KeyBenefits,
-                        'list_title': 'key benefits',
+                        'list_title': 'avantages',
                         'list_icon': 'key_benefit',
-                        'anchor_key': 'key-benefits'
+                        'anchor_key': 'key-benefits',
+                        'variant': datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"
                     }}
                 />
-                <Divider position="top"/>
-                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} sensible={datas.sensitivity}/>
-                <Divider position="bottom" specialBackground={datas.Demo ? 'darkcyan' : undefined}/>
+                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
                 <ProductDemo datas={datas.Demo}/>
-                {datas.Demo && <Divider position="top" specialBackground={'darkcyan'} specialFill={"#0b1a25"}/>}
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
-                <ClinicalStudies datas={datas.ClinicalStudies}/>
+                <ClinicalStudies datas={datas.ClinicalStudies} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
             </Layout>
     );
 };
@@ -54,7 +51,7 @@ interface ProductTemplates {
   data: {
     strapiProduct: InmodePanel_Product_Interface;
   };
-}
+};
 
 export default ProductTemplates;
 
@@ -62,46 +59,73 @@ export const query = graphql`
     query Product($id: String!) {
         strapiProduct(id: {eq: $id}) {
           strapiId
+          Name
           Banner {
             left_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
             }
             left_video
             right_img {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
             }
             mini {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
             }
             right_text
           }
           WhatIs {
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
+                width
+                height
             }
             TitleText {
               text
@@ -113,35 +137,57 @@ export const query = graphql`
             texte
           }
           Addons {
+            MenuParams {
+              url
+              internal_link
+            }
             ProductPresentation {
               left_image {
-                childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                      srcSetWebp
-                  }
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
               }
               title_image {
-                childImageSharp {
-                  fluid {
-                    base64
-                    srcWebp
-                  srcSetWebp
-                  }
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
               }
               title_text
               Images {
                 image {
-                  childImageSharp {
-                    fluid {
-                      base64
-                      srcWebp
-                      srcSetWebp
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
+                            srcWebp
+                            srcSetWebp
+                            }
+                        }
+                        publicURL
+                        url
                     }
-                  }
                 }
                 product {
                   id
@@ -168,25 +214,39 @@ export const query = graphql`
           Demo {
             text
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
+                width
+                height
             }
           }
           BeforesAfters {
             doctor
             image {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
             }
             text
           }
@@ -205,13 +265,21 @@ export const query = graphql`
             title
             url
             picture {
-              childImageSharp {
-                fluid {
-                  base64
-                  srcWebp
-                  srcSetWebp
+                caption
+                url
+                localFile {
+                    absolutePath
+                    childImageSharp {
+                        fluid {
+                        srcWebp
+                        srcSetWebp
+                        }
+                    }
+                    publicURL
+                    url
                 }
-              }
+                width
+                height
             }
             publication
           }

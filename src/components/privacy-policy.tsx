@@ -5,7 +5,7 @@ import { useLocalStorage } from "../functions/use-localstorage";
 import { useWindowSize } from "../functions/window-size";
 import { useImages } from './contexts/images-provider';
 
-const PrivacyPolicy = (props) => {
+const PrivacyPolicy = (props:PrivacyPolicy) => {
 
     const images = useImages();
 
@@ -19,7 +19,7 @@ const PrivacyPolicy = (props) => {
     const size = useWindowSize();
     const LocalStorage = useLocalStorage;
 
-    async function process_cookies(e, checked) {
+    async function process_cookies(e:React.MouseEvent, checked:boolean = false) {
         if(open) {
             setAccepted(checked ? true : false);
             LocalStorage.setItem(analyticsCookies, checked ? 'true' : 'false');
@@ -57,24 +57,24 @@ const PrivacyPolicy = (props) => {
     }
 
     return (
-        <div className={`privacy-policy transition${open ? ' opened' : ''}`}>
+        <div className={`privacy-policy transition user-select-none${open ? ' opened' : ''}`}>
             <button className="open-button" onClick={(e) => {process_cookies(e);}}>
-                <img className="main" src={images.getOne('privacyPolicyTriangle').publicURL} alt="privacy-triangle"/>
-                <img className="content" src={images.getOne('privacyPolicyC').childImageSharp.fluid.srcWebp} alt="privacy-icon"/>
+                <img className="main" src={images.resolve_img('privacyPolicyTriangle')} alt="privacy-triangle"/>
+                <img className="content" src={images.resolve_img('privacyPolicyC')} alt="privacy-icon"/>
             </button>
-            <div className="panel cookies transition custom-scrollbar">
+            <div className="panel cookies transition custom-scrollbar moz-scrollbar">
                 <div className="cookies-our-use">
-                    <div className="cookies-title">Our use of cookies</div>
-                    <div className="cookies-text">We use necessary cookies to make our site work. We'd also like to set optional analytics cookies to help us improve it. We won't set optional cookies unless you enable them. Using this tool will set a cookie on your device to remember your preferences.</div>
+                    <div className="cookies-title">Notre usage des cookies</div>
+                    <div className="cookies-text">Nous utilisons ceux nécessaires au fonctionnement du site. Nous voudrions aussi en utiliser certains optionnels pour améliorer votre expérience. Nous ne les utiliserons pas si vous ne les activez pas. Ce panneau servira à se souvenir de vos préférences et à les changer.</div>
                     <div className="cookies-divider"></div>
                 </div>
                 <div className="cookies-necessaries">
-                    <div className="cookies-title">Necessary cookies</div>
-                    <div className="cookies-text">Necessary cookies enable core functionality such as security, network management, and accessibility. You may disable these by changing your browser settings, but this may affect how the website functions. For more information please see our <AnchorLink to="/mentions-legales#cookies" title="Cookies">cookie policy</AnchorLink>.</div>
+                    <div className="cookies-title">Cookies nécessaires</div>
+                    <div className="cookies-text">Les cookies fonctionnels permettent d'assurer des fonctionalités de base telles que la sécurité, la gestion réseau et l'accessibilité. Vous pouvez les désactiver en changeant les paramètres de votre navigateur, mais cela pourrait affecter la façon dont le site fonctionne. Pour plus d'informations, vous pouvez consulter notre <AnchorLink to="/mentions-legales#cookies" title="Cookies">politique relative aux cookies</AnchorLink>.</div>
                     <div className="cookies-divider"></div>
                 </div>
                 <div className="cookies-analytics">
-                    <div className="cookies-title">Analytics cookies</div>
+                    <div className="cookies-title">Cookies analytiques</div>
                     {/* TODO faire un component SWITCH */}
                     <div className="switch-component">
                         <input
@@ -92,22 +92,18 @@ const PrivacyPolicy = (props) => {
                             <span className="switch-switch"></span>
                         </label>
                     </div>
-                    <div className="cookies-text">We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. For more information on how these cookies work please see our <AnchorLink to="/mentions-legales#cookies" title="Cookies">'Cookies page'</AnchorLink>. The cookies collect information in an anonymous form.</div>
+                    <div className="cookies-text">Nous aimerions mettre en place des cookies Google Analytics pour nous aider à améliorer l'expérience InMode en ligne en collectant et repotant des informations sur votre usage de ce site. Pour plus d'informations sur la façon dont ces cookies fonctionnent, vous pouvez consulter notre <AnchorLink to="/mentions-legales#cookies" title="Cookies">politique relative aux cookies</AnchorLink>. Les cookies collectent des informations de manière anonyme.</div>
                 </div>
-                <div className="accept-close" onClick={(e) => {process_cookies(e, document.querySelector('#onoffswitch').checked);}}>
-                    Accept and close
+                <div className="accept-close" onClick={(e) => {process_cookies(e, (():HTMLInputElement|any => document.querySelector('#onoffswitch'))()?.checked);}}>
+                    Accepter et fermer
                 </div>
             </div>
         </div>
     );
-}
+};
 
-PrivacyPolicy.propTypes = {
+interface PrivacyPolicy {
 
-}
-
-PrivacyPolicy.defaultProps = {
-
-}
+};
 
 export default PrivacyPolicy;

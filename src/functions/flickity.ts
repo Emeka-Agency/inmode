@@ -9,6 +9,8 @@
  * Copyright 2015 Metafizzy
  */
 
+import { _error } from "./logger";
+
 /**
  * Bridget makes jQuery widgets
  * v1.1.0
@@ -62,7 +64,7 @@
     // $.error breaks jQuery chaining
     var logError = typeof console === 'undefined' ? noop :
       function (message) {
-        console.error(message);
+        _error(message);
       };
 
     /**
@@ -866,7 +868,7 @@
 
   var logError = typeof console === 'undefined' ? noop :
     function (message) {
-      console.error(message);
+      _error(message);
     };
 
   // -------------------------- measurements -------------------------- //
@@ -1525,7 +1527,7 @@
         } catch (error) {
           // log error, do not initialize
           if (console) {
-            console.error('Error parsing ' + dataAttr + ' on ' +
+            _error('Error parsing ' + dataAttr + ' on ' +
               elem.nodeName.toLowerCase() + (elem.id ? '#' + elem.id : '') + ': ' +
               error);
           }
@@ -1971,7 +1973,7 @@
     var queryElement = utils.getQueryElement(element);
     if (!queryElement) {
       if (console) {
-        console.error('Bad element for Flickity: ' + (queryElement || element));
+        _error('Bad element for Flickity: ' + (queryElement || element));
       }
       return;
     }
@@ -4871,7 +4873,7 @@
 
       function onConfirm(image, message) {
         if (_this.options.debug && hasConsole) {
-          console.log('confirm', image, message);
+        //   console.log('confirm', image, message);
         }
 
         _this.progress(image);

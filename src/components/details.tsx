@@ -1,8 +1,10 @@
 import React from "react";
 import RequestInformation from "./RequestInformation";
 import { useImages } from './contexts/images-provider';
+import { GatsbyImage_Interface, InmodePanel_Base_SectionTitreText_Interface, InmodePanel_Base_Texte_Interface, InmodePanel_Generic_WhatIs_Interface } from "./interfaces";
+import { resolveImg, resolveImgSet } from "../functions/tools";
 
-const GenericDetails = ({ datas }) => {
+const GenericDetails = ({ datas }:GenericDetails) => {
 
     const images = useImages();
 
@@ -11,18 +13,19 @@ const GenericDetails = ({ datas }) => {
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
-                        src={datas.what_is.picture.childImageSharp.fluid.srcWebp}
-                        srcSet={datas.what_is.picture.childImageSharp.fluid.srcSetWebp}
+                        className="user-select-none"
+                        src={resolveImg(datas.what_is?.picture)}
+                        srcSet={resolveImgSet(datas.what_is?.picture)}
                         alt="detail-main-pic"
                     />
                 </div>
-                {datas.what_is.TitleText.map((section, key) => {
+                {(datas.what_is?.TitleText ?? []).map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
                     return (
                         <div key={key}>
-                            <div className="title">
+                            <div className="title user-select-none">
                                 {section.title}
                             </div>
-                            <p className="text">
+                            <p className="text user-select-none">
                                 {section.text}
                             </p>
                         </div>
@@ -38,27 +41,31 @@ const GenericDetails = ({ datas }) => {
                     return (
                         <div key={key} className="list-elem">
                             {datas.list_icon && <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp || images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
                                 alt={`elem-${key}`}
-                                className="before-text"
+                                className="before-text user-select-none"
                             />}
-                            {!datas.list_icon && <span className="before-text">&bull;</span>}
-                            <div className="text">{elem.texte}</div>
+                            {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
+                            <div className="text user-select-none">{elem.texte}</div>
                         </div>
                     );
                 })}
             </div>
-            <RequestInformation/>
+            <RequestInformation variant={datas.variant}/>
         </div>
     );
-}
-
-GenericDetails.propTypes = {
-
 };
 
-GenericDetails.defaultProps = {
-
+interface GenericDetails {
+    datas: {
+        what_is?: InmodePanel_Generic_WhatIs_Interface;
+        before_keys?: string;
+        anchor_key?: string;
+        list_title?: string;
+        list?: InmodePanel_Base_Texte_Interface[];
+        list_icon: string|null;
+        variant?: string;
+    }
 };
 
 export default GenericDetails;

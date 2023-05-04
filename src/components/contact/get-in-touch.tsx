@@ -1,10 +1,10 @@
 import React from "react";
 
 const GetInTouch = ({ from }:GetInTouch) => {
+    // TODO rajouter main-container pour les container 1170px
     return (
-        // TODO rajouter main-container pour les container 1170px
         <div className={`get-in-touch main-container ${from}`}>
-            <div className="text">
+            <div className="text user-select-none">
                 Get in touch
             </div>
             <hr/>
@@ -14,6 +14,6 @@ const GetInTouch = ({ from }:GetInTouch) => {
 
 interface GetInTouch {
     from: string;
-}
+};
 
 export default GetInTouch;

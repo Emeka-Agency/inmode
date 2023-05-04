@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 import Menu from "./menu";
 import { Link } from "gatsby";
-import MenusContext from "./contexts/menus-context"
+import MenusContext from "./contexts/menus-context";
 // {/* SWITCH CART */}
 
-import CartBasket from "./CartBasket"
+import CartBasket from "./CartBasket";
 import { useCart } from './contexts/cart-provider';
 
 // {/* SWITCH CART END */}
@@ -14,19 +14,19 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
     const [menus] = React.useState(React.useContext(MenusContext).header_bottom);
 
-    const [ isVisible, setIsVisible ] = React.useState();
+    const [ isVisible, setIsVisible ]:[boolean, React.Dispatch<boolean>] = React.useState(Boolean(false));
 
     React.useEffect(() => {
-        const handleScroll = _ => { 
-            if (window.pageYOffset > 150 && window.innerWidth > 999) {
+        const handleScroll = (e:Event) => { 
+            if (window?.pageYOffset > 150 && window?.innerWidth > 999) {
                 setIsVisible(true)
             } else {
                 setIsVisible(false)
             }
         };
-        window.addEventListener('scroll', handleScroll)
+        window?.addEventListener('scroll', handleScroll)
         return () => {
-            window.removeEventListener('scroll', handleScroll)
+            window?.removeEventListener('scroll', handleScroll)
         };
     }, []);
 
@@ -40,15 +40,15 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
     const images = useImages();
 
     return (
-        <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible ? 0 : -55, boxShadow: isVisible ? 'none' : 'unset'}}>
+        <div id="fixed-menu" className={`transition${' ' + customClass || ''}`} style={{top: isVisible == true ? 0 : -55, boxShadow: isVisible == true ? undefined : 'unset'}}>
             <div className="fixed-menu-container">
-                <div className="fixed-menu-logo">
+                <div className="fixed-menu-logo user-select-none">
                     <img
-                        src={images.getOne('fixedMenuLogo').childImageSharp.fluid.srcWebp}
-                        srcSet={images.getOne('fixedMenuLogo').childImageSharp.fluid.srcSetWebp}
+                        src={images.resolve_img('footerLogo3')}
+                        srcSet={images.resolve_img_set('footerLogo3')}
                         alt="header-logo"
                     />
-                    <Link to="/" className="zone-link" title="Inmode"></Link>
+                    <Link to="/" className="absolute-link" title="Inmode"></Link>
                 </div>
                 <div className="fixed-menus">
                     {menus && menus.map((menu:any, key:number) => {
@@ -58,13 +58,14 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
                     })}
                     {/* SWITCH CART */}
 
-                    { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null }
+                    {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null } */}
+                    <CartBasket/>
 
                     {/* SWITCH CART END */}
                 </div>
             </div>
         </div>
     );
-}
+};
 
 export default FixedMenu;

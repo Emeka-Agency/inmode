@@ -1,10 +1,9 @@
 import React from "react";
+import { resolveImg } from "../../functions/tools";
 import { InmodePanel_Addon_Interface } from "../interfaces";
 import RequestInformation from "../RequestInformation";
 
 const AddonWhatTreat = (datas:AddonWhatTreat) => {
-
-  console.log(datas);
     
   if(!datas || !datas.WhatTreats) {
       return <></>;
@@ -18,8 +17,9 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
               return (
                 <div key={key} className="treat-part">
                   <img
-                    src={treat.picture && treat.picture.childImageSharp.fluid.srcWebp}
+                    src={resolveImg(treat.picture)}
                     alt="addon-what-treat"
+                    className="what-treats-img"
                   />
                   <div className="it-treats">{treat.title}</div>
                   <div className="treat-descr">{treat.text}</div>
@@ -35,6 +35,6 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
 interface AddonWhatTreat {
   title?: string;
   WhatTreats: InmodePanel_Addon_Interface["WhatTreats"];
-}
+};
 
 export default AddonWhatTreat;

@@ -1,31 +1,27 @@
 import { Link } from "gatsby";
 import React from "react";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import Carousel from "../Carousel";
-import { InmodePanel_Addon_Interface } from "../interfaces";
+import { useImages } from "../contexts/images-provider";
+import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
-const Addons = ({ datas, sensible = false }:Addons) => {
-
-    console.log(datas);
-    console.log(datas.length);
-    console.log(sensible);
+const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
         cellAlign: 'left',
-        pageDots: true,
+        pageDots: false,
         accessibility: true,
         selectedAttraction: 0.01,
         friction: 0.15,
         percentPosition: false,
-        // autoPlay: 3000,
-       // wrapAround: true,
     });
 
-    const select_mines = (object, id) => {
-        let temp = [];
-        object.map((_let) => {
+    const select_mines = (object:InmodePanel_Base_Image_Interface[] | undefined, id:number):InmodePanel_Base_Image_Interface[] => {
+        let temp:InmodePanel_Base_Image_Interface[] = [];
+        object && object.map((_let) => {
             if(_let.product && _let.product.id === id) {
                 temp.push(_let);
             }
@@ -33,39 +29,41 @@ const Addons = ({ datas, sensible = false }:Addons) => {
         return temp;
     }
 
+    const images_provider = useImages();
+
     return (
         <div id="technologies" className="product-addons">
-            <div className="section-title">technologies on the workstation</div>
+            <div className="section-title">technologies associées</div>
             {datas.addons.map((addon) => {
-                return addon.ProductPresentation.map((product, key) => {
-                    if(product.appears_everywhere || (product.products && product.products[0].id === datas.id)) {
+                return addon.ProductPresentation && addon.ProductPresentation.map((product, key) => {
+                    if(product.appears_everywhere || (product.products && (product.products.map(el => el.id)).indexOf(datas.id) > -1)) {
                         let images = select_mines(product.Images, datas.id);
                         // TODO ton on evolve => evolve-tone
-                        let product_title = product.title_text.toLowerCase().replace(' on ', '-').replace(/ /g, '-').replace(/\*/g, '').replace(/#/g, '');
+                        let product_title = product.title_text ? product.title_text.toLowerCase().replace(' on ', '-').replace(/ /g, '-').replace(/\*/g, '').replace(/#/g, '') : "";
                         return (
                             <div key={key} className="product-addon">
                                 <div className="addon-details">
                                     <div className="addon-description">
                                         <div className="addon-img">
                                             <img
-                                                src={product.left_image.childImageSharp.fluid.srcWebp}
-                                                srcSet={product.left_image.childImageSharp.fluid.srcSetWebp}
+                                                src={resolveImg(product.left_image)}
+                                                srcSet={resolveImgSet(product.left_image)}
                                                 alt={product.title_text}
                                             />
                                         </div>
                                         <div className="addon-title">
                                             {product.title_image && (
                                                 <img
-                                                    src={product.title_image.childImageSharp.fluid.srcWebp}
-                                                    srcSet={product.title_image.childImageSharp.fluid.setSetWebp}
+                                                    src={resolveImg(product.title_image)}
+                                                    srcSet={resolveImgSet(product.title_image)}
                                                     alt={product.title_text}
                                                 />
                                             )}
                                             {!product.title_image && product.title_text}
-                                            {product.appears_everywhere && <Link className="zone-link" to={`/technology/${product_title}`} title={product.title}></Link>}
+                                            {product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
                                         </div>
-                                        {product.AddonProductsDescr.map((descr, key) => {
-                                            if(descr.product.id === datas.id) {
+                                        {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {
+                                            if(descr.product && descr.product.id === datas.id) {
                                                 return (
                                                     <div key={key} className="addon-description">{descr.descr}</div>
                                                 );
@@ -73,23 +71,31 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                             return <></>;
                                         })}
                                         <div className="addon-what-can-i-treat">
-                                            <div className="title">
-                                                Que puis-je traiter ?
-                                            </div>
-                                            <ul>
-                                            {product.ProductPresentationTreats.map((descr, key) => {
-                                                if(descr.product.id === datas.id) {
-                                                    return (
-                                                        <li key={key}>{descr.treat_short}</li>
-                                                    );
-                                                }
-                                            })}
-                                            </ul>
+                                            {
+                                                (product.ProductPresentationTreats ?? []).length > 0 &&
+                                                <>
+                                                    <div className={`title variant-${variant}`}>
+                                                        Que puis-je traiter ?
+                                                    </div>
+                                                    <ul>
+                                                        {(product.ProductPresentationTreats ?? [])?.map((descr, key) => {
+                                                            if(descr.product && descr.product.id === datas.id) {
+                                                                return (
+                                                                    <li key={key}>
+                                                                        {/* <img src={images_provider.resolve_img(variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')} alt="" className="puce" /> */}
+                                                                        <span>{descr.treat_short}</span>
+                                                                    </li>
+                                                                );
+                                                            }
+                                                        })}
+                                                    </ul>
+                                                </>
+                                            }
                                         </div>
                                     </div>
                                 </div>
                                 {images.length == 0 ?
-                                    sensible ?
+                                    addon.sensitivity ?
                                         <Sensible from="product-addons"/>
                                         :
                                         <NoPicture from ="product-addons"/>
@@ -97,12 +103,12 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                     images.length === 1 ?
                                         <img
                                             className="addon-single"
-                                            src={images[0].image.childImageSharp.fluid.srcWebp}
-                                            srcSet={images[0].image.childImageSharp.fluid.srcSetWebp}
+                                            src={resolveImg(images[0].image)}
+                                            srcSet={resolveImgSet(images[0].image)}
                                             alt={`morpheus8-${key + 1}-single`}
                                         />
                                         :
-                                        <div className="addon-carousel">
+                                        <div className="addon-carousel user-select-none">
                                             <Carousel
                                                 id={`carousel-addons-${product_title}`}
                                                 options={flickityOptions}
@@ -114,8 +120,8 @@ const Addons = ({ datas, sensible = false }:Addons) => {
                                                             <img
                                                                 key={key}
                                                                 className="addon-img"
-                                                                src={image.image.childImageSharp.fluid.srcWebp}
-                                                                srcSet={image.image.childImageSharp.fluid.srcSetWebp}
+                                                                src={resolveImg(image.image)}
+                                                                srcSet={resolveImgSet(image.image)}
                                                                 alt={`${product_title}-slide-${key}`}
                                                             />
                                                         </div>
@@ -139,7 +145,8 @@ interface Addons {
         addons: InmodePanel_Addon_Interface[];
         id: number;
     };
-    sensible: boolean;
-}
+    sensible?: boolean;
+    variant?: string;
+};
 
 export default Addons;

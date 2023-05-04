@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import Carousel from "../Carousel";
 
 import { FlickityOptions_Interface, InmodePanel_AboutUs_Interface } from "../interfaces";
-import { FlickityOptions } from "react-flickity-component";
+import { resolveImg } from "../../functions/tools";
 
 const Staff = ({ from = "" }:Staff) => {
 
@@ -12,11 +12,21 @@ const Staff = ({ from = "" }:Staff) => {
             strapiAboutUs {
                 staff {
                     picture {
-                        childImageSharp {
-                            fluid {
+                        caption
+                        url
+                        localFile {
+                            absolutePath
+                            childImageSharp {
+                                fluid {
                                 srcWebp
+                                srcSetWebp
+                                }
                             }
+                            publicURL
+                            url
                         }
+                        width
+                        height
                     }
                     name
                     position
@@ -26,7 +36,6 @@ const Staff = ({ from = "" }:Staff) => {
         }
     `).strapiAboutUs);
 
-    // TODO Understand why any and not FlickityOptions_Interface on Dispatch
     const [flickityOptions]:[FlickityOptions_Interface, React.Dispatch<any>] = React.useState({
         initialIndex: 0,
         cellAlign: 'left',
@@ -35,8 +44,6 @@ const Staff = ({ from = "" }:Staff) => {
         selectedAttraction: 0.01,
         friction: 0.15,
         percentPosition: false,
-        // autoPlay: false,
-        // wrapAround: true,
     });
     
     return (
@@ -47,7 +54,6 @@ const Staff = ({ from = "" }:Staff) => {
                     options={flickityOptions}
                     classList={'slides-main transition carousel-staff'}
                 >
-                    {/* {datas.staff && [...datas.staff, ...datas.staff].map((slide, key) => { */}
                     {datas.staff && datas.staff.map((slide, key) => {
                         return (
                             <div
@@ -55,16 +61,17 @@ const Staff = ({ from = "" }:Staff) => {
                                 className="elem"
                             >
                                 <img
-                                    src={slide.picture ? slide.picture.childImageSharp.fluid.srcWebp : ""}
+                                    className="user-select-none"
+                                    src={resolveImg(slide.picture)}
                                     alt={`about-us-staff-${key}`}
                                 />
-                                <div className="name">
+                                <div className="name user-select-none">
                                     {slide.name}
                                 </div>
-                                <div className="position">
+                                <div className="position user-select-none">
                                     {slide.position}
                                 </div>
-                                <div className="descr">
+                                <div className="descr user-select-none">
                                     {slide.short_descr}
                                 </div>
                             </div>

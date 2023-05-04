@@ -15,8 +15,8 @@
       "type": "string"
     },
     "products": {
-      "collection": "product",
-      "via": "Tags"
+      "via": "Tags",
+      "collection": "product"
     },
     "tag_families": {
       "collection": "tag-family",

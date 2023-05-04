@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProductView from "./product-view";
 import ProductsContext from "../contexts/products-context";
 import { Link } from "gatsby";
 import Carousel from "../Carousel";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Product_Interface, FlickityOptions_Interface } from "../interfaces";
+import { getById } from "../../functions/selectors";
+import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const Slides = ({from}:Slides) => {
 
@@ -28,10 +31,10 @@ const Slides = ({from}:Slides) => {
 
     const view_detail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, key: number | string) => {
         
-    }
+    };
 
     const view_product = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, pos:number) => {
-        let _main = document.getElementById('main');
+        let _main:any = getById('main');
         e.preventDefault();
         if(_main == null) {
             return false;
@@ -44,18 +47,27 @@ const Slides = ({from}:Slides) => {
             selectedAttraction: 0.01,
             friction: 0.15,
             percentPosition: false,
-            // autoPlay: false
+            autoPlay: false,
+            wrapAround: true,
+            contain: true,
+            // groupCells: 1,
+            draggable: true,
+            freeScroll: true,
+            prevNextButtons: true,
+            adaptiveHeight: true,
+            imagesLoaded: true,
+
         });
         setCurrent(pos);
         _main.style.zIndex = '4';
         setOpen(true);
-    }
+        disableMainScroll();
+    };
 
     
     const close_view = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, elem:any) => {
         e.preventDefault();
-        console.log(elem);
-        let _main = document.getElementById('main');
+        let _main:any = getById('main');
         if(_main == null) {
             return false;
         }
@@ -67,6 +79,7 @@ const Slides = ({from}:Slides) => {
             _main.style.zIndex = '0';
             setOpen(false);
         }
+        enableMainScroll();
     }
 
     return (
@@ -89,16 +102,16 @@ const Slides = ({from}:Slides) => {
                                 <div className="slide-background-ico">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.Icon.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.Icon.childImageSharp.fluid.srcSetWebp}
+                                        src={resolveImg(slide.Icon)}
+                                        srcSet={resolveImgSet(slide.Icon)}
                                         alt={slide.Name}
                                     />
                                 </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img"
-                                        src={slide.ShopPicture.childImageSharp.fluid.srcWebp}
-                                        srcSet={slide.ShopPicture.childImageSharp.fluid.srcSetWebp}
+                                        src={resolveImg(slide.ShopPicture)}
+                                        srcSet={resolveImgSet(slide.ShopPicture)}
                                         alt='product'
                                     />
                                 </div>
@@ -109,18 +122,18 @@ const Slides = ({from}:Slides) => {
                                     Informations produit
                                     <img
                                         className="slide-view-detail-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
-                                    <Link className="zone-link" to={slide.MenuParams.url} title={slide.Name}></Link>
+                                    <Link className="absolute-link" to={slide.MenuParams.url} title={slide.Name}></Link>
                                 </div>
                                 {slide.Addons ? <div className="slide-view-product" onClick={(e) => {view_product(e, key);}}>
                                     Pièces à main
                                     <img
                                         className="slide-view-product-arrow transition"
-                                        src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                        srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                        src={images.resolve_img('arrowRightIcon')}
+                                        srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-left"
                                     />
                                 </div> : null}
@@ -136,11 +149,11 @@ const Slides = ({from}:Slides) => {
                         onClick={(e) => {close_view(e, this);}}
                         key={key}
                     >
-                        <ProductView datas={{'current': current}}>
+                        <ProductView datas={{'current': current, index: key}}>
                             <div className="close">
                                 <img
                                     className="close-product-view"
-                                    src={images.getOne('closeWhiteIcon').publicURL}
+                                    src={images.resolve_img('closeWhiteIcon')}
                                     alt="close-product-view"
                                 />
                             </div>
@@ -148,12 +161,13 @@ const Slides = ({from}:Slides) => {
                     </div>
                 );
             })}
+            <Link to="/workstation" className="slides-go-workstation">Nos produits</Link>
         </div>
     );
 };
 
 interface Slides {
     from: string;
-}
+};
 
 export default Slides;

@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "gatsby";
 import ProductsContext from "../contexts/products-context";
 import { useImages } from '../contexts/images-provider';
+import { __horizontal_scroll__Init } from "../../functions/horizontal-scroll";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const ProductView = ({children, datas}:ProductView) => {
 
@@ -13,13 +15,17 @@ const ProductView = ({children, datas}:ProductView) => {
         return <></>;
     }
 
+    useEffect(() => {
+        __horizontal_scroll__Init("#addons-view-cards-" + datas.index);
+    }, []);
+
     return (
         <div className="product-view-container">
             {children}
             <div className="product-view-img">
                 <img
-                    src={products[datas.current].ShopPicture.childImageSharp.fluid.srcWebp}
-                    srcSet={products[datas.current].ShopPicture.childImageSharp.fluid.srcSetWebp}
+                    src={resolveImg(products[datas.current].ShopPicture)}
+                    srcSet={resolveImgSet(products[datas.current].ShopPicture)}
                     alt='product'
                 />
             </div>
@@ -28,7 +34,7 @@ const ProductView = ({children, datas}:ProductView) => {
                 <div className="product-view-descr">
                     {products[datas.current].WhatIs.TitleText[0].text}
                 </div>
-                <div className="addons-view-cards transition custom-scrollbar">
+                <div className="addons-view-cards transition custom-scrollbar moz-scrollbar" id={`addons-view-cards-${datas.index}`}>
                     {products[datas.current].Addons && products[datas.current].Addons.map((addon, key) => {
                         return (
                             <div key={key} className="addon transition">
@@ -36,28 +42,28 @@ const ProductView = ({children, datas}:ProductView) => {
                                     <div className="title">
                                         <img
                                             className="addon-title"
-                                            src={addon.Banner.right_img.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.childImageSharp.fluid.srcSetWebp}
+                                            src={resolveImg(addon.Banner?.right_img)}
+                                            srcSet={resolveImgSet(addon.Banner?.right_img)}
                                             alt={addon.Name}
                                         />
                                     </div>
-                                    <a className="addon-description custom-scrollbar" title={addon.Name}>{addon.Banner.right_text}</a>
+                                    <a className="addon-description custom-scrollbar moz-scrollbar" title={addon.Name}>{addon.Banner.right_text}</a>
                                     <img
                                         className="addon-picture"
-                                        src={addon.Banner.left_img.childImageSharp.fluid.srcWebp}
-                                        srcSet={addon.Banner.left_img.childImageSharp.fluid.srcSetWebp}
+                                        src={resolveImg(addon.Banner?.left_img)}
+                                        srcSet={resolveImgSet(addon.Banner?.left_img)}
                                         alt={addon.Name}/>
                                 </div>
                                 <div className="addon-details transition">
                                     <div className="title">
                                         <img
                                             className="addon-title"
-                                            src={addon.Banner.right_img.childImageSharp.fluid.srcWebp}
-                                            srcSet={addon.Banner.right_img.childImageSharp.fluid.srcSetWebp}
+                                            src={resolveImg(addon.Banner?.right_img)}
+                                            srcSet={resolveImgSet(addon.Banner?.right_img)}
                                             alt={addon.Name}
                                         />
                                     </div>
-                                    <p className="description custom-scrollbar">
+                                    <p className="description custom-scrollbar moz-scrollbar">
                                         {addon.WhatIs.TitleText[0].text}
                                     </p>
                                     <div className="purchase-infos">
@@ -66,8 +72,8 @@ const ProductView = ({children, datas}:ProductView) => {
                                             Détails
                                             <img
                                                 className="detail-view-addon-arrow transition"
-                                                src={images.getOne('arrowRightIcon').childImageSharp.fluid.srcWebp}
-                                                srcSet={images.getOne('arrowRightIcon').childImageSharp.fluid.srcSetWebp}
+                                                src={images.resolve_img('arrowRightIcon')}
+                                                srcSet={images.resolve_img_set('arrowRightIcon')}
                                                 alt="arrow-left"
                                             />
                                         </Link>
@@ -79,7 +85,7 @@ const ProductView = ({children, datas}:ProductView) => {
                                         {/* <div className="add-to-cart"><button>Ajouter</button></div> */}
                                     </div>
                                 </div>
-                                <img src={images.getOne('plusIcon').publicURL} className="show-more" alt="add"/>
+                                <img src={images.resolve_img('plusIcon')} className="show-more" alt="add"/>
                             </div>
                         );
                     })}
@@ -93,6 +99,7 @@ interface ProductView {
     children: React.ReactNode;
     datas: {
         current: number;
+        index: number;
     };
 };
 

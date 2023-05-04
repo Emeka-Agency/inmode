@@ -13,8 +13,6 @@ const AddonClinicalStudies = ({ datas }:AddonClinicalStudies) => {
         selectedAttraction: 0.01,
         friction: 0.15,
         percentPosition: false,
-        // autoPlay: 5000,
-        // wrapAround: true
     });
     
     if(!datas || datas.length === 0) {

@@ -19,20 +19,34 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                     node {
                         Name
                         ShopPicture {
-                            childImageSharp {
-                                fluid {
+                            caption
+                            url
+                            localFile {
+                                absolutePath
+                                childImageSharp {
+                                    fluid {
                                     srcWebp
                                     srcSetWebp
+                                    }
                                 }
+                                publicURL
+                                url
                             }
                         }
                         short_descr
                         Icon {
-                            childImageSharp {
-                                fluid {
+                            caption
+                            url
+                            localFile {
+                                absolutePath
+                                childImageSharp {
+                                    fluid {
                                     srcWebp
                                     srcSetWebp
+                                    }
                                 }
+                                publicURL
+                                url
                             }
                         }
                         MenuParams {
@@ -48,19 +62,33 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             Name
                             Banner {
                                 left_img {
-                                    childImageSharp {
-                                        fluid {
+                                    caption
+                                    url
+                                    localFile {
+                                        absolutePath
+                                        childImageSharp {
+                                            fluid {
                                             srcWebp
                                             srcSetWebp
+                                            }
                                         }
+                                        publicURL
+                                        url
                                     }
                                 }
                                 right_img {
-                                    childImageSharp {
-                                        fluid {
+                                    caption
+                                    url
+                                    localFile {
+                                        absolutePath
+                                        childImageSharp {
+                                            fluid {
                                             srcWebp
                                             srcSetWebp
+                                            }
                                         }
+                                        publicURL
+                                        url
                                     }
                                 }
                                 right_text
@@ -71,12 +99,21 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
                             }
                             WhatIs {
                                 picture {
-                                    childImageSharp {
-                                        fluid {
+                                    caption
+                                    url
+                                    localFile {
+                                        absolutePath
+                                        childImageSharp {
+                                            fluid {
                                             srcWebp
                                             srcSetWebp
+                                            }
                                         }
+                                        publicURL
+                                        url
                                     }
+                                    width
+                                    height
                                 }
                                 TitleText {
                                     text
@@ -90,17 +127,18 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
     `).allStrapiProduct.edges.map((elem:{node:InmodePanel_Product_Interface}) => elem.node));
 
     const product_navigation = [
-        {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'key benefits', 'url': '#key-benefits'},
-        {'name': 'technologies on the workstation', 'url': '#technologies'},
-        {'name': 'clinical studies', 'url': '#studies'}
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avant / après', 'url': '#before-after'},
+        {'name': 'avantages', 'url': '#key-benefits'},
+        {'name': 'technologies associées', 'url': '#technologies'},
+        {'name': 'études cliniques', 'url': '#studies'}
     ];
 
     const addon_navigation = [
-        {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'before and after\'s', 'url': '#before-after'},
-        {'name': 'what can you treat', 'url': '#what-treat'},
-        {'name': 'clinical studies', 'url': '#studies'}
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avant / après', 'url': '#before-after'},
+        {'name': 'quelles zones peuvent être traitées', 'url': '#what-treat'},
+        {'name': 'études cliniques', 'url': '#studies'}
     ];
     
     return (
@@ -114,6 +152,6 @@ const ProductsProvider = ({ requested = "", children }:{ requested?:string, chil
             {children}
         </ProductsContext.Provider>
     );
-}
+};
 
 export default ProductsProvider;

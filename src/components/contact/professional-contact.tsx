@@ -4,16 +4,16 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
     return (
         <div className={`professional-contact main-container ${from}`}>
             <div className="opportunities">
-                <div className="title">
+                <div className="title user-select-none">
                     Opportunités professionnelles
                 </div>
                 <hr/>
-                <div className="descr">
-                    InMode is a fast paced innovative company with continuous growth opportunities. We are always looking for good candidates to join our team. If you are interested in working for InMode please submit a cover letter and resume to hr@inmodemd.com
+                <div className="descr user-select-none">
+                InMode est une entreprise innovante qui ne cesse d’évoluer, avec des possibilités de croissance continue. Nous sommes toujours à la recherche de bons candidats pour rejoindre notre équipe. Si vous souhaitez rejoindre l’équipe InMode, veuillez envoyer une lettre de motivation ainsi que votre CV à <a href="mailto:hr@inmodemd.com">hr@inmodemd.com</a>.
                 </div>
             </div>
             <div className="around-the-world">
-                <div className="title">
+                <div className="title user-select-none">
                     nous contacter par mail
                 </div>
                 <hr/>
@@ -39,8 +39,8 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                         ].map((distributor, key) => {
                             return (
                                 <div className="distributor" key={key}>
-                                    <div className="place">{distributor.place}</div>
-                                    <div className="mail">{distributor.mail}</div>
+                                    <div className="place user-select-none">{distributor.place}</div>
+                                    <a className="mail user-select-none" href={`mailto:${distributor.mail}`}>{distributor.mail}</a>
                                 </div>
                             );
                         })
@@ -53,6 +53,6 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
 
 interface ProfessionalContact {
     from: string;
-}
+};
 
 export default ProfessionalContact;

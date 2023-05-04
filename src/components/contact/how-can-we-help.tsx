@@ -25,6 +25,6 @@ const HowCanWeHelp = ({ from }:HowCanWeHelp) => {
 
 interface HowCanWeHelp {
     from: string;
-}
+};
 
 export default HowCanWeHelp;

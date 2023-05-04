@@ -3,22 +3,55 @@ import { Link } from "gatsby";
 import { useWindowSize } from "../../functions/window-size";
 import SelectCountry from "../select-country";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
+import { getById } from "../../functions/selectors";
+import LoadingGIF from "../LoadingGIF";
+
+import { send_form_large } from "./contact";
+import { _log } from "../../functions/logger";
+
+// DONE - Changer le type du champ de code postal
+// DONE - Factoriser les composants du formulaire
+// DONE - Tester l'envoi de mails
 
 const tech_list = [
-    "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",
-    "ACCUTITE | PRECISION CONTOURING",
-    "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",
-    "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",
-    "DIOLAZEXL | HAIR REMOVAL",
-    "EMBRACERF | FACIAL REFINEMENT",
-    "EVOKE | HANDS-FREE FACIAL REMODELING",
-    "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",
-    "FORMA | SKIN REMODELING",
-    "FRACTORA | FRACTIONAL RESURFACING",
-    "LUMECCA | PIGMENT & VASCULAR",
-    "PLUS | SKIN REMODELING FOR LARGER AREAS",
-    "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",
-    "VOTIVA | AVIVA | FEMININE WELLNESS"
+    {name: "morpheus8", label: "MORPHEUS8 | FACIAL AND BODY FRACTIONAL REMODELING",},
+    {name: "accutite", label: "ACCUTITE | PRECISION CONTOURING",},
+    {name: "bodyfx", label: "BODYFX & MINIFX | NON-INVASIVE BODY TREATMENT",},
+    {name: "bodytite", label: "BODYTITE/FACETITE | MINIMALLY INVASIVE PROCEDURES",},
+    {name: "diolazexl", label: "DIOLAZEXL | HAIR REMOVAL",},
+    {name: "embracerf", label: "EMBRACERF | FACIAL REFINEMENT",},
+    {name: "evoke", label: "EVOKE | HANDS-FREE FACIAL REMODELING",},
+    {name: "evolve", label: "EVOLVE | HANDS-FREE SKIN AND BODY REMODELING",},
+    {name: "forma", label: "FORMA | SKIN REMODELING",},
+    {name: "fractora", label: "FRACTORA | FRACTIONAL RESURFACING",},
+    {name: "lumecca", label: "LUMECCA | PIGMENT & VASCULAR",},
+    {name: "plus", label: "PLUS | SKIN REMODELING FOR LARGER AREAS",},
+    {name: "triton", label: "TRITON | DUOLIGHT/DUODARK | HAIR REMOVAL",},
+    {name: "votiva", label: "VOTIVA | AVIVA | FEMININE WELLNESS",},
+];
+
+const phone_pattern = "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$";
+
+const form_elems = [
+    {"placeholder": "", "validation_message": "Renseignez votre nom", "required": true, "label": "Nom", "name" : "lastname", "type" : "text"},
+    {"placeholder": "", "validation_message": "Renseignez votre prénom", "required": true, "label": "Prénom", "name" : "firstname", "type" : "text"},
+    {"placeholder": "", "label": "Société", "name" : "company", "type" : "text"},
+    {"placeholder": "", "validation_message": "Choisissez une spécialité", "required": true, "label": "Choisir une spécialité", "name" : "subject", "type" : "select", "options": [
+        {"value": undefined, "disabled": true, "selected": true, "style": {'display': 'none'}, "label": "Speciality"},
+        {"value" : "plastic-surgeon", "label": "Chirurgien plasticien",},
+        {"value" : "facial-surgeon", "label": "Chirurgien maxillo-facial",},
+        {"value" : "dermatologist", "label": "Dermatologue",},
+        {"value" : "cosmetic-doctor", "label": "Médecin esthétique",},
+        {"value" : "gynecologist", "label": "Gynécologue",},
+        {"value" : "customer", "label": "Patient",},
+        {"value" : "others", "label": "Autrzs",}
+    ]},
+    {"placeholder": "", "validation_message": "Renseignez votre mail", "spellcheck": false, "required": true, "label": "Email", "name" : "mail", "type" : "email"},
+    {"placeholder": "", "validation_message": "Renseignez votre téléphone", "spellcheck": false, "required": true, "label": "Téléphone", "name" : "phone_number", "type" : "tel", "pattern": phone_pattern},
+    {"placeholder": "", "validation_message": "Renseignez votre addresse", "spellcheck": false, "required": true, "label": "Adresse", "name" : "address", "type" : "text"},
+    {"placeholder": "", "validation_message": "Renseignez votre code postal", "spellcheck": false, "required": true, "label": "Code postal", "name" : "zip", "type" : "text"},
+    {"placeholder": "", "validation_message": "Renseignez votre commune", "spellcheck": false, "required": true, "label": "Ville", "name" : "city", "type" : "text"},
+    {"placeholder": "", "validation_message": "Renseignez votre pays", "spellcheck": false, "required": true, "label": "Pays", "name" : "country", "type" : "select", "options" : <SelectCountry/>},
 ];
 
 const ContactForm = ({ from }:ContactForm) => {
@@ -26,9 +59,9 @@ const ContactForm = ({ from }:ContactForm) => {
     const size = useWindowSize();
 
     const resize_panel = (panel:Element | null, close:HTMLElement | null) => {
-        let closed:boolean = close != null ? close.classList.contains("opened") : false;
-        panel && panel.classList.contains('opened') && closed && panel.classList.remove('opened');
-        panel && !panel.classList.contains('opened') && !closed && panel.classList.add('opened');
+        let closed:boolean = close == null ? false : close.classList.contains("opened");
+        if(panel && panel.classList.contains('opened') && !closed) {panel.classList.remove('opened');}
+        else if(panel && !panel.classList.contains('opened') && closed) {panel.classList.add('opened');}
         if (maxHeight && close) {
             setMaxHeight(0);
         }
@@ -39,9 +72,17 @@ const ContactForm = ({ from }:ContactForm) => {
 
     React.useEffect(() => {
         resize_panel(
-            document.getElementById("accordion"),
-            document.getElementById("title-accordion")
+            getById("accordion"),
+            getById("title-accordion")
         );
+        // EXPLAIN - Pas de setCustomValidity puisque ça définit l'élément comme étant mal rempli
+        // let temp;
+        // (form_elems || []).forEach(elem => {
+        //     temp = document.querySelector(`#full-contact-form [name="${elem.name}"]`);
+        //     if(typeof elem.validation_message == "string" && typeof elem.name == "string" && (temp instanceof HTMLInputElement ||temp instanceof HTMLSelectElement)) {
+        //         temp.setCustomValidity(elem.validation_message);
+        //     }
+        // });
     }, [size.width]);
 
     const [msgLength, setMsgLength] = React.useState(0);
@@ -49,121 +90,128 @@ const ContactForm = ({ from }:ContactForm) => {
 
     const [submitText, setSubmitText] = React.useState('Envoyer');
 
-    function send_form (e:React.FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        document.querySelector('#full-contact-form .req-return.success').innerHTML = "";
-        document.querySelector('#full-contact-form .req-return.error').innerHTML = "";
-        document.querySelector('#full-contact-form .submit').setAttribute('disabled', true);
-        let body:any = new Object({});
-        if(document.forms["full-contact-form"] == null) {
-            return false;
-        }
-        Array.from(document.forms["full-contact-form"].elements).map((elem:HTMLInputElement | any) => {
-            body[elem.name] = elem.checked || elem.value;
-        });
-        body.action = "full-contact";
-        var myHeaders = new Headers();
-        const request_init:RequestInit = {
-            method: 'POST',
-            headers: myHeaders,
-            mode: 'cors',
-            cache: 'default',
-            body: JSON.stringify(body),
-        };
-        fetch(
-            `https://inmodemd.fr/back/app.php`,
-            request_init,
-        )
-        .then((promise) => {
-            return promise.json();
-            }
-        )
-        .then((response) => {
-            if(response.status === 'success' && response.type === 'client') {
-                document.querySelector('#full-contact-form .submit').removeAttribute('disabled');
-                document.querySelector('#full-contact-form .req-return.success').innerHTML = response.message;
-                document.forms['full-contact-form'].reset();
-            }
-            if(response.status === 'fail' && response.type === 'client') {
-                setSubmitText(response.message);
-                document.querySelector('#full-contact-form .submit').setAttribute('disabled', true);
-                document.querySelector('#full-contact-form .req-return.success').innerHTML = "Une erreur d'envoi du message est survenu. Essayez de raffraîchir la page ou de contacter un administrateur.";
-            }
-            if(response.status === 'fail' && response.type === 'server') {
-                document.querySelector('#full-contact-form .submit').setAttribute('disabled', true);
-                document.querySelector('#full-contact-form .req-return.error').innerHTML = response.message;
-            }
-        })
-        .catch(function(error) {
-            console.log('Il y a eu un problème avec l\'opération fetch: ' + error.message);
-          });;
-    }
+    // CONSOLE TEST
+    // function getFormDetails() {
+    //     let body = new Object({});
+    //     if(document.forms.namedItem("full-contact-form") == null) {
+    //         return false;
+    //     }
+    //     let _form = document.forms.namedItem("full-contact-form")
+    //     Array.from(_form ? _form.elements : []).map((elem) => {
+    //         body[elem.name] = elem.value ?? elem.checked ?? null;
+    //     });
+    //     body.action = "full-contact";
+    //     return body;
+    // }
 
     const resolveClick = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         e.currentTarget.classList.toggle('opened');
         var panel = e.currentTarget.nextElementSibling;
         resize_panel(panel, e.currentTarget);
     }
+
+    const get_for_element = (selector:string|null = null):HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement|null => {
+        return selector == null ? null : document.querySelector(selector);
+    }
+
+    const verify_form = () => {
+        _log("verify_form");
+        return (form_elems || []).map(elem => 
+            !elem.required || (elem.required == true && get_for_element(`#full-contact-form [name="${(elem.name || "")}"]`)?.checkValidity()) ? true : false
+        ).filter(ans => ans).length == form_elems.length;
+    }
+
+    const set_saving = () => {
+        _log("set_saving");
+        (():HTMLElement|null => document?.querySelector('#full-contact-form button.submit .label'))()?.style.setProperty('display', 'none');
+        document?.querySelector('#full-contact-form .loading-gif')?.classList.add('active');
+        return true;
+    }
+    const remove_saving = (status = null) => {
+        _log("remove_saving", status);
+        status == "fail" && setSubmitText("Erreur d'envoi");
+        status == "success" && setSubmitText("Envoyé");
+        status == "error" && setSubmitText("Erreur à l'envoi");
+        (():HTMLElement|null => document?.querySelector('#full-contact-form button.submit .label'))()?.style.removeProperty('display');
+        document?.querySelector('#full-contact-form .loading-gif')?.classList.remove('active');
+        return true;
+    }
+
+    const reset_form = () => {
+        let _temp = null;
+        _temp = document.querySelector('#full-contact-form .req-return.success');
+        if(_temp instanceof HTMLElement) {_temp.innerHTML = "";}
+        _temp = document.querySelector('#full-contact-form .req-return.error');
+        if(_temp instanceof HTMLElement) {_temp.innerHTML = "";}
+        setSubmitText("Envoyer");
+        _temp = document?.getElementById("full-contact-form");
+        if(_temp instanceof HTMLFormElement) {_temp.reset();}
+    }
     
     const max_length = 800;
 
     return (
-        <form id="full-contact-form" name="contact" onSubmit={(e) => {send_form(e);}} className={`contact-form main-container ${from}`}>
+        <form
+            id="full-contact-form"
+            name="contact"
+            onSubmit={(e) => {
+                e.preventDefault();
+                verify_form() ? set_saving() && send_form_large(e, setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
+            }}
+            className={`contact-form main-container ${from}`}
+            method="POST"
+        >
             <div className="mailer-datas">
-                <div className="field">
-                    <label htmlFor="lastname">Nom</label>
-                    <input type="text" name="lastname" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="firstname">Prénom</label>
-                    <input type="text" name="firstname" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="company">Société</label>
-                    <input type="text" name="company"/>
-                </div>
-                <div className="field">
-                    <label htmlFor="speciality">Choisir une spécialité</label>
-                    <select name="speciality" required={true}>
-                        <option value="plastic-surgeon" selected>Chirurgien plasticien</option>
-                        <option value="facial-surgeon">Chirurgien maxillo-facial</option>
-                        <option value="dermatologist">Dermatologue</option>
-                        <option value="cosmetic-doctor">Médecin esthétique</option>
-                        <option value="gynecologist">Gynécologue</option>
-                        <option value="others">Autres</option>
-                    </select>
-                </div>
-                <div className="field">
-                    <label htmlFor="mail">Email</label>
-                    <input spellCheck={false} type="email" name="mail" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="phone_number">Téléphone</label>
-                    <input spellCheck={false} type="tel" name="phone_number" required pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"/>
-                </div>
-                <div className="field">
-                    <label htmlFor="address">Adresse</label>
-                    <input spellCheck={false} type="text" name="address" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="zip">Code postal</label>
-                    <input spellCheck={false} type="text" name="zip" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="city">Ville</label>
-                    <input spellCheck={false} type="text" name="city" required/>
-                </div>
-                <div className="field">
-                    <label htmlFor="country">Pays</label>
-                    <SelectCountry/>
-                </div>
+                {form_elems.map((elem, elem_key) => {
+                    if(["email", "tel", "text"].indexOf(elem.type) > -1) {
+                        return (
+                            <div className="field" key={elem_key}>
+                                <label className="user-select-none" htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                <input
+                                    id={elem.name}
+                                    title={elem.label}
+                                    placeholder={elem.placeholder}
+                                    spellCheck={elem.spellcheck ? true : false}
+                                    type={elem.type}
+                                    name={elem.name}
+                                    required={elem.required ? false : false}
+                                    pattern={elem.pattern ? elem.pattern : undefined}
+                                />
+                            </div>
+                        );
+                    }
+                    if(elem.type == "select") {
+                        return (
+                            <div className="field">
+                                <label className="user-select-none" htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                {
+                                    Array.isArray(elem.options) ? 
+                                        <select className="user-select-none" id={elem.name} name={elem.name} required={elem.required ? false : false}>
+                                            {(elem.options || []).map((option, option_key) => 
+                                                <option
+                                                    className="user-select-none"
+                                                    value={option.value}
+                                                    disabled={option.disabled ? true : false}
+                                                    selected={option.selected ? true : false}
+                                                    style={option.style || {}}
+                                                    key={`option_${option_key}`}
+                                                >{option.label}</option>
+                                            )}
+                                        </select>
+                                    :
+                                    elem.options
+                                }
+                            </div>
+                        );
+                    }
+                })}
             </div>
             <div className="message-zone">
                 <textarea
                     id="contact-message"
-                    placeholder="Entrez votre message ici"
+                    placeholder="Entrez votre message ici*"
                     name="message"
-                    className="custom-scrollbar"
+                    className="custom-scrollbar moz-scrollbar user-select-none"
                     maxLength={max_length}
                     rows={15}
                     onKeyUp={(e) => {setMsgLength(e.currentTarget.value.length);}}
@@ -173,8 +221,8 @@ const ContactForm = ({ from }:ContactForm) => {
                 >
                 </textarea>
                 <div
-                    className="current-length"
-                    style={{color: msgLength === max_length ? '#f00' : '#59b7b3'}}
+                    className="current-length user-select-none"
+                    style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}
                 >
                     {`${msgLength} / ${max_length}`}
                 </div>
@@ -182,7 +230,7 @@ const ContactForm = ({ from }:ContactForm) => {
             <div className="tech-list">
                 <span
                     id="title-accordion"
-                    className="title title-accordion transition"
+                    className="title title-accordion transition user-select-none"
                     onClick={(e) => {resolveClick(e);}}
                 >
                     Quelles technologies vous intéressent ?
@@ -195,9 +243,9 @@ const ContactForm = ({ from }:ContactForm) => {
                     {tech_list.map((tech, key) => {
                         return (
                             <div key={key} className="key-check">
-                                <label htmlFor={tech}>
-                                    <input type="checkbox" id={tech} name={tech}/>
-                                    {tech}
+                                <label className="user-select-none" htmlFor={tech.name}>
+                                    <input type="checkbox" id={tech.name} name={tech.name}/>
+                                    {tech.label}
                                 </label>
                             </div>
                         );
@@ -205,17 +253,22 @@ const ContactForm = ({ from }:ContactForm) => {
                     <hr/>
                 </div>
             </div>
-            {/* <div className="newsletter">
-                <input type="checkbox" id="mail_list" name="mail_list" value="mail_list"/>
-                <label htmlFor={"mail_list"}>S'abonner à la newsletter</label>
-            </div> */}
             <div className="policy">
                 <input type="checkbox" id="policy" name="policy" value="policy" required/>
-                <label htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
+                <label className="user-select-none" htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
             </div>
-            <div className="req-return success" style={{color: '#59b7b3', fontSize: 15, fontWeight: 400}}></div>
+            <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-            <input type="submit" className="submit transition" placeholder={submitText}/>
+            <button type="submit" className="submit transition">
+                <div className="label user-select-none">{submitText}</div>
+                {<LoadingGIF/>}
+            </button>
+            <button
+                type="button"
+                className="submit transition reset"
+                onClick={() => reset_form()}>
+                <div className="label user-select-none">Nouveau message</div>
+            </button>
         </form>
     );
 };

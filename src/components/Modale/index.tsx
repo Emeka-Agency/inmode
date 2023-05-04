@@ -6,7 +6,7 @@ const Modale = ({}:Modale) => {
     return (
         <div id="modale">
             <div id="modale-container">
-                <div id="modale-content" />
+                <div id="modale-content"/>
             </div>
         </div>
     );

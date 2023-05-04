@@ -1,15 +1,12 @@
 import React from "react";
+import { resolveImg } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { InmodePanel_Generic_BeforeAfter_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 import RequestInformation from "../RequestInformation";
 
-const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) => {
-
-    console.log(datas);
-    console.log(datas.length);
-    console.log(sensible);
+const TreatmentBeforeAfter = ({ datas, sensible = false, variant = "teal"}:TreatmentBeforeAfter) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -19,36 +16,31 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
         selectedAttraction: 0.01,
         friction: 0.15,
         percentPosition: false,
-        // autoPlay: 5000,
-       // wrapAround: true,
     });
-
-    // if(datas.length === 0) {
-    //     return <></>;
-    // }
 
     return (
         <div id="before-after" className="before-after">
-            <div className="title">
-                before and after
+            <div className="title user-select-none">
+                Avant / Après
             </div>
-            <div className={`container-ba${datas.length < 3 ? ' few' : ''}`}>
-                {datas.length == 0 ?
+            <div className={`container-ba${(datas || []).length < 3 ? ' few' : ''}`}>
+                {(datas || []).length == 0 ?
                     sensible ?
                         <Sensible from="treatment-before-after"/>
                         :
                         <NoPicture from ="treatment-before-after"/>
                     :
-                    datas.length < 3 ?
-                        datas.map((ba, key) => {
+                    (datas || []).length < 3 ?
+                        (datas ||[]).map((ba, key) => {
                             return (
                                 <div key={key} className="few-ba">
                                     <img
-                                        src={ba.image.childImageSharp.fluid.srcWebp}
+                                        className="user-select-none"
+                                        src={resolveImg(ba.image)}
                                         alt="treatment-before-after"
                                     />
-                                    <div className="ba-doctor">{ba.doctor}</div>
-                                    <div className="ba-descr">{ba.text}</div>
+                                    <div className="ba-doctor user-select-none">{ba.doctor}</div>
+                                    <div className="ba-descr user-select-none">{ba.text}</div>
                                 </div>
                             );
                         })
@@ -58,16 +50,16 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                             options={flickityOptions}
                             classList={'slides-before-after transition'}
                         >
-                            {/* {[...datas, ...datas].map((ba, key) => { */}
-                            {datas.map((ba, key) => {
+                            {(datas || []).map((ba, key) => {
                                     return (
                                         <div key={key} className="ba-slide">
                                             <img
-                                                src={ba.image.childImageSharp.fluid.srcWebp}
+                                                className="user-select-none"
+                                                src={resolveImg(ba.image)}
                                                 alt={`treatment-before-after-${key}`}
                                             />
-                                            <div className="ba-doctor">{ba.doctor}</div>
-                                            <div className="ba-descr">{ba.text}</div>
+                                            <div className="ba-doctor user-select-none">{ba.doctor}</div>
+                                            <div className="ba-descr user-select-none">{ba.text}</div>
                                         </div>
                                     );
                                 })
@@ -75,7 +67,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
                         </Carousel>
                 }
             </div>
-            <RequestInformation/>
+            <RequestInformation variant={variant}/>
         </div>
     );
 };
@@ -83,6 +75,7 @@ const TreatmentBeforeAfter = ({ datas, sensible = false}:TreatmentBeforeAfter) =
 interface TreatmentBeforeAfter {
     datas: InmodePanel_Generic_BeforeAfter_Interface[] | undefined;
     sensible: boolean;
-}
+    variant: string;
+};
 
 export default TreatmentBeforeAfter;

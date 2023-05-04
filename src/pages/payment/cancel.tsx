@@ -22,8 +22,7 @@ const PaymentCancelPage = () => {
         }
     `).site.siteMetadata.url_order_load);
     
-    const [params, setParams] = React.useState({});
-    const [order, setOrder] = React.useState(null);
+    const [order, setOrder] = React.useState(undefined);
 
     const cart = useCart();
 
@@ -31,20 +30,25 @@ const PaymentCancelPage = () => {
 
     React.useEffect(() => {
         let _test:any = get_url_params();
-        setParams(new Object({..._test}));
-        // delete _test.signature;
-        // verify_signature();
-        console.log(_test);
-        order_load(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
-        window.history.pushState('', page_title, '/payment/cancel/');
+        if(
+            (_test.vads_trans_id == undefined || _test.vads_trans_id == null)
+            &&
+            (_test.vads_order_id == undefined || _test.vads_order_id == null)
+        ) {
+            window.location.href = window?.location.origin;
+        }
+        else {
+            order_cancel(_test.vads_trans_id != undefined ? _test.vads_trans_id : _test.vads_order_id!= undefined ? _test.vads_order_id : null);
+            window?.history.pushState('', page_title, '/payment/cancel/');
+        }
     }, []);
 
-    const order_load = async(reference:string) => {
+    const order_cancel = async(reference:string) => {
         if(!reference) {return false;}
         if(typeof reference != 'string') {return false;}
         let { status, order } = await (await fetch(load_url, {
             method: 'POST',
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({reference: reference}),
@@ -57,9 +61,9 @@ const PaymentCancelPage = () => {
     }
     
     return (
-        <Layout>
+        <Layout title="pay-cancel">
             <SEO title={page_title}/>
-            <OrderLayout status={page_title} order={order}/>
+            <OrderLayout payment={"cancel"} status={page_title} order={order}/>
         </Layout>
     );
 };

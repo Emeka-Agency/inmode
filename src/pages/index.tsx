@@ -29,8 +29,8 @@ const IndexPage = () => {
   const size = useWindowSize();
 
   return (
-      <Layout>
-        <SEO/>
+    <Layout title="home">
+        <SEO title="Accueil"/>
         <Hero/>
         {size.width > 999 ? <Slides from='home'/> : <SlidesMini from="home"/>}
         <Alveoles />
@@ -39,6 +39,6 @@ const IndexPage = () => {
         <GetStarted/>
       </Layout>
   );
-}
+};
 
 export default IndexPage

@@ -1,13 +1,15 @@
-import React from "react"
+import { graphql } from "gatsby";
+import React from "react";
+import { InmodePanel_Addon_Interface, InmodePanel_Product_Interface, InmodePanel_TagFamily_Interface } from "../components/interfaces";
 import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import Shop from "../components/shop/shop";
 import { edges_to_array } from "../functions/edges_to_array";
 
-const WorkstationPage = ({ data }) => {
+const WorkstationPage = ({ data }:WorkStation_Page) => {
     
     return (
-        <Layout>
+        <Layout title="workstations">
           <SEO title="Gamme"/>
           <Shop
             products={edges_to_array(data.allStrapiProduct.edges)}
@@ -17,9 +19,23 @@ const WorkstationPage = ({ data }) => {
           />
         </Layout>
     )
-}
+};
 
 export default WorkstationPage;
+
+interface WorkStation_Page {
+    data: {
+        allStrapiProduct: {
+            edges: InmodePanel_Product_Interface[];
+        }
+        allStrapiTagFamily: {
+            edges: InmodePanel_TagFamily_Interface[];
+        };
+        allStrapiAddon: {
+            edges: InmodePanel_Addon_Interface[];
+        };
+    };
+};
 
 export const query = graphql`
   {
@@ -32,10 +48,18 @@ export const query = graphql`
             internal_link
           }
           ShopPicture {
-            childImageSharp {
-              fluid {
-                  srcWebp
-              }
+            caption
+            url
+            localFile {
+                absolutePath
+                childImageSharp {
+                    fluid {
+                    srcWebp
+                    srcSetWebp
+                    }
+                }
+                publicURL
+                url
             }
           }
           ShopDescription

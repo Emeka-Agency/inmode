@@ -1,11 +1,4 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
-import React from "react";
+import React, { ReactNode } from "react";
 import PropTypes from "prop-types";
 
 import Header from "../Header/index";
@@ -24,53 +17,79 @@ import ImagesProvider from "../contexts/images-provider";
 
 import CartPurchase from "../Cart";
 import PayParams from "../Cart/pay_params";
+import { useCart } from "../contexts/cart-provider";
+import { useUser } from "../contexts/user-provider";
 
 // {/* SWITCH CART END */}
 
-const Layout = ({ children }) => {
+const Layout = ({ children, title, variant = "teal" }:Layout) => {
 
-  // TODO régler isMobile pour ouverture cookies
-  // const [isMobile, setIsMobile] = React.useState()
+    // TODO régler isMobile pour ouverture cookies
+    // const [isMobile, setIsMobile] = React.useState()
 
-  // React.useEffect(() => {
-  //   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-  //     // true for mobile device
-  //     document.write("mobile device");
-  //   }else{
-  //     // false for not mobile device
-  //     document.write("not mobile device");
-  //   }
-  // });
+    // React.useEffect(() => {
+    //   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    //     // true for mobile device
+    //     document.write("mobile device");
+    //   }else{
+    //     // false for not mobile device
+    //     document.write("not mobile device");
+    //   }
+    // });
 
-  return (
-    <ImagesProvider>
-      <MenusProvider>
-        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
-        <Header/>
-        <ProductsProvider>
-          <main id="main">
-            {children}
-          </main>
-        </ProductsProvider>
-        <FixedMenu/>
-        {/* {size.height < 800 && <div style={{position: "fixed", height: 450, width: 450, top:0, left:0, background: "red"}}></div>} */}
-        {/* SWITCH CART */}
+    if(typeof window != "undefined") {
+        // window?.onbeforeunload = function(event) {
+        //     useCart().close_cart();
+        // }
+        window?.addEventListener('unload', function(event) {
+            useCart().close_cart();
+        });
+    }
 
-        <CartPurchase/>
-        <PayParams/>
+    function searchConsole() {
+        if(typeof window == "undefined") {
+            return false;
+        }
+        window.dataLayer = window?.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        {/* SWITCH CART END */}
-        <PrivacyPolicy />
-        <ContactUs/>
-        <Footer/>
-        <Modale/>
-      </MenusProvider>
-    </ImagesProvider>
-  )
-}
+        gtag('config', 'G-JFS1WVR7JQ');
+    }
 
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+    return (
+        <ImagesProvider>
+            <MenusProvider>
+                <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+                <Header variant={variant}/>
+                {/* <!-- Google tag (gtag.js) --> */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
+                <script>{searchConsole()}</script>
+                <ProductsProvider>
+                <main id="main" className={title + '-page'}>
+                    {children}
+                </main>
+                </ProductsProvider>
+                <FixedMenu/>
+                {/* SWITCH CART */}
+
+                <CartPurchase/>
+                <PayParams/>
+
+                {/* SWITCH CART END */}
+                <PrivacyPolicy />
+                <ContactUs/>
+                <Footer/>
+                <Modale/>
+            </MenusProvider>
+        </ImagesProvider>
+    )
+};
+
+interface Layout {
+    children: ReactNode;
+    title: string;
+    variant?: string;
+};
 
 export default Layout

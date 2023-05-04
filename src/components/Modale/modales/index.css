@@ -1,0 +1,55 @@
+#modale {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: var(--pure-black-50);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out 0s;
+}
+
+#modale.opened {
+    z-index: 6;
+    opacity: 1;
+}
+
+#modale.closing {
+    z-index: 6;
+    opacity: 0;
+}
+
+#modale #modale-container {
+    width: 60%;
+    height: 80%;
+    background-color: #070707;
+    border-top: 5px solid var(--teal);
+    margin: 0 auto;
+    top: 10%;
+    position: relative;
+    box-shadow: #0e0e0e 0px 0px 5px;
+}
+
+#modale #modale-container #modale-content {
+    width: 100%;
+    height: 100%;
+}
+
+#modale #modale-container #modale-content #modale-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 50px;
+    font-weight: 400;
+    color: var(--midnight);
+    cursor: pointer;
+    transform: rotate(45deg);
+    user-select: none;
+    transition: color 0.3s ease-in-out 0s;
+}
+
+#modale #modale-container #modale-content #modale-close:hover {
+    color: var(--teal);
+    transition: color 0.1s ease-in-out 0s;
+}

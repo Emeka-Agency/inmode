@@ -1,8 +1,13 @@
 import React from "react";
-import Img from "gatsby-image";
+import { Link } from "gatsby";
+import ReactSimplyCarousel, { ReactSimplyCarouselProps } from 'react-simply-carousel';
 
 import { useImages } from '../contexts/images-provider';
 import { graphql, useStaticQuery } from "gatsby";
+
+import './hero.css';
+import Carousel from "../Carousel";
+import { FlickityOptions_Interface } from "../interfaces";
 
 const Hero = ({}:Hero) => {
 
@@ -15,50 +20,116 @@ const Hero = ({}:Hero) => {
         }
     `).strapiHeroHeader);
 
+    const [activeSlide, setActiveSlide]:[number, React.Dispatch<number>] = React.useState(0);
+
     const images = useImages();
 
-    // TODO faire un bloc bleu border-radius bottom-right et un bloc down #59b7b3, image en position absolute du hero
+    // TODO faire un bloc bleu border-radius bottom-right et un bloc down var(--teal), image en position absolute du hero
 
     const img_init_right = 3;
 
     // const size = useWindowSize();
 
+    const [flickityOptions]:[FlickityOptions_Interface, React.Dispatch<any>] = React.useState({
+        initialIndex: 0,
+        cellAlign: 'left',
+        pageDots: false,
+        accessibility: true,
+        selectedAttraction: 0.01,
+        friction: 0.15,
+        percentPosition: false,
+    });
+
+    const [carousel_options]:[ReactSimplyCarouselProps] = React.useState({
+        activeSlideIndex: activeSlide,
+        activeSlideProps: {
+          style: {
+            background: "blue"
+          }
+        },
+        autoplay: true,
+        autoplayDelay: 0,
+        autoplayDirection: 'horizontal',
+        backwardBtnProps: {
+          children: "",
+          style: {
+            display: "none",
+          }
+        },
+        containerProps: {
+          style: {
+            width: "100%",
+            justifyContent: "space-between",
+            userSelect: "none"
+          }
+        },
+        delay: 1500,
+        disableNavIfAllVisible: true,
+        disableNavIfEdgeActive: true,
+        disableNavIfEdgeVisible: true,
+        disableSwipeByMouse: true,
+        disableSwipeByTouch: true,
+        dotsNav: {
+          show: false,
+          itemBtnProps: {
+            style: {
+              display: "none",
+            }
+          },
+          activeItemBtnProps: {
+            style: {
+              display: "none",
+            }
+          }
+        },
+        easing: "ease-in-out",
+        forwardBtnProps: {
+          children: "",
+          style: {
+            display: "none",
+          }
+        },
+        hideNavIfAllVisible: true,
+        itemsToShow: 1,
+        onRequestChange: setActiveSlide,
+        infinite: true,
+        preventScrollOnSwipe: true,
+        speed: 1000,
+        swipeTreshold: 60,
+    });
+
     return (
         <div
             className="home-hero"
-            // onMouseMove={(e) => {
-            //     let _w = size.innerWidth/2;
-            //     let _h = size.innerHeight/2;
-            //     let _mouseX = e.clientX;
-            //     let _mouseY = e.clientY;
-            //     document.getElementById('hero-img').style.right = `calc(${(_mouseX - _w) * 0.005}% + ${img_init_right}vw`;
-            //     document.getElementById('hero-img').style.bottom = `${(_mouseY - _h) * 0.005}%`;
-            // }}
         >
             {/* // TODO ajouter single content */}
-            <div className="hero-left">
-                <div className="top-text">{datas.TopText}</div>
-                {/* {size.width < 670 && <> */}
-                <div className="border-5"></div>
-                <div className="border-4"></div>
-                <div className="border-3"></div>
-                {/* </>} */}
-                <div className="bottom-text">{datas.BottomText}</div>
+            <div className="hero-global">
+                <div className="hero-top">
+                    <div className="before-top-text">LOVE YOUR SKIN</div>
+                    <div className="top-text">{datas.TopText}</div>
+                    <div className="hero-top-links">
+                        <Link className="hero-top-link inmode-btn" to="/contact">Contact</Link>
+                        <Link className="hero-top-link inmode-btn" to="/events">Événements</Link>
+                    </div>
+                </div>
+                <div className="hero-bottom">
+                    {/* </>} */}
+                    <div className="bottom-text">{datas.BottomText}</div>
+                </div>
+                {/* IMAGE HERO */}
+                <div id="hero-img">
+                    <img
+                        className="hero-img"
+                        src={images.resolve_img("hero1")}
+                        srcSet={images.resolve_img_set("hero1")}
+                        style={{
+                            "right": img_init_right + 'vw',
+                            clipPath: "polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%)"
+                        }}
+                        alt="hero-right-img"
+                    />
+                </div>
             </div>
-            <div className="hero-right">
-                <img
-                    id="hero-img"
-                    src={images.getOne('heroHeader').childImageSharp.fluid.srcWebp}
-                    srcSet={images.getOne('heroHeader').childImageSharp.fluid.srcSetWebp}
-                    style={{"right": img_init_right + 'vw'}}
-                    alt="hero-right-img"
-                />
-            </div>
-            <div className="layout-2"></div>
-            <div className="layout-3"></div>
-            <div className="layout-4"></div>
-            <div className="layout-5"></div>
-            <div className="layout-6"></div>
         </div>
     );
 };

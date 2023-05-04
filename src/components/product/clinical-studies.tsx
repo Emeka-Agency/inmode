@@ -1,8 +1,9 @@
 import React from "react";
 import Carousel from "../Carousel";
-import ClinicalStudy from "../clinical-study";
+import ClinicalStudy from "../Clinical/clinical-study";
+import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
 
-const ProductClinicalStudies = ({ datas }) => {
+const ProductClinicalStudies = ({ datas }:ProductClinicalStudies_Interface) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -12,8 +13,6 @@ const ProductClinicalStudies = ({ datas }) => {
         selectedAttraction: 0.01,
         friction: 0.15,
         percentPosition: false,
-        // autoPlay: 5000,
-       // wrapAround: true
     });
 
     if(!datas || datas.length === 0) {
@@ -34,7 +33,6 @@ const ProductClinicalStudies = ({ datas }) => {
                         options={flickityOptions}
                         classList={'slide-studies transition'}
                     >
-                        {/* {[...datas, ...datas].map((study, key) => { */}
                         {datas.map((study, key) => {
                             return (<ClinicalStudy key={key} prop_key={key} study={study}/>);
                         })}
@@ -43,14 +41,10 @@ const ProductClinicalStudies = ({ datas }) => {
             </div>
         </div>
     );
-}
+};
 
-ProductClinicalStudies.defaultProps = {
-
-}
-
-ProductClinicalStudies.propTypes = {
-
-}
+interface ProductClinicalStudies_Interface {
+    datas: InmodePanel_Generic_ClinicalStudies_Interface[];
+};
 
 export default ProductClinicalStudies;

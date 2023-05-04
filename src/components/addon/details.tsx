@@ -2,6 +2,7 @@ import React from "react";
 import RequestInformation from "../RequestInformation";
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Addon_Interface } from "../interfaces";
+import { resolveImg } from "../../functions/tools";
 
 const AddonDetails = ({ name = "", datas }:AddonDetails) => {
 
@@ -22,10 +23,10 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             <div id="what-is" className="what-is transition">
                 <div className="addon-details-img transition">
                     <img
-                        src={datas.WhatIs && datas.WhatIs.picture.childImageSharp.fluid.srcWebp}
+                        src={resolveImg(datas.WhatIs?.picture)}
                     />
                 </div>
-                    {datas.WhatIs && datas.WhatIs.TitleText.map((section, key) => {
+                    {datas.WhatIs && datas.WhatIs.TitleText && datas.WhatIs.TitleText.map((section, key) => {
                         return (
                             <div key={key}>
                                 <div className="title">
@@ -40,13 +41,13 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             </div>
             <div className="key-benefits transition">
                 <div className="title">
-                    {'key benefits:'}
-                </div>key_benefit
+                    {'avantages:'}
+                </div>avantages
                 {datas.BeforesAfters && datas.BeforesAfters.map((benefit, key:number) => {
                     return (
                         <div key={key} className="key">
                             <img
-                                src={images.getOne('keyBenefitIcon').childImageSharp.fluid.srcWebp}
+                                src={images.resolve_img('keyBenefitIcon')}
                                 alt="key_benefit"
                             />
                             <div className="text">{benefit.text}</div>
@@ -57,11 +58,11 @@ const AddonDetails = ({ name = "", datas }:AddonDetails) => {
             <RequestInformation/>
         </div>
     );
-}
+};
 
 interface AddonDetails {
     name?: string;
     datas: InmodePanel_Addon_Interface;
-}
+};
 
 export default AddonDetails;
