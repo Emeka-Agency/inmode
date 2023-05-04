@@ -163,6 +163,31 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         }).filter(e => e).length > 0;
     }
 
+    const treatmentURL = (treatment:string) => {
+        if(treatment == undefined) {return null;}
+        switch(treatment) {
+            case "Diolaze": return "/technology/diolazexl";
+            case "Fractora": return "/technology/fractora";
+            case "Lumecca": return "/technology/lumecca";
+            case "BodyFX": return "/technology/bodyfx";
+            case "Forma": return "/technology/forma";
+            case "Plus": return "/technology/plus";
+            case "Morpheus8": return "/technology/morpheus8";
+            case "FormaV": return "/technology/formav";
+            case "Tite": return "/technology/tite";
+            case "Trim": return "/technology/trim";
+            case "Tone": return "/technology/tone";
+            case "Evoke Chin": return "/workstation/evoke";
+            case "Evoke Cheek": return "/workstation/evoke";
+            case "Morpheus8 V": return "/technology/morpheus8v";
+            case "DiolazeXL": return "/technology/diolazexl";
+            case "MiniFX": return "/technology/minifx";
+            case "Transform": return "/technology/trim";
+            case "Vasculaze": return "/technology/vasculaze";
+            default: return null;
+        }
+    }
+
     React.useEffect(() => {
         setTreatments(
             clinics.map(clinic => clinic.Machines?.join(',')).join(',').split(',')
@@ -282,7 +307,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                                             return (
                                                 <span key={key}>
                                                     {treatment}
-                                                    {/* <a className="zone-link" href={_base_url + treatment} title={treatment} target="_blank"></a> */}
+                                                    {treatmentURL(treatment) && <a className="absolute-link" href={treatmentURL(treatment)} title={treatment} target="_blank"></a>}
                                                 </span>
                                             );
                                         })
