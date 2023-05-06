@@ -1,0 +1,98 @@
+#landing-empower-top {
+    width: 100%;
+}
+
+#landing-empower-top video {
+    display: inline-flex;
+    flex: 2;
+}
+
+#landing-empower-top .contact {
+    display: inline-flex;
+    flex: 1;
+    background-color: var(--pearl);
+    padding-bottom: 0;
+    position: relative;
+}
+
+#landing-empower-top .contact.full-form-container .contact-form .mailer-datas {
+    width: 100%;
+    padding: 20px;
+    display: block;
+    box-sizing: border-box;
+}
+
+#landing-empower-top .contact.full-form-container .contact-form .mailer-datas .field {
+    width: 100%;
+    transform: none;
+}
+
+#landing-empower-top .contact.full-form-container .contact-form .req-return.success,
+#landing-empower-top .contact.full-form-container .contact-form .req-return.error {
+    padding: 20px;
+}
+
+#landing-empower-top .contact.full-form-container .contact-form button[type="submit"],
+#landing-empower-top .contact.full-form-container .contact-form button.reset {
+    width: 100%;
+    background-color: var(--teal);
+    color: var(--pearl);
+    position: absolute;
+    bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 465px) {
+    #landing-empower-top video {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-empower-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #landing-empower-top video {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-empower-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    #landing-empower-top video {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-empower-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    #landing-empower-top {
+        display: flex;
+    }
+
+    #landing-empower-top video {
+        display: inline-flex;
+        width: 0;
+        flex: 2;
+    }
+    
+    #landing-empower-top .contact {
+        display: inline-flex;
+        width: 0;
+        flex: 1;
+    }
+}

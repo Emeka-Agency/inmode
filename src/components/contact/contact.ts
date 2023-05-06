@@ -337,6 +337,121 @@ export const send_sign_up = async function(e:React.FormEvent<HTMLFormElement>, s
     }
 }
 
+export const send_form_landing_empower = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>, on_success:Function|null = null, on_error:Function|null = null) {
+    _log("send_form_large");
+    try {
+        e.preventDefault();
+        let _success:HTMLElement | null = document.querySelector('#empower-landing-contact-form .req-return.success');
+        if(_success) _success.innerHTML = "";
+        let _error:HTMLElement | null = document.querySelector('#empower-landing-contact-form .req-return.error');
+        if(_error) _error.innerHTML = "";
+        let _submit:HTMLInputElement | null = document.querySelector('#empower-landing-contact-form .submit');
+        if(_submit) _submit.disabled = true;
+        if(document.forms.namedItem("empower-landing-contact-form") == null) {
+            return false;
+        }
+        let _form:HTMLFormElement | null = document.forms.namedItem("empower-landing-contact-form");
+        let body:any = {
+            "Name": _form?.querySelector('#Name')?.value,
+            "Email": _form?.querySelector('#Email')?.value,
+            "Phone": _form?.querySelector('#Phone')?.value,
+        };
+
+        // _log(create_pardot_url(body));
+        
+        const request_init:RequestInit = {
+            method: 'POST',
+            headers: {
+                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
+                "content-type": "application/json"
+            },
+            mode: 'cors',
+            cache: 'default',
+            "body": JSON.stringify({
+                "records": [
+                    {
+                        "fields": body
+                    }
+                ]
+            }),
+        };
+        
+        // fetch([
+        //     `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
+        //     translate_fields_names(to_get_line(body, "contact"))
+        // ].join('?'))
+        // .catch(err => console.log(err));
+        
+        let response = await (
+            await fetch(
+                `${process.env.AIRTABLE_LANDING_EMPOWER}`,
+                request_init,
+            )
+            .then((promise) => {
+                _log(promise);
+                return handlePromise(promise);
+            })
+            // .then(res => res.text())
+            .then((response) => {
+                _log(response);
+                if(response.records || (response.status === 'success' && response.type === 'client')) {
+                    on_success instanceof Function && on_success("success");
+                    _submit && _submit.removeAttribute('disabled');
+                    _submit = document.querySelector('#empower-landing-contact-form .req-return.success');
+                    if(_submit) _submit.innerHTML = response.message ?? "Email was sent successfully";
+                    let _form:HTMLFormElement | null = document.forms.namedItem('empower-landing-contact-form')
+                    _form && _form.reset();
+                }
+                if(response.status === 'fail' && response.type === 'client') {
+                    setSubmitText(response.message);
+                    on_success instanceof Function && on_success("fail");
+                    let _success:HTMLInputElement | null = document.querySelector('#empower-landing-contact-form .submit');
+                    if(_success) _success.disabled = true;
+                    let _error:HTMLElement | null = document.querySelector('#empower-landing-contact-form .req-return.success');
+                    if(_error) _error.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
+                }
+                if(response.status === 'fail' && response.type === 'server') {
+                    on_success instanceof Function && on_success("fail");
+                    let _success:HTMLInputElement | null = document.querySelector('#empower-landing-contact-form .submit');
+                    if(_success) _success.disabled = true;
+                    let _error = document.querySelector('#empower-landing-contact-form .req-return.error');
+                    if(_error) _error.innerHTML = response.message;
+                }
+                document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
+            })
+            .catch(function(error) {
+                _trace(error);
+                on_error instanceof Function && on_error("error");
+                setSubmitText("Contact issue");
+                let _success:HTMLInputElement | null = document.querySelector('#empower-landing-contact-form .submit');
+                if(_success) _success.disabled = true;
+                let _error:HTMLElement | null = document.querySelector('#empower-landing-contact-form .req-return.success');
+                if(_error) {
+                    _error.style.setProperty('white-space', 'normal');
+                    _error.innerHTML = "There had an issue during the mailing process. Please reload the page or use our mail : <a style=\"font-size: 15px; color: white; display: inline-block; font-weight: bold;\" href=\"mailto:neil.wolfenden@inmodemd.com\">neil.wolfenden@inmodemd.com</a>";
+                }
+                document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
+            })
+        );
+        _log(response);
+        // ).json()
+        
+        // click_pardot(body);
+    }
+    catch(err) {
+        _trace(err);
+        on_error instanceof Function && on_error("error");
+        setSubmitText("Contact issue");
+        let _success:HTMLInputElement | null = document.querySelector('#empower-landing-contact-form .submit');
+        if(_success) _success.disabled = true;
+        let _error:HTMLElement | null = document.querySelector('#empower-landing-contact-form .req-return.success');
+        if(_error) {
+            _error.style.setProperty('white-space', 'normal');
+            _error.innerHTML = "There had an issue during the mailing process. Please reload the page or use our mail : <a style=\"font-size: 15px; color: white; display: inline-block; font-weight: bold;\" href=\"mailto:neil.wolfenden@inmodemd.com\">neil.wolfenden@inmodemd.com</a>";
+        }
+    }
+}
+
 function handlePromise(promise:Response) {
     _log("handlePromise");
     let retour = null;
