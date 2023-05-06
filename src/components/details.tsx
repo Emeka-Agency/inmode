@@ -1,7 +1,7 @@
 import React from "react";
 import RequestInformation from "./RequestInformation";
 import { useImages } from './contexts/images-provider';
-import { InmodePanel_Base_SectionTitreText_Interface } from "./interfaces";
+import { InmodePanel_Base_SectionTitreText_Interface, InmodePanel_Base_Texte_Interface, InmodePanel_Generic_WhatIs_Interface, InmodePanel_Product_Interface, InmodePanel_Product_WhatIsProduct_Interface } from "./interfaces";
 import { resolveImg, resolveImgSet } from "../functions/tools";
 
 const GenericDetails = ({ datas }:GenericDetails) => {
@@ -18,7 +18,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                         alt="detail-main-pic"
                     />
                 </div>
-                {datas.what_is.TitleText.map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
+                {(datas.what_is.TitleText ?? []).map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
                     return (
                         <div key={key}>
                             <div className="title">
@@ -56,7 +56,14 @@ const GenericDetails = ({ datas }:GenericDetails) => {
 }
 
 interface GenericDetails {
-
+    datas :{
+        what_is: InmodePanel_Generic_WhatIs_Interface;
+        before_keys: string;
+        list: InmodePanel_Base_Texte_Interface[];
+        list_title: string;
+        list_icon: string;
+        anchor_key: string;
+    };
 }
 
 export default GenericDetails;
