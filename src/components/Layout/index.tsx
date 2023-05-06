@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 
+import TopBar from "../TopBar/index";
 import Header from "../Header/index";
 import Footer from "../Footer";
 import ContactUs from "../Contact/contact-us";
@@ -53,6 +54,7 @@ const Layout = ({ children, title }:Layout) => {
                 </noscript>
                 {/* // <!-- End Google Tag Manager (noscript) --> */}
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
+                <TopBar/>
                 <Header/>
                 {/* <!-- Google tag (gtag.js) --> */}
                 <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
