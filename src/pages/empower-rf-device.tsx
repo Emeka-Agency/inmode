@@ -1,13 +1,14 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
 import VideoTestimonials from '../components/home/video-testimonials';
 import Newsletter from '../components/newsletter';
 import GenericDetails from '../components/details';
-import { InmodePanel_Product_Interface } from '../components/interfaces';
+import { InmodePanel_Product_Interface, InmodePanel_Addon_Interface } from '../components/interfaces';
 import LandingEmpowerTop from '../components/LandingPage/empower-top';
+import LandingEmpowerAddons from '../components/LandingPage/empower-addons';
 
 const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
 
@@ -26,7 +27,33 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
                     'anchor_key': 'key-benefits'
                 }}
             />
-            <VideoTestimonials/>
+            <LandingEmpowerAddons addons={Object.fromEntries(data.allStrapiAddon.nodes.map(addon => [addon.Name, addon]))}/>
+            <div style={{width: "100%", backgroundColor: 'var(--pearl)'}}>
+                <Link to={data.strapiProduct.MenuParams.url}className="landing_empower-find_out_more">Find out more</Link>
+            </div>
+            <VideoTestimonials testimonials={[
+                {
+                    name: "Dr Vivek",
+                    type: "",
+                    origin: "New Device EmpowerRF",
+                    url: "https://www.youtube.com/watch?v=04t7j87GKWI",
+                    poster: "https://img.youtube.com/vi/04t7j87GKWI/maxresdefault.jpg"
+                },
+                {
+                    name: "Dr Bejma",
+                    type: "",
+                    origin: "Women's International Month",
+                    url: "https://www.youtube.com/watch?v=nImq4IJgP0w",
+                    poster: "https://img.youtube.com/vi/nImq4IJgP0w/maxresdefault.jpg"
+                },
+                {
+                    name: "Sara Cheeney",
+                    type: "",
+                    origin: "Director of Pure Perfection Clinic",
+                    url: "https://www.youtube.com/watch?v=Ss0A_Sjxa2w",
+                    poster: "https://img.youtube.com/vi/Ss0A_Sjxa2w/maxresdefault.jpg"
+                }
+            ]}/>
             <Newsletter/>
         </Layout>
     );
@@ -35,15 +62,18 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
 interface EmpowerRFDevicePage {
     data: {
         strapiProduct: InmodePanel_Product_Interface;
+        allStrapiAddon: {nodes: InmodePanel_Addon_Interface[]};
     };
 };
 
 export default EmpowerRFDevicePage;
 
-
 export const query = graphql`
     {
         strapiProduct(Name: {eq: "Empower RF"}) {
+            MenuParams {
+                url
+            }
             WhatIs {
                 picture {
                     localFile {
@@ -64,6 +94,43 @@ export const query = graphql`
             BeforeKeyBenefits
             KeyBenefits {
                 texte
+            }
+        }
+
+        allStrapiAddon(filter: {Name: {in: ["V-Tone", "Morpheus8v", "Forma", "Morpheus8", "Evolve Tone", "Aviva"]}}) {
+            nodes {
+                Name
+                MenuParams {
+                    url
+                }
+                Banner {
+                    right_text
+                    left_img {
+                        ext
+                        url
+                        localFile {
+                            childImageSharp {
+                                fixed {
+                                    srcWebp
+                                    srcSetWebp
+                                    aspectRatio
+                                }
+                                fluid {
+                                    srcWebp
+                                    srcSetWebp
+                                    aspectRatio
+                                }
+                                original {
+                                    width
+                                    height
+                                }
+                            }
+                            absolutePath
+                            publicURL
+                        }
+                        url
+                    }
+                }
             }
         }
     }
