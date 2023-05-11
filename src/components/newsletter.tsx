@@ -8,7 +8,7 @@ const Newsletter = ({  }:Newsletter) => {
     return (
         <div className="newsletter">
             <div className="container">
-                <h2><a href={subscribe_link} target="_blank" className="newsletter-subscribe_title-link">Subscribe to our</a> newsletter</h2>
+                <h3><a href={subscribe_link} target="_blank" className="newsletter-subscribe_title-link">Subscribe to our</a> newsletter</h3>
                 <h6>and receive all our latest news</h6>
                 <a
                     href={subscribe_link}

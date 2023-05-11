@@ -2110,7 +2110,7 @@ main.articles-page {
     padding: 30px 0 45px;
 }
 
-.newsletter h2 {
+.newsletter h3 {
     color: var(--pearl);
     text-transform: uppercase;
     font-size: 20px;
@@ -2127,7 +2127,7 @@ main.articles-page {
     margin-inline: 0;
 }
 
-.newsletter h2 .newsletter-subscribe_title-link {
+.newsletter h3 .newsletter-subscribe_title-link {
     color: var(--teal);
     cursor: pointer;
     display: inline-block;
