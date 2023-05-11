@@ -7,7 +7,7 @@ import './index.css';
 import { GatsbyImage_Interface, InmodePanel_Footer_Interface } from '../interfaces';
 import { resolveImg } from '../../functions/tools';
 
-const Footer = ({}:Footer) => {
+const Footer = ({ from }:Footer) => {
 
     const images = useImages();
 
@@ -59,7 +59,7 @@ const Footer = ({}:Footer) => {
                                 {
                                     menu === "mail" ? 
                                     <a href={`mailto:${footer.mail}`} className="footer-infos-text" title="Contact us by mail">
-                                        {footer.mail}
+                                        {from == "empower-rf-device" ? "crystal.silver@inmodemd.com" : footer.mail}
                                     </a>
                                     :
                                     menu == "phone" ?
@@ -117,7 +117,7 @@ const Footer = ({}:Footer) => {
 };
 
 interface Footer {
-
+    from?: string;
 };
   
 export default Footer;
