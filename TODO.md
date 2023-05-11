@@ -223,7 +223,7 @@ DONE - UK, N-Z, UKR, Pays-Bas en premier dans la liste des pays
    Using this photo or video
    https://www.youtube.com/watch?v=QDWqcDwJm_c
 
-2. TODO - Add more customer testimonial videos here are the links:
+2. TODO - CAROUSEL (confirmé) Add more customer testimonial videos here are the links:
    Here is the YouTube link for the other videos:
    https://www.youtube.com/watch?v=bsF4rZ69B5U
    https://www.youtube.com/watch?v=nImq4IJgP0w
@@ -239,3 +239,33 @@ DONE - UK, N-Z, UKR, Pays-Bas en premier dans la liste des pays
 6. DONE - Passe style blog et articles
 
 Pour récupérer les images d'affichage d 'une vidéo YouTube : http://www.get-youtube-thumbnail.com/
+
+09/05/2023
+
+1. DONE - crystal.silver@inmodemd.com sur la page /empower-rf-device
+2. DONE - Padding top landing page en mobile
+3. DONE - Changer les vidéos des customer testimonials pour la landing page /empower-rf-device
+    - Interview Dr Vivek - New Device EmpowerRF : https://www.youtube.com/watch?v=04t7j87GKWI
+    - Dr Bejma - Women's International Month : https://www.youtube.com/watch?v=nImq4IJgP0w
+    - Sara Cheeney - Director of Pure Perfection Clinic : https://www.youtube.com/watch?v=Ss0A_Sjxa2w
+4. DONE - Ajouter des pièces à main sur /empower-rf-device :
+    - vtone
+    - morpheus8v
+    - forma
+    - morpheus8
+    - tone
+    - aviva
+
+10/05/2023
+
+1. DONE - Mettre un titre " Get in touch " sur le formulaire "
+2. DONE - Centrer les champs
+3. DONE - Les champs à avoir : 
+    - Name
+    - Email
+    - Phone
+    - Company
+
+11/05/2023
+
+1. DONE - Page /evolvex-device
