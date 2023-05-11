@@ -1,0 +1,1 @@
+cls && gatsby clean && NODE_ENV=production gatsby build && gatsby serve

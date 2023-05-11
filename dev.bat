@@ -1,0 +1,1 @@
+cls && gatsby clean && NODE_ENV=development gatsby develop
