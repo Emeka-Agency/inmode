@@ -3,35 +3,12 @@ import React from "react";
 import Video from "../Video";
 
 import "./video-testimonials.css";
-import { getById } from "../../functions/selectors";
-import { resolveOnClick } from "../../functions/resolve_mini_menu_opened";
-import MenuSingleButton from "../menu/single-button";
 
-const VideoTestimonials = (props:VideoTestimonials) => {
+const VideoTestimonials = ({ testimonials }:VideoTestimonials) => {
 
-    const testimonials = [
-        {
-            name: "Dr Karim",
-            type: "Practitioner",
-            origin: "Morpheus8 workshop",
-            url :"https://www.youtube.com/watch?v=3EADAqeaRik",
-            poster: "https://i.ytimg.com/vi/3EADAqeaRik/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhfIGUoWDAP&rs=AOn4CLDSfHWVmVVQVT9SrqVEiOpQf3hVAQ"
-        },
-        {
-            name: "Dr Ashana Guppa",
-            type: "Pratictionner",
-            origin: "Morpheus8 workshop",
-            url :"https://www.youtube.com/watch?v=09fgqaayw2A",
-            poster: "https://i.ytimg.com/vi/09fgqaayw2A/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhlIGUoZTAP&rs=AOn4CLBQ9RrVNqYbdrEAh1fI-kRrmCEutg"
-        },
-        {
-            name: "Sara Cheeney",
-            type: "Pure Perfection Clinic Director",
-            origin: "InMode UK Symposium",
-            url :"https://www.youtube.com/watch?v=Ss0A_Sjxa2w",
-            poster: "https://i.ytimg.com/vi/Ss0A_Sjxa2w/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhjIGUoVzAP&rs=AOn4CLDTaFziA0j3bf5SfSeJKUyaiO1sAg"
-        },
-    ]
+    if(!testimonials || testimonials.length == 0) {
+        return <></>;
+    }
 
     return (
         <section className="video-testimonials">
@@ -56,5 +33,11 @@ const VideoTestimonials = (props:VideoTestimonials) => {
 export default VideoTestimonials;
 
 interface VideoTestimonials {
-
+    testimonials: {
+        name: string;
+        type: string;
+        origin: string;
+        url: string;
+        poster: string;
+    }[];
 };
