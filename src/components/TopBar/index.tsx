@@ -3,16 +3,17 @@ import React from "react";
 import { useImages } from "../contexts/images-provider";
 
 import "./index.css";
-import { getById } from "../../functions/selectors";
+import { getById, selectOne } from "../../functions/selectors";
 
 const TopBar = (__datas:TopBar) => {
 
     if(typeof window != "undefined" && window.sessionStorage.getItem('topbar') == 'closed') {
+        selectOne('main')?.classList.add('top-bar-closed');
         return <></>;
     }
 
     const images = useImages();
-    const [opened, setOpened]:[boolean, React.Dispatch<boolean>] = React.useState(true);
+    const [opened, setOpened]:[boolean, React.Dispatch<boolean>] = React.useState(false);
 
     const removeTopBar = (e:Event) => {
         e.preventDefault();
@@ -20,12 +21,17 @@ const TopBar = (__datas:TopBar) => {
             window.sessionStorage.setItem('topbar', 'closed');
         }
         getById('top-bar')?.classList.add('closed');
+        selectOne('main')?.classList.add('top-bar-closed');
         setOpened(false);
     }
 
     React.useEffect(() => {
-
+        selectOne('main')?.classList[opened ? 'remove' : 'add']('top-bar-closed');
     }, [opened]);
+
+    React.useEffect(() => {
+        setOpened(typeof window != "undefined" && window.sessionStorage.getItem('topbar') == 'closed' ? false : true);
+    }, []);
 
     if(!opened) {
         return <></>;

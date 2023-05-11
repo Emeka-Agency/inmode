@@ -65,7 +65,7 @@ const Layout = ({ children, title }:Layout) => {
                 {/* <!-- End LEAD FORENSICS --> */}
                 <ProductsProvider>
                     <ArticleProvider>
-                        <main id="main" className={title + '-page'}>
+                        <main id="main" className={[title + '-page', 'top-bar-closed'].join(' ')}>
                             {children}
                         </main>
                     </ArticleProvider>

@@ -1,14 +1,17 @@
 #top-bar {
-    position: relative;
+    position: fixed;
     padding: 8px;
     text-align: center;
     width: 100%;
     background-color: var(--teal);
-    transition: margin 0.3s linear 0s;
+    transition: top 0.3s linear 0s;
+    top: 0;
+    left: 0;
+    z-index: 1;
 }
 
 #top-bar.closed {
-    margin-top: -32px;
+    top: -32px;
 }
 
 #top-bar span {

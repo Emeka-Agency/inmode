@@ -15,6 +15,15 @@ header {
     position: relative;
     z-index: 1;
     height: 180px;
+    transition: margin 0.3s linear 0s;
+}
+
+#top-bar:not(.closed) + header {
+    margin-top: 32px;
+}
+
+#top-bar.closed + header {
+    margin-top: 0;
 }
 
 .header-parts {
@@ -99,9 +108,9 @@ header .locked-section {
 }
 
 @media (max-width: 1199px) {
+
     header {
         position: fixed;
-        top: 0px;
         left: 0;
         padding: 5px 0;
         width: 100vw;
