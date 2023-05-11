@@ -1,0 +1,152 @@
+#landing-evolvex-top {
+    width: 100%;
+}
+
+#landing-evolvex-top video,
+#landing-evolvex-top iframe {
+    display: inline-flex;
+    flex: 2;
+}
+
+#landing-evolvex-top .contact {
+    flex: 1;
+    background-color: var(--pearl);
+    padding-bottom: 0;
+    position: relative;
+}
+
+#landing-evolvex-top .contact {
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 6px 4px;
+}
+
+#landing-evolvex-top .contact h2 {
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--midnight);
+}
+
+@media (min-width: 425px) {
+    #landing-evolvex-top .contact h2 {
+        font-size: 24px;
+        font-weight: 500;
+        margin: 16px auto;
+    }
+
+}
+
+@media (min-width: 768px) {
+    #landing-evolvex-top .contact h2 {
+        font-size: 28px;
+        font-weight: 500;
+        margin: 24px auto;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    #landing-evolvex-top .contact h2 {
+        font-size: 32px;
+        font-weight: 500;
+        margin: 32px auto;
+    }
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form {
+    box-shadow: none;
+    padding-bottom: 100px;
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form .mailer-datas {
+    width: 75%;
+    padding: 20px;
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form .mailer-datas .field {
+    width: 100%;
+    transform: none;
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form .mailer-datas .field label {
+
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form .mailer-datas .field input {
+    width: 100%;
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form .req-return.success,
+#landing-evolvex-top .contact.full-form-container .contact-form .req-return.error {
+    padding: 5px;
+    margin: 0 10px;
+}
+
+#landing-evolvex-top .contact.full-form-container .contact-form button[type="submit"],
+#landing-evolvex-top .contact.full-form-container .contact-form button.reset {
+    width: 100%;
+    background-color: var(--teal);
+    color: var(--pearl);
+    position: absolute;
+    bottom: 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 465px) {
+    #landing-evolvex-top video,
+    #landing-evolvex-top iframe {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-evolvex-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    #landing-evolvex-top video,
+    #landing-evolvex-top iframe {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-evolvex-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1200px) {
+    #landing-evolvex-top video,
+    #landing-evolvex-top iframe {
+        display: block;
+        width: 100%;
+    }
+    
+    #landing-evolvex-top .contact {
+        display: block;
+        width: 100%;
+    }
+}
+
+@media (min-width: 1200px) {
+    #landing-evolvex-top {
+        display: flex;
+    }
+
+    #landing-evolvex-top video,
+    #landing-evolvex-top iframe {
+        display: inline-flex;
+        width: 0;
+        flex: 2;
+    }
+    
+    #landing-evolvex-top .contact {
+        width: 0;
+        flex: 1;
+    }
+}

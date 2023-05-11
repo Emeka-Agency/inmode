@@ -878,16 +878,101 @@ main.articles-page {
     background-color: var(--pearl);
 }
 
+main.empower-rf-device-page h2,
+main.evolvex-device-page h2 {
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--midnight);
+}
+
+main.empower-rf-device-page .landing_empower-find_out_more,
+main.evolvex-device-page .landing_evolvex-find_out_more {
+    touch-action: manipulation;
+    background-color: var(--teal);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    width: 220px;
+    display: block;
+    margin: 0 auto;
+}
+
 @media (max-width: 1199px) {
+    main.empower-rf-device-page #what-is.details .request-informations,
+    main.evolvex-device-page #what-is.details .request-informations {
+        margin-left: calc(33% + 85px);
+    }
+}
+
+@media (max-width: 768px) {
+    main.empower-rf-device-page #what-is.details .request-informations,
+    main.evolvex-device-page #what-is.details .request-informations {
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+@media (min-width: 425px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 32px;
+        font-weight: 500;
+        margin: 16px auto;
+    }
+
+}
+
+@media (min-width: 768px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 40px;
+        font-weight: 500;
+        margin: 24px auto;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 48px;
+        font-weight: 500;
+        margin: 32px auto;
+    }
+}
+
+
+@media (max-width: 1199px) {
+    main.top-bar-closed {
+        top: 50px;
+    }
+
+    main:not(.top-bar-closed) {
+        top: 82px;
+    }
+
     main {
-        margin-top: 50px;
         min-height: calc(100vh - (50px + 320px));
     }
 }
 
 @media (max-width: 769px) {
+    main.top-bar-closed {
+        top: 50px;
+    }
+
+    main:not(.top-bar-closed) {
+        top: 82px;
+    }
+
     main {
-        margin-top: 50px;
         min-height: calc(100vh - (50px + 530px));
     }
 }

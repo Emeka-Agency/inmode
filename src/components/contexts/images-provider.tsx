@@ -124,6 +124,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             womenBejmaPoster: file(relativePath: {eq: "treatment/women-bejma-poster.jpg"}) {
                 ...FileImgFormat
             }
+            landingEvolveXPoster: file(relativePath: {eq: "landing/evolvex-poster.jpg"}) {
+                ...FileImgFormat
+            }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
                 ...FileImgFormat
             }
@@ -358,6 +361,7 @@ interface ImagesList {
     whyInmodePoster: GatsbyImage_Interface;
     whyInmodePoster2: GatsbyImage_Interface;
     womenBejmaPoster: GatsbyImage_Interface;
+    landingEvolveXPoster: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;

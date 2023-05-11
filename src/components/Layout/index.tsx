@@ -73,7 +73,7 @@ const Layout = ({ children, title }:Layout) => {
                 <FixedMenu/>
                 <PrivacyPolicy />
                 <ContactUs/>
-                <Footer/>
+                <Footer from={title}/>
                 <Modale/>
                 <VideoFrame/>
             </MenusProvider>

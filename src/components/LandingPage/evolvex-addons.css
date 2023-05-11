@@ -1,0 +1,159 @@
+section.evolvex-addons {
+    width: 100%;
+    background-color: var(--pearl);
+    box-sizing: border-box;
+}
+
+section.evolvex-addons h2 {
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--midnight);
+}
+
+section.evolvex-addons .evolvex-addons-list {
+    max-width: 95%;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 6px 4px;
+}
+
+section.evolvex-addons .evolvex-addons-list:hover {
+    /* box-shadow: rgba(0, 0, 0, 0.1) 2px 2px 6px 4px; */
+}
+
+section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem {
+    text-align: center;
+    position: relative;
+}
+
+section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem img {
+    padding: 8px;
+    max-width: 100%;
+    max-height: 160px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name {
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name::before {
+    content: " ";
+    display: block;
+    width: 70%;
+    height: 2px;
+    background-color: var(--teal);
+    margin: 4px auto 8px;
+}
+
+@media (min-width: 425px) {
+    section.evolvex-addons {
+        padding: 16px 8px;
+    }
+
+    section.evolvex-addons h2 {
+        font-size: 32px;
+        font-weight: 500;
+        margin: 16px auto;
+    }
+
+    section.evolvex-addons .evolvex-addons-list {
+        margin: 16px 0;
+        padding: 8px 0;
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem {
+
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem img {
+        
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name {
+
+    }
+}
+
+@media (min-width: 640px) {
+    section.evolvex-addons {
+
+    }
+    section.evolvex-addons h2 {
+
+    }
+    section.evolvex-addons .evolvex-addons-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 16px;
+        margin: 0 auto;
+    }
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem {
+
+    }
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem img {
+        
+    }
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name {
+
+    }
+}
+
+@media (min-width: 768px) {
+    section.evolvex-addons {
+        padding: 24px 12px;
+    }
+
+    section.evolvex-addons h2 {
+        font-size: 40px;
+        font-weight: 500;
+        margin: 24px auto;
+    }
+
+    section.evolvex-addons .evolvex-addons-list {
+        padding: 12px 0;
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem {
+
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem img {
+        
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name {
+
+    }
+}
+
+@media (min-width: 1200px) {
+    section.evolvex-addons {
+        padding: 32px 16px;
+    }
+
+    section.evolvex-addons h2 {
+        font-size: 48px;
+        font-weight: 500;
+        margin: 32px auto;
+    }
+
+    section.evolvex-addons .evolvex-addons-list {
+        padding: 16px 0;
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem {
+        flex: 1 1;
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem img {
+        
+    }
+
+    section.evolvex-addons .evolvex-addons-list .evolvex-addons-list-elem .evolvex-addons-list-elem-name {
+
+    }
+}
