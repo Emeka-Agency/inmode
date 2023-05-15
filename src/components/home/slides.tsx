@@ -53,6 +53,7 @@ const Slides = ({from}:Slides) => {
         setCurrent(pos);
         _main.style.zIndex = '4';
         setOpen(true);
+        disableMainScroll();
     }
 
     

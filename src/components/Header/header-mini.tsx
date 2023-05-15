@@ -26,19 +26,15 @@ const HeaderMini = ({}:HeaderMini) => {
 
     const closeMenu = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.preventDefault();
-        let _temp:any = getById('header-mini');
-        _temp && _temp.classList.remove('opened');
+        getById('header-mini')?.classList.remove('opened');
         enableMainScroll();
     }
 
     React.useEffect(() => {
         const body = document.querySelector('body');
         const headerMini = getById('header-mini');
-        const cookies_opened = document?.querySelector('.privacy-policy.opened');
-        // _log(body);
-        // _log(headerMini);
-        if(body instanceof HTMLBodyElement && headerMini instanceof HTMLElement && window.width < 1200) {
-            body.classList.contains('no-scroll') && cookies_opened == null && headerMini.classList.add('opened');
+        if(body instanceof HTMLBodyElement && headerMini instanceof HTMLElement && false) {
+            body?.classList.contains('no-scroll') && headerMini?.classList.add('opened');
         }
     });
 

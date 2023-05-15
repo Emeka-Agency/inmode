@@ -19,9 +19,7 @@ const PrivacyPolicy = (props:PrivacyPolicy) => {
     const size = useWindowSize();
     const LocalStorage = useLocalStorage;
 
-    async function process_cookies(e:React.MouseEvent<HTMLButtonElement | HTMLDivElement, MouseEvent>) {
-        let temp:HTMLInputElement|null = document.querySelector('#onoffswitch');
-        let checked = temp ? temp.checked : false;
+    async function process_cookies(e:React.MouseEvent, checked:boolean = false) {
         if(open) {
             setAccepted(checked ? true : false);
             LocalStorage.setItem(analyticsCookies, checked ? 'true' : 'false');
@@ -59,7 +57,7 @@ const PrivacyPolicy = (props:PrivacyPolicy) => {
     }
 
     return (
-        <div className={`privacy-policy transition${open ? ' opened' : ''}`}>
+        <div className={`privacy-policy transition user-select-none${open ? ' opened' : ''}`}>
             <button className="open-button" onClick={(e) => {process_cookies(e);}}>
                 <img className="main" src={images.resolve_img('privacyPolicyTriangle')} alt="privacy-triangle"/>
                 <img className="content" src={images.resolve_img('privacyPolicyC')} alt="privacy-icon"/>
@@ -96,7 +94,7 @@ const PrivacyPolicy = (props:PrivacyPolicy) => {
                     </div>
                     <div className="cookies-text">We'd like to set Google Analytics cookies to help us to improve our website by collecting and reporting information on how you use it. For more information on how these cookies work please see our <AnchorLink to="/mentions-legales#cookies" title="Cookies">'Cookies page'</AnchorLink>. The cookies collect information in an anonymous form.</div>
                 </div>
-                <div className="accept-close" onClick={(e) => {process_cookies(e);}}>
+                <div className="accept-close" onClick={(e) => {process_cookies(e, (():HTMLInputElement|any => document.querySelector('#onoffswitch'))()?.checked);}}>
                     Accept and close
                 </div>
             </div>
