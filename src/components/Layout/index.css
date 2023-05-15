@@ -893,6 +893,47 @@ main.evolvex-device-page h2 {
     color: var(--midnight);
 }
 
+@media (max-width: 768px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 36px;
+    }
+
+    main.empower-rf-device-page #what-is.details .title,
+    main.evolvex-device-page #what-is.details .title {
+        font-size: 26px;
+    }
+
+    main.empower-rf-device-page #what-is.details .text,
+    main.evolvex-device-page #what-is.details .text {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 465px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 24px;
+    }
+
+    main.empower-rf-device-page #what-is.details .title,
+    main.evolvex-device-page #what-is.details .title {
+        font-size: 20px;
+    }
+
+    main.empower-rf-device-page #what-is.details .text,
+    main.evolvex-device-page #what-is.details .text {
+        font-size: 18px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main.empower-rf-device-page h2,
+    main.evolvex-device-page h2 {
+        font-size: 50px;
+    }
+}
+
 main.empower-rf-device-page .landing_empower-find_out_more,
 main.evolvex-device-page .landing_evolvex-find_out_more {
     touch-action: manipulation;
