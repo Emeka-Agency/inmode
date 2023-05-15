@@ -2,18 +2,24 @@ section.empower-addons {
     width: 100%;
     background-color: var(--pearl);
     box-sizing: border-box;
+    padding: 16px 0;
 }
 
 section.empower-addons h2 {
     text-transform: uppercase;
     text-align: center;
     color: var(--midnight);
+    margin: 0 auto 16px;
+    font-size: 20px;
+    padding: 0 8px;
 }
 
 section.empower-addons .empower-addons-list {
     max-width: 95%;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 6px 4px;
+    padding: 8px 0;
+    margin: 0 auto 0 8px;
 }
 
 section.empower-addons .empower-addons-list:hover {
@@ -55,7 +61,6 @@ section.empower-addons .empower-addons-list .empower-addons-list-elem .empower-a
     section.empower-addons h2 {
         font-size: 32px;
         font-weight: 500;
-        margin: 16px auto;
     }
 
     section.empower-addons .empower-addons-list {

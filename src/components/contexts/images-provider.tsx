@@ -127,6 +127,30 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             landingEvolveXPoster: file(relativePath: {eq: "landing/evolvex-poster.jpg"}) {
                 ...FileImgFormat
             }
+            landingVTone: file(relativePath: {eq: "landing/v-tone.png"}) {
+                ...FileImgFormat
+            }
+            landingMorpheus8: file(relativePath: {eq: "landing/morpheus8.png"}) {
+                ...FileImgFormat
+            }
+            landingMorpheus8v: file(relativePath: {eq: "landing/morpheus8v.png"}) {
+                ...FileImgFormat
+            }
+            landingForma: file(relativePath: {eq: "landing/forma.png"}) {
+                ...FileImgFormat
+            }
+            landingAviva: file(relativePath: {eq: "landing/aviva.png"}) {
+                ...FileImgFormat
+            }
+            landingTite: file(relativePath: {eq: "landing/tite.png"}) {
+                ...FileImgFormat
+            }
+            landingTone: file(relativePath: {eq: "landing/tone.png"}) {
+                ...FileImgFormat
+            }
+            landingTransform: file(relativePath: {eq: "landing/transform.png"}) {
+                ...FileImgFormat
+            }
             plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
                 ...FileImgFormat
             }
@@ -362,6 +386,14 @@ interface ImagesList {
     whyInmodePoster2: GatsbyImage_Interface;
     womenBejmaPoster: GatsbyImage_Interface;
     landingEvolveXPoster: GatsbyImage_Interface;
+    landingVTone: GatsbyImage_Interface;
+    landingMorpheus8: GatsbyImage_Interface;
+    landingMorpheus8v: GatsbyImage_Interface;
+    landingForma: GatsbyImage_Interface;
+    landingAviva: GatsbyImage_Interface;
+    landingTite: GatsbyImage_Interface;
+    landingTone: GatsbyImage_Interface;
+    landingTransform: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;

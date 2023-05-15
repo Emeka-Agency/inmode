@@ -4,6 +4,7 @@ import { resolveImg } from "../../functions/tools";
 
 import "./evolvex-addons.css";
 import { Link } from "gatsby";
+import { useImages } from "../contexts/images-provider";
 
 const LandingEvolveXAddons = ({ addons }:LandingEvolveXAddons) => {
 
@@ -11,16 +12,16 @@ const LandingEvolveXAddons = ({ addons }:LandingEvolveXAddons) => {
         return <></>;
     }
 
-    console.log(addons);
+    const images = useImages();
 
     return (
         <section className="evolvex-addons">
             <h2>hands-free total body transformation</h2>
             <div className="evolvex-addons-gynecologist evolvex-addons-list">
-                {[addons["Evolve Tite"], addons["Evolve Transform"], addons["Evolve Tone"]].map(addon => (
+                {[{...addons["Evolve Tite"], Banner: {left_img: images.resolve_img("landingTite")}}, {...addons["Evolve Transform"], Banner: {left_img: images.resolve_img("landingTransform")}}, {...addons["Evolve Tone"], Banner: {left_img: images.resolve_img("landingTone")}}].map(addon => (
                     <div className="evolvex-addons-list-elem">
                         <Link to={addon.MenuParams.url} className="zone-link" title={addon.Name}/>
-                        <img src={resolveImg(addon.Banner?.left_img)} alt={addon.Name} />
+                        <img src={addon.Banner?.left_img} alt={addon.Name} />
                         <div className="evolvex-addons-list-elem-name">{addon.Name}</div>
                         {/* <div className="evolvex-addons-list-elem-catchphrase"></div> */}
                     </div>
