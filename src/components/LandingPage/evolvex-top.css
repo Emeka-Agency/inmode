@@ -85,7 +85,9 @@
 
 #landing-evolvex-top .contact.full-form-container .contact-form button[type="submit"],
 #landing-evolvex-top .contact.full-form-container .contact-form button.reset {
+    margin: 0 auto;
     width: 100%;
+    min-width: auto;
     background-color: var(--teal);
     color: var(--pearl);
     position: absolute;
@@ -95,6 +97,23 @@
 }
 
 @media (max-width: 465px) {
+    #landing-evolvex-top .contact.full-form-container .contact-form {
+        position: relative;
+        padding: 20px 15px;
+    }
+
+    #landing-evolvex-top .contact.full-form-container .contact-form .req-return.success,
+    #landing-evolvex-top .contact.full-form-container .contact-form .req-return.error {
+        position: relative;
+    }
+    
+    #landing-evolvex-top .contact.full-form-container .contact-form button[type="submit"],
+    #landing-evolvex-top .contact.full-form-container .contact-form button.reset {
+        position: relative;
+        max-width: 100%;
+        top: 0;
+    }
+
     #landing-evolvex-top video,
     #landing-evolvex-top iframe {
         display: block;
