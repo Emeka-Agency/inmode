@@ -67,6 +67,20 @@ export interface Airtable_Picture_Interface {
     type: string;
 }
 
+export interface Airtable_Clinic_Interface {
+    id: string;
+    Client?: string;
+    Nom?: string;
+    Adresse?: string;
+    CodePostal?: string;
+    Ville?: string;
+    Pays?: string;
+    Telephone?: string;
+    Email?: string;
+    Site?: string;
+    Machines?: string[];
+}
+
 export interface InmodePanel_Addon_Interface {
     id?: string;
     strapiId?: string;

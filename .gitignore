@@ -109,6 +109,7 @@ back/
 /back
 /back/
 .PROD
+.RAND
 Présentation.txt
 wc-product-export-28-8-2022-1661723812590.csv
 .OLD/gatsby-config.js
