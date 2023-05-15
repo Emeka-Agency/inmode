@@ -999,11 +999,13 @@ main.evolvex-device-page .landing_evolvex-find_out_more {
 
 
 @media (max-width: 1199px) {
-    main.top-bar-closed {
+    main.top-bar-closed ,
+    footer.top-bar-closed {
         top: 50px;
     }
 
-    main:not(.top-bar-closed) {
+    main:not(.top-bar-closed) ,
+    footer:not(.top-bar-closed) {
         top: 82px;
     }
 
@@ -1013,11 +1015,13 @@ main.evolvex-device-page .landing_evolvex-find_out_more {
 }
 
 @media (max-width: 769px) {
-    main.top-bar-closed {
+    main.top-bar-closed ,
+    footer.top-bar-closed {
         top: 50px;
     }
 
-    main:not(.top-bar-closed) {
+    main:not(.top-bar-closed) ,
+    footer:not(.top-bar-closed) {
         top: 82px;
     }
 
@@ -1030,6 +1034,13 @@ main.evolvex-device-page .landing_evolvex-find_out_more {
 
     main {
         
+    }
+}
+
+@media (max-width: 464px) {
+    main:not(.top-bar-closed) ,
+    footer:not(.top-bar-closed) {
+        top: 98px;
     }
 }
 
