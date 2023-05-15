@@ -87,6 +87,7 @@ main.clinic-finder-page .container #clinic-finder-tabs #tab-map.current:hover {
 
 main.clinic-finder-page .clinic-finder {
     padding: 35px 0 50px;
+    min-height: 400px;
 }
 
 main.clinic-finder-page .clinic-finder .title,

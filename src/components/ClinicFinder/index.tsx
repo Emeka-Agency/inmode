@@ -58,7 +58,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
     }, [loading]);
 
     React.useEffect(() => {
-        if(clinics == null || clinics == undefined || (clinics instanceof Array && clinics.length == 0) && typeof window != "undefined") {
+        if((clinics == null || clinics == undefined || (clinics instanceof Array && clinics.length == 0)) && typeof window != "undefined") {
             addClinics();
         }
     }, []);
