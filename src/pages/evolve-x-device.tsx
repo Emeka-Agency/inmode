@@ -16,7 +16,7 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
         <Layout title="evolvex-device">
             <SEO/>
             <LandingEvolveXTop/>
-            <h2 style={{fontSize: "50px", padding: "10px 0", backgroundColor: "var(--pearl)", textAlign: "center", textTransform: "uppercase", margin: "0"}}>hands-free remodeling</h2>
+            <h2 style={{padding: "10px 0", backgroundColor: "var(--pearl)", textAlign: "center", textTransform: "uppercase", margin: "0"}}>hands-free remodeling</h2>
             <GenericDetails
                 datas={{
                     'what_is': data.strapiProduct.WhatIs,

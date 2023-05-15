@@ -32,7 +32,7 @@ const Footer = ({ from }:Footer) => {
     const menus = ['address', 'phone', 'mail'];;
 
     return (
-        <footer>
+        <footer className="top-bar-closed">
             <div className="background-hex" style={{backgroundImage: "url(" + images.resolve_img('bgPattern') +")"}}></div>
             <div className="footer-content container">
                 <div className="footer-logo-infos-part">

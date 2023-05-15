@@ -16,7 +16,7 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
         <Layout title="empower-rf-device">
             <SEO/>
             <LandingEmpowerTop/>
-            <h2 style={{fontSize: "50px", padding: "10px 0", backgroundColor: "var(--pearl)", textAlign: "center", textTransform: "uppercase", margin: "0"}}>women's intimate health</h2>
+            <h2 style={{padding: "10px 0", backgroundColor: "var(--pearl)", textAlign: "center", textTransform: "uppercase", margin: "0"}}>women's intimate health</h2>
             <GenericDetails
                 datas={{
                     'what_is': data.strapiProduct.WhatIs,

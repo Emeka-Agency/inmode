@@ -844,15 +844,23 @@ main {
     position: relative;
     min-height: calc(100vh - (140px + 320px));
     box-sizing: border-box;
-    top: 32px;
+    top: 48px;
     transition: top 0.3s linear 0s;
 }
 
-main.top-bar-closed {
+@media (max-width: 1200px) {
+    main {
+        top: 32px;
+    }
+}
+
+main.top-bar-closed ,
+footer.top-bar-closed {
     top: 0;
 }
 
-main:not(.top-bar-closed) {
+main:not(.top-bar-closed) ,
+footer:not(.top-bar-closed) {
     top: 0px;
 }
 

@@ -9,6 +9,7 @@ const TopBar = (__datas:TopBar) => {
 
     if(typeof window != "undefined" && window.sessionStorage.getItem('topbar') == 'closed') {
         selectOne('main')?.classList.add('top-bar-closed');
+        selectOne('footer')?.classList.add('top-bar-closed');
         return <></>;
     }
 
@@ -22,11 +23,13 @@ const TopBar = (__datas:TopBar) => {
         }
         getById('top-bar')?.classList.add('closed');
         selectOne('main')?.classList.add('top-bar-closed');
+        selectOne('footer')?.classList.add('top-bar-closed');
         setOpened(false);
     }
 
     React.useEffect(() => {
         selectOne('main')?.classList[opened ? 'remove' : 'add']('top-bar-closed');
+        selectOne('footer')?.classList[opened ? 'remove' : 'add']('top-bar-closed');
     }, [opened]);
 
     React.useEffect(() => {

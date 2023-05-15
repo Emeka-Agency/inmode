@@ -19,8 +19,15 @@ header {
 }
 
 #top-bar:not(.closed) + header {
-    margin-top: 32px;
+    margin-top: 48px;
 }
+
+@media (min-width: 465px) {
+    #top-bar:not(.closed) + header {
+        margin-top: 32px;
+    }
+}
+
 
 #top-bar.closed + header {
     margin-top: 0;
