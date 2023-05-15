@@ -25,6 +25,46 @@ section.video-testimonials .title {
     margin: 0 auto;
 }
 
+@media (min-width: 0px) {
+    main.evolvex-device-page section.video-testimonials .title {
+        font-size: 20px;
+    }
+
+    main.evolvex-device-page section.video-testimonials .descr {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 465px) {
+    main.evolvex-device-page section.video-testimonials .title {
+        font-size: 24px;
+    }
+
+    main.evolvex-device-page section.video-testimonials .descr {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    main.evolvex-device-page section.video-testimonials .title {
+        font-size: 28px;
+    }
+
+    main.evolvex-device-page section.video-testimonials .descr {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main.evolvex-device-page section.video-testimonials .title {
+
+    }
+
+    main.evolvex-device-page section.video-testimonials .descr {
+
+    }
+}
+
 section.video-testimonials .descr {
     color: var(--teal);
     font-size: 24px;
@@ -39,6 +79,7 @@ section.video-testimonials .testimonials {
     flex-direction: row;
     margin-top: 48px;
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 @media (max-width: 1099px) {

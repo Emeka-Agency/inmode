@@ -33,25 +33,11 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
             </div>
             <VideoTestimonials testimonials={[
                 {
-                    name: "Dr Vivek",
+                    name: "Dr Dev Patel",
                     type: "",
-                    origin: "New Device EvolveXRF",
-                    url: "https://www.youtube.com/watch?v=04t7j87GKWI",
-                    poster: "https://img.youtube.com/vi/04t7j87GKWI/maxresdefault.jpg"
-                },
-                {
-                    name: "Dr Bejma",
-                    type: "",
-                    origin: "Women's International Month",
-                    url: "https://www.youtube.com/watch?v=nImq4IJgP0w",
-                    poster: "https://img.youtube.com/vi/nImq4IJgP0w/maxresdefault.jpg"
-                },
-                {
-                    name: "Sara Cheeney",
-                    type: "",
-                    origin: "Director of Pure Perfection Clinic",
-                    url: "https://www.youtube.com/watch?v=Ss0A_Sjxa2w",
-                    poster: "https://img.youtube.com/vi/Ss0A_Sjxa2w/maxresdefault.jpg"
+                    origin: "InMode EVOLVE Demo, With Dr Dev Patel",
+                    url: "https://www.youtube.com/watch?v=Uy3tNRmCPME&ab_channel=InmodeUK",
+                    poster: "https://img.youtube.com/vi/Uy3tNRmCPME/maxresdefault.jpg"
                 }
             ]}/>
             <Newsletter/>
