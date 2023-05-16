@@ -5,7 +5,7 @@ import { InmodePanel_Testimonial_Interface } from "../interfaces";
 
 import './index.css';
 
-const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
+const Testimonial = ({ __testimonials = null }:Testimonial_Params) => {
     
     const [datas] = React.useState(useStaticQuery(graphql`
     {
@@ -34,11 +34,11 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
       
     `).allStrapiTestimonial.nodes);
 
-    if(!datas) {
+    if(!datas && !__testimonials) {
         return <></>;
     }
 
-    const testimonials = [
+    const testimonials = __testimonials ?? [
         {
             testimonial: "“Thank you so much for today, thanks for always being such a huge support and friend to me”",
             name: "Elaine Ny Skin",
@@ -86,6 +86,11 @@ const Testimonial = ({ /* datas */ }:Testimonial_Params) => {
 
 interface Testimonial_Params {
     // datas: any;
+    __testimonials?: {
+        testimonial: string;
+        name: string;
+        clinic: string;
+    }[] | null;
 }
 
 export default Testimonial;

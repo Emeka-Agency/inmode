@@ -9,6 +9,7 @@ import GenericDetails from '../components/details';
 import { InmodePanel_Product_Interface, InmodePanel_Addon_Interface } from '../components/interfaces';
 import LandingEvolveXTop from '../components/LandingPage/evolvex-top';
 import LandingEvolveXAddons from '../components/LandingPage/evolvex-addons';
+import Testimonial from '../components/Testimonial';
 
 const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
 
@@ -40,7 +41,13 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
                     poster: "https://img.youtube.com/vi/Uy3tNRmCPME/maxresdefault.jpg"
                 }
             ]}/>
-            <Newsletter/>
+            <div style={{width: "100%", backgroundColor: 'var(--pearl)'}}>
+                <div id="testimonial">
+                    <div id="testimonial-text">{"“True innovation within the medical aesthetics industry is vital to ensure fantastic results for patients driven by clinical evidence. EvolveX platform system will sit within a truly outstanding portfolio of technology. This new technology follows on from the monumental success we've experienced with Morpheus8 and will be a brilliant journey for transforming total body contouring to unprecedented levels. We are truly excited to launch the EvolveX platform system and in doing so, offer fantastic capabilities for both our physicians and their patients.”"}</div>
+                    <h3 id="testimonial-name">{"Neil Wolfenden, "}</h3>
+                    <p id="testimonial-clinic">{"Managing director at InMode UK"}</p>
+                </div>
+            </div>
         </Layout>
     );
 };

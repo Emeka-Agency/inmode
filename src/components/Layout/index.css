@@ -893,6 +893,64 @@ main.evolvex-device-page h2 {
     color: var(--midnight);
 }
 
+main.evolvex-device-page section.video-testimonials {
+    padding: 48px 32px;
+}
+
+main.evolvex-device-page #testimonial {
+    border-radius: 7px;
+    background-color: var(--pearl);
+    display: block;
+    font-family: bodoni;
+    padding: 4px 8px 12px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+@media (min-width: 465px) {
+    main.evolvex-device-page #testimonial {
+        padding: 8px 12px 24px;
+    }
+}
+
+@media (min-width: 768px) {
+    main.evolvex-device-page #testimonial {
+        padding: 12px 16px 36px;
+    }
+}
+
+@media (min-width: 1200px) {
+    main.evolvex-device-page #testimonial {
+        padding: 16px 24px 48px;
+        max-width: 864px;
+    }
+}
+
+main.evolvex-device-page #testimonial #testimonial-text {
+    color: var(--midnight);
+    font-size: 24px;
+    font-weight: 500;
+}
+
+main.evolvex-device-page #testimonial #testimonial-name,
+main.evolvex-device-page #testimonial #testimonial-clinic {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+main.evolvex-device-page #testimonial #testimonial-name {
+    color: var(--platinum-75);
+    font-size: 14px;
+}
+
+main.evolvex-device-page #testimonial #testimonial-clinic {
+    color: var(--teal-75);
+    font-size: 18px;
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     main.empower-rf-device-page h2,
     main.evolvex-device-page h2 {
