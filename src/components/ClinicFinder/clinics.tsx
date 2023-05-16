@@ -102,11 +102,11 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         
         let retour = false;
         if(
-            (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 0 && clinic.CodePostal == zip.value) ||
+            // (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 0 && clinic.CodePostal == zip.value) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 10 && clinic.CodePostal.slice(0, 3) == zip.value.slice(0, 3)) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 50 && clinic.CodePostal.slice(0, 2) == zip.value.slice(0, 2)) ||
             // (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 100) ||
-            (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 0 && clinic.CodePostal == zip.value) ||
+            // (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 0 && clinic.CodePostal == zip.value) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 10 && clinic.CodePostal.slice(0, 2) == zip.value.slice(0, 2)) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 50 && clinic.CodePostal.slice(0, 1) == zip.value.slice(0, 1)) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 100)
@@ -169,7 +169,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                 
                 <span className="clinic-filter-distance neumorphic">
                     <select id="clinic-filter-distance-select" className="neumorphic">
-                        <option value="0" className="clinic-filter-distance">0 km</option>
+                        {/* <option value="0" className="clinic-filter-distance">0 km</option> */}
                         <option value="10" className="clinic-filter-distance">10 km</option>
                         <option value="50" className="clinic-filter-distance">50 km</option>
                         {/* <option value="50" className="clinic-filter-distance">50 km</option> */}
