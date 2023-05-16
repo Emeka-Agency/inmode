@@ -41,7 +41,7 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
                     poster: "https://img.youtube.com/vi/Uy3tNRmCPME/maxresdefault.jpg"
                 }
             ]}/>
-            <div style={{width: "100%", backgroundColor: 'var(--pearl)'}}>
+            <div style={{width: "100%", backgroundColor: 'var(--midnight)'}}>
                 <div id="testimonial">
                     <div id="testimonial-text">{"“True innovation within the medical aesthetics industry is vital to ensure fantastic results for patients driven by clinical evidence. EvolveX platform system will sit within a truly outstanding portfolio of technology. This new technology follows on from the monumental success we've experienced with Morpheus8 and will be a brilliant journey for transforming total body contouring to unprecedented levels. We are truly excited to launch the EvolveX platform system and in doing so, offer fantastic capabilities for both our physicians and their patients.”"}</div>
                     <h3 id="testimonial-name">{"Neil Wolfenden, "}</h3>
