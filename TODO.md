@@ -436,6 +436,7 @@ KEVIN - Icône cart empowerrf
 KEVIN - Icône header empowerrf
 
 TODO - Mettre même icône pour le fixed menu que pour le menu et mini-menu
+<<<<<<< Updated upstream
 FR - Traductions
 FR - SogeCommerce
 FR/UK - Pardot your-technology[]
@@ -458,3 +459,7 @@ Moi - 2 avis imposition
 Moi - Déclaration annuelle URSSAF
 Dossier - VISALE
 Dossier - Garant
+=======
+
+Personnal access token - Inmode - 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
+>>>>>>> Stashed changes
