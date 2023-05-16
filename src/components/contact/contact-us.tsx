@@ -6,6 +6,7 @@ import LoadingGIF from "../LoadingGIF";
 import { allByClass, getById, selectOne } from "../../functions/selectors";
 
 import { send_form_mini } from "./contact";
+import initWakeup from "../../functions/wakeup";
 
 const ContactUs = () => {
 
@@ -39,6 +40,7 @@ const ContactUs = () => {
         // WILL OPEN
         !formOpen && resolve_contact(e);
         !formOpen && size.width <= 480 && disableMainScroll();
+        !formOpen && initWakeup("mini-contact");
         // WILL CLOSE
         formOpen && close_form();
         formOpen && size.width <= 480 && enableMainScroll();
