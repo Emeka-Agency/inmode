@@ -85,12 +85,14 @@ section.video-testimonials .testimonials {
 @media (max-width: 1099px) {
     section.video-testimonials .testimonials {
         flex-direction: column;
+        align-content: space-evenly;
     }
 }
 
 @media (max-width: 768px) {
     section.video-testimonials .testimonials {
         flex-direction: column;
+        align-content: space-evenly;
     }
 }
 
