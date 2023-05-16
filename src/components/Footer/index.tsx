@@ -59,8 +59,13 @@ const Footer = ({ from }:Footer) => {
                                 {
                                     menu === "mail" ? 
                                     <a href={`mailto:${footer.mail}`} className="footer-infos-text" title="Contact us by mail">
-                                        {["empower-rf-device"].indexOf(from) >= 0 ? "crystal.silver@inmodemd.com" : footer.mail}
-                                        {["evolvex-device"].indexOf(from) >= 0 ? "guina.aoun@inmodemd.com" : footer.mail}
+                                        {
+                                            "empower-rf-device" == from ?
+                                                "crystal.silver@inmodemd.com" :
+                                                "evolvex-device" == from ?
+                                                    "guina.aoun@inmodemd.com" :
+                                                    footer.mail
+                                        }
                                     </a>
                                     :
                                     menu == "phone" ?
