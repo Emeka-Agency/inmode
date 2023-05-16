@@ -37,7 +37,7 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
                     name: "Dr Dev Patel",
                     type: "",
                     origin: "InMode EVOLVE Demo, With Dr Dev Patel",
-                    url: "https://www.youtube.com/watch?v=Uy3tNRmCPME&ab_channel=InmodeUK",
+                    url: "https://www.youtube.com/watch?v=Uy3tNRmCPME",
                     poster: "https://img.youtube.com/vi/Uy3tNRmCPME/maxresdefault.jpg"
                 }
             ]}/>
