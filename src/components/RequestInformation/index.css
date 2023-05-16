@@ -1,7 +1,7 @@
-.request-informations[data-variant="teal"] {
+.request-informations[data-variant="teal"] span {
     background-color: var(--teal);
 }
 
-.request-informations[data-variant="dusty-rose"] {
+.request-informations[data-variant="dusty-rose"] span {
     background-color: var(--dusty-rose);
 }

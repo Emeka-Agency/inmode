@@ -436,3 +436,25 @@ KEVIN - Icône cart empowerrf
 KEVIN - Icône header empowerrf
 
 TODO - Mettre même icône pour le fixed menu que pour le menu et mini-menu
+FR - Traductions
+FR - SogeCommerce
+FR/UK - Pardot your-technology[]
+FR - Machines shop
+FR - McCann
+FR - Shop mobile
+FR - Intuitive surgeon / Apple pour le style du nouveau InModeMD
+
+UK - Page Eva Longoria
+
+Century 21 Saint-Barnabé | Fixe - 04 91 34 30 34 | Faxe - 04 91 34 98 58 | Visiter appartement M FAUQUE
+
+florent.grimaud@century21.fr
+Annie - Carte d'identité
+Annie - Avis imposition
+Annie - 3 bulletin de salaire
+Annie - Contrat de travail
+Moi - Carte d'identité
+Moi - 2 avis imposition
+Moi - Déclaration annuelle URSSAF
+Dossier - VISALE
+Dossier - Garant

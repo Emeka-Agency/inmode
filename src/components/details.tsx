@@ -10,46 +10,46 @@ const GenericDetails = ({ datas }:GenericDetails) => {
 
     return (
         <div id="what-is" className="details">
-            <div className="what-is transition">
-                <div className="details-img transition">
-                    <img
-                        className="user-select-none"
-                        src={resolveImg(datas.what_is?.picture)}
-                        srcSet={resolveImgSet(datas.what_is?.picture)}
-                        alt="detail-main-pic"
-                    />
-                </div>
-                {(datas.what_is?.TitleText ?? []).map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
-                    return (
-                        <div key={key}>
-                            <div className="title user-select-none">
-                                {section.title}
-                            </div>
-                            <p className="text user-select-none">
-                                {section.text}
-                            </p>
-                        </div>
-                    )
-                })}
+            <div
+                className="details-img transition user-select-none background-image"
+                // style={{backgroundImage: `url(${resolveImg(datas.what_is?.picture)})`}}
+            >
+                <img src={resolveImg(datas.what_is?.picture)} alt="details-img" />
             </div>
-            <div id={datas.anchor_key || "list"}></div>
-            <div className="text-list transition">
-                <div className="title">
-                    {datas.list_title}
+            <div className="what-is-txts">
+                <div className="what-is-main transition">
+                    {(datas.what_is?.TitleText ?? []).map((section:InmodePanel_Base_SectionTitreText_Interface, key:number) => {
+                        return (
+                            <div key={key}>
+                                <div className="title user-select-none">
+                                    {section.title}
+                                </div>
+                                <p className="text user-select-none">
+                                    {section.text}
+                                </p>
+                            </div>
+                        )
+                    })}
                 </div>
-                {datas.list && datas.list.map((elem, key) => {
-                    return (
-                        <div key={key} className="list-elem">
-                            {datas.list_icon && <img
-                                src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
-                                alt={`elem-${key}`}
-                                className="before-text user-select-none"
-                            />}
-                            {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
-                            <div className="text user-select-none">{elem.texte}</div>
-                        </div>
-                    );
-                })}
+                <div id={datas.anchor_key || "list"}></div>
+                <div className="what-is-text-list transition">
+                    <div className="title">
+                        {datas.list_title}
+                    </div>
+                    {datas.list && datas.list.map((elem, key) => {
+                        return (
+                            <div key={key} className="list-elem">
+                                {datas.list_icon && <img
+                                    src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
+                                    alt={`elem-${key}`}
+                                    className="before-text user-select-none"
+                                />}
+                                {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
+                                <div className="text user-select-none">{elem.texte}</div>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
             <RequestInformation variant={datas.variant}/>
         </div>

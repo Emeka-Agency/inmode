@@ -25,6 +25,7 @@ const Header = ({variant = "teal"}:Header) => {
     const openMenu = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         getById('header-mini')?.classList.add('opened');
+        selectOne('.header-parts')?.classList.add('mini-opened');
         size.width < 1200 && disableMainScroll();
     }
 
@@ -62,7 +63,7 @@ const Header = ({variant = "teal"}:Header) => {
                     {/* SWITCH CART END */}
                     {
                         user.logged() && size.width > 480 &&
-                        <Link className="profile-link" to="/profile">
+                        <Link className="profile-link user-select-none" to="/profile">
                             <img src={images.resolve_img("profileIcon")}/>
                             {size.width > 1199 && <span>Profil</span>}
                         </Link>
@@ -76,7 +77,7 @@ const Header = ({variant = "teal"}:Header) => {
                     }
                     {
                         user.logged() == false && size.width >= 600 &&
-                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login(null);}}>Connexion</div>
+                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login();}}>Connexion</div>
                     }
                     {/* {
                         user.logged() == false && size.width >= 600 &&

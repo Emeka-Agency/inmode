@@ -91,7 +91,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 if(!(_form instanceof Element)) {return false;}
                 let _signin = document?.querySelector('#modale.login-modale #signin_action');
                 if(!(_signin instanceof Element)) {return false;}
-                document?.querySelector('#modale.login-modale input')?.focus();
+                document?.querySelector('#modale.login-modale #user_input')?.focus();
                 _signin.addEventListener('click', function(e:Event) {
                     __signin();
                 });
@@ -155,7 +155,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
                 if(!(_form instanceof Element)) {return false;}
                 let _login = document?.querySelector('#modale.signin-modale #login_action');
                 if(!(_login instanceof Element)) {return false;}
-                document?.querySelector('#modale.signin-modale input')?.focus();
+                document?.querySelector('#modale.signin-modale #user_input')?.focus();
                 _login.addEventListener('click', function(e:Event) {
                     __login();
                 });

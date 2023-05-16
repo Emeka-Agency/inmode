@@ -11,7 +11,7 @@ const RequestInformation = ({search, hash, variant = "teal"}:RequestInformation_
             to={`/contact${search ? '?' + search : ''}${hash ? '#' + hash : ''}`}
             title="Plus d'informations"
         >
-            plus d'informations
+            <span>plus d'informations</span>
         </Link>
     );
 };

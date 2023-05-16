@@ -112,6 +112,7 @@ a {
     color: var(--pure-black);
     text-decoration: none;
     transition: all 0.3s ease-in;
+    cursor: pointer;
 }
 
 li,
@@ -426,7 +427,7 @@ ol {
 
 .header-parts .menu-title.menu-card:hover .menu-title.menu-card.sub {
     padding: 25px 0;
-    box-shadow: rgba(0, 0, 0, .1) 4px 4px 4px 2px;
+    box-shadow: rgba(0, 0, 0, .05) 2px 2px 6px 4px;
 }
 
 .header-parts > .header-top .menu-title:hover .dropdown-menu,
@@ -440,7 +441,7 @@ ol {
     left: 50%;
     transform: translateX(-50%);
     min-width: 150px;
-    box-shadow: rgba(0, 0, 0, .1) 4px 4px 4px 2px;
+    box-shadow: rgba(0, 0, 0, .05) 2px 6px 4px 2px;
 }
 
 #fixed-menu .menu-title.menu-card:hover .menu-title.menu-card.sub {
@@ -592,7 +593,7 @@ ul.menu-side-menu:hover .dropside-menu {
 }
 
 .header-parts ul.menu-side-menu .dropside-menu {
-    box-shadow: rgba(0, 0, 0, .5) 6px 6px 6px; /* DONE confirmation Kévin */
+    box-shadow: rgba(0, 0, 0, .05) 2px 2px 6px 4px; /* DONE confirmation Kévin */
 }
 
 /* HEADER */
@@ -689,7 +690,8 @@ header {
 
 .header-content .header-parts #header-top,
 header .header-parts .login,
-header .header-parts .signin {
+header .header-parts .signin,
+header .header-parts .logout {
     padding-right: calc((100vw - 1170px) / 2);
 }
 
@@ -704,7 +706,7 @@ header .header-parts .signin {
 
 .header-logo {
     width: 250px;
-    height: 24px;
+    height: 30px;
     position: relative;
     background-size: contain;
     background-position: center;
@@ -974,7 +976,7 @@ header[data-variant="dusty-rose"] .header-top {
 }
 
 .header-parts > .header-top .dropdown-menu {
-    top: 25px;
+    top: 30px;
 }
 
 .header-parts > .header-top .menu-title  >  .dropdown-menu li  >  a,
@@ -1047,7 +1049,7 @@ header[data-variant="dusty-rose"] .header-top {
 }
 
 .header-parts > .header-bottom .dropdown-menu {
-    top: 40px;
+    top: 46px;
     display: none;
     background-color: var(--dusk);
 }
@@ -1161,7 +1163,7 @@ header .header-parts .signin {
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    line-height: 22px;
+    line-height: 26px;
 }
 
 header[data-variant="teal"] .header-parts .login,
@@ -1292,7 +1294,17 @@ header .header-parts .profile-link span {
 }
 
 @media (max-width: 1199px) {
-    header .header-parts .profile-link {
+    header .header-parts > .profile-link {
+        display: block;
+        right: 150px;
+        top: -10px;
+        position: absolute;
+        width: auto;
+        height: auto;
+        margin-top: 16px;
+    }
+
+    header .header-parts .header-mini .profile-link {
         display: block;
         right: 0;
         top: 0;
@@ -1300,6 +1312,10 @@ header .header-parts .profile-link span {
         width: auto;
         height: auto;
         margin-top: 16px;
+    }
+
+    header .header-parts.mini-opened > .profile-link {
+        display: none;
     }
 
     header .header-parts .profile-link:first-child {
@@ -1366,7 +1382,7 @@ header .header-parts .logout span {
 }
 
 @media (max-width: 1199px) {
-    header .header-parts .logout {
+    header .header-parts .header-mini .logout {
         display: block;
         right: 0;
         top: 0;
@@ -1376,12 +1392,26 @@ header .header-parts .logout span {
         margin-top: 16px;
     }
 
+    header .header-parts > .logout {
+        display: block;
+        right: 110px;
+        top: -10px;
+        position: absolute;
+        width: auto;
+        height: auto;
+        margin-top: 16px;
+    }
+
+    header .header-parts.mini-opened > .logout {
+        display: none;
+    }
+
     header .header-parts .logout:first-child {
         margin-top: 32px;
     }
     
     header .header-parts .logout img {
-        width: 22px;
+        width: 28px;
     }
 }
 
@@ -1473,7 +1503,8 @@ header .header-parts .logout span {
 
     header .header-parts #header-mini.header-mini.opened .menu-close + .login,
     header .header-parts #header-mini.header-mini.opened .menu-close + .signin,
-    header .header-parts #header-mini.header-mini.opened .menu-close + .logout {
+    header .header-parts #header-mini.header-mini.opened .menu-close + .logout,
+    header .header-parts #header-mini.header-mini.opened .menu-close + .profile-link {
         margin-top: 48px;
     }
 
@@ -1769,6 +1800,11 @@ header .header-parts .logout span {
         padding: 5px;
         box-sizing: border-box;
     }
+    
+    #fixed-menu.invisible {
+        transition: display 0s linear 0.3s;
+        display: none;
+    }
 
     #fixed-menu .fixed-menu-container {
         max-width: 1170px;
@@ -1817,6 +1853,32 @@ header .header-parts .logout span {
         padding: 5px 10px 0;
         margin: 0;
         position: relative;
+    }
+
+    #fixed-menu .fixed-menus .login,
+    #fixed-menu .fixed-menus .signin,
+    #fixed-menu .fixed-menus .logout,
+    #fixed-menu .fixed-menus .profile-link {
+        color: var(--teal);
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        cursor: pointer;
+        line-height: 22px;
+    }
+
+    #fixed-menu .fixed-menus .profile-link {
+        font-size: 0;
+        line-height: 1;
+    }
+
+    #fixed-menu .fixed-menus .profile-link img,
+    #fixed-menu .fixed-menus .logout img {
+        width: 20px;
+        margin-left: 5px;
+        filter: invert(100%);
+        position: relative;
+        top: 4px;
     }
 
     #fixed-menu .fixed-menus .menu-title .menu-title {
@@ -3189,7 +3251,7 @@ main {
 
 .get-started p {
     color: var(--pearl);
-    font-size: 12px;
+    font-size: 16px;
     line-height: 17px;
     font-weight: bold;
     text-transform: uppercase;
@@ -6448,60 +6510,68 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 #what-is.details div.details-img {
-    position: absolute;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
     top: 68px;
-    left: 0;
-    max-width: 33%;
     width: 100%;
+    max-width: 33%;
+    height: 100%;
     padding-right: 35px;
     box-sizing: border-box;
-    text-align: center;
+    filter: drop-shadow(2px 2px 6px rgba(0, 0, 0, 0.5));
 }
 
 #what-is.details div.details-img img {
-    max-height: 100%;
-    max-width: 72px;
-    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.addon-page[data-addon="Aviva"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="BodyFX"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="DiolazeXL"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="EvolveX Tite"] #what-is.details div.details-img img {max-width: 300px;}
-.addon-page[data-addon="EvolveX Tone"] #what-is.details div.details-img img {max-width: 300px;}
-.addon-page[data-addon="EvolveX Transform "] #what-is.details div.details-img img {max-width: 300px;}
-.addon-page[data-addon="Lumecca"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="MiniFX"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="Morpheus8"] #what-is.details div.details-img img {max-width: 300px;}
-.addon-page[data-addon="Morpheus8V"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="Plus"] #what-is.details div.details-img img {max-width: 200px;}
-.addon-page[data-addon="ToneV"] #what-is.details div.details-img img {max-width: 350px;}
-.addon-page[data-addon="Vasculaze"] #what-is.details div.details-img img {max-width: 200px;}
+/* .addon-page[data-addon="Aviva"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="BodyFX"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="DiolazeXL"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="EvolveX Tite"] #what-is.details div.details-img {max-width: 300px;} */
+/* .addon-page[data-addon="EvolveX Tone"] #what-is.details div.details-img {max-width: 300px;} */
+/* .addon-page[data-addon="EvolveX Transform "] #what-is.details div.details-img {max-width: 300px;} */
+/* .addon-page[data-addon="Lumecca"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="MiniFX"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="Morpheus8"] #what-is.details div.details-img {max-width: 300px;} */
+/* .addon-page[data-addon="Morpheus8V"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="Plus"] #what-is.details div.details-img {max-width: 200px;} */
+/* .addon-page[data-addon="ToneV"] #what-is.details div.details-img {max-width: 350px;} */
+/* .addon-page[data-addon="Vasculaze"] #what-is.details div.details-img {max-width: 200px;} */
+/*  */
+/* .products-page[data-addon="BodyTite"] #what-is.details div.details-img {max-width: 350px;} */
+/* .products-page[data-addon="Optimas"] #what-is.details div.details-img {max-width: 350px;} */
+/* .products-page[data-addon="Contoura"] #what-is.details div.details-img {max-width: 350px;} */
+/* .products-page[data-addon="EvolveX"] #what-is.details div.details-img {max-width: 350px;} */
+/* .products-page[data-addon="Evoke"] #what-is.details div.details-img {max-width: 350px;} */
+/* .products-page[data-addon="EmpowerRF"] #what-is.details div.details-img {max-width: 350px;} */
 
-.products-page[data-addon="BodyTite"] #what-is.details div.details-img img {max-width: 350px;}
-.products-page[data-addon="Optimas"] #what-is.details div.details-img img {max-width: 350px;}
-.products-page[data-addon="Contoura"] #what-is.details div.details-img img {max-width: 350px;}
-.products-page[data-addon="EvolveX"] #what-is.details div.details-img img {max-width: 350px;}
-.products-page[data-addon="Evoke"] #what-is.details div.details-img img {max-width: 350px;}
-.products-page[data-addon="EmpowerRF"] #what-is.details div.details-img img {max-width: 350px;}
-
-#what-is.details .what-is,
-#what-is.details .text-list {
-    margin-top: 20px;
+#what-is.details .what-is-txts {
+    position: relative;
+    display: inline-block;
     width: 67%;
-    display: block;
-    margin-left: 33%;
+    vertical-align: top;
 }
 
-#what-is.details .what-is {
+#what-is.details .what-is-txts .what-is-main,
+#what-is.details .what-is-txts .what-is-text-list {
+    margin-top: 20px;
+    width: 100%;
+    display: block;
+}
+
+#what-is.details .what-is-txts .what-is-main {
     
 }
 
-#what-is.details .text-list {
+#what-is.details .what-is-txts .what-is-text-list {
 
 }
 
-#what-is.details .text-list .list-elem {
+#what-is.details .what-is-txts .what-is-text-list .list-elem {
     padding-left: 85px;
     padding-bottom: 10px;
     box-sizing: border-box;
@@ -6509,7 +6579,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     margin: 0;
 }
 
-#what-is.details .text-list .list-elem .before-text {
+#what-is.details .what-is-txts .what-is-text-list .list-elem .before-text {
     width: 46px;
     height: 46px;
     position: absolute;
@@ -6519,32 +6589,40 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     font-size: 36px;
 }
 
-#what-is.details .text-list .list-elem .text {
+#what-is.details .what-is-txts .what-is-text-list .list-elem .text {
 
 }
 
 #what-is.details .request-informations {
-    box-sizing: border-box;
+    position: relative;
+    margin: 15px 0 0;
+    width: 100%;
+    text-align: center;
+    display: block;
+}
+
+#what-is.details .request-informations span {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 220px;
     color:var(--pearl);
     cursor:pointer;
     font-size:14px;
     font-weight: 700;
     line-height: 17.5px;
     padding: 10px 16px;
-    position: relative;
     text-align: center;
     text-transform: uppercase;
-    width: 220px;
-    margin-left: calc(33% + 85px);
 }
 
 @media (max-width: 1199px) {
     #what-is.details div.details-img {
-        left: calc(0px - (100vw - 100px) * 0.33);
-        max-width: calc((100vw - 100px) * 0.3);
+        left: 0;
+        max-width: 33%;
     }
 
-    #what-is.details .what-is {
+    #what-is.details .what-is-txts .what-is {
         position: relative;
         min-height: 270px;
     }
@@ -6557,6 +6635,10 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     #what-is.details .request-informations {
         margin-left: 0;
     }
+
+    #what-is.details .request-informations span {
+
+    }
 }
 
 @media (max-width: 768px) {
@@ -6564,7 +6646,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
         display: none;
     }
 
-    #what-is.details .what-is {
+    #what-is.details .what-is-txts .what-is {
         width: 100%;
         margin-left: 0;
         min-height: 100%;
@@ -7382,9 +7464,10 @@ form.contact-page.contact-form button.reset {
 }
 
 .about-us.learn .goals img {
-    width: 200px;
+    width: 150px;
     float: left;
-    margin-right: 25px;
+    margin-right: 50px;
+    margin-bottom: 35px;
 }
 
 .about-us.learn .goals .texts {
@@ -7398,6 +7481,10 @@ form.contact-page.contact-form button.reset {
     font-weight: 700;
     color: var(--teal);
     line-height: 32px;
+}
+
+.about-us.learn .values .title {
+    margin-bottom: 15px;
 }
 
 .about-us.learn .goals .texts .text {
@@ -7414,7 +7501,7 @@ form.contact-page.contact-form button.reset {
 }
 
 .about-us.learn .values .list-elem {
-    padding-left: 85px;
+    padding-left: 55px;
     padding-bottom: 15px;
     box-sizing: border-box;
     position: relative;
@@ -7435,6 +7522,7 @@ form.contact-page.contact-form button.reset {
     color: var(--midnight);
     top: 12px;
     position: relative;
+    font-size: 20px;
 }
 
 .about-us.staff {
@@ -7511,6 +7599,8 @@ form.contact-page.contact-form button.reset {
 
     .about-us.learn .goals img {
         width: 50px;
+        margin-right: 25px;
+        margin-bottom: 15px;
     }
 
     .about-us.learn .values .list-elem {

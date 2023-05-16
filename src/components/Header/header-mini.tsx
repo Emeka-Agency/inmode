@@ -22,6 +22,7 @@ const HeaderMini = ({}:HeaderMini) => {
     const closeMenu = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         e.preventDefault();
         getById('header-mini')?.classList.remove('opened');
+        selectOne('.header-parts')?.classList.remove('mini-opened');
         enableMainScroll();
     }
 
@@ -29,9 +30,11 @@ const HeaderMini = ({}:HeaderMini) => {
 
     React.useEffect(() => {
         const body = document.querySelector('body');
+        const headerParts = selectOne('.header-parts');
         const headerMini = getById('header-mini');
         if(body instanceof HTMLBodyElement && headerMini instanceof HTMLElement && false) {
             body?.classList.contains('no-scroll') && headerMini?.classList.add('opened');
+            body?.classList.contains('no-scroll') && headerParts?.classList.add('mini-opened');
         }
     });
 
@@ -56,7 +59,7 @@ const HeaderMini = ({}:HeaderMini) => {
             </div>
             {
                 user.logged() &&
-                <Link className="profile-link" to="/profile">
+                <Link className="profile-link user-select-none" to="/profile">
                     <img src={images.resolve_img("profileIcon")}/>
                     <span>Profil</span>
                 </Link>

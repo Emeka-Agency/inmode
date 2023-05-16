@@ -95,13 +95,13 @@ const Slides = ({from}:Slides) => {
                             key={key}
                             className={"slide transition gallery-cell" + (current === key && open === true ? ' show' : '')}
                         >
-                            <div className="slide-title">
+                            <div className="slide-title user-select-none">
                                 {slide.short_descr}
                             </div>
                             <div className="slide-content">
                                 <div className="slide-background-ico">
                                     <img
-                                        className="slide-bg-img"
+                                        className="slide-bg-img user-select-none"
                                         src={resolveImg(slide.Icon)}
                                         srcSet={resolveImgSet(slide.Icon)}
                                         alt={slide.Name}
@@ -109,29 +109,29 @@ const Slides = ({from}:Slides) => {
                                 </div>
                                 <div className="slide-background-product">
                                     <img
-                                        className="slide-bg-img"
+                                        className="slide-bg-img user-select-none"
                                         src={resolveImg(slide.ShopPicture)}
                                         srcSet={resolveImgSet(slide.ShopPicture)}
                                         alt='product'
                                     />
                                 </div>
-                                <div className="slide-short-descr">
+                                <div className="slide-short-descr user-select-none">
                                     {slide.Name}
                                 </div>
-                                <div className="slide-view-detail" onClick={(e) => {view_detail(e, key);}}>
+                                <div className="slide-view-detail user-select-none" onClick={(e) => {view_detail(e, key);}}>
                                     Informations produit
                                     <img
-                                        className="slide-view-detail-arrow transition"
+                                        className="slide-view-detail-arrow transition user-select-none"
                                         src={images.resolve_img('arrowRightIcon')}
                                         srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-right"
                                     />
                                     <Link className="absolute-link" to={slide.MenuParams.url} title={slide.Name}></Link>
                                 </div>
-                                {slide.Addons ? <div className="slide-view-product" onClick={(e) => {view_product(e, key);}}>
+                                {slide.Addons ? <div className="slide-view-product user-select-none" onClick={(e) => {view_product(e, key);}}>
                                     Pièces à main
                                     <img
-                                        className="slide-view-product-arrow transition"
+                                        className="slide-view-product-arrow transition user-select-none"
                                         src={images.resolve_img('arrowRightIcon')}
                                         srcSet={images.resolve_img_set('arrowRightIcon')}
                                         alt="arrow-left"
@@ -161,7 +161,7 @@ const Slides = ({from}:Slides) => {
                     </div>
                 );
             })}
-            <Link to="/workstation" className="slides-go-workstation">Nos produits</Link>
+            <Link to="/workstation" className="slides-go-workstation user-select-none">Nos produits</Link>
         </div>
     );
 };

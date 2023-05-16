@@ -105,21 +105,21 @@ const Hero = ({}:Hero) => {
             {/* // TODO ajouter single content */}
             <div className="hero-global">
                 <div className="hero-top">
-                    <div className="before-top-text">LOVE YOUR SKIN</div>
-                    <div className="top-text">{datas.TopText}</div>
+                    <div className="before-top-text user-select-none">LOVE YOUR SKIN</div>
+                    <div className="top-text user-select-none">{datas.TopText}</div>
                     <div className="hero-top-links">
-                        <Link className="hero-top-link inmode-btn" to="/contact">Contact</Link>
-                        <Link className="hero-top-link inmode-btn" to="/events">Événements</Link>
+                        <Link className="hero-top-link inmode-btn user-select-none" to="/contact">Contact</Link>
+                        <Link className="hero-top-link inmode-btn user-select-none" to="/events">Événements</Link>
                     </div>
                 </div>
                 <div className="hero-bottom">
                     {/* </>} */}
-                    <div className="bottom-text">{datas.BottomText}</div>
+                    <div className="bottom-text user-select-none">{datas.BottomText}</div>
                 </div>
                 {/* IMAGE HERO */}
                 <div id="hero-img">
                     <img
-                        className="hero-img"
+                        className="hero-img user-select-none"
                         src={images.resolve_img("hero1")}
                         srcSet={images.resolve_img_set("hero1")}
                         style={{

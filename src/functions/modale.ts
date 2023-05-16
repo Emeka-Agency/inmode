@@ -192,19 +192,19 @@ export function loginModale(datas:loginModale = {}) {
             <h2 class="user-select-none">S'identifier</h2>
             <form id="login_form">
                 <div id="user_section">
-                    <label id="user_input_label user-select-none" for="user_input">Adresse mail</label>
+                    <label id="user_input_label" class="user-select-none" for="user_input">Adresse mail</label>
                     <input type="email" name="user_input" id="user_input" placeholder="Mail..." required/>
                     <span id="user_input_result"></span>
                 </div>
                 <div id="pass_section">
-                    <label id="pass_input_label user-select-none" for="pass_input">Mot de passe</label>
+                    <label id="pass_input_label" class="user-select-none" for="pass_input">Mot de passe</label>
                     <input type="password" name="pass_input" id="pass_input" placeholder="Mot de passe..." required/>
                     <span id="pass_input_result"></span>
                 </div>
-                <div id="signin_action user-select-none">Pas encore de compte ?</div>
+                <div id="signin_action" class="user-select-none">Pas encore de compte ?</div>
                 <div id="submit_section">
                     <span id="submit_login_result"></span>
-                    <button id="submit_login user-select-none">Connexion</button>
+                    <button id="submit_login" class="user-select-none">Connexion</button>
                     <div class="loading-gif mini hidden">
                         <div class="loader-circle"></div>
                         <div class="loader-bar"></div>
@@ -233,19 +233,19 @@ export function signinModale(datas:loginModale = {}) {
             <h2 class="user-select-none">S'inscrire</h2>
             <form id="signin_form">
                 <div id="user_section">
-                    <label id="user_input_label user-select-none" for="user_input">Adresse mail</label>
+                    <label id="user_input_label" class="user-select-none" for="user_input">Adresse mail</label>
                     <input type="email" name="user_input" id="user_input" placeholder="Mail..." required/>
                     <span id="user_input_result"></span>
                 </div>
                 <div id="pass_section">
-                    <label id="pass_input_label user-select-none" for="pass_input">Mot de passe</label>
+                    <label id="pass_input_label" class="user-select-none" for="pass_input">Mot de passe</label>
                     <input type="password" name="pass_input" id="pass_input" placeholder="Mot de passe..." required/>
                     <span id="pass_input_result"></span>
                 </div>
-                <div id="login_action user-select-none">Vous avez déjà un compte ?</div>
+                <div id="login_action" class="user-select-none">Vous avez déjà un compte ?</div>
                 <div id="submit_section">
                     <span id="submit_signin_result"></span>
-                    <button id="submit_signin user-select-none">Créer mon compte</button>
+                    <button id="submit_signin" class="user-select-none">Créer mon compte</button>
                     <div class="loading-gif mini hidden">
                         <div class="loader-circle"></div>
                         <div class="loader-bar"></div>

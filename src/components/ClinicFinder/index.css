@@ -175,22 +175,46 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-sea
 /* CLINIC FILTER
 ---------------------- */
 
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span {
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button {
     position: relative;
     display: inline-flex;
     vertical-align: middle;
+    justify-content: space-between;
     flex: 1;
-    max-width: 25%;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance select {
+    margin: 0;
+    padding: 4px 16px;
+    border-radius: 4px;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance select:hover {
+    border-radius: 8px;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button {
+    box-sizing: border-box;
+    color: var(--pearl);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: var(--teal);
+    border: none;
+    display: block;
 }
 
 @media (max-width: 768px) {
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span {
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button {
         width: 100%;
         display: block;
         margin: 10px 0 30px;
@@ -199,22 +223,18 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-tre
         padding-left: 8px;
     }
 
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:hover,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:active,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:focus,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:focus-within,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:hover,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:active,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:focus,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:focus-within,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:hover,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:active,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:focus,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:focus-within,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span:hover,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span:active,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span:focus,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span:focus-within {
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:hover,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:active,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:focus,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:focus-within,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:hover,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:active,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:focus,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:focus-within {
         border-left-color: var(--teal);
     }
 
@@ -223,31 +243,29 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-tre
     }
 }
 
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions::after,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span::after {
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button::after {
     content: "";
     width: 30%;
     background-color: var(--teal);
     height: 3px;
     position: absolute;
-    top: 30px;
+    top: 50px;
     left: 20px;
     transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
 }
 
 @media (max-width: 768px) {
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions::after,
     main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span::after,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span::after,
-    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-treatment-span::after {
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance::after,
+    main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button::after {
         content: "";
         width: 50%;
         background-color: var(--teal);
         height: 3px;
         position: absolute;
-        top: 30px;
+        top: 50px;
         left: 20px;
         transition: width 0.3s ease-in-out 0s, left 0.3s ease-in-out 0s;
     }
@@ -334,18 +352,18 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder
     background-color: var(--teal);
 }
 
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:hover::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:active::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:focus::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-filter-regions:focus-within::after,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:hover::after,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:active::after,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:focus::after,
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:focus-within::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:hover::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:active::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:focus::after,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-span:focus-within::after {
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:hover::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:active::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:focus::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-filter-distance:focus-within::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:hover::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:active::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:focus::after,
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-search-button:focus-within::after {
     width: 70%;
     left: 0;
 }

@@ -5,7 +5,13 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
     return (
         <div className="follow-instagram">
             <h2>
-                <a href="https://www.instagram.com/inmode.france/?hl=fr" target="_blank" rel="noreferrer" title="Suivez-nous sur Instagram">
+                <a
+                    href="https://www.instagram.com/inmode.france/?hl=fr"
+                    target="_blank"
+                    rel="noreferrer"
+                    title="Suivez-nous sur Instagram"
+                    className="user-select-none"
+                >
                     Suivez-nous sur Instagram
                 </a>
             </h2>
@@ -14,7 +20,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                     return(
                         <div key={key} className="elem">
                             <img
-                                className="background-image"
+                                className="background-image user-select-none"
                                 src={`https://inmodemd.fr/public/instagram/${index}.jpg`}
                                 alt={`insta-${key + 1}`}
                             />

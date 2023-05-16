@@ -43,7 +43,7 @@ const Alveoles = ({}:Alveoles) => {
 
     return (
         <div className="alveoles">
-            <div className="title">Évènements</div>
+            <div className="title user-select-none">Évènements</div>
             {/* <div className="back-hex left">
                 <img
                     src={images.resolve_img('backAlveole')}
@@ -67,7 +67,7 @@ const Alveoles = ({}:Alveoles) => {
                                     backgroundPositionY: "center"
                                 }}
                             ></div>
-                            <div className="alveole-text">{hex.text}</div>
+                            <div className="alveole-text user-select-none">{hex.text}</div>
                             {hex.target === '_self' ?
                                 <Link className="absolute-link" to={hex.link} title={hex.text}></Link>
                                 :

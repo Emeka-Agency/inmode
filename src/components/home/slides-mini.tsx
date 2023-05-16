@@ -17,6 +17,7 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                             src={resolveImg(product.ShopPicture)}
                             srcSet={resolveImgSet(product.ShopPicture)}
                             alt='product'
+                            className="user-select-none"
                         />
                     </div>
                     <div className="right">
@@ -25,12 +26,13 @@ const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
                                 src={resolveImg(product.Icon)}
                                 srcSet={resolveImgSet(product.Icon)}
                                 alt={product.Name}
+                                className="user-select-none"
                             />
                         </div>
-                        <div className="product-name">
+                        <div className="product-name user-select-none">
                             {product.Name}
                         </div>
-                        <div className="slide-view-detail">
+                        <div className="slide-view-detail user-select-none">
                             Informations produit
                             <Link className="absolute-link" to={product.MenuParams.url} title={product.Name}></Link>
                         </div>
