@@ -290,7 +290,6 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder
     font-size: 14px;
     position: relative;
     top: 50%;
-    position: relative;
     transform: translateY(-50%);
 }
 
