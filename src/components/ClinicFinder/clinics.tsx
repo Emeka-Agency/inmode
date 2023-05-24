@@ -30,10 +30,11 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             else {
                 // _slog(clinic?.name + " is NOT displayable", "background: red; color: white");
 
-                const { zip_check, distance_check } = allCheck(clinic);
+                const { zip_check, distance_check, treatments_check } = allCheck(clinic);
 
                 zip_check == false && _log(`zip_check : ${zip_check ? true : false}`);
                 distance_check == false && _log(`distance_check : ${distance_check ? true : false}`);
+                treatments_check == false && _log(`treatments_check : ${distance_check ? true : false}`);
 
                 document?.getElementById(clinic.id)?.classList.add('hidden');
             }
@@ -48,12 +49,17 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         // ZIP CODE
         let distance_search = document?.querySelector('#clinic-filter-distance-select');
         let distance_check = distance_search instanceof HTMLInputElement && distance_search.value == "" ? false : distanceCheck(clinic, distance_search, zip_search);
+        
+        // TREATMENTS
+        let treatments_search = Array.from(document?.querySelectorAll('.clinic-finder-treatment-list li input[type="checkbox"]'));
+        let treatments_check = treatments_search.length == 0 || [0, treatments_search.length].indexOf(treatments_search.map((el:any) => el.checked).filter(t => t).length) ? true : treatmentsCheck(clinic, treatments_search);
 
         return {
             zip_search: zip_search,
             zip_check: zip_check,
             distance_search: distance_search,
             distance_check: distance_check,
+            treatments_check: treatments_check,
         };
     }
 
@@ -63,10 +69,11 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
         let retour = true;
 
-        const {zip_search, zip_check, distance_search, distance_check} = allCheck(clinic);
+        const {zip_check, distance_check, treatments_check} = allCheck(clinic);
 
         if(zip_check == false || distance_check == false) {return false;}
-        if(zip_check == true && distance_check == true) {return true;}
+        if(zip_check == true && distance_check == true && treatments_check == false) {return false;}
+        if(zip_check == true && distance_check == true && treatments_check == true) {return true;}
 
         return retour;
     }
@@ -117,6 +124,20 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         return retour;
     }
 
+    const treatmentsCheck = (clinic?:Airtable_Clinic_Interface, elems:any[] = []) => {
+        if(clinic == undefined) {_log("Cas clinic undefined");return false;}
+        if(clinic.Machines == undefined) {_log("Cas Machines undefined");return false;}
+        if(!Array.isArray(elems)) {_log("Cas elems null");return false;}
+        if(elems.length == 0) {_log("Cas elems vide");return true;}
+
+        for(let i = 0; i < elems.length; i++) {
+            if(elems[i] instanceof HTMLInputElement && elems[i].checked == true && clinic.Machines.includes(elems[i].value)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     const treatmentURL = (treatment:string) => {
         if(treatment == undefined) {return null;}
         switch(treatment) {
@@ -165,6 +186,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             {/* <div id="search-clinic-indicator"><span>{rest}</span>/{clinics ? clinics.length : 0}</div> */}
             {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
             <div id="clinic-finder-filters">
+
                 <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par code postal"/></span>
                 
                 <span className="clinic-filter-distance neumorphic">
@@ -174,6 +196,20 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                         <option value="50" className="clinic-filter-distance">50 km</option>
                         {/* <option value="50" className="clinic-filter-distance">50 km</option> */}
                     </select>
+                </span>
+
+                <span className="clinic-finder-treatment-span">
+                    <span className="clinic-finder-treatment-title">Traitements</span>
+                    <ul className="clinic-finder-treatment-list custom-scrollbar">
+                        {(treatments ?? []).map((treatment:string, index:number) => {
+                            return (
+                                <li key={index} className="clinic-finder-treatment-elem">
+                                    <input type="checkbox" id={`treatment-${treatment.toLowerCase()}`} name={`treatment-${treatment.toLowerCase()}`} value={treatment} onClick={(e) => updateSearch(e, false)}/>
+                                    <label htmlFor={`treatment-${treatment.toLowerCase()}`}>{treatment}</label>
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </span>
 
                 <button id="clinic-finder-search-button" onClick={(e) => updateSearch(e)}>Rechercher</button>
@@ -244,7 +280,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                                             return (
                                                 <span key={key}>
                                                     {treatment}
-                                                    {treatmentURL(treatment) && <a className="absolute-link" href={treatmentURL(treatment)} title={treatment} target="_blank"></a>}
+                                                    {treatmentURL(treatment) && <a className="absolute-link" href={treatmentURL(treatment) ?? "#"} title={treatment} target="_blank"></a>}
                                                 </span>
                                             );
                                         })
