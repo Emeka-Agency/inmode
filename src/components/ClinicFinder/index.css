@@ -288,6 +288,7 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder
     font-weight: bold;
     font-family: "raleway", sans-serif;
     font-size: 14px;
+    position: relative;
 }
 
 main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list {
