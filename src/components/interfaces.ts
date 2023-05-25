@@ -79,7 +79,13 @@ export interface Airtable_Clinic_Interface {
     Email?: string;
     Site?: string;
     Machines?: string[];
+    coordinates?: Geo_Position;
 }
+
+export interface Geo_Position {
+    latitude: number;
+    longitude: number;
+};
 
 export interface InmodePanel_Addon_Interface {
     id?: string;
