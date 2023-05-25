@@ -274,97 +274,31 @@ main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-sea
 }
 
 main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-treatment-span {
+    position: relative;
+    height: 37.5px;
+}
+
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-treatment-span .clinic-finder-treatment-list {
     margin: 0;
     padding: 4px 16px;
     border-radius: 4px;
-    letter-spacing: -0.2px;
-    display: block;
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1), inset -5px -5px 10px rgba(0, 0, 0, 0.05);
-    box-sizing: border-box;
-    border: 0;
-    outline: 0;
-    font-size: 16px;
-}
-
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span span.clinic-finder-treatment-title {
     width: 100%;
-    max-width: 790px;
-    margin: 0;
-    border: none;
-    background: transparent;
-    outline: transparent;
-    display: flex;
-    align-items: center;
-    color: var(--midnight);
-    font-weight: bold;
-    font-family: "raleway", sans-serif;
-    font-size: 14px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list {
-    visibility: hidden;
+    height: 37.5px;
+    transition: height 0.3s ease-in-out 0s;
     position: absolute;
-    top: 48px;
+    top: 0;
     left: 0;
-    width: 100%;
-    max-height: 270px;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 0;
-    padding: 16px 8px;
-    box-sizing: border-box;
-    background-color: var(--pearl);
-    border: 2px solid var(--teal);
-    /* border-top: none; */
-    overflow: auto;
-    user-select: none;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    transition: top 0.3s ease-in-out 0s,
-                visibility 0s ease-in-out 0.3s;
 }
 
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span:hover ul.clinic-finder-treatment-list,
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list:hover {
-    visibility: visible;
-    top: 44px;
-    user-select: auto;
-    transition: top 0.3s ease-in-out 0.1s,
-                visibility 0s ease-in-out 0s;
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-treatment-span .clinic-finder-treatment-list:hover {
+    height: 128px;
 }
 
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list li.clinic-finder-treatment-elem {
-    padding: 6px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: max-content;
-    padding-right: 16px;
-}
-
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list li.clinic-finder-treatment-elem input[id^="treatment-"][name^="treatment-"] {
-        
-}
-
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list li.clinic-finder-treatment-elem label[for^="treatment-"] {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--midnight);
-    margin: 0;
-    padding: 6px 12px;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-
-main.clinic-finder-page .clinic-finder #clinic-finder-filters span.clinic-finder-treatment-span ul.clinic-finder-treatment-list li.clinic-finder-treatment-elem label[for^="treatment-"]:hover {
-    background-color: var(--teal);
-    color: var(--pearl);
+main.clinic-finder-page .clinic-finder #clinic-finder-filters #clinic-finder-treatment-span .clinic-finder-treatment-list .clinic-finder-treatment-elem {
+    position: relative;
+    margin: 2px 0;
+    padding: 2px;
+    border: none;
 }
 
 main.clinic-finder-page .clinic-finder #clinic-finder-filters .clinic-finder-search-zip-span:hover::after,
