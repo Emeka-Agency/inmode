@@ -51,10 +51,10 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let distance_check = distance_search instanceof HTMLInputElement && distance_search.value == "" ? false : distanceCheck(clinic, distance_search, zip_search);
         
         // TREATMENTS
-        let treatments_search = Array.from(document?.querySelectorAll('.clinic-finder-treatment-list li input[type="checkbox"]'));
-        let treatments_check = treatments_search.length == 0 || [0, treatments_search.length].indexOf(treatments_search.map((el:any) => el.checked).filter(t => t).length) > -1 ? true : treatmentsCheck(clinic, treatments_search);
-        console.log(clinic.Machines);
+        let treatments_search = document?.querySelector('.clinic-finder-treatment-list');
+        let treatments_check = treatments_search instanceof HTMLSelectElement ? treatmentsCheck(clinic, treatments_search) : true;
         console.log(treatments_check);
+        treatments_search instanceof HTMLSelectElement && console.log(treatments_search.value);
 
         return {
             zip_search: zip_search,
@@ -126,17 +126,14 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         return retour;
     }
 
-    const treatmentsCheck = (clinic?:Airtable_Clinic_Interface, elems:any[] = []) => {
+    const treatmentsCheck = (clinic?:Airtable_Clinic_Interface, elem:HTMLSelectElement|null = null) => {
+        return true;
         if(clinic == undefined) {_log("Cas clinic undefined");return false;}
         if(clinic.Machines == undefined) {_log("Cas Machines undefined");return false;}
-        if(!Array.isArray(elems)) {_log("Cas elems null");return true;}
-        if(elems.length == 0) {_log("Cas elems vide");return true;}
+        if(!(elem instanceof HTMLSelectElement)) {_log("Cas elems vide");return true;}
 
-        for(let i = 0; i < elems.length; i++) {
-            if(elems[i] instanceof HTMLInputElement && elems[i].checked == true && !clinic.Machines.includes(elems[i].value)) {
-                return false;
-            }
-        }
+        console.log(elem);
+        console.log(elem.value);
         return true;
     }
 
@@ -201,17 +198,14 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                 </span>
 
                 <span id="clinic-finder-treatment-span" className="clinic-finder-treatment-span">
-                    <span className="clinic-finder-treatment-title">Traitements</span>
-                    <ul className="clinic-finder-treatment-list custom-scrollbar">
+                    <span className="clinic-finder-treatment-title">Machines</span>
+                    <select className="clinic-finder-treatment-list custom-scrollbar" multiple>
                         {(treatments ?? []).map((treatment:string, index:number) => {
                             return (
-                                <li key={index} className="clinic-finder-treatment-elem">
-                                    <input type="checkbox" id={`treatment-${treatment.toLowerCase()}`} name={`treatment-${treatment.toLowerCase()}`} value={treatment}/>
-                                    <label htmlFor={`treatment-${treatment.toLowerCase()}`}>{treatment}</label>
-                                </li>
+                                <option key={index} className="clinic-finder-treatment-elem" value={treatment}>{treatment}</option>
                             );
                         })}
-                    </ul>
+                    </select>
                 </span>
 
                 <button id="clinic-finder-search-button" onClick={(e) => updateSearch(e)}>Rechercher</button>
