@@ -54,7 +54,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-JFS1WVR7JQ');
+        gtag('config', 'G-3DGHJW8FDS');
     }
 
     return (
@@ -63,7 +63,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <Header variant={variant}/>
                 {/* <!-- Google tag (gtag.js) --> */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-JFS1WVR7JQ"></script>
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DGHJW8FDS"></script>
                 <script>{searchConsole()}</script>
                 <ProductsProvider>
                 <main id="main" className={title + '-page'} {...rest}>
