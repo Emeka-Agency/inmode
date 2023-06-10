@@ -11,12 +11,6 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     const [treatments, setTreatments]:[any, React.Dispatch<any>] = React.useState([]);
 
-    const switchTreatmentsOpened = (e:any) => {
-        e.currentTarget.parentElement.parentElement.classList.contains('treatments') ?
-        e.currentTarget.parentElement.parentElement.classList.remove('treatments') :
-        e.currentTarget.parentElement.parentElement.classList.add('treatments');
-    }
-
     const updateSearch = (e:React.ChangeEvent | React.MouseEvent, prevent = false) => {
         prevent && e.preventDefault();
         let total = 0;
@@ -80,24 +74,29 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
     const zipCheck = (clinic?:Airtable_Clinic_Interface, elem:any|null = null) => {
         if(clinic == undefined) {_log("Cas clinic undefined");return false;}
-        if(clinic.CodePostal == undefined) {_log("Cas zip_code undefined");return false;}
+        if(clinic.CodePostal == undefined && clinic.Ville == undefined) {_log("Cas zip_code et ville undefined");return false;}
         if(elem == null) {_log("Cas elem null");return false;}
 
         let retour = false;
-        if(clinic.CodePostal && elem instanceof HTMLInputElement && elem.value != "" && elem.value.length > 3) {
-            _log("%czip_search", "background:black;font-weight:bold;font-size:16px;color:yellow");
-            _log(`%c${clinic.CodePostal.toLowerCase()}.includes(${elem.value.toLowerCase()})`, 'background:red;color:green;');
-            if(elem.value.length == 4 && clinic.Pays?.toLowerCase() == "belgique") {
-                retour = true;
+        let zip_code = parseInt(elem.value) ? parseInt(elem.value) : null;
+        let city = elem.value.replace(/[0-9]/gi, '').trim();
+        if(((clinic.CodePostal != null && zip_code != null) || (clinic.Ville != null && city != null)) && elem instanceof HTMLInputElement && elem.value != "") {
+            if(zip_code != null) {
+                if(zip_code.toString().length == 4 && clinic.Pays?.toLowerCase() == "belgique") {
+                    retour = true;
+                }
+                else if(zip_code.toString().length == 5 && clinic.Pays?.toLowerCase() == "france") {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
-            else if(elem.value.length == 5 && clinic.Pays?.toLowerCase() == "france") {
-                retour = true;
-            }
-            else {
-                retour = false;
+            else if(city != null) {
+                return clinic.Ville.toLowerCase().includes(city.toLowerCase());
             }
         }
-        else if(clinic.CodePostal == undefined || elem.value == "") {retour = false;}
+        else if(clinic.CodePostal == undefined || elem.value == "") {return false;}
         return retour;
     }
 
@@ -109,6 +108,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         
         let retour = false;
         if(
+            clinic.Ville?.toLowerCase() == zip.value.trim().toLowerCase() ||
             // (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 0 && clinic.CodePostal == zip.value) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 10 && clinic.CodePostal.slice(0, 3) == zip.value.slice(0, 3)) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 50 && clinic.CodePostal.slice(0, 2) == zip.value.slice(0, 2)) ||
@@ -131,7 +131,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         if(elems.length == 0) {_log("Cas elems vide");return true;}
 
         for(let i = 0; i < elems.length; i++) {
-            if(elems[i] instanceof HTMLInputElement && elems[i].checked == true && !clinic.Machines.includes(elems[i].value)) {
+            if(elems[i] instanceof HTMLInputElement && elems[i].checked == true && !clean_machines(clinic.Machines).includes(elems[i].value)) {
                 return false;
             }
         }
@@ -172,11 +172,17 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     }
 
     React.useEffect(() => {
-        setTreatments(
-            clinics.map(clinic => clinic.Machines?.join(',')).join(',').split(',')
-            .filter((value, index, self) => self.indexOf(value) === index)
-            .filter(el => el != undefined && el != null && el != "")
-        );
+        
+        const fields = ["Machines"];
+        fetch(
+            `${process.env.AIRTABLE_CLINICS}?${fields.map(el => "fields%5B%5D="+el).join("&")}&filterByFormula=%7BClient%7D%3D%22MENUS%22`,
+            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
+        )
+        .then(res => res.json())
+        .then((res:{offset:string|null, records:{fields: Airtable_Clinic_Interface}[]}) => {
+            setTreatments(res.records[0].fields.Machines);
+        })
+        .catch(err => _error(err));
     }, [zipSearch, clinics]);
 
     return (
@@ -187,7 +193,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
             <div id="clinic-finder-filters">
 
-                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par code postal"/></span>
+                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par code postal OU ville"/></span>
                 
                 <span className="clinic-filter-distance neumorphic">
                     <select id="clinic-filter-distance-select" className="neumorphic">
@@ -199,9 +205,9 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                 </span>
 
                 <span id="clinic-finder-treatment-span" className="clinic-finder-treatment-span">
-                    <span className="clinic-finder-treatment-title">Traitements</span>
+                    <div className="clinic-finder-treatment-title">Technologies</div>
                     <ul className="clinic-finder-treatment-list custom-scrollbar">
-                        {(treatments ?? []).map((treatment:string, index:number) => {
+                        {(clean_machines(treatments) ?? []).map((treatment:string, index:number) => {
                             return (
                                 <li key={index} className="clinic-finder-treatment-elem">
                                     <input type="checkbox" id={`treatment-${treatment.toLowerCase()}`} name={`treatment-${treatment.toLowerCase()}`} value={treatment}/>

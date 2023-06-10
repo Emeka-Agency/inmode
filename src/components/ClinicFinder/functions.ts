@@ -26,6 +26,6 @@ export const filterClinics = (_clinics:Airtable_Clinic_Interface[], _position:Ge
             clinic.coordinates.longitude,
             _position.latitude,
             _position.longitude
-        ) < 500
+        ) < _distance
     );
 }
