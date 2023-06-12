@@ -22,7 +22,7 @@
     "gatsby-plugin-sharp": "5.8.0",
     "gatsby-plugin-sitemap": "6.4.0",
     "gatsby-source-filesystem": "5.8.0",
-    "gatsby-source-strapi": "1.0.3",
+    "gatsby-source-strapi": "^1.0.3",
     "gatsby-transformer-remark": "6.8.0",
     "gatsby-transformer-sharp": "5.8.0",
     "react": "18.2.0",
@@ -42,8 +42,8 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "update_all": "npm update --save/--save-dev -f",
-    "launch_dev": "gatsby clean && NODE_ENV=development npm run develop",
+    "launch_dev": "gatsby clean && npm run develop",
     "launch_stage": "gatsby clean && NODE_ENV=staging npm run develop",
-    "launch_prod": "gatsby clean && NODE_ENV=production npm run build && gatsby serve"
+    "launch_prod": "gatsby clean && npm run build && gatsby serve"
   }
 }

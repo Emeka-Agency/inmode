@@ -187,13 +187,13 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
     return (
         <>
-            <h2 className="title">Cliniques Inmode</h2>
+            <h2 className="title">Nos Centres Partenaires</h2>
             <h3 className="subtitle">Liste des praticiens partenaires</h3>
             {/* <div id="search-clinic-indicator"><span>{rest}</span>/{clinics ? clinics.length : 0}</div> */}
             {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
             <div id="clinic-finder-filters">
 
-                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par code postal OU ville"/></span>
+                <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par ville ou par CP"/></span>
                 
                 <span className="clinic-filter-distance neumorphic">
                     <select id="clinic-filter-distance-select" className="neumorphic">
