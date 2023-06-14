@@ -65,8 +65,8 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
          'url': '/events/webinars'
       },
       {
-         'name': 'tradehows',
-         'url': '/events/tradehows'
+         'name': 'tradeshows',
+         'url': '/events/tradeshows'
       },
    ];
 
