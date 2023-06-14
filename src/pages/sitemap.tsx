@@ -74,6 +74,7 @@ const Sitemap = ({ data }:Sitemap) => {
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/conferences/" title="Conferences">https://inmodemd.co.uk/events/conferences/</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/webinars/" title="Webinars">https://inmodemd.co.uk/events/webinars/</a></div>
                     <div className="sitemap-link">- <a className="absolute-link" href="/events/workshops/" title="Workshops">https://inmodemd.co.uk/events/workshops/</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="/events/tradeshows/" title="Tradeshows">https://inmodemd.co.uk/events/tradeshows/</a></div>
                 </div>
             </div>
         </Layout>

@@ -338,6 +338,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                         {event.EventType === "Conference" && "Conferences"}
                         {event.EventType === "Workshop" && "Workshops"}
                         {event.EventType === "Webinar" && (event.Addons || []).join(', ')}
+                        {event.EventType === "Tradeshow" && "Tradeshows"}
                     </div>
                 }
                 {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, event?.id)}>

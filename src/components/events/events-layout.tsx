@@ -64,6 +64,10 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
          'name': 'webinars',
          'url': '/events/webinars'
       },
+      {
+         'name': 'tradehows',
+         'url': '/events/tradehows'
+      },
    ];
 
    const [maxHeight, setMaxHeight] = React.useState(0);
