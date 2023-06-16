@@ -131,6 +131,9 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             function(_el:Element|null = null, _res:any) {
                 _log(_res);
                 modaleSetSaving(false);
+                if(_res.message.toLowerCase().includes('failed to fetch')) {
+                    _res.message = "Une erreur est survenue lors de la connexion, veuillez réessayer plus tard. En attendant, si vous souhaitez passer une commande, nous vous invitons à continuer sans vous connecter.";
+                }
                 if(typeof _res.message == "string") {
                     modaleSetSubmit(_res.message);
                 }
@@ -195,6 +198,9 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             function(_el:Element|null = null, _res:any) {
                 _log(_res);
                 modaleSetSaving(false);
+                if(_res.message.toLowerCase().includes('failed to fetch')) {
+                    _res.message = "Une erreur est survenue lors de votre inscription, veuillez réessayer plus tard. En attendant, si vous souhaitez passer une commande, nous vous invitons à continuer sans vous connecter.";
+                }
                 if(typeof _res.message == "string") {
                     modaleSetSubmit(_res.message);
                 }
