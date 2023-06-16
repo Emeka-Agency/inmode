@@ -1,7 +1,7 @@
 ._404-zone {
     padding: 110px;
     text-align: center;
-    color: var(--pearl);
+    color: var(--teal);
 }
 
 ._404-zone ._404-message {
@@ -14,7 +14,7 @@
 }
 
 ._404-zone ._404-suggestions a {
-    color: var(--pearl);
+    color: var(--teal);
     width: 30%;
     font-size: 35px;
     font-weight: 200;
