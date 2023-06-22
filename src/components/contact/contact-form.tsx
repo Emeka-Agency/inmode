@@ -37,7 +37,7 @@ const phone_pattern = "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$
 const form_elems = [
     {"placeholder": "", "validation_message": "Fill in your lastname", "required": true, "label": "Last name", "name" : "lastname", "type" : "text"},
     {"placeholder": "", "validation_message": "Fill in your firstname", "required": true, "label": "First name", "name" : "firstname", "type" : "text"},
-    {"placeholder": "", "label": "Society", "name" : "company", "type" : "text"},
+    {"placeholder": "", "label": "Clinic", "name" : "company", "type" : "text"},
     {"placeholder": "", "validation_message": "Choose a speciality", "required": true, "label": "Choose a speciality", "name" : "subject", "type" : "select", "options": [
         {"value": undefined, "disabled": true, "selected": true, "style": {'display': 'none'}, "label": "Speciality"},
         {"value" : "plastic-surgeon", "label": "Plastic surgeon",},
