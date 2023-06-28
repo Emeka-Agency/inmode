@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import { Script } from "gatsby"
 import { useImages } from './contexts/images-provider';
 
-function SEO({ description, lang, meta, title }) {
+function SEO({ description, lang, meta, title, forceTitle }) {
 
     const images = useImages();
 
@@ -81,7 +81,7 @@ function SEO({ description, lang, meta, title }) {
             htmlAttributes={{
                 lang,
             }}
-            title={`${title ? title + ' | ' : ''}${strapiSeoMeta.PageTitle}`}
+            title={forceTitle ? forceTitle : `${title ? title + ' | ' : ''}${strapiSeoMeta.PageTitle}`}
             titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
             meta={[
                 {
@@ -174,6 +174,7 @@ SEO.propTypes = {
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
+  forceTitle: PropTypes.string,
 }
 
 export default SEO
