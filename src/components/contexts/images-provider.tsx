@@ -247,6 +247,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             optimas_midnight: file(relativePath: {eq: "products/optimas_midnight.png"}) {
                 ...FileImgFormat
             }
+            registerEventLogo: file(relativePath: {eq: "register-event-logo.png"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
@@ -425,6 +428,7 @@ interface ImagesList {
     evoke_midnight: GatsbyImage_Interface;
     evolve_midnight: GatsbyImage_Interface;
     optimas_midnight: GatsbyImage_Interface;
+    registerEventLogo: GatsbyImage_Interface;
 }
 
 export default ImagesProvider;

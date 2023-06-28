@@ -1,0 +1,310 @@
+:root {
+    --red: rgba(255, 0, 0, 1);
+    --red-50: rgba(255, 0, 0, 0.5);
+}
+
+#event-register-page {
+    display: block;
+    width: 100vw;
+    min-height: 100vh;
+    padding: 64px 0;
+    position: relative;
+    top: 0;
+}
+
+#event-register-page #event-register-bg {
+    background-repeat: repeat;
+    background-size: auto;
+    background-position: center center;
+    filter: invert(0.02);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#event-register-page #event-register-logo {
+    position: relative;
+    z-index: 1;
+    max-width: 90%;
+    max-height: 64px;
+    margin: 0 auto;
+    display: block;
+}
+
+#event-register-page #event-register-container {
+    position: relative;
+    z-index: 1;
+    max-width: 90%;
+    width: 100%;
+    min-height: 26px;
+    border-radius: 13px;
+    background-color: var(--pearl);
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 6px 4px;
+    margin: 12px auto 0;
+    padding: 12px 24px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    #event-register-page #event-register-logo {
+        max-width: 480px;
+        max-height: 96px;
+    }
+    
+    #event-register-page #event-register-container {
+        max-width: 480px;
+        margin: 24px auto 0;
+        padding: 24px 36px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #event-register-page #event-register-logo {
+        max-width: 480px;
+        max-height: 124px;
+    }
+    
+    #event-register-page #event-register-container {
+        max-width: 480px;
+        margin: 48px auto 0;
+        padding: 36px 48px;
+    }
+}
+
+#event-register-page #event-register-container #event-register-content {
+    
+}
+
+#event-register-page #event-register-container #event-register-content .loading-gif {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto;
+}
+
+#event-register-page #event-register-container #event-register-content h1 {
+    color: var(--black);
+    margin: 12px auto;
+    width: 100%;
+    text-align: center;
+}
+
+/* éléments formulaire */
+
+#event-register-page #event-register-container #event-register-content form {
+    margin: 24px auto;
+    width: 100%;
+}
+
+#event-register-page #event-register-container #event-register-content form label {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--midnight);
+}
+
+#event-register-page #event-register-container #event-register-content form input {
+    display: block;
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px 8px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 4px 0px;
+    caret-color: var(--teal);
+    color: var(--midnight);
+    border-radius: 6px;
+    border-left: 3px solid var(--teal-50);
+    font-family: 'brandon-bld';
+    box-sizing: border-box;
+    outline: none;
+}
+
+#event-register-page #event-register-container #event-register-content form input:not(:placeholder-shown):invalid {
+    border-left: 3px solid var(--red-50);
+}
+
+#event-register-page #event-register-container #event-register-content form textarea {
+    display: block;
+    resize: none;
+    width: 100%;
+    margin-top: 4px;
+    padding: 8px 8px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 4px 0px;
+    caret-color: var(--teal);
+    color: var(--midnight);
+    border-radius: 6px;
+    border-left: 3px solid var(--teal-50);
+    font-family: 'brandon-bld';
+    box-sizing: border-box;
+    outline: none;
+}
+
+#event-register-page #event-register-container #event-register-content form textarea:not(:placeholder-shown):invalid {
+    border-left: 3px solid var(--red-50);
+}
+
+/* liste machines */
+
+#event-register-page #event-register-container #event-register-content form #machines {
+
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine {
+    width: 100%;
+    margin-top: 4px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--midnight);
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 8px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine:hover {
+    background-color: var(--teal-25);
+    border-radius: 6px;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine div.icon,
+#event-register-page #event-register-container #event-register-content form #machines .machine p,
+#event-register-page #event-register-container #event-register-content form #machines .machine input {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine div.icon {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    padding: 4px;
+    background-color: var(--star-blue);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40px;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine div.icon img {
+    width: 100%;
+    max-width: 32px;
+    max-height: 32px;
+    margin: 0 auto;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine p {
+    margin-left: 8px;
+}
+
+#event-register-page #event-register-container #event-register-content form #machines .machine input {
+    width: 16px;
+    height: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 6px;
+    border-left: none;
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* req-return error */
+
+#event-register-page #event-register-container #event-register-content form .req-return.error {
+    color: var(--red);
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 4px;
+    margin-bottom: 0;
+    text-align: center;
+    visibility: visible;
+}
+
+#event-register-page #event-register-container #event-register-content form .req-return.error:empty {
+    visibility: hidden;
+}
+
+/* bouton submit */
+
+#event-register-page #event-register-container #event-register-content form button {
+    width: 100%;
+    max-width: 256px;
+    text-align: center;
+    background-color: var(--teal);
+    color: var(--pearl);
+    padding: 12px 24px;
+    cursor: pointer;
+    margin: 32px calc(50% - 128px) 0;
+    text-transform: uppercase;
+    border-radius: 8px;
+    border: 2px solid var(--teal);
+    font-weight: 500;
+    font-size: 18px;
+    transition: background-color 0.2s ease-in-out,
+                color 0.2s ease-in-out,
+                border 0.2s ease-in-out;
+}
+
+#event-register-page #event-register-container #event-register-content form:valid button {
+    background-color: var(--teal);
+}
+
+#event-register-page #event-register-container #event-register-content form:invalid button:hover {
+    background-color: var(--teal);
+    color: var(--pearl);
+    border-color: var(--red-50);
+}
+
+#event-register-page #event-register-container #event-register-content form button:hover {
+    background-color: var(--teal);
+    color: var(--pearl);
+    border-color: var(--teal);
+}
+
+#event-register-page #event-register-container #event-register-content form button .loading-gif {
+    display: none;
+    width: 21px;
+    height: 21px;
+    margin: 0 auto;
+    transform: translate(-25%, -25%);
+}
+
+#event-register-page #event-register-container #event-register-content form button.loading span {
+    display: none;
+}
+
+#event-register-page #event-register-container #event-register-content form button.loading .loading-gif {
+    display: block;
+}
+
+/* registered part */
+
+#event-register-page #event-register-container #event-register-content.registered {
+
+}
+
+#event-register-page #event-register-container #event-register-content.registered h1 {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+#event-register-page #event-register-container #event-register-content.registered p {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 16px;
+}

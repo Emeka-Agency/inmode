@@ -1,4 +1,5 @@
 const { crc32 } = require('crc');
+const path = require("path")
 
     exports.onCreateWebpackConfig = ({
     actions
@@ -26,6 +27,12 @@ exports.onCreatePage = async ({
 
     if (page.path == '/test/') {
         return false;
+    }
+
+    // For the pages/events/[event]/register.tsx page, make the [event] parameter dynamic from the URL and available for the page as a prop.
+    if(page.path.match(/^\/events\/.*\/register/)) {
+        page.matchPath = "/events/:event/register"
+        createPage(page)
     }
 
     // if (page.path == '/testimonials/') {
