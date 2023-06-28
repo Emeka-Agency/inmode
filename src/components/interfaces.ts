@@ -50,6 +50,18 @@ export interface Airtable_Event_Interface {
     Picture?: any;
 };
 
+export interface Airtable_Register_Interface {
+    Firstname: string;
+    Surname: string;
+    Email: string;
+    'Contact number': string;
+    'Clinic Name': string;
+    Event: string[];
+    Comment: string;
+    Machines: string[];
+    Postcode: string;
+};
+
 export interface Airtable_Picture_Interface {
     width: number;
     height: number;
