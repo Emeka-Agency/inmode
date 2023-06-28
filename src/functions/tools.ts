@@ -304,3 +304,31 @@ export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefin
     }
     return retour;
 }
+
+export function handlePromise(promise:Response) {
+    _log("handlePromise");
+    let retour = null;
+    try {
+        _log("Try json()");
+        retour = promise.json();
+    }
+    catch(err_json) {
+        _log(err_json);
+        try {
+            _log("Try text()");
+            retour = promise.text();
+        }
+        catch(err_text) {
+            _log(err_text);
+            try {
+                _log("Try blob()");
+                retour = promise.blob();
+            }
+            catch(err_blob) {
+                _log(err_blob);
+                retour = null;
+            }
+        }
+    }
+    return retour;
+}

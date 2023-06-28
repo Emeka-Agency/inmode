@@ -1,5 +1,6 @@
 import { _log, _trace } from "../../functions/logger";
 import { selectOne } from "../../functions/selectors";
+import { handlePromise } from "../../functions/tools";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
     _log("send_form_mini");
@@ -452,34 +453,6 @@ export const send_form_landing = async function(e:React.FormEvent<HTMLFormElemen
             _error.innerHTML = "There had an issue during the mailing process. Please reload the page or use our mail : <a style=\"font-size: 15px; color: white; display: inline-block; font-weight: bold;\" href=\"mailto:neil.wolfenden@inmodemd.com\">neil.wolfenden@inmodemd.com</a>";
         }
     }
-}
-
-function handlePromise(promise:Response) {
-    _log("handlePromise");
-    let retour = null;
-    try {
-        _log("Try json()");
-        retour = promise.json();
-    }
-    catch(err_json) {
-        _log(err_json);
-        try {
-            _log("Try text()");
-            retour = promise.text();
-        }
-        catch(err_text) {
-            _log(err_text);
-            try {
-                _log("Try blob()");
-                retour = promise.blob();
-            }
-            catch(err_blob) {
-                _log(err_blob);
-                retour = null;
-            }
-        }
-    }
-    return retour;
 }
 
 function click_pardot(body) {
