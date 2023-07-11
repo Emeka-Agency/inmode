@@ -1,6 +1,6 @@
 import { _log, _trace } from "../../functions/logger";
 import { selectOne } from "../../functions/selectors";
-import { handlePromise } from "../../functions/tools";
+import { go_to, handlePromise } from "../../functions/tools";
 import { useLocalStorage } from "../../functions/use-localstorage";
 import { Airtable_Event_Interface, Airtable_Register_Interface } from "../interfaces";
 
@@ -112,9 +112,9 @@ function event_register(form:HTMLFormElement, event:Airtable_Event_Interface, se
         let _temp:any = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'none';}
         if(response.records || (response.status === 'success' && response.type === 'client')) {
-            set_register(true);
             useLocalStorage.setItem(`inuk_${event?.id}_register`, true);
             error.innerText = "";
+            go_to("/thanks");
         }
         if(response.status === 'fail' && response.type === 'client') {
             error.innerText = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";

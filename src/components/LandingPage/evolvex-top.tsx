@@ -36,10 +36,11 @@ const video_params = {
     wmode: "transparent",
 };
 
-const LandingEvolveXTop = (datas:LandingEvolveXTop) => {
+const LandingEvolveXTop = ({  }:LandingEvolveXTop) => {
 
     const [submitText, setSubmitText] = React.useState('Enquire now');
     const [ratio, setRatio] = React.useState(1);
+    const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(false);
 
     const images = useImages();
     
@@ -72,10 +73,12 @@ const LandingEvolveXTop = (datas:LandingEvolveXTop) => {
         return true;
     }
     const remove_saving = (status = null) => {
+        setLoading(false);
         status == "fail" && setSubmitText("Fail to send");
         status == "success" && setSubmitText("Sent");
         status == "error" && setSubmitText("Error on send");
         document?.querySelector('#evolvex-landing-contact-form .loading-gif')?.classList.remove('active');
+        status == "success" && go_to("/thanks");
         return true;
     }
 

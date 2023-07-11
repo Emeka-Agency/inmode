@@ -4,6 +4,7 @@ import "./empower-top.css";
 import LoadingGIF from "../LoadingGIF";
 import Video from "../Video";
 import { send_form_landing } from "../Contact/contact";
+import { go_to } from "../../functions/tools";
 
 const phone_pattern = "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$";
 
@@ -36,10 +37,11 @@ const video_params = {
     wmode: "transparent",
 };
 
-const LandingEmpowerTop = (datas:LandingEmpowerTop) => {
+const LandingEmpowerTop = ({  }:LandingEmpowerTop) => {
 
     const [submitText, setSubmitText] = React.useState('Enquire now');
     const [ratio, setRatio] = React.useState(1);
+    const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(false);
     
     const extractRatio = (url:string) => {
         const img = new Image();
@@ -70,10 +72,12 @@ const LandingEmpowerTop = (datas:LandingEmpowerTop) => {
         return true;
     }
     const remove_saving = (status = null) => {
+        setLoading(false);
         status == "fail" && setSubmitText("Fail to send");
         status == "success" && setSubmitText("Sent");
         status == "error" && setSubmitText("Error on send");
         document?.querySelector('#empower-landing-contact-form .loading-gif')?.classList.remove('active');
+        status == "success" && go_to("/thanks");
         return true;
     }
 
