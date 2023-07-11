@@ -31,7 +31,7 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
             <div style={{width: "100%", backgroundColor: 'var(--pearl)'}}>
                 <Link to={data.strapiProduct.MenuParams.url}className="landing_empower-find_out_more">Find out more</Link>
             </div>
-            <VideoTestimonials testimonials={[
+            <VideoTestimonials vt_id="empower-rf-device-testimonials" testimonials={[
                 {
                     name: "Dr Vivek",
                     type: "",
@@ -60,7 +60,7 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
                     url: "https://www.youtube.com/watch?v=egrx28naa7o",
                     poster: "https://img.youtube.com/vi/egrx28naa7o/maxresdefault.jpg"
                 }
-            ]}/>
+            ]} from={"empower-rf"}/>
             <Newsletter/>
         </Layout>
     );

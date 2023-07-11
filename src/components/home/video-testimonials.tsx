@@ -4,14 +4,14 @@ import Video from "../Video";
 
 import "./video-testimonials.css";
 
-const VideoTestimonials = ({ testimonials }:VideoTestimonials) => {
+const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:VideoTestimonials) => {
 
     if(!testimonials || testimonials.length == 0) {
         return <></>;
     }
 
     return (
-        <section className="video-testimonials">
+        <section id={vt_id ?? null} className="video-testimonials">
             <div className="title">Customer testimonials</div>
             <div className="descr">Discover what our clients say about our products and events.</div>
             <div className="testimonials">
@@ -33,6 +33,7 @@ const VideoTestimonials = ({ testimonials }:VideoTestimonials) => {
 export default VideoTestimonials;
 
 interface VideoTestimonials {
+    vt_id?: string;
     testimonials: {
         name: string;
         type: string;
@@ -40,4 +41,5 @@ interface VideoTestimonials {
         url: string;
         poster: string;
     }[];
+    from?: string;
 };

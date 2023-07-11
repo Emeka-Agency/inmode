@@ -41,7 +41,7 @@ const IndexPage = () => {
         {size.width > 999 ? <Slides from='home'/> : <SlidesMini from="home"/>}
         <Alveoles />
         {/* <ClinicalStudies/> */}
-        <VideoTestimonials testimonials={[
+        <VideoTestimonials vt_id="home-testimonials" testimonials={[
             {
                 name: "Dr Karim",
                 type: "Practitioner",
