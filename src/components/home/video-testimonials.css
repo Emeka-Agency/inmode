@@ -105,9 +105,13 @@ section.video-testimonials .testimonials .video-testimonial {
 }
 
 @media (min-width: 1200px) {
-    section.video-testimonials .testimonials .video-testimonial:nth-child(3n - 2),
+    section.video-testimonials .testimonials .video-testimonial:nth-child(3n),
     section.video-testimonials .testimonials .video-testimonial:nth-child(3n - 1) {
-        margin-right: 5%;
+        margin-left: 5%;
+    }
+    
+    section.video-testimonials .testimonials .video-testimonial:nth-child(3n - 2) {
+        margin-left: 0;
     }
 }
 
