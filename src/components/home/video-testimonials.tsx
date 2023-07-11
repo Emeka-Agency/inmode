@@ -18,7 +18,7 @@ const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:Vid
                 {testimonials.map((testimonial, index_testimonial) => (
                     <div className="video-testimonial" key={index_testimonial}>
                         <Video className="testimonial-video" few={false} video={{url: testimonial.url, poster: testimonial.poster, poster_link: "external"}} key={null}/>
-                        <div className="client">{[testimonial.name, testimonial.type].join(', ')}</div>
+                        <div className="client">{[testimonial.name, testimonial.type].join('')}</div>
                         <div className="origin">{testimonial.origin}</div>
                     </div>
                 ))}
