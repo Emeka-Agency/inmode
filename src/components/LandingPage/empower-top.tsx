@@ -108,54 +108,67 @@ const LandingEmpowerTop = ({  }:LandingEmpowerTop) => {
                 />
                 <track src="" kind="subtitles" srcLang="en" label="English"></track>
             </video> */}
-            <section className="full-form-container contact">
-                <h2>Get in touch</h2>
-                <form
-                    id="empower-landing-contact-form"
-                    name="contact"
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        verify_form() ? set_saving() && send_form_landing(e, "empower", setSubmitText, remove_saving, remove_saving) : e.currentTarget.reportValidity();
-                    }}
-                    className={`contact-form main-container empower-landing`}
-                    method="POST"
-                >
-                    <div className="mailer-datas">
-                        {form_elems.map((elem, elem_key) => {
-                            if(["email", "tel", "text"].indexOf(elem.type) > -1) {
-                                return (
-                                    <div className="field" key={elem_key}>
-                                        <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
-                                        <input
-                                            id={elem.name}
-                                            title={elem.label}
-                                            placeholder={elem.placeholder}
-                                            spellCheck={elem.spellcheck ? true : false}
-                                            type={elem.type}
-                                            name={elem.name}
-                                            required={elem.required ? false : false}
-                                            pattern={elem.pattern ? elem.pattern : undefined}
-                                        />
-                                    </div>
-                                );
-                            }
-                        })}
-                        <input hidden id="From" value="EmpowerRF" readOnly={true}/>
-                    </div>
-                    <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
-                    <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
-                    <button type="submit" className="submit transition">
-                        <div className="label">{submitText}</div>
-                        {<LoadingGIF/>}
-                    </button>
-                </form>
+            <section className="full-form-container contact" style={
+                loading ? {display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--pearl-75)"} : {}}>
+                {loading && <LoadingGIF />}
+                {!loading && event && (
+                    <>
+                        <h2>Get in touch</h2>
+                        <form
+                            id="empower-landing-contact-form"
+                            name="contact"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                if(verify_form()) {
+                                    set_saving();
+                                    setLoading(true);
+                                    send_form_landing(e, "empower", setSubmitText, remove_saving, remove_saving);
+                                }
+                                else {
+                                    e.currentTarget.reportValidity();
+                                }
+                            }}
+                            className={`contact-form main-container empower-landing`}
+                            method="POST"
+                        >
+                            <div className="mailer-datas">
+                                {form_elems.map((elem, elem_key) => {
+                                    if(["email", "tel", "text"].indexOf(elem.type) > -1) {
+                                        return (
+                                            <div className="field" key={elem_key}>
+                                                <label htmlFor={elem.name}>{elem.label}{elem.required ? "*" : ""}</label>
+                                                <input
+                                                    id={elem.name}
+                                                    title={elem.label}
+                                                    placeholder={elem.placeholder}
+                                                    spellCheck={elem.spellcheck ? true : false}
+                                                    type={elem.type}
+                                                    name={elem.name}
+                                                    required={elem.required ? false : false}
+                                                    pattern={elem.pattern ? elem.pattern : undefined}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                })}
+                                <input hidden id="From" value="EmpowerRF" readOnly={true}/>
+                            </div>
+                            <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
+                            <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
+                            <button type="submit" className="submit transition">
+                                <div className="label">{submitText}</div>
+                                {<LoadingGIF/>}
+                            </button>
+                        </form>
+                    </>
+                )}
             </section>
         </div>
     );
 }
 
 interface LandingEmpowerTop {
-
+    
 };
 
 export default LandingEmpowerTop;
