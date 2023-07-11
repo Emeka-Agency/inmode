@@ -88,6 +88,9 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                 else if(zip_code.toString().length == 5 && clinic.Pays?.toLowerCase() == "france") {
                     return true;
                 }
+                else if((elem.value[0] == "0" && elem.value.length == 5) && clinic.Pays?.toLowerCase() == "france") {
+                    return true;
+                }
                 else {
                     return false;
                 }
