@@ -148,7 +148,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             "city": _form?.querySelector('#city')?.value,
             "country": _form?.querySelector('select[name="country"]')?.value,
             "message": _form?.querySelector('#contact-message')?.value,
-            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map(el => el.checked ? el.name : null).filter(el => el),
+            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]') ?? []).map(el => el?.checked ? el.name : null).filter(el => el),
             "type": "full-contact"
         };
 
