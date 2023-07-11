@@ -52,6 +52,13 @@ const EmpowerRFDevicePage = ({ data }:EmpowerRFDevicePage) => {
                     origin: "Director of Pure Perfection Clinic",
                     url: "https://www.youtube.com/watch?v=Ss0A_Sjxa2w",
                     poster: "https://img.youtube.com/vi/Ss0A_Sjxa2w/maxresdefault.jpg"
+                },
+                {
+                    name: "EmpowerRF",
+                    type: "",
+                    origin: "EmpowerRF launch",
+                    url: "https://www.youtube.com/watch?v=egrx28naa7o",
+                    poster: "https://img.youtube.com/vi/egrx28naa7o/maxresdefault.jpg"
                 }
             ]}/>
             <Newsletter/>

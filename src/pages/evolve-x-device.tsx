@@ -39,6 +39,13 @@ const EvolveXRFDevicePage = ({ data }:EvolveXRFDevicePage) => {
                     origin: "InMode EVOLVE Demo, With Dr Dev Patel",
                     url: "https://www.youtube.com/watch?v=Uy3tNRmCPME",
                     poster: "https://img.youtube.com/vi/Uy3tNRmCPME/maxresdefault.jpg"
+                },
+                {
+                    name: "EvolveX",
+                    type: "",
+                    origin: "EvolveX launch",
+                    url: "https://www.youtube.com/watch?v=6nmce_KLeR0",
+                    poster: "https://img.youtube.com/vi/6nmce_KLeR0/maxresdefault.jpg"
                 }
             ]}/>
             <div style={{width: "100%", backgroundColor: 'var(--midnight)'}}>
