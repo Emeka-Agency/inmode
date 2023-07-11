@@ -111,7 +111,7 @@ const LandingEmpowerTop = ({  }:LandingEmpowerTop) => {
             <section className="full-form-container contact" style={
                 loading ? {display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--pearl-75)"} : {}}>
                 {loading && <LoadingGIF />}
-                {!loading && event && (
+                {!loading && (
                     <>
                         <h2>Get in touch</h2>
                         <form
