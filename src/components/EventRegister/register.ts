@@ -45,6 +45,8 @@ export async function manage_event_register(e:any, event:Airtable_Event_Interfac
     .then((response) => {
         _log(response);
         if(response.records.filter((rec:{fields: Airtable_Register_Interface}) => rec.fields.Event.indexOf(event.id) > -1).length > 0) {
+            go_to("/thanks");
+            return;
             button.classList.remove('loading');
             error.innerText = "You have already registered to this event.";
             return false;
