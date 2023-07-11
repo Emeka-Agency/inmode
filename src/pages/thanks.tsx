@@ -28,8 +28,8 @@ const SubtextStyle = {
 const ThanksPage = (datas:ThanksPage) => {
 
   return (
-    <Layout title="404">
-        <SEO title="404"/>
+    <Layout title="Thank you">
+        <SEO title="Thank you"/>
         <section style={ContainerStyle}>
             <div>
                 <p style={ThanksStyle}>Thank you for your interest in InMode.</p>
