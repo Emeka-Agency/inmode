@@ -25,7 +25,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
     const addClinics = function(offset:string|null = null, records:Airtable_Clinic_Interface[]|[] = []) {
 
-        const fields = ["Client", "Nom", "Adresse", "CodePostal", "Ville", "Pays", "Telephone", "Email", "Site", "Machines"];
+        const fields = ["Client", "Nom", "Adresse", "CodePostal", "Ville", "Pays", "Telephone", "Email", "Site", "Machines", "latitude", "longitude", "full_address"];
         const sortCriteres = ['Client'];
         const sortDirections = ['desc'];
         const sortBy = Array(sortCriteres).map((el, index) => 
