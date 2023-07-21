@@ -80,6 +80,9 @@ export interface Airtable_Clinic_Interface {
     Site?: string;
     Machines?: string[];
     coordinates?: Geo_Position;
+    latitude: number;
+    longitude: number;
+    full_address: string;
 }
 
 export interface Geo_Position {
