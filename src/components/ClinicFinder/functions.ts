@@ -18,36 +18,35 @@ const deg2rad = (deg:number):number => {
     return deg * (Math.PI / 180)
 }
 
-export const address_to_coordinates = async (_address:string):Promise<any> => {
-    const url = `https://nominatim.openstreetmap.org/search?q=${_address}&format=json&limit=1`
+export const address_to_coordinates = async (_address:string):Promise<Geo_Position> => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(_address)}&key=${process.env.MAPS_API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
     return {
-        lat: parseFloat(data[0].lat),
-        lon: parseFloat(data[0].lon)
+        latitude: data.results[0].geometry.location.lat,
+        longitude: data.results[0].geometry.location.lon
     };
 }
 
-export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _address:string, _distance:number = 10) => {
-    const coo = await address_to_coordinates(_address) ?? [0, 0];
+export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _position:Geo_Position, _distance:number = 10) => {
     return _clinics.filter(clinic => 
         clinic.coordinates &&
         getDistanceOnSphere(
             clinic.latitude,
             clinic.longitude,
-            coo.lat,
-            coo.lon
+            _position.latitude,
+            _position.longitude
         ) < _distance
     );
 }
 
-export const is_in_radius = async (_clinic:Airtable_Clinic_Interface, _address:string, _distance:number = 10) => {
-    const coo = await address_to_coordinates(_address) ?? [0, 0];
+export const is_in_radius = async (_clinic:Airtable_Clinic_Interface, _position:Geo_Position, _distance:number = 10) => {
     return _clinic.coordinates &&
         getDistanceOnSphere(
             _clinic.latitude,
             _clinic.longitude,
-            coo.lat,
-            coo.lon
+            _position.latitude,
+            _position.longitude
         ) < _distance;
 }

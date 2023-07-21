@@ -1,7 +1,7 @@
 import React from "react";
 import { _error, _log, _slog } from "../../functions/logger";
 import { getById, selectAll, selectOne } from "../../functions/selectors";
-import { Airtable_Clinic_Interface } from "../interfaces";
+import { Airtable_Clinic_Interface, Geo_Position } from "../interfaces";
 import LoadingGIF from "../LoadingGIF";
 
 import "./clinics.css";
@@ -12,12 +12,14 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     const [treatments, setTreatments]:[any, React.Dispatch<any>] = React.useState([]);
 
-    const updateSearch = (e:React.ChangeEvent | React.MouseEvent, prevent = false) => {
+    const updateSearch = async (e:React.ChangeEvent | React.MouseEvent, prevent = false) => {
+        if(typeof document == "undefined") {return false;}
         prevent && e.preventDefault();
         let total = 0;
+        let geo_pos = await address_to_coordinates(document?.querySelector('input#clinic-finder-search-zip')?.value);
         clinics.forEach(clinic => {
             if(clinic instanceof Array) {return false;}
-            if(displayable(clinic) && clinic.id) {
+            if(displayable(clinic, geo_pos) && clinic.id) {
                 document?.getElementById(clinic.id)?.classList.remove('hidden');
                 // _slog(clinic?.name + " is displayable", "background: green; color: white");
                 total++;
@@ -25,7 +27,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             else {
                 // _slog(clinic?.name + " is NOT displayable", "background: red; color: white");
 
-                const { zip_check, distance_check, treatments_check } = allCheck(clinic);
+                const { zip_check, distance_check, treatments_check } = allCheck(clinic, geo_pos);
 
                 zip_check == false && _log(`zip_check : ${zip_check ? true : false}`);
                 distance_check == false && _log(`distance_check : ${distance_check ? true : false}`);
@@ -36,7 +38,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         });
     }
 
-    const allCheck = (clinic:Airtable_Clinic_Interface) => {
+    const allCheck = (clinic:Airtable_Clinic_Interface, geo_pos:Geo_Position) => {
         // ZIP CODE
         let zip_search = document?.querySelector('input#clinic-finder-search-zip');
         let zip_check = zip_search instanceof HTMLInputElement && zip_search.value == "" ? false : zipCheck(clinic, zip_search);
@@ -50,7 +52,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let treatments_check = treatments_search.length == 0 || [0, treatments_search.length].indexOf(treatments_search.map((el:any) => el.checked).filter(t => t).length) > -1 ? true : treatmentsCheck(clinic, treatments_search);
 
         let distance = distance_search instanceof HTMLInputElement ? parseInt(distance_search.value) : 10;
-        let geocode_check = is_in_radius(clinic, clinic.full_address, distance);
+        let geocode_check = is_in_radius(clinic, geo_pos, distance);
 
         return {
             zip_search: zip_search,
@@ -62,13 +64,13 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         };
     }
 
-    const displayable = (clinic?:Airtable_Clinic_Interface):boolean => {
+    const displayable = (clinic:Airtable_Clinic_Interface, geo_pos:Geo_Position):boolean => {
         // _log("critere = ", critere);
         if(!clinic) {return false;}
 
         let retour = true;
 
-        const {zip_check, distance_check, treatments_check, geocode_check} = allCheck(clinic);
+        const {zip_check, distance_check, treatments_check, geocode_check} = allCheck(clinic, geo_pos);
 
         if(geocode_check == false) {return false;}
         if(zip_check == false || distance_check == false) {return false;}
