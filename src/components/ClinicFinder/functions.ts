@@ -18,14 +18,36 @@ const deg2rad = (deg:number):number => {
     return deg * (Math.PI / 180)
 }
 
-export const filterClinics = (_clinics:Airtable_Clinic_Interface[], _position:Geo_Position, _distance:number = 10) => {
+export const address_to_coordinates = async (_address:string):Promise<any> => {
+    const url = `https://nominatim.openstreetmap.org/search?q=${_address}&format=json&limit=1`
+    const response = await fetch(url);
+    const data = await response.json();
+    return {
+        lat: parseFloat(data[0].lat),
+        lon: parseFloat(data[0].lon)
+    };
+}
+
+export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _address:string, _distance:number = 10) => {
+    const coo = await address_to_coordinates(_address) ?? [0, 0];
     return _clinics.filter(clinic => 
         clinic.coordinates &&
         getDistanceOnSphere(
-            clinic.coordinates.latitude,
-            clinic.coordinates.longitude,
-            _position.latitude,
-            _position.longitude
+            clinic.latitude,
+            clinic.longitude,
+            coo.lat,
+            coo.lon
         ) < _distance
     );
+}
+
+export const is_in_radius = async (_clinic:Airtable_Clinic_Interface, _address:string, _distance:number = 10) => {
+    const coo = await address_to_coordinates(_address) ?? [0, 0];
+    return _clinic.coordinates &&
+        getDistanceOnSphere(
+            _clinic.latitude,
+            _clinic.longitude,
+            coo.lat,
+            coo.lon
+        ) < _distance;
 }

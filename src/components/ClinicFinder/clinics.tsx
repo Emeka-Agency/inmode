@@ -5,6 +5,7 @@ import { Airtable_Clinic_Interface } from "../interfaces";
 import LoadingGIF from "../LoadingGIF";
 
 import "./clinics.css";
+import { address_to_coordinates, getDistanceOnSphere, is_in_radius } from "./functions";
 
 const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
@@ -40,7 +41,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let zip_search = document?.querySelector('input#clinic-finder-search-zip');
         let zip_check = zip_search instanceof HTMLInputElement && zip_search.value == "" ? false : zipCheck(clinic, zip_search);
         
-        // ZIP CODE
+        // DISTANCE
         let distance_search = document?.querySelector('#clinic-filter-distance-select');
         let distance_check = distance_search instanceof HTMLInputElement && distance_search.value == "" ? false : distanceCheck(clinic, distance_search, zip_search);
         
@@ -48,12 +49,16 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let treatments_search = Array.from(document?.querySelectorAll('.clinic-finder-treatment-list li input[type="checkbox"]'));
         let treatments_check = treatments_search.length == 0 || [0, treatments_search.length].indexOf(treatments_search.map((el:any) => el.checked).filter(t => t).length) > -1 ? true : treatmentsCheck(clinic, treatments_search);
 
+        let distance = distance_search instanceof HTMLInputElement ? parseInt(distance_search.value) : 10;
+        let geocode_check = is_in_radius(clinic, clinic.full_address, distance);
+
         return {
             zip_search: zip_search,
             zip_check: zip_check,
             distance_search: distance_search,
             distance_check: distance_check,
             treatments_check: treatments_check,
+            geocode_check: geocode_check
         };
     }
 
@@ -63,8 +68,9 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
         let retour = true;
 
-        const {zip_check, distance_check, treatments_check} = allCheck(clinic);
+        const {zip_check, distance_check, treatments_check, geocode_check} = allCheck(clinic);
 
+        if(geocode_check == false) {return false;}
         if(zip_check == false || distance_check == false) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == false) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == true) {return true;}
