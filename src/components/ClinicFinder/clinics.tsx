@@ -51,7 +51,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let treatments_search = Array.from(document?.querySelectorAll('.clinic-finder-treatment-list li input[type="checkbox"]'));
         let treatments_check = treatments_search.length == 0 || [0, treatments_search.length].indexOf(treatments_search.map((el:any) => el.checked).filter(t => t).length) > -1 ? true : treatmentsCheck(clinic, treatments_search);
 
-        let distance = distance_search instanceof HTMLInputElement ? parseInt(distance_search.value) : 10;
+        let distance = distance_search instanceof HTMLSelectElement ? parseInt(distance_search.value) : 10;
         let geocode_check = is_in_radius(clinic, geo_pos, distance);
 
         return {
@@ -73,7 +73,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         const {zip_check, distance_check, treatments_check, geocode_check} = allCheck(clinic, geo_pos);
 
         if(geocode_check == false) {return false;}
-        if(zip_check == false || distance_check == false) {return false;}
+        if(geocode_check == false && (zip_check == false || distance_check == false)) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == false) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == true) {return true;}
 

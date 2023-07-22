@@ -24,13 +24,13 @@ export const address_to_coordinates = async (_address:string):Promise<Geo_Positi
     const data = await response.json();
     return {
         latitude: data.results[0].geometry.location.lat,
-        longitude: data.results[0].geometry.location.lon
+        longitude: data.results[0].geometry.location.lng
     };
 }
 
 export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _position:Geo_Position, _distance:number = 10) => {
     return _clinics.filter(clinic => 
-        clinic.coordinates &&
+        clinic &&
         getDistanceOnSphere(
             clinic.latitude,
             clinic.longitude,
@@ -40,8 +40,8 @@ export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _posit
     );
 }
 
-export const is_in_radius = async (_clinic:Airtable_Clinic_Interface, _position:Geo_Position, _distance:number = 10) => {
-    return _clinic.coordinates &&
+export const is_in_radius = (_clinic:Airtable_Clinic_Interface, _position:Geo_Position, _distance:number = 10) => {
+    return _clinic &&
         getDistanceOnSphere(
             _clinic.latitude,
             _clinic.longitude,
