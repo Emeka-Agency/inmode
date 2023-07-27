@@ -16,7 +16,7 @@ const EventsPage = ({ data }:EventsPage) =>  {
     const loadEvents = async function(offset:string|null = null, records:Airtable_Event_Interface[]|[] = [], __type:string|null = null) {
         const fields = ["EventName", "Start", "End", "Practitioner", "Address", "Place", "PlaceURL", "Addons", "EventType", "EventDescription", "MapsLink", "VideoURL", "Picture"];
         const sortCriteres = ['Start'];
-        const sortDirections = ['desc'];
+        const sortDirections = ['asc'];
         const sortBy = Array(sortCriteres).map((el, index) => 
             `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
         ).join('&');

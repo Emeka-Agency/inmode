@@ -3,12 +3,26 @@ import React from "react";
 import Video from "../Video";
 
 import "./video-testimonials.css";
+import Carousel from "../Carousel";
+import { FlickityOptions_Interface } from "../interfaces";
 
 const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:VideoTestimonials) => {
 
     if(!testimonials || testimonials.length == 0) {
         return <></>;
     }
+
+    const [current, setCurrent]:[number, React.Dispatch<number>] = React.useState(-1);
+    const [flickityOptions, setFlickityOptions]:[FlickityOptions_Interface, React.Dispatch<FlickityOptions_Interface>] = React.useState({
+        initialIndex: current === -1 ? 0 : current,
+        cellAlign: 'left',
+        pageDots: false,
+        accessibility: true,
+        selectedAttraction: 0.01,
+        friction: 0.15,
+        percentPosition: false,
+        // autoPlay: false
+    });
 
     return (
         <section id={vt_id ?? null} className="video-testimonials">

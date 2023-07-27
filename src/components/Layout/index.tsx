@@ -18,7 +18,7 @@ import { selectOne } from "../../functions/selectors";
 import { strToDom } from "../../functions/tools";
 
 
-const Layout = ({ children, title }:Layout) => {
+const Layout = ({ children, title, classes = [] }:Layout) => {
 
     // TODO régler isMobile pour ouverture cookies
     // const [isMobile, setIsMobile] = React.useState()
@@ -65,7 +65,7 @@ const Layout = ({ children, title }:Layout) => {
                 {/* <!-- End LEAD FORENSICS --> */}
                 <ProductsProvider>
                     <ArticleProvider>
-                        <main id="main" className={[title + '-page', 'top-bar-closed'].join(' ')}>
+                        <main id="main" className={[title + '-page', 'top-bar-closed', (classes ?? []).join(' ')].join(' ')}>
                             {children}
                         </main>
                     </ArticleProvider>
@@ -84,6 +84,7 @@ const Layout = ({ children, title }:Layout) => {
 interface Layout {
     children: ReactNode;
     title: string;
+    classes?: string[];
 };
 
 export default Layout

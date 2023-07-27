@@ -13,6 +13,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     const [images]:[ImagesList, React.Dispatch<ImagesList>] = React.useState(useStaticQuery(graphql `
         {
+            noImg: file(relativePath: {eq: "no-img.png"}) {
+                ...FileImgFormat
+            }
             keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
                 ...FileImgFormat
             }
@@ -356,6 +359,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 };
 
 interface ImagesList {
+    noImg: GatsbyImage_Interface;
     keyBenefitIcon: GatsbyImage_Interface;
     cartBasketIcon: GatsbyImage_Interface;
     closeWhiteIcon: GatsbyImage_Interface;

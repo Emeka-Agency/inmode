@@ -9,7 +9,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
     const images = useImages();
 
     return (
-        <div id="what-is" className="details">
+        <div id="what-is" className={["details", datas.classes ?? []].join(' ')} style={datas.style}>
             <div className="what-is transition">
                 <div className="details-img transition">
                     <img
@@ -33,22 +33,24 @@ const GenericDetails = ({ datas }:GenericDetails) => {
             </div>
             <div id={datas.anchor_key || "list"}></div>
             <div className="text-list transition">
-                <div className="title">
-                    {datas.list_title}
-                </div>
-                {datas.list && datas.list.map((elem, key) => {
-                    return (
-                        <div key={key} className="list-elem">
-                            {datas.list_icon && <img
-                                src={images.resolve_img('keyBenefitIcon') || images.resolve_img('keyBenefitIcon')}
-                                alt={`elem-${key}`}
-                                className="before-text"
-                            />}
-                            {!datas.list_icon && <span className="before-text">&bull;</span>}
-                            <div className="text">{elem.texte}</div>
-                        </div>
-                    );
-                })}
+                {!datas.benefits ? <>
+                    <div className="title">
+                        {datas.list_title}
+                    </div>
+                    {datas.list && datas.list.map((elem, key) => {
+                        return (
+                            <div key={key} className="list-elem">
+                                {datas.list_icon && <img
+                                    src={images.resolve_img('keyBenefitIcon') || images.resolve_img('keyBenefitIcon')}
+                                    alt={`elem-${key}`}
+                                    className="before-text"
+                                />}
+                                {!datas.list_icon && <span className="before-text">&bull;</span>}
+                                <div className="text">{elem.texte}</div>
+                            </div>
+                        );
+                    })}
+                </> : datas.benefits}
             </div>
             <RequestInformation/>
         </div>
@@ -57,12 +59,15 @@ const GenericDetails = ({ datas }:GenericDetails) => {
 
 interface GenericDetails {
     datas :{
+        classes: string[];
+        style: React.CSSProperties;
         what_is: InmodePanel_Generic_WhatIs_Interface;
         before_keys: string;
         list: InmodePanel_Base_Texte_Interface[];
         list_title: string;
         list_icon: string;
         anchor_key: string;
+        benefits: React.ReactNode;
     };
 }
 

@@ -107,48 +107,48 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
 //       }
 //    }, []);
 
-   return (
-      <div className="events-layout">
-         <div className="main-container">
-            <div className="tab-navigation transition">
-               {size.width < accordion_width && tabs.map((tab, key)=> {
-                  if(tab.name === current_page) {
-                     return (
-                        <span id="title-accordion" className="title-accordion title transition" onClick={(e)=>{resolveAccordion(e);}} key={key}>
-                           {tab.name}
-                        </span>
-                     );
-                  }
-                  return <></>;
-               })}
-               <div id="accordion" className="accordion transition" style={{maxHeight: size.width < accordion_width ? openedAccordion ? maxHeight : 0 : 'unset', width: '100%'}}>
-                    {tabs.map((tab, key) => {
-                        if(tab.name !== current_page || size.width >= accordion_width) {
-                            return (
-                                <Link className={`tab-link${tab.name===current_page ? ' current' : '' }`} to={tab.url} key={key} title={tab.name}>
-                                    {tab.name}
-                                </Link>
-                            );
-                        }
-                    })}
-               </div>
-            </div>
-            <div className="events-content">
-                {events && events.length > 0 && events.map((event, key) => {
-                    let is_past = new Date(event?.Start || Date()) < new Date();
-                    return (
-                        <>
-                            {document?.querySelector('.events-past-divider') == null && is_past && <div className="events-past-divider"></div>}
-                            <InmodeEvent isPast={is_past} key={key} event={event} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
-                        </>
-                    )
+    return (
+        <div className="events-layout">
+            <div className="main-container">
+                <div className="tab-navigation transition">
+                {size.width < accordion_width && tabs.map((tab, key)=> {
+                    if(tab.name === current_page) {
+                        return (
+                            <span id="title-accordion" className="title-accordion title transition" onClick={(e)=>{resolveAccordion(e);}} key={key}>
+                            {tab.name}
+                            </span>
+                        );
+                    }
+                    return <></>;
                 })}
-                {(!events || (events && events.length == 0)) && loading == false && <NoEvents/>}
-                {(!events || (events && events.length == 0)) && loading == true && <LoadingGIF customStyle={{margin: "0 auto"}}/>}
+                <div id="accordion" className="accordion transition" style={{maxHeight: size.width < accordion_width ? openedAccordion ? maxHeight : 0 : 'unset', width: '100%'}}>
+                        {tabs.map((tab, key) => {
+                            if(tab.name !== current_page || size.width >= accordion_width) {
+                                return (
+                                    <Link className={`tab-link${tab.name===current_page ? ' current' : '' }`} to={tab.url} key={key} title={tab.name}>
+                                        {tab.name}
+                                    </Link>
+                                );
+                            }
+                        })}
+                </div>
+                </div>
+                <div className="events-content">
+                    {events && events.length > 0 && events.filter(el => new Date(el.Start) >= new Date()).map((event, key) => {
+                        let is_past = new Date(event?.Start || Date()) < new Date();
+                        return (
+                            <>
+                                {document?.querySelector('.events-past-divider') == null && is_past && <div className="events-past-divider"></div>}
+                                <InmodeEvent isPast={is_past} key={key} event={event} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
+                            </>
+                        )
+                    })}
+                    {(!events || (events && events.length == 0)) && loading == false && <NoEvents/>}
+                    {(!events || (events && events.length == 0)) && loading == true && <LoadingGIF customStyle={{margin: "0 auto"}}/>}
+                </div>
             </div>
-         </div>
-      </div>
-   );
+        </div>
+    );
 };
 
 interface EventsLayout {

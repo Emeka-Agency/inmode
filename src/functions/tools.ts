@@ -189,31 +189,31 @@ export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|u
     if(img == null) {return undefined;}
     let retour = undefined;
     if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
-        retour = img?.localFile?.publicURL;
+        return img?.localFile?.publicURL;
     }
-    if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fluid?.srcWebp;
+    if((img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL;
     }
-    if((img?.localFile?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fixed?.srcWebp;
+    if((img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL?.indexOf('/.') == -1) {
+        return img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL;
     }
     if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        retour = img?.localFile?.url;
+        return img?.localFile?.url;
     }
     if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
-        retour = img?.localFile?.publicURL;
+        return img?.localFile?.publicURL;
     }
     if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
-        retour = img?.localFile?.absolutePath;
+        return img?.localFile?.absolutePath;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = `${process.env.STRAPI_URL}${img?.url}`;
+        return `${process.env.STRAPI_URL}${img?.url}`;
     }
     if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined") {
-        retour = `${window?.location.origin}${retour}`;
+        return `${window?.location.origin}${retour}`;
     }
     if(retour == undefined) {
-        retour = sanitize_url(resolveExternalImg(img));
+        return sanitize_url(resolveExternalImg(img));
     }
     return retour;
 }
@@ -222,31 +222,31 @@ export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):strin
     if(img == null) {return undefined;}
     let retour = undefined;
     if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
-        retour = img?.localFile?.publicURL;
+        return img?.localFile?.publicURL;
     }
     if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
+        return img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
     }
     if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
+        return img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
     }
     if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        retour = img?.localFile?.url;
+        return img?.localFile?.url;
     }
     if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
-        retour = img?.localFile?.publicURL;
+        return img?.localFile?.publicURL;
     }
     if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
-        retour = img?.localFile?.absolutePath;
+        return img?.localFile?.absolutePath;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = `${process.env.STRAPI_URL}${img?.url}`;
+        return `${process.env.STRAPI_URL}${img?.url}`;
     }
     if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined") {
-        retour = `${window?.location.origin}${retour}`;
+        return `${window?.location.origin}${retour}`;
     }
     if(retour == undefined) {
-        retour = sanitize_url(resolveExternalImgSet(img));
+        return sanitize_url(resolveExternalImgSet(img));
     }
     return retour;
 }
@@ -255,25 +255,25 @@ export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined 
     if(img == null) {return undefined;}
     let retour = undefined;
     if((img?.ext == ".svg") || (img?.extension == "svg")) {
-        retour = img?.publicURL;
+        return img?.publicURL;
     }
     if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fluid?.srcWebp;
+        return img?.childImageSharp?.fluid?.srcWebp;
     }
     if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fixed?.srcWebp;
+        return img?.childImageSharp?.fixed?.srcWebp;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = img?.url;
+        return img?.url;
     }
     if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
-        retour = img?.publicURL;
+        return img?.publicURL;
     }
     if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
-        retour = img?.absolutePath;
+        return img?.absolutePath;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = `${process.env.STRAPI_URL}${img?.url}`;
+        return `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
 }
@@ -282,25 +282,25 @@ export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefin
     if(img == null) {return undefined;}
     let retour = undefined;
     if((img?.ext == ".svg") || (img?.extension == "svg")) {
-        retour = img?.publicURL;
+        return img?.publicURL;
     }
     if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fluid?.srcSetWebp;
+        return img?.childImageSharp?.fluid?.srcSetWebp;
     }
     if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        retour = img?.childImageSharp?.fixed?.srcSetWebp;
+        return img?.childImageSharp?.fixed?.srcSetWebp;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = img?.url;
+        return img?.url;
     }
     if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
-        retour = img?.publicURL;
+        return img?.publicURL;
     }
     if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
-        retour = img?.absolutePath;
+        return img?.absolutePath;
     }
     if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        retour = `${process.env.STRAPI_URL}${img?.url}`;
+        return `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
 }

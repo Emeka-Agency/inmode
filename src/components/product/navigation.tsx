@@ -37,8 +37,8 @@ const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
 interface ProductNavigation_Interface {
     name: string;
     exist: {
-        'before-after': string;
-        'studies': string;
+        'before-after': boolean;
+        'studies': boolean;
     };
 }
 

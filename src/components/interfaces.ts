@@ -166,6 +166,7 @@ export interface InmodePanel_Product_Interface {
     WhatIs: InmodePanel_Generic_WhatIs_Interface;
     BeforeKeyBenefits: string;
     KeyBenefits: InmodePanel_Base_Texte_Interface[];
+    Benefits: React.ReactNode;
     ClinicalStudies: InmodePanel_Generic_ClinicalStudies_Interface[];
     Price: Number 	
     ShopDescription: string;
@@ -321,6 +322,9 @@ export interface InmodePanel_Addon_WhatTreat_Interface {
 
 // Base
 export interface InmodePanel_Base_Banner_Interface {
+    full_img?: {
+        localFile: GatsbyImage_Interface
+    };
     left_img?: {
         localFile: GatsbyImage_Interface
     };
