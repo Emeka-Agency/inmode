@@ -188,32 +188,38 @@ export const resolveImgSet = (img?:any) => {
 export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
-        return img?.localFile?.publicURL;
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg" && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.publicURL;
     }
-    if((img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL?.indexOf('/.') == -1) {
-        return img?.localFile?.childImageSharp?.fluid?.srcWebp?.publicURL;
+    if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.childImageSharp?.fluid?.srcWebp;
     }
-    if((img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL?.indexOf('/.') == -1) {
-        return img?.localFile?.childImageSharp?.fixed?.srcWebp?.publicURL;
+    if(typeof img?.localFile?.childImageSharp?.fluid?.srcWebp == "object") {
+        retour = resolveImg(img?.localFile?.childImageSharp?.fluid?.srcWebp);
     }
-    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        return img?.localFile?.url;
+    if((img?.localFile?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.childImageSharp?.fixed?.srcWebp;
     }
-    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
-        return img?.localFile?.publicURL;
+    if(typeof img?.localFile?.childImageSharp?.fixed?.srcWebp == "object") {
+        retour = resolveImg(img?.localFile?.childImageSharp?.fixed?.srcWebp);
     }
-    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
-        return img?.localFile?.absolutePath;
+    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.url;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return `${process.env.STRAPI_URL}${img?.url}`;
+    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.publicURL;
     }
-    if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined") {
-        return `${window?.location.origin}${retour}`;
+    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.absolutePath;
     }
-    if(retour == undefined) {
-        return sanitize_url(resolveExternalImg(img));
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${process.env.STRAPI_URL}${img?.url}`;
+    }
+    if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined" && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${window?.location.origin}${retour}`;
+    }
+    if(retour == undefined && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = sanitize_url(resolveExternalImg(img));
     }
     return retour;
 }
@@ -221,32 +227,38 @@ export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|u
 export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
-        return img?.localFile?.publicURL;
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg" && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.publicURL;
     }
-    if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        return img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
+    if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.childImageSharp?.fluid?.srcSetWebp;
     }
-    if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        return img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
+    if(typeof img?.localFile?.childImageSharp?.fluid?.srcSetWebp == "object") {
+        retour = resolveImgSet(img?.localFile?.childImageSharp?.fluid?.srcSetWebp);
     }
-    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1) {
-        return img?.localFile?.url;
+    if((img?.localFile?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.childImageSharp?.fixed?.srcSetWebp;
     }
-    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1) {
-        return img?.localFile?.publicURL;
+    if(typeof img?.localFile?.childImageSharp?.fixed?.srcSetWebp == "object") {
+        retour = resolveImgSet(img?.localFile?.childImageSharp?.fixed?.srcSetWebp);
     }
-    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1) {
-        return img?.localFile?.absolutePath;
+    if((img?.localFile?.url ?? "").length > 0 && img?.localFile?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.url;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return `${process.env.STRAPI_URL}${img?.url}`;
+    if((img?.localFile?.publicURL ?? "").length > 0 && img?.localFile?.publicURL?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.publicURL;
     }
-    if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined") {
-        return `${window?.location.origin}${retour}`;
+    if((img?.localFile?.absolutePath ?? "").length > 0 && img?.localFile?.absolutePath?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.localFile?.absolutePath;
     }
-    if(retour == undefined) {
-        return sanitize_url(resolveExternalImgSet(img));
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${process.env.STRAPI_URL}${img?.url}`;
+    }
+    if(typeof retour == "string" && retour.indexOf("http") == -1 && typeof window != "undefined" && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${window?.location.origin}${retour}`;
+    }
+    if(retour == undefined && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = sanitize_url(resolveExternalImgSet(img));
     }
     return retour;
 }
@@ -254,26 +266,32 @@ export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):strin
 export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.ext == ".svg") || (img?.extension == "svg")) {
-        return img?.publicURL;
+    if((img?.ext == ".svg") || (img?.extension == "svg") && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.publicURL;
     }
-    if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
-        return img?.childImageSharp?.fluid?.srcWebp;
+    if((img?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.childImageSharp?.fluid?.srcWebp;
     }
-    if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1) {
-        return img?.childImageSharp?.fixed?.srcWebp;
+    if(typeof img?.childImageSharp?.fluid?.srcWebp == "object") {
+        retour = resolveImg(img?.childImageSharp?.fluid?.srcWebp);
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return img?.url;
+    if((img?.childImageSharp?.fixed?.srcWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.childImageSharp?.fixed?.srcWebp;
     }
-    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
-        return img?.publicURL;
+    if(typeof img?.childImageSharp?.fixed?.srcWebp == "object") {
+        retour = resolveImg(img?.childImageSharp?.fixed?.srcWebp);
     }
-    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
-        return img?.absolutePath;
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.url;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return `${process.env.STRAPI_URL}${img?.url}`;
+    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.publicURL;
+    }
+    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
 }
@@ -281,26 +299,32 @@ export const resolveExternalImg = (img?:GatsbyImage_Interface):string|undefined 
 export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.ext == ".svg") || (img?.extension == "svg")) {
-        return img?.publicURL;
+    if((img?.ext == ".svg") || (img?.extension == "svg") && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.publicURL;
     }
-    if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
-        return img?.childImageSharp?.fluid?.srcSetWebp;
+    if((img?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.childImageSharp?.fluid?.srcSetWebp;
     }
-    if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1) {
-        return img?.childImageSharp?.fixed?.srcSetWebp;
+    if(typeof img?.childImageSharp?.fluid?.srcSetWebp == "object") {
+        retour = resolveImgSet(img?.childImageSharp?.fluid?.srcSetWebp);
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return img?.url;
+    if((img?.childImageSharp?.fixed?.srcSetWebp ?? "").length > 0 && img?.childImageSharp?.fixed?.srcSetWebp?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.childImageSharp?.fixed?.srcSetWebp;
     }
-    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1) {
-        return img?.publicURL;
+    if(typeof img?.childImageSharp?.fixed?.srcSetWebp == "object") {
+        retour = resolveImgSet(img?.childImageSharp?.fixed?.srcSetWebp);
     }
-    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1) {
-        return img?.absolutePath;
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.url;
     }
-    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1) {
-        return `${process.env.STRAPI_URL}${img?.url}`;
+    if((img?.publicURL ?? "").length > 0 && img?.publicURL?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.publicURL;
+    }
+    if((img?.absolutePath ?? "").length > 0 && img?.absolutePath?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = img?.absolutePath;
+    }
+    if((img?.url ?? "").length > 0 && img?.url?.indexOf('/.') == -1 && (!retour || (typeof retour == "string" && retour.includes('src')))) {
+        retour = `${process.env.STRAPI_URL}${img?.url}`;
     }
     return retour;
 }
