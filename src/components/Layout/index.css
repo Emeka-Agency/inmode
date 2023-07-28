@@ -5323,6 +5323,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     height: 100%;
     padding-right: 35px;
     box-sizing: border-box;
+    text-align: right;
 }
 
 #what-is.details div.details-img img {
