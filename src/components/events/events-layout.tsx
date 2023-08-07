@@ -115,8 +115,8 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                             </>
                         )
                     })}
-                    {events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
-                    {events && past_events(events).length > 0 && past_events(events, true).map((event, key) => {
+                    {current_page != "upcoming events" && events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
+                    {current_page != "upcoming events" && events && past_events(events).length > 0 && past_events(events, true).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
                             <>
