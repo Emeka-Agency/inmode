@@ -1546,7 +1546,7 @@ header .header-parts .logout span {
     .header-mini.opened .header-bottom ul.menu-title.opened .dropdown-menu,
     .header-mini.opened .header-bottom ul.menu-dk-title.opened .dk-dropdown-menu {
         background-color: rgba(0, 0, 0, 0);
-        color: rgb(255, 255, 255);
+        color: var(--pure-white);
         cursor: pointer;
         display: block;
         font-size: 11px;
@@ -4228,9 +4228,11 @@ input[type="submit"].neumorphic:hover,
     width: 20px;
     vertical-align: middle;
     margin: 0 0.4em 0.4em 0;
-    background: rgba(255, 255, 255, 1);
+    background: var(--pure-white);
     border: 1px solid #AAAAAA;
+    appearance: none;
     -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 .privacy-policy .cookies input {
@@ -4403,7 +4405,7 @@ input[type="submit"].neumorphic:hover,
 
 .product-banner .product-banner-details .product-banner-short-descr {
     box-sizing: border-box;
-    color: rgb(255, 255, 255);
+    color: var(--pure-white);
     display: block;
     font-size: 35px;
     font-weight: 400;
@@ -4961,7 +4963,7 @@ input[type="submit"].neumorphic:hover,
 
 .addon-banner .addon-banner-details .addon-banner-short-descr {
     box-sizing: border-box;
-    color: rgb(255, 255, 255);
+    color: var(--pure-white);
     display: block;
     font-size: 2vw;
     font-weight: 400;
@@ -6733,7 +6735,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 .treatment-banner .treatment-banner-short-descr {
-    color: rgb(255, 255, 255);
+    color: var(--pure-white);
     display: flex;
     font-size: 2vw;
     font-weight: 700;
