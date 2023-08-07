@@ -4556,7 +4556,7 @@ input[type="submit"].neumorphic:hover,
 
 .product-addons .product-addon .addon-details .addon-description .addon-title {
     box-sizing: border-box;
-    color: rgb(124, 181, 178);
+    color: var(--teal);
     display: block;
     font-size: 30px;
     font-weight: 700;
@@ -4587,7 +4587,7 @@ input[type="submit"].neumorphic:hover,
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat {
     box-sizing: border-box;
-    color: rgb(124, 181, 178);
+    color: var(--teal);
     display: block;
     font-size: 24px;
     font-weight: 400;
