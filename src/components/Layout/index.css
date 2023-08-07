@@ -6523,9 +6523,10 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 #what-is.details div.details-img img {
-    width: 100%;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 /* .addon-page[data-addon="Aviva"] #what-is.details div.details-img {max-width: 200px;} */
