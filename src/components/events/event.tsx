@@ -140,7 +140,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                 />
             </div>
             <div
-                className={`event-title user-select-none ellipsis ${prop_key < 0 ? 'left' : 'right'}`}
+                className={`event-title user-select-none ellipsis ${prop_key === 0 && current_page != "upcoming events" ? 'left' : 'right'}`}
                 style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? resolve_picture_ratio(event.Picture ? event.Picture[0] : undefined) * 150 : (images.get_one("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 60px))`} : {}}
                 title={event.EventName ?? "Nom à venir"}
             >
