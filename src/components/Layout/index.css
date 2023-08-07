@@ -6581,7 +6581,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 
 #what-is.details .what-is-txts .what-is-text-list .list-elem .before-text {
     width: 46px;
-    height: 46px;
+    /* height: 46px; */
     position: absolute;
     left: 0;
     top: 0;
