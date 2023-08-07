@@ -1,3 +1,32 @@
+.request-informations {
+    box-sizing: border-box;
+    color: var(--pearl);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    text-transform: uppercase;
+    position: relative;
+    text-align: center;
+    display: block;
+}
+
+.request-informations span {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 220px;
+    color:var(--pearl);
+    cursor:pointer;
+    font-size:14px;
+    font-weight: 700;
+    line-height: 17.5px;
+    padding: 10px 16px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
 .request-informations[data-variant="teal"] span {
     background-color: var(--teal);
 }

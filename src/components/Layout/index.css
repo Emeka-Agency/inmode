@@ -5297,11 +5297,12 @@ input[type="submit"].neumorphic:hover,
 }
 
 .before-after .slides-before-after .ba-slide .ba-descr {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
     color: var(--midnight);
     opacity: 0.7;
     padding-bottom: 30px;
+    margin: 0 8px;
 }
 
 .before-after .slides-before-after .flickity-prev-next-button {
@@ -5399,9 +5400,10 @@ input[type="submit"].neumorphic:hover,
 .addon-what-treat .treats .treat-part .treat-descr {
     color: var(--midnight);
     opacity: 0.7;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 28px;
     padding-bottom: 30px;
+    margin: 8px 0;
 }
 
 .addon-what-treat .request-informations {
