@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import { useImages } from '../contexts/images-provider';
 
 import { InmodePanel_AboutUs_Interface } from '../interfaces';
