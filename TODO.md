@@ -73,7 +73,7 @@ Inmode_Panel EMEKA
 ///////////////////////////////////////////////////////////////
 
 Belgique                                                                    // TODO NEW CLIENT  // DONE
-Ajouter modale traduction page contact                                      // TODO ME NEW      // KÉVIN ?
+Ajouter modale traduction page contact                                      // TODO ME NEW      // KÉVIN ? // CANCEL
 Design modale virement                                                      // TODO NEW         // DONE
 Heure achat fixée                                                           // TODO US          // DONE
 Cart Big other adress fix graph                                             // TODO US          // DONE
@@ -85,7 +85,7 @@ Ajouter au panier est un vrai ajout et modale sous icône cart               // 
 Ajout mail dans les informations de livraison (Envoyer mail pour les 2 )    // TODO CLIENT      // DONE
 vignette lorsqu'il y a un nouvel événement.                                 // TODO             // 
 achat - ligne livraison graphique alignement                                // TODO CLIENT      // DONE
-préparer un doc / une man pour Inmode_Panel                                 // TODO             // LATER
+préparer un doc / une man pour Inmode_Panel                                 // TODO             // LATER // CANCEL
 Ajouter context RequestInformation pour pre-fill contact page form          // TODO             // DONE
 Hero header largest contentful paint mettre le Gatsby Img avec Tracev blur  // TODO             // 
 feedback sur les actions                                                    // TODO             // 1/2 DONE
@@ -126,7 +126,7 @@ cache                                                                       // T
 gatsby-cache                                                                // TODO US          // LATER
 gatsby-purge-css                                                            // TODO US          // LATER
 gatsby-minify                                                               // TODO US          // LATER
-remove appels mysql                                                         // TODO US          // LATER
+remove appels mysql                                                         // TODO US          // CANCEL
 gatsby unit testing                                                         // TODO             // LATER
 flickity                                                                    // TODO             // PENDING
 useEffect window.width pour carousel ou pas (drag 3 pour 3 inutile)         // TODO             // LATER
@@ -134,11 +134,6 @@ flickity fix wrapAround // ib click right return first                      // T
 Phone tourné textes                                                         // TODO             // DONE
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-L'égalité est la tyrannie des médiocres
-
-« Si les Gaulois s’assemblent si facilement en grande quantité, c’est que leur caractère simple et droit les pousse à soutenir toujours les protestations de ceux de leurs voisins qu’ils croient victimes de quelque injustice. » 
-Strabon, historien grec du 1er siècle avant Jésus-Christ.
 
 - Back
   - Responsive
@@ -216,10 +211,6 @@ UP - Rassembler toutes les requêtes externes dans un seul provider "GeneralProv
 DONE - Rassembler toutes les requêtes internes dans un seul provider "ImgProvider"
 UP - Créer des classes .ts pour gérer les produits, pièces à main, panier, etc et les instancier dans le GeneralProvider
 
-<input type="file" accept="video/*;capture=camcorder" capture="camcorder" class="file"/>
-GENIAL ! mais en photo ca marche pas 🤔  la photo ne reste que quelques secondes... j'utilise ce code :
-<input type="file" accept="image/*" capture="camera"  class="file"/>
-
 TEST    - Section "Adresses"
 CANCEL  - Faire fonctionner le cookie
 DONE    - Modale "Se connecter"
@@ -235,30 +226,6 @@ DONE        - C =>
 DONE        - R => 
 DONE        - U => 
 DONE        - D => 
-
-:default	    => considère l'élément défini par défaut parmi des éléments sembables (checked, selected, ...)
-:empty		    => pour les éléments qui ne contiennent pas de texte ou de balises
-:indeterminate 	=> pour le input.indeterminate = true
-:in-range	    => pour les balises interactives (input avec min et max, etc)
-:invalid	    => pour les balises avec un contenu normé
-:valid		    => pour les balises avec un contenu normé
-:only-of-type   => sélectionne à son niveau dans le DOM l'élément qui est le seul de son type. Variations avec nth-last-of-type, nth-of-type, nth-first-of-type, forst-of-type, last-of-type
-:optional       => cible les éléments avec un required != true
-:read-only      => permet de cibler un élément avec readonly == true
-
-::first-letter  => appliqué à la première lettre d'une balise
-::first-line    => appliqué à la première ligne visuelle
-::selected      => appliqué à ce qui a été sélectionné (surtout du texte)
-
-Société ASV
-04 91 71 20 00
-04 91 71 20 01
-
-42
-L size
-Right handed
-
-
 
 - DONE - FRONT : Remplacer pseudo par titre dans profil
 - DONE - BACK : Remplacer pseudo par titre dans profil
@@ -445,18 +412,3 @@ FR - Shop mobile
 FR - Intuitive surgeon / Apple pour le style du nouveau InModeMD
 
 UK - Page Eva Longoria
-
-Century 21 Saint-Barnabé | Fixe - 04 91 34 30 34 | Faxe - 04 91 34 98 58 | Visiter appartement M FAUQUE
-
-florent.grimaud@century21.fr
-Annie - Carte d'identité
-Annie - Avis imposition
-Annie - 3 bulletin de salaire
-Annie - Contrat de travail
-Moi - Carte d'identité
-Moi - 2 avis imposition
-Moi - Déclaration annuelle URSSAF
-Dossier - VISALE
-Dossier - Garant
-
-Personnal access token - Inmode - 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
