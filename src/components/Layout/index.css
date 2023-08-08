@@ -7467,6 +7467,7 @@ form.contact-page.contact-form button.reset {
     font-weight: 300;
     padding: 10px 16px;
     background-color: var(--teal);
+    color: var(--pearl);
 }
 
 .about-us.learn .goals {
