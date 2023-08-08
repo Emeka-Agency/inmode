@@ -4488,10 +4488,17 @@ input[type="submit"].neumorphic:hover,
     content: "|";
     font-size: 18px;
     font-weight: bold;
-    color: #7cb5b2;
     padding: 0px 10px;
     top: 1px;
     position: relative;
+}
+
+.product-navigation div.product-nav.teal::after {
+    color: var(--teal);
+}
+
+.product-navigation div.product-nav.dusty-rose::after {
+    color: var(--dusty-rose);
 }
 
 .product-navigation .product-nav:last-child::after {
@@ -4635,13 +4642,19 @@ input[type="submit"].neumorphic:hover,
     content: "•";
     vertical-align: middle;
     display: inline-block;
-    color: var(--teal);
     font-size: 24px;
     position: absolute;
     left: -20px;
     text-align: center;
 }
 
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li[data-variant="teal"]::before {
+    color: var(--teal);
+}
+
+.product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li[data-variant="dusty-rose"]::before {
+    color: var(--dusty-rose);
+}
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title {
     box-sizing: border-box;
@@ -4658,8 +4671,7 @@ input[type="submit"].neumorphic:hover,
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title.variant-dusty-rose {
-    /* color: var(--dusty-rose); */
-    color: var(--teal);
+    color: var(--dusty-rose);
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before {
@@ -5044,10 +5056,17 @@ input[type="submit"].neumorphic:hover,
     content: "|";
     font-size: 18px;
     font-weight: bold;
-    color: #7cb5b2;
     padding: 0px 10px;
     top: 1px;
     position: relative;
+}
+
+.addon-navigation div.addon-nav.teal::after {
+    color: var(--teal);
+}
+
+.addon-navigation div.addon-nav.dusty-rose::after {
+    color: var(--dusty-rose);
 }
 
 .addon-navigation .addon-nav:last-child::after {

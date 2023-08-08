@@ -1,7 +1,7 @@
 import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
+const ProductNavigation = ({ name, exist, variant }:ProductNavigation_Interface) => {
 
     let temp = [
         {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
@@ -23,8 +23,8 @@ const ProductNavigation = ({ name, exist }:ProductNavigation_Interface) => {
         <div className="product-navigation">
             {menus.map((menu, key) => {
                 return (
-                    <div key={key} className="product-nav">
-                        <AnchorLink to={menu.url} className="product-nav" title={menu.name}>
+                    <div key={key} className={["product-nav", variant].join(' ')}>
+                        <AnchorLink to={menu.url} className={["product-nav"].join(' ')} title={menu.name}>
                             {menu.name}
                         </AnchorLink>
                     </div>
@@ -40,6 +40,7 @@ interface ProductNavigation_Interface {
         'before-after': boolean;
         'studies': boolean;
     };
+    variant: string;
 };
 
 export default ProductNavigation;

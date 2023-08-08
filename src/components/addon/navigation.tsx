@@ -1,7 +1,7 @@
 import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-const AddonNavigation = ({ name, exist = {} }:AddonNavigation) => {
+const AddonNavigation = ({ name, exist = {}, variant = "teal" }:AddonNavigation) => {
 
     let temp = [
         {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
@@ -19,7 +19,7 @@ const AddonNavigation = ({ name, exist = {} }:AddonNavigation) => {
         <div className="addon-navigation">
             {menus.map((menu, key) => {
                 return (
-                    <div key={key} className="addon-nav">
+                    <div key={key} className={["addon-nav", variant].join(' ')}>
                         <AnchorLink to={menu.url} className="addon-nav" title={menu.name}>
                             {menu.name}
                         </AnchorLink>
@@ -36,6 +36,7 @@ interface AddonNavigation {
         'before-after'?: boolean;
         'studies'?: boolean;
     };
+    variant: string;
 };
 
 export default AddonNavigation;

@@ -1,6 +1,6 @@
 import { Link } from "gatsby";
 import React from "react";
-import { resolveImg, resolveImgSet } from "../../functions/tools";
+import { color_variant, resolveImg, resolveImgSet } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { useImages } from "../contexts/images-provider";
 import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
@@ -51,7 +51,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
                                                 alt={product.title_text}
                                             />
                                         </div>
-                                        <div className="addon-title">
+                                        <div className="addon-title" data-variant={color_variant(product.title_text)}>
                                             {product.title_image && (
                                                 <img
                                                     src={resolveImg(product.title_image)}
@@ -81,7 +81,7 @@ const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
                                                         {(product.ProductPresentationTreats ?? [])?.map((descr, key) => {
                                                             if(descr.product && descr.product.id === datas.id) {
                                                                 return (
-                                                                    <li key={key}>
+                                                                    <li key={key} data-variant={variant}>
                                                                         {/* <img src={images_provider.resolve_img(variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')} alt="" className="puce" /> */}
                                                                         <span>{descr.treat_short}</span>
                                                                     </li>

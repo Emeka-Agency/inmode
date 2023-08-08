@@ -13,6 +13,7 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { InmodePanel_Addon_Interface } from '../components/interfaces';
 import rand_token from '../functions/rand_token';
+import { color_variant } from '../functions/tools';
 
 const AddonTemplates = ({ data }:AddonTemplates) => {
 
@@ -28,14 +29,15 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                         'before-after': datas.BeforesAfters && datas.BeforesAfters.length > 0 ? true : false,
                         'studies': datas.ClinicalStudies && datas.ClinicalStudies.length > 0 ? true : false,
                     }}
+                    variant={color_variant(datas.Name)}
                 />
-                <GenericDetails datas={{'list': datas.KeyBenefits, 'what_is': datas.WhatIs, 'list_title': 'avantages', 'list_icon' : 'key_benefit'}}/>
+                <GenericDetails datas={{'list': datas.KeyBenefits, 'what_is': datas.WhatIs, 'list_title': 'avantages', 'list_icon' : 'key_benefit', 'variant': color_variant(datas.Name)}}/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
                 <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>
-                <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
-                <AddonWhatTreat title="Quelles zones peuvent être traitées ?" WhatTreats={datas.WhatTreats}/>
-                <ClinicalStudies datas={datas.ClinicalStudies}/>
+                <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity} variant={color_variant(datas.Name)}/>
+                <AddonWhatTreat title="Quelles zones peuvent être traitées ?" WhatTreats={datas.WhatTreats} variant={color_variant(datas.Name)}/>
+                <ClinicalStudies datas={datas.ClinicalStudies} variant={color_variant(datas.Name)}/>
                 <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>
                 <SellingNew datas={datas.SellingNewGeneration}/>
             </Layout>

@@ -6,7 +6,7 @@ import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 import RequestInformation from "../RequestInformation";
 
-const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
+const AddonBeforeAfter = ({ datas, sensible = false, variant = "teal" }:AddonBeforeAfter) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -65,7 +65,7 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
                         </Carousel>
                 }
             </div>
-            <RequestInformation/>
+            <RequestInformation variant={variant}/>
         </div>
     );
 };
@@ -73,6 +73,7 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
 interface AddonBeforeAfter {
     datas: InmodePanel_Addon_Interface["BeforesAfters"];
     sensible: boolean;
+    variant: string;
 };
 
 export default AddonBeforeAfter;

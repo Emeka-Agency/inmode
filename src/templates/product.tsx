@@ -26,6 +26,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'before-after': datas.BeforesAfters.length > 0,
                         'studies': datas.ClinicalStudies.length > 0
                     }}
+                    variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}
                 />
                 <GenericDetails
                     datas={{

@@ -9,6 +9,10 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
       return <></>;
   }
 
+  if(!datas.variant) {
+    datas.variant = "teal";
+  }
+
     return (
         <div id="what-treat" className="addon-what-treat">
           <div className="title">{datas.title}</div>
@@ -27,7 +31,7 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
               );
             })}
           </div>
-            <RequestInformation/>
+            <RequestInformation variant={datas.variant}/>
         </div>
     );
 };
@@ -35,6 +39,7 @@ const AddonWhatTreat = (datas:AddonWhatTreat) => {
 interface AddonWhatTreat {
   title?: string;
   WhatTreats: InmodePanel_Addon_Interface["WhatTreats"];
+  variant: string;
 };
 
 export default AddonWhatTreat;
