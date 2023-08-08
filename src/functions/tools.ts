@@ -491,3 +491,15 @@ export const resolveImageRatio = (image?:GatsbyImage_Interface):number|undefined
     }
     return undefined;
 };
+
+export const color_variant = (name:string = "") => {
+    switch(name) {
+        case "FormaV":
+        case "Morpheus8V":
+        case "ToneV":
+        case "EmpowerRF":
+            return "dusty-rose";
+        default:
+            return "teal";
+    }
+}
