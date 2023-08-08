@@ -90,7 +90,7 @@ const Learn = ({ from = "" }:Learn) => {
                     return (
                         <div key={key} className="list-elem">
                             <img
-                                src={images.resolve_img('keyBenefitIcon')}
+                                src={images.resolve_img('keyBenefitIconTeal')}
                                 alt={`elem-${key}`}
                                 className="before-text user-select-none"
                             />
