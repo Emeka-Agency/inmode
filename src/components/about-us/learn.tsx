@@ -63,12 +63,6 @@ const Learn = ({ from = "" }:Learn) => {
                     <Link to="/events" className="inmode-btn" title="Événements">Événements</Link>
                 </div>
                 <div className="goals">
-                    <img
-                        className="user-select-none"
-                        src={resolveImg(datas.learn_icon)}
-                        srcSet={resolveImgSet(datas.learn_icon)}
-                        alt='about-us-learn'
-                    />
                     <div className="texts">
                         {datas.learn_txts && datas.learn_txts.map((txt, key) => {
                             return (
@@ -83,6 +77,12 @@ const Learn = ({ from = "" }:Learn) => {
                             );
                         })}
                     </div>
+                    <img
+                        className="user-select-none"
+                        src={resolveImg(datas.learn_icon)}
+                        srcSet={resolveImgSet(datas.learn_icon)}
+                        alt='about-us-learn'
+                    />
                 </div>
                 <div className="values">
                     <div className="title user-select-none">NOS VALEURS FONDAMENTALES:</div>

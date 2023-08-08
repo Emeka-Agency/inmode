@@ -7471,24 +7471,35 @@ form.contact-page.contact-form button.reset {
 }
 
 .about-us.learn .goals {
-    padding: 15px 0;
+    
 }
 
 .about-us.learn .goals img {
     width: 150px;
-    float: left;
-    margin-right: 50px;
-    margin-bottom: 35px;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 32px;
+    position: relative;
+    top: 64px;
 }
 
 .about-us.learn .goals .texts {
-    width: 100%;
+    width: calc(100% - (150px + 32px + 64px));
+    display: inline-block;
+    vertical-align: top;
+}
+
+.about-us.learn .goals .texts > span {
+    padding: 25px 0;
+    display: block;
 }
 
 .about-us.learn .goals .texts .title,
 .about-us.learn .values .title {
+    font-family: fk-gothic-regular;
     padding-bottom: 5px;
-    font-size: 28px;
+    font-size: 24px;
+    line-height: 32px;
     font-weight: 700;
     color: var(--teal);
     line-height: 32px;
@@ -7499,7 +7510,7 @@ form.contact-page.contact-form button.reset {
 }
 
 .about-us.learn .goals .texts .text {
-    padding-bottom: 45px;
+    font-family: fk-gothic-regular;
     font-size: 20px;
     line-height: 28px;
     color: var(--midnight);
@@ -7512,28 +7523,34 @@ form.contact-page.contact-form button.reset {
 }
 
 .about-us.learn .values .list-elem {
-    padding-left: 55px;
-    padding-bottom: 15px;
     box-sizing: border-box;
     position: relative;
     margin: 0;
+    white-space: nowrap;
+    margin-bottom: 12px;
 }
 
 .about-us.learn .values .list-elem .before-text {
     width: 46px;
     height: 46px;
-    position: absolute;
-    left: 0;
-    top: 0;
+    position: relative;
     font-size: 36px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 8px;
 }
 
 .about-us.learn .values .list-elem .text {
-    padding-bottom: 15px;
     color: var(--midnight);
-    top: 12px;
     position: relative;
     font-size: 20px;
+    line-height: 28px;
+    min-height: 46px;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - (46px + 8px));
+    white-space: normal;
+    top: 8px;
 }
 
 .about-us.staff {
@@ -7609,13 +7626,21 @@ form.contact-page.contact-form button.reset {
     }
 
     .about-us.learn .goals img {
-        width: 50px;
-        margin-right: 25px;
-        margin-bottom: 15px;
+        width: 100%;
+        max-width: 150px;
+        margin: 0 auto;
+        display: block;
+        position: relative; 
+        top: 0;
+    }
+
+    .about-us.learn .goals .texts {
+        width: 100%;
+        display: block;
     }
 
     .about-us.learn .values .list-elem {
-        padding-left: 55px;
+        
     }
 }
 
