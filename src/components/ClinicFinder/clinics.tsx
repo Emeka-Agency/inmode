@@ -20,7 +20,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let geo_pos = await address_to_coordinates(document?.querySelector('input#clinic-finder-search-zip')?.value);
         clinics.forEach(clinic => {
             if(clinic instanceof Array) {return false;}
-            if(displayable(clinic, geo_pos) && clinic.id) {
+            if(geo_pos != null && displayable(clinic, geo_pos) && clinic.id) {
                 document?.getElementById(clinic.id)?.classList.remove('hidden');
                 // _slog(clinic?.name + " is displayable", "background: green; color: white");
                 total++;
@@ -39,7 +39,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         });
     }
 
-    const allCheck = (clinic:Airtable_Clinic_Interface, geo_pos:Geo_Position) => {
+    const allCheck = (clinic:Airtable_Clinic_Interface, geo_pos:Geo_Position|null) => {
         // ZIP CODE
         let zip_search = document?.querySelector('input#clinic-finder-search-zip');
         let zip_check = zip_search instanceof HTMLInputElement && zip_search.value == "" ? false : zipCheck(clinic, zip_search);

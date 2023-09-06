@@ -18,10 +18,16 @@ const deg2rad = (deg:number):number => {
     return deg * (Math.PI / 180)
 }
 
-export const address_to_coordinates = async (_address:string):Promise<Geo_Position> => {
+export const address_to_coordinates = async (_address:string):Promise<Geo_Position|null> => {
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURI(_address)}&key=${process.env.MAPS_API_KEY}`;
     const response = await fetch(url);
     const data = await response.json();
+    if(
+        (Array.isArray(data.results) && data.results.length == 0)
+        || (typeof data.status == "string" && data.status == "ZERO_RESULTS")
+    ) {
+        return null;
+    }
     return {
         latitude: data.results[0].geometry.location.lat,
         longitude: data.results[0].geometry.location.lng
@@ -40,7 +46,8 @@ export const filterClinics = async (_clinics:Airtable_Clinic_Interface[], _posit
     );
 }
 
-export const is_in_radius = (_clinic:Airtable_Clinic_Interface, _position:Geo_Position, _distance:number = 10) => {
+export const is_in_radius = (_clinic:Airtable_Clinic_Interface, _position:Geo_Position|null, _distance:number = 10) => {
+    if(_position == null) {return false;}
     return _clinic &&
         getDistanceOnSphere(
             _clinic.latitude,
