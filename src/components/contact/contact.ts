@@ -2,6 +2,7 @@ import { _error, _log, _slog } from "../../functions/logger";
 import { err_log } from "../../functions/logging";
 import { selectOne } from "../../functions/selectors";
 import { ContactFull_Interface, ContactMini_Interface } from "../interfaces";
+import { handlePromise } from "../../functions/tools";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
     e.preventDefault();
@@ -55,10 +56,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 // `https://localhost:8000/api/mails`,
                 request_init
             )
-            .then((promise) => {
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
+            .then(p => handlePromise(p, "json"))
             .then((response) => {
                 _log(response);
                 let _temp:any = selectOne('#mini-contact-gif');
@@ -168,10 +166,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 // `https://localhost:8000/api/mails`,
                 request_init,
             )
-            .then((promise) => {
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
+            .then(p => handlePromise(p, "json"))
             .then((response) => {
                 _log(response);
                 if(response.status === 'success' && response.type === 'client') {
@@ -223,33 +218,6 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         // if(_temp2) _temp2.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
         return false;
     }
-}
-
-function handlePromise(promise:Response) {
-    let retour = null;
-    try {
-        retour = promise.json();
-    }
-    catch(err_json:any) {
-        err_log(err_json, "components/contact.ts:handlePromise catch promise.json() error");
-        _log(err_json);
-        try {
-            retour = promise.text();
-        }
-        catch(err_text:any) {
-            err_log(err_text, "components/contact.ts:handlePromise catch promise.text() error");
-            _log(err_text);
-            try {
-                retour = promise.blob();
-            }
-            catch(err_blob:any) {
-                err_log(err_blob, "components/contact.ts:handlePromise catch promise.blob() error");
-                _log(err_blob);
-                retour = null;
-            }
-        }
-    }
-    return retour;
 }
 
 function click_pardot(body:Object) {

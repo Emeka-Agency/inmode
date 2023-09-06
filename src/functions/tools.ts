@@ -503,3 +503,31 @@ export const color_variant = (name:string = "") => {
             return "teal";
     }
 }
+
+export const handlePromise = (promise:Response, type?:string) => {
+    let retour = null;
+    type = typeof type == "string" ? type : "json";
+    try {
+        retour = promise[["json", "text", "blob"].indexOf(type ?? "json") >= 0 ? type : "json"]();
+    }
+    catch(err_json:any) {
+        err_log(err_json, "components/contact.ts:handlePromise catch promise.json() error");
+        _log(err_json);
+        try {
+            retour = promise.text();
+        }
+        catch(err_text:any) {
+            err_log(err_text, "components/contact.ts:handlePromise catch promise.text() error");
+            _log(err_text);
+            try {
+                retour = promise.blob();
+            }
+            catch(err_blob:any) {
+                err_log(err_blob, "components/contact.ts:handlePromise catch promise.blob() error");
+                _log(err_blob);
+                retour = null;
+            }
+        }
+    }
+    return retour;
+}

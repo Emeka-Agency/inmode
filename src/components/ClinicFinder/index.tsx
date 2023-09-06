@@ -10,6 +10,7 @@ import { element, instanceOf } from 'prop-types';
 import { _error, _log } from '../../functions/logger';
 import ClinicsClinicalFinder from './clinics';
 import MapClinicalFinder from './map';
+import { handlePromise } from '../../functions/tools';
 
 const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
@@ -40,7 +41,7 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
             `${process.env.AIRTABLE_CLINICS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}`,
             {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
         )
-        .then(res => res.json())
+        .then(p => handlePromise(p, "json"))
         .then((res:{offset:string|null, records:{fields: Airtable_Clinic_Interface}[]}) => {
             if(res.offset) {
                 addClinics(res.offset, records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));

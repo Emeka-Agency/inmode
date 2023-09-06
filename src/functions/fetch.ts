@@ -4,6 +4,7 @@
 
 import { isElement, isFunction, isNull, isObject, isString } from "./is-type";
 import { err_log } from "./logging";
+import { handlePromise } from "./tools";
 
 /**
  * 
@@ -44,22 +45,11 @@ const _fetch = (
             vars = {...vars, body: JSON.stringify(_body)};
         }
         fetch(_url, vars)
-        .then((res) => {
-            if(res.status >= 400) {
-                throw new Error("Error " + res.status);
+        .then((promise) => {
+            if(promise.status >= 400) {
+                throw new Error("Error " + promise.status);
             }
-            switch(_retour_type) {
-                case 'text':
-                    // _log("text");
-                    return res.text(); // Au cas où
-                case 'blob':
-                    // _log("blob");
-                    return res.blob(); // TODO - Pour plus tard, upload et download de gros fichiers
-                case 'json':
-                default:
-                    // _log("json");
-                    return res.json();
-            }
+            return handlePromise(promise, _retour_type);
         })
         .then((response) => {
             if(response.status == "error") {

@@ -1,4 +1,5 @@
 import { _log, _trace } from "./logger";
+import { handlePromise } from "./tools";
 
 export const err_log = function(__err:string|Array<any>|object, __from:string) {
     const body = {
@@ -27,7 +28,7 @@ export const err_log = function(__err:string|Array<any>|object, __from:string) {
     };
 
     fetch((process.env.INMODE_BACK || "https://inmodemd.fr/admin") + "/api/front-logs", vars)
-    .then(res => res.json())
+    .then(p => handlePromise(p, "json"))
     .then(res => _log(res))
     .catch(err => _log(err));
 }

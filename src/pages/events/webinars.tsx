@@ -7,6 +7,7 @@ import SEO from "../../components/seo";
 
 import "../../components/events/events.css";
 import { _error, _group, _groupEnd, _log } from "../../functions/logger";
+import { handlePromise } from "../../functions/tools";
 
 const WebinarsPage = (datas:WebinarsPage) =>  {
 
@@ -35,7 +36,7 @@ const WebinarsPage = (datas:WebinarsPage) =>  {
             `${process.env.AIRTABLE_EVENTS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}${filterBy}`,
             {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
         )
-        .then(res => res.json())
+        .then(p => handlePromise(p, "json"))
         .then((res:{offset:string|null, records:Airtable_Record_Interface[]}) => {
             _log(res.offset != undefined);
             _log(res.records.length == 0);

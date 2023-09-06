@@ -6,6 +6,7 @@ import LoadingGIF from "../LoadingGIF";
 
 import "./clinics.css";
 import { address_to_coordinates, getDistanceOnSphere, is_in_radius } from "./functions";
+import { handlePromise } from "../../functions/tools";
 
 const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
@@ -189,7 +190,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             `${process.env.AIRTABLE_CLINICS}?${fields.map(el => "fields%5B%5D="+el).join("&")}&filterByFormula=%7BClient%7D%3D%22MENUS%22`,
             {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
         )
-        .then(res => res.json())
+        .then(p => handlePromise(p, "json"))
         .then((res:{offset:string|null, records:{fields: Airtable_Clinic_Interface}[]}) => {
             setTreatments(res.records[0].fields.Machines);
         })
