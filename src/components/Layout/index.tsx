@@ -19,6 +19,7 @@ import CartPurchase from "../Cart";
 import PayParams from "../Cart/pay_params";
 import { useCart } from "../contexts/cart-provider";
 import { useUser } from "../contexts/user-provider";
+import { Script, ScriptStrategy } from "gatsby";
 
 // {/* SWITCH CART END */}
 
@@ -63,7 +64,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <Header variant={variant}/>
                 {/* <!-- Google tag (gtag.js) --> */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DGHJW8FDS"></script>
+                <Script strategy={ScriptStrategy.postHydrate} src="https://www.googletagmanager.com/gtag/js?id=G-3DGHJW8FDS"></Script>
                 <script>{searchConsole()}</script>
                 <ProductsProvider>
                 <main id="main" className={title + '-page'} {...rest}>
