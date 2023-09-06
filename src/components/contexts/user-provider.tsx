@@ -117,7 +117,7 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
         e.preventDefault();
         let _user_input = document?.querySelector('#modale #user_input');
         let _pass_input = document?.querySelector('#modale #pass_input');
-        if(!(_user_input instanceof Element) || !(_pass_input instanceof Element)) {
+        if(!(_user_input instanceof HTMLInputElement) || !(_pass_input instanceof HTMLInputElement)) {
             return false;
         }
         let _datas = {
@@ -128,14 +128,16 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             `${process.env.SYMF_BACK}/api/user/login`,
             "POST",
             _datas ?? {},
-            function(_el:Element|null = null, _res:any) {
+            (_el:Element|null = null, _res:any, _status:number|null = null) => {
                 _log(_res);
                 modaleSetSaving(false);
-                if(_res.message.toLowerCase().includes('failed to fetch')) {
-                    _res.message = "Une erreur est survenue lors de la connexion, veuillez réessayer plus tard. En attendant, si vous souhaitez passer une commande, nous vous invitons à continuer sans vous connecter.";
-                }
-                if(typeof _res.message == "string") {
-                    modaleSetSubmit(_res.message);
+                if('message' in _res) {
+                    if(_res?.message.toLowerCase().includes('failed to fetch')) {
+                        _res.message = "Une erreur est survenue lors de la connexion, veuillez réessayer plus tard. En attendant, si vous souhaitez passer une commande, nous vous invitons à continuer sans vous connecter.";
+                    }
+                    if(typeof _res?.message == "string") {
+                        modaleSetSubmit(_res.message);
+                    }
                 }
                 if(_res.datas instanceof Object) {
                     __setUser({..._res.datas, user: _res.user});
@@ -145,6 +147,10 @@ const UserProvider = ({ requested = "", children }:{ requested?:string, children
             },
             function(_el:Element|null = null, _err:any) {
                 _log(_err);
+                modaleSetSaving(false);
+                if(typeof _err?.message == "string") {
+                    modaleSetSubmit(_err.message);
+                }
             },
         );
     };
