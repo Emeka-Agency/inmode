@@ -44,8 +44,10 @@ const _fetch = (
         if(_method != "GET") {
             vars = {...vars, body: JSON.stringify(_body)};
         }
+        let status:number|null = null;
         fetch(_url, vars)
         .then((promise) => {
+            status = promise.status;
             if(promise.status >= 400) {
                 throw new Error("Error " + promise.status);
             }
@@ -55,11 +57,13 @@ const _fetch = (
             if(response.status == "error") {
                 if(_onError != null) {
                     _onError(_elem, response);
+                    _onError(_elem, response, status);
                 }
                 throw new Error(response.message ?? "Error");
             }
             if(_onSuccess != null) {
                 _onSuccess(_elem, response);
+                _onSuccess(_elem, response, status);
                 return true;
             }
             return false;
