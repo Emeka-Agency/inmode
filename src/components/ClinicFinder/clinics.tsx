@@ -184,18 +184,13 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     }
 
     React.useEffect(() => {
-        
-        const fields = ["Machines"];
-        fetch(
-            `${process.env.AIRTABLE_CLINICS}?${fields.map(el => "fields%5B%5D="+el).join("&")}&filterByFormula=%7BClient%7D%3D%22MENUS%22`,
-            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
-        )
+        fetch(`${process.env.SYMF_BACK}/api/get-datas?type=machines`)
         .then(p => handlePromise(p, "json"))
-        .then((res:{offset:string|null, records:{fields: Airtable_Clinic_Interface}[]}) => {
-            setTreatments(res.records[0].fields.Machines);
+        .then((res:{status:string|null, machines: [string[]]}) => {
+            res.machines != null && Array.isArray(res.machines) && setTreatments(res.machines.join('#').split('#'));
         })
         .catch(err => _error(err));
-    }, [zipSearch, clinics]);
+    }, []);
 
     return (
         <>
