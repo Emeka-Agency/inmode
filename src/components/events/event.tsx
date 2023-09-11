@@ -34,14 +34,11 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         }
     }
     
-    function _getDay(_date:Date) {return get_day(_date.getDay());}
     function _getDate(_date:Date) {return (_date.getDate() < 10 ? `0${_date.getDate()}` : _date.getDate());}
-    function _getMonthName(_date:Date) {return get_month(_date.getMonth());}
     function _getMonth(_date:Date) {return (_date.getMonth() + 1 < 10 ? `0${_date.getMonth() + 1}` : _date.getMonth() + 1);}
     function _getFull_year(_date:Date) {return _date.getFullYear();}
     function _getHour(_date:Date) {return (_date.getHours() < 10 ? `0${_date.getHours()}` : _date.getHours());}
     function _getMinute(_date:Date) {return (_date.getMinutes() < 10 ? `0${_date.getMinutes()}` : _date.getMinutes());}
-    function _getSecond(_date:Date) {return (_date.getSeconds() < 10 ? `0${_date.getSeconds()}` : _date.getSeconds());}
     
     function getDay(date:string|null):string {
         if(date == null) {return "";}
@@ -57,18 +54,6 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         if(date == null) {return "";}
         const _date = new Date(date);
         let _temp = "";
-        _temp += _getHour(_date) + ":";
-        _temp += _getMinute(_date);
-        return _temp;
-    }
-
-    function get_date(date:string|null):string {
-        if(date == null) {return "";}
-        const _date = new Date(date);
-        let _temp = "";
-        _temp += _getDate(_date) + "/";
-        _temp += _getMonth(_date) + "/";
-        _temp += _getFull_year(_date) + " ";
         _temp += _getHour(_date) + ":";
         _temp += _getMinute(_date);
         return _temp;
