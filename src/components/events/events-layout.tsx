@@ -8,34 +8,32 @@ import { Airtable_Event_Interface, InmodePanel_Event_Interface } from "../interf
 import randomString from "../../functions/randString";
 import LoadingGIF from "../LoadingGIF";
 // import { useLocalStorage } from "../../functions/use-localstorage";
+import "moment/min/locales.min";
 
 const EventsLayout = ({ children, current_page, events = undefined, loading = false }:EventsLayout) =>
 {
 
     // TODO localstorage cookie for last event saw vignette si jamais visité
 
+    const fr = (_d?:string) => typeof _d == "string" ? `${_d.slice(3, 6)}${_d.slice(0, 3)}${_d.slice(6)}` : '';
+    const ms = (_d?:string) => typeof _d == "string" ? new Date(fr(_d)).getTime() : Date.now();
+
     const past_events = (events:Airtable_Event_Interface[], sorted = false) => {
         if(sorted) {
-            return events.filter(event => new Date(event?.Start || Date()) < new Date())
-            .sort((a, b) => new Date(b.Start).getTime() - new Date(a.Start).getTime());
+            return events
+            .filter(event => ms(event.Start) < ms())
+            .sort((a, b) => ms(b.Start) - ms(a.Start));
         }
-        return events.filter(event => new Date(event?.Start || Date()) < new Date());
+        return events.filter(event => ms(event.Start) < ms());
     }
     
     const incoming_events = (events:Airtable_Event_Interface[], sorted = false) => {
         if(sorted) {
-            return events.filter(event => new Date(event?.Start || Date()) >= new Date())
-            .sort((a, b) => new Date(a.Start).getTime() - new Date(b.Start).getTime());
+            return events
+            .filter(event => ms(event.Start) >= ms())
+            .sort((a, b) => ms(a.Start) - ms(b.Start));
         }
-        return events.filter(event => new Date(event?.Start || Date()) >= new Date());
-    }
-
-    const sorted_events = (events:Airtable_Event_Interface[]) => {
-
-        return [
-            ...incoming_events(events).sort((a, b) => new Date(a.Start).getTime() - new Date(b.Start).getTime()),
-            ...past_events(events).sort((a, b) => new Date(b.Start).getTime() - new Date(a.Start).getTime())
-        ];
+        return events.filter(event => ms(event.Start) >= ms());
     }
 
     const accordion_width = 760;
@@ -107,20 +105,20 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                 </div>
                 </div>
                 <div className="events-content">
-                    {events && incoming_events(events).length > 0 && incoming_events(events, true).map((event, key) => {
+                    {incoming_events(events ?? [], true).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
                             <>
-                                <InmodeEvent isPast={is_past} key={key} event={event} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
+                                <InmodeEvent isPast={is_past} key={key} event={{...event, Start: fr(event.Start), End: fr(event.End)}} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
                             </>
                         )
                     })}
                     {current_page != "upcoming events" && events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
-                    {current_page != "upcoming events" && events && past_events(events).length > 0 && past_events(events, true).map((event, key) => {
+                    {current_page != "upcoming events" && past_events(events ?? [], true).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
                             <>
-                                <InmodeEvent isPast={is_past} key={key} event={event} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
+                                <InmodeEvent isPast={is_past} key={key} event={{...event, Start: fr(event.Start), End: fr(event.End)}} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
                             </>
                         )
                     })}
