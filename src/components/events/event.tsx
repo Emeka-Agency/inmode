@@ -5,7 +5,6 @@ import randomString from "../../functions/randString";
 import { closeModale, openModale, signupEvent } from "../../functions/modale";
 import { useWindowSize } from "../../functions/window-size";
 import { _log } from "../../functions/logger";
-import { resolveImg } from "../../functions/tools";
 import { getById, selectOne } from "../../functions/selectors";
 
 const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current_page, isPast = false }:InmodeEvent) => {
@@ -34,14 +33,11 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         }
     }
     
-    function _getDay(_date:Date) {return get_day(_date.getDay());}
     function _getDate(_date:Date) {return (_date.getDate() < 10 ? `0${_date.getDate()}` : _date.getDate());}
-    function _getMonthName(_date:Date) {return get_month(_date.getMonth());}
     function _getMonth(_date:Date) {return (_date.getMonth() + 1 < 10 ? `0${_date.getMonth() + 1}` : _date.getMonth() + 1);}
     function _getFull_year(_date:Date) {return _date.getFullYear();}
     function _getHour(_date:Date) {return (_date.getHours() < 10 ? `0${_date.getHours()}` : _date.getHours());}
     function _getMinute(_date:Date) {return (_date.getMinutes() < 10 ? `0${_date.getMinutes()}` : _date.getMinutes());}
-    function _getSecond(_date:Date) {return (_date.getSeconds() < 10 ? `0${_date.getSeconds()}` : _date.getSeconds());}
     
     function getDay(date:string|null):string {
         if(date == null) {return "";}
@@ -57,18 +53,6 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         if(date == null) {return "";}
         const _date = new Date(date);
         let _temp = "";
-        _temp += _getHour(_date) + ":";
-        _temp += _getMinute(_date);
-        return _temp;
-    }
-
-    function get_date(date:string|null):string {
-        if(date == null) {return "";}
-        const _date = new Date(date);
-        let _temp = "";
-        _temp += _getDate(_date) + "/";
-        _temp += _getMonth(_date) + "/";
-        _temp += _getFull_year(_date) + " ";
         _temp += _getHour(_date) + ":";
         _temp += _getMinute(_date);
         return _temp;
@@ -341,11 +325,11 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                         {event.EventType === "Tradeshow" && "Tradeshows"}
                     </div>
                 }
-                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, event?.id)}>
+                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, givenId)}>
                     SIGN UP
                 </div>}
             </div>
-            <div className={`${event.id}-dates event-dates`}>
+            <div className={`${givenId}-dates event-dates`}>
                 {getDate(event.Start, event.End)}
             </div>
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
@@ -361,22 +345,22 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                 style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? event.Picture.aspectRatio * 150 : (images.get_one("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 55px))`} : {}}
                 // 15 du padding gauche, 15 du padding droit, 5 de la custom-scrollbar, 20 pour être sûr
             >
-                <div className="title">
+                <div id={`${givenId}_title`} className="title">
                     {event.EventName ?? "Incoming title"}
                 </div>
-                <div className="short_descr">
+                <div id={`${givenId}_short_descr`} className="short_descr">
                     {event.EventDescription ?? "No information right now"}
                 </div>
-                {event.Start && <div className="dates">
+                {event.Start && <div id={`${givenId}_dates`} className="dates">
                     {`${getDate(event.Start)}${event.End ? ` - ${getDate(event.End)}` : ''}`}
                 </div>}
-                {event.Address && <div className="address_link">
+                {event.Address && <div id={`${givenId}_address_link`} className="address_link">
                     <a href={event.PlaceURL || "#"} target="_blank" rel="noreferrer" title="Place">{event.Address}</a>
                 </div>}
-                {event.Address && <div className="address">
+                {event.Address && <div id={`${givenId}_address`} className="address">
                     {event.Address}
                 </div>}
-                {event.MapsLink && <div className="maps_location">
+                {event.MapsLink && <div id={`${givenId}_maps_location`} className="maps_location">
                     <a href={event.MapsLink || "#"} target="_blank" rel="noreferrer" title="Google Maps localization">+ Google Maps</a>
                 </div>}
             </div>
