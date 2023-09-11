@@ -15,7 +15,7 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
 
     return (
             <Layout title="treatment" variant={datas.Name == "women s health" ? "teal" : "teal"}>
-                <SEO title="Treatment"/>
+                <SEO lang="fr" title="Treatment"/>
                 <TreatmentBanner datas={datas.Banner} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
                 <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': 'key_benefit', variant: datas.Name == "women s health" ? "dusty-rose" : "teal"}}/>
                 <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>

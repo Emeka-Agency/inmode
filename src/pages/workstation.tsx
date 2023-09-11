@@ -10,7 +10,7 @@ const WorkstationPage = ({ data }:WorkStation_Page) => {
     
     return (
         <Layout title="workstations">
-          <SEO title="Gamme"/>
+          <SEO lang="fr" title="Gamme"/>
           <Shop
             products={edges_to_array(data.allStrapiProduct.edges)}
             tag_families={edges_to_array(data.allStrapiTagFamily.edges)}

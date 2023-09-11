@@ -65,7 +65,7 @@ const CongressPage = (datas:CongressPage) =>  {
 
     return (
         <Layout title="congrès">
-            <SEO title="Congrès"/>
+            <SEO lang="fr" title="Congrès"/>
             <EventsLayout
                 loading={loading}
                 current_page="congrès"

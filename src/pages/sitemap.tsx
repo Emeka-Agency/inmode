@@ -6,7 +6,7 @@ const Sitemap = ({ data }:Sitemap) => {
     
     return (
         <Layout title="sitemap">
-            <SEO title="Sitemap"/>
+            <SEO lang="fr" title="Sitemap"/>
             <div id="sitemap-links" className="container">
                 <div className="sitemap-list">
                     <div className="title">LIENS</div>

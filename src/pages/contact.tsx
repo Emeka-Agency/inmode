@@ -13,7 +13,7 @@ const ContactPage = () => {
 
     return (
       <Layout title="contact">
-        <SEO title="Contact"/>
+        <SEO lang="fr" title="Contact"/>
         <GetInTouch from="contact-page"/>
         <ContactForm from="contact-page"/>
         <ProfessionalContact from="contact-page"/>

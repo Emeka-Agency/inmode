@@ -8,7 +8,7 @@ const NotFoundPage = () => {
 
   return (
     <Layout title="404">
-      <SEO title="404"/>
+      <SEO lang="fr" title="404"/>
       <Unknown404/>
       {/* <Slides from="404"/> */}
     </Layout>

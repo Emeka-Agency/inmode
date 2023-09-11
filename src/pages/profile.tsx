@@ -12,7 +12,7 @@ const ProfilePage = () => {
 
     return (
         <Layout title="profil">
-            <SEO title="Profil"/>
+            <SEO lang="fr" title="Profil"/>
             <Profile/>
         </Layout>
     );

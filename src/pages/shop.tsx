@@ -41,7 +41,7 @@ const ShopPage = ({ data }:ShopPage) => {
 
     return (
         <Layout title="produits">
-            <SEO title="Produits"/>
+            <SEO lang="fr" title="Produits"/>
             {/* <CartProvider> */}
                 <WPShop
                     products={processWoocommerce(data.allStrapiShop.group, data.allWcProducts.group)}

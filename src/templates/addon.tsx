@@ -21,7 +21,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
 
     return (
             <Layout title="addon" rest={{"data-addon": datas.Name}}>
-                <SEO title="Addon"/>
+                <SEO lang="fr" title="Addon"/>
                 <AddonBanner datas={datas.Banner}/>
                 <AddonNavigation
                     name={datas.Name}

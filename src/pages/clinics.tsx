@@ -8,7 +8,7 @@ const ClinicFinder = () => {
 
     return (
         <Layout title="clinic-finder">
-            <SEO title="Clinic Finder"/>
+            <SEO lang="fr" title="Clinic Finder"/>
             <ClinicalFinder/>
         </Layout>
     );

@@ -65,7 +65,7 @@ const WorkshopsPage = (datas:WorkshopsPage) =>  {
 
     return (
         <Layout title="workshops">
-            <SEO title="Workshops"/>
+            <SEO lang="fr" title="Workshops"/>
             <EventsLayout
                 loading={loading}
                 current_page="workshops"
