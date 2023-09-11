@@ -1,16 +1,14 @@
 import React from "react";
 import { _error, _log, _slog } from "../../functions/logger";
-import { getById, selectAll, selectOne } from "../../functions/selectors";
 import { Airtable_Clinic_Interface, Geo_Position } from "../interfaces";
 import LoadingGIF from "../LoadingGIF";
 
 import "./clinics.css";
-import { address_to_coordinates, getDistanceOnSphere, is_in_radius } from "./functions";
+import { address_to_coordinates, is_in_radius } from "./functions";
 import { handlePromise } from "../../functions/tools";
 
 const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
 
-    const [zipSearch, setZipSearch]:[any, React.Dispatch<any>] = React.useState(undefined);
     const [treatments, setTreatments]:[any, React.Dispatch<any>] = React.useState([]);
 
     const updateSearch = async (e:React.ChangeEvent | React.MouseEvent, prevent = false) => {
@@ -22,12 +20,9 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
             if(clinic instanceof Array) {return false;}
             if(geo_pos != null && displayable(clinic, geo_pos) && clinic.id) {
                 document?.getElementById(clinic.id)?.classList.remove('hidden');
-                // _slog(clinic?.name + " is displayable", "background: green; color: white");
                 total++;
             }
             else {
-                // _slog(clinic?.name + " is NOT displayable", "background: red; color: white");
-
                 const { zip_check, distance_check, treatments_check } = allCheck(clinic, geo_pos);
 
                 zip_check == false && _log(`zip_check : ${zip_check ? true : false}`);
@@ -66,7 +61,6 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     }
 
     const displayable = (clinic:Airtable_Clinic_Interface, geo_pos:Geo_Position):boolean => {
-        // _log("critere = ", critere);
         if(!clinic) {return false;}
 
         let retour = true;
@@ -77,6 +71,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         if(geocode_check == false && (zip_check == false || distance_check == false)) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == false) {return false;}
         if(zip_check == true && distance_check == true && treatments_check == true) {return true;}
+        if(treatments_check == false) {return false;}
 
         return retour;
     }
@@ -121,11 +116,8 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         let retour = false;
         if(
             clinic.Ville?.toLowerCase() == zip.value.trim().toLowerCase() ||
-            // (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 0 && clinic.CodePostal == zip.value) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 10 && clinic.CodePostal.slice(0, 3) == zip.value.slice(0, 3)) ||
             (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 50 && clinic.CodePostal.slice(0, 2) == zip.value.slice(0, 2)) ||
-            // (clinic.CodePostal.length == 5 && clinic.Pays?.toLowerCase() == "france" && elem.value == 100) ||
-            // (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 0 && clinic.CodePostal == zip.value) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 10 && clinic.CodePostal.slice(0, 2) == zip.value.slice(0, 2)) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 50 && clinic.CodePostal.slice(0, 1) == zip.value.slice(0, 1)) ||
             (clinic.CodePostal.length == 4 && clinic.Pays?.toLowerCase() == "belgique" && elem.value == 100)
@@ -196,18 +188,14 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         <>
             <h2 className="title">Nos Centres Partenaires</h2>
             <h3 className="subtitle">Liste des praticiens partenaires</h3>
-            {/* <div id="search-clinic-indicator"><span>{rest}</span>/{clinics ? clinics.length : 0}</div> */}
-            {/* <div id="search-clinic-indicator">{allByClass('clinic-item') ? allByClass('clinic-item').length : 0}/{clinics ? clinics.length : 0}</div> */}
             <div id="clinic-finder-filters">
 
                 <span className="clinic-finder-search-zip-span"><input id="clinic-finder-search-zip" type="search" placeholder="Chercher par ville ou par CP"/></span>
                 
                 <span className="clinic-filter-distance neumorphic">
                     <select id="clinic-filter-distance-select" className="neumorphic">
-                        {/* <option value="0" className="clinic-filter-distance">0 km</option> */}
                         <option value="10" className="clinic-filter-distance">10 km</option>
                         <option value="50" className="clinic-filter-distance">50 km</option>
-                        {/* <option value="50" className="clinic-filter-distance">50 km</option> */}
                     </select>
                 </span>
 
@@ -232,77 +220,73 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                 loading && <LoadingGIF customClass="clinic-finder-loader"/>
             }
             {!loading && clinics && clinics.map((clinic:Airtable_Clinic_Interface | [], key:number) => {
-                // if(clinic && displayable(clinic, search) && displayable(clinic, zipSearch)) {
-                    // Object.keys(clinic).forEach((elem) => elem ? elem.length < 2 ? undefined : elem : undefined);
-                    if(clinic instanceof Array) {return null;}
-                    return (
-                        <div
-                            key={key}
-                            id={clinic.id}
-                            className="clinic-item treatments hidden"
-                        >
-                            <div className="left-part">
-                                <div className="clinic-name">
-                                    {clinic.Client && clinic.Client}
-                                </div>
-                                <div className="clinic-address" >
-                                    {[clinic.Adresse, [clinic.CodePostal ?? "", clinic.Ville ?? ""].join(', ')].join('\n')}
-                                </div>
-                                <div className="clinic-doctor">
-                                    {/* {clinic.Nom && clinic.Nom} */}
-                                </div>
+                if(clinic instanceof Array) {return null;}
+                return (
+                    <div
+                        key={key}
+                        id={clinic.id}
+                        className="clinic-item treatments hidden"
+                    >
+                        <div className="left-part">
+                            <div className="clinic-name">
+                                {clinic.Client && clinic.Client}
                             </div>
-                            <div className="right-part">
-                                <div className={`clinic-url${!clinic.Site ? ' no-data' : ''}`}>
-                                    {
-                                        clinic.Site ?
-                                        <a target="_blank" href={`http://${(clinic.Site || "").replace("https://", "").replace("http://", "")}`} title="Site de la clinique" style={{color: "var(--teal)", cursor: "pointer"}}>
-                                            Notre site
-                                        </a>
-                                        :
-                                        <></>
-                                    }
-                                </div>
-                                <div className={`clinic-mail${!clinic.Email ? ' no-data' : ''}`}>
-                                    {
-                                        clinic.Email != undefined ?
-                                        <a href={`mailto:${clinic.Email}`} title="Envoyer un mail">
-                                            {clinic.Email}
-                                        </a>
-                                        :
-                                        <a></a>
-                                    }
-                                </div>
-                                <div className={`clinic-phone${!clinic.Telephone ? ' no-data' : ''}`}>
-                                    {
-                                        clinic.Telephone != undefined ?
-                                        <a href={`phone:${clinic.Telephone}`} title="Appeler">
-                                            {clinic.Telephone}
-                                        </a>
-                                        :
-                                        <a></a>
-                                    }
-                                </div>
+                            <div className="clinic-address" >
+                                {[clinic.Adresse, [clinic.CodePostal ?? "", clinic.Ville ?? ""].join(', ')].join('\n')}
                             </div>
-                            {
-                                clinic.Machines && clinic.Machines.length > 0
-                                &&
-                                <div className="clinic-treatments">
-                                    {
-                                        clean_machines(clinic.Machines).map((treatment:string, key:number) => {
-                                            return (
-                                                <span key={key}>
-                                                    {treatment}
-                                                    {treatmentURL(treatment) && <a className="absolute-link" href={treatmentURL(treatment) ?? "#"} title={treatment} target="_blank"></a>}
-                                                </span>
-                                            );
-                                        })
-                                    }
-                                </div>
-                            }
+                            <div className="clinic-doctor">
+                            </div>
                         </div>
-                    )
-                // }
+                        <div className="right-part">
+                            <div className={`clinic-url${!clinic.Site ? ' no-data' : ''}`}>
+                                {
+                                    clinic.Site ?
+                                    <a target="_blank" href={`http://${(clinic.Site || "").replace("https://", "").replace("http://", "")}`} title="Site de la clinique" style={{color: "var(--teal)", cursor: "pointer"}}>
+                                        Notre site
+                                    </a>
+                                    :
+                                    <></>
+                                }
+                            </div>
+                            <div className={`clinic-mail${!clinic.Email ? ' no-data' : ''}`}>
+                                {
+                                    clinic.Email != undefined ?
+                                    <a href={`mailto:${clinic.Email}`} title="Envoyer un mail">
+                                        {clinic.Email}
+                                    </a>
+                                    :
+                                    <a></a>
+                                }
+                            </div>
+                            <div className={`clinic-phone${!clinic.Telephone ? ' no-data' : ''}`}>
+                                {
+                                    clinic.Telephone != undefined ?
+                                    <a href={`phone:${clinic.Telephone}`} title="Appeler">
+                                        {clinic.Telephone}
+                                    </a>
+                                    :
+                                    <a></a>
+                                }
+                            </div>
+                        </div>
+                        {
+                            clinic.Machines && clinic.Machines.length > 0
+                            &&
+                            <div className="clinic-treatments">
+                                {
+                                    clean_machines(clinic.Machines).map((treatment:string, key:number) => {
+                                        return (
+                                            <span key={key}>
+                                                {treatment}
+                                                {treatmentURL(treatment) && <a className="absolute-link" href={treatmentURL(treatment) ?? "#"} title={treatment} target="_blank"></a>}
+                                            </span>
+                                        );
+                                    })
+                                }
+                            </div>
+                        }
+                    </div>
+                )
             })}
         </>
     );
