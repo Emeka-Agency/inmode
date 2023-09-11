@@ -14,35 +14,6 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
 
    // TODO localstorage cookie for last event saw vignette si jamais visité
 
-   // const LocalStorage = useLocalStorage;
-   // _log(events);
-
-   // LocalStorage.getItem('last-event-visit') === null && LocalStorage.setItem('last-event-visit', );
-
-
-   // const sortBy = (function(){
-   // if (typeof Object.defineProperty === 'function'){
-   // try{Object.defineProperty(Array.prototype,'sortBy',{value:sb}); }catch(e){}
-   // }
-   // if (!Array.prototype.sortBy) Array.prototype.sortBy = sb;
-
-   // function sb(f){
-   // for (var i=this.length;i;){
-   // var o = this[--i];
-   // this[i] = [].concat(f.call(o,o,i),o);
-   // }
-   // this.sort(function(a,b){
-   // for (var i=0,len=a.length;i<len;++i){ // if (a[i]!=b[i]) return a[i]>b[i]?-1:1;
-   // }
-   // return 0;
-   // });
-   // for (var i=this.length;i;){
-   // this[--i]=this[i][this[i].length-1];
-   // }
-   // return this;
-   // }
-   // })();
-
    const accordion_width = 760;
 
    const size = useWindowSize();
@@ -89,23 +60,9 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
       setOpenedAccordion(true);
    }
 
-//    React.useEffect(function() {
-//       if(typeof document != "undefined") {
-//         try {
-//             document.querySelectorAll('.inmode-event').forEach(event => {
-//                 // _log(event);
-//                 // _log(event.querySelector('.descr-part').style);
-//                 // _log(event.querySelector('.img-part').offsetWidth);
-//                 // _log(event.querySelector('.img-part img').complete);
-//                 // _log(event.querySelector('.img-part img').naturalHeight);
-//                 event.querySelector('.descr-part').style.setProperty('width', `calc(100% - ${event.querySelector('.img-part img').offsetWidth}px)`)
-//             });
-//         }
-//         catch(error) {
-//             _log(error);
-//         }
-//       }
-//    }, []);
+   React.useEffect(() => {
+
+   }, [loading]);
 
     return (
         <div className="events-layout">
@@ -134,7 +91,7 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                 </div>
                 </div>
                 <div className="events-content">
-                    {events && events.length > 0 && events.filter(el => new Date(el.Start) >= new Date()).map((event, key) => {
+                    {(events ?? []).filter(el => new Date(el.Start ?? Date.now()) >= new Date()).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
                             <>
