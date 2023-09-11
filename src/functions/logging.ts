@@ -27,6 +27,8 @@ export const err_log = function(__err:string|Array<any>|object, __from:string) {
         body: JSON.stringify(body)
     };
 
+    return;
+
     fetch((process.env.INMODE_BACK || "https://inmodemd.fr/admin") + "/api/front-logs", vars)
     .then(p => handlePromise(p, "json"))
     .then(res => _log(res))
