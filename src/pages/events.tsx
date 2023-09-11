@@ -14,47 +14,18 @@ const EventsPage = ({ data }:EventsPage) =>  {
     const [events, setEvents]:[Airtable_Event_Interface[]|[], React.Dispatch<Airtable_Event_Interface[]|[]>] = React.useState(Array());
     const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
 
-    const loadEvents = async function(offset:string|null = null, records:Airtable_Event_Interface[]|ConcatArray<never> = [], __type:string|null = null) {
-        const fields = ["EventName", "Start", "End", "Practitioner", "Address", "Place", "PlaceURL", "Addons", "EventType", "EventDescription", "MapsLink", "VideoURL", "Picture"];
-        const sortCriteres = ['Start'];
-        const sortDirections = ['asc'];
-        const sortBy = Array(sortCriteres).map((el, index) => 
-            `sort%5B0%5D%5Bfield%5D=${sortCriteres[index]}&sort%5B0%5D%5Bdirection%5D=${sortDirections[index] ?? 'desc'}`
-        ).join('&');
-        var filterBy = '';
-        if(typeof __type == "string") {
-            filterBy = `&filterByFormula={EventType}='${__type}'`;
-        }
-
-        // mettre la modale login sign in en pearl bg
-    
-        _group(fields);
-        _log(sortBy);
-        _log(filterBy);
-        _log(`${process.env.AIRTABLE_EVENTS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}${filterBy}`);
-        _groupEnd();
-        
-        await fetch(
-            `${process.env.AIRTABLE_EVENTS}?${sortBy}&${fields.map(el => "fields%5B%5D="+el).join("&")}&maxRecords${offset == null ? '' : `&offset=${offset}`}${filterBy}`,
-            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
-        )
+    const loadEvents = async function() {
+        await fetch(`${process.env.SYMF_BACK}/api/get-datas?type=events`)
         .then(p => handlePromise(p, "json"))
-        .then((res:{offset:string|null, records:Airtable_Record_Interface[]}) => {
-            _log(res.offset != undefined);
-            _log(res.records.length == 0);
-            if(res.records.length == 0) {
+        .then((res:{status:string, datas:Airtable_Event_Interface[]}) => {
+            _log(res.datas.length == 0);
+            if(res.datas.length == 0) {
                 setLoading(false);
                 return false;
             }
-            if(res.offset != undefined) {
-                // let news = res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec);
-                // loadEvents(res.offset, [...records]);
-                loadEvents(res.offset, records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
-                return true;
-            }
             else {
                 setLoading(false);
-                setEvents(records.concat(res.records.map(rec => rec.fields && rec.id ? {id: rec.id, ...rec.fields} : rec)));
+                setEvents(res.datas);
                 return true;
             }
         })
@@ -62,7 +33,7 @@ const EventsPage = ({ data }:EventsPage) =>  {
     }
 
     React.useEffect(() => {
-        loading && loadEvents(null, [], null);
+        loading && loadEvents();
     }, [events]);
 
     return (
