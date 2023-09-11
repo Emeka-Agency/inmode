@@ -12,38 +12,31 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _temp && _temp.setAttribute('disabled', true);
         _temp = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'inline-block';}
-        let _form = document.forms.namedItem('contact-mini');
-        let body:ContactMini_Interface = {
-            "lastname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="lastname"]'))()?.value,
-            "firstname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="firstname"]'))()?.value,
-            "subject": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="subject"]'))()?.value,
-            "mail": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="mail"]'))()?.value,
-            "phone_number": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="phone"]'))()?.value,
-            "zip": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="zip"]'))()?.value,
-            "city": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="city"]'))()?.value,
-            "message": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="message"]'))()?.value,
-        };
-        body.type = "contact-us";
+        let body = [
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="lastname"]'))()?.value,
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="firstname"]'))()?.value,
+            ((d) => `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`)(new Date()),
+            "",
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="subject"]'))()?.value,
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="mail"]'))()?.value,
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="phone"]'))()?.value,
+            "",
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="zip"]'))()?.value,
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="city"]'))()?.value,
+            "",
+            (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="message"]'))()?.value,
+            "",
+            "",
+            "contact-us"
+        ];
 
         _slog("send_form_mini ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
 
-        _log(body);
-        _log(create_pardot_url(body));
-
         const request_init:RequestInit = {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
             "body": JSON.stringify({
-                "records": [
-                    {
-                        "fields": body
-                    }
-                ]
+                "type": "mails",
+                "values": [body]
             }),
         };
         _temp = selectOne("#contact-mini .req-return.success");
@@ -52,8 +45,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         if(_temp) {_temp.innerHTML = "";}
         let response = await (
             await fetch(
-                `${process.env.AIRTABLE_MAILS}`,
-                // `https://localhost:8000/api/mails`,
+                `${process.env.SYMF_BACK}/api/set-datas`,
                 request_init
             )
             .then(p => handlePromise(p, "json"))
@@ -61,7 +53,7 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 _log(response);
                 let _temp:any = selectOne('#mini-contact-gif');
                 if(_temp) {_temp.style.display = 'none';}
-                if(response.records || (response.status === 'success' && response.type === 'client')) {
+                if(response.status === 'success') {
                     _temp = selectOne('#contact-mini .submit');
                     _temp.removeAttribute('disabled');
                     _temp = selectOne('#contact-mini .req-return.success');
@@ -69,18 +61,12 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                     let _form = document.forms.namedItem('contact-mini');
                     _form && _form.reset();
                 }
-                if(response.status === 'fail' && response.type === 'client') {
-                    setSubmitText(response.message);
+                if(response.status === 'error') {
+                    setSubmitText(response.message ?? "Erreur durant l'envoi du message");
                     _temp = selectOne('#contact-mini .submit');
                     _temp.setAttribute('disabled', true);
                     _temp = selectOne('#contact-mini .req-return.success');
-                    if(_temp) {_temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;}
-                }
-                if(response.status === 'fail' && response.type === 'server') {
-                    _temp = selectOne('#contact-mini .submit');
-                    _temp.setAttribute('disabled', true);
-                    _temp = selectOne('#contact-mini .req-return.error');
-                    if(_temp) {_temp.innerHTML = response.message;}
+                    if(_temp) {_temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com" style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;}
                 }
             })
             .catch(function(error) {
@@ -92,13 +78,23 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 _temp = selectOne('#contact-mini .req-return.success');
                 if(_temp) {
                     _temp.style.setProperty('white-space', 'normal');
-                    _temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
+                    _temp.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com" style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
                 }
             })
         );
         // ).json()
 
-        return click_pardot(body);
+        return click_pardot({
+            "lastname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="lastname"]'))()?.value,
+            "firstname": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="firstname"]'))()?.value,
+            "subject": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="subject"]'))()?.value,
+            "mail": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="mail"]'))()?.value,
+            "phone_number": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="phone"]'))()?.value,
+            "zip": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="zip"]'))()?.value,
+            "city": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="city"]'))()?.value,
+            "message": (():HTMLInputElement|null => document?.querySelector('#contact-mini [name="message"]'))()?.value,
+            "type": "contact-us"
+        });
     }
     catch(err:any) {
         err_log(err, "components/contact.ts:send_form_mini main catch");
@@ -123,7 +119,72 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             return false;
         }
         let _form:HTMLFormElement|null = document.forms.namedItem("full-contact-form");
-        let body:ContactFull_Interface = {
+        
+        let body = [
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#lastname'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#firstname'))()?.value,
+            ((d) => `${d.toLocaleDateString()} ${d.toLocaleTimeString()}`)(new Date()),
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#company'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#subject'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#mail'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#phone_number'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#address'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#zip'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#city'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('select[name="country"]'))()?.value,
+            (():HTMLInputElement|null|undefined => _form?.querySelector('#contact-message'))()?.value,
+            "",
+            Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map((el:any) => el.checked ? el.name : null).filter(el => el).join(', '),
+            "full-contact"
+        ];
+
+        _slog("send_form_large ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
+
+        const request_init:RequestInit = {
+            method: 'POST',
+            "body": JSON.stringify({
+                "type": "mails",
+                "values": [body]
+            }),
+        };
+        await (
+            await fetch(
+                `${process.env.SYMF_BACK}/api/set-datas`,
+                request_init,
+            )
+            .then(p => handlePromise(p, "json"))
+            .then((response) => {
+                _log(response);
+                if(response.status === 'success') {
+                    let _temp = document.querySelector('#event-signup .submit');
+                    _temp && _temp.removeAttribute('disabled');
+                    _temp = document.querySelector('#event-signup .req-return.success');
+                    if(_temp) _temp.innerHTML = response.message ?? "Message envoyé";
+                    let _form:HTMLFormElement | null = document.forms.namedItem('event-signup')
+                    _form && _form.reset();
+                }
+                if(response.status === 'error') {
+                    setSubmitText(response.message ?? "Erreur durant l'envoi du message");
+                    let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
+                    if(_temp1) _temp1.disabled = true;
+                    let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
+                    if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com" style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
+                }
+            })
+            .catch(function(error) {
+                let _temp;
+                setSubmitText("Erreur d'envoi");
+                let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
+                if(_temp1) _temp1.disabled = true;
+                let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
+                if(_temp2) {
+                    _temp2.style.setProperty('white-space', 'normal');
+                    _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com" style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
+                }
+            })
+        );
+        
+        return click_pardot({
             "lastname": (():HTMLInputElement|null|undefined => _form?.querySelector('#lastname'))()?.value,
             "firstname": (():HTMLInputElement|null|undefined => _form?.querySelector('#firstname'))()?.value,
             "company": (():HTMLInputElement|null|undefined => _form?.querySelector('#company'))()?.value,
@@ -137,75 +198,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             "message": (():HTMLInputElement|null|undefined => _form?.querySelector('#contact-message'))()?.value,
             "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]')).map((el:any) => el.checked ? el.name : null).filter(el => el),
             "type": "full-contact"
-        };
-
-        _slog("send_form_large ", "background: #222; color: #bada55; font-size: 20px; font-weight: bold; padding: 5px;")
-
-        _log(body);
-        _log(create_pardot_url(body));
-
-        const request_init:RequestInit = {
-            method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
-            "body": JSON.stringify({
-                "records": [
-                    {
-                        "fields": body
-                    }
-                ]
-            }),
-        };
-        let response = await (
-            await fetch(
-                `${process.env.AIRTABLE_MAILS}`,
-                // `https://localhost:8000/api/mails`,
-                request_init,
-            )
-            .then(p => handlePromise(p, "json"))
-            .then((response) => {
-                _log(response);
-                if(response.status === 'success' && response.type === 'client') {
-                    let _temp = document.querySelector('#event-signup .submit');
-                    _temp && _temp.removeAttribute('disabled');
-                    _temp = document.querySelector('#event-signup .req-return.success');
-                    if(_temp) _temp.innerHTML = response.message;
-                    let _form:HTMLFormElement | null = document.forms.namedItem('event-signup')
-                    _form && _form.reset();
-                }
-                if(response.status === 'fail' && response.type === 'client') {
-                    setSubmitText(response.message);
-                    let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
-                    if(_temp1) _temp1.disabled = true;
-                    let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
-                    if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
-                }
-                if(response.status === 'fail' && response.type === 'server') {
-                    let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
-                    if(_temp1) _temp1.disabled = true;
-                    let _temp2 = document.querySelector('#event-signup .req-return.error');
-                    if(_temp2) _temp2.innerHTML = response.message;
-                }
-            })
-            .catch(function(error) {
-                let _temp;
-                setSubmitText("Erreur d'envoi");
-                let _temp1:HTMLInputElement | null = document.querySelector('#event-signup .submit');
-                if(_temp1) _temp1.disabled = true;
-                let _temp2:HTMLElement | null = document.querySelector('#event-signup .req-return.success');
-                if(_temp2) {
-                    _temp2.style.setProperty('white-space', 'normal');
-                    _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
-                }
-            })
-        );
-        // ).json()
-        
-        return click_pardot(body);
+        });
     }
     catch(err:any) {
         // setSubmitText(error.message);
@@ -214,7 +207,7 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
         let _temp1:HTMLInputElement|null = document.querySelector('#full-contact-form .submit');
         if(_temp1) _temp1.disabled = true;
         let _temp2:HTMLElement|null = document.querySelector('#full-contact-form .req-return.error');
-        if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
+        if(_temp2) _temp2.innerHTML = `Erreur d'envoi du message. Essayez de rafraîchir la page ou <a href="mailto:contact.fr@inmodemd.com" style="color:var(--teal);font-weight:bold;">contactez-nous directement.</a>`;
         // if(_temp2) _temp2.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
         return false;
     }
