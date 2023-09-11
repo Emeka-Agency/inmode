@@ -30,7 +30,7 @@ const tech_list = [
     {name: "votiva", label: "VOTIVA | AVIVA | FEMININE WELLNESS",},
 ];
 
-const phone_pattern = "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$";
+const phone_pattern = "^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$";
 
 const form_elems = [
     {"placeholder": "", "validation_message": "Renseignez votre nom", "required": true, "label": "Nom", "name" : "lastname", "type" : "text"},
