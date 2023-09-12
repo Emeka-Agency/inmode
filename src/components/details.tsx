@@ -12,9 +12,16 @@ const GenericDetails = ({ datas }:GenericDetails) => {
         <div id="what-is" className="details">
             <div
                 className="details-img transition user-select-none background-image"
-                // style={{backgroundImage: `url(${resolveImg(datas.what_is?.picture)})`}}
             >
-                <img src={resolveImg(datas.what_is?.picture)} alt="details-img" />
+                <img
+                    src={resolveImg(datas.what_is?.picture)}
+                    alt="details-img"
+                    style={{
+                        maxHeight: ['formav', 'diolazexl', 'vasculaze', 'lumecca'].indexOf((datas.name ?? "").toLowerCase()) >= 0 ? '450px' : 'unset',
+                        margin: '0 auto',
+                        display: 'block'
+                    }}
+                />
             </div>
             <div className="what-is-txts">
                 <div className="what-is-main transition">
