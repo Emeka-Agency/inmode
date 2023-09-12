@@ -154,6 +154,7 @@ export const query = graphql`
             texte
           }
           Addons {
+            Name
             MenuParams {
               url
               internal_link
