@@ -324,11 +324,17 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         <div id={givenId} className={`inmode-event ${event.EventType}${has_card ? ' has_card' : ''} ${has_card ? "event-page" : "not-event-page" }`}>
             <div className="event-topband">
                 {has_card && event.EventType &&
-                    <div className={`top-card ${prop_key === 0 ? 'left' : 'left'}`} style={["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? {} : {borderRadius: "13px 13px 13px 0"}}>
-                        {event.EventType === "Conference" && "Conferences"}
-                        {event.EventType === "Workshop" && "Workshops"}
-                        {event.EventType === "Webinar" && (event.Addons || []).join(', ')}
-                        {event.EventType === "Tradeshow" && "Tradeshows"}
+                    <div title={((type) => {
+                        if(type === "Conference") {return "Conferences";}
+                        if(type === "Workshop") {return "Workshops";}
+                        if(type === "Webinar") {return `Webinar : ${event.Addons}`;}
+                        if(type === "Tradeshow") {return "Tradeshows";}
+                    })(event.EventType)} className={`top-card ${prop_key === 0 ? 'left' : 'left'}`} style={["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? {} : {borderRadius: "13px 13px 13px 0"}}>
+                        {event.EventType === "Conference" ? "Conferences" : ''}
+                        {event.EventType === "Workshop" ? "Workshops" : ''}
+                        {event.EventType === "Webinar" ? "Webinar : " : ''}
+                        {event.EventType === "Webinar" ? <span style={{fontSize: '20px'}}>{event.Addons}</span> : ''}
+                        {event.EventType === "Tradeshow" ? "Tradeshows" : ''}
                     </div>
                 }
                 {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, givenId, event.Slug)}>
