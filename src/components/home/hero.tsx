@@ -109,7 +109,7 @@ const Hero = ({}:Hero) => {
                     <div className="top-text user-select-none">{datas.TopText}</div>
                     <div className="hero-top-links">
                         <Link className="hero-top-link inmode-btn user-select-none" to="/contact">Contact</Link>
-                        <Link className="hero-top-link inmode-btn user-select-none" to="/events">Événements</Link>
+                        <Link className="hero-top-link inmode-btn user-select-none" to="/events">Évènements</Link>
                     </div>
                 </div>
                 <div className="hero-bottom">

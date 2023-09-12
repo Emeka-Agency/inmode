@@ -37,8 +37,8 @@ const EventsPage = ({ data }:EventsPage) =>  {
     }, [events]);
 
     return (
-        <Layout title="événements">
-            <SEO lang="fr" title="Événements"/>
+        <Layout title="évènements">
+            <SEO lang="fr" title="Évènements"/>
             <EventsLayout
                 loading={loading}
                 current_page="upcoming events"

@@ -75,7 +75,7 @@ const PrivacyPolicies = (  ) => {
 
                     <div className="title">Clause n° 10 : Force majeure</div>
                     <div className="content">
-                        La responsabilité de la société IMD France SARL ne pourra pas être mise en œuvre si la non-exécution ou le retard dans l'exécution de l'une de ses obligations décrites dans les présentes conditions générales de vente découle d'un cas de force majeure. À ce titre, la force majeure s'entend de tout événement extérieur, imprévisible et irrésistible au sens de l'article 1148 du Code civil.
+                        La responsabilité de la société IMD France SARL ne pourra pas être mise en œuvre si la non-exécution ou le retard dans l'exécution de l'une de ses obligations décrites dans les présentes conditions générales de vente découle d'un cas de force majeure. À ce titre, la force majeure s'entend de tout évènement extérieur, imprévisible et irrésistible au sens de l'article 1148 du Code civil.
                     </div>
 
                     <div className="title">Clause n° 11 : Tribunal compétent</div>

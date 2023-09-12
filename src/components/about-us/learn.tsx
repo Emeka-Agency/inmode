@@ -60,7 +60,7 @@ const Learn = ({ from = "" }:Learn) => {
                     <span>En savoir plus sur:</span>
                     <Link to="/workstation" className="inmode-btn" title="Machines">Machines</Link>
                     <Link to="/workstation" className="inmode-btn" title="Pièces à main">Pièces à main</Link>
-                    <Link to="/events" className="inmode-btn" title="Événements">Événements</Link>
+                    <Link to="/events" className="inmode-btn" title="Évènements">Évènements</Link>
                 </div>
                 <div className="goals">
                     <div className="texts">

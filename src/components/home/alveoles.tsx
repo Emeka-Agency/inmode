@@ -43,7 +43,7 @@ const Alveoles = ({}:Alveoles) => {
 
     return (
         <div className="alveoles">
-            <div className="title user-select-none">Événements</div>
+            <div className="title user-select-none">Évènements</div>
             {/* <div className="back-hex left">
                 <img
                     src={images.resolve_img('backAlveole')}
