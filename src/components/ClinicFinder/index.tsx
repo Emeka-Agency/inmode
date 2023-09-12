@@ -36,7 +36,10 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
             }
             setLoading(false);
         })
-        .catch(err => _error(err));
+        .catch(err => {
+            setLoading(false);
+            _error(err);
+        });
     }
 
     React.useEffect(() => {

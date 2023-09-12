@@ -28,7 +28,10 @@ const WebinarsPage = (datas:WebinarsPage) =>  {
                 return true;
             }
         })
-        .catch(err => _log(err));
+        .catch(err => {
+            setLoading(false);
+            _error(err);
+        });
     }
 
     React.useEffect(() => {

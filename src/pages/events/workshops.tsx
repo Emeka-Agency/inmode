@@ -6,7 +6,7 @@ import Layout from "../../components/Layout"
 import SEO from "../../components/seo";
 
 import "../../components/events/events.css";
-import { _group, _groupEnd, _log } from "../../functions/logger";
+import { _error, _group, _groupEnd, _log } from "../../functions/logger";
 import { handlePromise } from "../../functions/tools";
 
 const WorkshopsPage = (datas:WorkshopsPage) =>  {
@@ -28,7 +28,10 @@ const WorkshopsPage = (datas:WorkshopsPage) =>  {
                 return true;
             }
         })
-        .catch(err => _log(err));
+        .catch(err => {
+            setLoading(false);
+            _error(err);
+        });
     }
 
     React.useEffect(() => {
