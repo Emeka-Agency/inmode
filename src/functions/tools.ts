@@ -498,6 +498,7 @@ export const color_variant = (name:string = "") => {
         case "Morpheus8V":
         case "ToneV":
         case "EmpowerRF":
+        case "Aviva":
             return "dusty-rose";
         default:
             return "teal";
