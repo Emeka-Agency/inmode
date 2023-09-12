@@ -58,6 +58,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
 
 interface GenericDetails {
     datas: {
+        name?: string;
         what_is?: InmodePanel_Generic_WhatIs_Interface;
         before_keys?: string;
         anchor_key?: string;
