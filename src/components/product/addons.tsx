@@ -7,7 +7,7 @@ import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from ".
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
-const Addons = ({ datas, sensible = false, variant = "teal" }:Addons) => {
+const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addons) => {
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
