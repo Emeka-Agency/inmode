@@ -31,7 +31,14 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                     }}
                     variant={color_variant(datas.Name)}
                 />
-                <GenericDetails datas={{'list': datas.KeyBenefits, 'what_is': datas.WhatIs, 'list_title': 'avantages', 'list_icon' : 'key_benefit', 'variant': color_variant(datas.Name)}}/>
+                <GenericDetails datas={{
+                    'name': datas.Name,
+                    'list': datas.KeyBenefits,
+                    'what_is': datas.WhatIs,
+                    'list_title': 'avantages',
+                    'list_icon' : 'key_benefit',
+                    'variant': color_variant(datas.Name)
+                }}/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
                 <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>

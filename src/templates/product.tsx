@@ -30,6 +30,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 />
                 <GenericDetails
                     datas={{
+                        'name': datas.Name,
                         'what_is': datas.WhatIs,
                         'before_keys': datas.BeforeKeyBenefits,
                         'list': datas.KeyBenefits,

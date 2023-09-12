@@ -17,7 +17,7 @@ const TreatmentTemplates = ({ data }:TreatmentTemplates) => {
             <Layout title="treatment" variant={datas.Name == "women s health" ? "teal" : "teal"}>
                 <SEO lang="fr" title="Treatment"/>
                 <TreatmentBanner datas={datas.Banner} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
-                <GenericDetails datas={{'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': 'key_benefit', variant: datas.Name == "women s health" ? "dusty-rose" : "teal"}}/>
+                <GenericDetails datas={{'name': datas.Name, 'what_is': datas.WhatIsTreat, 'list_title': datas.IncludeTitle, 'list': datas.IncludeList, 'list_icon': 'key_benefit', variant: datas.Name == "women s health" ? "dusty-rose" : "teal"}}/>
                 <TreatmentProducts datas={{'products': datas.products, 'treatment': datas.Name}} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
                 {data.strapiTreatment.MenuParams?.url != "/treatment/women-s-health" && <TreatmentBeforeAfter variant={datas.Name == "women s health" ? "dusty-rose" : "teal"} datas={datas.BeforesAfters} sensible={datas?.sensitivity || false}/>}
                 <ClinicalStudies datas={datas.ClinicalStudies} variant={datas.Name == "women s health" ? "dusty-rose" : "teal"}/>
