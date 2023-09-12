@@ -58,7 +58,7 @@ const Learn = ({ from = "" }:Learn) => {
             <div className="container">
                 <div className="know-more user-select-none">
                     <span>En savoir plus sur:</span>
-                    <Link to="/workstation" className="inmode-btn" title="Machines">Machines</Link>
+                    <Link to="/workstation" className="inmode-btn" title="Plateformes">Plateformes</Link>
                     <Link to="/workstation" className="inmode-btn" title="Pièces à main">Pièces à main</Link>
                     <Link to="/events" className="inmode-btn" title="Évènements">Évènements</Link>
                 </div>
