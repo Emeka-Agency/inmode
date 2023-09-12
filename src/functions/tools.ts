@@ -355,19 +355,19 @@ export const handlePromise = (promise:Response, type?:string) => {
 }
 
 export function go_to(page:string|null = null) {
-    console.log("%cgo_to" + page, "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+    // _log("%cgo_to" + page, "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
     if(page == null) {
-        console.log("%cgo_to: page is null", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+        // _log("%cgo_to: page is null", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
         return;
     }
     if(typeof window != "undefined") {
-        console.log("%cgo_to: window is defined", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+        // _log("%cgo_to: window is defined", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
         if(page.indexOf("http") == -1) {
-            console.log("%cgo_to: page is not an url", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+            // _log("%cgo_to: page is not an url", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
             page = `${window.location.origin}${page}`;
         }
 
-        console.log("%cgo_to: page is an url", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+        // _log("%cgo_to: page is an url", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
 
         let a = Object.assign(document.createElement('a'), {
             id: 'goto-thanks',
@@ -376,18 +376,18 @@ export function go_to(page:string|null = null) {
         });
         document.body.appendChild(a);
 
-        console.log("%cgo_to: a is created", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+        // _log("%cgo_to: a is created", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
 
         if(a) {
-            console.log("%cgo_to: a is an HTMLLinkElement", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+            // _log("%cgo_to: a is an HTMLLinkElement", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
             a.click();
             a.remove();
         }
         else {
-            console.log("%cgo_to: a is not an HTMLLinkElement", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+            // _log("%cgo_to: a is not an HTMLLinkElement", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
         }
     }
     else {
-        console.log("%cgo_to: window is not defined", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
+        // _log("%cgo_to: window is not defined", "color:orange; font-weight:bold; font-size:1.2em; background-color:black;");
     }
 }
