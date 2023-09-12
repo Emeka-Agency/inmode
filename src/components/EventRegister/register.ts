@@ -29,27 +29,13 @@ export async function manage_event_register(e:any, event:Airtable_Event_Interfac
 
     button.classList.add('loading');
 
-    fetch(
-        `${process.env.AIRTABLE_EVENT_SIGNUP}?filterByFormula=AND({Email}="${form.email.value}")&fields%5B%5D=Event`,
-        {
-            method: 'GET',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
-        }
-    )
+    fetch(`${process.env.INMODE_BACK}/api/get-event-signup`, {method: 'POST', body: JSON.stringify({event: event.Slug, mail: form.email.value})})
     .then((promise) => handlePromise(promise))
-    .then((response) => {
+    .then((response:{status:string, exist: boolean}) => {
         _log(response);
-        if(response.records.filter((rec:{fields: Airtable_Register_Interface}) => rec.fields.Event.indexOf(event.id) > -1).length > 0) {
-            go_to("/thanks");
+        if(response.exist) {
+            go_to("/thanks?a=1");
             return;
-            button.classList.remove('loading');
-            error.innerText = "You have already registered to this event.";
-            return false;
         }
         event_register(form, event, set_register)
         return true;
@@ -80,31 +66,33 @@ function event_register(form:HTMLFormElement, event:Airtable_Event_Interface, se
         return;
     }
     
-    const body = {
-        Event: [event?.id],
-        Firstname: form.firstname.value,
-        Surname: form.surname.value,
-        Email: form.email.value,
-        "Contact number": form.number.value,
-        "Clinic Name": form.clinic.value,
-        Postcode: form.postcode.value,
-        Comment: form.comment.value,
-        Machines: event.DisplayMachines ? Array.from(form.machines).filter((input:any) => input.checked).map((input:any) => input.id) : [],
-    }
+    const body = [
+        event?.EventName,
+        "",
+        form.firstname.value,
+        form.surname.value,
+        form.email.value,
+        form.number.value,
+        "",
+        form.clinic.value,
+        form.postcode.value,
+        "",
+        "",
+        form.comment.value,
+        (event.DisplayMachines === "y" ? Array.from(form.machines).filter((input:any) => input.checked).map((input:any) => input.id) : []).join(', '),
+        event?.Slug
+    ];
     
     const request_init:RequestInit = {
         method: 'POST',
-        headers: {
-            "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-            "content-type": "application/json"
-        },
-        mode: 'cors',
-        cache: 'default',
-        "body": JSON.stringify({"records": [{"fields": body}]}),
+        "body": JSON.stringify({
+            "type": "events_signup",
+            "values": [body]
+        }),
     };
 
     fetch(
-        `${process.env.AIRTABLE_EVENT_SIGNUP}`,
+        `${process.env.INMODE_BACK}/api/set-datas`,
         request_init
     )
     .then((promise) => handlePromise(promise))
@@ -113,16 +101,13 @@ function event_register(form:HTMLFormElement, event:Airtable_Event_Interface, se
         button.classList.remove('loading');
         let _temp:any = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'none';}
-        if(response.records || (response.status === 'success' && response.type === 'client')) {
+        if(response.status === 'success') {
             useLocalStorage.setItem(`inuk_${event?.id}_register`, true);
             error.innerText = "";
             go_to("/thanks");
         }
-        if(response.status === 'fail' && response.type === 'client') {
+        if(response.status === 'error') {
             error.innerText = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
-        }
-        if(response.status === 'fail' && response.type === 'server') {
-            error.innerText = response.message;
         }
     })
     .catch(function(error) {

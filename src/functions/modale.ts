@@ -225,6 +225,7 @@ export function signupEvent(datas:signupEvent) {
                 <div class="req-return success" style="color: 'var(--teal)', fontSize: 15, fontWeight: 400"></div>
                 <div class="req-return error" style="color: 'red', fontSize: 15, fontWeight: 400"></div>
                 <input id="event-participate-event-name" value="${datas.event_name}" style="display:none;"/>
+                <input id="event-participate-event-slug" value="${datas.event_slug}" style="display:none;"/>
                 <div class="event-participate-submit">
                     <button type="submit" id="event-participate-submit" class="submit">Submit</button>
                 </div>
@@ -255,6 +256,7 @@ interface signupEvent {
     onOpen?: Function;
     onClose?: Function;
     event_name?: string;
+    event_slug?: string;
 }
 
 interface params {

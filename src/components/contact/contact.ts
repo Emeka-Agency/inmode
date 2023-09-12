@@ -1,6 +1,6 @@
 import { _log, _trace } from "../../functions/logger";
 import { selectOne } from "../../functions/selectors";
-import { handlePromise } from "../../functions/tools";
+import { go_to, handlePromise } from "../../functions/tools";
 
 export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>, setSubmitText:React.Dispatch<React.SetStateAction<string>>) {
     _log("send_form_mini");
@@ -11,34 +11,29 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         _temp = selectOne('#mini-contact-gif');
         if(_temp) {_temp.style.display = 'inline-block';}
         let _form = document.forms.namedItem('contact-mini');
-        let body:any = {
-            "lastname": _form?.querySelector('[name="lastname"]')?.value,
-            "firstname": _form?.querySelector('[name="firstname"]')?.value,
-            "subject": _form?.querySelector('[name="subject"]')?.value,
-            "mail": _form?.querySelector('[name="mail"]')?.value,
-            "phone_number": _form?.querySelector('[name="phone"]')?.value,
-            "zip": _form?.querySelector('[name="zip"]')?.value,
-            "city": _form?.querySelector('[name="city"]')?.value,
-            "message": _form?.querySelector('#contact-message-mini')?.value,
-            "type": "contact-us"
-        };
-
-        _log(create_pardot_url(body));
+        let body:any = [
+            _form?.querySelector('[name="lastname"]')?.value,
+            _form?.querySelector('[name="firstname"]')?.value,
+            ((s) => `${s.slice(3, 6)}${s.slice(0, 3)}${s.slice(6)}`)(new Date().toLocaleString()),
+            "",
+            _form?.querySelector('[name="subject"]')?.value,
+            _form?.querySelector('[name="mail"]')?.value,
+            _form?.querySelector('[name="phone"]')?.value,
+            "",
+            _form?.querySelector('[name="zip"]')?.value,
+            _form?.querySelector('[name="city"]')?.value,
+            "",
+            _form?.querySelector('#contact-message-mini')?.value,
+            "",
+            "",
+            "contact-us"
+        ];
 
         const request_init:RequestInit = {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
             "body": JSON.stringify({
-                "records": [
-                    {
-                        "fields": body
-                    }
-                ]
+                "type": "mails",
+                "values": [body]
             }),
         };
         _temp = selectOne("#contact-mini .req-return.success");
@@ -52,21 +47,17 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
         // ].join('?'))
         // .catch(err => console.log(err));
         
-        let response = await (
+        await (
             await fetch(
-                `${process.env.AIRTABLE_MAILS}`,
+                `${process.env.INMODE_BACK}/api/set-datas`,
                 request_init
             )
-            .then((promise) => {
-                _log(promise);
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
+            .then((promise) => handlePromise(promise))
             .then((response) => {
                 _log(response);
                 let _temp:any = selectOne('#mini-contact-gif');
                 if(_temp) {_temp.style.display = 'none';}
-                if(response.records || (response.status === 'success' && response.type === 'client')) {
+                if(response.status == "success") {
                     _temp = selectOne('#contact-mini .submit');
                     _temp.removeAttribute('disabled');
                     _temp = selectOne('#contact-mini .req-return.success');
@@ -74,18 +65,12 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                     let _form = document.forms.namedItem('contact-mini');
                     _form && _form.reset();
                 }
-                if(response.status === 'fail' && response.type === 'client') {
-                    setSubmitText(response.message);
+                if(response.status === 'error') {
+                    setSubmitText(response.message ?? "Error while sending mail");
                     _temp = selectOne('#contact-mini .submit');
                     _temp.setAttribute('disabled', true);
                     _temp = selectOne('#contact-mini .req-return.success');
                     if(_temp) {_temp.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";}
-                }
-                if(response.status === 'fail' && response.type === 'server') {
-                    _temp = selectOne('#contact-mini .submit');
-                    _temp.setAttribute('disabled', true);
-                    _temp = selectOne('#contact-mini .req-return.error');
-                    if(_temp) {_temp.innerHTML = response.message;}
                 }
             })
             .catch(function(error) {
@@ -102,10 +87,18 @@ export const send_form_mini = async function(e:React.FormEvent<HTMLFormElement>,
                 }
             })
         );
-        _log(response);
-        // ).json()
 
-        click_pardot(body);
+        click_pardot({
+            "lastname": _form?.querySelector('[name="lastname"]')?.value,
+            "firstname": _form?.querySelector('[name="firstname"]')?.value,
+            "subject": _form?.querySelector('[name="subject"]')?.value,
+            "mail": _form?.querySelector('[name="mail"]')?.value,
+            "phone_number": _form?.querySelector('[name="phone"]')?.value,
+            "zip": _form?.querySelector('[name="zip"]')?.value,
+            "city": _form?.querySelector('[name="city"]')?.value,
+            "message": _form?.querySelector('#contact-message-mini')?.value,
+            "type": "contact-us"
+        });
     }
     catch(err) {
         _trace(err);
@@ -136,79 +129,54 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
             return false;
         }
         let _form:HTMLFormElement | null = document.forms.namedItem("full-contact-form");
-        let body:any = {
-            "lastname": _form?.querySelector('#lastname')?.value,
-            "firstname": _form?.querySelector('#firstname')?.value,
-            "company": _form?.querySelector('#company')?.value,
-            "subject": _form?.querySelector('#subject')?.value,
-            "mail": _form?.querySelector('#mail')?.value,
-            "phone_number": _form?.querySelector('#phone_number')?.value,
-            "address": _form?.querySelector('#address')?.value,
-            "zip": _form?.querySelector('#zip')?.value,
-            "city": _form?.querySelector('#city')?.value,
-            "country": _form?.querySelector('select[name="country"]')?.value,
-            "message": _form?.querySelector('#contact-message')?.value,
-            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]') ?? []).map(el => el?.checked ? el.name : null).filter(el => el),
-            "type": "full-contact"
-        };
-
-        _log(create_pardot_url(body));
+        let body:any = [
+            _form?.querySelector('#lastname')?.value,
+            _form?.querySelector('#firstname')?.value,
+            ((s) => `${s.slice(3, 6)}${s.slice(0, 3)}${s.slice(6)}`)(new Date().toLocaleString()),
+            _form?.querySelector('#company')?.value,
+            _form?.querySelector('#subject')?.value,
+            _form?.querySelector('#mail')?.value,
+            _form?.querySelector('#phone_number')?.value,
+            _form?.querySelector('#address')?.value,
+            _form?.querySelector('#zip')?.value,
+            _form?.querySelector('#city')?.value,
+            _form?.querySelector('select[name="country"]')?.value,
+            _form?.querySelector('#contact-message')?.value,
+            "",
+            Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]') ?? []).map(el => el?.checked ? el.name : null).filter(el => el).join(', '),
+            "full-contact"
+        ];
         
         const request_init:RequestInit = {
             method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
             "body": JSON.stringify({
-                "records": [
-                    {
-                        "fields": body
-                    }
-                ]
+                "type": "mails",
+                "values": [body]
             }),
         };
         
-        // fetch([
-        //     `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-        //     translate_fields_names(to_get_line(body, "contact"))
-        // ].join('?'))
-        // .catch(err => console.log(err));
-        
-        let response = await (
+        await (
             await fetch(
-                `${process.env.AIRTABLE_MAILS}`,
+                `${process.env.INMODE_BACK}/api/set-datas`,
                 request_init,
             )
-            .then((promise) => {
-                _log(promise);
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
+            .then((promise) => handlePromise(promise))
             .then((response) => {
                 _log(response);
                 on_success instanceof Function && on_success(response.status);
-                if(response.records || (response.status === 'success' && response.type === 'client')) {
+                if(response.status == "success") {
                     _submit && _submit.removeAttribute('disabled');
                     _submit = document.querySelector('#full-contact-form .req-return.success');
                     if(_submit) _submit.innerHTML = response.message ?? "Email was sent successfully";
                     let _form:HTMLFormElement | null = document.forms.namedItem('full-contact-form')
                     _form && _form.reset();
                 }
-                if(response.status === 'fail' && response.type === 'client') {
-                    setSubmitText(response.message);
+                if(response.status === 'error') {
+                    setSubmitText(response.message ?? "Error white sending mail");
                     let _success:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
                     if(_success) _success.disabled = true;
                     let _error:HTMLElement | null = document.querySelector('#full-contact-form .req-return.success');
                     if(_error) _error.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
-                }
-                if(response.status === 'fail' && response.type === 'server') {
-                    let _success:HTMLInputElement | null = document.querySelector('#full-contact-form .submit');
-                    if(_success) _success.disabled = true;
-                    let _error = document.querySelector('#full-contact-form .req-return.error');
-                    if(_error) _error.innerHTML = response.message;
                 }
                 document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
             })
@@ -226,10 +194,22 @@ export const send_form_large = async function(e:React.FormEvent<HTMLFormElement>
                 document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
             })
         );
-        _log(response);
-        // ).json()
         
-        click_pardot(body);
+        click_pardot({
+            "lastname": _form?.querySelector('#lastname')?.value,
+            "firstname": _form?.querySelector('#firstname')?.value,
+            "company": _form?.querySelector('#company')?.value,
+            "subject": _form?.querySelector('#subject')?.value,
+            "mail": _form?.querySelector('#mail')?.value,
+            "phone_number": _form?.querySelector('#phone_number')?.value,
+            "address": _form?.querySelector('#address')?.value,
+            "zip": _form?.querySelector('#zip')?.value,
+            "city": _form?.querySelector('#city')?.value,
+            "country": _form?.querySelector('select[name="country"]')?.value,
+            "message": _form?.querySelector('#contact-message')?.value,
+            "machines": Array.from(_form?.querySelectorAll('.tech-list input[type="checkbox"]') ?? []).map(el => el?.checked ? el.name : null).filter(el => el),
+            "type": "full-contact"
+        });
     }
     catch(err) {
         _trace(err);
@@ -276,14 +256,9 @@ export const send_sign_up = async function(e:React.FormEvent<HTMLFormElement>, s
         let response = await (
             await fetch(
                 `${process.env.INMODE_BACK}/api/mails`,
-                // `https://localhost:8000/api/mails`,
                 request_init,
             )
-            .then((promise) => {
-                _log(promise);
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
+            .then((promise) => handlePromise(promise))
             .then((response) => {
                 _log(response);
                 if(response.status === 'success' && response.type === 'client') {
@@ -321,8 +296,6 @@ export const send_sign_up = async function(e:React.FormEvent<HTMLFormElement>, s
                 }
             })
         );
-        _log(response);
-        // ).json()
     }
     catch(err) {
         _trace(err);
@@ -351,95 +324,91 @@ export const send_form_landing = async function(e:React.FormEvent<HTMLFormElemen
         if(document.forms.namedItem(`${from}-landing-contact-form`) == null) {
             return false;
         }
-        let _form:HTMLFormElement | null = document.forms.namedItem(`${from}-landing-contact-form`);
-        let body:any = {
-            "Name": _form?.querySelector('#Name')?.value,
-            "Email": _form?.querySelector('#Email')?.value,
-            "Phone": _form?.querySelector('#Phone')?.value,
-            "Company": _form?.querySelector('#Company')?.value,
-            "From": _form?.querySelector('#From')?.value,
-        };
 
-        // _log(create_pardot_url(body));
-        
-        const request_init:RequestInit = {
-            method: 'POST',
-            headers: {
-                "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                "content-type": "application/json"
-            },
-            mode: 'cors',
-            cache: 'default',
-            "body": JSON.stringify({
-                "records": [
-                    {
-                        "fields": body
+        let _form:HTMLFormElement | null = document.forms.namedItem(`${from}-landing-contact-form`);
+
+        fetch(
+            `${process.env.INMODE_BACK}/api/get-landing-signup`,
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    landing: _form?.querySelector('#From')?.value,
+                    mail: _form?.querySelector('#Email')?.value.toLowerCase()
+                })
+            }
+        )
+        .then((promise) => handlePromise(promise))
+        .then(async(response:{status:string, exist: boolean}) => {
+            _log(response);
+            if(response.exist) {
+                go_to("/thanks?a=1");
+                return;
+            }
+
+            let body:any = [
+                _form?.querySelector('#Name')?.value,
+                _form?.querySelector('#Email')?.value.toLowerCase(),
+                _form?.querySelector('#Phone')?.value,
+                _form?.querySelector('#Company')?.value,
+                _form?.querySelector('#From')?.value,
+                ((s) => `${s.slice(3, 6)}${s.slice(0, 3)}${s.slice(6, s.length - 3)}`)(new Date().toLocaleString()),
+            ];
+            
+            const request_init:RequestInit = {
+                method: 'POST',
+                "body": JSON.stringify({
+                    "type": "lp_forms",
+                    "values": [body]
+                }),
+            };
+    
+            await (
+                await fetch(
+                    `${process.env.INMODE_BACK}/api/set-datas`,
+                    request_init,
+                )
+                .then((promise) => handlePromise(promise))
+                .then((response) => {
+                    _log(response);
+                    if(response.status == "success") {
+                        on_success instanceof Function && on_success("success");
+                        _submit && _submit.removeAttribute('disabled');
+                        _submit = document.querySelector(`#${from}-landing-contact-form .req-return.success`);
+                        if(_submit) _submit.innerHTML = response.message ?? "Email was sent successfully";
+                        let _form:HTMLFormElement | null = document.forms.namedItem(`${from}-landing-contact-form`)
+                        _form && _form.reset();
                     }
-                ]
-            }),
-        };
-        
-        // fetch([
-        //     `${process.env.PARDOT_POINT?.replace('#date#', get_now_time())}`,
-        //     translate_fields_names(to_get_line(body, "contact"))
-        // ].join('?'))
-        // .catch(err => console.log(err));
-        
-        let response = await (
-            await fetch(
-                `${process.env.AIRTABLE_LANDING}`,
-                request_init,
-            )
-            .then((promise) => {
-                _log(promise);
-                return handlePromise(promise);
-            })
-            // .then(res => res.text())
-            .then((response) => {
-                _log(response);
-                if(response.records || (response.status === 'success' && response.type === 'client')) {
-                    on_success instanceof Function && on_success("success");
-                    _submit && _submit.removeAttribute('disabled');
-                    _submit = document.querySelector(`#${from}-landing-contact-form .req-return.success`);
-                    if(_submit) _submit.innerHTML = response.message ?? "Email was sent successfully";
-                    let _form:HTMLFormElement | null = document.forms.namedItem(`${from}-landing-contact-form`)
-                    _form && _form.reset();
-                }
-                if(response.status === 'fail' && response.type === 'client') {
-                    setSubmitText(response.message);
-                    on_success instanceof Function && on_success("fail");
+                    if(response.status === 'error') {
+                        setSubmitText(response.message ?? "An error happened during mail sending");
+                        on_success instanceof Function && on_success("fail");
+                        let _success:HTMLInputElement | null = document.querySelector(`#${from}-landing-contact-form .submit`);
+                        if(_success) _success.disabled = true;
+                        let _error:HTMLElement | null = document.querySelector(`#${from}-landing-contact-form .req-return.success`);
+                        if(_error) _error.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
+                    }
+                    document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
+                })
+                .catch(function(error) {
+                    _trace(error);
+                    on_error instanceof Function && on_error("error");
+                    setSubmitText("Contact issue");
                     let _success:HTMLInputElement | null = document.querySelector(`#${from}-landing-contact-form .submit`);
                     if(_success) _success.disabled = true;
                     let _error:HTMLElement | null = document.querySelector(`#${from}-landing-contact-form .req-return.success`);
-                    if(_error) _error.innerHTML = "An error sending the message has occurred. Try refreshing the page or contacting an administrator.";
-                }
-                if(response.status === 'fail' && response.type === 'server') {
-                    on_success instanceof Function && on_success("fail");
-                    let _success:HTMLInputElement | null = document.querySelector(`#${from}-landing-contact-form .submit`);
-                    if(_success) _success.disabled = true;
-                    let _error = document.querySelector(`#${from}-landing-contact-form .req-return.error`);
-                    if(_error) _error.innerHTML = response.message;
-                }
-                document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
-            })
-            .catch(function(error) {
-                _trace(error);
-                on_error instanceof Function && on_error("error");
-                setSubmitText("Contact issue");
-                let _success:HTMLInputElement | null = document.querySelector(`#${from}-landing-contact-form .submit`);
-                if(_success) _success.disabled = true;
-                let _error:HTMLElement | null = document.querySelector(`#${from}-landing-contact-form .req-return.success`);
-                if(_error) {
-                    _error.style.setProperty('white-space', 'normal');
-                    _error.innerHTML = "There had an issue during the mailing process. Please reload the page or use our mail : <a style=\"font-size: 15px; color: white; display: inline-block; font-weight: bold;\" href=\"mailto:neil.wolfenden@inmodemd.com\">neil.wolfenden@inmodemd.com</a>";
-                }
-                document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
-            })
-        );
-        _log(response);
-        // ).json()
-        
-        // click_pardot(body);
+                    if(_error) {
+                        _error.style.setProperty('white-space', 'normal');
+                        _error.innerHTML = "There had an issue during the mailing process. Please reload the page or use our mail : <a style=\"font-size: 15px; color: white; display: inline-block; font-weight: bold;\" href=\"mailto:neil.wolfenden@inmodemd.com\">neil.wolfenden@inmodemd.com</a>";
+                    }
+                    document?.getElementById("large_contact_submit_spinner")?.classList.remove('active');
+                })
+            );
+            return true;
+        })
+        .catch(function(error) {
+            _trace(error);
+            button.classList.remove('loading');
+        });
+
     }
     catch(err) {
         _trace(err);

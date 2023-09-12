@@ -39,7 +39,7 @@ export interface Airtable_Event_Interface {
     End?: string;
     Practitioner?: string;
     Slug?: string;
-    DisplayMachines?: boolean;
+    DisplayMachines?: "y"|"n";
     Address?: string;
     Place?: string;
     PlaceURL?: string;

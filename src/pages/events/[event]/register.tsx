@@ -11,19 +11,19 @@ const EventRegisterPage = (datas:EventRegisterPage) =>  {
     const [event, setEvent]:[Airtable_Event_Interface|undefined, React.Dispatch<Airtable_Event_Interface|undefined>] = React.useState();
     const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
 
-    const loadEvent = async function(offset:string|null = null, records:Airtable_Event_Interface[]|[] = [], __type:string|null = null) {
+    const loadEvent = async function() {
         await fetch(
-            `${process.env.AIRTABLE_EVENTS}?filterByFormula=AND({Slug}="${datas.event}")`,
-            {headers: new Headers({"Authorization" : `Bearer ${process.env.AIRTABLE_KEY}`})}
+            `${process.env.INMODE_BACK}/api/get-event`,
+            {method: 'POST', body: JSON.stringify({event: datas.event})}
         )
         .then(res => res.json())
-        .then((res:{records: {id: string, fields: Airtable_Event_Interface}[]}) => {
-            if(res.records.length == 0) {
+        .then((res:{status: string, datas: Airtable_Event_Interface[]|null}) => {
+            if((Object.values(res.datas ?? {})).length == 0) {
                 setLoading(false);
                 return false;
             }
             setLoading(false);
-            setEvent({...res.records[0].fields, id: res.records[0].id});
+            setEvent({...(Object.values(res.datas ?? {}))[0], id: (Object.values(res.datas ?? {}))[0].id ?? (Object.values(res.datas ?? {}))[0].Slug ?? undefined});
         })
         .catch(err => console.log(err));
     }
@@ -34,7 +34,7 @@ const EventRegisterPage = (datas:EventRegisterPage) =>  {
 
     React.useEffect(() => {
         if(datas.event != undefined) {
-            loadEvent(datas.event);
+            loadEvent();
         }
     }, []);
 

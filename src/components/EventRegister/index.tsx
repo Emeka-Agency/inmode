@@ -75,7 +75,7 @@ const EventRegister = ({ event, loading }:EventRegister) => {
                                 <input type="text" name="postcode" id="postcode" placeholder="Enter your postcode" required/>
                                 <label htmlFor="comment">Comments</label>
                                 <textarea rows={3} name="comment" id="comment" placeholder=""></textarea>
-                                {event?.DisplayMachines && <>
+                                {event?.DisplayMachines === "y" && <>
                                     <label htmlFor="machines">Devices interested in</label>
                                     <div id="machines">
                                         {products.map((product:InmodePanel_Product_Interface) => (

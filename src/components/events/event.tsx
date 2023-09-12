@@ -5,6 +5,7 @@ import randomString from "../../functions/randString";
 import { closeModale, openModale, signupEvent } from "../../functions/modale";
 import { useWindowSize } from "../../functions/window-size";
 import { _log } from "../../functions/logger";
+import { handlePromise, resolveImg } from "../../functions/tools";
 import { getById, selectOne } from "../../functions/selectors";
 
 const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current_page, isPast = false }:InmodeEvent) => {
@@ -85,33 +86,37 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
     };
 
     function signup_body() {
-        return Object.fromEntries([
-            ["Event", [selectOne('#event-participate-event-name')?.value]],
-            ...Object.keys(records).map(record => [
-                records[record].field_name, selectOne(records[record].element)[records[record].value] ?? null
-            ])
-        ]);
+        return [
+            selectOne(`#${selectOne('#event-participate-event-name')?.value.split('_')[0]}_title`)?.innerText,
+            selectOne(records["salutation"].element)[records["salutation"].value],
+            selectOne(records["firstname"].element)[records["firstname"].value],
+            selectOne(records["surname"].element)[records["surname"].value],
+            selectOne(records["email"].element)[records["email"].value],
+            selectOne(records["contact_number"].element)[records["contact_number"].value],
+            selectOne(records["speciality"].element)[records["speciality"].value],
+            selectOne(records["clinic_name"].element)[records["clinic_name"].value],
+            "",
+            selectOne(records["clinic_location"].element)[records["clinic_location"].value],
+            selectOne(records["is_doctor"].element)[records["is_doctor"].value] ? "y" : "n",
+            "",
+            "n",
+            selectOne('#event-participate-event-slug')?.value,
+        ];
     }
 
+    // TODO - Ajouter un loading gif et un retour
     async function save_signup() {
         await fetch(
-            `${process.env.AIRTABLE_EVENT_SIGNUP}`,
+            `${process.env.INMODE_BACK}/api/set-datas`,
             {
                 method: "POST",
-                headers: {
-                    "Authorization": `Bearer ${process.env.AIRTABLE_KEY}`,
-                    "content-type": "application/json"
-                },
                 body: JSON.stringify({
-                    records: [
-                        {
-                            fields: signup_body()
-                        }
-                    ]
+                    "type": "events_signup",
+                    "values": [signup_body()]
                 })
             }
         )
-        .then(res => res.json())
+        .then(promise => handlePromise(promise))
         .then(res => _log(res))
         .catch(err => _log(err))
     }
@@ -180,9 +185,10 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         }
     }
 
-    function join_event(e:React.MouseEvent<HTMLDivElement, MouseEvent>, event_name?:string) {
+    function join_event(e:React.MouseEvent<HTMLDivElement, MouseEvent>, event_name?:string, event_slug?:string) {
         openModale(signupEvent({
             event_name: event_name,
+            event_slug: event_slug,
             onOpen: () => {
                 // CONTAINER
                 let form = document.querySelector('#event-signup');
@@ -325,7 +331,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                         {event.EventType === "Tradeshow" && "Tradeshows"}
                     </div>
                 }
-                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, givenId)}>
+                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, givenId, event.Slug)}>
                     SIGN UP
                 </div>}
             </div>
