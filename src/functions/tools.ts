@@ -329,26 +329,23 @@ export const resolveExternalImgSet = (img?:GatsbyImage_Interface):string|undefin
     return retour;
 }
 
-export function handlePromise(promise:Response) {
-    _log("handlePromise");
+export const handlePromise = (promise:Response, type?:string) => {
     let retour = null;
+    type = typeof type == "string" ? type : "json";
     try {
-        _log("Try json()");
-        retour = promise.json();
+        retour = promise[["json", "text", "blob"].indexOf(type ?? "json") >= 0 ? type : "json"]();
     }
-    catch(err_json) {
+    catch(err_json:any) {
         _log(err_json);
         try {
-            _log("Try text()");
             retour = promise.text();
         }
-        catch(err_text) {
+        catch(err_text:any) {
             _log(err_text);
             try {
-                _log("Try blob()");
                 retour = promise.blob();
             }
-            catch(err_blob) {
+            catch(err_blob:any) {
                 _log(err_blob);
                 retour = null;
             }
