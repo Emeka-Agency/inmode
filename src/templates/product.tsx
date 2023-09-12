@@ -11,6 +11,7 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
+import { color_variant } from '../functions/tools';
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
 
@@ -37,10 +38,24 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'list_title': 'avantages',
                         'list_icon': 'key_benefit',
                         'anchor_key': 'key-benefits',
-                        'variant': datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"
+                        'variant': color_variant(datas.Name)
                     }}
                 />
-                <Addons datas={{'addons': datas.Addons, id: datas.strapiId}} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
+                <Addons
+                    datas={{
+                        'addons': ["empowerrf"].indexOf((datas.Name ?? "").toLowerCase()) < 0 ? datas.Addons : [
+                            datas.Addons.filter(el => el.Name == "Morpheus8V")[0] ?? null,
+                            datas.Addons.filter(el => el.Name == "FormaV")[0] ?? null,
+                            datas.Addons.filter(el => el.Name == "ToneV")[0] ?? null,
+                            datas.Addons.filter(el => el.Name == "Aviva")[0] ?? null,
+                            datas.Addons.filter(el => el.Name == "Morpheus8")[0] ?? null,
+                            datas.Addons.filter(el => el.Name == "EvolveX Tone")[0] ?? null
+                        ].filter(el => el),
+                        id: datas.strapiId
+                    }}
+                    variant={color_variant(datas.Name)}
+                    product_name={datas.Name}
+                />
                 <ProductDemo datas={datas.Demo}/>
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
