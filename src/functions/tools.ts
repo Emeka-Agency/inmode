@@ -16,7 +16,7 @@ export function avoirRelativeURL() {
 };
 
 export function get_url_params() {
-    if(typeof window != undefined) {
+    if(typeof window != "undefined") {
         return {
             pathname: get_url_pathname(),
             search: get_url_search(true),
@@ -31,15 +31,15 @@ export function get_url_params() {
 // protocol + :// + host + pathname + search + hash
 // protocol + :// + hostname + port + pathname + search + hash
 
-export function get_url_port() {if(typeof window != undefined) {return window?.location.port;}else {return {};}};
-export function get_url_pathname() {if(typeof window != undefined) {return window?.location.pathname;}else {return {};}};
+export function get_url_port() {if(typeof window != "undefined") {return window?.location.port;}else {return {};}};
+export function get_url_pathname() {if(typeof window != "undefined") {return window?.location.pathname;}else {return {};}};
 export function get_url_search(as_array = true) {
-    if(typeof window != undefined) {
+    if(typeof window != "undefined") {
         return as_array ? Object.fromEntries(window?.location.search.replace('?', '').split('&').map(elem => elem.split('='))) : window?.location.search;
     }
     else {return {};}
 };
-export function get_url_hash() {if(typeof window != undefined) {return window?.location.hash;}else {return {};}};
+export function get_url_hash() {if(typeof window != "undefined") {return window?.location.hash;}else {return {};}};
 
 export function url_from_params(_params:any) {
     if(!(_params instanceof Object)) {
