@@ -147,6 +147,7 @@ interface Addons {
     };
     sensible?: boolean;
     variant?: string;
+    product_name: string;
 };
 
 export default Addons;
