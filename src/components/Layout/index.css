@@ -4972,7 +4972,7 @@ input[type="submit"].neumorphic:hover,
 }
 
 .addon-banner .addon-banner-details .addon-banner-logo {
-    width: auto;
+    max-width: 100%;
     max-height: 100px;
 }
 
