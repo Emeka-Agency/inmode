@@ -24,7 +24,7 @@ const FollowInstagram = ({insta_id}:FollowInstagram) => {
                                 src={`https://inmodemd.fr/public/instagram/${index}.jpg`}
                                 alt={`insta-${key + 1}`}
                             />
-                            <a href="https://www.instagram.com/inmodeaesthetics/" className="absolute-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
+                            <a href="https://www.instagram.com/inmode.france" className="absolute-link" target="_blank" rel="noreferrer" title="Suivez Inmode sur Instagram"></a>
                         </div>
                     );
                 })}
