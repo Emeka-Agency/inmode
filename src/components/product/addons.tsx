@@ -98,7 +98,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                     addon.sensitivity ?
                                         <Sensible from="product-addons"/>
                                         :
-                                        <NoPicture from ="product-addons"/>
+                                        (['empowerrf'].indexOf(product_name.toLowerCase()) < 0 ? <NoPicture from ="product-addons"/> : <></>)
                                     :
                                     images.length === 1 ?
                                         <img
