@@ -6542,6 +6542,7 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     line-height: 28px;
     vertical-align: baseline;
     margin: 0 auto;
+    padding-top: 10px;
     padding-bottom: 30px;
     white-space: break-spaces;
 }
