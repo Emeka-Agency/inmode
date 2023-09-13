@@ -341,9 +341,9 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                         {event.EventType === "Tradeshow" ? "Tradeshows" : ''}
                     </div>
                 }
-                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 && <div className="event-signup" onClick={e => join_event(e, givenId, event.Slug)}>
+                {["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? <div className="event-signup" onClick={e => join_event(e, givenId, event.Slug)}>
                     SIGN UP
-                </div>}
+                </div> : <></>}
             </div>
             <div className={`${givenId}-dates event-dates`}>
                 {getDate(event.Start, event.End)}
