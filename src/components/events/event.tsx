@@ -324,12 +324,16 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
         <div id={givenId} className={`inmode-event ${event.EventType}${has_card ? ' has_card' : ''} ${has_card ? "event-page" : "not-event-page" }`}>
             <div className="event-topband">
                 {has_card && event.EventType &&
-                    <div title={((type) => {
-                        if(type === "Conference") {return "Conferences";}
-                        if(type === "Workshop") {return "Workshops";}
-                        if(type === "Webinar") {return `Webinar : ${event.Addons}`;}
-                        if(type === "Tradeshow") {return "Tradeshows";}
-                    })(event.EventType)} className={`top-card ${prop_key === 0 ? 'left' : 'left'}`} style={["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? {} : {borderRadius: "13px 13px 13px 0"}}>
+                    <div
+                        title={((type) => {
+                            if(type === "Conference") {return "Conferences";}
+                            if(type === "Workshop") {return "Workshops";}
+                            if(type === "Webinar") {return `Webinar : ${event.Addons}`;}
+                            if(type === "Tradeshow") {return "Tradeshows";}
+                        })(event.EventType)}
+                        className={`top-card ${prop_key === 0 ? 'left' : 'left'} ${["Workshop", "Webinar"].indexOf(event.EventType ?? "") < 0 ? 'no-signup' : 'with-signup'}`}
+                        style={["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? {} : {borderRadius: "13px 13px 13px 0"}}
+                    >
                         {event.EventType === "Conference" ? "Conferences" : ''}
                         {event.EventType === "Workshop" ? "Workshops" : ''}
                         {event.EventType === "Webinar" ? "Webinar : " : ''}
