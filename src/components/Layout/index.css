@@ -5422,8 +5422,14 @@ input[type="submit"].neumorphic:hover,
     font-size: 25px;
     line-height: 30px;
     text-align: center;
-    padding-bottom: 30px;
+    padding-bottom: 8px;
     text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .addon-what-treat .treats .treat-part .it-treats {
+        padding-bottom: 30px;
+    }
 }
 
 .addon-what-treat .treats .treat-part .treat-descr {
