@@ -91,7 +91,7 @@ interface Layout {
     children: ReactNode;
     title: string;
     variant?: string;
-    rest: Object;
+    rest?: Object;
 };
 
 export default Layout
