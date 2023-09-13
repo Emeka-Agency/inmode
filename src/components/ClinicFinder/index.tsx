@@ -10,6 +10,7 @@ import { element, instanceOf } from 'prop-types';
 import { _error, _log } from '../../functions/logger';
 import ClinicsClinicalFinder from './clinics';
 import MapClinicalFinder from './map';
+import { handlePromise } from '../../functions/tools';
 
 const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
 
