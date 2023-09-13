@@ -4560,6 +4560,7 @@ input[type="submit"].neumorphic:hover,
     max-width: 100%;
     margin: 0 auto;
     display: block;
+    height: 192px;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-title {
