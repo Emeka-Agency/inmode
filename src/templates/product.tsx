@@ -11,11 +11,42 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
-import { color_variant } from '../functions/tools';
+import { color_variant, resolveImg } from '../functions/tools';
+import AddonVideos from '../components/addon/videos';
+import { useImages } from '../components/contexts/images-provider';
+
+const VIDS = {
+  "EmpowerRF": [
+    {url: "https://www.youtube.com/watch?v=FkUrCF7uAzE", poster: "empowerRFPromoPoster"},
+    {url: "https://back.inmode.emeka.fr/vids/inmode-empowerrf-promo.mp4", poster: ""}
+  ],
+};
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
+
+    const images = useImages();
+
+    function special_videos(__name?:string) {
+      if(typeof __name != "string") {return <></>;}
+
+      if(__name in VIDS) {
+        return <AddonVideos
+          videos={VIDS[__name].map(vid => 
+            ({
+              'url': vid.url,
+              'poster': {localFile: images.get_one(vid.poster)}
+            })
+          )}
+          title=""
+          name={__name}
+          sensible={false}
+        />
+      }
+
+      return <></>;
+    }
 
     return (
             <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"} rest={{"data-addon": datas.Name}}>
@@ -41,6 +72,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'variant': color_variant(datas.Name)
                     }}
                 />
+                {special_videos(datas.Name)}
                 <Addons
                     datas={{
                         'addons': ["empowerrf"].indexOf((datas.Name ?? "").toLowerCase()) < 0 ? datas.Addons : [

@@ -166,6 +166,10 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             redTrash: file(relativePath: {eq: "icons/red-trash.svg"}) {
                 ...FileImgFormat
             }
+
+            empowerRFPromoPoster: file(relativePath: {eq: "products/empowerrf/promo-video-poster.jpg"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
@@ -310,6 +314,8 @@ interface ImagesList {
     gatsbyAstronaut: GatsbyImage_Interface;
     whiteTrash: GatsbyImage_Interface;
     redTrash: GatsbyImage_Interface;
+
+    empowerRFPromoPoster: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
