@@ -30,10 +30,10 @@ const CARD = 'card';
 
 // IMPORTANT - Créer une fonction qui renvoie un appel de base <Menu .../> ou un <ul><Menu .../></ul> selon le besoin
 // CURRENT - Créer une fonction qui renvoie un appel de base <Menu .../> ou un <ul><Menu .../></ul> selon le besoin
-// menu.variant === CONTENT && menu.type === TEXT
-// menu.variant === CONTENT && menu.type === IMAGE
-// menu.variant === CONTENT && menu.type === BUTTON
-// menu.variant === CONTENT && menu.type === CARD
+// menu?.variant === CONTENT && menu?.type === TEXT
+// menu?.variant === CONTENT && menu?.type === IMAGE
+// menu?.variant === CONTENT && menu?.type === BUTTON
+// menu?.variant === CONTENT && menu?.type === CARD
 
 const Menu = ({menu, prop_key, openOnClick}:Menu) => {
 
@@ -41,80 +41,80 @@ const Menu = ({menu, prop_key, openOnClick}:Menu) => {
 
     // if(menu.url == "/testimonials") {return null;}
 
-    if(menu.variant === SINGLE && menu.type === TEXT) {
+    if(menu?.variant === SINGLE && menu?.type === TEXT) {
         return (<MenuSingleText key={prop_key} prop_key={prop_key} menu={menu}/>);
     }
-    else if(menu.variant === SINGLE && menu.type === IMAGE) {
+    else if(menu?.variant === SINGLE && menu?.type === IMAGE) {
         return (<MenuSingleImage key={prop_key} prop_key={prop_key} menu={menu}/>);
     }
-    else if(menu.variant === SINGLE && menu.type === BUTTON) {
+    else if(menu?.variant === SINGLE && menu?.type === BUTTON) {
         return (<MenuSingleButton key={prop_key} prop_key={prop_key} menu={menu}/>);
     }
-    // else if(menu.variant === SINGLE && menu.type === CARD) {
+    // else if(menu?.variant === SINGLE && menu?.type === CARD) {
     //     return (<MenuSingleCard key={prop_key} prop_key={prop_key} menu={menu}/>);
     // }
-    else if(menu.variant === TITLE && menu.type === TEXT) {
+    else if(menu?.variant === TITLE && menu?.type === TEXT) {
         return (<MenuTitleText key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     }
-    else if(menu.variant === TITLE && menu.type === IMAGE) {
+    else if(menu?.variant === TITLE && menu?.type === IMAGE) {
         return (<MenuTitleImage key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     }
-    else if(menu.variant === TITLE && menu.type === BUTTON) {
+    else if(menu?.variant === TITLE && menu?.type === BUTTON) {
         return (<MenuTitleButton key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     }
-    else if(menu.variant === TITLE && menu.type === CARD) {
+    else if(menu?.variant === TITLE && menu?.type === CARD) {
         return (<MenuTitleCard key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     }
-    else if(menu.variant === CONTENT && menu.type === TEXT) {
+    else if(menu?.variant === CONTENT && menu?.type === TEXT) {
         return (
             <li key={prop_key}>
                 <MenuContentText key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>
             </li>
         );
     }
-    else if(menu.variant === CONTENT && menu.type === IMAGE) {
+    else if(menu?.variant === CONTENT && menu?.type === IMAGE) {
         return (
             <li key={prop_key}>
                 <MenuContentImage key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>
             </li>
         );
     }
-    else if(menu.variant === CONTENT && menu.type === BUTTON) {
+    else if(menu?.variant === CONTENT && menu?.type === BUTTON) {
         return (
             <li key={prop_key}>
                 <MenuContentButton key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>
             </li>
         );
     }
-    else if(menu.variant === CONTENT && menu.type === CARD) {
+    else if(menu?.variant === CONTENT && menu?.type === CARD) {
         return (
             <li key={prop_key}>
                 <MenuContentCard key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>
             </li>
        );
     }
-    else if(menu.variant === DK_TITLE && menu.type === TEXT) {
+    else if(menu?.variant === DK_TITLE && menu?.type === TEXT) {
         return (<MenuDKTitleText key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     }
-    // else if(menu.variant === DK_TITLE && menu.type === IMAGE) {
+    // else if(menu?.variant === DK_TITLE && menu?.type === IMAGE) {
     //     return (<MenuDKTitleImage key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     // }
-    // else if(menu.variant === DK_TITLE && menu.type === BUTTON) {
+    // else if(menu?.variant === DK_TITLE && menu?.type === BUTTON) {
     //     return (<MenuDKTitleButton key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     // }
-    // else if(menu.variant === DK_TITLE && menu.type === CARD) {
+    // else if(menu?.variant === DK_TITLE && menu?.type === CARD) {
     //     return (<MenuDKTitleCard key={prop_key} prop_key={prop_key} menu={menu} openOnClick={openOnClick}/>);
     // }
-    else if(menu.variant === SIDE_MENU && menu.type === TEXT) {
+    else if(menu?.variant === SIDE_MENU && menu?.type === TEXT) {
         return (<MenuSideMenuText key={prop_key} prop_key={prop_key} menu={menu}/>);
     }
-    // else if(menu.variant === SIDE_MENU && menu.type === IMAGE) {
+    // else if(menu?.variant === SIDE_MENU && menu?.type === IMAGE) {
     //     return (<MenuSideMenuImage key={prop_key} prop_key={prop_key} menu={menu}/>);
     // }
-    // else if(menu.variant === SIDE_MENU && menu.type === BUTTON) {
+    // else if(menu?.variant === SIDE_MENU && menu?.type === BUTTON) {
     //     return (<MenuSideMenuButton key={prop_key} prop_key={prop_key} menu={menu}/>);
     // }
-    // else if(menu.variant === SIDE_MENU && menu.type === CARD) {
+    // else if(menu?.variant === SIDE_MENU && menu?.type === CARD) {
     //     return (<MenuSideMenuCard key={prop_key} prop_key={prop_key} menu={menu}/>);
     // }
     else {
