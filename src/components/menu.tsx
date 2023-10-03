@@ -37,6 +37,8 @@ const CARD = 'card';
 
 const Menu = ({menu, prop_key, openOnClick}:Menu) => {
 
+    if(menu == null) {return <></>;}
+
     // if(menu.url == "/testimonials") {return null;}
 
     if(menu.variant === SINGLE && menu.type === TEXT) {
