@@ -335,7 +335,7 @@ export interface  InmodePanel_SellingNext_Interface {
         url?: string;
         poster?: {
             localFile: GatsbyImage_Interface;
-        };
+        } | string;
     };
     export interface InmodePanel_Addon_WhatTreat_Interface {
         picture?: {

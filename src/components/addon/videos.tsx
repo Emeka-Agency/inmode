@@ -92,10 +92,10 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                       onMouseUp={(e) => {resolveVideoClick(e, video.url || '');}}
                       onClick={(e) => {resolveVideoClick(e, video.url || '');}}
                     >
-                      <img
-                        src={resolveImg(video.poster)}
+                      {video.poster ? <img
+                        src={typeof video.poster == "string" ? resolveImg(images.get_one(video.poster)) : resolveImg(video.poster)}
                         alt={`addon-videos-${key}`}
-                      />
+                      /> : <></>}
                       <span className="video-bg"></span>
                       <span className="video-play-btn"></span>
                     </div>
@@ -117,10 +117,10 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
                           onClick={(e) => {resolveVideoClick(e, video.url || '');}}
                           key={key}
                         >
-                          <img
-                            src={resolveImg(video.poster)}
+                          {video.poster ? <img
+                            src={typeof video.poster == "string" ? resolveImg(images.get_one(video.poster)) : resolveImg(video.poster)}
                             alt={`addon-videos-${key}`}
-                          />
+                          /> : <></>}
                           <span className="video-bg"></span>
                           <span className="video-play-btn"></span>
                         </div>
