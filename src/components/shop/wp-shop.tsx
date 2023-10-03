@@ -34,21 +34,21 @@ const WPShop = ({ products, special, shop_card }:WPShop) => {
             {/* ///////////////////////////////////////// */}
             {products instanceof Array && products.map((group:InmodePanel_ShopGroup_Interface, group_key) => {
                 if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
-                return (
-                    <div key={group_key} className="shop-addon">
-                    <div className="addon-name user-select-none">{group.fieldValue}</div>
-                    {group.nodes.map((product, key) => {
-                        return (
-                            <ShopProduct2
-                                key={`${group_key}-${key}`}
-                                product={product}
-                                special={special}
-                                wp_id={product.wp_id || -1}
-                            />
-                        );
-                    })}
-                    </div>
-                );
+                    return (
+                        <div key={group_key} className="shop-addon">
+                        <div className="addon-name user-select-none">{group.fieldValue}</div>
+                        {group.nodes.map((product, key) => {
+                            return (
+                                <ShopProduct2
+                                    key={`${group_key}-${key}`}
+                                    product={product}
+                                    special={special}
+                                    wp_id={product.wp_id || -1}
+                                />
+                            );
+                        })}
+                        </div>
+                    );
                 }
                 return <></>;
             })}
