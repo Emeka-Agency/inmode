@@ -12,6 +12,8 @@ const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:Vid
         return <></>;
     }
 
+    const [noTestimonials, setNoTestimonials]:[boolean, React.Dispatch<boolean>] = React.useState(false);
+
     const [current, setCurrent]:[number, React.Dispatch<number>] = React.useState(-1);
     const [flickityOptions, setFlickityOptions]:[FlickityOptions_Interface, React.Dispatch<FlickityOptions_Interface>] = React.useState({
         initialIndex: current === -1 ? 0 : current,
@@ -24,13 +26,39 @@ const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:Vid
         // autoPlay: false
     });
 
+    React.useEffect(() => {
+
+    }, [noTestimonials]);
+
+    if(noTestimonials === true) {
+        return <></>;
+    }
+
     return (
         <section id={vt_id ?? null} className="video-testimonials">
             <div className="title">Customer testimonials</div>
             <div className="descr">Discover what our clients say about our products and events.</div>
             <div className="testimonials">
-                {testimonials.map((testimonial, index_testimonial) => (
-                    <div className="video-testimonial" key={index_testimonial}>
+                {noTestimonials ? <h1 style={{fontSize: 24}}>No current video testimonials</h1> : testimonials.map((testimonial, index_testimonial) => (
+                    <div className="video-testimonial" data-testimonial={index_testimonial + 1} key={index_testimonial}>
+                        <img
+                            style={{visibility: "hidden"}}
+                            src={typeof testimonial.poster == "string" ? testimonial.poster : resolveImg(testimonial.poster)}
+                            onLoad={function(e) {
+                                if(typeof document == "undefined") {return false;}
+                                let elem = document.querySelector(`.video-testimonials .testimonials .video-testimonial[data-testimonial="${index_testimonial + 1}"]`)
+                                if(!(elem instanceof HTMLElement)) {return false;}
+                                if((e.target.width ?? 0) <= 120) {
+                                    elem.style.setProperty('display', 'none');
+                                    if(Array.from(document.querySelectorAll(`.video-testimonials .testimonials .video-testimonial[data-testimonial][style]`)).length == testimonials.length) {
+                                        setNoTestimonials(true);
+                                    }
+                                }
+                                else {
+                                    elem.style.removeProperty('display');
+                                }
+                            }}
+                        />
                         <Video className="testimonial-video" few={false} video={{url: testimonial.url, poster: testimonial.poster, poster_link: "external"}} key={null}/>
                         <div className="client">{[testimonial.name, testimonial.type].join('')}</div>
                         <div className="origin">{testimonial.origin}</div>
