@@ -5122,14 +5122,24 @@ input[type="submit"].neumorphic:hover,
     max-width: 1170px;
     margin: 0 auto;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
 }
 
 .videos-slide .videos-container.few .few-videos {
-    flex: 1;
+    flex: 1 1;
     max-width: calc(100% / 3);
     text-align: center;
     margin: 0 auto;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.videos-slide .videos-container img {
+    width: 100%;
 }
 
 /* @media (max-width: 768px) { */
