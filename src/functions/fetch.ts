@@ -56,13 +56,11 @@ const _fetch = (
         .then((response) => {
             if(response.status == "error") {
                 if(_onError != null) {
-                    _onError(_elem, response);
                     _onError(_elem, response, status);
                 }
                 throw new Error(response.message ?? "Error");
             }
             if(_onSuccess != null) {
-                _onSuccess(_elem, response);
                 _onSuccess(_elem, response, status);
                 return true;
             }
