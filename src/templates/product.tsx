@@ -11,14 +11,13 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
-import { color_variant, resolveImg } from '../functions/tools';
+import { color_variant } from '../functions/tools';
 import AddonVideos from '../components/addon/videos';
-import { useImages } from '../components/contexts/images-provider';
 
 const VIDS = {
   "EmpowerRF": [
     {url: "https://www.youtube.com/watch?v=FkUrCF7uAzE", poster: "empowerRFPromoPoster"},
-    {url: "https://back.inmode.emeka.fr/vids/inmode-empowerrf-promo.mp4", poster: ""}
+    {url: "https://back.inmode.emeka.fr/vids/inmode-empowerrf-promo.mp4", poster: "empowerRFMachinePoster"}
   ],
 };
 
@@ -26,9 +25,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
-    const images = useImages();
-
-    function special_videos(__name?:string) {
+    const special_videos = (__name?:string) => {
       if(typeof __name != "string") {return <></>;}
 
       if(__name in VIDS) {
@@ -36,7 +33,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
           videos={VIDS[__name].map(vid => 
             ({
               'url': vid.url,
-              'poster': {localFile: images.get_one(vid.poster)}
+              'poster': vid.poster
             })
           )}
           title={__name + " videos"}
