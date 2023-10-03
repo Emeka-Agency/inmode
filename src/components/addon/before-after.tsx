@@ -18,6 +18,10 @@ const AddonBeforeAfter = ({ datas, sensible = false }:AddonBeforeAfter) => {
         percentPosition: false,
     });
 
+    if(datas?.length == 0) {
+        return <></>;
+    }
+
     return (
         <div id="before-after" className="before-after">
             <div className="title">
