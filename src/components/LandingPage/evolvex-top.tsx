@@ -2,7 +2,6 @@ import React from "react";
 
 import "./evolvex-top.css";
 import LoadingGIF from "../LoadingGIF";
-import Video from "../Video";
 import { send_form_landing } from "../Contact/contact";
 import { useImages } from "../contexts/images-provider";
 import { go_to } from "../../functions/tools";

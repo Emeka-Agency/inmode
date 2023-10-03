@@ -2,7 +2,6 @@ import React from "react";
 
 import "./empower-top.css";
 import LoadingGIF from "../LoadingGIF";
-import Video from "../Video";
 import { send_form_landing } from "../Contact/contact";
 import { go_to } from "../../functions/tools";
 

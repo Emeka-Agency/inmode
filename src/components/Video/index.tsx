@@ -17,7 +17,7 @@ const Video = ({ video = {}, few = false, key = null, ...props }:Video) => {
     }
 
     React.useEffect(() => {
-        if (video.poster_ratio) {
+        if(video.poster_ratio) {
             setRatio(video.poster_ratio);
         }
         else if(video.poster_link == "external" && typeof video.poster == "string") {

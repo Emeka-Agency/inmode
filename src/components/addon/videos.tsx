@@ -1,14 +1,11 @@
 import React from "react";
 import Carousel from "../Carousel";
 import Video from "../Video";
-import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Addon_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
 const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:AddonVideos) => {
-
-  const images = useImages();
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
