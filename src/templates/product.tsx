@@ -39,7 +39,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
               'poster': {localFile: images.get_one(vid.poster)}
             })
           )}
-          title=""
+          title={__name + " videos"}
           name={__name}
           sensible={false}
         />
