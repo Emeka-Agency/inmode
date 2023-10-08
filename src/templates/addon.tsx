@@ -19,6 +19,14 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
 
     const [datas]:[InmodePanel_Addon_Interface, React.Dispatch<InmodePanel_Addon_Interface>] = React.useState(data.strapiAddon);
 
+    const __special__ = (name?:string) => {
+        if(typeof name != "string") {return <></>;}
+
+        if(name == "Morpheus8") {
+            return <h2 style={{textAlign: "center", marginTop: "32px", fontWeight: "bold", color: "var(--teal)", fontSize: "32px"}}>Pour un remodelage en profondeur du derme et de l’hypoderme</h2>
+        }
+    }
+
     return (
             <Layout title="addon" variant={color_variant(datas.Name)} rest={{"data-addon": datas.Name}}>
                 <SEO lang="fr" title="Addon"/>
@@ -31,6 +39,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                     }}
                     variant={color_variant(datas.Name)}
                 />
+                {__special__(datas.Name)}
                 <GenericDetails datas={{
                     'name': datas.Name,
                     'list': datas.KeyBenefits,
