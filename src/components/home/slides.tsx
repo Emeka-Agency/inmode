@@ -27,7 +27,7 @@ const Slides = ({from}:Slides) => {
         // autoPlay: false
     });
 
-    const [slides]:[InmodePanel_Product_Interface[], React.Dispatch<InmodePanel_Product_Interface[]>] = React.useState(React.useContext(ProductsContext).products);
+    const [slides]:[InmodePanel_Product_Interface[], React.Dispatch<InmodePanel_Product_Interface[]>] = React.useState(React.useContext(ProductsContext).products.filter(p => p.Name != "Morpheus8"));
 
     const view_detail = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, key: number | string) => {
         

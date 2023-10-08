@@ -6,7 +6,7 @@ import { resolveImg, resolveImgSet } from "../../functions/tools";
 
 const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
 
-    const [products] = React.useState(React.useContext(ProductsContext).products);
+    const [products] = React.useState(React.useContext(ProductsContext).products.filter(p => p.Name != "Morpheus8"));
 
     return (
         <div className={`slides-mini-${from}`}>
