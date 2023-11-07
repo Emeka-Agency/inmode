@@ -5,7 +5,7 @@ const GetInTouch = ({ from }:GetInTouch) => {
     return (
         <div className={`get-in-touch main-container ${from}`}>
             <div className="text user-select-none">
-                Get in touch
+                Contactez-nous
             </div>
             <hr/>
         </div>

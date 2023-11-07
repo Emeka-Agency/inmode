@@ -5229,7 +5229,7 @@ input[type="submit"].neumorphic:hover,
 }
 
 .videos-slide .carousel-videos .poster.video img {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 }

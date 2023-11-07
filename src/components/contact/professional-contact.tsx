@@ -9,7 +9,7 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                 </div>
                 <hr/>
                 <div className="descr user-select-none">
-                InMode est une entreprise innovante qui ne cesse d’évoluer, avec des possibilités de croissance continue. Nous sommes toujours à la recherche de bons candidats pour rejoindre notre équipe. Si vous souhaitez rejoindre l’équipe InMode, veuillez envoyer une lettre de motivation ainsi que votre CV à <a href="mailto:hr@inmodemd.com">hr@inmodemd.com</a>.
+                InMode est une entreprise innovante qui ne cesse d’évoluer, avec des possibilités de croissance continue. Nous sommes toujours à la recherche de bons candidats pour rejoindre notre équipe. Si vous souhaitez rejoindre l’équipe InMode, veuillez envoyer une lettre de motivation ainsi que votre CV à <a href="mailto:contact.fr@inmodemd.com">contact.fr@inmodemd.com</a>.
                 </div>
             </div>
             <div className="around-the-world">
@@ -33,7 +33,7 @@ const ProfessionalContact = ({ from }:ProfessionalContact) => {
                             //     'mail': 'apac@inmodemd.com'
                             // }
                             {
-                                'place': 'Inmode France',
+                                'place': 'InMode France',
                                 'mail': 'contact.fr@inmodemd.com'
                             }
                         ].map((distributor, key) => {

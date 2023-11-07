@@ -15,6 +15,10 @@ import { InmodePanel_Addon_Interface } from '../components/interfaces';
 import rand_token from '../functions/rand_token';
 import { color_variant } from '../functions/tools';
 
+// M8 Vids 1 : https://www.youtube.com/watch?v=_a2FmrUngDU
+// M8 Vids 2 : https://www.youtube.com/watch?v=slrvvo2zlNs
+// M8 Vids 3 : https://www.youtube.com/watch?v=2lLZhWjvLLw
+
 const AddonTemplates = ({ data }:AddonTemplates) => {
 
     const [datas]:[InmodePanel_Addon_Interface, React.Dispatch<InmodePanel_Addon_Interface>] = React.useState(data.strapiAddon);
