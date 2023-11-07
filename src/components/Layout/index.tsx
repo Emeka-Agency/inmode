@@ -16,6 +16,7 @@ import ArticleProvider from "../contexts/article-provider";
 import "./index.css";
 import { selectOne } from "../../functions/selectors";
 import { strToDom } from "../../functions/tools";
+import { Script } from "gatsby";
 
 
 const Layout = ({ children, title, classes = [] }:Layout) => {
@@ -43,16 +44,53 @@ const Layout = ({ children, title, classes = [] }:Layout) => {
 
         gtag('config', 'G-JFS1WVR7JQ');
     }
+    function meta_pixel(f,b,e,v,n,t,s) {
+        if(!f)return;
+        if(!b)return;
+        if(f.fbq)return;
+        n = f.fbq = function() {
+            n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+        };
+        if(!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = '2.0';
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)
+    }
+
+    const script_meta_pixel = function() {
+        if(typeof window == "undefined") {return;}
+        if(typeof document == "undefined") {return;}
+        !meta_pixel(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        typeof window?.fbq == "function" && window?.fbq('init', '194476770337529');
+        typeof window?.fbq == "function" && window?.fbq('track', 'PageView');
+    }
+
+    React.useEffect(() => {
+        if(typeof window == "undefined") {return;}
+        if(typeof document == "undefined") {return;}
+        script_meta_pixel();
+    }, []);
 
     return (
         <ImagesProvider>
             <MenusProvider>
-                {/* // <!-- Google Tag Manager (noscript) --> */}
+                {/* // <!-- GOOGLE TAG MANAGER (NOSCRIPT) --> */}
                 <noscript>
                     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVWLZ2L" height="0" width="0" style={{display: "none", visibility: "hidden"}}>
                     </iframe>
                 </noscript>
-                {/* // <!-- End Google Tag Manager (noscript) --> */}
+                {/* // <!-- END GOOGLE TAG MANAGER (NOSCRIPT) --> */}
+
+                {/* <!-- META PIXEL CODE --> */}
+                <noscript><img height="1" width="1" style={{"display": "none"}} src="https://www.facebook.com/tr?id=194476770337529&ev=PageView&noscript=1"/></noscript>
+                {/* <!-- END META PIXEL CODE --> */}
+                
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <TopBar/>
                 <Header/>

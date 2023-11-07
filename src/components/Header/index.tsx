@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+import { Link, Script } from "gatsby";
 import React from "react";
 import HeaderTop from "./header-top";
 import HeaderLeft from "./header-left";

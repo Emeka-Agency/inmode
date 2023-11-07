@@ -8,6 +8,8 @@ import { FlickityOptions_Interface } from "../interfaces";
 
 const VideoTestimonials = ({ vt_id = null, testimonials, from = "carousel" }:VideoTestimonials) => {
 
+    return <></>;
+    
     if(!testimonials || testimonials.length == 0) {
         return <></>;
     }
