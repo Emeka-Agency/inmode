@@ -105,7 +105,7 @@ const Hero = ({}:Hero) => {
             {/* // TODO ajouter single content */}
             <div className="hero-global">
                 <div className="hero-top">
-                    <div className="before-top-text user-select-none">LOVE YOUR SKIN</div>
+                    <div className="before-top-text user-select-none">INNOVEZ AVEC INMODE</div>
                     <div className="top-text user-select-none">{datas.TopText}</div>
                     <div className="hero-top-links">
                         <Link className="hero-top-link inmode-btn user-select-none" to="/contact">Contact</Link>
