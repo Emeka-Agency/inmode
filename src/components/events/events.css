@@ -460,8 +460,15 @@
         position: relative;
         font-size: 14px;
         font-weight: 500;
-        padding-left: 10px;
         margin-bottom: 10px;
+    }
+
+    .events-layout .main-container .events-content .event-dates.left {
+        padding-right: 10px;
+    }
+
+    .events-layout .main-container .events-content .event-dates.right {
+        padding-left: 10px;
     }
 
     .events-layout .main-container .events-content .inmode-event .img-part,
