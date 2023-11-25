@@ -173,6 +173,10 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             empowerRFMachinePoster: file(relativePath: {eq: "products/empowerrf/empowerrf-launch-linkedin-post-preview-3.jpg"}) {
                 ...FileImgFormat
             }
+
+            inmodeStamp: file(relativePath: {eq: "about-us/inmode-stamp.png"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
@@ -320,6 +324,8 @@ interface ImagesList {
 
     empowerRFPromoPoster: GatsbyImage_Interface;
     empowerRFMachinePoster: GatsbyImage_Interface;
+    
+    inmodeStamp: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
