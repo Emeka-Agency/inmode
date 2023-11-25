@@ -388,6 +388,12 @@
     padding-right: 15px;
 }
 
+.events-layout .main-container .events-content .inmode-event.not-event-page .img-part,
+.events-layout .main-container .events-content .inmode-event .img-part {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .events-layout .main-container .events-content .inmode-event .img-part.right {
     order: 2;
     right: 15px;
