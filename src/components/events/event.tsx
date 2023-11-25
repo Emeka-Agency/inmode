@@ -113,7 +113,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                     SIGN UP
                 </div>} */}
             </div>
-            <div className={`${event.id}-dates event-dates user-select-none`}>
+            <div className={`${event.id}-dates event-dates user-select-none ${prop_key === 0 ? 'left' : 'right'}`}>
                 {getDate(event.Start, event.End)}
             </div>
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
