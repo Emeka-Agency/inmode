@@ -142,8 +142,8 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
                 {event.Start && <div className="dates user-select-none">
                     {`${getDate(event.Start)}${event.End ? ` - ${getDate(event.End)}` : ''}`}
                 </div>}
-                {event.Address && <div className="address_link user-select-none">
-                    <a href={event.PlaceURL || "#"} target="_blank" rel="noreferrer" title="Place">{event.Address}</a>
+                {event.PlaceURL && <div className="address_link user-select-none">
+                    <a href={event.PlaceURL || "#"} target="_blank" rel="noreferrer" title="Place">Plus d'informations</a>
                 </div>}
                 {event.Address && <div className="address user-select-none">
                     {event.Address}
