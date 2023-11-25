@@ -97,7 +97,7 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
     
     const images = useImages();
 
-    const has_card = current_page === "upcoming events" || event.EventType === "webinar";
+    const has_card = false;
 
     return (
         <div id={givenId} className={`inmode-event ${event.EventType}${has_card ? ' has_card' : ''} ${has_card ? "event-page" : "not-event-page" }`}>
