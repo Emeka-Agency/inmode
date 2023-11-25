@@ -119,21 +119,21 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
                 <img
                     className="event-pic user-select-none"
-                    src={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img("footerLogo")}
-                    srcSet={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img_set("footerLogo")}
+                    src={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img("inmodeStamp")}
+                    srcSet={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img_set("inmodeStamp")}
                     alt={`event-pic-'${event.EventName}`}
                 />
             </div>
             <div
-                className={`event-title user-select-none ellipsis ${prop_key === 0 && current_page != "upcoming events" ? 'left' : 'right'}`}
-                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? resolve_picture_ratio(event.Picture ? event.Picture[0] : undefined) * 150 : (images.get_one("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 60px))`} : {}}
+                className={`event-title user-select-none ellipsis ${prop_key === 0 ? 'left' : 'right'}`}
+                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? resolve_picture_ratio(event.Picture ? event.Picture[0] : undefined) * 150 : (images.get_one("inmodeStamp")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 60px))`} : {}}
                 title={event.EventName ?? "Nom à venir"}
             >
                 {event.EventName ?? "Nom à venir"}
             </div>
             <div
                 className={`descr-part ${prop_key === 0 ? 'left' : 'right'} custom-scrollbar moz-scrollbar`}
-                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? resolve_picture_ratio(event.Picture ? event.Picture[0] : undefined) * 150 : (images.get_one("footerLogo")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 60px))`} : {}}
+                style={size.width > 760 ? {maxWidth: `calc((100% - (${event.Picture ? resolve_picture_ratio(event.Picture ? event.Picture[0] : undefined) * 150 : (images.get_one("inmodeStamp")?.childImageSharp.fluid.aspectRatio || 1) * 150}px + 60px))`} : {}}
                 // 15 du padding gauche, 15 du padding droit, 5 de la custom-scrollbar, 20 pour être sûr
             >
                 <div className="short_descr user-select-none">
