@@ -14,7 +14,7 @@ const EventsPage = ({ data }:EventsPage) =>  {
     const [events, setEvents]:[Airtable_Event_Interface[]|[], React.Dispatch<Airtable_Event_Interface[]|[]>] = React.useState(Array());
     const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
 
-    const loadEvents = async function() {
+    const loadEvents = async function(__type:string|null = null) {
         await fetch(`${process.env.SYMF_BACK}/api/get-datas?type=events`)
         .then(p => handlePromise(p, "json"))
         .then((res:{status:string, datas:Airtable_Event_Interface[]}) => {
@@ -25,7 +25,19 @@ const EventsPage = ({ data }:EventsPage) =>  {
             }
             else {
                 setLoading(false);
-                setEvents(res.datas);
+                res.datas.forEach(event => {
+                    if(!event.Start) return;
+                    event.Start = [event.Start.slice(3, 5), event.Start.slice(0, 2), event.Start.slice(6)].join("/");
+                });
+                setEvents(
+                    res.datas.filter(event => event.EventType == __type)
+                    .filter(event => new Date(event.Start ?? "now").getTime() >= new Date().getTime())
+                    .map(event => {
+                        if(!event.Start) return event;
+                        event.Start = [event.Start.slice(3, 5), event.Start.slice(0, 2), event.Start.slice(6)].join("/");
+                        return event;
+                    })
+                );
                 return true;
             }
         })
@@ -33,15 +45,15 @@ const EventsPage = ({ data }:EventsPage) =>  {
     }
 
     React.useEffect(() => {
-        loading && loadEvents();
+        loading && loadEvents("Congres");
     }, [events]);
 
     return (
-        <Layout title="évènements">
-            <SEO lang="fr" title="Évènements"/>
+        <Layout title="congrès à venir">
+            <SEO lang="fr" title="Congrès à venir"/>
             <EventsLayout
                 loading={loading}
-                current_page="upcoming events"
+                current_page="congrès à venir"
                 events={events}
             />
         </Layout>

@@ -24,7 +24,19 @@ const CongressPage = (datas:CongressPage) =>  {
             }
             else {
                 setLoading(false);
-                setEvents(res.datas.filter(event => event.EventType == __type));
+                res.datas.forEach(event => {
+                    if(!event.Start) return;
+                    event.Start = [event.Start.slice(3, 5), event.Start.slice(0, 2), event.Start.slice(6)].join("/");
+                });
+                setEvents(
+                    res.datas.filter(event => event.EventType == __type)
+                    .filter(event => new Date(event.Start ?? "now").getTime() < new Date().getTime())
+                    .map(event => {
+                        if(!event.Start) return event;
+                        event.Start = [event.Start.slice(3, 5), event.Start.slice(0, 2), event.Start.slice(6)].join("/");
+                        return event;
+                    })
+                );
                 return true;
             }
         })
@@ -36,11 +48,11 @@ const CongressPage = (datas:CongressPage) =>  {
     }, [events]);
 
     return (
-        <Layout title="congrès">
-            <SEO lang="fr" title="Congrès"/>
+        <Layout title="congrès passés">
+            <SEO lang="fr" title="Congrès passés"/>
             <EventsLayout
                 loading={loading}
-                current_page="congrès"
+                current_page="congrès passés"
                 events={events}
             />
         </Layout>

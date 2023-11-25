@@ -42,11 +42,11 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
 
     const tabs = [
         {
-            'name': 'à venir',
+            'name': 'congrès à venir',
             'url': '/events'
         },
         {
-            'name': 'congrès',
+            'name': 'congrès passés',
             'url': '/events/congress'
         },
         {
@@ -113,8 +113,8 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                             </>
                         )
                     })}
-                    {current_page != "upcoming events" && events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
-                    {current_page != "upcoming events" && past_events(events ?? [], true).map((event, key) => {
+                    {current_page != "congrès à venir" && events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
+                    {current_page != "congrès à venir" && past_events(events ?? [], true).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
                             <>
