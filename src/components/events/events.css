@@ -166,11 +166,18 @@
 .events-layout .main-container .events-content .event-dates {
     position: absolute;
     top: 15px;
-    right: 15px;
     font-weight: bold;
     font-size: 25px;
     color: var(--teal);
     font-family: Roboto;
+}
+
+.events-layout .main-container .events-content .event-dates.left {
+    left: 15px;
+}
+
+.events-layout .main-container .events-content .event-dates.right {
+    right: 15px;
 }
 
 .events-layout .main-container .events-content .event-title {
