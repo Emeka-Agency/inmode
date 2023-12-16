@@ -84,6 +84,42 @@
     top: -1px;
 }
 
+.events-layout .main-container .events-content .year-selectors {
+    border: 2px solid var(--teal);
+    border-radius: 4px;
+    width: min-content;
+    max-width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 0;
+    margin: 0 auto;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    column-gap: 12px;
+}
+
+.events-layout .main-container .events-content .year-selectors .year-selector {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--teal);
+    background-color: var(--pearl);
+    padding: 4px 4px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.events-layout .main-container .events-content .year-selectors .year-selector:hover {
+    color: var(--pearl);
+    background-color: var(--teal-75);
+}
+
+.events-layout .main-container .events-content .year-selectors .year-selector.selected {
+    color: var(--pure-white);
+    background-color: var(--teal);
+}
+
 .events-layout .main-container .events-content .events-past-divider {
     width: 80%;
     margin: 15px auto;

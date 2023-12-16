@@ -100,7 +100,11 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
     const has_card = false;
 
     return (
-        <div id={givenId} className={`inmode-event ${event.EventType}${has_card ? ' has_card' : ''} ${has_card ? "event-page" : "not-event-page" }`}>
+        <div
+            id={givenId}
+            className={`inmode-event ${event.EventType}${has_card ? ' has_card' : ''} ${has_card ? "event-page" : "not-event-page" }`}
+            data-year={event.Start ? _getFull_year(new Date(event.Start)) : "0000"}
+        >
             <div className="event-topband">
                 {has_card && event.EventType &&
                     <div className={`user-select-none top-card ${prop_key === 0 ? 'left' : 'left'}`} style={["Workshop", "Webinar"].indexOf(event.EventType ?? "") > -1 ? {} : {borderRadius: "13px 13px 13px 0"}}>

@@ -78,6 +78,54 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
         setOpenedAccordion(true);
     }
 
+    const year_selector = (events:Airtable_Event_Interface[]|null = null) => {
+        if(!events) {
+            return <></>;
+        }
+
+        if(!Array.isArray(events) || events.length == 0) {
+            return <></>;
+        }
+
+        events.forEach(event => {
+            console.log(event.EventName);
+            console.log(event.Start);
+            console.log(event.Start?.slice(6, 10));
+        });
+
+        if(events.some(event => event.Start?.slice(6, 10) != events[0].Start?.slice(6, 10))) {
+
+            const years = events.map(event => new Date(event.Start ?? "now").getFullYear()).filter((year, index, self) => self.indexOf(year) === index).sort((a, b) => b - a);
+
+            return (
+                <div className="year-selectors">
+                    {years.map((year, key) => {
+                        return (
+                            <div
+                                className={`user-select-none year-selector`}
+                                key={key}
+                                data-year={year}
+                                onClick={(e) => {
+                                    document.querySelectorAll('.year-selector').forEach(selector => {
+                                        selector != e.currentTarget && selector.classList.remove('selected');
+                                    });
+
+                                    e.currentTarget.classList.toggle('selected');
+
+                                    document.querySelectorAll('.inmode-event').forEach(event => {
+                                        event.classList[event.getAttribute('data-year') == e.currentTarget.getAttribute('data-year') || !e.currentTarget.classList.contains('selected') ? 'remove' : 'add']('hidden');
+                                    });
+                                }}
+                            >
+                                {year}
+                            </div>
+                        );
+                    })}
+                </div>
+            );
+        }
+    }
+
     return (
         <div className="events-layout">
             <div className="main-container">
@@ -105,6 +153,7 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
                 </div>
                 </div>
                 <div className="events-content">
+                    {year_selector(events)}
                     {incoming_events(events ?? [], true).map((event, key) => {
                         let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
