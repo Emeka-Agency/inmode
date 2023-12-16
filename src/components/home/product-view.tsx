@@ -9,7 +9,7 @@ const ProductView = ({children, datas}:ProductView) => {
 
     const images = useImages();
 
-    const [products] = React.useState(React.useContext(ProductsContext).products);
+    const [products] = React.useState(React.useContext(ProductsContext).products.filter(p => p.Name != "Morpheus8"));
 
     if(products.length === 0 || datas.current === -1) {
         return <></>;

@@ -12,7 +12,7 @@ const WorkstationPage = ({ data }:WorkStation_Page) => {
         <Layout title="workstations">
           <SEO lang="fr" title="Gamme"/>
           <Shop
-            products={edges_to_array(data.allStrapiProduct.edges)}
+            products={edges_to_array(data.allStrapiProduct.edges.filter((product:any) => product.node.Name != "Morpheus8"))}
             tag_families={edges_to_array(data.allStrapiTagFamily.edges)}
             technologies={edges_to_array(data.allStrapiAddon.edges)}
             shop_card="workstation"
