@@ -4582,6 +4582,8 @@ input[type="submit"].neumorphic:hover,
     margin-left: calc(100vw / 7);
     position: relative;
     text-transform: uppercase;
+    white-space: nowrap;
+    position: absolute;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-title img {
@@ -4597,6 +4599,7 @@ input[type="submit"].neumorphic:hover,
     font-weight: 400;
     letter-spacing: 0px;
     line-height: 28px;
+    padding-top: 60px;
     padding-bottom: 30px;
     margin-left: calc(100vw / 7);
 }
