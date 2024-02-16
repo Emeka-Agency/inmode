@@ -1238,7 +1238,7 @@ header[data-variant="dusty-rose"] .header-parts .signin:hover {
 
 }
 
-@media (max-width: 1199px, min-width: 426px) {
+@media (max-width: 1199px) and (min-width: 426px) {
     header .header-parts #header-mini .login::after {
         content: " ";
         height: 20px;
