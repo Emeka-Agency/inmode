@@ -31,6 +31,9 @@ exports.onCreatePage = async ({
   if(page.path == '/old-shop/') {
     return false;
   }
+  if(page.path == '/workstation/envision') {
+    return false;
+  }
 //   if(page.path == '/payment/cancel/') {
 //     return false;
 //   }
