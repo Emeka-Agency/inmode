@@ -6612,6 +6612,13 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     vertical-align: top;
 }
 
+@media (max-width: 768px) {
+    #what-is.details .what-is-txts {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
 #what-is.details .what-is-txts .what-is-main,
 #what-is.details .what-is-txts .what-is-text-list {
     margin-top: 20px;
