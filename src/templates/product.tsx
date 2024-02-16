@@ -64,7 +64,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     }
 
     return (
-            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"} rest={{"data-addon": datas.Name}}>
+            <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"} rest={{"data-addon": datas.Name, "data-machine": datas.Name}}>
                 <SEO lang="fr" title="Product"/>
                 <ProductBanner datas={datas.Banner}/>
                 <ProductNavigation
