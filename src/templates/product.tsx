@@ -54,7 +54,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
               'poster': vid.poster
             })
           )}
-          title={__name + " videos"}
+          title={"Vidéos " + __name}
           name={__name}
           sensible={false}
         />
