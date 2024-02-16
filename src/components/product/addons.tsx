@@ -7,6 +7,10 @@ import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from ".
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
+const define_subtext = `[P][I]L'utilisation approuvée varie selon les pays ; veuillez vérifier auprès des fournisseurs ou représentants locaux. Les résultats des traitements individuels peuvent varier.[/I][/P]
+[P][I]Les publications cliniques et les publications évaluées par des pairs sont publiées par un tiers et sont basées sur l'expérience des médecins et les résultats des études. InMode n'est pas responsable du contenu fourni par les praticiens indépendants et ne l'approuve pas, car le langage utilisé peut
+différer des autorisations du fabricant d'InMode.[/I][/P]`;
+
 const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addons) => {
 
     const [flickityOptions] = React.useState({

@@ -19,6 +19,16 @@ import { color_variant } from '../functions/tools';
 // M8 Vids 2 : https://www.youtube.com/watch?v=slrvvo2zlNs
 // M8 Vids 3 : https://www.youtube.com/watch?v=2lLZhWjvLLw
 
+const define_subtext = `[P][I]L'utilisation approuvée varie selon les pays ; veuillez vérifier auprès des fournisseurs ou représentants locaux. Les résultats des traitements individuels peuvent varier.[/I][/P]
+[P][I]Les publications cliniques et les publications évaluées par des pairs sont publiées par un tiers et sont basées sur l'expérience des médecins et les résultats des études. InMode n'est pas responsable du contenu fourni par les praticiens indépendants et ne l'approuve pas, car le langage utilisé peut
+différer des autorisations du fabricant d'InMode.[/I][/P]`;
+
+const subtext_style = {
+    padding: '50px 8vw 35px 8vw',
+    color: 'var(--midnight)',
+    fontWeight: 'normal',
+};
+
 const AddonTemplates = ({ data }:AddonTemplates) => {
 
     const [datas]:[InmodePanel_Addon_Interface, React.Dispatch<InmodePanel_Addon_Interface>] = React.useState(data.strapiAddon);
@@ -78,6 +88,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 <ClinicalStudies variant={color_variant(datas.Name)} datas={datas.ClinicalStudies}/>
                 <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>
                 <SellingNew datas={datas.SellingNewGeneration}/>
+                {datas.Name == "Define" ? <div style={subtext_style}>{prepare_str(define_subtext)}</div> : null}
             </Layout>
     );
 };

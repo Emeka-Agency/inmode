@@ -19,6 +19,19 @@ const VIDS = {
     {url: "https://www.youtube.com/watch?v=FkUrCF7uAzE", poster: "empowerRFPromoPoster"},
     {url: "https://back.inmode.emeka.fr/vids/inmode-empowerrf-promo.mp4", poster: "empowerRFMachinePoster"}
   ],
+  "Define": [
+    {url: "https://inmodemd.fr/public/vids/define_presentation.mp4", poster: "DefineFullLogo"},
+  ],
+};
+
+const define_subtext = `[P][I]L'utilisation approuvée varie selon les pays ; veuillez vérifier auprès des fournisseurs ou représentants locaux. Les résultats des traitements individuels peuvent varier.[/I][/P]
+[P][I]Les publications cliniques et les publications évaluées par des pairs sont publiées par un tiers et sont basées sur l'expérience des médecins et les résultats des études. InMode n'est pas responsable du contenu fourni par les praticiens indépendants et ne l'approuve pas, car le langage utilisé peut
+différer des autorisations du fabricant d'InMode.[/I][/P]`;
+
+const subtext_style = {
+    padding: '50px 8vw 35px 8vw',
+    color: 'var(--midnight)',
+    fontWeight: 'normal',
 };
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
@@ -107,6 +120,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                 <ProductBeforeAfter datas={datas.BeforesAfters}/>
                 <SellingArgs datas={datas.SellingArgs[0]}/>
                 <ClinicalStudies datas={datas.ClinicalStudies} variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"}/>
+                {datas.Name == "Define" ? <div style={subtext_style}>{prepare_str(define_subtext)}</div> : null}
             </Layout>
     );
 };
