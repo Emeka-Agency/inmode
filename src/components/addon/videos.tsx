@@ -30,7 +30,8 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
             _temp && _temp.style.removeProperty('z-index');
             _temp = getById('video-iframe');
             _temp && _temp.classList.remove('opened');
-            e.currentTarget.innerHTML = "";
+            _temp = getById('video-iframe')?.querySelector('iframe')?.classList.add('hidden');
+            _temp = getById('video-iframe')?.querySelector('iframe')?.setAttribute('src', '');
             _temp = selectOne('header');
             _temp && _temp.classList.remove('video-opened');
             _temp = selectOne('.header-mini-menu');
@@ -54,16 +55,8 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
         _temp && _temp.style.setProperty('z-index', 4);
         _temp = getById('video-iframe');
         _temp && _temp.classList.add('opened');
-        let iframe = '';
-        iframe += '<img class="close-pic" src=' + images.resolve_img('closeWhiteIcon') + ' onclick="resolve_click(e)"/>';
-        iframe += '<iframe ';
-        iframe += 'allowfullscreen="allowfullscreen" ';
-        iframe += 'allow="autoplay; fullscreen" ';
-        iframe += 'src="' + url +'" ';
-        iframe += 'scrolling="no"';
-        iframe += '></iframe>';
-        _temp = getById('video-iframe');
-        if(_temp) {_temp.innerHTML = iframe;}
+        _temp = getById('video-iframe')?.querySelector('iframe')?.setAttribute('src', url);
+        _temp = getById('video-iframe')?.querySelector('iframe')?.classList.remove('hidden');
     }
 
     const resolveVideoClick = (e:React.MouseEvent<HTMLDivElement, MouseEvent>, url:string) => {
@@ -73,7 +66,19 @@ const AddonVideos = ({ videos = [], title = "", name = "", sensible = false}:Add
 
     return (
         <div className="videos-slide">
-          <div id="video-iframe" onClick={(e) => {resolve_click(e);}}></div>
+          <div
+            id="video-iframe"
+            onClick={(e) => {resolve_click(e);}}
+        >
+            <img className="close-pic" src={images.resolve_img('closeWhiteIcon')} onClick={(e) => resolve_click(e)}/>
+            <iframe
+                allowFullScreen={true} 
+                allow="autoplay; fullscreen" 
+                src={""}
+                className="hidden"
+                scrolling="no"
+            ></iframe>
+        </div>
           <div className="title">
             {title}
           </div>
