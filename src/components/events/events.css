@@ -36,7 +36,7 @@
     padding: 10px;
 }
 
-@media (max-width: 759px) {
+@media (max-width: 768px) {
     .events-layout .main-container .tab-navigation {
         display: block;
         text-align: center;
@@ -165,8 +165,10 @@
     height: 270px;
 }
 
-.events-layout .main-container .events-content .inmode-event.not-event-page {
-    height: 225px;
+@media (min-width: 769px) {
+    .events-layout .main-container .events-content .inmode-event.not-event-page {
+        height: 225px;
+    }
 }
 
 .events-layout .main-container .events-content .inmode-event {
@@ -249,7 +251,7 @@
     height: calc(100% - 95px);
 }
 
-@media (max-width: 759px) {
+@media (max-width: 768px) {
     .events-layout .main-container .events-content .img-part,
     .events-layout .main-container .events-content .descr-part {
         display: block;
@@ -440,7 +442,7 @@
     left: 15px;
 }
 
-@media (max-width: 759px) {
+@media (max-width: 768px) {
 
     .events-layout .main-container .events-content .inmode-event {
         display: flex;
@@ -520,7 +522,6 @@
         width: 100%;
         max-width: 100%;
         height: auto;
-        max-height: 100px;
         position: relative;
         margin-top: 0;
         margin-bottom: 8px;
@@ -531,8 +532,9 @@
     .events-layout .main-container .events-content .inmode-event .img-part.left .event-pic,
     .events-layout .main-container .events-content .inmode-event .img-part.right .event-pic {
         height: auto;
+        max-height: 240px;
         max-width: 90%;
-        max-height: 100px;
+        width: auto;
     }
 
     .events-layout .main-container .events-content .inmode-event .descr-part,
@@ -561,5 +563,66 @@
     .events-layout .main-container .events-content .inmode-event.not-event-page .descr-part.right {
         height: 200px;
         max-height: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .events-layout .main-container .events-content .inmode-event,
+    .events-layout .main-container .events-content .inmode-event .event-topband,
+    .events-layout .main-container .events-content .inmode-event .event-dates,
+    .events-layout .main-container .events-content .inmode-event .img-part,
+    .events-layout .main-container .events-content .inmode-event .img-part.right,
+    .events-layout .main-container .events-content .inmode-event .img-part.left,
+    .events-layout .main-container .events-content .inmode-event .img-part img.event-pic,
+    .events-layout .main-container .events-content .inmode-event .event-title,
+    .events-layout .main-container .events-content .inmode-event .descr-part,
+    .events-layout .main-container .events-content .inmode-event .descr-part.right,
+    .events-layout .main-container .events-content .inmode-event .descr-part.left {
+        width: 100%;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        padding: 8px;
+        transform: none;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .events-layout .main-container .events-content .inmode-event {
+        padding-bottom: 16px;
+        max-height: unset;
+        height: unset;
+        margin: 16px auto;
+    }
+
+    .events-layout .main-container .events-content .inmode-event .event-title {
+        white-space: normal;
+        text-overflow: unset;
+        overflow: unset;
+        text-align: center;
+    }
+
+    .events-layout .main-container .events-content .inmode-event .descr-part,
+    .events-layout .main-container .events-content .inmode-event.not-event-page .descr-part,
+    .events-layout .main-container .events-content .inmode-event .descr-part.left,
+    .events-layout .main-container .events-content .inmode-event.not-event-page .descr-part.left,
+    .events-layout .main-container .events-content .inmode-event .descr-part.right,
+    .events-layout .main-container .events-content .inmode-event.not-event-page .descr-part.right {
+        max-height: unset;
+        height: unset;
+    }
+    
+    .events-layout .main-container .events-content .inmode-event .descr-part .short_descr,
+    .events-layout .main-container .events-content .inmode-event .descr-part .dates,
+    .events-layout .main-container .events-content .inmode-event .descr-part .address_link,
+    .events-layout .main-container .events-content .inmode-event .descr-part .address_link a,
+    .events-layout .main-container .events-content .inmode-event .descr-part .address,
+    .events-layout .main-container .events-content .inmode-event .descr-part .maps_location,
+    .events-layout .main-container .events-content .inmode-event .descr-part .maps_location a {
+        white-space: normal;
+        text-overflow: unset;
+        overflow: unset;
     }
 }
