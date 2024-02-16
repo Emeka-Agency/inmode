@@ -4619,6 +4619,17 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
         transform: scale(0.8);
     }
 }
+
+@media (max-width: 768px) {
+    .product-addons .product-addon .addon-details .addon-description .addon-img img {
+        max-height: 192px;
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+        height: auto;
+    }
+}
+
 .product-addons .product-addon .addon-details .addon-description .addon-title {
     box-sizing: border-box;
     color: var(--teal);
