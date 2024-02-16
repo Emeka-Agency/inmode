@@ -9,20 +9,33 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
         <div className="product-banner transition">
             <div className="top-transition"></div>
             <div className="product-banner-media">
-                <video
-                    playsInline={false} 
-                    autoPlay={true}
-                    loop={true}
-                    muted={true}
-                    // poster={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
-                    height={380}
-                >
-                    <source
-                        src={datas.left_video}
-                        type="video/mp4"
+                {datas.left_video ?
+                    <video
+                        style={{visibility: "hidden"}}
+                        ref={videoRef}
+                        playsInline={false} 
+                        autoPlay={true}
+                        loop={true}
+                        muted={true}
+                        // poster={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
+                        height={380}
+                    >
+                        <source
+                            src={datas.left_video}
+                            type="video/mp4"
+                        />
+                        <track src="" kind="subtitles" srcLang="en" label="English"></track>
+                    </video>
+                    :
+                datas.left_img ?
+                    <img
+                        className="product-banner-left-img"
+                        src={resolveImg(datas.left_img)}
+                        alt="bodytite-logo-text"
                     />
-                    <track src="" kind="subtitles" srcLang="en" label="English"></track>
-                </video>
+                    :
+                    null
+                }
             </div>
             <div className="product-banner-details">
                 <img
