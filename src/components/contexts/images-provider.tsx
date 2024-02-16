@@ -229,6 +229,10 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             EnvisionLogoRight: file(relativePath: {eq: "envision/EnvisionLogoRight.png"}) {
                 ...FileImgFormat
             }
+
+            DefineFullLogo: file(relativePath: {eq: "products/define/define banner logo.png"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
@@ -396,6 +400,8 @@ interface ImagesList {
     EnvisionBlackLogo: GatsbyImage_Interface;
     EnvisionBannerRight: GatsbyImage_Interface;
     EnvisionLogoRight: GatsbyImage_Interface;
+    
+    DefineFullLogo: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
