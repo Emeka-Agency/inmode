@@ -87,11 +87,11 @@ const EventsLayout = ({ children, current_page, events = undefined, loading = fa
             return <></>;
         }
 
-        events.forEach(event => {
-            console.log(event.EventName);
-            console.log(event.Start);
-            console.log(event.Start?.slice(6, 10));
-        });
+        // events.forEach(event => {
+        //     console.log(event.EventName);
+        //     console.log(event.Start);
+        //     console.log(event.Start?.slice(6, 10));
+        // });
 
         if(events.some(event => event.Start?.slice(6, 10) != events[0].Start?.slice(6, 10))) {
 
