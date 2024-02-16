@@ -4409,6 +4409,15 @@ input[type="submit"].neumorphic:hover,
 
 .product-banner .product-banner-details .product-banner-logo {
     width: 100%;
+
+main[data-machine="Define"] .product-banner .product-banner-details .product-banner-logo {
+    max-height: 96px;
+    width: auto;
+}
+
+main[data-machine="Define"] .product-banner .product-banner-details .product-banner-short-descr {
+    font-size: 32px;
+    margin-top: 16px;
 }
 
 .product-banner .product-banner-details .product-banner-short-descr {
@@ -4570,6 +4579,11 @@ input[type="submit"].neumorphic:hover,
     height: 192px;
 }
 
+@media (min-width: 769px) {
+    main[data-machine="Define"][data-addon="Define"] .product-addons .product-addon .addon-details .addon-description .addon-img img {
+        transform: scale(0.8);
+    }
+}
 .product-addons .product-addon .addon-details .addon-description .addon-title {
     box-sizing: border-box;
     color: var(--teal);
