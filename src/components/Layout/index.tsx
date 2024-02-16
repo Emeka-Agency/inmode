@@ -64,7 +64,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Muli" />
                 <Header variant={variant}/>
                 {/* <!-- Google tag (gtag.js) --> */}
-                <Script strategy={ScriptStrategy.postHydrate} src="https://www.googletagmanager.com/gtag/js?id=G-3DGHJW8FDS"></Script>
+                {/* <Script strategy={ScriptStrategy.postHydrate} src="https://www.googletagmanager.com/gtag/js?id=G-3DGHJW8FDS"></Script> */}
                 <script>{searchConsole()}</script>
                 <ProductsProvider>
                 <main id="main" className={title + '-page'} {...rest}>
@@ -78,7 +78,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 <PayParams/>
 
                 {/* SWITCH CART END */}
-                <PrivacyPolicy />
+                {/* / <PrivacyPolicy /> */}
                 <ContactUs/>
                 <Footer/>
                 <Modale/>
