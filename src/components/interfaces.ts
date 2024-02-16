@@ -39,7 +39,7 @@ export interface Airtable_Event_Interface {
     EventDescription?: string;
     MapsLink?: string;
     VideoURL?: string;
-    Picture?: Airtable_Picture_Interface[];
+    Picture?: string | Airtable_Picture_Interface[];
 };
 
 export interface Airtable_Picture_Interface {

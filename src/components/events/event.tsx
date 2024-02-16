@@ -123,8 +123,9 @@ const InmodeEvent = ({ givenId = undefined, event = undefined, prop_key, current
             <div className={`img-part ${prop_key === 0 ? 'right' : 'left'}`}>
                 <img
                     className="event-pic user-select-none"
-                    src={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img("inmodeStamp")}
-                    srcSet={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img_set("inmodeStamp")}
+                    src={typeof event.Picture == "string" ? "https://inmodemd.fr/public/events/" + event.Picture : resolve_picture(event.Picture ? event.Picture[0] : undefined) ||  images.resolve_img("inmodeStamp")}
+                    // src={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img("inmodeStamp")}
+                    // srcSet={resolve_picture(event.Picture ? event.Picture[0] : undefined) || images.resolve_img_set("inmodeStamp")}
                     alt={`event-pic-'${event.EventName}`}
                 />
             </div>
