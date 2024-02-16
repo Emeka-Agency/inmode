@@ -4553,6 +4553,18 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
     padding: 50px;
 }
 
+@media (max-width: 1199px) {
+    .product-addons {
+        padding: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-addons {
+        padding: 25px;
+    }
+}
+
 .product-addons .section-title {
     box-sizing: border-box;
     color: var(--midnight);
