@@ -5132,6 +5132,7 @@ input[type="submit"].neumorphic:hover,
     justify-content: center;
     align-items: center;
     column-gap: 16px;
+    min-height: 256px;
 }
 
 .videos-slide .videos-container.few .few-videos {
@@ -5143,6 +5144,8 @@ input[type="submit"].neumorphic:hover,
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 256px;
+    padding: 8px 16px;
 }
 
 .videos-slide .videos-container img {
