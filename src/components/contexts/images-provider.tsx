@@ -180,6 +180,55 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             inmodeStamp: file(relativePath: {eq: "about-us/inmode-stamp.png"}) {
                 ...FileImgFormat
             }
+
+            EnvisionLogo: file(relativePath: {eq: "envision/envision logo.avif"}) {
+                ...FileImgFormat
+            }
+            EnvisionBa1FormaI: file(relativePath: {eq: "envision/ba1 - formaI.png"}) {
+                ...FileImgFormat
+            }
+            EnvisionBa2FormaI: file(relativePath: {eq: "envision/ba2 - formaI.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionBa3FormaI: file(relativePath: {eq: "envision/ba3 - formaI.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionFormaIMarine: file(relativePath: {eq: "envision/formaI marine.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionLumecaaIMarine: file(relativePath: {eq: "envision/lumeccaI marine.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionMorpheusMarine: file(relativePath: {eq: "envision/morpheus marine.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionFormaIBack: file(relativePath: {eq: "envision/formaI - back.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionFormaIZoom: file(relativePath: {eq: "envision/formaI - zoom.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionLumeccaIBack: file(relativePath: {eq: "envision/lumeccaI - back.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionLumeccaIZoom: file(relativePath: {eq: "envision/lumeccaI - zoom.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionMorpheus8Back: file(relativePath: {eq: "envision/morpheus8 - back.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionMorpheus8Zoom: file(relativePath: {eq: "envision/morpheus8 - zoom.webp"}) {
+                ...FileImgFormat
+            }
+            EnvisionBlackLogo: file(relativePath: {eq: "envision/envision black.png"}) {
+                ...FileImgFormat
+            }
+            EnvisionBannerRight: file(relativePath: {eq: "envision/envision banner right.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionLogoRight: file(relativePath: {eq: "envision/EnvisionLogoRight.png"}) {
+                ...FileImgFormat
+            }
         }
 
         fragment FileImgFormat on File {
@@ -330,6 +379,23 @@ interface ImagesList {
     empowerRFMachinePoster: GatsbyImage_Interface;
     
     inmodeStamp: GatsbyImage_Interface;
+
+    EnvisionLogo: GatsbyImage_Interface;
+    EnvisionBa1FormaI: GatsbyImage_Interface;
+    EnvisionBa2FormaI: GatsbyImage_Interface;
+    EnvisionBa3FormaI: GatsbyImage_Interface;
+    EnvisionFormaIMarine: GatsbyImage_Interface;
+    EnvisionLumecaaIMarine: GatsbyImage_Interface;
+    EnvisionMorpheusMarine: GatsbyImage_Interface;
+    EnvisionFormaIBack: GatsbyImage_Interface;
+    EnvisionFormaIZoom: GatsbyImage_Interface;
+    EnvisionLumeccaIBack: GatsbyImage_Interface;
+    EnvisionLumeccaIZoom: GatsbyImage_Interface;
+    EnvisionMorpheus8Back: GatsbyImage_Interface;
+    EnvisionMorpheus8Zoom: GatsbyImage_Interface;
+    EnvisionBlackLogo: GatsbyImage_Interface;
+    EnvisionBannerRight: GatsbyImage_Interface;
+    EnvisionLogoRight: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
