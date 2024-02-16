@@ -4994,6 +4994,10 @@ input[type="submit"].neumorphic:hover,
     text-transform: uppercase;
 }
 
+.addon-page[data-addon="Define"] .addon-banner .addon-banner-details .addon-banner-short-descr {
+    margin-top: 20px;
+}
+
 .addon-banner .addon-banner-mini {
     display: none;
 }
