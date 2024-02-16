@@ -126,6 +126,13 @@ ol {
     list-style: none;
 }
 
+main[data-addon="Define"][data-machine="Define"] .what-is-text-list li,
+main[data-addon="Define"][data-machine="Define"] .what-is-text-list ul,
+main[data-addon="Define"][data-machine="Define"] .what-is-text-list ol {
+    list-style: initial;
+    margin: 0;
+}
+
 .absolute-link {
     position: absolute;
     top: 0;
@@ -6552,8 +6559,8 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
     line-height: 28px;
     vertical-align: baseline;
     margin: 0 auto;
-    padding-top: 10px;
-    padding-bottom: 30px;
+    padding-top: 3px;
+    padding-bottom: 20px;
     white-space: break-spaces;
 }
 
@@ -6621,21 +6628,37 @@ div.workstation-products div.workstation-product div.workstation-more-infos .wor
 }
 
 #what-is.details .what-is-txts .what-is-text-list .list-elem {
-    padding-left: 85px;
+    padding-left: 52px;
     padding-bottom: 10px;
     box-sizing: border-box;
     position: relative;
     margin: 0;
 }
 
+@media (max-width: 768px) {
+    #what-is.details .what-is-txts .what-is-text-list .list-elem {
+        padding-left: 0;
+    }
+}
+
 #what-is.details .what-is-txts .what-is-text-list .list-elem .before-text {
-    width: 46px;
+    /* width: 42px; */
+    width: 34px;
     /* height: 46px; */
+    height: 40px;
     position: absolute;
     left: 0;
     top: 0;
     filter: oapcity(0.75);
     font-size: 36px;
+}
+
+@media (max-width: 768px) {
+    #what-is.details .what-is-txts .what-is-text-list .list-elem .before-text {
+        float: left;
+        margin-right: 24px;
+        position: relative;
+    }
 }
 
 #what-is.details .what-is-txts .what-is-text-list .list-elem .text {
