@@ -4392,6 +4392,13 @@ input[type="submit"].neumorphic:hover,
     margin: 0 auto;
 }
 
+.product-banner .product-banner-media img:first-child {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+}
+
 .product-banner .product-banner-media img {
     display: none;
 }
@@ -4409,6 +4416,8 @@ input[type="submit"].neumorphic:hover,
 
 .product-banner .product-banner-details .product-banner-logo {
     width: 100%;
+    max-width: 90%;
+}
 
 main.envision-page .product-banner .product-banner-details .product-banner-logo {
     /* filter: invert(1); */
