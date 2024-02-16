@@ -154,6 +154,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             arrowRightIcon: file(relativePath: {eq: "icons/arrow-right.png"}) {
                 ...FileImgFormat
             }
+            arrowLeftIcon: file(relativePath: {eq: "icons/arrow-left.png"}) {
+                ...FileImgFormat
+            }
             gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {
                 ...FileImgFormat
             }
@@ -318,6 +321,7 @@ interface ImagesList {
     hero3: GatsbyImage_Interface;
     plusIcon: GatsbyImage_Interface;
     arrowRightIcon: GatsbyImage_Interface;
+    arrowLeftIcon: GatsbyImage_Interface;
     gatsbyAstronaut: GatsbyImage_Interface;
     whiteTrash: GatsbyImage_Interface;
     redTrash: GatsbyImage_Interface;
