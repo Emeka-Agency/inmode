@@ -358,6 +358,8 @@ export interface  InmodePanel_SellingNext_Interface {
         mini?: {
             localFile: GatsbyImage_Interface;
         };
+        video_start?: number;
+        video_stop?: number;
     };
     export interface InmodePanel_Base_Image_Interface {
         image?: {
