@@ -7,6 +7,24 @@ import { resolveImg, resolveImgSet } from "../functions/tools";
 const GenericDetails = ({ datas }:GenericDetails) => {
 
     const images = useImages();
+    
+    const prepare_str = (descr:string) => {
+        return <div dangerouslySetInnerHTML={{ __html: descr
+            .replace(/(\[P\])/g, '<p>').replace(/(\[\/P\])/g, '</p>')
+            .replace(/(\[B\])/g, '<b>').replace(/(\[\/B\])/g, '</b>')
+            .replace(/(\[I\])/g, '<i>').replace(/(\[\/I\])/g, '</i>')
+            .replace(/(\[BR\])/g, '<br />')
+            .replace(/(\[UL\])/g, '<ul>').replace(/(\[\/UL\])/g, '</ul>')
+            .replace(/(\[OL\])/g, '<ol>').replace(/(\[\/OL\])/g, '</ol>')
+            .replace(/(\[LI\])/g, '<li>').replace(/(\[\/LI\])/g, '</li>')
+            .replace(/(\[H1\])/g, '<h1>').replace(/(\[\/H1\])/g, '</h1>')
+            .replace(/(\[H2\])/g, '<h2>').replace(/(\[\/H2\])/g, '</h2>')
+            .replace(/(\[H3\])/g, '<h3>').replace(/(\[\/H3\])/g, '</h3>')
+            .replace(/(\[H4\])/g, '<h4>').replace(/(\[\/H4\])/g, '</h4>')
+            .replace(/(\[H5\])/g, '<h5>').replace(/(\[\/H5\])/g, '</h5>')
+            .replace(/(\[H6\])/g, '<h6>').replace(/(\[\/H6\])/g, '</h6>')
+        }}></div>;
+    }
 
     return (
         <div id="what-is" className="details">
@@ -52,7 +70,7 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                                     className="before-text user-select-none"
                                 />}
                                 {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
-                                <div className="text user-select-none">{elem.texte}</div>
+                                <div className="text user-select-none">{prepare_str(elem.texte)}</div>
                             </div>
                         );
                     })}

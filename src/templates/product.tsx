@@ -25,6 +25,24 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
+    const prepare_str = (descr:string) => {
+        return <div dangerouslySetInnerHTML={{ __html: descr
+            .replace(/(\[P\])/g, '<p>').replace(/(\[\/P\])/g, '</p>')
+            .replace(/(\[B\])/g, '<b>').replace(/(\[\/B\])/g, '</b>')
+            .replace(/(\[I\])/g, '<i>').replace(/(\[\/I\])/g, '</i>')
+            .replace(/(\[BR\])/g, '<br />')
+            .replace(/(\[UL\])/g, '<ul>').replace(/(\[\/UL\])/g, '</ul>')
+            .replace(/(\[OL\])/g, '<ol>').replace(/(\[\/OL\])/g, '</ol>')
+            .replace(/(\[LI\])/g, '<li>').replace(/(\[\/LI\])/g, '</li>')
+            .replace(/(\[H1\])/g, '<h1>').replace(/(\[\/H1\])/g, '</h1>')
+            .replace(/(\[H2\])/g, '<h2>').replace(/(\[\/H2\])/g, '</h2>')
+            .replace(/(\[H3\])/g, '<h3>').replace(/(\[\/H3\])/g, '</h3>')
+            .replace(/(\[H4\])/g, '<h4>').replace(/(\[\/H4\])/g, '</h4>')
+            .replace(/(\[H5\])/g, '<h5>').replace(/(\[\/H5\])/g, '</h5>')
+            .replace(/(\[H6\])/g, '<h6>').replace(/(\[\/H6\])/g, '</h6>')
+        }}></div>;
+    }
+
     const special_videos = (__name?:string) => {
       if(typeof __name != "string") {return <></>;}
 
