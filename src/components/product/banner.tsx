@@ -72,11 +72,13 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
                 }
             </div>
             <div className="product-banner-details">
-                <img
-                    className="product-banner-logo"
-                    src={resolveImg(datas.right_img)}
-                    alt="bodytite-logo-text"
-                />
+                <div>
+                    <img
+                        className="product-banner-logo"
+                        src={resolveImg(datas.right_img)}
+                        alt="bodytite-logo-text"
+                    />
+                </div>
                 <div className="product-banner-short-descr">
                     {datas.right_text}
                 </div>
