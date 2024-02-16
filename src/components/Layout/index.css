@@ -4410,6 +4410,10 @@ input[type="submit"].neumorphic:hover,
 .product-banner .product-banner-details .product-banner-logo {
     width: 100%;
 
+main.envision-page .product-banner .product-banner-details .product-banner-logo {
+    /* filter: invert(1); */
+}
+
 main[data-machine="Define"] .product-banner .product-banner-details .product-banner-logo {
     max-height: 96px;
     width: auto;
@@ -4467,9 +4471,19 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
         font-size: 0;
     }
 
+    main.envision-page .product-banner .product-banner-mini {
+        padding: 20px 0;
+    }
+
     .product-banner .product-banner-mini img {
         width: 100%;
         max-height: 380px;
+    }
+
+    main.envision-page .product-banner .product-banner-mini img {
+        /* filter: invert(1); */
+        max-width: 90%;
+        margin: 0 5%;
     }
 }
 
