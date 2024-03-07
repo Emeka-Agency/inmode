@@ -4,40 +4,6 @@ import { InmodePanel_Base_Banner_Interface } from "../interfaces";
 
 const ProductBanner = ({ datas }:ProductBanner_Interface) => {
 
-    const videoRef = React.useRef(null);
-    const startTime = datas?.video_start ?? null; // Start time in seconds
-    const endTime = datas?.video_stop ?? null; // End time in seconds
-  
-    React.useEffect(() => {
-        if(!startTime || !endTime) return;
-        const video = videoRef.current;
-        if (!video) return;
-    
-        const onLoadedMetadata = () => {
-            video.currentTime = startTime; // Set the start time
-            video.style.visibility = "visible";
-        };
-
-        const onTimeUpdate = () => {
-            if (video.currentTime < startTime) {
-                video.currentTime = startTime; // Optional: rewind to start time
-            } else
-            if (video.currentTime >= endTime) {
-                // video.pause(); // Stop the video at the end time
-                video.currentTime = startTime; // Optional: rewind to start time
-            }
-        };
-    
-        video.addEventListener('loadedmetadata', onLoadedMetadata);
-        video.addEventListener('timeupdate', onTimeUpdate);
-    
-        // Cleanup event listeners on component unmount
-        return () => {
-            video.removeEventListener('loadedmetadata', onLoadedMetadata);
-            video.removeEventListener('timeupdate', onTimeUpdate);
-        };
-    }, [startTime, endTime]); // Re-run effect if start or end time changes
-
     // TODO récupérer images et vidéos pour chaque produit
     return (
         <div className="product-banner transition">
@@ -45,8 +11,6 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
             <div className="product-banner-media">
                 {datas.left_video ?
                     <video
-                        style={{visibility: "hidden"}}
-                        ref={videoRef}
                         playsInline={false} 
                         autoPlay={true}
                         loop={true}
