@@ -7,6 +7,33 @@ import { resolveImg, resolveImgSet } from "../functions/tools";
 const GenericDetails = ({ datas }:GenericDetails) => {
 
     const images = useImages();
+
+    const special = (title?: string) => {
+        if((title ?? "").toLowerCase() == "define") {return true;}
+        if((title ?? "").toLowerCase() == "envision") {return true;}
+        return false;
+    }
+
+    const special_icon = (title?: string) => {
+        if(!special(title)) {return false;}
+        if((title ?? "").toLowerCase() == "define") {
+            return <img
+                src={images.resolve_img("keyBenefitDefine")}
+                srcSet={images.resolve_img_set("keyBenefitDefine")}
+                alt={`elem-define`}
+                className="before-text user-select-none"
+            />
+        }
+        if((title ?? "").toLowerCase() == "envision") {
+            return <img
+                src={images.resolve_img("keyBenefitEnvision")}
+                srcSet={images.resolve_img_set("keyBenefitEnvision")}
+                alt={`elem-envision`}
+                className="before-text user-select-none"
+            />
+        }
+        return false;
+    }
     
     const prepare_str = (descr:string) => {
         return <div dangerouslySetInnerHTML={{ __html: descr
@@ -64,11 +91,12 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                     {datas.list && datas.list.map((elem, key) => {
                         return (
                             <div key={key} className="list-elem">
-                                {datas.list_icon && <img
+                                {!special(datas.name) && datas.list_icon && <img
                                     src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
                                     alt={`elem-${key}`}
                                     className="before-text user-select-none"
                                 />}
+                                {special(datas.name) && special_icon(datas.name)}
                                 {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
                                 <div className="text user-select-none">{prepare_str(elem.texte)}</div>
                             </div>
@@ -77,6 +105,10 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                 </div>
             </div>
             <RequestInformation variant={datas.variant}/>
+            {datas.name != "Define" ? <></> :
+            <div id="page-define-whatis-video">
+                <iframe src="https://inmodemd.fr/public/vids/define_presentation.mp4" title="Define par InMode - Remodelage du visage" loading="lazy"> </iframe>
+            </div>}
         </div>
     );
 };

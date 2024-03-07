@@ -3,7 +3,7 @@ import React from "react";
 import { color_variant, resolveImg, resolveImgSet } from "../../functions/tools";
 import Carousel from "../Carousel";
 import { useImages } from "../contexts/images-provider";
-import { InmodePanel_Addon_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
+import { InmodePanel_Addon_Interface, InmodePanel_Addon_ProductPresentation_Interface, InmodePanel_Base_Image_Interface } from "../interfaces";
 import NoPicture from "../NoPic/no-picture";
 import Sensible from "../NoPic/sensible";
 
@@ -12,6 +12,8 @@ const define_subtext = `[P][I]L'utilisation approuvée varie selon les pays ; ve
 différer des autorisations du fabricant d'InMode.[/I][/P]`;
 
 const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addons) => {
+
+    const images = useImages();
 
     const [flickityOptions] = React.useState({
         initialIndex: 0,
@@ -31,6 +33,40 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
             }
         })
         return temp;
+    }
+
+    const special = (title?:string) => {
+        if((title ?? "").toLowerCase() === "define cheek et define chin") {return true;}
+        if((title ?? "").toLowerCase() === "morpheus8") {return true;}
+        return false;
+    }
+
+    const special_title = (title?:string) => {
+        if((title ?? "").toLowerCase() === "define cheek et define chin") {
+            return <>
+                <img
+                    src={images.resolve_img("DefineCheekTitle")}
+                    srcSet={images.resolve_img_set("DefineCheekTitle")}
+                    alt={"Define Cheek"}
+                />
+                <span>et</span>
+                <img
+                    src={images.resolve_img("DefineChinTitle")}
+                    srcSet={images.resolve_img_set("DefineChinTitle")}
+                    alt={"Define Chin"}
+                />
+            </>
+        }
+        if((title ?? "").toLowerCase() === "morpheus8") {
+            return <>
+                <img
+                    src={images.resolve_img("DefineMorpheus8AddonTitle")}
+                    srcSet={images.resolve_img_set("DefineMorpheus8AddonTitle")}
+                    alt={"Morpheus8"}
+                />
+            </>
+        }
+        return title;
     }
     
     const prepare_str = (descr:string) => {
@@ -74,15 +110,16 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                             />
                                         </div>
                                         <div className="addon-title" data-variant={color_variant(product.title_text)}>
-                                            {product.title_image && (
+                                            {!special(product.title_text) && product.title_image && (
                                                 <img
                                                     src={resolveImg(product.title_image)}
                                                     srcSet={resolveImgSet(product.title_image)}
                                                     alt={product.title_text}
                                                 />
                                             )}
-                                            {!product.title_image && product.title_text}
-                                            {product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
+                                            {!special(product.title_text) && !product.title_image && product.title_text}
+                                            {!special(product.title_text) && product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
+                                            {special(product.title_text) && special_title(product.title_text)}
                                         </div>
                                         {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {
                                             if(descr.product && descr.product.id === datas.id) {

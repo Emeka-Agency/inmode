@@ -34,6 +34,12 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             keyBenefitIconRose: file(relativePath: {eq: "icons/key_benefit_dusty.png"}) {
                 ...FileImgFormat
             }
+            keyBenefitDefine: file(relativePath: {eq: "icons/key_define.png"}) {
+                ...FileImgFormat
+            }
+            keyBenefitEnvision: file(relativePath: {eq: "icons/key_envision.png"}) {
+                ...FileImgFormat
+            }
             orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {
                 ...FileImgFormat
             }
@@ -181,56 +187,65 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 ...FileImgFormat
             }
 
-            EnvisionLogo: file(relativePath: {eq: "envision/envision logo.avif"}) {
+            EnvisionLogo: file(relativePath: {eq: "products/envision/envision logo.avif"}) {
                 ...FileImgFormat
             }
-            EnvisionBa1FormaI: file(relativePath: {eq: "envision/ba1 - formaI.png"}) {
+            EnvisionBa1FormaI: file(relativePath: {eq: "products/envision/ba1 - formaI.png"}) {
                 ...FileImgFormat
             }
-            EnvisionBa2FormaI: file(relativePath: {eq: "envision/ba2 - formaI.jpg"}) {
+            EnvisionBa2FormaI: file(relativePath: {eq: "products/envision/ba2 - formaI.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionBa3FormaI: file(relativePath: {eq: "envision/ba3 - formaI.jpg"}) {
+            EnvisionBa3FormaI: file(relativePath: {eq: "products/envision/ba3 - formaI.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionFormaIMarine: file(relativePath: {eq: "envision/formaI marine.jpg"}) {
+            EnvisionFormaIMarine: file(relativePath: {eq: "products/envision/formaI marine.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionLumecaaIMarine: file(relativePath: {eq: "envision/lumeccaI marine.jpg"}) {
+            EnvisionLumecaaIMarine: file(relativePath: {eq: "products/envision/lumeccaI marine.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionMorpheusMarine: file(relativePath: {eq: "envision/morpheus marine.jpg"}) {
+            EnvisionMorpheusMarine: file(relativePath: {eq: "products/envision/morpheus marine.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionFormaIBack: file(relativePath: {eq: "envision/formaI - back.webp"}) {
+            EnvisionFormaIBack: file(relativePath: {eq: "products/envision/formaI - back.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionFormaIZoom: file(relativePath: {eq: "envision/formaI - zoom.webp"}) {
+            EnvisionFormaIZoom: file(relativePath: {eq: "products/envision/formaI - zoom.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionLumeccaIBack: file(relativePath: {eq: "envision/lumeccaI - back.webp"}) {
+            EnvisionLumeccaIBack: file(relativePath: {eq: "products/envision/lumeccaI - back.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionLumeccaIZoom: file(relativePath: {eq: "envision/lumeccaI - zoom.webp"}) {
+            EnvisionLumeccaIZoom: file(relativePath: {eq: "products/envision/lumeccaI - zoom.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionMorpheus8Back: file(relativePath: {eq: "envision/morpheus8 - back.webp"}) {
+            EnvisionMorpheus8Back: file(relativePath: {eq: "products/envision/morpheus8 - back.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionMorpheus8Zoom: file(relativePath: {eq: "envision/morpheus8 - zoom.webp"}) {
+            EnvisionMorpheus8Zoom: file(relativePath: {eq: "products/envision/morpheus8 - zoom.webp"}) {
                 ...FileImgFormat
             }
-            EnvisionBlackLogo: file(relativePath: {eq: "envision/envision black.png"}) {
+            EnvisionBlackLogo: file(relativePath: {eq: "products/envision/envision black.png"}) {
                 ...FileImgFormat
             }
-            EnvisionBannerRight: file(relativePath: {eq: "envision/envision banner right.jpg"}) {
+            EnvisionBannerRight: file(relativePath: {eq: "products/envision/envision banner right.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionLogoRight: file(relativePath: {eq: "envision/EnvisionLogoRight.png"}) {
+            EnvisionLogoRight: file(relativePath: {eq: "products/envision/EnvisionLogoRight.png"}) {
                 ...FileImgFormat
             }
 
             DefineFullLogo: file(relativePath: {eq: "products/define/define banner logo.png"}) {
+                ...FileImgFormat
+            }
+            DefineCheekTitle: file(relativePath: {eq: "products/define/DEFINE CHEEK.png"}) {
+                ...FileImgFormat
+            }
+            DefineChinTitle: file(relativePath: {eq: "products/define/DEFINE CHIN.png"}) {
+                ...FileImgFormat
+            }
+            DefineMorpheus8AddonTitle: file(relativePath: {eq: "products/define/Morpheus8.png"}) {
                 ...FileImgFormat
             }
         }
@@ -335,6 +350,8 @@ interface ImagesList {
     keyBenefitIcon: GatsbyImage_Interface;
     keyBenefitIconTeal: GatsbyImage_Interface;
     keyBenefitIconRose: GatsbyImage_Interface;
+    keyBenefitDefine: GatsbyImage_Interface;
+    keyBenefitEnvision: GatsbyImage_Interface;
     orderCreateSpinner: GatsbyImage_Interface;
     cartBasketIcon: GatsbyImage_Interface;
     closeWhiteIcon: GatsbyImage_Interface;
@@ -402,6 +419,8 @@ interface ImagesList {
     EnvisionLogoRight: GatsbyImage_Interface;
     
     DefineFullLogo: GatsbyImage_Interface;
+    DefineCheekTitle: GatsbyImage_Interface;
+    DefineChinTitle: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;

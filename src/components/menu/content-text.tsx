@@ -10,6 +10,10 @@ const MenuContentText = ({menu, prop_key}:MenuContentText) => {
 
     const size = useWindowSize();
 
+    if(menu.title == "Define") {
+        menu.title = "Define cheek & Define chin"
+    }
+
     const content = (_menu:InmodePanel_Menu_Interface) => {
         if(!_menu.menus) {
             return (

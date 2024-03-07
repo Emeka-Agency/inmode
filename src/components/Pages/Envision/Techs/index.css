@@ -1,0 +1,107 @@
+#page-envision-techs {
+    padding: 50px 8vw;
+    background-color: var(--pure-white);
+}
+
+#page-envision-techs h2 {
+    margin: 10px 0;
+    font-size: 32px;
+    color: var(--pure-black);
+    text-align: center;
+    margin: 0 auto;
+}
+
+#page-envision-techs #page-envision-techs-list {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+    #page-envision-techs #page-envision-techs-list {
+        flex-direction: column;
+    }
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 12px 30px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+    #page-envision-techs #page-envision-techs-list .page-envision-techs-card {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+    padding: 12px;
+    position: relative;
+    background-color: rgb(242, 242, 242);
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img img {
+    max-height: 256px;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img img.img-back {
+    position: relative;
+    z-index: 0;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img img.img-zoom {
+    position: absolute;
+    height: 100%;
+    max-width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    z-index: 1;
+    visibility: hidden;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img:hover img.img-back {
+    filter: blur(4px);
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-img:hover img.img-zoom {
+    visibility: visible;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-title {
+    margin: 20px auto 0;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-title img {
+    margin-top: 12px;
+    margin-left: 12.5%;
+    width: 75%;
+    max-width: 100%;
+    min-height: 0px;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-text {
+    margin: 20px auto 0;
+    max-width: 100%;
+}
+
+#page-envision-techs #page-envision-techs-list .page-envision-techs-card .page-envision-techs-card-text p {
+    color: var(--midnight);
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 26px;
+}

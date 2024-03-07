@@ -1,0 +1,53 @@
+#page-envision-ba {
+    padding: 35px 8vw 50px;
+}
+
+#page-envision-ba h2 {
+    font-size: 32px;
+    color: var(--midnight);
+    margin: 0 auto;
+    text-align: center;
+}
+
+#page-envision-ba #page-envision-ba-carousel {
+    margin-top: 20px;
+    overflow: hidden;
+    max-width: 75%;
+    margin: 32px auto 0;
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel-status {
+    display: none;
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .slider {
+
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .slider .slide {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .control-dots .dot {
+    width: 14px;
+    height: 14px;
+    user-select: none;
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .control-dots .dot.selected {
+    background-color: var(--teal);
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .thumbs {
+
+}
+
+#page-envision-ba #page-envision-ba-carousel .carousel .thumbs .thumb {
+    user-select: none;
+}
+
+#page-envision-ba #page-envision-ba-carousel .ba-image {
+
+}

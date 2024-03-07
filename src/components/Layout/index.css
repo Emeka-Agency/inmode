@@ -39,6 +39,11 @@
     --dusty-rose-75: #A86F7FC0;
     --dusty-rose: #A86F7F;
 
+    --define-blue-25: #12667B40;
+    --define-blue-50: #12667B80;
+    --define-blue-75: #12667BC0;
+    --define-blue: #12667B;
+
     --pure-white-25: #FFFFFF40;
     --pure-white-50: #FFFFFF80;
     --pure-white-75: #FFFFFFC0;
@@ -4429,7 +4434,10 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
 }
 
 main[data-machine="Define"] .product-banner .product-banner-details .product-banner-short-descr {
-    font-size: 32px;
+    margin-top: 16px;
+}
+
+main.envision-page .product-banner .product-banner-details .product-banner-short-descr {
     margin-top: 16px;
 }
 
@@ -4539,6 +4547,10 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
 
 .product-navigation div.product-nav.dusty-rose::after {
     color: var(--dusty-rose);
+}
+
+main[data-machine="Define"] .product-navigation div.product-nav::after {
+    color: var(--define-blue);
 }
 
 .product-navigation .product-nav:last-child::after {
@@ -4728,6 +4740,10 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
     color: var(--dusty-rose);
 }
 
+main[data-machine="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before {
+    color: var(--define-blue);
+}
+
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title {
     box-sizing: border-box;
     display: block;
@@ -4744,6 +4760,10 @@ main[data-machine="Define"] .product-banner .product-banner-details .product-ban
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title.variant-dusty-rose {
     color: var(--dusty-rose);
+}
+
+main[data-machine="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title {
+    color: var(--define-blue);
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before {

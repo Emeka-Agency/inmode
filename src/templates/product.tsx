@@ -59,6 +59,10 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
     const special_videos = (__name?:string) => {
       if(typeof __name != "string") {return <></>;}
 
+      if(__name == "Define") {
+        return <></>;
+      }
+
       if(__name in VIDS) {
         return <AddonVideos
           videos={VIDS[__name].map(vid => 
@@ -67,7 +71,7 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
               'poster': vid.poster
             })
           )}
-          title={"Vidéos " + __name}
+          title={"Vidéo" + (Object.keys(VIDS).length > 1 ? "s" : "") + " " + __name}
           name={__name}
           sensible={false}
         />

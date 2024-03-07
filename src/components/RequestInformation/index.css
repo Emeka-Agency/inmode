@@ -34,3 +34,7 @@
 .request-informations[data-variant="dusty-rose"] span {
     background-color: var(--dusty-rose);
 }
+
+main[data-machine="Define"] .request-informations span {
+    background-color: var(--define-blue);
+}

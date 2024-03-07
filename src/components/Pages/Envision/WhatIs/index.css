@@ -1,0 +1,73 @@
+#page-envision-whatis {
+    padding: 35px 8vw 50px;
+}
+
+#page-envision-whatis img {
+    height: 55px;
+    margin: 0 auto;
+    display: block;
+}
+
+#page-envision-whatis h2 {
+    font-size: 32px;
+    color: var(--midnight);
+    text-align: center;
+    margin: 20px 0;
+}
+
+#page-envision-whatis h4 {
+    font-size: 22px;
+    color: var(--midnight);
+    text-align: center;
+    margin: 20px 0;
+}
+
+#page-envision-whatis #page-envision-whatis-section {
+    margin-top: 20px;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-video {
+    height: auto;
+    width: 100%;
+    min-height: auto;
+    max-height: none;
+    padding: 20px 40px;
+    margin-top: 24px;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-dots {
+    width: 100%;
+    padding: 20px 0 0 0;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-video iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    border: none;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-dots .page-envision-whatis-dot {
+    padding: 10px 20px;
+    margin-bottom: 16px;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-dots .page-envision-whatis-dot img {
+    height: 42px;
+    width: 46px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+#page-envision-whatis #page-envision-whatis-section #page-envision-whatis-dots .page-envision-whatis-dot span {
+    color: var(--midnight);
+    font-size: 18px;
+    letter-spacing: .85px;
+    line-height: 27px;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 80px);
+    margin-left: 24px;
+}
