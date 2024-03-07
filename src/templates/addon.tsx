@@ -82,7 +82,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                 }}/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
-                {(datas.Videos ?? []).length && ['FormaV', 'Aviva'].indexOf(datas.Name ?? "") < 0 ? <AddonVideos videos={datas.Videos} title={`Vidéos ${datas.Name}`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/> : null}
+                {(datas.Videos ?? []).length && ['FormaV', 'Aviva'].indexOf(datas.Name ?? "") < 0 ? <AddonVideos videos={datas.Videos} title={`Vidéo${(datas.Videos ?? []).length > 1 ? "s" : ""} ${datas.Name}`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/> : null}
                 {(datas.BeforesAfters ?? []).length && ['FormaV', 'Aviva'].indexOf(datas.Name ?? "") < 0 ? <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity} variant={color_variant(datas.Name)}/> : null}
                 <AddonWhatTreat title="Quelles zones peuvent être traitées ?" WhatTreats={datas.WhatTreats} variant={color_variant(datas.Name)}/>
                 <ClinicalStudies variant={color_variant(datas.Name)} datas={datas.ClinicalStudies}/>
