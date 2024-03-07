@@ -9,26 +9,26 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
         <div className="product-banner transition">
             <div className="top-transition"></div>
             <div className="product-banner-media">
-                {datas.left_video ?
+                {datas?.left_video ?
                     <video
-                        playsInline={false} 
-                        autoPlay={true}
+                        playsInline={true}
+                        autoPlay={false}
                         loop={true}
                         muted={true}
-                        // poster={datas.left_img && datas.left_img.localFile.childImageSharp?.fluid.srcWebp}
+                        // poster={datas?.left_img && datas?.left_img.localFile.childImageSharp?.fluid.srcWebp}
                         height={380}
                     >
                         <source
-                            src={datas.left_video}
+                            src={datas?.left_video}
                             type="video/mp4"
                         />
                         <track src="" kind="subtitles" srcLang="en" label="English"></track>
                     </video>
                     :
-                datas.left_img ?
+                datas?.left_img ?
                     <img
                         className="product-banner-left-img"
-                        src={resolveImg(datas.left_img)}
+                        src={resolveImg(datas?.left_img)}
                         alt="bodytite-logo-text"
                     />
                     :
@@ -39,17 +39,17 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
                 <div>
                     <img
                         className="product-banner-logo"
-                        src={resolveImg(datas.right_img)}
+                        src={resolveImg(datas?.right_img)}
                         alt="bodytite-logo-text"
                     />
                 </div>
                 <div className="product-banner-short-descr">
-                    {datas.right_text}
+                    {datas?.right_text}
                 </div>
             </div>
             <div className="product-banner-mini">
                 <img
-                    src={resolveImg(datas.mini)}
+                    src={resolveImg(datas?.mini)}
                     alt="product-banner-mini"
                 />
             </div>
