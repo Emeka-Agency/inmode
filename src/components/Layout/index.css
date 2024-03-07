@@ -4549,6 +4549,7 @@ main.envision-page .product-banner .product-banner-details .product-banner-short
     color: var(--dusty-rose);
 }
 
+main[data-addon="Define"] .product-navigation div.product-nav::after,
 main[data-machine="Define"] .product-navigation div.product-nav::after {
     color: var(--define-blue);
 }
@@ -4740,6 +4741,7 @@ main[data-machine="Define"] .product-navigation div.product-nav::after {
     color: var(--dusty-rose);
 }
 
+main[data-addon="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before,
 main[data-machine="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat ul li::before {
     color: var(--define-blue);
 }
@@ -4762,6 +4764,7 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
     color: var(--dusty-rose);
 }
 
+main[data-addon="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title,
 main[data-machine="Define"] .product-addons .product-addon .addon-details .addon-description .addon-what-can-i-treat .title {
     color: var(--define-blue);
 }
@@ -5164,6 +5167,11 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
 
 .addon-navigation div.addon-nav.dusty-rose::after {
     color: var(--dusty-rose);
+}
+
+main[data-addon="Define"] .addon-navigation div.addon-nav::after,
+main[data-machine="Define"] .addon-navigation div.addon-nav::after {
+    color: var(--blue-define);
 }
 
 .addon-navigation .addon-nav:last-child::after {
