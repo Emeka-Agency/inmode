@@ -4342,8 +4342,9 @@ input[type="submit"].neumorphic:hover,
 }
 
 .product-banner .product-banner-details .product-banner-logo {
-    width: 100%;
+    width: auto;
     max-width: 90%;
+    max-height: 80px;
 }
 
 main.envision-page .product-banner .product-banner-details .product-banner-logo {
@@ -4583,7 +4584,8 @@ main[data-machine="Define"] .product-navigation div.product-nav::after {
 
 .product-addons .product-addon .addon-details .addon-description .addon-title img {
     max-width: 100%;
-    max-height: 30px;
+    /* max-height: 30px; */
+    height: 30px;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-description {
@@ -4989,6 +4991,7 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
 .addon-banner .addon-banner-details .addon-banner-logo {
     max-width: 100%;
     max-height: 100px;
+    max-height: 80px;
 }
 
 .addon-banner .addon-banner-details .addon-banner-short-descr {
