@@ -12,7 +12,7 @@ const ProductBanner = ({ datas }:ProductBanner_Interface) => {
                 {datas?.left_video ?
                     <video
                         playsInline={true}
-                        autoPlay={false}
+                        autoPlay={true}
                         loop={true}
                         muted={true}
                         // poster={datas?.left_img && datas?.left_img.localFile.childImageSharp?.fluid.srcWebp}
