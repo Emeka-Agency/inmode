@@ -242,7 +242,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
                                 {
                                     clinic.Site ?
                                     <a target="_blank" href={`http://${(clinic.Site || "").replace("https://", "").replace("http://", "")}`} title="Site de la clinique" style={{color: "var(--teal)", cursor: "pointer"}}>
-                                        Notre site
+                                        Site internet
                                     </a>
                                     :
                                     <></>
