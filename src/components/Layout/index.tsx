@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Header from "../Header/index";
 import Footer from "../Footer";
-import ContactUs from "../Contact/contact-us";
+import ContactUs from "../contact/contact-us";
 import PrivacyPolicy from "../privacy-policy";
 import FixedMenu from "../fixed-menu";
 import MenusProvider from "../contexts/menus-provider";
@@ -12,16 +12,6 @@ import Modale from "../Modale";
 
 import "./index.css";
 import ImagesProvider from "../contexts/images-provider";
-
-// {/* SWITCH CART */}
-
-import CartPurchase from "../Cart";
-import PayParams from "../Cart/pay_params";
-import { useCart } from "../contexts/cart-provider";
-import { useUser } from "../contexts/user-provider";
-import { Script, ScriptStrategy } from "gatsby";
-
-// {/* SWITCH CART END */}
 
 const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
 
@@ -37,15 +27,6 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
     //     document.write("not mobile device");
     //   }
     // });
-
-    if(typeof window != "undefined") {
-        // window?.onbeforeunload = function(event) {
-        //     useCart().close_cart();
-        // }
-        window?.addEventListener('unload', function(event) {
-            useCart().close_cart();
-        });
-    }
 
     function searchConsole() {
         if(typeof window == "undefined") {
@@ -72,12 +53,6 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 </main>
                 </ProductsProvider>
                 <FixedMenu/>
-                {/* SWITCH CART */}
-
-                <CartPurchase/>
-                <PayParams/>
-
-                {/* SWITCH CART END */}
                 {/* / <PrivacyPolicy /> */}
                 <ContactUs/>
                 <Footer/>

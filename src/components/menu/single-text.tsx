@@ -6,14 +6,6 @@ import { InmodePanel_Menu_Interface } from '../interfaces';
 
 const MenuSingleText = ({menu, prop_key = undefined}:MenuSingleText) => {
 
-    // SWITCH CART
-
-    // if(menu.title && menu.title.toLowerCase() === 'shop') {
-    //     return <></>;
-    // }
-
-    // {/* SWITCH CART END */}
-
     return (
         menu.url ?
             menu.internal_link ?

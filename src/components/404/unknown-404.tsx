@@ -15,7 +15,7 @@ const Unknown404 = ({  }:Unknown404) => {
                 <Link to="/workstation" title="Machines">Machines</Link>
                 {/* SWITCH CART */}
 
-                <Link to="/shop" title="Shop">Shop</Link>
+                <a href="https://fr.inmoderesources.com/account/login" title="Shop" target="_blank">Shop</a>
 
                 {/* SWITCH CART END */}
             </div>

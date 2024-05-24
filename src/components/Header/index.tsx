@@ -8,13 +8,11 @@ import { disableMainScroll } from "../../functions/disable-scroll";
 import { useImages } from '../contexts/images-provider';
 // {/* SWITCH CART */}
   
-import { useCart } from '../contexts/cart-provider';
 import CartBasket from "../CartBasket";
 
 // {/* SWITCH CART END */}
 
 import { getById, selectOne } from "../../functions/selectors";
-import { useUser } from "../contexts/user-provider";
 
 import "./index.css";
 
@@ -29,23 +27,16 @@ const Header = ({variant = "teal"}:Header) => {
         size.width < 1200 && disableMainScroll();
     }
 
-    // {/* SWITCH CART */}
-        
-    const cart = useCart();
-
-    // {/* SWITCH CART END */}
-
-    const user = useUser();
     const size = useWindowSize();
 
     React.useEffect(() => {
 
-    }, [user]);
+    }, []);
 
     return (
         <header data-variant={variant}>
             <div className="header-content">
-                <div className={`header-parts${user.logged() ? ' logged' : ''}`}>
+                <div className="header-parts">
                     {size.width > 1199 && <HeaderTop/>}
                     {size.width > 1199 && <HeaderBottom/>}
                     {
@@ -61,28 +52,6 @@ const Header = ({variant = "teal"}:Header) => {
                     <CartBasket/>
 
                     {/* SWITCH CART END */}
-                    {
-                        user.logged() && size.width > 480 &&
-                        <Link className="profile-link user-select-none" to="/profile">
-                            <img src={images.resolve_img("profileIcon")}/>
-                            {size.width > 1199 && <span>Profil</span>}
-                        </Link>
-                    }
-                    {
-                        user.logged() && size.width > 480 &&
-                        <div className="menu-single menu-text logout user-select-none" title="Déconnexion" onClick={function() {user.logout();}}>
-                            {size.width > 1199 && <span>Déconnexion</span>}
-                            <img src={images.resolve_img("logoutIcon")}/>
-                        </div>
-                    }
-                    {
-                        user.logged() == false && size.width >= 600 &&
-                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login();}}>Connexion</div>
-                    }
-                    {/* {
-                        user.logged() == false && size.width >= 600 &&
-                        <div className="menu-single menu-text signin" title="Inscription" onClick={function() {user.signin(null);}}>Inscription</div>
-                    } */}
                     <button
                         className="header-mini-menu"
                         onClick={(e)=>{openMenu(e)}}

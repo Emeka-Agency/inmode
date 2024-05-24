@@ -16,9 +16,6 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             logoutIcon: file(relativePath: {eq: "icons/exit.svg"}) {
                 ...FileImgFormat
             }
-            profileIcon: file(relativePath: {eq: "icons/profile.svg"}) {
-                ...FileImgFormat
-            }
             whiteEditIcon: file(relativePath: {eq: "icons/edit-white.svg"}) {
                 ...FileImgFormat
             }
@@ -343,7 +340,6 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 };
 
 interface ImagesList {
-    profileIcon: GatsbyImage_Interface;
     logoutIcon: GatsbyImage_Interface;
     whiteEditIcon: GatsbyImage_Interface;
     blueEditIcon: GatsbyImage_Interface;

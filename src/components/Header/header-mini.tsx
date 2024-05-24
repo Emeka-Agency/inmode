@@ -5,7 +5,6 @@ import { enableMainScroll } from '../../functions/disable-scroll';
 import { useImages } from '../contexts/images-provider';
 import { InmodePanel_Generic_SubLinked_MiniTreatments_Interface, InmodePanel_Menu_Interface } from '../interfaces';
 import { getById, selectOne } from '../../functions/selectors';
-import { useUser } from '../contexts/user-provider';
 import { Link } from 'gatsby';
 import { useWindowSize } from '../../functions/window-size';
 
@@ -25,8 +24,6 @@ const HeaderMini = ({}:HeaderMini) => {
         selectOne('.header-parts')?.classList.remove('mini-opened');
         enableMainScroll();
     }
-
-    const user = useUser();
 
     React.useEffect(() => {
         const body = document.querySelector('body');
@@ -57,28 +54,6 @@ const HeaderMini = ({}:HeaderMini) => {
                 <span>FERMER</span>
                 <img className="close-mini-menu-icon" src={images.resolve_img('closeWhiteIcon')} alt="close-white"/>
             </div>
-            {
-                user.logged() &&
-                <Link className="profile-link user-select-none" to="/profile">
-                    <img src={images.resolve_img("profileIcon")}/>
-                    <span>Profil</span>
-                </Link>
-            }
-            {
-                user.logged() &&
-                <div className="menu-single menu-text logout user-select-none" title="Déconnexion" onClick={function() {user.logout();}}>
-                    <span>Déconnexion</span>
-                    <img src={images.resolve_img("logoutIcon")}/>
-                </div>
-            }
-            {
-                user.logged() == false && size.width < 1200 &&
-                <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login();}}>Connexion</div>
-            }
-            {
-                user.logged() == false && size.width < 1200 &&
-                <div className="menu-single menu-text signin" title="Inscription" onClick={function() {user.signin(null);}}>Inscription</div>
-            }
             <div className="header-mini-divider"></div>
             <div id="header-mini-bottom" className="header-bottom">
                 {menus_bottom && menus_bottom.map((menu:InmodePanel_Menu_Interface, key:number) => {

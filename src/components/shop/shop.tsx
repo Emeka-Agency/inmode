@@ -1,6 +1,5 @@
 import React from "react";
 import WorkstationProduct from "./workstation-product";
-import ShopProduct2 from "./shop-product";
 import WorkstationMenu from "./workstation-menu";
 import ShopMenu from "./shop-menu";
 import { getAllByClass } from "../../functions/selectors";
@@ -135,45 +134,49 @@ const Shop = ({ products, tag_families, technologies, special = null, shop_card 
             </div>
         <div className={`${shop_card}-products${special ? " special" : ""}`}>
             {/* ///////////////////////////////////////// */}
-            {shop_card === "workstation" && products.map((product, key) => {
-            let filtered_tag = [];
-            let filtered_tech = [];
-            if(shop_card === 'workstation') {
-                filtered_tag = tags.filter(value => product.Tags.map(tag => {return tag.tag;}).includes(value));
-                filtered_tech = technology.filter(value => product.Addons.map(tech => {return tech.Name;}).includes(value));
-            }
-            if(
-                (tags.length === 0 && technology.length === 0)
-                ||
-                filtered_tag.length > 0 || filtered_tech.length > 0
-            ) {
-                return (
-                <WorkstationProduct key={key} product={product} special={special}/>
-                );
-            }
-            return <></>;
-            })}
-            {/* ///////////////////////////////////////// */}
-            {shop_card === "shop" && products.map((group, group_key) => {
-                if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
-                return (
-                    <div key={group_key} className="shop-addon">
-                    <div className="addon-name">{group.fieldValue}</div>
-                    {group.nodes.map((product, key) => {
-                        return (
-                            <ShopProduct2
-                                key={`${group_key}-${key}`}
-                                reference={product.reference}
-                                special={special}
-                                wp_id={product.wp_id}
-                            />
-                        );
-                    })}
-                    </div>
-                );
+            {
+                shop_card === "workstation" && products.map((product, key) => {
+                let filtered_tag = [];
+                let filtered_tech = [];
+                if(shop_card === 'workstation') {
+                    filtered_tag = tags.filter(value => product.Tags.map(tag => {return tag.tag;}).includes(value));
+                    filtered_tech = technology.filter(value => product.Addons.map(tech => {return tech.Name;}).includes(value));
+                }
+                if(
+                    (tags.length === 0 && technology.length === 0)
+                    ||
+                    filtered_tag.length > 0 || filtered_tech.length > 0
+                ) {
+                    return (
+                    <WorkstationProduct key={key} product={product} special={special}/>
+                    );
                 }
                 return <></>;
-            })}
+                })
+            }
+            {/* ///////////////////////////////////////// */}
+            {/* {
+                shop_card === "shop" && products.map((group, group_key) => {
+                    if(tags.length === 0 || tags.indexOf(group.fieldValue) >= 0) {
+                    return (
+                        <div key={group_key} className="shop-addon">
+                        <div className="addon-name">{group.fieldValue}</div>
+                        {group.nodes.map((product, key) => {
+                            return (
+                                <ShopProduct2
+                                    key={`${group_key}-${key}`}
+                                    reference={product.reference}
+                                    special={special}
+                                    wp_id={product.wp_id}
+                                />
+                            );
+                        })}
+                        </div>
+                    );
+                    }
+                    return <></>;
+                })
+            } */}
         </div>
     </div>
   );

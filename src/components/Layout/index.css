@@ -1011,7 +1011,7 @@ header[data-variant="dusty-rose"] .header-top {
     padding: 15px 0 10px;
 }
 
-.header-parts .header-bottom a[href="/shop"] {
+.header-parts .header-bottom a[href="https://fr.inmoderesources.com/account/login"] {
     color: var(--teal);
 }
 
@@ -1277,95 +1277,6 @@ header[data-variant="dusty-rose"] .header-parts .signin:hover {
     }
 }
 
-/* profile */
-
-header .header-parts .profile-link {
-    display: inline-block;
-    margin-left: 5px;
-    vertical-align: middle;
-    color: var(--midnight);
-    transition: color 0.2s ease-in-out 0s;
-    height: 50px;
-}
-
-header .header-parts .profile-link:hover {
-    color: var(--teal);
-}
-
-header .header-parts .profile-link img {
-    display: inline-block;
-    vertical-align: middle;
-    width: 15px;
-    padding: 2px;
-    border: 1px solid var(--pearl);
-    border-radius: 50%;
-    filter: invert(1);
-}
-
-header .header-parts .profile-link span {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-@media (max-width: 1199px) {
-    header .header-parts > .profile-link {
-        display: block;
-        right: 150px;
-        top: -10px;
-        position: absolute;
-        width: auto;
-        height: auto;
-        margin-top: 16px;
-    }
-
-    header .header-parts .header-mini .profile-link {
-        display: block;
-        right: 0;
-        top: 0;
-        position: relative;
-        width: auto;
-        height: auto;
-        margin-top: 16px;
-    }
-
-    header .header-parts.mini-opened > .profile-link {
-        display: none;
-    }
-
-    header .header-parts .profile-link:first-child {
-        margin-top: 32px;
-    }
-
-    header .header-parts .profile-link img {
-        width: 22px;
-    }
-}
-
-@media (max-width: 480px) {
-    header .header-parts #header-mini .profile-link {
-        position: relative;
-        display: block;
-        width: 100%;
-        float: unset;
-        right: 0;
-        margin: 0;
-        margin-top: 70px;
-        height: auto;
-    }
-
-    header .header-parts #header-mini .profile-link img {
-        width: 22px;
-    }
-
-    header .header-parts #header-mini .profile-link span {
-
-    }
-}
-
 /* logout */
 
 header .header-parts .logout {
@@ -1521,8 +1432,7 @@ header .header-parts .logout span {
 
     header .header-parts #header-mini.header-mini.opened .menu-close + .login,
     header .header-parts #header-mini.header-mini.opened .menu-close + .signin,
-    header .header-parts #header-mini.header-mini.opened .menu-close + .logout,
-    header .header-parts #header-mini.header-mini.opened .menu-close + .profile-link {
+    header .header-parts #header-mini.header-mini.opened .menu-close + .logout {
         margin-top: 48px;
     }
 
@@ -1875,8 +1785,7 @@ header .header-parts .logout span {
 
     #fixed-menu .fixed-menus .login,
     #fixed-menu .fixed-menus .signin,
-    #fixed-menu .fixed-menus .logout,
-    #fixed-menu .fixed-menus .profile-link {
+    #fixed-menu .fixed-menus .logout {
         color: var(--teal);
         font-size: 12px;
         font-weight: bold;
@@ -1885,12 +1794,6 @@ header .header-parts .logout span {
         line-height: 22px;
     }
 
-    #fixed-menu .fixed-menus .profile-link {
-        font-size: 0;
-        line-height: 1;
-    }
-
-    #fixed-menu .fixed-menus .profile-link img,
     #fixed-menu .fixed-menus .logout img {
         width: 20px;
         margin-left: 5px;

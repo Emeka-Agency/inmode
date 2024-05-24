@@ -13,7 +13,7 @@ const Sitemap = ({ data }:Sitemap) => {
                     {/* BASE */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/" title="Home">https://inmodemd.fr/</a></div>
                     {/* SHOP */}
-                    <div className="sitemap-link">- <a className="absolute-link" href="/shop/" title="Shop">https://inmodemd.fr/shop/</a></div>
+                    <div className="sitemap-link">- <a className="absolute-link" href="https://fr.inmoderesources.com/account/login" target="_blank" title="Shop">https://fr.inmoderesources.com/account/login</a></div>
                     {/* ABOUT */}
                     <div className="sitemap-link">- <a className="absolute-link" href="/about-us/" title="About us">https://inmodemd.fr/about-us/</a></div>
                     {/* CONTACT */}

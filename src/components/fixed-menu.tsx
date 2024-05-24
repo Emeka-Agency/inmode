@@ -5,11 +5,9 @@ import MenusContext from "./contexts/menus-context";
 // {/* SWITCH CART */}
 
 import CartBasket from "./CartBasket";
-import { useCart } from './contexts/cart-provider';
 
 // {/* SWITCH CART END */}
 import { useImages } from './contexts/images-provider';
-import { useUser } from "./contexts/user-provider";
 import { useWindowSize } from "../functions/window-size";
 
 const FixedMenu = ({ customClass }:{ customClass?:string }) => {
@@ -32,15 +30,7 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
         };
     }, []);
 
-    
-    // {/* SWITCH CART */}
-    
-    const cart = useCart();
-
-    // {/* SWITCH CART END */}
-
     const images = useImages();
-    const user = useUser();
     const size = useWindowSize();
 
     return (
@@ -64,24 +54,6 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
 
                     {/* { cart.cart.length > 0 || cart.appeared ? <CartBasket/> : null } */}
                     <CartBasket/>
-                    {
-                        user.logged() && size.width > 480 &&
-                        <Link className="profile-link user-select-none" to="/profile">
-                            <img src={images.resolve_img("profileIcon")}/>
-                            {size.width > 1199 && <span>Profil</span>}
-                        </Link>
-                    }
-                    {
-                        user.logged() && size.width > 480 &&
-                        <div className="menu-single menu-text logout user-select-none" title="Déconnexion" onClick={function() {user.logout();}}>
-                            {size.width > 1199 && <span>Déconnexion</span>}
-                            <img src={images.resolve_img("logoutIcon")}/>
-                        </div>
-                    }
-                    {
-                        user.logged() == false && size.width >= 600 &&
-                        <div className="menu-single menu-text login user-select-none" title="Connexion" onClick={function() {user.login();}}>Connexion</div>
-                    }
                     {/* SWITCH CART END */}
                 </div>
             </div>

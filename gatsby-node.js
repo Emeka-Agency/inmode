@@ -26,6 +26,10 @@ exports.onCreatePage = async ({
     return false;
   }
 
+  if(page.path == '/shop/') {
+    return false;
+  }
+
   // {/* SWITCH CART */}
 
   if(page.path == '/old-shop/') {
