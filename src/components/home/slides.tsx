@@ -13,6 +13,8 @@ const Slides = ({from}:Slides) => {
 
     const images = useImages();
 
+    const with_full_logo = ['Triton', 'BodyTite', 'Contoura', 'Define', 'Empowerrf', 'Envision', 'Evoke', 'Evolvex', 'Optimas'];
+
     const [current, setCurrent]:[number, React.Dispatch<number>] = React.useState(-1);
     const [open, setOpen]:[Boolean, React.Dispatch<Boolean>] = React.useState(new Boolean(false));
 
@@ -90,6 +92,8 @@ const Slides = ({from}:Slides) => {
                 classList={'slides-main transition'}
             >
                 {slides && slides.map((slide, key) => {
+                    let wfl_index = with_full_logo.findIndex(wfl => wfl.toLowerCase() == slide.Name.toLowerCase());
+                    // let wfl_index = -1;
                     return (
                         <div
                             key={key}
@@ -99,14 +103,6 @@ const Slides = ({from}:Slides) => {
                                 {slide.short_descr}
                             </div>
                             <div className="slide-content">
-                                <div className="slide-background-ico">
-                                    <img
-                                        className="slide-bg-img user-select-none"
-                                        src={resolveImg(slide.Icon)}
-                                        srcSet={resolveImgSet(slide.Icon)}
-                                        alt={slide.Name}
-                                    />
-                                </div>
                                 <div className="slide-background-product">
                                     <img
                                         className="slide-bg-img user-select-none"
@@ -115,9 +111,28 @@ const Slides = ({from}:Slides) => {
                                         alt='product'
                                     />
                                 </div>
-                                <div className="slide-short-descr user-select-none">
-                                    {slide.Name}
-                                </div>
+                                {
+                                    wfl_index < 0 ?
+                                    <div className="slide-short-descr user-select-none">
+                                        {slide.Name}
+                                    </div> :
+                                    <div className="slide-short-descr user-select-none">
+                                        <img
+                                            className="slide-background-ico user-select-none"
+                                            src={wfl_index < 0 ? resolveImg(slide.Icon) : images.resolve_img('Carrousel' + with_full_logo[wfl_index] + 'Icone')}
+                                            srcSet={wfl_index < 0 ? resolveImgSet(slide.Icon) : images.resolve_img('Carrousel' + with_full_logo[wfl_index] + 'Icone')}
+                                            // src={resolveImg(slide.Icon)}
+                                            // srcSet={resolveImgSet(slide.Icon)}
+                                            alt={slide.Name}
+                                        />
+                                        <img
+                                            className="slide-background-logo user-select-none"
+                                            src={images.resolve_img('Carrousel' + with_full_logo[wfl_index] + 'Logo')}
+                                            srcSet={images.resolve_img('Carrousel' + with_full_logo[wfl_index] + 'Logo')}
+                                            alt={slide.Name}
+                                        />
+                                    </div>
+                                }
                                 <div className="slide-view-detail user-select-none" onClick={(e) => {view_detail(e, key);}}>
                                     Informations produit
                                     <img
