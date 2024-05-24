@@ -49,7 +49,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                     srcSet={images.resolve_img_set("DefineCheekTitle")}
                     alt={"Define Cheek"}
                 />
-                <span>et</span>
+                <span style={{textTransform: "lowercase", margin: "0 12px", color: "var(--pure-black)", position: "relative", bottom: "2px"}}>&</span>
                 <img
                     src={images.resolve_img("DefineChinTitle")}
                     srcSet={images.resolve_img_set("DefineChinTitle")}
