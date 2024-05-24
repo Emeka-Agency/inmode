@@ -248,6 +248,26 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             DefineMorpheus8AddonTitle: file(relativePath: {eq: "products/define/Morpheus8.png"}) {
                 ...FileImgFormat
             }
+
+            CarrouselBodyTiteIcone: file(relativePath: {eq: "products/carousel/bodytite_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselTritonLogo: file(relativePath: {eq: "products/carousel/triton_logo_midnight.svg"}) {...FileImgFormat}
+            CarrouselContouraIcone: file(relativePath: {eq: "products/carousel/contoura_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselBodyTiteLogo: file(relativePath: {eq: "products/carousel/bodytite_logo_midnight.svg"}) {...FileImgFormat}
+            CarrouselDefineIcone: file(relativePath: {eq: "products/carousel/define_icone_blueduck.svg"}) {...FileImgFormat}
+            CarrouselContouraLogo: file(relativePath: {eq: "products/carousel/contoura_logo_midnight.svg"}) {...FileImgFormat}
+            CarrouselEmpowerrfIcone: file(relativePath: {eq: "products/carousel/empowerrf_icone_dusty_rose.svg"}) {...FileImgFormat}
+            CarrouselDefineLogo: file(relativePath: {eq: "products/carousel/define_logo_blueduck.svg"}) {...FileImgFormat}
+            CarrouselEnvisionIcone: file(relativePath: {eq: "products/carousel/envision_icone_lazuli.svg"}) {...FileImgFormat}
+            CarrouselEmpowerrfLogo: file(relativePath: {eq: "products/carousel/empowerrf_logo_dusty_rose.svg"}) {...FileImgFormat}
+            CarrouselEvokeIcone: file(relativePath: {eq: "products/carousel/evoke_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselEnvisionLogo: file(relativePath: {eq: "products/carousel/envision_logo_lazuli.svg"}) {...FileImgFormat}
+            CarrouselEvolvexIcone: file(relativePath: {eq: "products/carousel/evolvex_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselEvokeLogo: file(relativePath: {eq: "products/carousel/evoke_logo_midnight.svg"}) {...FileImgFormat}
+            CarrouselOptimasIcone: file(relativePath: {eq: "products/carousel/optimas_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselEvolvexLogo: file(relativePath: {eq: "products/carousel/evolvex_logo_midnight.svg"}) {...FileImgFormat}
+            CarrouselTritonIcone: file(relativePath: {eq: "products/carousel/triton_icone_midnight.svg"}) {...FileImgFormat}
+            CarrouselOptimasLogo: file(relativePath: {eq: "products/carousel/optimas_logo_midnight.svg"}) {...FileImgFormat}
+
         }
 
         fragment FileImgFormat on File {
@@ -421,6 +441,25 @@ interface ImagesList {
     DefineFullLogo: GatsbyImage_Interface;
     DefineCheekTitle: GatsbyImage_Interface;
     DefineChinTitle: GatsbyImage_Interface;
+
+    CarrouselTritonIcone: GatsbyImage_Interface;
+    CarrouselBodytiteLogo: GatsbyImage_Interface;
+    CarrouselBodytiteIcone: GatsbyImage_Interface;
+    CarrouselContouraLogo: GatsbyImage_Interface;
+    CarrouselContouraIcone: GatsbyImage_Interface;
+    CarrouselDefineLogo: GatsbyImage_Interface;
+    CarrouselDefineIcone: GatsbyImage_Interface;
+    CarrouselEmpowerrfLogo: GatsbyImage_Interface;
+    CarrouselEmpowerrfIcone: GatsbyImage_Interface;
+    CarrouselEnvisionLogo: GatsbyImage_Interface;
+    CarrouselEnvisionIcone: GatsbyImage_Interface;
+    CarrouselEvokeLogo: GatsbyImage_Interface;
+    CarrouselEvokeIcone: GatsbyImage_Interface;
+    CarrouselEvolvexLogo: GatsbyImage_Interface;
+    CarrouselEvolvexIcone: GatsbyImage_Interface;
+    CarrouselOptimasLogo: GatsbyImage_Interface;
+    CarrouselOptimasIcone: GatsbyImage_Interface;
+    CarrouselTritonLogo: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
