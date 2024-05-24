@@ -41,7 +41,7 @@ const Header = ({variant = "teal"}:Header) => {
                     {size.width > 1199 && <HeaderBottom/>}
                     {
                         size.width < 1200 && 
-                        <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
+                        <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('newHeaderInmodeLogo') +')'}}>
                             <Link to="/" className="absolute-link" title="Inmode"></Link>
                         </div>
                     }

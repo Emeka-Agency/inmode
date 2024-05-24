@@ -14,7 +14,7 @@ const HeaderBottom = ({}:HeaderBottom) => {
 
     return (
         <div id="header-bottom" className="header-bottom">
-            <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('footerLogo3') +')'}}>
+            <div className="header-logo background-image" style={{backgroundImage: 'url('+ images.resolve_img('newHeaderInmodeLogo') +')'}}>
                 <Link to="/" className="absolute-link" title="Inmode"></Link>
             </div>
             <div className="header-bottom-menus">

@@ -88,6 +88,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             footerLogo3: file(relativePath: {eq: "footer-logo-3.png"}) {
                 ...FileImgFormat
             }
+            newHeaderInmodeLogo: file(relativePath: {eq: "new-header-inmode-logo.png"}) {
+                ...FileImgFormat
+            }
             addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
                 ...FileImgFormat
             }
@@ -364,6 +367,7 @@ interface ImagesList {
     footerLogo: GatsbyImage_Interface;
     footerLogo2: GatsbyImage_Interface;
     footerLogo3: GatsbyImage_Interface;
+    newHeaderInmodeLogo: GatsbyImage_Interface;
     addressIcon: GatsbyImage_Interface;
     phoneIcon: GatsbyImage_Interface;
     mailIcon: GatsbyImage_Interface;

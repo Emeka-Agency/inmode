@@ -38,8 +38,8 @@ const FixedMenu = ({ customClass }:{ customClass?:string }) => {
             <div className="fixed-menu-container">
                 <div className="fixed-menu-logo user-select-none">
                     <img
-                        src={images.resolve_img('footerLogo3')}
-                        srcSet={images.resolve_img_set('footerLogo3')}
+                        src={images.resolve_img('newHeaderInmodeLogo')}
+                        srcSet={images.resolve_img_set('newHeaderInmodeLogo')}
                         alt="header-logo"
                     />
                     <Link to="/" className="absolute-link" title="Inmode"></Link>
