@@ -361,7 +361,7 @@ export const resolveImgSet = (img?:any) => {
 export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg" || img?.localFile?.publicURL?.endsWith('.svg')) {
         retour = img?.localFile?.publicURL;
     }
     else if((img?.localFile?.childImageSharp?.fluid?.srcWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcWebp?.indexOf('/.') == -1) {
@@ -394,7 +394,7 @@ export const resolveInternalImg = (img?:External_GatsbyImage_Interface):string|u
 export const resolveInternalImgSet = (img?:External_GatsbyImage_Interface):string|undefined => {
     if(img == null) {return undefined;}
     let retour = undefined;
-    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg") {
+    if((img?.localFile?.ext == ".svg") || img?.localFile?.extension == "svg" || img?.localFile?.publicURL?.endsWith('.svg')) {
         retour = img?.localFile?.publicURL;
     }
     else if((img?.localFile?.childImageSharp?.fluid?.srcSetWebp ?? "").length > 0 && img?.localFile?.childImageSharp?.fluid?.srcSetWebp?.indexOf('/.') == -1) {
