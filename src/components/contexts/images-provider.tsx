@@ -202,10 +202,19 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             EnvisionFormaIMarine: file(relativePath: {eq: "products/envision/formaI marine.jpg"}) {
                 ...FileImgFormat
             }
-            EnvisionLumecaaIMarine: file(relativePath: {eq: "products/envision/lumeccaI marine.jpg"}) {
+            EnvisionFormaIAzuli: file(relativePath: {eq: "products/envision/formaI azuli.png"}) {
+                ...FileImgFormat
+            }
+            EnvisionLumecaIMarine: file(relativePath: {eq: "products/envision/lumeccaI marine.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionLumecaIAzuli: file(relativePath: {eq: "products/envision/lumeccaI azuli.png"}) {
                 ...FileImgFormat
             }
             EnvisionMorpheusMarine: file(relativePath: {eq: "products/envision/morpheus marine.jpg"}) {
+                ...FileImgFormat
+            }
+            EnvisionMorpheusAzuli: file(relativePath: {eq: "products/envision/morpheus azuli.jpg"}) {
                 ...FileImgFormat
             }
             EnvisionFormaIBack: file(relativePath: {eq: "products/envision/formaI - back.webp"}) {
@@ -429,8 +438,11 @@ interface ImagesList {
     EnvisionBa2FormaI: GatsbyImage_Interface;
     EnvisionBa3FormaI: GatsbyImage_Interface;
     EnvisionFormaIMarine: GatsbyImage_Interface;
-    EnvisionLumecaaIMarine: GatsbyImage_Interface;
+    EnvisionFormaIAzuli: GatsbyImage_Interface;
+    EnvisionLumecaIMarine: GatsbyImage_Interface;
+    EnvisionLumecaIAzuli: GatsbyImage_Interface;
     EnvisionMorpheusMarine: GatsbyImage_Interface;
+    EnvisionMorpheusAzuli: GatsbyImage_Interface;
     EnvisionFormaIBack: GatsbyImage_Interface;
     EnvisionFormaIZoom: GatsbyImage_Interface;
     EnvisionLumeccaIBack: GatsbyImage_Interface;
