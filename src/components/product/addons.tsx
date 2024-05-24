@@ -37,7 +37,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
 
     const special = (title?:string) => {
         if((title ?? "").toLowerCase() === "define cheek et define chin") {return true;}
-        if((title ?? "").toLowerCase() === "morpheus8") {return true;}
+        if((title ?? "").toLowerCase() === "morpheus8" && ['define', 'empowerrf'].indexOf(product_name.toLowerCase()) > -1) {return true;}
         return false;
     }
 
@@ -57,11 +57,20 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                 />
             </>
         }
-        if((title ?? "").toLowerCase() === "morpheus8") {
+        if((title ?? "").toLowerCase() === "morpheus8" && product_name.toLowerCase() == 'define') {
             return <>
                 <img
                     src={images.resolve_img("DefineMorpheus8AddonTitle")}
                     srcSet={images.resolve_img_set("DefineMorpheus8AddonTitle")}
+                    alt={"Morpheus8"}
+                />
+            </>
+        }
+        if((title ?? "").toLowerCase() === "morpheus8" && product_name.toLowerCase() == 'empowerrf') {
+            return <>
+                <img
+                    src={images.resolve_img("EmpowerRFMorpheus8AddonTitle")}
+                    srcSet={images.resolve_img_set("EmpowerRFMorpheus8AddonTitle")}
                     alt={"Morpheus8"}
                 />
             </>
