@@ -675,7 +675,7 @@ header {
 
     @media (min-width: 600px) {
         header .header-content .header-parts  >  div.cart {
-            right: 210px;
+            right: 120px;
         }
     }
 
@@ -711,6 +711,12 @@ header .header-parts .login,
 header .header-parts .signin,
 header .header-parts .logout {
     padding-right: calc((100vw - 1170px) / 2);
+}
+
+@media (min-width: 1200px) {
+    header .header-parts .cart {
+        padding-right: calc((100vw - 1170px) / 2);
+    }
 }
 
 @media (max-width: 1199px) {
