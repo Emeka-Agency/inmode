@@ -21,7 +21,7 @@ const EnvisionBanner = ({}:EnvisionBanner) => {
     };
 
     return (
-        <ProductBanner datas={banner}/>
+        <ProductBanner datas={banner} name="Envision"/>
     );
 };
 

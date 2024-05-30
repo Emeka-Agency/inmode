@@ -261,6 +261,16 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
                 ...FileImgFormat
             }
 
+            ProductBannerBodyTite: file(relativePath: {eq: "products/bodytite/bodytite.png"}) {
+                ...FileImgFormat
+            }
+            ProductBannerEvoke: file(relativePath: {eq: "products/evoke/evoke.png"}) {
+                ...FileImgFormat
+            }
+            ProductBannerEnvision: file(relativePath: {eq: "products/envision/envision black.png"}) {
+                ...FileImgFormat
+            }
+
             CarrouselBodyTiteIcone: file(relativePath: {eq: "products/carousel/bodytite_icone_midnight.svg"}) {...FileImgFormat}
             CarrouselTritonLogo: file(relativePath: {eq: "products/carousel/triton_logo_midnight.svg"}) {...FileImgFormat}
             CarrouselContouraIcone: file(relativePath: {eq: "products/carousel/contoura_icone_midnight.svg"}) {...FileImgFormat}
@@ -459,6 +469,10 @@ interface ImagesList {
 
     DefineMorpheus8AddonTitle: GatsbyImage_Interface;
     EmpowerRFMorpheus8AddonTitle: GatsbyImage_Interface;
+
+    ProductBannerBodyTite: GatsbyImage_Interface;
+    ProductBannerEvoke: GatsbyImage_Interface;
+    ProductBannerEnvision: GatsbyImage_Interface;
 
     CarrouselTritonIcone: GatsbyImage_Interface;
     CarrouselBodytiteLogo: GatsbyImage_Interface;
