@@ -124,6 +124,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                                     src={resolveImg(product.title_image)}
                                                     srcSet={resolveImgSet(product.title_image)}
                                                     alt={product.title_text}
+                                                    style={product.title_text == "Morpheus8 Body 3D" ? {height: 60} : {}}
                                                 />
                                             )}
                                             {!special(product.title_text) && !product.title_image && product.title_text}
