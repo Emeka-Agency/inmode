@@ -270,6 +270,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             ProductBannerEnvision: file(relativePath: {eq: "products/envision/envision black.png"}) {
                 ...FileImgFormat
             }
+            ProductBannerIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Icone simple (Pearl).svg"}) {
+                ...FileImgFormat
+            }
 
             CarrouselBodyTiteIcone: file(relativePath: {eq: "products/carousel/bodytite_icone_midnight.svg"}) {...FileImgFormat}
             CarrouselTritonLogo: file(relativePath: {eq: "products/carousel/triton_logo_midnight.svg"}) {...FileImgFormat}
@@ -289,7 +292,9 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             CarrouselEvolvexLogo: file(relativePath: {eq: "products/carousel/evolvex_logo_midnight.svg"}) {...FileImgFormat}
             CarrouselTritonIcone: file(relativePath: {eq: "products/carousel/triton_icone_midnight.svg"}) {...FileImgFormat}
             CarrouselOptimasLogo: file(relativePath: {eq: "products/carousel/optimas_logo_midnight.svg"}) {...FileImgFormat}
-
+            
+            BannerIgniteRF: file(relativePath: {eq: "products/igniterf/Bandeau-Nouveaute-IgniteRF-_1_.webp"}) {...FileImgFormat}
+            BannerIgniteRF2: file(relativePath: {eq: "products/igniterf/Nouveauté (60 x 20 po).jpg"}) {...FileImgFormat}
         }
 
         fragment FileImgFormat on File {
@@ -492,6 +497,8 @@ interface ImagesList {
     CarrouselOptimasLogo: GatsbyImage_Interface;
     CarrouselOptimasIcone: GatsbyImage_Interface;
     CarrouselTritonLogo: GatsbyImage_Interface;
+
+    BannerIgniteRF: GatsbyImage_Interface;
 };
 
 export default ImagesProvider;
