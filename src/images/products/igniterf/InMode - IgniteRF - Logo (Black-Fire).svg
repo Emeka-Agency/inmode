@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 125.77 16.64">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #010101;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="103.4" y1=".25" x2="103.4" y2="15.56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f28a1a"/>
+      <stop offset=".16" stop-color="#e57319"/>
+      <stop offset=".54" stop-color="#c94218"/>
+      <stop offset=".83" stop-color="#b82417"/>
+      <stop offset=".99" stop-color="#b21917"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="120.98" y1=".25" x2="120.98" y2="15.56" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <g>
+      <path class="cls-1" d="M0,16.35V.29h2.81v16.06H0ZM18.31,16.64c-4.97,0-8.54-3.57-8.54-8.32S13.38,0,18.33,0c2.41,0,4.17.76,4.91,1.12v2.63c-1.05-.51-2.7-1.16-4.82-1.16-3.57,0-5.84,2.5-5.84,5.73s2.32,5.78,5.73,5.78c.96,0,2.03-.2,2.65-.45v-4.55h2.72v6.31c-1.38.74-3.43,1.23-5.37,1.23ZM43.83,16.59l-9.39-9.61c-.25-.22-.51-.49-.78-.71v10.08h-2.77V.04h.09l9.37,9.59.78.76V.29h2.77v16.3h-.07ZM51.97,16.35V.29h2.81v16.06h-2.81ZM68.65,2.65v13.69h-2.81V2.65h-4.68V.29h12.18v2.36h-4.68ZM79.71,16.35V.29h10.1v2.36h-7.29v4.42h6.18v2.3h-6.18v4.62h7.63v2.36h-10.44Z"/>
+      <g>
+        <path class="cls-2" d="M102.98.29c3.64,0,5.93,1.83,5.93,5.11,0,2.36-1.43,3.93-3.17,4.53l3.5,6.42h-3.01l-3.08-5.95h-2.83v5.95h-2.77V.29h5.42ZM100.32,2.65v5.46h2.81c1.81,0,2.97-.96,2.97-2.72s-1.2-2.74-3.1-2.74h-2.68Z"/>
+        <path class="cls-3" d="M118.99,2.65v4.55h5.71v2.34h-5.71v6.8h-2.81V.29h9.59v2.36h-6.78Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

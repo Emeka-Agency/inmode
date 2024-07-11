@@ -13,266 +13,120 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
 
     const [images]:[ImagesList, React.Dispatch<ImagesList>] = React.useState(useStaticQuery(graphql `
         {
-            logoutIcon: file(relativePath: {eq: "icons/exit.svg"}) {
-                ...FileImgFormat
-            }
-            whiteEditIcon: file(relativePath: {eq: "icons/edit-white.svg"}) {
-                ...FileImgFormat
-            }
-            blueEditIcon: file(relativePath: {eq: "icons/edit-blue.svg"}) {
-                ...FileImgFormat
-            }
-            keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {
-                ...FileImgFormat
-            }
-            keyBenefitIconTeal: file(relativePath: {eq: "icons/key_benefit_teal.svg"}) {
-                ...FileImgFormat
-            }
-            keyBenefitIconRose: file(relativePath: {eq: "icons/key_benefit_dusty.png"}) {
-                ...FileImgFormat
-            }
-            keyBenefitDefine: file(relativePath: {eq: "icons/key_define.png"}) {
-                ...FileImgFormat
-            }
-            keyBenefitEnvision: file(relativePath: {eq: "icons/key_envision.png"}) {
-                ...FileImgFormat
-            }
-            orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {
-                ...FileImgFormat
-            }
-            cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {
-                ...FileImgFormat
-            }
-            closeWhiteIcon: file(relativePath: {eq: "icons/close-white.webp"}) {
-                ...FileImgFormat
-            }
-            hexagonalCross: file(relativePath: {eq: "icons/closingcross.png"}) {
-                ...FileImgFormat
-            }
-            rmvInit: file(relativePath: {eq: "icons/rmv-article-init.svg"}) {
-                ...FileImgFormat
-            }
-            rmvHover: file(relativePath: {eq: "icons/rmv-article-blue.svg"}) {
-                ...FileImgFormat
-            }
-            contactUsPiece: file(relativePath: {eq: "contact_us.png"}) {
-                ...FileImgFormat
-            }
-            fixedMenuLogo: file(relativePath: {eq: "header-logo.png"}) {
-                ...FileImgFormat
-            }
-            headerLogo: file(relativePath: {eq: "header-logo.png"}) {
-                ...FileImgFormat
-            }
-            headerLogo2: file(relativePath: {eq: "header-logo-2.png"}) {
-                ...FileImgFormat
-            }
-            headerLogo3: file(relativePath: {eq: "header-logo-3.png"}) {
-                ...FileImgFormat
-            }
-            headerLogo4: file(relativePath: {eq: "header-logo-4.png"}) {
-                ...FileImgFormat
-            }
-            seoLogo: file(relativePath: {eq: "header-logo.png"}) {
-                ...FileImgFormat
-            }
-            seoLogo2: file(relativePath: {eq: "header-logo.png"}) {
-                ...FileImgFormat
-            }
-            footerLogo: file(relativePath: {eq: "footer-logo.png"}) {
-                ...FileImgFormat
-            }
-            footerLogo2: file(relativePath: {eq: "footer-logo2.png"}) {
-                ...FileImgFormat
-            }
-            footerLogo3: file(relativePath: {eq: "footer-logo-3.png"}) {
-                ...FileImgFormat
-            }
-            newHeaderInmodeLogo: file(relativePath: {eq: "new-header-inmode-logo.png"}) {
-                ...FileImgFormat
-            }
-            addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {
-                ...FileImgFormat
-            }
-            phoneIcon: file(relativePath: {eq: "icons/icomoon/svg/067-phone.svg"}) {
-                ...FileImgFormat
-            }
-            mailIcon: file(relativePath: {eq: "icons/icomoon/svg/391-mail5.svg"}) {
-                ...FileImgFormat
-            }
-            bgPattern: file(relativePath: {eq: "footer-bg-pattern.png"}) {
-                ...FileImgFormat
-            }
-            privacyPolicyTriangle: file(relativePath: {eq: "privacy-icon.svg"}) {
-                ...FileImgFormat
-            }
-            privacyPolicyC: file(relativePath: {eq: "privacy-c.png"}) {
-                ...FileImgFormat
-            }
-            backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {
-                ...FileImgFormat
-            }
-            alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {
-                ...FileImgFormat
-            }
-            new_alveole1: file(relativePath: {eq: "home/alveole congres.jpg"}) {
-                ...FileImgFormat
-            }
-            alveole2: file(relativePath: {eq: "home/alveole-2.jpg"}) {
-                ...FileImgFormat
-            }
-            new_alveole2: file(relativePath: {eq: "home/alveole webinar.jpg"}) {
-                ...FileImgFormat
-            }
-            alveole3: file(relativePath: {eq: "home/alveole-3.jpg"}) {
-                ...FileImgFormat
-            }
-            alveole4: file(relativePath: {eq: "home/alveole-4.png"}) {
-                ...FileImgFormat
-            }
-            alveole5: file(relativePath: {eq: "home/alveole-5.jpg"}) {
-                ...FileImgFormat
-            }
-            homeClinicalBack: file(relativePath: {eq: "home/media-bg.webp"}) {
-                ...FileImgFormat
-            }
-            homeClinicalBack2: file(relativePath: {eq: "home/media-bg-2.jpg"}) {
-                ...FileImgFormat
-            }
-            homeClinicalStudy: file(relativePath: {eq: "home/studies-img.png"}) {
-                ...FileImgFormat
-            }
-            heroHeader: file(relativePath: {eq: "hero-3.png"}) {
-                ...FileImgFormat
-            }
-            hero1: file(relativePath: {eq: "home/hero-1.jpg"}) {
-                ...FileImgFormat
-            }
-            hero2: file(relativePath: {eq: "home/hero-2.jpg"}) {
-                ...FileImgFormat
-            }
-            hero3: file(relativePath: {eq: "home/hero-3.jpg"}) {
-                ...FileImgFormat
-            }
-            plusIcon: file(relativePath: {eq: "icons/add.svg"}) {
-                ...FileImgFormat
-            }
-            arrowRightIcon: file(relativePath: {eq: "icons/arrow-right.png"}) {
-                ...FileImgFormat
-            }
-            arrowLeftIcon: file(relativePath: {eq: "icons/arrow-left.png"}) {
-                ...FileImgFormat
-            }
-            gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {
-                ...FileImgFormat
-            }
-            nextImage: file(relativePath: {eq: "products/addons/next.png"}) {
-                ...FileImgFormat
-            }
-            whiteTrash: file(relativePath: {eq: "icons/white-trash.svg"}) {
-                ...FileImgFormat
-            }
-            redTrash: file(relativePath: {eq: "icons/red-trash.svg"}) {
-                ...FileImgFormat
-            }
+            logoutIcon: file(relativePath: {eq: "icons/exit.svg"}) {...FileImgFormat}
+            whiteEditIcon: file(relativePath: {eq: "icons/edit-white.svg"}) {...FileImgFormat}
+            blueEditIcon: file(relativePath: {eq: "icons/edit-blue.svg"}) {...FileImgFormat}
+            keyBenefitIcon: file(relativePath: {eq: "icons/key_benefit.png"}) {...FileImgFormat}
+            keyBenefitIconTeal: file(relativePath: {eq: "icons/key_benefit_teal.svg"}) {...FileImgFormat}
+            keyBenefitIconRose: file(relativePath: {eq: "icons/key_benefit_dusty.png"}) {...FileImgFormat}
+            keyBenefitDefine: file(relativePath: {eq: "icons/key_define.png"}) {...FileImgFormat}
+            keyBenefitEnvision: file(relativePath: {eq: "icons/key_envision.png"}) {...FileImgFormat}
+            keyBenefitIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - Bullet Point (Carbon-Fire) - V1.svg"}) {...FileImgFormat}
+            
+            orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {...FileImgFormat}
+            cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {...FileImgFormat}
+            closeWhiteIcon: file(relativePath: {eq: "icons/close-white.webp"}) {...FileImgFormat}
+            hexagonalCross: file(relativePath: {eq: "icons/closingcross.png"}) {...FileImgFormat}
+            rmvInit: file(relativePath: {eq: "icons/rmv-article-init.svg"}) {...FileImgFormat}
+            rmvHover: file(relativePath: {eq: "icons/rmv-article-blue.svg"}) {...FileImgFormat}
+            contactUsPiece: file(relativePath: {eq: "contact_us.png"}) {...FileImgFormat}
+            fixedMenuLogo: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
+            headerLogo: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
+            headerLogo2: file(relativePath: {eq: "header-logo-2.png"}) {...FileImgFormat}
+            headerLogo3: file(relativePath: {eq: "header-logo-3.png"}) {...FileImgFormat}
+            headerLogo4: file(relativePath: {eq: "header-logo-4.png"}) {...FileImgFormat}
+            seoLogo: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
+            seoLogo2: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
+            footerLogo: file(relativePath: {eq: "footer-logo.png"}) {...FileImgFormat}
+            footerLogo2: file(relativePath: {eq: "footer-logo2.png"}) {...FileImgFormat}
+            footerLogo3: file(relativePath: {eq: "footer-logo-3.png"}) {...FileImgFormat}
+            newHeaderInmodeLogo: file(relativePath: {eq: "new-header-inmode-logo.png"}) {...FileImgFormat}
+            addressIcon: file(relativePath: {eq: "icons/icomoon/svg/073-location2.svg"}) {...FileImgFormat}
+            phoneIcon: file(relativePath: {eq: "icons/icomoon/svg/067-phone.svg"}) {...FileImgFormat}
+            mailIcon: file(relativePath: {eq: "icons/icomoon/svg/391-mail5.svg"}) {...FileImgFormat}
+            bgPattern: file(relativePath: {eq: "footer-bg-pattern.png"}) {...FileImgFormat}
+            privacyPolicyTriangle: file(relativePath: {eq: "privacy-icon.svg"}) {...FileImgFormat}
+            privacyPolicyC: file(relativePath: {eq: "privacy-c.png"}) {...FileImgFormat}
+            backAlveole: file(relativePath: {eq: "home/bg-alveoles.jpg"}) {...FileImgFormat}
+            alveole1: file(relativePath: {eq: "home/alveole-1.jpg"}) {...FileImgFormat}
+            new_alveole1: file(relativePath: {eq: "home/alveole congres.jpg"}) {...FileImgFormat}
+            alveole2: file(relativePath: {eq: "home/alveole-2.jpg"}) {...FileImgFormat}
+            new_alveole2: file(relativePath: {eq: "home/alveole webinar.jpg"}) {...FileImgFormat}
+            alveole3: file(relativePath: {eq: "home/alveole-3.jpg"}) {...FileImgFormat}
+            alveole4: file(relativePath: {eq: "home/alveole-4.png"}) {...FileImgFormat}
+            alveole5: file(relativePath: {eq: "home/alveole-5.jpg"}) {...FileImgFormat}
+            homeClinicalBack: file(relativePath: {eq: "home/media-bg.webp"}) {...FileImgFormat}
+            homeClinicalBack2: file(relativePath: {eq: "home/media-bg-2.jpg"}) {...FileImgFormat}
+            homeClinicalStudy: file(relativePath: {eq: "home/studies-img.png"}) {...FileImgFormat}
+            heroHeader: file(relativePath: {eq: "hero-3.png"}) {...FileImgFormat}
+            hero1: file(relativePath: {eq: "home/hero-1.jpg"}) {...FileImgFormat}
+            hero2: file(relativePath: {eq: "home/hero-2.jpg"}) {...FileImgFormat}
+            hero3: file(relativePath: {eq: "home/hero-3.jpg"}) {...FileImgFormat}
+            plusIcon: file(relativePath: {eq: "icons/add.svg"}) {...FileImgFormat}
+            arrowRightIcon: file(relativePath: {eq: "icons/arrow-right.png"}) {...FileImgFormat}
+            arrowLeftIcon: file(relativePath: {eq: "icons/arrow-left.png"}) {...FileImgFormat}
+            gatsbyAstronaut: file(relativePath: {eq: "gatsby-astronaut.png"}) {...FileImgFormat}
+            nextImage: file(relativePath: {eq: "products/addons/next.png"}) {...FileImgFormat}
+            whiteTrash: file(relativePath: {eq: "icons/white-trash.svg"}) {...FileImgFormat}
+            redTrash: file(relativePath: {eq: "icons/red-trash.svg"}) {...FileImgFormat}
 
-            empowerRFPromoPoster: file(relativePath: {eq: "products/empowerrf/promo-video-poster.jpg"}) {
-                ...FileImgFormat
-            }
-            empowerRFMachinePoster: file(relativePath: {eq: "products/empowerrf/empowerrf-launch-linkedin-post-preview-3.jpg"}) {
-                ...FileImgFormat
-            }
+            empowerRFPromoPoster: file(relativePath: {eq: "products/empowerrf/promo-video-poster.jpg"}) {...FileImgFormat}
+            empowerRFMachinePoster: file(relativePath: {eq: "products/empowerrf/empowerrf-launch-linkedin-post-preview-3.jpg"}) {...FileImgFormat}
 
-            inmodeStamp: file(relativePath: {eq: "about-us/inmode-stamp.png"}) {
-                ...FileImgFormat
-            }
+            inmodeStamp: file(relativePath: {eq: "about-us/inmode-stamp.png"}) {...FileImgFormat}
 
-            EnvisionLogo: file(relativePath: {eq: "products/envision/envision logo.avif"}) {
-                ...FileImgFormat
-            }
-            EnvisionBa1FormaI: file(relativePath: {eq: "products/envision/ba1 - formaI.png"}) {
-                ...FileImgFormat
-            }
-            EnvisionBa2FormaI: file(relativePath: {eq: "products/envision/ba2 - formaI.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionBa3FormaI: file(relativePath: {eq: "products/envision/ba3 - formaI.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionFormaIMarine: file(relativePath: {eq: "products/envision/formaI marine.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionFormaIAzuli: file(relativePath: {eq: "products/envision/formaI azuli.png"}) {
-                ...FileImgFormat
-            }
-            EnvisionLumecaIMarine: file(relativePath: {eq: "products/envision/lumeccaI marine.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionLumecaIAzuli: file(relativePath: {eq: "products/envision/lumeccaI azuli.png"}) {
-                ...FileImgFormat
-            }
-            EnvisionMorpheusMarine: file(relativePath: {eq: "products/envision/morpheus marine.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionMorpheusAzuli: file(relativePath: {eq: "products/envision/morpheus azuli.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionFormaIBack: file(relativePath: {eq: "products/envision/formaI - back.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionFormaIZoom: file(relativePath: {eq: "products/envision/formaI - zoom.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionLumeccaIBack: file(relativePath: {eq: "products/envision/lumeccaI - back.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionLumeccaIZoom: file(relativePath: {eq: "products/envision/lumeccaI - zoom.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionMorpheus8Back: file(relativePath: {eq: "products/envision/morpheus8 - back.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionMorpheus8Zoom: file(relativePath: {eq: "products/envision/morpheus8 - zoom.webp"}) {
-                ...FileImgFormat
-            }
-            EnvisionBlackLogo: file(relativePath: {eq: "products/envision/envision black.png"}) {
-                ...FileImgFormat
-            }
-            EnvisionBannerRight: file(relativePath: {eq: "products/envision/envision banner right.jpg"}) {
-                ...FileImgFormat
-            }
-            EnvisionLogoRight: file(relativePath: {eq: "products/envision/EnvisionLogoRight.png"}) {
-                ...FileImgFormat
-            }
+            EnvisionLogo: file(relativePath: {eq: "products/envision/envision logo.avif"}) {...FileImgFormat}
+            EnvisionBa1FormaI: file(relativePath: {eq: "products/envision/ba1 - formaI.png"}) {...FileImgFormat}
+            EnvisionBa2FormaI: file(relativePath: {eq: "products/envision/ba2 - formaI.jpg"}) {...FileImgFormat}
+            EnvisionBa3FormaI: file(relativePath: {eq: "products/envision/ba3 - formaI.jpg"}) {...FileImgFormat}
+            EnvisionFormaIMarine: file(relativePath: {eq: "products/envision/formaI marine.jpg"}) {...FileImgFormat}
+            EnvisionFormaIAzuli: file(relativePath: {eq: "products/envision/formaI azuli.png"}) {...FileImgFormat}
+            EnvisionLumeccaIMarine: file(relativePath: {eq: "products/envision/lumeccaI marine.jpg"}) {...FileImgFormat}
+            EnvisionLumeccaIAzuli: file(relativePath: {eq: "products/envision/lumeccaI azuli.png"}) {...FileImgFormat}
+            EnvisionMorpheusMarine: file(relativePath: {eq: "products/envision/morpheus marine.jpg"}) {...FileImgFormat}
+            EnvisionMorpheusAzuli: file(relativePath: {eq: "products/envision/morpheus azuli.jpg"}) {...FileImgFormat}
+            EnvisionFormaIBack: file(relativePath: {eq: "products/envision/formaI - back.webp"}) {...FileImgFormat}
+            EnvisionFormaIZoom: file(relativePath: {eq: "products/envision/formaI - zoom.webp"}) {...FileImgFormat}
+            EnvisionLumeccaIBack: file(relativePath: {eq: "products/envision/lumeccaI - back.webp"}) {...FileImgFormat}
+            EnvisionLumeccaIZoom: file(relativePath: {eq: "products/envision/lumeccaI - zoom.webp"}) {...FileImgFormat}
+            EnvisionMorpheus8Back: file(relativePath: {eq: "products/envision/morpheus8 - back.webp"}) {...FileImgFormat}
+            EnvisionMorpheus8Zoom: file(relativePath: {eq: "products/envision/morpheus8 - zoom.webp"}) {...FileImgFormat}
+            EnvisionBlackLogo: file(relativePath: {eq: "products/envision/envision black.png"}) {...FileImgFormat}
+            EnvisionBannerRight: file(relativePath: {eq: "products/envision/envision banner right.jpg"}) {...FileImgFormat}
+            EnvisionLogoRight: file(relativePath: {eq: "products/envision/EnvisionLogoRight.png"}) {...FileImgFormat}
 
-            DefineFullLogo: file(relativePath: {eq: "products/define/define banner logo.png"}) {
-                ...FileImgFormat
-            }
-            DefineCheekTitle: file(relativePath: {eq: "products/define/DEFINE CHEEK.png"}) {
-                ...FileImgFormat
-            }
-            DefineChinTitle: file(relativePath: {eq: "products/define/DEFINE CHIN.png"}) {
-                ...FileImgFormat
-            }
-            DefineMorpheus8AddonTitle: file(relativePath: {eq: "products/define/Morpheus8.png"}) {
-                ...FileImgFormat
-            }
-            EmpowerRFMorpheus8AddonTitle: file(relativePath: {eq: "products/empowerrf/Morpheus8.svg"}) {
-                ...FileImgFormat
-            }
+            IgniteRFBannerLogo: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Visuals Icons4.png"}) {...FileImgFormat}
+            IgniteRFLogoRight: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Logo (Pearl).svg"}) {...FileImgFormat}
+            IgniteRFWhatIsDisplay: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Workstation.png"}) {...FileImgFormat}
+            IgniteRFQuantumRF25Back: file(relativePath: {eq: "products/igniterf/QuantumRF 25 - Visual.png"}) {...FileImgFormat}
+            IgniteRFQuantumRF25Zoom: file(relativePath: {eq: "products/igniterf/QuantumRF 25 - Visual.png"}) {...FileImgFormat}
+            IgniteRFQuantumRF25Title: file(relativePath: {eq: "products/igniterf/InMode - QuantumRF 25 - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFQuantumRF10Back: file(relativePath: {eq: "products/igniterf/QuantumRF 10 - Visual.png"}) {...FileImgFormat}
+            IgniteRFQuantumRF10Zoom: file(relativePath: {eq: "products/igniterf/QuantumRF 10 - Visual.png"}) {...FileImgFormat}
+            IgniteRFQuantumRF10Title: file(relativePath: {eq: "products/igniterf/InMode - QuantumRF 10 - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFBodyTiteTurboBack: file(relativePath: {eq: "products/igniterf/BodyTite Turbo - Visual.png"}) {...FileImgFormat}
+            IgniteRFBodyTiteTurboZoom: file(relativePath: {eq: "products/igniterf/BodyTite Turbo - Visual.png"}) {...FileImgFormat}
+            IgniteRFBodyTiteTitle: file(relativePath: {eq: "products/igniterf/InMode - BodyTite Turbo - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFFaceTiteTurboBack: file(relativePath: {eq: "products/igniterf/FaceTite Turbo - Visual.png"}) {...FileImgFormat}
+            IgniteRFFaceTiteTurboZoom: file(relativePath: {eq: "products/igniterf/FaceTite Turbo - Visual.png"}) {...FileImgFormat}
+            IgniteRFFaceTiteTurboTitle: file(relativePath: {eq: "products/igniterf/InMode - FaceTite Turbo - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstBack: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst - Visual.png"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstZoom: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst - Visual.png"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstTitle: file(relativePath: {eq: "products/igniterf/InMode - Morpheus8 Burst - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstDeepBack: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst Deep - Visual.png"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstDeepZoom: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst Deep - Visual.png"}) {...FileImgFormat}
+            IgniteRFMorpheus8BurstDeepTitle: file(relativePath: {eq: "products/igniterf/InMode - Morpheus8 Burst Deep - Logo (Black-Fire).svg"}) {...FileImgFormat}
 
-            ProductBannerBodyTite: file(relativePath: {eq: "products/bodytite/bodytite.png"}) {
-                ...FileImgFormat
-            }
-            ProductBannerEvoke: file(relativePath: {eq: "products/evoke/evoke.png"}) {
-                ...FileImgFormat
-            }
-            ProductBannerEnvision: file(relativePath: {eq: "products/envision/envision black.png"}) {
-                ...FileImgFormat
-            }
-            ProductBannerIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Icone simple (Pearl).svg"}) {
-                ...FileImgFormat
-            }
+            DefineFullLogo: file(relativePath: {eq: "products/define/define banner logo.png"}) {...FileImgFormat}
+            DefineCheekTitle: file(relativePath: {eq: "products/define/DEFINE CHEEK.png"}) {...FileImgFormat}
+            DefineChinTitle: file(relativePath: {eq: "products/define/DEFINE CHIN.png"}) {...FileImgFormat}
+            DefineMorpheus8AddonTitle: file(relativePath: {eq: "products/define/Morpheus8.png"}) {...FileImgFormat}
+            EmpowerRFMorpheus8AddonTitle: file(relativePath: {eq: "products/empowerrf/Morpheus8.svg"}) {...FileImgFormat}
+
+            ProductBannerBodyTite: file(relativePath: {eq: "products/bodytite/bodytite.png"}) {...FileImgFormat}
+            ProductBannerEvoke: file(relativePath: {eq: "products/evoke/evoke.png"}) {...FileImgFormat}
+            ProductBannerEnvision: file(relativePath: {eq: "products/envision/envision black.png"}) {...FileImgFormat}
+            ProductBannerIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Icone simple (Pearl).svg"}) {...FileImgFormat}
 
             CarrouselBodyTiteIcone: file(relativePath: {eq: "products/carousel/bodytite_icone_midnight.svg"}) {...FileImgFormat}
             CarrouselTritonLogo: file(relativePath: {eq: "products/carousel/triton_logo_midnight.svg"}) {...FileImgFormat}
@@ -454,8 +308,8 @@ interface ImagesList {
     EnvisionBa3FormaI: GatsbyImage_Interface;
     EnvisionFormaIMarine: GatsbyImage_Interface;
     EnvisionFormaIAzuli: GatsbyImage_Interface;
-    EnvisionLumecaIMarine: GatsbyImage_Interface;
-    EnvisionLumecaIAzuli: GatsbyImage_Interface;
+    EnvisionLumeccaIMarine: GatsbyImage_Interface;
+    EnvisionLumeccaIAzuli: GatsbyImage_Interface;
     EnvisionMorpheusMarine: GatsbyImage_Interface;
     EnvisionMorpheusAzuli: GatsbyImage_Interface;
     EnvisionFormaIBack: GatsbyImage_Interface;
@@ -467,6 +321,28 @@ interface ImagesList {
     EnvisionBlackLogo: GatsbyImage_Interface;
     EnvisionBannerRight: GatsbyImage_Interface;
     EnvisionLogoRight: GatsbyImage_Interface;
+
+    IgniteRFBannerLogo: GatsbyImage_Interface;
+    IgniteRFLogoRight: GatsbyImage_Interface;
+    IgniteRFWhatIsDisplay: GatsbyImage_Interface;
+    IgniteRFQuantumRF25Back: GatsbyImage_Interface;
+    IgniteRFQuantumRF25Zoom: GatsbyImage_Interface;
+    IgniteRFQuantumRF25Title: GatsbyImage_Interface;
+    IgniteRFQuantumRF10Back: GatsbyImage_Interface;
+    IgniteRFQuantumRF10Zoom: GatsbyImage_Interface;
+    IgniteRFQuantumRF10Title: GatsbyImage_Interface;
+    IgniteRFBodyTiteTurboBack: GatsbyImage_Interface;
+    IgniteRFBodyTiteTurboZoom: GatsbyImage_Interface;
+    IgniteRFBodyTiteTitle: GatsbyImage_Interface;
+    IgniteRFFaceTiteTurboBack: GatsbyImage_Interface;
+    IgniteRFFaceTiteTurboZoom: GatsbyImage_Interface;
+    IgniteRFFaceTiteTurboTitle: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstBack: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstZoom: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstTitle: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstDeepBack: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstDeepZoom: GatsbyImage_Interface;
+    IgniteRFMorpheus8BurstDeepTitle: GatsbyImage_Interface;
     
     DefineFullLogo: GatsbyImage_Interface;
     DefineCheekTitle: GatsbyImage_Interface;

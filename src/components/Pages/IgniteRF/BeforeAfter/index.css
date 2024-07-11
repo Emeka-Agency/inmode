@@ -1,0 +1,53 @@
+#page-igniterf-ba {
+    padding: 35px 8vw 50px;
+}
+
+#page-igniterf-ba h2 {
+    font-size: 32px;
+    color: var(--midnight);
+    margin: 0 auto;
+    text-align: center;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel {
+    margin-top: 20px;
+    overflow: hidden;
+    max-width: 75%;
+    margin: 32px auto 0;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel-status {
+    display: none;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .slider {
+
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .slider .slide {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .control-dots .dot {
+    width: 14px;
+    height: 14px;
+    user-select: none;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .control-dots .dot.selected {
+    background-color: var(--teal);
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .thumbs {
+
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .carousel .thumbs .thumb {
+    user-select: none;
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .ba-image {
+
+}

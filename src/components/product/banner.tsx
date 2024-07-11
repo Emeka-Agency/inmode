@@ -19,16 +19,39 @@ const ProductBanner = ({ datas, name }:ProductBanner_Interface) => {
         return <></>;
     }
 
-    const has_icon = (n?:string) => ['bodytite', 'evoke', 'envision'].indexOf((n ?? "").toLowerCase()) > -1;
+    const icon_height = (n?:string) => {
+        if(['bodytite', 'evoke', 'envision'].indexOf((n ?? "").toLowerCase()) > -1) {
+            return 64;
+        }
+        return 'auto';
+    }
+
+    const icon_max_height = (n?:string) => {
+        if(n == 'IgniteRF') {
+            return '60px';
+        }
+        return 'unset';
+    }
     
     function missingIcon(n?:string) {
         switch(n?.toLowerCase()) {
-            case "bodytite": return <img src={images.resolve_img("ProductBannerBodyTite")} srcSet={images.resolve_img_set("ProductBannerBodyTite")} style={icon_style} />
-            case "evoke": return <img src={images.resolve_img("ProductBannerEvoke")} srcSet={images.resolve_img_set("ProductBannerEvoke")} style={icon_style} />
-            case "envision": return <img src={images.resolve_img("ProductBannerEnvision")} srcSet={images.resolve_img_set("ProductBannerEnvision")} style={icon_style} />
-            case "igniterf": return <img src={images.resolve_img("ProductBannerIgniteRF")} srcSet={images.resolve_img_set("ProductBannerIgniteRF")} style={icon_style} />
+            case "bodytite": return <img className="product-icon" src={images.resolve_img("ProductBannerBodyTite")} srcSet={images.resolve_img_set("ProductBannerBodyTite")} style={icon_style} />
+            case "evoke": return <img className="product-icon" src={images.resolve_img("ProductBannerEvoke")} srcSet={images.resolve_img_set("ProductBannerEvoke")} style={icon_style} />
+            case "envision": return <img className="product-icon" src={images.resolve_img("ProductBannerEnvision")} srcSet={images.resolve_img_set("ProductBannerEnvision")} style={icon_style} />
+            case "igniterf": return <img className="product-icon" src={images.resolve_img("ProductBannerIgniteRF")} srcSet={images.resolve_img_set("ProductBannerIgniteRF")} style={icon_style} />
             default: return <></>;
         }
+    }
+
+    function __style__product_banner_mini(name:string) {
+        const special = ["Envision", "IgniteRF"].indexOf(name) > -1;
+        return {
+            ...(special ? {boxSizing: "border-box"} : {}),
+            padding: special ? "8px 16px" : '0',
+            flexDirection: 'row',
+            columnGap: '16px',
+            alignItems: 'center'
+        };
     }
 
     // TODO récupérer images et vidéos pour chaque produit
@@ -70,14 +93,15 @@ const ProductBanner = ({ datas, name }:ProductBanner_Interface) => {
                             className="product-banner-logo"
                             src={resolveImg(datas?.right_img)}
                             alt="bodytite-logo-text"
-                            style={{height:has_icon(name) ? 64 : 'auto',position:'relative',top:name?.toLowerCase() == 'bodytite'?-4:0}}
+                            style={{height:icon_height(name),maxHeight:icon_max_height(name),position:'relative',top:name?.toLowerCase() == 'bodytite'?-4:0}}
                         />
                     </div>
                     <div className="product-banner-short-descr">
                         {datas?.right_text}
                     </div>
                 </div>
-                <div className="product-banner-mini">
+                <div className="product-banner-mini" style={__style__product_banner_mini(name ?? "")}>
+                    {missingIcon(["Envision", "IgniteRF"].indexOf(name ?? "") > -1 ? name : "")}
                     <img
                         src={resolveImg(datas?.mini)}
                         alt="product-banner-mini"

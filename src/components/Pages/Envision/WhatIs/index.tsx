@@ -23,7 +23,7 @@ const EnvisionWhatIs = ({}:EnvisionWhatIs) => {
             <div id="page-envision-whatis-section">
                 <div id="page-envision-whatis-dots">
                     {dots.map((dot, i) => <div key={i} className="page-envision-whatis-dot">
-                        <img src={images.resolve_img('keyBenefitIconTeal')} srcSet={images.resolve_img_set('keyBenefitEnvision')}/>
+                        <img src={images.resolve_img('keyBenefitEnvision')} srcSet={images.resolve_img_set('keyBenefitEnvision')}/>
                         <span>{dot}</span>
                     </div>)}
                 </div>

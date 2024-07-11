@@ -1,0 +1,160 @@
+#page-igniterf-techs {
+    padding: 50px 8vw;
+    background-color: var(--pure-white);
+}
+
+#page-igniterf-techs h2 {
+    margin: 10px 0;
+    font-size: 32px;
+    color: var(--pure-black);
+    text-align: center;
+    margin: 0 auto;
+}
+
+#page-igniterf-techs #page-igniterf-techs-list {
+    margin-top: 20px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 50% 50%;
+    align-content: space-between;
+    align-items: start;
+    justify-items: center;
+}
+
+@media (max-width: 1280px) {
+    #page-igniterf-techs #page-igniterf-techs-list {
+        flex-direction: column;
+        grid-template-columns: 100%;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 12px 30px;
+    box-sizing: border-box;
+    column-gap: 16px;
+}
+
+@media (max-width: 768px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card {
+        margin-bottom: 20px;
+        width: 100%;
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 12px;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img {
+    width: 100%;
+    max-width: 224px;
+    margin: 0 auto;
+    padding: 12px;
+    position: relative;
+    background-color: rgb(242, 242, 242);
+    height: 256px;
+}
+
+@media (max-width: 1280px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img {
+        max-width: 150px;
+        height: 224px;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img img {
+    max-width: 208px;
+    max-height: 224px;
+    aspect-ratio: auto;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+@media (max-width: 1280px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img img {
+        max-width: 128px;
+        max-height: 192px;
+    }
+}
+
+@media (max-width: 768px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img img {
+        max-width: 128px;
+        max-height: 192px;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img img.img-back {
+    z-index: 0;
+}
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img img.img-zoom {
+    z-index: 1;
+    visibility: hidden;
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img:hover img.img-back {
+    filter: blur(4px);
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-img:hover img.img-zoom {
+    visibility: visible;
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text {
+    display: flex;
+    flex-direction: column;
+    column-gap: 16px;
+    max-width: calc(100% - (224px + 16px));
+}
+
+@media (max-width: 1280px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text {
+        max-width: calc(100% - (150px + 16px));
+    }
+}
+
+@media (max-width: 768px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text {
+        max-width: 100%;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text .page-igniterf-techs-card-title {
+    margin: 0 auto;
+}
+
+@media (max-width: 1280px) {
+    #page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text .page-igniterf-techs-card-title {
+        margin: 20px auto 0;
+    }
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-title img {
+    margin-top: 12px;
+    margin-left: 12.5%;
+    width: 75%;
+    max-width: 100%;
+    min-height: 0px;
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text .page-igniterf-techs-card-descr {
+    margin: 20px auto 0;
+    max-width: 100%;
+}
+
+#page-igniterf-techs #page-igniterf-techs-list .page-igniterf-techs-card .page-igniterf-techs-card-text .page-igniterf-techs-card-descr p {
+    color: var(--midnight);
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 26px;
+}

@@ -1,0 +1,73 @@
+#page-igniterf-whatis {
+    padding: 35px 8vw 50px;
+}
+
+#page-igniterf-whatis img {
+    height: 55px;
+    margin: 0 auto;
+    display: block;
+}
+
+#page-igniterf-whatis h2 {
+    font-size: 32px;
+    color: var(--midnight);
+    text-align: center;
+    margin: 20px 0;
+}
+
+#page-igniterf-whatis h4 {
+    font-size: 22px;
+    color: var(--midnight);
+    text-align: center;
+    margin: 20px 0;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section {
+    margin-top: 20px;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-video {
+    height: auto;
+    width: 100%;
+    min-height: auto;
+    max-height: none;
+    padding: 20px 40px;
+    margin-top: 24px;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-dots {
+    width: 100%;
+    padding: 20px 0 0 0;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-video iframe {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    border: none;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-dots .page-igniterf-whatis-dot {
+    padding: 10px 20px;
+    margin-bottom: 16px;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-dots .page-igniterf-whatis-dot img {
+    height: 40px;
+    width: 36px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-dots .page-igniterf-whatis-dot span {
+    color: var(--midnight);
+    font-size: 18px;
+    letter-spacing: .85px;
+    line-height: 27px;
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% - 80px);
+    margin-left: 24px;
+}

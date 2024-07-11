@@ -138,6 +138,13 @@ main[data-addon="Define"][data-machine="Define"] .what-is-text-list ol {
     margin: 0;
 }
 
+main.igniterf-page #page-igniterf-whatis li,
+main.igniterf-page #page-igniterf-whatis ul,
+main.igniterf-page #page-igniterf-whatis ol {
+    list-style: initial;
+    margin: 0;
+}
+
 .absolute-link {
     position: absolute;
     top: 0;
@@ -4306,6 +4313,7 @@ input[type="submit"].neumorphic:hover,
     position: relative;
     z-index: 0;
     height: 380px;
+    overflow: hidden;
 }
 
 .product-banner .product-banner-details {
@@ -4324,6 +4332,10 @@ input[type="submit"].neumorphic:hover,
     margin: 0 auto;
     width: auto;
     height: auto;
+}
+
+main.igniterf-page .product-banner .product-banner-media img:first-child {
+    height: 100%;
 }
 
 .product-banner .product-banner-media img {
@@ -4345,6 +4357,13 @@ input[type="submit"].neumorphic:hover,
     width: auto;
     max-width: 90%;
     max-height: 80px;
+}
+
+main.envision-page .product-banner .product-banner-details .product-banner-logo:nth-child(2),
+main.igniterf-page .product-banner .product-banner-details .product-banner-logo:nth-child(2),
+.product-banner .product-banner-details .product-banner-logo:nth-child(2) {
+    height: auto;
+    max-width: calc(100% - 80px);
 }
 
 main.envision-page .product-banner .product-banner-details .product-banner-logo {
@@ -4409,14 +4428,19 @@ main.envision-page .product-banner .product-banner-details .product-banner-short
         width: 100vw;
         position: relative;
         font-size: 0;
+        justify-content: center;
     }
 
     main.envision-page .product-banner .product-banner-mini {
         padding: 20px 0;
     }
 
+    main.envision-page .product-banner .product-banner-mini,
+    main.igniterf-page .product-banner .product-banner-mini {
+        display: flex;
+    }
+
     .product-banner .product-banner-mini img {
-        width: 100%;
         max-height: 380px;
     }
 
@@ -4424,6 +4448,12 @@ main.envision-page .product-banner .product-banner-details .product-banner-short
         /* filter: invert(1); */
         max-width: 90%;
         margin: 0 5%;
+    }
+
+    main.igniterf-page .product-banner .product-banner-mini img {
+        /* filter: invert(1); */
+        max-height: 60px;
+        width: auto;
     }
 }
 

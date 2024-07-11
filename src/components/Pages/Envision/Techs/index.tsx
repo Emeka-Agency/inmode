@@ -4,7 +4,7 @@ import "./index.css";
 import { useImages } from "../../../contexts/images-provider";
 
 // EnvisionFormaIMarine
-// EnvisionLumecaIMarine
+// EnvisionLumeccaIMarine
 // EnvisionMorpheusMarine
 // EnvisionFormaIBack
 // EnvisionFormaIZoom
@@ -28,8 +28,8 @@ const techs = [
         img_zoom: "EnvisionLumeccaIZoom",
         alt_back: "LumeccaI back",
         alt_zoom: "LumeccaI zoom",
-        // img_title: "EnvisionLumecaIMarine",
-        img_title: "EnvisionLumecaIAzuli",
+        // img_title: "EnvisionLumeccaIMarine",
+        img_title: "EnvisionLumeccaIAzuli",
         text: `Lumecca-I est un traitement efficace des lésions épidermiques pigmentées bénignes et des lésions vasculaires cutanées bénignes. Lumecca a été développée avec une lampe flash avancée au xénon, produisant 40 % de l'énergie totale de l'impulsion dans la gamme 500-600 nm. L'énergie de la lumière pulsée pénètre dans la peau et est sélectivement absorbée par les chromophores des lésions (mélanine ou hémoglobine). Lumecca-I utilise la photothermolyse pour traiter les états inflammatoires oculaires de manière confortable, précise et ciblée. L’IPL a été prouvée cliniquement pour avoir un effet positif sur la sécheresse oculaire causée par un Dysfonctionnement des Glandes de Meibomius (DGM).`
     },
     {
