@@ -134,12 +134,7 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
         if(!Array.isArray(elems)) {_log("Cas elems null");return true;}
         if(elems.length == 0) {_log("Cas elems vide");return true;}
 
-        for(let i = 0; i < elems.length; i++) {
-            if(elems[i] instanceof HTMLInputElement && elems[i].checked == true && !clean_machines(clinic.Machines).includes(elems[i].value)) {
-                return false;
-            }
-        }
-        return true;
+        return clinic.Machines?.some(item => elems.filter(e => e.checked).map(e => e.value).includes(item));
     }
 
     const treatmentURL = (treatment:string) => {
