@@ -51,6 +51,11 @@
       "type": "component",
       "repeatable": false,
       "component": "generic.menu-params"
+    },
+    "sensitivity": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

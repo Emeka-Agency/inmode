@@ -1,0 +1,6 @@
+vendor
+*.md
+*.lock
+*.ini
+private/*
+logs/*

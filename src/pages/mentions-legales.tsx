@@ -6,8 +6,8 @@ import SEO from '../components/seo';
 
 const PrivacyPolicies = (  ) => {
     return (
-        <Layout>
-            <SEO title="Mentions légales"/>
+        <Layout title="mentions-legales">
+            <SEO lang="fr" title="Mentions légales"/>
             <div className="privacy-policies">
                 <div className="container">
                     <div className="main-title">Mentions légales</div>
@@ -16,7 +16,7 @@ const PrivacyPolicies = (  ) => {
                         Nom du site web :  Inmodemd
                     </div>
                     <div className="content">
-                        Adresse :  https://inmodemd.fr
+                        Adresse :  <a href="https://inmodemd.fr" target="_blank">https://inmodemd.fr</a>
                     </div>
                     <div className="content">
                         Propriétaire :

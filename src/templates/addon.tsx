@@ -1,6 +1,5 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Divider from '../components/divider';
 import AddonBanner from '../components/addon/banner';
 import AddonBeforeAfter from '../components/addon/before-after';
 import AddonNavigation from '../components/addon/navigation';
@@ -14,16 +13,27 @@ import ClinicalStudies from '../components/Clinical/clinical-studies';
 import GenericDetails from '../components/details';
 import { InmodePanel_Addon_Interface } from '../components/interfaces';
 import rand_token from '../functions/rand_token';
+import { color_variant } from '../functions/tools';
+
+// M8 Vids 1 : https://www.youtube.com/watch?v=_a2FmrUngDU
+// M8 Vids 2 : https://www.youtube.com/watch?v=slrvvo2zlNs
+// M8 Vids 3 : https://www.youtube.com/watch?v=2lLZhWjvLLw
 
 const AddonTemplates = ({ data }:AddonTemplates) => {
 
     const [datas]:[InmodePanel_Addon_Interface, React.Dispatch<InmodePanel_Addon_Interface>] = React.useState(data.strapiAddon);
 
-    console.log(datas);
+    const __special__ = (name?:string) => {
+        if(typeof name != "string") {return <></>;}
+
+        if(name == "Morpheus8") {
+            return <h2 style={{textAlign: "center", marginTop: "32px", fontWeight: "bold", color: "var(--teal)", fontSize: "32px"}}>Pour un remodelage en profondeur du derme et de l’hypoderme</h2>
+        }
+    }
 
     return (
-            <Layout>
-                <SEO title="Addon"/>
+            <Layout title="addon" variant={color_variant(datas.Name)} rest={{"data-addon": datas.Name}}>
+                <SEO lang="fr" title="Addon"/>
                 <AddonBanner datas={datas.Banner}/>
                 <AddonNavigation
                     name={datas.Name}
@@ -31,17 +41,24 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
                         'before-after': datas.BeforesAfters && datas.BeforesAfters.length > 0 ? true : false,
                         'studies': datas.ClinicalStudies && datas.ClinicalStudies.length > 0 ? true : false,
                     }}
+                    variant={color_variant(datas.Name)}
                 />
-                <GenericDetails datas={{'list': datas.KeyBenefits, 'what_is': datas.WhatIs, 'list_title': 'key benefits', 'list_icon' : 'key_benefit'}}/>
-                <Divider position="top"/>
+                {__special__(datas.Name)}
+                <GenericDetails datas={{
+                    'name': datas.Name,
+                    'list': datas.KeyBenefits,
+                    'what_is': datas.WhatIs,
+                    'list_title': 'avantages',
+                    'list_icon' : 'key_benefit',
+                    'variant': color_variant(datas.Name)
+                }}/>
                 {/* Prendre la fonction rand string du cart pour en faire une fonction globale pour name */}
                 {/* voir comment mettre une fonction en global sans contexte et redux */}
-                <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/>
-                <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity}/>
-                <Divider position="bottom"/>
-                <AddonWhatTreat title="What can you treat ?" WhatTreats={datas.WhatTreats}/>
-                <ClinicalStudies datas={datas.ClinicalStudies}/>
-                <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : []}/>
+                {(datas.Videos ?? []).length && ['FormaV', 'Aviva'].indexOf(datas.Name ?? "") < 0 ? <AddonVideos videos={datas.Videos} title={`${datas.Name} videos`} name={datas.Name || rand_token(4)} sensible={datas.sensitivity}/> : null}
+                {(datas.BeforesAfters ?? []).length && ['FormaV', 'Aviva'].indexOf(datas.Name ?? "") < 0 ? <AddonBeforeAfter datas={datas.BeforesAfters} sensible={datas.sensitivity} variant={color_variant(datas.Name)}/> : null}
+                <AddonWhatTreat title="Quelles zones peuvent être traitées ?" WhatTreats={datas.WhatTreats} variant={color_variant(datas.Name)}/>
+                <ClinicalStudies variant={color_variant(datas.Name)} datas={datas.ClinicalStudies}/>
+                <SellingArgs datas={datas.SellingArgs != undefined ? datas.SellingArgs[0] : undefined}/>
                 <SellingNew datas={datas.SellingNewGeneration}/>
             </Layout>
     );
@@ -62,30 +79,48 @@ export const query = graphql`
             Page_addon
             Banner {
                 left_img {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
                 }
                 mini {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
                 }
                 right_img {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
                 }
                 right_text
@@ -96,13 +131,21 @@ export const query = graphql`
                     text
                 }
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
+                    width
+                    height
                 }
             }
             KeyBenefits {
@@ -112,12 +155,18 @@ export const query = graphql`
             Videos {
                 url
                 poster {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -125,12 +174,18 @@ export const query = graphql`
                 doctor
                 text
                 image {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
                 }
             }
@@ -138,13 +193,21 @@ export const query = graphql`
                 title
                 text
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
+                    width
+                    height
                 }
             }
             ClinicalStudies {
@@ -153,13 +216,21 @@ export const query = graphql`
                 }
                 author
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
+                    width
+                    height
                 }
                 publication
                 published_date
@@ -172,26 +243,42 @@ export const query = graphql`
                     texte
                 }
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
+                    width
+                    height
                 }
             }
             SellingNewGeneration {
                 title
                 text
                 picture {
-                    childImageSharp {
-                        fluid {
-                            base64
+                    caption
+                    url
+                    localFile {
+                        absolutePath
+                        childImageSharp {
+                            fluid {
                             srcWebp
                             srcSetWebp
+                            }
                         }
+                        publicURL
+                        url
                     }
+                    width
+                    height
                 }
             }
             sensitivity

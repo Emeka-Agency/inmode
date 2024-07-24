@@ -1,0 +1,4 @@
+{
+    "host": "${process.env.PROD_HOST || '0.0.0.0'}",
+    "port": "${process.env.PROD_PORT || 1337}"
+}

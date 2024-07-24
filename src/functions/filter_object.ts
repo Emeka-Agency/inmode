@@ -1,5 +1,5 @@
-export const filter_object = (obj:Object, predicate:Function) => {
+export const filter_object = (obj:any, predicate:Function) => {
     return Object.keys(obj)
-        .filter( key => predicate(obj[key]) )
-        .reduce( (res, key) => (res[key] = obj[key], res), {} );
+        .filter((key:string) => predicate(obj[key]) )
+        .reduce((res:any, key:string) => (res[key] = obj[key], res), {} );
 }

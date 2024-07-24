@@ -13,13 +13,14 @@ const AboutUs = ({ from = "" }:AboutUs) => {
             }
         }
     `).strapiAboutUs);
-
+    https://www.youtube.com/embed/elBJqAd3f2s?&rel=0
     return (
         <div className={`about${from ? ` ${from}` : ''}`}>
             <div className="container">
-                <div className="title">About InMode</div>
+                <div className="title user-select-none">À propos d'InMode</div>
                 <div className="content">
                     <iframe
+                        className="user-select-none"
                         title="about-us"
                         src={datas.about_video_url}
                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -27,7 +28,7 @@ const AboutUs = ({ from = "" }:AboutUs) => {
                     >
                         
                     </iframe>
-                    <div className="txt">
+                    <div className="txt user-select-none">
                         {datas.about_txt}
                     </div>
                 </div>
@@ -38,6 +39,6 @@ const AboutUs = ({ from = "" }:AboutUs) => {
 
 interface AboutUs {
     from?: string;
-}
+};
 
 export default AboutUs;

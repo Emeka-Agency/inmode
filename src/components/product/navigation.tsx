@@ -1,20 +1,20 @@
 import React from "react";
 import { AnchorLink } from "gatsby-plugin-anchor-links";
 
-const ProductNavigation = ({ name, exist }) => {
+const ProductNavigation = ({ name, exist, variant }:ProductNavigation_Interface) => {
 
     let temp = [
-        {'name': 'what is it', 'url': '#what-is'},
-        {'name': 'key benefits', 'url': '#key-benefits'},
-        {'name': 'technologies on the workstation', 'url': '#technologies'},
+        {'name': 'qu\'est-ce que c\'est', 'url': '#what-is'},
+        {'name': 'avantages', 'url': '#key-benefits'},
+        {'name': 'technologies associées', 'url': '#technologies'},
     ];
 
     if(exist['studies']) {
-        temp.push({'name': 'clinical studies', 'url': '#studies'});
+        temp.push({'name': 'études cliniques', 'url': '#studies'});
     }
 
     if(exist['before-after']) {
-        temp.splice(3, 0, {'name': 'before and after\'s', 'url': '#before-after'}).join();
+        temp.splice(3, 0, {'name': 'avant / après', 'url': '#before-after'}).join();
     }
     
     const [menus] = React.useState(temp);
@@ -23,8 +23,8 @@ const ProductNavigation = ({ name, exist }) => {
         <div className="product-navigation">
             {menus.map((menu, key) => {
                 return (
-                    <div key={key} className="product-nav">
-                        <AnchorLink to={menu.url} className="product-nav" title={menu.name}>
+                    <div key={key} className={["product-nav", variant].join(' ')}>
+                        <AnchorLink to={menu.url} className={["product-nav"].join(' ')} title={menu.name}>
                             {menu.name}
                         </AnchorLink>
                     </div>
@@ -32,14 +32,15 @@ const ProductNavigation = ({ name, exist }) => {
             })}
         </div>
     );
-}
+};
 
-ProductNavigation.defaultProps = {
-
-}
-
-ProductNavigation.propTypes = {
-
-}
+interface ProductNavigation_Interface {
+    name: string;
+    exist: {
+        'before-after': boolean;
+        'studies': boolean;
+    };
+    variant: string;
+};
 
 export default ProductNavigation;

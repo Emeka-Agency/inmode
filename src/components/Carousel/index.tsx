@@ -17,11 +17,11 @@ const Carousel = ({
     return (
         <Flickity
             id={id}
-            elementType={elementType} // default 'div'
-            options={options} // takes flickity options {}
-            disableImagesLoaded={disableImagesLoaded} // default false
-            reloadOnUpdate={reloadOnUpdate} // default false
-            static={isStatic} // default false
+            elementType={elementType}
+            options={options}
+            disableImagesLoaded={disableImagesLoaded}
+            reloadOnUpdate={reloadOnUpdate}
+            static={isStatic}
             className={classList}
         >
             {children}

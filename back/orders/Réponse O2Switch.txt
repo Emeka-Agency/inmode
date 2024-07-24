@@ -1,4 +1,0 @@
-Bonjour,
-
-J'ai dans mon script un console.log(`Environnement : ${process.env.NODE_ENV}`) qui se situe dans le listen :3000 et qui me permet de console.log le fait que tout ait bien démarré, donc le port et la variable d'environnement.
-Donc normalement, juste avec l'outil terminal et la commande pour l'application inmode.emeka.fr/back/orders qui est source /home/nemzytch/nodevenv/inmode.emeka.fr/back/orders/10/bin/activate && cd /home/nemzytch/inmode.emeka.fr/back/orders et en faisant un NODE_ENV=production node app.js vous devriez pouvoir voir ça. J'ai déjà 

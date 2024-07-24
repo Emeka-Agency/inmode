@@ -1,74 +1,54 @@
+import { graphql } from "gatsby";
 import React from "react";
 import EventsLayout from "../../components/events/events-layout";
-import Layout from "../../components/Layout"
+import { Airtable_Record_Interface, Airtable_Event_Interface, InmodePanel_Event_Interface } from "../../components/interfaces";
+import Layout from "../../components/Layout";
 import SEO from "../../components/seo";
 
-const CongressPage = ({ data }) =>  {
+import "../../components/events/events.css";
+import { _group, _groupEnd, _log } from "../../functions/logger";
+import { handlePromise } from "../../functions/tools";
+
+const CongressPage = (datas:CongressPage) =>  {
+
+    const [events, setEvents]:[Airtable_Event_Interface[]|[], React.Dispatch<Airtable_Event_Interface[]|[]>] = React.useState(Array());
+    const [loading, setLoading]:[boolean, React.Dispatch<boolean>] = React.useState(true);
+
+    const loadEvents = async function(__type:string|null = null) {
+        await fetch(`${process.env.SYMF_BACK}/api/get-datas?type=events`)
+        .then(p => handlePromise(p, "json"))
+        .then((res:{status:string, datas:Airtable_Event_Interface[]}) => {
+            if(res.datas.length == 0) {
+                setLoading(false);
+                return false;
+            }
+            else {
+                setLoading(false);
+                setEvents(res.datas.filter(event => event.EventType == __type));
+                return true;
+            }
+        })
+        .catch(err => _log(err));
+    }
+
+    React.useEffect(() => {
+        loading && loadEvents("Congres");
+    }, [events]);
+
     return (
-        <Layout>
-            <SEO title="Congrès"/>
+        <Layout title="congrès">
+            <SEO lang="fr" title="Congrès"/>
             <EventsLayout
+                loading={loading}
                 current_page="congrès"
-                upcoming_events={!data ? {} : data.incoming.nodes}
-                // past_events={!data ? {} : data.past.nodes}
+                events={events}
             />
         </Layout>
     );
 };
 
-export default CongressPage;
+interface CongressPage {
+    
+};
 
-// export const query = graphql`
-//     query CongressPage($today_string: Date!) {
-//         incoming: allStrapiEvent(filter: {begin: {gte: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: ASC}) {
-//             nodes {
-//                 address
-//                 begin(formatString: "DD MMM. YY, HH:MM")
-//                 finish(formatString: "DD MMM. YY, HH:MM")
-//                 maps_link
-//                 picture {
-//                     childImageSharp {
-//                         fluid {
-//                             srcWebp
-//                             srcSetWebp
-//                         }
-//                     }
-//                 }
-//                 place
-//                 place_url
-//                 short_descr
-//                 title
-//                 type
-//                 video_url
-//                 addons {
-//                     Name
-//                 }
-//             }
-//         }
-//         past: allStrapiEvent(filter: {begin: {lt: $today_string}, type: {eq: "congres"}}, sort: {fields: begin, order: DESC}) {
-//             nodes {
-//                 address
-//                 begin(formatString: "DD MMM. YY, HH:MM")
-//                 finish(formatString: "DD MMM. YY, HH:MM")
-//                 maps_link
-//                 picture {
-//                     childImageSharp {
-//                         fluid {
-//                             srcWebp
-//                             srcSetWebp
-//                         }
-//                     }
-//                 }
-//                 place
-//                 place_url
-//                 short_descr
-//                 title
-//                 type
-//                 video_url
-//                 addons {
-//                     Name
-//                 }
-//             }
-//         }
-//     }
-// `;
+export default CongressPage;

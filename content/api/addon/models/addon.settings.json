@@ -59,8 +59,8 @@
       "type": "decimal"
     },
     "Products": {
-      "collection": "product",
-      "via": "Addons"
+      "via": "Addons",
+      "collection": "product"
     },
     "Page_addon": {
       "type": "boolean"
@@ -90,6 +90,11 @@
       "type": "component",
       "repeatable": false,
       "component": "generic.menu-params"
+    },
+    "sensitivity": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

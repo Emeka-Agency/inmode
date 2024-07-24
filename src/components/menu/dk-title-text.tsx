@@ -27,19 +27,19 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
             {menu.url ?
                 menu.internal_link ?
                     <Link
-                        className="menu-dk-title menu-text"
+                        className="menu-dk-title menu-text user-select-none"
                         to={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
                             enableMainScroll();
                         }}
-                        title={format_string(menu.title)}
+                        title={format_string(menu.title || '')}
                     >
-                        {format_string(menu.title)}
+                        {format_string(menu.title || '')}
                     </Link>
                     :
                     <a
-                        className="menu-dk-title menu-text"
+                        className="menu-dk-title menu-text user-select-none"
                         href={menu.url || "#"}
                         onClick={(e) => {
                             resolveOnClick(e, true);
@@ -47,27 +47,27 @@ const MenuDKTitleText = ({menu, prop_key, openOnClick}:MenuDKTitleText) => {
                         }}
                         target="_blank"
                         rel="noreferrer"
-                        title={format_string(menu.title)}
+                        title={format_string(menu.title || '')}
                     >
-                        {format_string(menu.title)}
+                        {format_string(menu.title || '')}
                     </a>
                 :
                 <div
-                    className="menu-dk-title menu-text"
+                    className="menu-dk-title menu-text user-select-none"
                     onClick={(e) => {resolveOnClick(e, false);}}
                 >
-                    {format_string(menu.title)}
+                    {format_string(menu.title || '')}
                 </div>
             }
             <ul className="dk-dropdown-menu">
                 <div className="dk-sub-container">
-                    {menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
+                    {menu.menus && menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
                         return (
                             <Menu key={key_sub} prop_key={key_sub} menu={sub}/>
                         );
                     })}
-                    {/* {menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
-                        // TODO dk-item is a {'type': 'content', 'variant': 'card'}
+                    {/* TODO dk-item is a {'type': 'content', 'variant': 'card'} */}
+                    {/* {menu.menus && menu.menus.length > 0 && menu.menus.map((sub, key_sub) => {
                         return <></>;
                     })} */}
                 </div>

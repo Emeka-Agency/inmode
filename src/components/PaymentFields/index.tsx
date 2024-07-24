@@ -26,6 +26,7 @@ const defaultCountries = [
     {label: 'France', code: 'FR'},
     {label: 'Belgique', code: 'BE'},
     {label: 'Luxembourg', code: 'LU'},
+    {label: 'DOM/TOM', code: 'FRDT'},
 ];
 
 const defaultParams = {
@@ -34,9 +35,11 @@ const defaultParams = {
 
     CivilGender: {name: 'vads_cust_title', id: 'vads_cust_title', placeholder: 'Civilité'},
         FullName: {name: 'vads_', id: 'vads_', placeholder: 'Nom - Prénom'},
+    Title: {name: 'ct_title', id: 'ct_title', placeholder: 'Titre'},
     FirstName: {name: 'vads_cust_first_name', id: 'vads_cust_first_name', placeholder: 'Prénom'},
     LastName: {name: 'vads_cust_last_name', id: 'vads_cust_last_name', placeholder: 'Nom'},
     Status: {name: 'vads_cust_status', id: 'vads_cust_status', placeholder: 'Statut'},
+    Clinic: {name: 'ct_clinic', id: 'ct_clinic', placeholder: 'Clinique'},
     Society: {name: 'vads_cust_legal_name', id: 'vads_cust_legal_name', placeholder: 'Société'},
         Address: {name: 'vads_', id: 'vads_', placeholder: 'Adresse'},
     AddressStreetNumber: {name: 'vads_cust_address_number', id: 'vads_cust_address_number', placeholder: 'Numéro de voie'},
@@ -48,6 +51,7 @@ const defaultParams = {
     State: {name: 'vads_cust_state', id: 'vads_cust_state', placeholder: 'État/région'},
     Country: {name: 'vads_cust_country', id: 'vads_cust_country', placeholder: 'Pays', countries: defaultCountries},
     Intra_TVA: {name: 'intra_tva', id: 'intra_tva', placeholder: 'TVA intracommunautaire'},
+    Custom: {name: 'custom', id: 'custom', placeholder: 'Détails de livraison'},
         DeliveryAddress: {name: 'vads_ship', id: 'vads_ship', placeholder: 'Adresse'},
     DeliveryAddressStreetNumber: {name: 'vads_ship_to_street_number', id: 'vads_ship_to_street_number', placeholder: 'Numéro de voie'},
     // DeliveryAddressLine1: {name: 'vads_ship_to_street', id: 'vads_ship_to_street', placeholder: 'Adresse ligne 1'},
@@ -57,10 +61,12 @@ const defaultParams = {
     DeliveryCity: {name: 'vads_ship_to_city', id: 'vads_ship_to_city', placeholder: 'Ville'},
     DeliveryState: {name: 'vads_ship_to_state', id: 'vads_ship_to_state', placeholder: 'État/région'},
     DeliveryCountry: {name: 'vads_ship_to_country', id: 'vads_ship_to_country', placeholder: 'Pays', countries: defaultCountries},
+    DeliveryTitle: {name: 'sp_title', id: 'sp_title', placeholder: 'Titre'},
     DeliveryFirstName: {name: 'vads_ship_to_first_name', id: 'vads_ship_to_first_name', placeholder: 'Prénom'},
     DeliveryLastName: {name: 'vads_ship_to_last_name', id: 'vads_ship_to_last_name', placeholder: 'Nom'},
     DeliveryPhone: {name: 'vads_ship_to_phone_num', id: 'vads_ship_to_phone_num', placeholder: 'Téléphone'},
     DeliveryStatus: {name: 'vads_ship_to_status', id: 'vads_ship_to_status', placeholder: 'Statut'},
+    DeliveryClinic: {name: 'sp_clinic', id: 'sp_clinic', placeholder: 'Clinique'},
     DeliverySociety: {name: 'vads_ship_to_legal_name', id: 'vads_ship_to_legal_name', placeholder: 'Société'},
     DeliveryMail: {name: 'delivery_mail', id: 'delivery_mail', placeholder: 'Mail'},
         Phone: {name: 'vads_', id: 'vads_', placeholder: 'Téléphone'},
@@ -127,6 +133,21 @@ export const FullNameField = ({ value, placeholder, name, id, required, style }:
         />
     );
 };
+export const TitleField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Title.name] || ""}
+            placeholder={placeholder || `${defaultParams.Title.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Title.name}
+            id={id || defaultParams.Title.id}
+            required={required ||false}
+        />
+    );
+};
 export const FirstNameField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
     return (
         <input
@@ -172,6 +193,26 @@ export const StatusField = ({ value, placeholder, name, id, required, classes, s
             required={required ||false}
             // "PRIVATE"
             // "COMPANY"
+        />
+    );
+};
+
+// -----============================--------//
+// -----            CLINIC.         --------//
+// -----============================--------//
+
+export const ClinicField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Clinic.name] || ""}
+            placeholder={placeholder || `${defaultParams.Clinic.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Clinic.name}
+            id={id || defaultParams.Clinic.id}
+            required={required ||false}
         />
     );
 };
@@ -324,6 +365,7 @@ export const CountryField = ({ value, placeholder, name, id, required, classes, 
     return (
         <select
             onChange={useCart().updateForm}
+            onClick={useCart().updateForm}
             className={classes ||''}
             style={style || undefined}
             defaultValue={value || useCart().formSave[defaultParams.Country.name] || "FR"}
@@ -333,16 +375,16 @@ export const CountryField = ({ value, placeholder, name, id, required, classes, 
             required={required ||false}
         >
             {
-                countries != undefined && Array.isArray(countries) && countries.length > 0 ? countries.map((country) => {
+                countries != undefined && Array.isArray(countries) && countries.length > 0 ? countries.map((country, key) => {
                     if(!Array.isArray(country) && typeof country == 'object' && isCountry(country)) {
-                        return <option value={country.code}>{country.label}</option>
+                        return <option key={key} value={country.code}>{country.label}</option>
                     }
                     return <></>;
                 })
                 :
-                Array.isArray(defaultParams.Country.countries) && defaultParams.Country.countries.length > 0 ? defaultParams.Country.countries.map((country) => {
+                Array.isArray(defaultParams.Country.countries) && defaultParams.Country.countries.length > 0 ? defaultParams.Country.countries.map((country, key) => {
                     if(!Array.isArray(country) && typeof country == 'object' && isCountry(country)) {
-                        return <option value={country.code}>{country.label}</option>
+                        return <option key={key} value={country.code}>{country.label}</option>
                     }
                     return <></>;
                 })
@@ -350,6 +392,21 @@ export const CountryField = ({ value, placeholder, name, id, required, classes, 
                 <></>
             }
         </select>
+    );
+};
+export const CustomField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.Custom.name] || ""}
+            placeholder={placeholder || `${defaultParams.Custom.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.Custom.name}
+            id={id || defaultParams.Custom.id}
+            required={required ||false}
+        />
     );
 };
 
@@ -466,6 +523,7 @@ export const DeliveryCountryField = ({ value, placeholder, name, id, required, c
     return (
         <select
             onChange={useCart().updateForm}
+            onClick={useCart().updateForm}
             className={classes ||''}
             style={style || undefined}
             defaultValue={value || useCart().formSave[defaultParams.DeliveryCountry.name] || "FR"}
@@ -475,16 +533,16 @@ export const DeliveryCountryField = ({ value, placeholder, name, id, required, c
             required={required ||false}
         >
             {
-                countries != undefined && Array.isArray(countries) && countries.length > 0 ? countries.map((country) => {
+                countries != undefined && Array.isArray(countries) && countries.length > 0 ? countries.map((country, key) => {
                     if(!Array.isArray(country) && typeof country == 'object' && isCountry(country)) {
-                        return <option value={country.code}>{country.label}</option>
+                        return <option key={key} value={country.code}>{country.label}</option>
                     }
                     return <></>;
                 })
                 :
-                Array.isArray(defaultParams.DeliveryCountry.countries) && defaultParams.DeliveryCountry.countries.length > 0 ? defaultParams.DeliveryCountry.countries.map((country) => {
+                Array.isArray(defaultParams.DeliveryCountry.countries) && defaultParams.DeliveryCountry.countries.length > 0 ? defaultParams.DeliveryCountry.countries.map((country, key) => {
                     if(!Array.isArray(country) && typeof country == 'object' && isCountry(country)) {
-                        return <option value={country.code}>{country.label}</option>
+                        return <option key={key} value={country.code}>{country.label}</option>
                     }
                     return <></>;
                 })
@@ -492,6 +550,21 @@ export const DeliveryCountryField = ({ value, placeholder, name, id, required, c
                 <></>
             }
         </select>
+    );
+};
+export const DeliveryTitleField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.DeliveryTitle.name] || ""}
+            placeholder={placeholder || `${defaultParams.DeliveryTitle.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.DeliveryTitle.name}
+            id={id || defaultParams.DeliveryTitle.id}
+            required={required ||false}
+        />
     );
 };
 export const DeliveryFirstNameField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
@@ -552,6 +625,21 @@ export const DeliveryPhoneField = ({ value, placeholder, name, id, required, cla
             placeholder={placeholder || `${defaultParams.DeliveryPhone.placeholder}${required ? '*' :''}`}
             name={name || defaultParams.DeliveryPhone.name}
             id={id || defaultParams.DeliveryPhone.id}
+            required={required ||false}
+        />
+    );
+};
+export const DeliveryClinicField = ({ value, placeholder, name, id, required, classes, style }:PayField_Interface) => {
+    return (
+        <input
+            onChange={useCart().updateForm}
+            className={classes ||''}
+            style={style || undefined}
+            type="text"
+            defaultValue={value || useCart().formSave[defaultParams.DeliveryClinic.name] || ""}
+            placeholder={placeholder || `${defaultParams.DeliveryClinic.placeholder}${required ? '*' :''}`}
+            name={name || defaultParams.DeliveryClinic.name}
+            id={id || defaultParams.DeliveryClinic.id}
             required={required ||false}
         />
     );
@@ -661,7 +749,7 @@ export const NbProductsField = ({ value, name, id, required, classes, style }:Pa
             style={style || undefined}
             hidden
             type="number"
-            value={value || useCart().formSave[defaultParams.NbProducts.name] || 0}
+            defaultValue={value || useCart().formSave[defaultParams.NbProducts.name] || 0}
             name={name || defaultParams.NbProducts.name}
             id={id || defaultParams.NbProducts.id}
             required={required || false}
@@ -675,7 +763,7 @@ export const ProductLabelField = ({ value, name, id, index, required, classes, s
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductLabel.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductLabel.name] || ""}
             name={name || `${defaultParams.ProductLabel.name}${index}`}
             id={id || `${defaultParams.ProductLabel.id}${index}`}
             required={required || false}
@@ -689,7 +777,7 @@ export const ProductAmountField = ({ value, name, id, index, required, classes, 
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductAmount.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductAmount.name] || ""}
             name={name || `${defaultParams.ProductAmount.name}${index}`}
             id={id || `${defaultParams.ProductAmount.id}${index}`}
             required={required || false}
@@ -703,7 +791,7 @@ export const ProductRefField = ({ value, name, id, index, required, classes, sty
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductRef.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductRef.name] || ""}
             name={name || `${defaultParams.ProductRef.name}${index}`}
             id={id || `${defaultParams.ProductRef.id}${index}`}
             required={required || false}
@@ -717,7 +805,7 @@ export const ProductQtyField = ({ value, name, id, index, required, classes, sty
             style={style || undefined}
             hidden
             type="text"
-            value={value || useCart().formSave[defaultParams.ProductQty.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.ProductQty.name] || ""}
             name={name || `${defaultParams.ProductQty.name}${index}`}
             id={id || `${defaultParams.ProductQty.id}${index}`}
             required={required || false}
@@ -733,7 +821,7 @@ export const BackSignatureField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackSignature.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackSignature.name] || ""}
             name={name || defaultParams.BackSignature.name}
             id={id ||defaultParams.BackSignature.id}
         />
@@ -743,7 +831,7 @@ export const BackActionModeField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackActionMode.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackActionMode.name] || ""}
             name={name || defaultParams.BackActionMode.name}
             id={id ||defaultParams.BackActionMode.id}
         />
@@ -753,7 +841,7 @@ export const BackCtxModeField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackCtxMode.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackCtxMode.name] || ""}
             name={name || defaultParams.BackCtxMode.name}
             id={id ||defaultParams.BackCtxMode.id}
         />
@@ -763,7 +851,7 @@ export const BackCurrencyField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackCurrency.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackCurrency.name] || ""}
             name={name || defaultParams.BackCurrency.name}
             id={id ||defaultParams.BackCurrency.id}
         />
@@ -773,7 +861,7 @@ export const BackPageActionField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackPageAction.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackPageAction.name] || ""}
             name={name || defaultParams.BackPageAction.name}
             id={id ||defaultParams.BackPageAction.id}
         />
@@ -783,7 +871,7 @@ export const BackSiteIdField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackSiteId.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackSiteId.name] || ""}
             name={name || defaultParams.BackSiteId.name}
             id={id ||defaultParams.BackSiteId.id}
         />
@@ -793,7 +881,7 @@ export const BackTransDateField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackTransDate.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackTransDate.name] || ""}
             name={name || defaultParams.BackTransDate.name}
             id={id ||defaultParams.BackTransDate.id}
         />
@@ -803,7 +891,7 @@ export const BackTransIdField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackTransId.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackTransId.name] || ""}
             name={name || defaultParams.BackTransId.name}
             id={id ||defaultParams.BackTransId.id}
         />
@@ -813,7 +901,7 @@ export const BackVersionField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackVersion.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackVersion.name] || ""}
             name={name || defaultParams.BackVersion.name}
             id={id ||defaultParams.BackVersion.id}
         />
@@ -823,7 +911,7 @@ export const BackReferenceField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackReference.name] || ""}
+            defaultValue={value || useCart().formSave[defaultParams.BackReference.name] || ""}
             name={name || defaultParams.BackReference.name}
             id={id ||defaultParams.BackReference.id}
         />
@@ -833,22 +921,22 @@ export const BackPaymentConfigField = ({ value, name, id }:PayField_Interface) =
     return (
         <input
             hidden
-            value={value || useCart().formSave[defaultParams.BackPaymentConfig.name] || "SINGLE"}
+            defaultValue={value || useCart().formSave[defaultParams.BackPaymentConfig.name] || "SINGLE"}
             name={name || defaultParams.BackPaymentConfig.name}
             id={name || defaultParams.BackPaymentConfig.id}
         />
     )
-}
+};
 export const BackAmountField = ({ value, name, id }:PayField_Interface) => {
     return (
         <input
             hidden
-            value={Math.ceil(value * 100) || 0}
+            defaultValue={Math.floor(value * 100) || 0}
             name={name || defaultParams.BackAmount.name}
             id={name || defaultParams.BackAmount.id}
         />
     )
-}
+};
 
 interface PayField_Interface {
     value?: any,

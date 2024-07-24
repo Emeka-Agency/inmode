@@ -1,4 +1,5 @@
 import React from "react";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Event_Interface } from "../interfaces";
 
 const Workshop = ({ event = undefined }:Workshop) => {
@@ -12,8 +13,8 @@ const Workshop = ({ event = undefined }:Workshop) => {
             <div className="img-part">
                 <img
                     className="event-pic"
-                    src={event.picture.childImageSharp.fluid.srcWebp}
-                    srcSet={event.picture.childImageSharp.fluid.srcSetWebp}
+                    src={resolveImg(event.picture)}
+                    srcSet={resolveImgSet(event.picture)}
                 />
             </div>
             <div className="descr-part">
@@ -44,6 +45,6 @@ const Workshop = ({ event = undefined }:Workshop) => {
 
 interface Workshop {
     event: InmodePanel_Event_Interface | undefined;
-}
+};
 
 export default Workshop;

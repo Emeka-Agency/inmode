@@ -4,12 +4,9 @@ import { disableMainScroll, enableMainScroll } from '../../functions/disable-scr
 import { useWindowSize } from '../../functions/window-size';
 import CartContext from './cart-context';
 
-import hmacSHA256 from 'crypto-js/hmac-sha256';
-import hmacMd5 from 'crypto-js/hmac-md5';
-import Base64 from 'crypto-js/enc-base64';
 import { _sort_html_list, _sort_object } from '../../functions/sort';
 import rand_token from '../../functions/rand_token';
-import { formById, oneById } from '../../functions/selectors';
+import { formById, getById } from '../../functions/selectors';
 
 import moment from 'moment';
 import { filter_object } from '../../functions/filter_object';
@@ -20,20 +17,25 @@ import '../interfaces';
 import {
     Article_Interface,
     NameTable_Interface,
+    Woocommerce_Shop_Interface,
     InmodePanel_Shop_Interface,
     SogecommerceOrder,
     Cart_Interface,
     Cart_FormSave_Interface
 } from '../interfaces';
-import { openModale, paymentSEPA } from '../../functions/modale';
+import { openModale, paymentProblems, paymentSEPA } from '../../functions/modale';
+import { initWakeup } from '../../functions/fetch';
+import { useUser } from './user-provider';
+import { err_log } from '../../functions/logging';
+import { _error, _log, _slog } from '../../functions/logger';
 
 export const useCart = ():Cart_Interface => {
     return useContext(CartContext);
 }
 
-const CartProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<Cart_Interface> => {
+const SECURITY_TIME = 15000;
 
-    // moment.locale('fr');
+const CartProvider = ({ requested = "", children }:{requested:string, children:ReactChild}):React.Provider<Cart_Interface> => {
 
     const name_table:NameTable_Interface = {
         tip: ['tip', 'tips'],
@@ -43,7 +45,38 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         unite: ['unité', 'unités']
     };
 
+    const user = useUser();
+
     const [appeared, setAppeared] = React.useState(false);
+
+    
+    // allWcProducts {
+    //     nodes {
+    //         id
+    //         wordpress_id
+    //         name
+    //         price
+    //         tags {
+    //             name
+    //         }
+    //         categories {
+    //             name
+    //         }
+    //         meta_data {
+    //             key
+    //             value
+    //         }
+    //         images {
+    //             localFile {
+    //             childrenImageSharp {
+    //                 fluid {
+    //                     srcSet
+    //                     srcSetWebp
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     const [articles] = React.useState(
         Object.fromEntries(
@@ -60,12 +93,21 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                             price
                             discount
                             picture {
-                                childImageSharp {
-                                    fluid {
+                                caption
+                                url
+                                localFile {
+                                    absolutePath
+                                    childImageSharp {
+                                        fluid {
                                         srcWebp
                                         srcSetWebp
+                                        }
                                     }
+                                    publicURL
+                                    url
                                 }
+                                width
+                                height
                             }
                         }
                     }
@@ -87,19 +129,21 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         'EUR': 978
     };
 
+    const [payment_launch, setPaymentLaunch]:[boolean, React.Dispatch<boolean>] = React.useState(Boolean(false));
+
     // SWITCH TEST / PRODUCTION MODE
     const [pay_params, setPayParams] = React.useState({
         signature: "",
         actionMode: "INTERACTIVE",
-        // ctxMode: "TEST",
-        ctxMode: "PRODUCTION",
+        // vads_ctx_mode: "TEST",
+        vads_ctx_mode: "PRODUCTION",
         currency: currencies.EUR,
         pageAction: "PAYMENT",
         siteId: "",
         transDate: "",
         transId: "",
         version: "V2",
-        Reference: "",
+        reference: "",
         url_success: "",
         url_cancel: "",
         url_refused: "",
@@ -110,7 +154,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     });
 
     const [otherAddress, setOtherAddress]:[Boolean, React.Dispatch<Boolean>] = React.useState(new Boolean(false));
-    const [formFields, setFormFields]:[Cart_FormSave_Interface, React.Dispatch<Cart_FormSave_Interface>] = React.useState({});
+    const [formFields, setFormFields]:[Cart_FormSave_Interface, React.Dispatch<Cart_FormSave_Interface>] = React.useState(pay_params);
 
     const article_base = (ref:string, qnt:number):Article_Interface => {
         return {
@@ -132,10 +176,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             price: articles[ref].price,
             discount: articles[ref].discount || 0,
             total():number {return this.price * this.quantity * (1 + this.discount / 100);},
-            // 'delete': (function() {
-            //     // console.log("HARA KIRI KIRI !")
-            //     delete this;
-            // })
         };
     }
 
@@ -155,7 +195,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             order_load: order_urls.load,
             order_signature: order_urls.signature,
         };
-        // console.log(_temp);
         await setPayParams(_temp);
     }
 
@@ -164,6 +203,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     const size = useWindowSize();
 
     const open_purchase = ():void => {
+        initWakeup("open_purchase");
         !appeared && setAppeared(true);
         setPurchaseOpened(true);
         size.width < 1200 && disableMainScroll();
@@ -208,19 +248,18 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             let _cart:Cart_Interface["cart"] = new Array(...cart);
             _cart.splice(article_index(ref), 1, temp.add(qnt));
             setCart(_cart);
-            // add_paying_datas(ref, temp.quantity);
         }
         else {
             let _cart:Cart_Interface["cart"] = new Array(...cart);
             _cart.push(article_base(ref, qnt));
             setCart(_cart);
-            // add_paying_datas(ref, qnt);
         }
     }
 
     const remove_article = (ref:string, qnt:number):void => {
         let temp = find_in_cart(ref);
         if(nb_articles() <= 1) {
+            enableMainScroll();
             setPurchaseOpened(false);
         }
         if(temp && temp.quantity <= qnt) {
@@ -230,7 +269,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             let _cart:Cart_Interface["cart"] = new Array(...cart);
             _cart.splice(article_index(ref), 1, temp.remove(qnt))
             setCart(_cart);
-            // edit_paying_datas(ref, temp.quantity);
         }
     }
 
@@ -243,29 +281,18 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             _cart.splice(article_index(ref), 1)
             setCart(_cart);
         }
-        // delete_paying_datas(ref);
     }
 
     const add_paying_datas = (ref:string, qnt:number):void => {
-        // console.log('add_paying_datas');
         let temp = find_in_cart(ref);
-        // console.log(temp);
-        // console.log(oneById('payment_articles'));
     }
 
     const edit_paying_datas = (ref:string, qnt:number):void => {
-        // console.log('edit_paying_datas');
         let temp = find_in_cart(ref);
-        // console.log(temp);
-        // console.log(oneById('payment_articles'));
     }
 
     const delete_paying_datas = (ref:string):void => {
-        // console.log('delete_paying_datas');
-        // console.log(`ref : ${ref}`);
         let temp = find_in_cart(ref);
-        // console.log(temp);
-        // console.log(oneById('payment_articles'));
     }
 
     const count_total = ():number => {
@@ -276,210 +303,298 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         }, 0);
     };
 
-    const total_DELIVER = ():string => {return count_total() === 0 ? (0).toFixed(2) : (10).toFixed(2);}
+    const total_DELIVER = ():string => {return count_total() === 0 ? (0).toFixed(2) : (50).toFixed(2);}
     const total_HT = ():string => {return count_total().toFixed(2);}
-    const hasTVA = ():boolean => {
-        if(formFields.vads_cust_country == undefined && formFields.vads_ship_to_country == undefined) {
-            return true;
-        }
-        if((formFields.vads_cust_country == 'FR' && otherAddress == false) || (formFields.vads_ship_to_country == 'FR' && otherAddress == true)) {
-            return true;
-        }
-        return false;
-    }
     const hasTVAIntra = ():boolean => {
         let i = 0;
-        console.log(`vads_cust_country : ${formFields.vads_cust_country}`);
-        console.log(`vads_ship_to_country : ${formFields.vads_ship_to_country}`);
-        if(formFields.vads_cust_country == undefined && formFields.vads_ship_to_country == undefined) {
-            console.log('Cas ' + ++i);
+        let _temp = getById('facture');
+        const _other_address = _temp ? _temp.checked : false;
+        _temp = getById('vads_cust_country');
+        const _part_1_country = _temp ? _temp.value : formFields.vads_cust_country || "FR";
+        _temp = getById('vads_ship_to_country');
+        const _part_2_country = _temp ? _temp.value : formFields.vads_ship_to_country || "FR";
+        if(_other_address == false && ["FR", "FRDT"].indexOf(_part_1_country) > -1) {
             return false;
         }
-        if(formFields.vads_cust_country != undefined && formFields.vads_cust_country != 'FR' && otherAddress == false) {
-            console.log('Cas ' + ++i);
-            return true;
+        if(_other_address == true && ["FR", "FRDT"].indexOf(_part_2_country) > -1) {
+            return false;
         }
-        if(formFields.vads_ship_to_country != undefined && formFields.vads_ship_to_country != 'FR' && otherAddress == true) {
-            console.log('Cas ' + ++i);
-            return true;
-        }
-        let _select_cust = document.getElementById('vads_cust_country');
-        let _select_ship = document.getElementById('vads_ship_to_country');
-        if(_select_cust == null && _select_ship == null) {
-            console.log('Cas ' + ++i);
-            return true;
-        }
-        if(_select_cust != null && _select_cust.value != 'FR' && otherAddress == false) {
-            console.log('Cas ' + ++i);
-            return true;
-        }
-        if(_select_ship != null && _select_ship.value != 'FR' && otherAddress == true) {
-            console.log('Cas ' + ++i);
-            return true;
-        }
-        console.log('Cas ', ++i);
-        return false;
+        return true;
     }
     /*PAS DE FRAIS DE LIVRAISON*/
-    const total_TVA = ():string => {return (count_total() * 0.2 * 0).toFixed(2);}
-    const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() && false ? 10 : 0)).toFixed(2);}
+    // const total_TVA = ():string => {return (count_total() * 0.2 * 0).toFixed(2);}
+    // const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() && false ? 50 : 0)).toFixed(2);}
     // /*FRAIS DE LIVRAISON*/
-    // const total_TVA = ():string => {return hasTVA() ? (count_total() * 0.2).toFixed(2) : (0).toFixed(2);}
-    // const total_TTC = ():string => {return ((count_total() * (hasTVA() ? 1.2 : 1)) + (pay_delivery() ? 10 : 0)).toFixed(2);}
+    const total_TVA = ():string => {return hasTVAIntra() ? (0).toFixed(2) : ((count_total() + (pay_delivery() ? 50 : 0)) * 0.2).toFixed(2);}
+    const total_TTC = ():string => {return (count_total() + (pay_delivery() ? 50 : 0) + parseFloat(total_TVA())).toFixed(2);}
     
     /*PAS DE FRAIS DE LIVRAISON*/
-    const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 && false ? true : false;}
+    // const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 && false ? true : false;}
     /*PAS FRAIS DE LIVRAISON*/
-    // const pay_delivery = ():boolean => {return count_total() * 1.2 < 500 ? true : false;}
+    const pay_delivery = ():boolean => {return count_total() < 500 ? true : false;}
 
-    const payment_str = (form_fields) => {
-        // console.log("payment_str");
-        // return [...form_fields, pay_params.hash_key].map(elem => elem ? typeof elem == 'string' ? elem : elem.value : null).join('+');
-        // return Object.keys(form_fields).sort().map(key => form_fields[key] && form_fields[key] != "" ? form_fields[key] : null).filter(elem => elem).join('+');
-        return Object.keys(form_fields).sort().map((key:string):string => {return form_fields[key]}).join('+');
+    const payment_str = (form_fields:any) => {
+        return Object.keys(form_fields).sort().map((key:string):string => {
+            return form_fields[key];
+        }).join('+');
     }
 
-    const get_signature = async(str:string):Promise<{signature?:string}> => {
-        let promise:Promise<{signature?:string}>;
+    const get_signature = async(str:string):Promise<{status:string, signature?:string, message?:string}> => {
+        let promise:Promise<{status:string, signature?:string, message?:string}>;
         let vars:RequestInit = {
             method: "POST",
-            headers: new Headers({'content-type': 'application/json'}),
+            headers: new Headers(),
             mode: 'cors',
             cache: 'default',
             body: JSON.stringify({string: str})
         };
-        promise = await (await fetch(pay_params.order_signature, vars)).json().catch(err => console.log(err));
+        promise = await (await fetch(pay_params.order_signature, vars)).json().catch((err:any) => {err_log(err, "components/contexts/cart-provider.tsx:get_signature promise catch");});
         return promise;
-        // Base64.stringify(hmacSHA256(str, pay_params.hash_key));
     }
 
-    const form_fields = (form) => {
-        // console.log("form_fields");
+    const form_fields = (form:HTMLFormElement) => {
         return _sort_html_list(Array.from(form.elements), 'name', 'up').filter(e => e.name && e.id);
     }
 
-    const redirect_payment = async (form_fields:any, sepa:Boolean):Promise<boolean | void> => {
-        console.log("redirect_payment");
-
-        form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
-
-
-        form_fields = _sort_html_list(form_fields);
-
-        console.log(form_fields);
-
-        const date = moment.utc().format('YYYYMMDDHHmmss');
-        
-        let _temp:SogecommerceOrder = new Object({});
-        form_fields.forEach((elem:{name:string, value:string}) => {
-            _temp = {..._temp, [elem.name]: elem.value};
-        });
-        
-        // const order_id = Base64.stringify(hmacMd5(`${date}`, pay_params.hash_key));
-        // const order_id = `${f_cust_first_name}${f_cust_last_name}${f_ship_first_name}${f_ship_last_name}${f_cust_legal_name}${f_ship_legal_name}_${date}_${cart.map(art => art.id).join('_')}`;
-        const order_id = rand_token(6);
-
-        // TODO call back to check if id exists
-
-        _temp["vads_action_mode"] = pay_params.actionMode;
-        _temp["vads_ctx_mode"] = pay_params.ctxMode;
-        _temp["vads_currency"] = pay_params.currency;
-        _temp["vads_page_action"] = pay_params.pageAction;
-        // REMPLACER PAR STRING '#SHOP_ID#' et replace en back pour garder secret l'identifiant du shop
-        _temp["vads_site_id"] = pay_params.siteId;
-        _temp["vads_trans_date"] = date;
-        _temp["vads_trans_id"] = order_id;
-        _temp["vads_version"] = pay_params.version;
-        _temp["vads_order_id"] = order_id;
-        _temp["vads_return_mode"] = "GET";
-        // _temp['vads_return_mode'] = "POST";
-        _temp["vads_url_success"] = pay_params.url_success;
-        _temp["vads_url_cancel"] = pay_params.url_cancel;
-        _temp["vads_url_refused"] = pay_params.url_refused;
-
-        console.log(_temp);
-
-        _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
-        
-        const { signature } = await get_signature(payment_str(_temp));
-        // console.log(payment_str(_temp));
-        // console.log(_temp);
-        console.log(order_id);
-        console.log(signature);
-
-        _temp['signature'] = signature || '';
-
-        setPayParams({
-            ...pay_params,
-            signature: signature || '',
-            transDate: date,
-            Reference: order_id,
-            transId: order_id,
-        });
-
-        let _delivery_mail:HTMLElement | HTMLInputElement | null = document.getElementById('delivery_mail');
-        if(_delivery_mail) {
-            _temp['delivery_mail'] = _delivery_mail.value;
-        }
-        let intra_tva:HTMLElement | HTMLInputElement | null = document.getElementById('intra_tva');
-        if(intra_tva) {
-            _temp['intra_tva'] = intra_tva.value;
-        }
-        
-        let _country = null;
-        console.log(`otherAddress : ${otherAddress}`);
-        if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
-            if(otherAddress == true) {
-                _country = document.getElementById('vads_ship_to_country').value;
-            }
-            else {
-                _country = document.getElementById('vads_cust_country').value
-            }
-        }
-        else {
-            if(otherAddress == true) {
-                _country = formFields.vads_ship_to_country;
-            }
-            else {
-                _country = formFields.vads_cust_country;
-            }
-        }
-        if(_country == null) {
-            _country = 'FR';
-        }
-        console.log(create_strapi_order(_temp, cart, parseInt(total_TTC()), sepa, _country));
-
-        // initialize_transaction(_temp);
-        let { status } = await (await create_object(create_strapi_order(_temp, cart, parseInt(total_TTC()), sepa, _country), pay_params.order_create)).json();
-        console.log(status);
-        if(status && status == 'success') {
-            if(sepa) {
+    const security_payment_verify = (force:boolean = true) => {
+        _log("security_payment_verify");
+        _log(Date.now());
+        if(payment_launch == true) {
+            _log("Payment latence");
+            setPaymentLaunch(false);
+            if(typeof window != undefined && window?.localStorage.getItem('order') != null) {
                 openModale(
-                    paymentSEPA(
-                        {
-                            reference: order_id,
-                            total: total_TTC(),
-                            RIB: "FR76 3000 3015 7800 0200 1741 805",
-                            BIC: "SOGEFRPP",
-                        },
-                    )
+                    paymentProblems({
+                        order: JSON.parse(window?.localStorage.getItem('order') || "")
+                    })
                 );
-            }
-            else {
-                fill_redirect_form('payment_form', _temp);
-                submit_form('payment_form');
-                // TODO vérifier que la redirection est bien effectuée, sinon afficher erreur et détruire form
-                // document.getElementById('payment_form').remove();
             }
             close_purchase();
             reset_form_fields();
             reset_cart();
             setOtherAddress(false);
-            return true;
         }
         else {
+            _log("No payment latence");
+        }
+    }
+
+    const redirect_payment = async (form_fields:any, sepa:boolean = false):Promise<boolean | void> => {
+            
+        let _temp:SogecommerceOrder = new Object({});
+        let _country:string|undefined = undefined;
+        const order_id = rand_token(6);
+
+        try {
+
+            let _actual = {
+                "vads_cust_last_name": getById("vads_cust_last_name")?.value || "",
+                "vads_cust_first_name": getById("vads_cust_first_name")?.value || "",
+                "vads_cust_legal_name": getById("vads_cust_legal_name")?.value || "",
+                "vads_cust_address": getById("vads_cust_address")?.value || "",
+                "vads_cust_zip": getById("vads_cust_zip")?.value || "",
+                "vads_cust_city": getById("vads_cust_city")?.value || "",
+                "vads_cust_country": getById("vads_cust_country")?.value || "",
+                "vads_cust_cell_phone": getById("vads_cust_cell_phone")?.value || "",
+                "vads_cust_email": getById("vads_cust_email")?.value || "",
+
+                "vads_ship_to_last_name": getById("vads_ship_to_last_name")?.value || "",
+                "vads_ship_to_first_name": getById("vads_ship_to_first_name")?.value || "",
+                "vads_ship_to_legal_name": getById("vads_ship_to_legal_name")?.value || "",
+                "vads_ship_to_street": getById("vads_ship_to_street")?.value || "",
+                "vads_ship_to_zip": getById("vads_ship_to_zip")?.value || "",
+                "vads_ship_to_city": getById("vads_ship_to_city")?.value || "",
+                "vads_ship_to_country": getById("vads_ship_to_country")?.value || "",
+                "vads_ship_to_phone_num": getById("vads_ship_to_phone_num")?.value || "",
+            };
+    
+            updage_global_form_fields(_actual);
+    
+            // Vérification adresse de facturation
+            // const exists_billing_address = user.findAddress(getById("cust_address")?.value || null);
+    
+            
+            // Vérification adresse d'envoi
+            // const exists_shipping_address = user.findAddress(getById("ship_address")?.value || null);
+    
+            setPaymentLaunch(true);
+            // let timer = setTimeout(() => {
+                // security_payment_verify(true);
+            // }, SECURITY_TIME));
+            // }, SECURITY_TIME) || null;
+    
+    
+            form_fields = [...form_fields, ...Array.from(formById('pay_back_params').elements)];
+    
+            form_fields = _sort_html_list(form_fields);
+    
+            const date = moment.utc().format('YYYYMMDDHHmmss');
+
+            form_fields.forEach((elem:Element) => {
+                _temp = {..._temp, [elem.getAttribute('name')]: elem.getAttribute('value') ?? elem.value};
+            });
+    
+            // TODO call back to check if id exists
+    
+            _temp["vads_action_mode"] = pay_params.actionMode;
+            _temp["vads_ctx_mode"] = pay_params.vads_ctx_mode;
+            _temp["vads_currency"] = pay_params.currency;
+            _temp["vads_page_action"] = pay_params.pageAction;
+            _temp["vads_site_id"] = pay_params.siteId;
+            _temp["vads_trans_date"] = date;
+            _temp["vads_trans_id"] = order_id;
+            _temp["vads_version"] = pay_params.version;
+            _temp["vads_order_id"] = order_id;
+            _temp["vads_return_mode"] = "GET";
+            // _temp['vads_return_mode'] = "POST";
+            _temp["vads_url_success"] = pay_params.url_success;
+            _temp["vads_url_cancel"] = pay_params.url_cancel;
+            _temp["vads_url_refused"] = pay_params.url_refused;
+    
+            _temp = {..._temp, ..._actual};
+    
+            _temp = _sort_object(filter_object(_temp, (e:any) => e && e != ""));
+    
+            var _signature = '';
+    
+            if(sepa) {
+                _temp['signature'] = '';
+            }
+            else {
+                try {
+                    _signature = await get_signature(payment_str(_temp));
+            
+                    if(_signature.status == 'error' && !sepa) {
+                        return false;
+                    }
+            
+                    _signature = _signature.signature;
+        
+                    _temp['signature'] = _signature ?? '';
+                }
+                catch(err) {
+                    _error(err);
+                }
+            }
+
+
+            _temp["ct_title"] = getById("ct_title")?.value || "";
+            _temp["ct_clinic"] = getById("ct_clinic")?.value || "";
+            _temp["sp_title"] = getById("sp_title")?.value || "";
+            _temp["sp_clinic"] = getById("sp_clinic")?.value || "";
+    
+            
+            _temp["delivery_mail"] = getById("delivery_mail")?.value || "";
+            _temp["user"] = getById("order_user")?.value || null;
+            _temp["cust_address"] = getById("cust_address")?.value || null;
+            _temp["ship_address"] = getById("ship_address")?.value || null;
+            _temp["custom"] = getById("custom")?.value || null;
+    
+            setPayParams({
+                ...pay_params,
+                signature: _signature ?? '',
+                transDate: date,
+                reference: order_id,
+                transId: order_id,
+            });
+    
+            let _delivery_mail:any = getById('delivery_mail');
+            if(_delivery_mail) {
+                _temp['delivery_mail'] = _delivery_mail.value;
+            }
+            let intra_tva:any = getById('intra_tva');
+            if(intra_tva) {
+                _temp['intra_tva'] = intra_tva.value;
+            }
+    
+            _temp['has_fees'] = parseFloat(total_TVA());
+            
+            if(!formFields.vads_cust_country && !formFields.vads_ship_to_country) {
+                if(otherAddress == true) {
+                    let temp:HTMLSelectElement = getById('vads_ship_to_country');
+                    _country = temp ? temp.value : "FR";
+                }
+                else {
+                    let temp:HTMLSelectElement = getById('vads_cust_country');
+                    _country = temp ? temp.value : "FR";
+                }
+            }
+            else {
+                if(otherAddress == true) {
+                    _country = formFields.vads_ship_to_country;
+                }
+                else {
+                    _country = formFields.vads_cust_country;
+                }
+            }
+            if(_country == null) {
+                _country = 'FR';
+            }
+            // return false;
+        }
+        catch(err:any)
+        {
+            err_log(err, "components/contexts/cart-provider.tsx:redirect_payment first catch")
             return false;
         }
+
+        try {
+            _log(_temp);
+
+            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => err_log(error, "components/contexts/cart-provider.tsx:redirect_payment create_object catch"));
+            // let { status } = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
+            // let result = await (await cwreate_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json();
+            let result = await (await create_object(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country), pay_params.order_create)).json().catch((error:any) => err_log(error, "components/contexts/cart-provider.tsx:redirect_payment create_object catch"));
+
+            _slog("result", "color: #00ff00; font-size: 20px; font-weight: bold; text-decoration: underline;");
+            _log(result);
+
+            if(typeof window != undefined) {
+                window?.localStorage.setItem('order', JSON.stringify(create_strapi_order(_temp, cart, parseFloat(total_TTC()), sepa, _country)));
+            }
+
+            // if(timer == null) {
+            //     return false;
+            // }
+
+            setPaymentLaunch(false);
+            _log(Date.now());
+
+            if(result && result.wp_id != null && result.number != null && result.reference != null) {
+                if(sepa) {
+                    openModale(
+                        paymentSEPA(
+                            {
+                                reference: order_id,
+                                total: total_TTC(),
+                                RIB: "FR76 3000 3015 7800 0200 1741 805",
+                                BIC: "SOGEFRPP",
+                            },
+                        )
+                    );
+                }
+                else {
+                    fill_redirect_form('payment_form', _temp);
+                    submit_form('payment_form');
+                    // TODO vérifier que la redirection est bien effectuée, sinon afficher erreur et détruire form
+                    // document.getElementById('payment_form').remove();
+                }
+                close_purchase();
+                reset_form_fields();
+                reset_cart();
+                setOtherAddress(false);
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        catch(err:any) {
+            // IMPORTANT - Reset formulaire et affiche message
+            err_log(err, "components/contexts/cart-provider.tsx:redirect_payment second catch")
+            return false;
+        }
+        
     }
 
     const fill_redirect_form = (selector:string, values:Object) => {
@@ -492,9 +607,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         let _form = formById(selector);
         _form.action = "https://sogecommerce.societegenerale.eu/vads-payment/";
         _form.method = "POST";
-        // _form.target = "_blank";
         _form.innerHTML = Object.keys(values).map(key => `<input hidden name="${key}" id="${key}" value="${values[key]}"/>`).join('');
-        // _form.innerHTML += `<input name="certificate" value="${pay_params.hash_key}"/>`;
         _form.innerHTML += '<input type="submit" name="payer" value="Payer"/>';
     }
 
@@ -505,7 +618,6 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
         if(!formById(selector)) {
             return false;
         }
-        // console.log(formById(selector));
         formById(selector).submit();
     }
 
@@ -520,10 +632,18 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
     }
 
     const update_form_fields = (e:Event | any):void => {
-        e.preventDefault();
+        _log(e);
+        e instanceof Event && e.preventDefault();
         setFormFields({
             ...formFields,
             [e.target.name]: e.target.value
+        });
+    }
+
+    const updage_global_form_fields = function(datas):void {
+        setFormFields({
+            ...formFields,
+            ...datas
         });
     }
 
@@ -563,6 +683,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
                 pay: pay_params,
                 init_shop: init_shop,
                 updateForm: update_form_fields,
+                updateFillAddress: updage_global_form_fields,
                 total_articles: nb_articles,
                 formSave: formFields,
                 formReset: reset_form_fields,
@@ -575,7 +696,7 @@ const CartProvider = ({ requested = "", children }:{requested:string, children:R
             {children}
         </CartContext.Provider>
     );
-}
+};
 
 export default CartProvider;
 

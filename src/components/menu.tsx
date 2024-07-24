@@ -113,7 +113,7 @@ const Menu = ({menu, prop_key, openOnClick}:Menu) => {
 
 interface Menu {
     menu: InmodePanel_Menu_Interface;
-    prop_key: number | undefined;
+    prop_key: number;
     openOnClick?: boolean;
 };
 

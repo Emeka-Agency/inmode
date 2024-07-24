@@ -1,0 +1,21 @@
+# Vendor
+
+/vendor
+/vendor/*
+
+# Locals
+
+/logs
+/*.zip
+/data
+/divers
+.htaccess
+*.md
+
+# Private
+
+/private/config.dev.ini
+/private/config.prod.ini
+/save_kept
+/save_mails
+/save_orders

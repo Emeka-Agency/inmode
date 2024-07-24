@@ -1,0 +1,4 @@
+{% block metas %}
+    <meta charset="utf-8"/>
+    <title>Inmode Admin{{ page_title is defined and route is defined and route != "home" ? [" - ", page_title]|join('') : "" }}</title>
+{% endblock metas %}

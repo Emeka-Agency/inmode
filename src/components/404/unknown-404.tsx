@@ -21,7 +21,7 @@ const Unknown404 = ({  }:Unknown404) => {
             </div>
         </div>
     );
-}
+};
 
 interface Unknown404 {
 

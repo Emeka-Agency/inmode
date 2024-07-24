@@ -1,4 +1,5 @@
 import React from "react";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Addon_Interface } from "../interfaces";
 
 const AddonBanner = ({ datas }:AddonBanner) => {
@@ -12,22 +13,22 @@ const AddonBanner = ({ datas }:AddonBanner) => {
             <div className="top-transition"></div>
             <div className="addon-banner-media">
                 <img
-                    src={datas.left_img.childImageSharp.fluid.srcWebp}
-                    srcSet={datas.left_img.childImageSharp.fluid.srcSetWebp || null}
+                    src={resolveImg(datas.left_img)}
+                    srcSet={resolveImgSet(datas.left_img)}
                     alt="addon-banner"
                 />
             </div>
             <div className="addon-banner-details">
                 <img
                     className="addon-banner-logo"
-                    src={datas.right_img.childImageSharp.fluid.srcWebp}
+                    src={resolveImg(datas.right_img)}
                     alt="addon-logo-text"
                 />
                 <div className="addon-banner-short-descr">{datas.right_text}</div>
             </div>
             <div className="addon-banner-mini">
                 <img
-                    src={datas.mini.childImageSharp.fluid.srcWebp}
+                    src={resolveImg(datas.mini)}
                     alt="addon-banner-mini"
                 />
             </div>

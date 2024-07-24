@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import ProductsContext from "../contexts/products-context";
 import { Link } from "gatsby";
+import { resolveImg, resolveImgSet } from "../../functions/tools";
 
-const SlidesMini = ({ from }) => {
+const SlidesMini = ({ from = "any" }:SlidesMini_Interface) => {
 
-    const [products] = React.useState(React.useContext(ProductsContext).products);
+    const [products] = React.useState(React.useContext(ProductsContext).products.filter(p => p.Name != "Morpheus8"));
 
     return (
         <div className={`slides-mini-${from}`}>
@@ -13,39 +14,38 @@ const SlidesMini = ({ from }) => {
                 <div className="slide" key={key}>
                     <div className="product-image">
                         <img
-                            src={product.ShopPicture.childImageSharp.fluid.srcWebp}
-                            srcSet={product.ShopPicture.childImageSharp.fluid.srcSetWebp}
+                            src={resolveImg(product.ShopPicture)}
+                            srcSet={resolveImgSet(product.ShopPicture)}
                             alt='product'
+                            className="user-select-none"
                         />
                     </div>
                     <div className="right">
                         <div className="product-icon">
                             <img
-                                src={product.Icon.childImageSharp.fluid.srcWebp}
-                                srcSet={product.Icon.childImageSharp.fluid.srcSetWebp}
+                                src={resolveImg(product.Icon)}
+                                srcSet={resolveImgSet(product.Icon)}
                                 alt={product.Name}
+                                className="user-select-none"
                             />
                         </div>
-                        <div className="product-name">
+                        <div className="product-name user-select-none">
                             {product.Name}
                         </div>
-                        <div className="slide-view-detail">
+                        <div className="slide-view-detail user-select-none">
                             Informations produit
-                            <Link className="zone-link" to={product.MenuParams.url} title={product.Name}></Link>
+                            <Link className="absolute-link" to={product.MenuParams.url} title={product.Name}></Link>
                         </div>
                     </div>
                 </div>
             )}
+            <Link to="/workstation" className="slides-go-workstation">Nos produits</Link>
         </div>
     );
 };
 
-SlidesMini.propTypes = {
-    from: PropTypes.string.isRequired,
-};
-
-SlidesMini.defaultProps = {
-    from: 'any'
+interface SlidesMini_Interface {
+    from: string;
 };
 
 export default SlidesMini;

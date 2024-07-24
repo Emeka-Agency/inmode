@@ -1,7 +1,7 @@
 export const useLocalStorage = ({
     'getItem': (function(key:string) {
         if(typeof window !== `undefined`) {
-            return window.localStorage.getItem(key);
+            return window?.localStorage.getItem(key);
         }
         else {
             return null;
@@ -9,7 +9,7 @@ export const useLocalStorage = ({
     }),
     'setItem': (function(key:string, val:any) {
         if(typeof window !== `undefined`) {
-            return window.localStorage.setItem(key, val);
+            return window?.localStorage.setItem(key, val);
         }
         else {
             return null;

@@ -16,7 +16,7 @@ export const _sort_html_list = (array:any[], index:string = 'name', way:string =
     return array.sort((a, b) => a[index] < b[index] ? 1 : a[index] > b[index] ? -1 : 0)
 }
 
-export const _sort_object = (object:Object, way:string = 'up'):SogecommerceOrder | Object | {} => {
+export const _sort_object = (object:any, way:string = 'up'):SogecommerceOrder | Object | {} => {
     if(!object || typeof object !== 'object' || Array.isArray(object)) {
         return {};
     }
@@ -24,7 +24,7 @@ export const _sort_object = (object:Object, way:string = 'up'):SogecommerceOrder
         return object;
     }
     if(way == 'up') {
-        return Object.keys(object).sort((a, b) => a > b ? 1 : -1).reduce((res, key) => (res[key] = object[key], res), {} );
+        return Object.keys(object).sort((a, b) => a > b ? 1 : -1).reduce((res:any, key:any) => (res[key] = object[key], res), {} );
     }
-    return Object.keys(object).sort((a, b) => a < b ? 1 : -1).reduce((res, key) => (res[key] = object[key], res), {} );
+    return Object.keys(object).sort((a, b) => a < b ? 1 : -1).reduce((res:any, key:any) => (res[key] = object[key], res), {} );
 }

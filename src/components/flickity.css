@@ -49,7 +49,7 @@ http://flickity.metafizzy.co
   height: 44px;
   border: none;
   border-radius: 50%;
-  background: white;
+  background: var(--pearl);
   background: hsla(0, 0%, 100%, 0.75);
   cursor: pointer;
   /* vertically center */
@@ -58,7 +58,7 @@ http://flickity.metafizzy.co
           transform: translateY(-50%);
 }
 
-.flickity-prev-next-button:hover { background: white; }
+.flickity-prev-next-button:hover { background: var(--pearl); }
 
 .flickity-prev-next-button:focus {
   outline: none;

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% include "config/metas.html.twig" %}
+        {% include "config/head_css.html.twig" %}
+        {% include "config/head_js.html.twig" %}
+    </head>
+    <body data-slug="{{ route is defined ? route : '' }}">
+        {% include "config/body_top_js.html.twig" %}
+        
+        {% include "config/body_bottom_js.html.twig" %}
+    </body>
+</html>

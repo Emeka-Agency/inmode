@@ -1,24 +1,25 @@
 import React from "react";
+import testSignature from "../../functions/test";
 import { useWindowSize } from "../../functions/window-size";
 
-const ShopMenu = ({ products, filter, tags }) => {
+const ShopMenu = ({ products, filter, tags }:ShopMenu_Interface) => {
 
     const size = useWindowSize();
 
     const accordion_width = 768;
 
-    const [maxHeight, setMaxHeight] = React.useState(0);
+    const [maxHeight, setMaxHeight]:[number, React.Dispatch<number>] = React.useState(0);
     const [openedAccordion, setOpenedAccordion] = React.useState(false);
 
-    const resolveAccordion = ( e ) => {
+    const resolveAccordion = ( e:React.MouseEvent<HTMLSpanElement, MouseEvent> ) => {
         e.currentTarget.classList.toggle('opened');
         var panel = e.currentTarget.nextElementSibling;
-        panel.classList.toggle('opened');
+        panel && panel.classList.toggle('opened');
         if (maxHeight) {
-            setMaxHeight(null);
+            setMaxHeight(0);
         }
         else {
-            panel.classList.contains("opened") && setMaxHeight(`${panel.children.length * 60}px`);
+            panel && panel.classList.contains("opened") && setMaxHeight(`${panel.children.length * 60}px`);
         }
         setOpenedAccordion(true);
     }
@@ -47,7 +48,7 @@ const ShopMenu = ({ products, filter, tags }) => {
                             <ul
                                 data-value={product.fieldValue}
                                 key={key} 
-                                className={`tab-link menu-title menu-text transition${tags.length > 0 && tags.indexOf(product.fieldValue) >= 0 ? ' selected' : ''}`}
+                                className={`user-select-none tab-link menu-title menu-text transition${tags.length > 0 && tags.indexOf(product.fieldValue) >= 0 ? ' selected' : ''}`}
                                 onClick={(e) => {filter(e);}}
                             >
                                 <span
@@ -59,6 +60,17 @@ const ShopMenu = ({ products, filter, tags }) => {
                         );
                     // }
                 })}
+                {/* <ul
+                    data-value={"test"}
+                    className={`tab-link menu-title menu-text transition`}
+                    onClick={(e) => {testSignature();}}
+                >
+                    <span
+                        className="menu-title menu-text"
+                    >
+                        Test signature
+                    </span>
+                </ul> */}
             </div>
         </div>
         // <>
@@ -77,13 +89,10 @@ const ShopMenu = ({ products, filter, tags }) => {
     );
 };
 
-
-ShopMenu.propTypes = {
-
-};
-
-ShopMenu.defaultProps = {
-
+interface ShopMenu_Interface {
+    products: any;
+    filter: any;
+    tags: any;
 };
 
 export default ShopMenu;

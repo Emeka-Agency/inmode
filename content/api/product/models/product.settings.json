@@ -56,13 +56,13 @@
       "required": false
     },
     "Tags": {
-      "via": "products",
       "collection": "tags",
+      "via": "products",
       "dominant": true
     },
     "Addons": {
-      "via": "Products",
       "collection": "addon",
+      "via": "Products",
       "dominant": true
     },
     "BeforesAfters": {
@@ -123,6 +123,11 @@
     },
     "short_descr": {
       "type": "text"
+    },
+    "sensitivity": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

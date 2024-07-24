@@ -1,16 +1,22 @@
-import React from "react"
+import React from "react";
+import { useImages } from "./contexts/images-provider";
+import { InmodePanel_Generic_SellingNewGeneration_Interface } from "./interfaces";
 
-const SellingNew = ({ datas = {} }) => {
+const SellingNew = ({ datas = {} }:SellingNew) => {
     
-    if(!datas || datas.length === 0) {
+    if(!datas || (datas instanceof Object && Object.keys(datas).length === 0)) {
         return <></>;
     }
+
+    const images = useImages();
 
     return (
         <div className="selling-new transition">
             <div className="selling-details-img transition">
                 <img
-                    src={datas.picture.childImageSharp.fluid.srcWebp}
+                    // src={resolveImg(datas.picture)}
+                    src={images.resolve_img('nextImage')}
+                    srcSet={images.resolve_img_set('nextImage')}
                     alt="selling-new"
                 />
             </div>
@@ -24,14 +30,10 @@ const SellingNew = ({ datas = {} }) => {
             </div>
         </div>
     );
-}
-
-SellingNew.propTypes = {
-
 };
 
-SellingNew.defaultProps = {
-
+interface SellingNew {
+    datas?: InmodePanel_Generic_SellingNewGeneration_Interface;
 };
 
 export default SellingNew;

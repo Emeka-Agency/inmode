@@ -1,54 +1,48 @@
 import React from "react";
 import { Link } from "gatsby";
 
-// import { resolve_tab_link_selected } from "../../functions/resolve_mini_menu_opened";
 import { useWindowSize } from "../../functions/window-size";
 import InmodeEvent from "./event";
 import NoEvents from "./no-events";
-import { InmodePanel_Event_Interface } from "../interfaces";
+import { Airtable_Event_Interface, InmodePanel_Event_Interface } from "../interfaces";
+import randomString from "../../functions/randString";
+import LoadingGIF from "../LoadingGIF";
 // import { useLocalStorage } from "../../functions/use-localstorage";
+import "moment/min/locales.min";
 
-const EventsLayout = ({ children, current_page, upcoming_events = undefined, past_events = undefined }:EventsLayout) => {
+const EventsLayout = ({ children, current_page, events = undefined, loading = false }:EventsLayout) =>
+{
 
     // TODO localstorage cookie for last event saw vignette si jamais visité
 
-    // const LocalStorage = useLocalStorage;
-    // console.log(upcoming_events);
+    const fr = (_d?:string) => typeof _d == "string" ? `${_d.slice(3, 6)}${_d.slice(0, 3)}${_d.slice(6)}` : '';
+    const ms = (_d?:string) => typeof _d == "string" ? new Date(fr(_d)).getTime() : Date.now();
 
-    // LocalStorage.getItem('last-event-visit') === null && LocalStorage.setItem('last-event-visit', );
+    const past_events = (events:Airtable_Event_Interface[], sorted = false) => {
+        if(sorted) {
+            return events
+            .filter(event => ms(event.Start) < ms())
+            .sort((a, b) => ms(b.Start) - ms(a.Start));
+        }
+        return events.filter(event => ms(event.Start) < ms());
+    }
     
+    const incoming_events = (events:Airtable_Event_Interface[], sorted = false) => {
+        if(sorted) {
+            return events
+            .filter(event => ms(event.Start) >= ms())
+            .sort((a, b) => ms(a.Start) - ms(b.Start));
+        }
+        return events.filter(event => ms(event.Start) >= ms());
+    }
 
-    // const sortBy = (function(){
-    //     if (typeof Object.defineProperty === 'function'){
-    //       try{Object.defineProperty(Array.prototype,'sortBy',{value:sb}); }catch(e){}
-    //     }
-    //     if (!Array.prototype.sortBy) Array.prototype.sortBy = sb;
-      
-    //     function sb(f){
-    //       for (var i=this.length;i;){
-    //         var o = this[--i];
-    //         this[i] = [].concat(f.call(o,o,i),o);
-    //       }
-    //       this.sort(function(a,b){
-    //         for (var i=0,len=a.length;i<len;++i){
-    //           if (a[i]!=b[i]) return a[i]>b[i]?-1:1;
-    //         }
-    //         return 0;
-    //       });
-    //       for (var i=this.length;i;){
-    //         this[--i]=this[i][this[i].length-1];
-    //       }
-    //       return this;
-    //     }
-    //   })();
-    
     const accordion_width = 760;
 
     const size = useWindowSize();
 
     const tabs = [
         {
-            'name': 'upcoming events',
+            'name': 'à venir',
             'url': '/events'
         },
         {
@@ -68,17 +62,11 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
     const [maxHeight, setMaxHeight] = React.useState(0);
     const [openedAccordion, setOpenedAccordion] = React.useState(false);
 
-    // const resolveClick = (e) => {
-    //     e.preventDefault();
-    //     resolve_tab_link_selected();
-    //     e.currentTarget.classList.add('current');
-    // }
-
     const resolveAccordion = (e:React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         e.currentTarget.classList.toggle('opened');
         var panel = e.currentTarget.nextElementSibling;
         if(!panel) {
-            return false;
+            return <></>;
         }
         panel.classList.toggle('opened');
         if (maxHeight) {
@@ -94,62 +82,48 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
         <div className="events-layout">
             <div className="main-container">
                 <div className="tab-navigation transition">
-                    {size.width < accordion_width && tabs.map((tab, key) => {
-                        if(tab.name === current_page) {
-                            return (
-                                <span
-                                    id="title-accordion"
-                                    className="title-accordion title transition"
-                                    onClick={(e) => {resolveAccordion(e);}}
-                                    key={key}
-                                >
-                                    {tab.name}
-                                </span>
-                            );
-                        }
-                        return <></>;
-                    })}
-                    <div
-                        id="accordion"
-                        className="accordion transition"
-                        style={{
-                            maxHeight: size.width < accordion_width ? openedAccordion ? maxHeight : 0 : 'unset',
-                            width: '100%'
-                        }}
-                    >
+                {size.width < accordion_width && tabs.map((tab, key)=> {
+                    if(tab.name === current_page) {
+                        return (
+                            <span id="title-accordion" className="title-accordion title transition" onClick={(e)=>{resolveAccordion(e);}} key={key}>
+                            {tab.name}
+                            </span>
+                        );
+                    }
+                    return <></>;
+                })}
+                <div id="accordion" className="accordion transition" style={{maxHeight: size.width < accordion_width ? openedAccordion ? maxHeight : 0 : 'unset', width: '100%'}}>
                         {tabs.map((tab, key) => {
                             if(tab.name !== current_page || size.width >= accordion_width) {
                                 return (
-                                    <Link
-                                        className={`tab-link${tab.name === current_page ? ' current' : ''}`}
-                                        to={tab.url}
-                                        // to="#"
-                                        // onClick={(e) => {resolveClick(e);}}
-                                        key={key}
-                                        title={tab.name}
-                                    >
+                                    <Link className={`user-select-none tab-link${tab.name===current_page ? ' current' : '' }`} to={tab.url} key={key} title={tab.name}>
                                         {tab.name}
                                     </Link>
                                 );
                             }
                         })}
-                    </div>
+                </div>
                 </div>
                 <div className="events-content">
-                    {/* {upcoming_events.length > 0 && <div className="time-section-title">Événements à venir</div>} */}
-                    {upcoming_events && upcoming_events.length > 0 && upcoming_events.map((event, key) => {
+                    {incoming_events(events ?? [], true).map((event, key) => {
+                        let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
-                            <InmodeEvent key={key} event={event} prop_key={key} current_page={current_page}/>
+                            <>
+                                <InmodeEvent isPast={is_past} key={key} event={{...event, Start: fr(event.Start), End: fr(event.End)}} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
+                            </>
                         )
                     })}
-                    {(!upcoming_events || (upcoming_events && upcoming_events.length == 0)) && <NoEvents/>}
-                    {/* {upcoming_events.length > 0 && past_events.length > 0 && <hr/>} */}
-                    {/* {past_events.length > 0 && <div className="time-section-title">Événements passés</div>} */}
-                    {past_events && past_events.length > 0 && past_events.map((event, key) => {
+                    {current_page != "upcoming events" && events && incoming_events(events).length > 0 && past_events(events, true).length > 0 && <hr className="events-past-divider"/>}
+                    {current_page != "upcoming events" && past_events(events ?? [], true).map((event, key) => {
+                        let is_past = new Date(event?.Start || Date()) < new Date();
                         return (
-                            <InmodeEvent key={key} event={event} prop_key={key + (upcoming_events ? upcoming_events.length : 0)} current_page={current_page}/>
+                            <>
+                                <InmodeEvent isPast={is_past} key={key} event={{...event, Start: fr(event.Start), End: fr(event.End)}} prop_key={key} current_page={current_page} givenId={randomString(8, true, false)}/>
+                            </>
                         )
                     })}
+                    {(!events || (events && events.length == 0)) && loading == false && <NoEvents/>}
+                    {(!events || (events && events.length == 0)) && loading == true && <LoadingGIF customStyle={{margin: "0 auto"}}/>}
                 </div>
             </div>
         </div>
@@ -157,10 +131,10 @@ const EventsLayout = ({ children, current_page, upcoming_events = undefined, pas
 };
 
 interface EventsLayout {
-    children: React.ReactNode;
+    children?: React.ReactNode;
+    loading: boolean;
     current_page: string;
-    upcoming_events: InmodePanel_Event_Interface[] | undefined;
-    past_events: InmodePanel_Event_Interface[] | undefined;
-}
+    events?: Airtable_Event_Interface[];
+};
 
 export default EventsLayout;

@@ -1,18 +1,32 @@
+import { _log } from "../../functions/logger";
+import { err_log } from "../../functions/logging";
+import { oneById } from "../../functions/selectors";
 import {
     Article_Interface,
     InmodePanel_Order_Interface,
     SogecommerceOrder,
     InmodePanel_Order_Shipping_Interface,
-    InmodePanel_Order_Billing_Interface
+    InmodePanel_Order_Billing_Interface,
+    InmodePanel_Product_BoughtArticle_Interface
 } from "../interfaces";
 
-const _countries = {
-    'FR': 'France',
-    'BE': 'Belgique',
-    'LU': 'Luxembourg',
+const _countries = (_country:string | undefined | null):string => {
+    if(_country == undefined || _country == null) {
+        return "FR";
+    }
+    switch(_country) {
+        case "BE":
+            return 'Belgique';
+        case "LU":
+            return 'Luxembourg';
+        case "FRDT":
+            return 'DOM/TOM';
+        case "FR":
+        default:
+            return 'France';
+    }
 };
 
-// function date_from_transdate(_transdate:string):number {
 function date_from_transdate(_transdate:string):string {
     let str_date:string = "";
     str_date += _transdate.substring(0, 4) + '-';
@@ -22,144 +36,144 @@ function date_from_transdate(_transdate:string):string {
     str_date += _transdate.substring(10, 12) + ':';
     str_date += _transdate.substring(12, 14);
     return str_date;
-    // return new Date(str_date).getTime();
 }
 
-function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Order_Billing_Interface | null {
+function fill_billing(datas:InmodePanel_Order_Billing_Interface):InmodePanel_Order_Billing_Interface {
+    return {
+        firstname: datas && typeof datas.firstname == 'string' && datas.firstname.length > 0 ? datas.firstname : "ErrorFirstname",
+        lastname: datas && typeof datas.lastname == 'string' && datas.lastname.length > 0 ? datas.lastname : "ErrorLastname",
+        phone: 
+            (datas && typeof datas.phone == 'string' && datas.phone.length >0)
+            ||
+            (datas && typeof datas.phone == 'number' && datas.phone > 0)
+            ? datas.phone : "ErrorPhone",
+        mail: datas && typeof datas.mail == 'string' && datas.mail.length > 0 ? datas.mail : "ErrorMail",
+        address: datas && typeof datas.address == 'string' && datas.address.length > 0 ? datas.address : "ErrorAddress",
+        country: datas && typeof datas.country == 'string' && datas.country.length > 0 ? datas.country : "ErrorCountry",
+        zip: 
+            (datas && typeof datas.zip == 'string' && datas.zip.length >0)
+            ||
+            (datas && typeof datas.zip == 'number' && datas.zip > 0)
+            ? datas.zip : "ErrorZIP",
+        city: datas && typeof datas.city == 'string' && datas.city.length  ? datas.city : "ErrorCity",
+        society: datas && typeof datas.society == 'string' && datas.society.length ? datas.society : undefined,
+        retriever: datas && typeof datas.retriever == 'string' && datas.retriever.length ? datas.retriever : undefined,
+    }
+}
+
+function fill_shipping(datas:InmodePanel_Order_Shipping_Interface | undefined):InmodePanel_Order_Shipping_Interface | undefined {
     if(
-        (typeof datas.Firstname == 'string' && datas.Firstname.length > 0) &&
-        (typeof datas.Lastname == 'string' && datas.Lastname.length > 0) &&
+        (datas && typeof datas.firstname == 'string' && datas.firstname.length > 0) &&
+        (datas && typeof datas.lastname == 'string' && datas.lastname.length > 0) &&
         (
-            (typeof datas.Phone == 'string' && datas.Phone.length >0)
+            (datas && typeof datas.phone == 'string' && datas.phone.length >0)
             ||
-            (typeof datas.Phone == 'number' && datas.Phone > 0)
+            (datas && typeof datas.phone == 'number' && datas.phone > 0)
         ) &&
-        (typeof datas.Mail == 'string' && datas.Mail.length > 0) &&
-        (typeof datas.Address == 'string' && datas.Address.length > 0) &&
-        (typeof datas.Country == 'string' && datas.Country.length > 0) &&
+        (datas && typeof datas.address == 'string' && datas.address.length > 0) &&
+        (datas && typeof datas.country == 'string' && datas.country.length > 0) &&
         (
-            (typeof datas.ZIP == 'string' && datas.ZIP.length >0)
+            (datas && typeof datas.zip == 'string' && datas.zip.length >0)
             ||
-            (typeof datas.ZIP == 'number' && datas.ZIP > 0)
+            (datas && typeof datas.zip == 'number' && datas.zip > 0)
         ) &&
-        (typeof datas.City == 'string' && datas.City.length )> 0
+        (datas && typeof datas.city == 'string' && datas.city.length )> 0
     ) {
         return datas;
     }
-    return null;
+    return undefined;
 }
-
-function fill_shipping(datas:InmodePanel_Order_Shipping_Interface):InmodePanel_Order_Shipping_Interface | null {
-    if(
-        (typeof datas.Firstname == 'string' && datas.Firstname.length > 0) &&
-        (typeof datas.Lastname == 'string' && datas.Lastname.length > 0) &&
-        (
-            (typeof datas.Phone == 'string' && datas.Phone.length >0)
-            ||
-            (typeof datas.Phone == 'number' && datas.Phone > 0)
-        ) &&
-        // (typeof datas.Mail == 'string' && datas.Mail.length > 0) &&
-        (typeof datas.Address == 'string' && datas.Address.length > 0) &&
-        (typeof datas.Country == 'string' && datas.Country.length > 0) &&
-        (
-            (typeof datas.ZIP == 'string' && datas.ZIP.length >0)
-            ||
-            (typeof datas.ZIP == 'number' && datas.ZIP > 0)
-        ) &&
-        (typeof datas.City == 'string' && datas.City.length )> 0
-    ) {
-        return datas;
-    }
-    return null;
-}
-
-// function fill_shipping(datas:StrapiShipping):StrapiShipping {
-//     return datas;
-// }
 
 function filter(datas:InmodePanel_Order_Interface):InmodePanel_Order_Interface {
-    datas.Billing = fill_billing(datas.Billing);
-    datas.Shipping = fill_shipping(datas.Shipping);
+    datas.billing = fill_billing(datas.billing);
+    datas.shipping = fill_shipping(datas.shipping);
     return datas;
 }
 
 export function create_strapi_order(_datas:SogecommerceOrder, cart:Article_Interface[], total:number, sepa:boolean = false, country:string):InmodePanel_Order_Interface {
-    console.log(_datas);
-    console.log(`total : ${total}`);
-    console.log(`sepa : ${sepa}`);
-    console.log(`country : ${country}`);
-    // vads_amount: "86400" // À AJOUTER PLUS TARD DANS LE MODÈLE DE PAIEMENT
-    // vads_currency: 978 // À AJOUTER PLUS TARD DANS LE MODÈLE DE PAIEMENT
+
+    _log(_datas);
 
     let _temp:InmodePanel_Order_Interface = {
-        Reference: _datas.vads_order_id,
-        // vads_trans_date: "20210225143539"
-        Date: date_from_transdate(_datas.vads_trans_date),
-        Article: cart.map((article:Article_Interface) => {
+        reference: _datas.vads_order_id,
+        date: date_from_transdate(_datas.vads_trans_date),
+        articles: cart && cart.map((article:Article_Interface):InmodePanel_Product_BoughtArticle_Interface => {
             return {
-                Article: article.id,
-                Quantity: article.quantity,
-                Price: article.price,
-                Name: article.name,
-                Pack: article.pack_name(),
+                wp_id: document?.querySelector(`[data-reference="${article.reference}"]`)?.getAttribute('data-wp_id'),
+                article: article.id,
+                quantity: article.quantity,
+                price: article.price,
+                name: article.name,
+                pack: article.pack_name(),
+                reference: article.reference,
             }
         }),
-        Billing: {
-            Firstname: _datas.vads_cust_first_name,
-            Lastname: _datas.vads_cust_last_name,
-            Phone: _datas.vads_cust_cell_phone,
-            Mail: _datas.vads_cust_email,
-            Address: _datas.vads_cust_address,
-            Country: _countries[_datas.vads_cust_country],
-            ZIP: _datas.vads_cust_zip,
-            City: _datas.vads_cust_city,
-            Society: _datas.vads_cust_legal_name,
+        billing: {
+            firstname: _datas.vads_cust_first_name,
+            lastname: _datas.vads_cust_last_name,
+            title: _datas.ct_title,
+            clinic: _datas.ct_clinic,
+            phone: _datas.vads_cust_cell_phone,
+            mail: _datas.vads_cust_email,
+            address: _datas.vads_cust_address,
+            country: _countries(_datas.vads_cust_country),
+            zip: _datas.vads_cust_zip,
+            city: _datas.vads_cust_city,
+            society: _datas.vads_cust_legal_name,
+            retriever: _datas.cust_address
         },
-        Shipping: {
-            Firstname: _datas.vads_ship_to_first_name,
-            Lastname: _datas.vads_ship_to_last_name,
-            Phone: _datas.vads_ship_to_phone_num,
-            Mail: _datas.delivery_mail,
-            Address: _datas.vads_ship_to_street,
-            Country: _countries[_datas.vads_ship_to_country],
-            ZIP: _datas.vads_ship_to_zip,
-            City: _datas.vads_ship_to_city,
-            Society: _datas.vads_ship_to_legal_name,
+        shipping: {
+            firstname: _datas.vads_ship_to_first_name,
+            lastname: _datas.vads_ship_to_last_name,
+            title: _datas.sp_title,
+            clinic: _datas.sp_clinic,
+            phone: _datas.vads_ship_to_phone_num,
+            mail: _datas.delivery_mail,
+            address: _datas.vads_ship_to_street,
+            country: _countries(_datas.vads_ship_to_country),
+            zip: _datas.vads_ship_to_zip,
+            city: _datas.vads_ship_to_city,
+            society: _datas.vads_ship_to_legal_name,
+            retriever: _datas.ship_address
         },
-        Firstname: _datas.vads_cust_first_name,
-        Lastname: _datas.vads_cust_last_name,
-        Society: _datas.vads_cust_legal_name,
-        DeliveryTax: _datas.vads_product_qty9999 && _datas.vads_product_qty9999 == 1 ? 10 : 0,
-        Paid: false,
-        Status: 'UNDER_VERIFICATION',
-        Total: ((typeof _datas.vads_amount == 'string' ? parseInt(_datas.vads_amount, 10) : _datas.vads_amount)/100).toFixed(2) || total,
-        SEPA: sepa,
-        Country: _countries[country],
-        TVA_Intra: _datas.intra_tva,
+        firstname: _datas.vads_cust_first_name,
+        lastname: _datas.vads_cust_last_name,
+        society: _datas.vads_cust_legal_name,
+        delivery_tax: _datas.vads_product_qty0 && _datas.vads_product_qty0 == 1 ? 50 : 0,
+        paid: false,
+        status: 'UNDER_VERIFICATION',
+        total: document.getElementById("vads_amount") instanceof Element ? parseInt(document?.getElementById("vads_amount")?.getAttribute('value') || 0) / 100 : ((_datas.vads_amount ? typeof _datas.vads_amount == 'string' ? parseFloat(_datas.vads_amount) : _datas.vads_amount : 0)/100).toFixed(2) || total,
+        sepa: sepa ? sepa : false,
+        country: _countries(country),
+        tva_intra: _datas.intra_tva ?? false,
+        has_fees: _datas.has_fees,
+        custom: _datas.custom,
+        user: _datas.user,
     };
 
     return filter(_temp);
 }
 
-export async function create_object(body:InmodePanel_Order_Interface, url:string):Promise<Response> {
-    console.log(body);
-    let promise:Promise<Response>;
+export async function create_object(body:InmodePanel_Order_Interface, url:string):Promise<void | Response> {
+    let promise:void | Response;
+    let headers = new Headers();
     let vars:RequestInit = {
         method: "POST",
-        headers: new Headers({'content-type': 'application/json'}),
+        headers: headers,
         mode: 'cors',
         cache: 'default',
         body: JSON.stringify(body)
     };
-    promise = await fetch(url, vars).catch(err => console.error(err));
+    promise = await fetch(url, vars).catch(err => err_log(err, "components/contexts/strapi.ts:create_object fetch catch"));
     return promise;
 }
 
 export async function load_object(reference:string, url:string):Promise<Response> {
     let promise:Promise<Response>;
+    let headers = new Headers();
     let vars:RequestInit = {
         method: "POST",
-        headers: new Headers({'content-type': 'application/json'}),
+        headers: headers,
         mode: 'cors',
         cache: 'default',
         body: JSON.stringify({reference: reference})

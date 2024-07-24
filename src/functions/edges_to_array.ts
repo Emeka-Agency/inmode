@@ -1,3 +1,3 @@
-export const edges_to_array = (object: Object) => {
-    return Object.keys(object).map(elem => {return object[elem].node;});
+export const edges_to_array = (object:any) => {
+    return Object.keys(object).map((elem:string) => {return object[elem].node;});
 }

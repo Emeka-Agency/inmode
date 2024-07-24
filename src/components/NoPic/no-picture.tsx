@@ -12,7 +12,7 @@ const NoPicture = ({from}:NoPicture) => {
 };
 
 interface NoPicture {
-    from: string;
+    from: 'addon-before-after'|'addon-videos'|'product-addons'|'treatment-before-after';
 };
 
 export default NoPicture;

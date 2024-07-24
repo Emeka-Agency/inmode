@@ -6,19 +6,19 @@
     height: 100%;
     right: -400px;
     top: 0;
-    background: #0b1a25;
+    background: var(--pearl);
     z-index: 4;
     box-sizing: border-box;
 }
 
-.cart-purchase >*:not(.cart-head) {
+.cart-purchase  > *:not(.cart-head) {
     padding: 16px;
 }
 
 .cart-purchase.opened {
     right: 0px;
     z-index: 5;
-    box-shadow: -4px 0px 8px 0px #0000009c;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 6px 4px;
 }
 
 .cart-purchase .cart-close {
@@ -42,7 +42,7 @@
     height: 60px;
     padding: 16px;
     box-sizing: border-box;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--midnight);
 }
 
 .cart-purchase .cart-head img {
@@ -54,7 +54,7 @@
 
 .cart-purchase .cart-head span {
     font-size: 16px;
-    color: #fff;
+    color: var(--midnight);
     margin-left: 30px;
     display: inline-block;
     vertical-align: bottom;
@@ -87,16 +87,16 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    color: #fff;
+    color: var(--midnight);
     padding: 0 16px 8px;
 }
 
 .cart-purchase .cart-content .cart-article {
     font-size: 18px;
-    color: #fff;
+    color: var(--midnight);
     padding: 10px 0;
     margin: 10px 0;
-    box-shadow: #0006 -3px 2px 3px 1px;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 6px 4px;
     position: relative;
 }
 
@@ -107,6 +107,10 @@
     top: 6px;
     right: 6px;
     cursor: pointer;
+}
+
+.cart-purchase .cart-content .cart-article .rmv img.init {
+    filter: invert(1);
 }
 
 .cart-purchase .cart-content .cart-article .rmv img.init,
@@ -138,6 +142,7 @@
     display: inline-block;
     vertical-align: top;
     margin-top: 5px;
+    width: 65%;
 }
 
 .cart-purchase .cart-content .cart-article .details .reference {
@@ -148,6 +153,9 @@
 .cart-purchase .cart-content .cart-article .details .name {
     font-size: 16px;
     margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cart-purchase .cart-content .cart-article .details .qnts {
@@ -173,7 +181,7 @@
 
 .cart-purchase .cart-content .cart-article .details .qnts .manage .minus,
 .cart-purchase .cart-content .cart-article .details .qnts .manage .add {
-    background-color: #59b7b3;
+    background-color: var(--teal);
     width: 18px;
     height: 18px;
     line-height: 1;
@@ -195,7 +203,7 @@
 
 .cart-purchase .cart-final {
     height: 210px;
-    border-top: 1px solid white;
+    border-top: 1px solid var(--midnight);
 }
 
 .cart-purchase .cart-final .text,
@@ -203,7 +211,7 @@
     position: absolute;
     top: 0;
     font-size: 16px;
-    color: #fff;
+    color: var(--midnight);
 }
 
 .cart-purchase .cart-final .text {
@@ -227,7 +235,7 @@
     margin: 10px 0 5px;
     line-height: 20px;
     padding: 20px 0 5px;
-    border-bottom: 2px solid #fff;
+    border-bottom: 2px solid var(--midnight);
     text-transform: uppercase;
 }
 
@@ -253,8 +261,8 @@ form#purchase button.cart-validate {
     outline: none;
     cursor: pointer;
     font-size: 18px;
-    background: #59b7b3;
-    color: #fff;
+    background: var(--teal);
+    color: var(--pearl);
     text-align: center;
     box-sizing: border-box;
     position: fixed;
@@ -303,7 +311,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
     height: 100%;
     right: -400px;
     top: 0;
-    background: #0b1a25;
+    background: var(--pearl);
     z-index: 2;
     box-sizing: border-box;
     padding: 32px 16px 16px;
@@ -312,7 +320,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
 }
 
 .cart-purchase-form.opened {
-    box-shadow: -4px 0px 8px 0px #0000009c;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 6px 4px;
     right: 400px;
     z-index: 3;
     transition: right 0.3s ease-in-out;
@@ -350,7 +358,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
 .cart-purchase-form .title,
 #step-3-part .title {
     text-transform: uppercase;
-    color: #fff;
+    color: var(--midnight);
     text-align: center;
     margin: 0 auto;
     font-size: 18px;
@@ -363,7 +371,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
     top: 0;
     padding: 32px 75px 0;
     z-index: 1;
-    background-color: #0b1a25;
+    background-color: var(--pearl);
     right: -400px;
     transition: right 0.3s ease-in-out;
     box-sizing: border-box;
@@ -376,7 +384,7 @@ form#purchase .cart-validate.form-transition.other-address-transition {
     height: 100px;
 }
 
-.cart-purchase-form.opened > .title {
+.cart-purchase-form.opened  >  .title {
 
 }
 
@@ -440,13 +448,13 @@ form#purchase .neumorphic label {
     height: 100%;
 }
 
-.cart-purchase-form +#step-3-part {
+.cart-purchase-form + #step-3-part {
     position: fixed;
     width: 400px;
     height: 100%;
     right: -400px;
     top: 0;
-    background: #0b1a25;
+    background: var(--pearl);
     z-index: 2;
     box-sizing: border-box;
     padding: 90px 16px 16px;
@@ -454,36 +462,36 @@ form#purchase .neumorphic label {
     transition: right 0.3s ease-in-out;
 }
 
-.cart-purchase +.cart-purchase-form +#step-3-part {
+.cart-purchase + .cart-purchase-form + #step-3-part {
     right: -400px;
 }
 
-.cart-purchase.opened +.cart-purchase-form +#step-3-part {
+.cart-purchase.opened + .cart-purchase-form + #step-3-part {
     right: 0;
-    box-shadow: -4px 0px 8px 0px #0000009c;
+    box-shadow: rgba(0, 0, 0, 0.15) 2px 2px 6px 4px;
 }
 
-.cart-purchase.opened +.cart-purchase-form.opened +#step-3-part {
+.cart-purchase.opened + .cart-purchase-form.opened + #step-3-part {
     right: 400px;
 }
 
-.cart-purchase.opened +.cart-purchase-form.opened +#step-3-part.other-opened {
+.cart-purchase.opened + .cart-purchase-form.opened + #step-3-part.other-opened {
     right: 800px;
     transition: right 0.3s ease-in-out;
     z-index: 3;
 }
 
-.cart-purchase.opened +.cart-purchase-form.opened +#step-3-part.other-opened .form {
+.cart-purchase.opened + .cart-purchase-form.opened + #step-3-part.other-opened .form {
     max-height: calc(100vh - 200px);
     overflow: auto;
 }
 
-.cart-purchase-form.opened +#step-3-part .title {
+.cart-purchase-form.opened + #step-3-part .title {
     position: absolute;
     left: 0;
 }
 
-.cart-purchase-form.opened +#step-3-part.other-opened .title {
+.cart-purchase-form.opened + #step-3-part.other-opened .title {
     transition: right 0.3s ease-in-out;
 }
 
@@ -496,8 +504,8 @@ form#purchase .neumorphic label {
     outline: none;
     cursor: pointer;
     font-size: 18px;
-    background: #59b7b3;
-    color: #fff;
+    background: var(--teal);
+    color: var(--pearl);
     text-align: center;
     box-sizing: border-box;
     position: fixed;
@@ -530,7 +538,7 @@ form#purchase .sepa div {
     margin: 10px 0;
 }
 
-form#purchase .sepa div > * {
+form#purchase .sepa div  >  * {
     margin: 0;
 }
 
@@ -561,10 +569,10 @@ form#purchase.step-2-3 #step-3-part.other-opened + .sepa + .facture + .cgu {
     transition: bottom 0.3s ease-in-out 0.1s;
 }
 
-form#purchase.all-close > .step-1.neumorphic,
-form#purchase > .step-1.neumorphic.sepa,
-form#purchase > .step-1.neumorphic.facture,
-form#purchase > .step-1.neumorphic.cgu {
+form#purchase.all-close  >  .step-1.neumorphic,
+form#purchase  >  .step-1.neumorphic.sepa,
+form#purchase  >  .step-1.neumorphic.facture,
+form#purchase  >  .step-1.neumorphic.cgu {
     position: fixed;
     right: -400px;
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
@@ -572,32 +580,32 @@ form#purchase > .step-1.neumorphic.cgu {
     width: 400px;
 }
 
-form#purchase > .step-1.neumorphic.sepa {
+form#purchase  >  .step-1.neumorphic.sepa {
     padding-top: 10px;
     bottom: 140px;
-    background-color: #0b1a25;
+    background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase > .step-1.neumorphic.facture {
+form#purchase  >  .step-1.neumorphic.facture {
     padding-top: 10px;
     bottom: 100px;
-    background-color: #0b1a25;
+    background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase > .step-1.neumorphic.cgu {
+form#purchase  >  .step-1.neumorphic.cgu {
     bottom: 60px;
-    background-color: #0b1a25;
+    background-color: var(--pearl);
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
 
-form#purchase.step-1 > .step-1.neumorphic {
+form#purchase.step-1  >  .step-1.neumorphic {
     right: 0px;
     transition: right 0.3s ease-in-out 0s;
 }
 
-form#purchase.step-2-3 > .step-1.neumorphic {
+form#purchase.step-2-3  >  .step-1.neumorphic {
     right: 400px;
     transition: right 0.3s ease-in-out 0s, bottom 0.3s ease-in-out 0s;
 }
@@ -606,3 +614,48 @@ form#purchase button.cart-validate {
     border: none;
 }
 
+form#purchase #step-1-part #add-address-zone,
+form#purchase #step-1-part #choose-address-zone,
+form#purchase #step-1-part #choose-billing-address-zone,
+form#purchase #step-3-part #choose-shipping-address-zone {
+    top: 10px;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    left: 0;
+    overflow: hidden;
+    color: var(--pearl-75);
+    background-color: var(--teal);
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 5px 12px;
+    box-sizing: border-box;
+    transition: color 0.3s ease-in-out 0s;
+    text-transform: uppercase;
+}
+
+form#purchase #step-1-part #add-address-zone:hover,
+form#purchase #step-1-part #choose-address-zone:hover,
+form#purchase #step-1-part #choose-billing-address-zone:hover,
+form#purchase #step-3-part #choose-shipping-address-zone:hover {
+    color: var(--pearl);
+    transition: color 0.1s ease-in-out 0s;
+}
+
+/* ORDER-CREATE-WAITER */
+
+form #order-create-waiter {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: var(--pearl);
+    z-index: 9;
+}
+
+form #order-create-waiter img {
+    position: absolute;
+    width: 200px;
+}

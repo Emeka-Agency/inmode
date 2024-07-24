@@ -7,8 +7,6 @@ const LoadingGIF = ({ customId = undefined, customClass = undefined, customStyle
         <div id={customId != undefined ? customId : ''} className={`loading-gif${customClass != undefined ? ' ' + customClass : ''}`} style={customStyle != undefined ? customStyle : {}}>
             <div className="loader-circle"></div>
             <div className="loader-bar"></div>
-            {/* <div className="up-border"></div> */}
-            {/* <div className="down-border"></div> */}
         </div>
     );
 };
@@ -17,6 +15,6 @@ interface LoadingGIF {
     customId?: string;
     customClass?: string;
     customStyle?: React.CSSProperties;
-}
+};
 
 export default LoadingGIF;
