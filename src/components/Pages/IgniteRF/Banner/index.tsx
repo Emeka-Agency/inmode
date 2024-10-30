@@ -12,10 +12,10 @@ const IgniteRFBanner = ({}:IgniteRFBanner) => {
     const banner = {
         left_img: images.get_one("IgniteRFBannerLogo"),
         // right_img: {localFile: images.get_one('IgniteRFBannerRight')},
-        right_img: {localFile: images.get_one('IgniteRFLogoRight')},
+        right_img: {localFile: images.get_one('ProductBannerIgniteRFLogo')},
         right_text: "Remodelage mini-invasif du visage et du corps",
         // mini: {localFile: images.get_one('IgniteRFBannerRight')}
-        mini: {localFile: images.get_one('IgniteRFLogoRight')},
+        mini: {localFile: images.get_one('ProductBannerIgniteRFLogo')},
         video_start: 10,
         video_stop: 18
     };

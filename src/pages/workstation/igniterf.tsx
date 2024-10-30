@@ -18,7 +18,7 @@ const IgniteRFPage = () => {
         <IgniteRFBanner/>
         <IgniteRFWhatIs/>
         <IgniteRFTechs/>
-        <IgniteRFBeforeAfter/>
+        {/* <IgniteRFBeforeAfter/> */}
       </Layout>
     );
 };

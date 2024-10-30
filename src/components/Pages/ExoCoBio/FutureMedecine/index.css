@@ -1,0 +1,105 @@
+#page_exocobio-future_medecine {
+    padding: 50px 20px;
+    background-color: var(--pure-white);
+    text-align: center;
+}
+
+#page_exocobio-future_medecine h2 {
+    color: var(--exocobio);
+    font-family: lato;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 auto;
+}
+
+.page_exocobio-future_medecine-lig {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .page_exocobio-future_medecine-lig {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 40px;
+        column-gap: 32px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page_exocobio-future_medecine-lig {
+        row-gap: 48px;
+        justify-content: center;
+        column-gap: 48px;
+    }
+}
+
+.page_exocobio-future_medecine-lig-elem {
+    max-width: 75%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .page_exocobio-future_medecine-lig-elem {
+        max-width: 30%;
+        row-gap: 24px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page_exocobio-future_medecine-lig-elem {
+        max-width: 344px;
+        row-gap: 28px;
+    }
+}
+
+.page_exocobio-future_medecine-lig-elem img {
+    max-width: 344px;
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 768px) {
+    .page_exocobio-future_medecine-lig-elem img {
+        max-width: 344px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page_exocobio-future_medecine-lig-elem img {
+        max-width: 344px;
+    }
+}
+
+.page_exocobio-future_medecine-lig-elem a {
+    display: block;
+    max-width: 344px;
+    width: 100%;
+    background-color: var(--teal);
+    color: var(--pure-white);
+    padding: 20px 32px;
+    box-sizing: border-box;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'libre-franklin';
+}
+
+@media (min-width: 768px) {
+    .page_exocobio-future_medecine-lig-elem a {
+        max-width: 344px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .page_exocobio-future_medecine-lig-elem a {
+        max-width: 344px;
+    }
+}

@@ -29,13 +29,18 @@ exports.onCreatePage = async ({
   if(page.path == '/shop/') {
     return false;
   }
+  
+//   if(page.path == '/workstation/envision') {
+//     return false;
+//   }
+
+//   if(page.path.includes('/workstation/igniterf')) {
+//     return false;
+//   }
 
   // {/* SWITCH CART */}
 
   if(page.path == '/old-shop/') {
-    return false;
-  }
-  if(page.path == '/workstation/envision') {
     return false;
   }
 //   if(page.path == '/payment/cancel/') {

@@ -362,6 +362,8 @@ export interface  InmodePanel_SellingNext_Interface {
         video_stop?: number;
     };
     export interface InmodePanel_Base_Image_Interface {
+        doctor?: string;
+        alt?: string;
         image?: {
             localFile: GatsbyImage_Interface;
         };
@@ -402,6 +404,7 @@ export interface  InmodePanel_SellingNext_Interface {
         published_date: string;
         publication: string;
         addons: InmodePanel_Addon_Interface[];
+        addons_nolink: InmodePanel_Addon_Interface[];
     };
     export interface InmodePanel_Generic_Customer_Interface {
         firstname?: string;

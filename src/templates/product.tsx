@@ -331,7 +331,6 @@ export const query = graphql`
                     url
                 }
             }
-            text
           }
           SellingArgs {
             SectionTitle

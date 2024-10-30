@@ -54,16 +54,21 @@ const _fetch = (
             return handlePromise(promise, _retour_type);
         })
         .then((response) => {
+            // console.log(response);
             if(response.status == "error") {
+                // console.log("error 1");
                 if(_onError != null) {
+                    // console.log("error not null");
                     _onError(_elem, response, status);
                 }
                 throw new Error(response.message ?? "Error");
             }
             if(_onSuccess != null) {
+                // console.log("success 1");
                 _onSuccess(_elem, response, status);
                 return true;
             }
+            // console.log("else");
             return false;
         })
         .catch((err) => {

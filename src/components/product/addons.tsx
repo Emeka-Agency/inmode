@@ -118,7 +118,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                                 alt={product.title_text}
                                             />
                                         </div>
-                                        <div className="addon-title" data-variant={color_variant(product.title_text)}>
+                                        <div className="addon-title" data-variant={color_variant(product.title_text)} data-addon={addon.id}>
                                             {!special(product.title_text) && product.title_image && (
                                                 <img
                                                     src={resolveImg(product.title_image)}
@@ -128,7 +128,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                                 />
                                             )}
                                             {!special(product.title_text) && !product.title_image && product.title_text}
-                                            {!special(product.title_text) && product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams.url} title={product.title_text}></Link>}
+                                            {!special(product.title_text) && product.appears_everywhere && <Link className="absolute-link" to={addon.MenuParams?.url} title={product.title_text}></Link>}
                                             {special(product.title_text) && special_title(product.title_text)}
                                         </div>
                                         {product.AddonProductsDescr && product.AddonProductsDescr.map((descr, key) => {
@@ -170,20 +170,23 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                         (['empowerrf'].indexOf(product_name.toLowerCase()) < 0 ? <NoPicture from ="product-addons"/> : <></>)
                                     :
                                     images.length === 1 ?
-                                        <img
-                                            className="addon-single"
-                                            src={resolveImg(images[0].image)}
-                                            srcSet={resolveImgSet(images[0].image)}
-                                            alt={`morpheus8-${key + 1}-single`}
-                                        />
+                                        <div className={`addon-single${product_name.toLowerCase() == 'igniterf' ? ' with-txt' : ''}`}>
+                                            <img
+                                                src={resolveImg(images[0].image)}
+                                                srcSet={resolveImgSet(images[0].image)}
+                                                alt={`morpheus8-${key + 1}-single`}
+                                            />
+                                            {images[0].doctor ? <p>{images[0].doctor}</p> : <></>}
+                                        </div>
                                         :
-                                        <div className="addon-carousel user-select-none">
+                                        <div className={`addon-carousel user-select-none${product_name.toLowerCase() == 'igniterf' ? ' with-txt' : ''}`}>
                                             <Carousel
                                                 id={`carousel-addons-${product_title}`}
                                                 options={flickityOptions}
                                                 classList={'slide-addons transition'}
                                             >
                                                 {images.map((image, key) => {
+                                                    console.log(image);
                                                     return (
                                                         <div className="addon" key={key}>
                                                             <img
@@ -191,8 +194,9 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                                                 className="addon-img"
                                                                 src={resolveImg(image.image)}
                                                                 srcSet={resolveImgSet(image.image)}
-                                                                alt={`${product_title}-slide-${key}`}
+                                                                alt={image.alt || `${product_title}-slide-${key}`}
                                                             />
+                                                            {image.doctor ? <p>{image.doctor}</p> : <></>}
                                                         </div>
                                                     );
                                                 })}

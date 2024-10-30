@@ -12,7 +12,14 @@ const ClinicsClinicalFinder = ({ clinics, loading }:ClinicsClinicalFinder) => {
     const [treatments, setTreatments]:[any, React.Dispatch<any>] = React.useState([]);
 
     const updateSearch = async (e:React.ChangeEvent | React.MouseEvent, prevent = false) => {
-        if(typeof document == "undefined") {return false;}
+        if(typeof document == "undefined") {
+            e.preventDefault();
+            return false;
+        }
+        if(clinics?.length == 0) {
+            e.preventDefault();
+            return false;
+        }
         prevent && e.preventDefault();
         let total = 0;
         let geo_pos = await address_to_coordinates(document?.querySelector('input#clinic-finder-search-zip')?.value);

@@ -1,0 +1,136 @@
+#page_exocobio-asce_gel {
+    font-size: 0;
+    background-color: var(--pure-white);
+}
+
+#page_exocobio-asce_gel-asce_gel1 {
+    position: relative;
+    background-color: var(--pure-white);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-asce_gel1 {
+        display: flex;
+        flex-direction: row-reverse;
+        column-gap: 16px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#page_exocobio-asce_gel-bg {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-bg {
+        
+    }
+}
+
+#page_exocobio-asce_gel-bg img {
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    max-width: 90%;
+    height: auto;
+    max-height: 384px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-bg img {
+        width: auto;
+        max-width: 420px;
+        height: auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-asce_gel-bg img {
+        
+    }
+}
+
+#page_exocobio-asce_gel-text {
+    background-color: var(--exocobio);
+    padding: 24px;
+    position: relative;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-text {
+        text-align: left;
+        background-color: transparent;
+        left: 0;
+        padding: 12px 24px;
+        width: 90%;
+        max-width: 512px;
+    }
+}
+
+#page_exocobio-asce_gel-text h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    font-weight: 400;
+    font-family: lato-bld;
+    color: var(--pure-white);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-text h2 {
+        color: var(--exocobio);
+    }
+}
+
+#page_exocobio-asce_gel-text h4 {
+    margin: 8px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: lato;
+    letter-spacing: 0.6px;
+    color: var(--teal);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-text h4 {
+        color: var(--exocobio);
+    }
+}
+
+#page_exocobio-asce_gel-asce_gel1-band {
+    position: absolute;
+    background-color: var(--teal);
+    width: 30%;
+    top: 0;
+    left: 35%;
+    height: 12px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-asce_gel1-band {
+        position: relative;
+        background-color: var(--teal);
+        width: 88px;
+        top: 0;
+        margin: 8px 0 12px;
+        left: 0;
+        height: 6px;
+    }
+}
+
+#page_exocobio-asce_gel-divider {
+    width: 70%;
+    height: 1px;
+    background-color: var(--teal);
+    border: none;
+    margin: 28px auto 24px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_gel-divider {
+        height: 0;
+        margin: 12px 0;
+    }
+}

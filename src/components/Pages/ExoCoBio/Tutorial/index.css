@@ -1,0 +1,139 @@
+#page_exocobio-tutorial {
+    background-color: var(--teal);
+    padding: 32px 0;
+    box-sizing: border-box;
+}
+
+#page_exocobio-tutorial-see {
+    padding: 20px 32px;
+    color: var(--pure-white);
+    font-family: libre-franklin;
+    font-size: 20px;
+    background-color: var(--midnight);
+    position: relative;
+    cursor: pointer;
+    width: max-content;
+    margin: 0 auto;
+}
+
+#page_exocobio-tutorial-see:hover #page_exocobio-tutorial-videos {
+    display: block;
+}
+
+#page_exocobio-tutorial-videos {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate3d(-50%, -100%, 0);
+    padding-bottom: 10px;
+}
+
+#page_exocobio-tutorial-videos-buttons {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    background-color: var(--pure-white);
+    border: 2px solid var(--midnight);
+    padding: 12px;
+    flex-wrap: wrap;
+    row-gap: 12px;
+    column-gap: 12px;
+    position: relative;
+    z-index: 1;
+    border-radius: 3px;
+}
+
+#page_exocobio-tutorial-videos-buttons button {
+    border: 2px solid var(--midnight);
+    background-color: var(--midnight);
+    color: var(--pure-white);
+    font-family: dm-sans, sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    width: 128px;
+}
+
+#page_exocobio-tutorial-videos-buttons button:hover {
+    background-color: var(--pure-white);
+    color: var(--midnight);
+}
+
+#page_exocobio-tutorial-videos-arrow {
+    position: absolute;
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    rotate: 45deg;
+    left: 50%;
+    bottom: -1px;
+    transform: translateX(calc(-50% - 4px)) translateY(0px);
+    transform-origin: center;
+    border-right: 2px solid var(--midnight);
+    border-bottom: 2px solid var(--midnight);
+    border-bottom-right-radius: 3px;
+    background-color: var(--pure-white);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+#page_exocobio-tutorial-video {
+    background-color: var(--exocobio);
+    color: var(--pure-white);
+    padding: 12px 16px;
+    cursor: pointer;
+}
+
+/* VIDEO FRAME */
+
+#exb_video_frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 3;
+}
+
+#exb_video_frame-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+}
+
+#exb_video_frame-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--pure-white);
+    font-family: lato;
+    cursor: pointer;
+}
+
+#exb_video_frame-frame {
+    position: absolute;
+    padding: 32px;
+    margin: 0 auto;
+    height: 60%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+#exb_video_frame-frame iframe {
+    width: 100%;
+    height: 100%;
+}

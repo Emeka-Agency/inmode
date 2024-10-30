@@ -12,9 +12,15 @@ import { Carousel } from 'react-responsive-carousel';
 // IgniteRFBa3FormaI
 
 const images_ba = [
-    // "IgniteRFBa1FormaI",
-    // "IgniteRFBa2FormaI",
-    // "IgniteRFBa3FormaI"
+    {doctor: "Dr. Z. Willis (Facetite)", img: "IgniteRFBeforeAfterWillis", alt: "Dr. Z. Willis (Facetite).jpg"},
+    {doctor: "Diamond Aesthetics (M8 Burst Deep)", img: "IgniteRFBeforeAfterDiamond", alt: "Diamond Aesthetics (M8 Burst Deep).jpg"},
+    {doctor: "Dr. J. Raniere (Bodytite)", img: "IgniteRFBeforeAfterRaniere", alt: "Dr. J. Raniere (Bodytite).jpg"},
+    {doctor: "Dr. M. Clifton (Accutite + M8)", img: "IgniteRFBeforeAfterClifton", alt: "Dr. M. Clifton (Accutite + M8).png"},
+    {doctor: "Dr. M. Loffredo & Dr. S. Jones", img: "IgniteRFBeforeAfterLoffredo", alt: "Dr. M. Loffredo & Dr. S. Jones.jpg"},
+    {doctor: "Dr. M. Tarajki (Facetite)", img: "IgniteRFBeforeAfterTarajki", alt: "Dr. M. Tarajki (Facetite).jpg"},
+    {doctor: "Dr. P. Hester", img: "IgniteRFBeforeAfterHester", alt: "Dr. P. Hester.jpg"},
+    {doctor: "Dr. R. Diepenbrock (Facetite + M8)", img: "IgniteRFBeforeAfterDiepenbrock", alt: "Dr. R. Diepenbrock (Facetite + M8).jpg"},
+    {doctor: "Dr. R. Malhotra (BodyTite)", img: "IgniteRFBeforeAfterMalhotra", alt: "Dr. R. Malhotra (BodyTite).jpg"},
 ];
 
 const IgniteRFBeforeAfter = ({}:IgniteRFBeforeAfter) => {
@@ -38,10 +44,12 @@ const IgniteRFBeforeAfter = ({}:IgniteRFBeforeAfter) => {
                         arrowLeft={images.resolve_img("arrowLeftIcon")}
                         arrowRight={images.resolve_img("arrowRightIcon")}
                     >
-                        {images_ba.map((image, key) => {
+                        {images_ba.map((ba, key) => {
+                            console.log(images.resolve_img(ba.img));
                             return (
                                 <div key={key} className="ba-image">
-                                    <img src={images.resolve_img(image)} alt={`${image}`}/>
+                                    <img src={images.resolve_img(ba.img)} alt={`${ba.alt}`}/>
+                                    <span>{ba.doctor}</span>
                                 </div>
                             );
                         })}

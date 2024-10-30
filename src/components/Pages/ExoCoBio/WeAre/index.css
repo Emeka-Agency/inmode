@@ -1,0 +1,119 @@
+#page_exocobio-we_are {
+    padding: 20px;
+    /* background-color: var(--pure-white); */
+    background-color: #e9eff3;
+    background-repeat: no-repeat;
+    background-size: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-we_are {
+        background-size: cover;
+        background-size: 0;
+        padding: 0 20px;
+        flex-direction: row;
+        row-gap: 0;
+        column-gap: 32px;
+        align-items: center;
+        justify-content: start;
+    }
+}
+
+@media (min-width: 1200px) {
+    #page_exocobio-we_are {
+        background-size: cover;
+        background-size: 0;
+    }
+}
+
+#page_exocobio-we_are-img {
+    display: flex;
+    order: 1;
+    width: 33%;
+}
+
+#page_exocobio-we_are-img img {
+    padding: 20px;
+    width: auto;
+    margin: 0 auto;
+    max-height: 256px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-we_are-img {
+        order: 2;
+        width: 33%;
+    }
+    
+    #page_exocobio-we_are-img img {
+        max-height: 384px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #page_exocobio-we_are-img img {
+        max-height: 448px;
+    }
+}
+
+#page_exocobio-we_are-text {
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    padding: 35px 20px;
+    width: 100%;
+    color: var(--exocobio);
+    background-color: rgba(255, 255, 255, 0.3);
+    order: 2;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-we_are-text {
+        width: 64%;
+        order: 1;
+        max-width: 1140px;
+    }
+}
+
+#page_exocobio-we_are-text h2 {
+    font-size: 32px;
+    line-height: 50px;
+    margin: 0 0 20px;
+}
+
+#page_exocobio-we_are-text p {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 0 0 20px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-we_are-text h2 {
+        font-size: 48px;
+        line-height: 75px;
+    }
+
+    #page_exocobio-we_are-text p {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #page_exocobio-we_are-text h2 {
+        font-size: 64px;
+        line-height: 100px;
+    }
+
+    #page_exocobio-we_are-text p {
+        font-size: 20px;
+        line-height: 25px;
+    }
+}

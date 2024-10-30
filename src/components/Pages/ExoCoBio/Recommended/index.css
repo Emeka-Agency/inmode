@@ -1,0 +1,33 @@
+#page_exocobio-recommend {
+    padding: 24px 20px 0;
+    text-align: center;
+    position: relative;
+    background-color: var(--white);
+    font-size: 0;
+}
+
+#page_exocobio-recommend h2 {
+    color: var(--exocobio);
+    font-family: lato;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+#page_exocobio-recommend-logo {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+#page_exocobio-recommend-machine {
+    max-width: 1024px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}

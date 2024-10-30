@@ -1,0 +1,94 @@
+#page_exocobio-exosoms {
+    padding: 50px 20px;
+    background-color: var(--exocobio);
+}
+
+#page_exocobio-exosoms-explain {
+    display: grid;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exosoms-explain {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "a c"
+            "b c";
+    }
+
+    #page_exocobio-exosoms-explain-what_are {
+        grid-area: a;
+    }
+
+    #page_exocobio-exosoms-explain-gif {
+        grid-area: c;
+    }
+
+    #page_exocobio-exosoms-explain-sci_tech {
+        grid-area: b;
+    }
+}
+
+/* Mobile layout: single column */
+@media (max-width: 767px) {
+    #page_exocobio-exosoms-explain {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "a"
+            "c"
+            "b";
+    }
+
+    #page_exocobio-exosoms-explain-what_are {
+        grid-area: a;
+    }
+
+    #page_exocobio-exosoms-explain-gif {
+        grid-area: c;
+    }
+
+    #page_exocobio-exosoms-explain-sci_tech {
+        grid-area: b;
+    }
+}
+
+#page_exocobio-exosoms-explain-what_are,
+#page_exocobio-exosoms-explain-sci_tech {}
+
+#page_exocobio-exosoms-explain-what_are h2,
+#page_exocobio-exosoms-explain-sci_tech h2 {
+    color: var(--pure-white);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 72px;
+    text-align: start;
+    margin-top: 0;
+    margin-bottom: 45px;
+}
+
+#page_exocobio-exosoms-explain-what_are p,
+#page_exocobio-exosoms-explain-sci_tech p {
+    color: var(--pure-white);
+    font-family: libre-franklin, sans-serif;
+    font-size: 20px;
+    line-height: 25px;
+    margin-top: 0;
+    margin-bottom: 55px;
+}
+
+@media (max-width: 767px) {
+    #page_exocobio-exosoms-explain-what_are p,
+    #page_exocobio-exosoms-explain-sci_tech p {
+        margin-bottom: 35px;
+    }
+}
+
+#page_exocobio-exosoms-explain-sci_tech p:nth-child(2) {
+    margin-bottom: 28px;
+}
+
+#page_exocobio-exosoms-explain-gif {}
+
+#page_exocobio-exosoms-explain-gif img {
+    width: 100%;
+}

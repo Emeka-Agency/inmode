@@ -3,8 +3,11 @@ import React from "react";
 import { format_title } from "../../functions/format_title";
 import { resolveImg, resolveImgSet } from "../../functions/tools";
 import { InmodePanel_Generic_ClinicalStudies_Interface } from "../interfaces";
+import { useImages } from "../contexts/images-provider";
 
 const ClinicalStudy = ({study, prop_key = null, variant = "teal"}:ClinicalStudy) => {
+
+    const images = useImages();
     
     return (
         <div key={prop_key} className="study-slide" data-variant={variant}>
@@ -14,26 +17,42 @@ const ClinicalStudy = ({study, prop_key = null, variant = "teal"}:ClinicalStudy)
                     src={resolveImg(study.picture)}
                     srcSet={resolveImgSet(study.picture)}
                     alt="clinical-study"
+                /> : study.picture == "inmodeStamp" || study.picture?.includes("Envision") ? <img
+                    className="user-select-none"
+                    src={images.resolve_img(study.picture)}
+                    srcSet={images.resolve_img_set(study.picture)}
+                    alt="clinical-study"
+                    style={{width: "80%", height: "90%", top: "5%", margin: "0 auto"}}
                 /> : <div></div>}
             </div>
             <div className="study-text">
                 <div className="study-name user-select-none">{study.title}</div>
                 <div className="study-author user-select-none">Auteurs : {study.author}</div>
-                <div className="study-technologies user-select-none">Technologies : 
-                    {study.addons.map((addon, key2) => {
+                <div className="study-technologies user-select-none">Technologies : {study.addons_nolink?.length || study.addons?.length ? 
+                    <>{study.addons_nolink?.map((addon, key2) => {
                         return (
                             <>
                                 &nbsp;
-                                <Link key={`${prop_key}-${key2}` || null} to={`/technology/${format_title(addon.Name)}`} /*title={format_title(addon.Name)}*/>
+                                <span key={`${prop_key}-${key2}` || null}>
+                                    {format_title(addon.Name)}
+                                </span>
+                                &nbsp;
+                            </>
+                        );
+                    })}{study.addons?.map((addon, key2) => {
+                        return (
+                            <>
+                                &nbsp;
+                                <Link key={`${prop_key}-${key2}` || null} to={`/technology/${(addon.Name?.toLowerCase())}`} /*title={format_title(addon.Name)}*/>
                                     {format_title(addon.Name)}
                                 </Link>
                                 &nbsp;
                             </>
                         );
-                    })}
+                    })}</> : "---"}
                 </div>
-                <div className="study-published user-select-none">Date de publication : {study.published_date}</div>
-                <div className="study-publication user-select-none">Publication : {study.publication}</div>
+                <div className="study-published user-select-none">Date de publication : {study.published_date || "---"}</div>
+                <div className="study-publication user-select-none">Publication : {study.publication || "---"}</div>
                 <div className="study-download user-select-none" data-variant={variant}>
                     Télécharger
                     <a 

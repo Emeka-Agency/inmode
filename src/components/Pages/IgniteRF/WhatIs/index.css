@@ -1,5 +1,11 @@
 #page-igniterf-whatis {
-    padding: 35px 8vw 50px;
+    padding: 25px 20px 40px;
+}
+
+@media (min-width: 1440px) {
+    #page-igniterf-whatis {
+        padding: 35px calc(50% - 720px) 50px
+    }
 }
 
 #page-igniterf-whatis img {
@@ -19,11 +25,59 @@
     font-size: 22px;
     color: var(--midnight);
     text-align: center;
-    margin: 20px 0;
+    margin: 20px 0 32px;
+}
+
+#page-igniterf-whatis h4 p {
+    margin: 0;
+}
+
+#page-igniterf-platform_image {
+    width: 128px;
+    height: auto;
+    margin: 16px auto 32px;
+}
+
+@media (min-width: 768px) {
+    #page-igniterf-platform_image {
+        width: 256px;
+        float: inline-start;
+        margin: 0 16px 16px 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    #page-igniterf-platform_image {
+        width: 384px;
+    }
+}
+
+@media (min-width: 1440px) {
+    #page-igniterf-platform_image {
+        
+    }
+}
+
+#page-igniterf-platform_image img {
+    height: auto;
+    width: 100%;
 }
 
 #page-igniterf-whatis #page-igniterf-whatis-section {
     margin-top: 20px;
+}
+
+@media (min-width: 768px) {
+    #page-igniterf-whatis #page-igniterf-whatis-section {
+        overflow: hidden;
+    }
+}
+
+#page-igniterf-whatis #page-igniterf-whatis-section h2 {
+    margin: 10px 0 0 20px;
+    font-size: 32px;
+    color: var(--pure-black);
+    text-align: left;
 }
 
 #page-igniterf-whatis #page-igniterf-whatis-section #page-igniterf-whatis-video {

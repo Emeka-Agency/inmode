@@ -29,7 +29,8 @@ const ClinicalFinder = ({}:ClinicalFinder_Interface) => {
         .then(p => handlePromise(p, "json"))
         .then((res:{status:number, datas: Airtable_Clinic_Interface[], rows: number}) => {
             if(Array.isArray(res.datas) && res.datas.length > 0) {
-                setClinics(res.datas);
+                console.log(res.datas);
+                setClinics(res.datas.sort((_a, _b) => _a?.Client < _b?.Client ? -1 : 1));
             }
             else {
                 setClinics([]);

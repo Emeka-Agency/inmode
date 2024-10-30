@@ -1,0 +1,51 @@
+#page_exocobio-key_benefits {
+    padding: 16px 20px 20px;
+    background-color: var(--pure-white);
+    text-align: center;
+    position: relative;
+    background-color: var(--exocobio);
+    overflow: hidden;
+}
+#page_exocobio-key_benefits h2 {
+    color: var(--pure-white);
+    font-family: lato;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+#page_exocobio-key_benefits-text {
+    margin-top: 32px;
+    width: 100%;
+    max-width: 768px;
+    padding: 0 12px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-key_benefits-text {
+        margin-top: 36px;
+        width: auto;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-key_benefits-text {
+        margin-top: 40px;
+        max-width: 720px;
+    }
+}
+
+ul#page_exocobio-key_benefits-text-list {
+
+}
+
+ul#page_exocobio-key_benefits-text-list li {
+    color: var(--pure-white);
+    font-size: 24px;
+    margin-bottom: 8px;
+    text-align: left;
+    list-style-type: disc;
+}

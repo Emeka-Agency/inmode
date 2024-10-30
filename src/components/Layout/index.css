@@ -9,6 +9,11 @@
     --dusk-75: #0B1A25C0;
     --dusk: #0B1A25;
 
+    --exocobio-25: #00102740;
+    --exocobio-50: #00102780;
+    --exocobio-75: #001027C0;
+    --exocobio: #001027;
+
     --platinum-25: #A0A2A340;
     --platinum-50: #A0A2A380;
     --platinum-75: #A0A2A3C0;
@@ -48,6 +53,11 @@
     --pure-white-50: #FFFFFF80;
     --pure-white-75: #FFFFFFC0;
     --pure-white: #FFFFFF;
+
+    --envision-blue-25: #1E4B9840;
+    --envision-blue-50: #1E4B9880;
+    --envision-blue-75: #1E4B98C0;
+    --envision-blue: #1E4B98;
 
     --pure-black-25: #00000040;
     --pure-black-50: #00000080;
@@ -232,6 +242,26 @@ main.igniterf-page #page-igniterf-whatis ol {
 }
 
 @font-face {
+    font-family: 'lato';
+    src: url("../../fonts/Lato-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'lato-bld';
+    src: url("../../fonts/Lato-Bold.ttf");
+}
+
+@font-face {
+    font-family: 'lato-thin';
+    src: url("../../fonts/Lato-Thin.ttf");
+}
+
+@font-face {
+    font-family: 'lato-light';
+    src: url("../../fonts/Lato-Light.ttf");
+}
+
+@font-face {
     font-family: 'brandon-bld';
     src: url("../../fonts/Brandon_bld.ttf");
 }
@@ -239,6 +269,21 @@ main.igniterf-page #page-igniterf-whatis ol {
 @font-face {
     font-family: fk-gothic-regular;
     src: url("../../fonts/Franklin Gothic Book Regular.ttf");
+}
+
+@font-face {
+    font-family: libre-franklin;
+    src: url("../../fonts/LibreFranklin-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: dm-sans;
+    src: url("../../fonts/DMSans-VariableFont.ttf");
+}
+
+@font-face {
+    font-family: dm-sans-italic;
+    src: url("../../fonts/DMSans-Italic-VariableFont.ttf");
 }
 
 @font-face {
@@ -483,6 +528,7 @@ main.igniterf-page #page-igniterf-whatis ol {
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
+    min-width: 100%;
 }
 
 .header-parts > .header-top .menu-title .dropdown-menu li,
@@ -1155,7 +1201,12 @@ header[data-variant="dusty-rose"] .header-top {
 }
 
 .header-parts > .header-bottom .dk-dropdown-menu .dk-sub-container  >  .menu-title.menu-card  >  a[title] {
-    padding: 25px 0 20px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    top: 0;
+    left: 0;
+    position: relative;
 }
 
 .header-parts > .header-bottom .dk-dropdown-menu .dk-sub-container  >  .menu-title.menu-card  >  a[title]:not(:last-child) .title::after {
@@ -4346,7 +4397,9 @@ main.igniterf-page .product-banner .product-banner-media img:first-child {
     position: absolute;
     height: 380px;
     top: 0;
-    left: 0;
+    /* left: 0; */
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
 }
 
 .product-banner .product-banner-details {
@@ -4577,7 +4630,7 @@ main[data-machine="Define"] .product-navigation div.product-nav::after {
     max-width: 100%;
     margin: 0 auto;
     display: block;
-    height: 192px;
+    /* height: 192px; */
 }
 
 @media (min-width: 769px) {
@@ -4588,7 +4641,7 @@ main[data-machine="Define"] .product-navigation div.product-nav::after {
 
 @media (max-width: 768px) {
     .product-addons .product-addon .addon-details .addon-description .addon-img img {
-        max-height: 192px;
+        /* max-height: 192px; */
         max-width: 100%;
         margin: 0 auto;
         display: block;
@@ -4610,12 +4663,35 @@ main[data-machine="Define"] .product-navigation div.product-nav::after {
     text-transform: uppercase;
     white-space: nowrap;
     position: absolute;
+    z-index: 1;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-title img {
     max-width: 100%;
     /* max-height: 30px; */
     height: 30px;
+}
+
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title img {
+    height: 52px;
+}
+
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__forma"],
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__plus"] {
+    
+}
+
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__forma"] + .addon-description,
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__plus"] + .addon-description {
+    padding-top: 40px;
+}
+
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__forma"] img {
+    height: 32px;
+}
+
+main#main.OptimasMax-page .product-addons .product-addon .addon-details .addon-description .addon-title[data-addon="optimas_max__plus"] img {
+    height: 32px;
 }
 
 .product-addons .product-addon .addon-details .addon-description .addon-description {
@@ -4737,7 +4813,16 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
     min-height: 200px;
 }
 
+.product-addons .product-addon .addon-carousel img,
+.product-addons .product-addon .addon-single img {
+    width: 100%;
+    text-align: center;
+}
 
+.product-addons .product-addon .addon-carousel.with-txt,
+.product-addons .product-addon .addon-single.with-txt {
+    
+}
 
 @media (max-width: 729px) {
     .product-addons .product-addon .addon-carousel,
@@ -4755,7 +4840,7 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
 }
 
 .product-addons .product-addon .addon-carousel .slide-addons .flickity-slider {
-    height: 100%;
+    /* height: 100%; */
     position: relative;
 }
 
@@ -4764,9 +4849,10 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
     max-width: 100%;
     text-align: center;
     vertical-align: middle;
-    background-color: #0d1a25;
+    /* background-color: #0d1a25; */
     display: inline-block;
-    height: 100%;
+    /* height: 100%; */
+    padding-bottom: 24px;
 }
 
 .product-addons .product-addon .addon-carousel .slide-addons .addon.is-selected {
@@ -4775,6 +4861,15 @@ main[data-machine="Define"] .product-addons .product-addon .addon-details .addon
 
 .product-addons .product-addon .addon-carousel .slide-addons .addon img {
     width: 100%;
+}
+
+.product-addons .product-addon .addon-single p,
+.product-addons .product-addon .addon-carousel .slide-addons .addon p {
+    color: var(--black);
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
 }
 
 .product-addons .product-addon .addon-carousel .slide-addons .flickity-prev-next-button {
@@ -5382,7 +5477,8 @@ main[data-machine="Define"] .addon-navigation div.addon-nav::after {
 
 .before-after .slides-before-after .ba-slide img {
     margin-bottom: 30px;
-    width: 100%;
+    width: 90%;
+    height: 180px;
 }
 
 .before-after .slides-before-after .ba-slide .ba-doctor {
@@ -5610,6 +5706,9 @@ main[data-machine="Define"] .addon-navigation div.addon-nav::after {
     vertical-align: middle;
     max-width: 230px;
     max-height: 200px;
+    background-color: #e7e7e73f;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.05) 1px 1px 6px 1px;
 }
 
 .study-slide .study-img img,
@@ -5701,6 +5800,15 @@ main[data-machine="Define"] .addon-navigation div.addon-nav::after {
 
 .study-slide[data-variant="dusty-rose"] .study-text .study-download {
     background-color: var(--dusty-rose);
+}
+
+.clinical-studies[data-variant="envision-blue"] .clinical-studies-slider .slide-studies .flickity-viewport,
+.clinical-studies[data-variant="envision-blue"] .clinical-studies-slider.few .study-slide[data-variant="envision-blue"] {
+    border-color: var(--envision-blue);
+}
+
+.study-slide[data-variant="envision-blue"] .study-text .study-download {
+    background-color: var(--envision-blue);
 }
 
 @media (max-width: 768px) {
@@ -7873,4 +7981,18 @@ form.contact-page.contact-form button.reset {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+main#main.ExoCoBio-page {
+    /* background-color: var(--pure-white); */
+}
+
+@media (min-width: 1440px) {
+    main#main.ExoCoBio-page > * {
+        padding-left: calc(50% - 720px);
+        padding-right: calc(50% - 720px);
+        /* width: 1440px; */
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
 }

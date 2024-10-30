@@ -95,9 +95,13 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             EnvisionBannerRight: file(relativePath: {eq: "products/envision/envision banner right.jpg"}) {...FileImgFormat}
             EnvisionLogoRight: file(relativePath: {eq: "products/envision/EnvisionLogoRight.png"}) {...FileImgFormat}
 
+            EnvisionMivision: file(relativePath: {eq: "products/envision/(MK) InMode-Envision-Etude-Clinique-Journal-Mivision-DEDEnvision.png"}) {...FileImgFormat}
+            EnvisionOphtalmo: file(relativePath: {eq: "products/envision/(MK)-InMode-Envision-Etude-Clinique-PeerRev-OJ-Envision-SPEnvisionFormaI.png"}) {...FileImgFormat}
+
             IgniteRFBannerLogo: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Visuals Icons4.png"}) {...FileImgFormat}
             IgniteRFLogoRight: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Logo (Pearl).svg"}) {...FileImgFormat}
             IgniteRFWhatIsDisplay: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Workstation.png"}) {...FileImgFormat}
+            IgniteRFWhatIsDisplay2: file(relativePath: {eq: "products/igniterf/Ignite-RF_No Tech_Right Side (1).png"}) {...FileImgFormat}
             IgniteRFQuantumRF25Back: file(relativePath: {eq: "products/igniterf/QuantumRF 25 - Visual.png"}) {...FileImgFormat}
             IgniteRFQuantumRF25Zoom: file(relativePath: {eq: "products/igniterf/QuantumRF 25 - Visual.png"}) {...FileImgFormat}
             IgniteRFQuantumRF25Title: file(relativePath: {eq: "products/igniterf/InMode - QuantumRF 25 - Logo (Black-Fire).svg"}) {...FileImgFormat}
@@ -116,17 +120,39 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             IgniteRFMorpheus8BurstDeepBack: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst Deep - Visual.png"}) {...FileImgFormat}
             IgniteRFMorpheus8BurstDeepZoom: file(relativePath: {eq: "products/igniterf/Morpheus8 Burst Deep - Visual.png"}) {...FileImgFormat}
             IgniteRFMorpheus8BurstDeepTitle: file(relativePath: {eq: "products/igniterf/InMode - Morpheus8 Burst Deep - Logo (Black-Fire).svg"}) {...FileImgFormat}
+            IgniteRFBodyTiteIgniteRFBack: file(relativePath: {eq: "products/igniterf/BodyTite_IgniteRFBack.png"}) {...FileImgFormat}
+            IgniteRFBodyTiteIgniteRFZoom: file(relativePath: {eq: "products/igniterf/BodyTite_IgniteRFZoom.png"}) {...FileImgFormat}
+            IgniteRFBodyTiteIgniteRFTitle: file(relativePath: {eq: "products/igniterf/TechnologyLogo_BodyTite_Black.png"}) {...FileImgFormat}
+            IgniteRFAccuTiteIgniteRFBack: file(relativePath: {eq: "products/igniterf/AccuTite_IgniteRFBack.png"}) {...FileImgFormat}
+            IgniteRFAccuTiteIgniteRFZoom: file(relativePath: {eq: "products/igniterf/AccuTite_IgniteRFZoom.png"}) {...FileImgFormat}
+            IgniteRFAccuTiteIgniteRFTitle: file(relativePath: {eq: "products/igniterf/TechnologyLogo_AccuTite_Black.png"}) {...FileImgFormat}
+            IgniteRFFaceTiteIgniteRFBack: file(relativePath: {eq: "products/igniterf/Facetite_IgniteRFBack.png"}) {...FileImgFormat}
+            IgniteRFFaceTiteIgniteRFZoom: file(relativePath: {eq: "products/igniterf/Facetite_IgniteRFZoom.png"}) {...FileImgFormat}
+            IgniteRFFaceTiteIgniteRFTitle: file(relativePath: {eq: "products/igniterf/TechnologyLogo_FaceTite_Black.png"}) {...FileImgFormat}
+
+            IgniteRFBeforeAfterWillis: file(relativePath: {eq: "products/igniterf/Dr. Z. Willis (Facetite).jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterDiamond: file(relativePath: {eq: "products/igniterf/Diamond Aesthetics (M8 Burst Deep).jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterRaniere: file(relativePath: {eq: "products/igniterf/Dr. J. Raniere (Bodytite).jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterClifton: file(relativePath: {eq: "products/igniterf/Dr. M. Clifton (Accutite + M8).png"}) {...FileImgFormat}
+            IgniteRFBeforeAfterLoffredo: file(relativePath: {eq: "products/igniterf/Dr. M. Loffredo & Dr. S. Jones.jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterTarajki: file(relativePath: {eq: "products/igniterf/Dr. M. Tarajki (Facetite).jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterHester: file(relativePath: {eq: "products/igniterf/Dr. P. Hester.jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterDiepenbrock: file(relativePath: {eq: "products/igniterf/Dr. R. Diepenbrock (Facetite + M8).jpg"}) {...FileImgFormat}
+            IgniteRFBeforeAfterMalhotra: file(relativePath: {eq: "products/igniterf/Dr. R. Malhotra (BodyTite).jpg"}) {...FileImgFormat}
 
             DefineFullLogo: file(relativePath: {eq: "products/define/define banner logo.png"}) {...FileImgFormat}
             DefineCheekTitle: file(relativePath: {eq: "products/define/DEFINE CHEEK.png"}) {...FileImgFormat}
             DefineChinTitle: file(relativePath: {eq: "products/define/DEFINE CHIN.png"}) {...FileImgFormat}
             DefineMorpheus8AddonTitle: file(relativePath: {eq: "products/define/Morpheus8.png"}) {...FileImgFormat}
             EmpowerRFMorpheus8AddonTitle: file(relativePath: {eq: "products/empowerrf/Morpheus8.svg"}) {...FileImgFormat}
+            BannerAddonMorpheus8: file(relativePath: {eq: "products/addons/morpheus8/bandeau.png"}) {...FileImgFormat}
 
             ProductBannerBodyTite: file(relativePath: {eq: "products/bodytite/bodytite.png"}) {...FileImgFormat}
             ProductBannerEvoke: file(relativePath: {eq: "products/evoke/evoke.png"}) {...FileImgFormat}
             ProductBannerEnvision: file(relativePath: {eq: "products/envision/envision black.png"}) {...FileImgFormat}
             ProductBannerIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - IgniteRF - Icone simple (Pearl).svg"}) {...FileImgFormat}
+            ProductBannerIgniteRFIcon: file(relativePath: {eq: "products/igniterf/Icone du logo IgniteRF.png"}) {...FileImgFormat}
+            ProductBannerIgniteRFLogo: file(relativePath: {eq: "products/igniterf/Logo IgniteRF.png"}) {...FileImgFormat}
 
             CarrouselBodyTiteIcone: file(relativePath: {eq: "products/carousel/bodytite_icone_midnight.svg"}) {...FileImgFormat}
             CarrouselTritonLogo: file(relativePath: {eq: "products/carousel/triton_logo_midnight.svg"}) {...FileImgFormat}
@@ -149,6 +175,74 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             
             BannerIgniteRF: file(relativePath: {eq: "products/igniterf/Bandeau-Nouveaute-IgniteRF-_1_.webp"}) {...FileImgFormat}
             BannerIgniteRF2: file(relativePath: {eq: "products/igniterf/Nouveauté (60 x 20 po).jpg"}) {...FileImgFormat}
+            BannerOptimas: file(relativePath: {eq: "products/optimas/BandeauxOptimasMax2.png"}) {...FileImgFormat}
+
+            ExoCoBioAward1: file(relativePath: {eq: "products/ExoCoBio/award1.png"}) {...FileImgFormat}
+            ExoCoBioAward2: file(relativePath: {eq: "products/ExoCoBio/award2.png"}) {...FileImgFormat}
+            ExoCoBioAward3: file(relativePath: {eq: "products/ExoCoBio/award3.png"}) {...FileImgFormat}
+            ExoCoBioExosom: file(relativePath: {eq: "products/ExoCoBio/exosom.gif"}) {...FileImgFormat}
+            ExoCoBioWeAreBg: file(relativePath: {eq: "products/ExoCoBio/we_are_bg.png"}) {...FileImgFormat}
+            ExoCoBioWeAreBg2: file(relativePath: {eq: "products/ExoCoBio/we_are_bg_2.jpg"}) {...FileImgFormat}
+            ExoCoBioWeAreImg: file(relativePath: {eq: "products/ExoCoBio/we_are_img.png"}) {...FileImgFormat}
+            ExoCoBioMore1: file(relativePath: {eq: "products/ExoCoBio/more1.png"}) {...FileImgFormat}
+            ExoCoBioMore2: file(relativePath: {eq: "products/ExoCoBio/more2.png"}) {...FileImgFormat}
+            ExoCoBioMore3: file(relativePath: {eq: "products/ExoCoBio/more3.png"}) {...FileImgFormat}
+            ExoCoBioMore4: file(relativePath: {eq: "products/ExoCoBio/more4.png"}) {...FileImgFormat}
+            ExoCoBioMore5: file(relativePath: {eq: "products/ExoCoBio/more5.png"}) {...FileImgFormat}
+            ExoCoBioBenefitsBg: file(relativePath: {eq: "products/ExoCoBio/benefits_bg.png"}) {...FileImgFormat}
+            ExoCobioRecommendLogo: file(relativePath: {eq: "products/ExoCoBio/recommend_morpheus_logo.png"}) {...FileImgFormat}
+            ExoCobioRecommendMachine: file(relativePath: {eq: "products/ExoCoBio/recommend_morpheus_machine.png"}) {...FileImgFormat}
+            ExoCobioSRLV1: file(relativePath: {eq: "products/ExoCoBio/srlv_1.png"}) {...FileImgFormat}
+            ExoCobioSRLV2: file(relativePath: {eq: "products/ExoCoBio/srlv_2.png"}) {...FileImgFormat}
+            ExoCobioSRLV3: file(relativePath: {eq: "products/ExoCoBio/srlv_3.png"}) {...FileImgFormat}
+            ExoCobioSRLV4: file(relativePath: {eq: "products/ExoCoBio/srlv_4.png"}) {...FileImgFormat}
+            ExoCobioHRLV1: file(relativePath: {eq: "products/ExoCoBio/hrlv_1.png"}) {...FileImgFormat}
+            ExoCobioHRLV2: file(relativePath: {eq: "products/ExoCoBio/hrlv_2.png"}) {...FileImgFormat}
+            ExoCobioIRLV1: file(relativePath: {eq: "products/ExoCoBio/irlv_1.png"}) {...FileImgFormat}
+            ExoCobioIRLV2: file(relativePath: {eq: "products/ExoCoBio/irlv_3.webp"}) {...FileImgFormat}
+            ExoCobioExoBalm1: file(relativePath: {eq: "products/ExoCoBio/exobalm_1.png"}) {...FileImgFormat}
+            ExoCobioAsceGel: file(relativePath: {eq: "products/ExoCoBio/asce_gel.png"}) {...FileImgFormat}
+            ExoCobioAsceGelMini: file(relativePath: {eq: "products/ExoCoBio/asce_gel_mini.png"}) {...FileImgFormat}
+
+            OptimasMax__BannerLogo: file(relativePath: {eq: "products/optimas_max/OptimasMAX_Logo.png"}) {...FileImgFormat}
+            OptimasMax__BannerMini: file(relativePath: {eq: "products/optimas_max/banner_mini.png"}) {...FileImgFormat}
+            OptimasMax__Burst_ChromeLogo: file(relativePath: {eq: "products/optimas_max/Burst_ChromeLogo_0124.png"}) {...FileImgFormat}
+            OptimasMax__OptimasMAX4TechLeftSide: file(relativePath: {eq: "products/optimas_max/OptimasMAX_4_Tech_Left_Side (2).png"}) {...FileImgFormat}
+            
+            
+            OptimasMax__Morpheus8Burst24PinTopAngled: file(relativePath: {eq: "products/optimas_max/Morpheus8Burst_24Pin_Top_Angled (1).png"}) {...FileImgFormat}
+            OptimasMax__Morpheus8BurstLogo_Final_Black: file(relativePath: {eq: "products/optimas_max/Morpheus8BurstLogo_Final-Black.png"}) {...FileImgFormat}
+            
+            OptimasMax__Morpheus8BurstDeep_40Pin_Top_Angled: file(relativePath: {eq: "products/optimas_max/Morpheus8BurstDeep_40Pin_Top_Angled.png"}) {...FileImgFormat}
+            OptimasMax__Morpheus8BurstDeep_Logo_2024: file(relativePath: {eq: "products/optimas_max/Morpheus8BurstDeep-Logo-2024.png"}) {...FileImgFormat}
+            
+            OptimasMax__LumecaPeakLightOption_Faded: file(relativePath: {eq: "products/optimas_max/Lumeca_Peak_LightOption4-Faded.png"}) {...FileImgFormat}
+            OptimasMax__LumeccaPeak: file(relativePath: {eq: "products/optimas_max/LumeccaPeak_515_580.png"}) {...FileImgFormat}
+            
+            OptimasMax__Fusion_Light_Dark_Angled_Faded_Flipped: file(relativePath: {eq: "products/optimas_max/Fusion_Light-Dark_Angled-Faded-Flipped.png"}) {...FileImgFormat}
+            OptimasMax__FusionLightFusionDarkLogo_Black: file(relativePath: {eq: "products/optimas_max/FusionLight_FusionDark_Logo-Black.png"}) {...FileImgFormat}
+            
+            OptimasMax__Diolaze_XL_Max_Angled_Faded_Flipped: file(relativePath: {eq: "products/optimas_max/Diolaze_XL_Max_Angled-Faded-Flipped.png"}) {...FileImgFormat}
+            OptimasMax__DiolazeXLMax_Black: file(relativePath: {eq: "products/optimas_max/DiolazeXLMax_Black.png"}) {...FileImgFormat}
+            
+            OptimasMax__VasculazeHPSideBlack_Faded: file(relativePath: {eq: "products/optimas_max/Vasculaze_HP_Side_Black-Faded.png"}) {...FileImgFormat}
+            OptimasMax__VasculazeMaxBlack: file(relativePath: {eq: "products/optimas_max/VasculazeMax_Black_0624-01.png"}) {...FileImgFormat}
+            
+            OptimasMax__PlusFormaAngledRight_Faded: file(relativePath: {eq: "products/optimas_max/Plus_Forma_AngledRight-Faded.png"}) {...FileImgFormat}
+            OptimasMax__TechnologyLogoFormaBlack: file(relativePath: {eq: "products/optimas_max/TechnologyLogo_Forma_Black.png"}) {...FileImgFormat}
+            OptimasMax__PlusLogoBlack: file(relativePath: {eq: "products/optimas_max/Plus_Logo_Black.png"}) {...FileImgFormat}
+            
+
+            OptimasMax__ScaleChrome2023: file(relativePath: {eq: "products/optimas_max/Scale-Chrome-2023.png"}) {...FileImgFormat}
+            
+            OptimasMax__BeforeAfter_1: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres1.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_2: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres2.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_3: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres3.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_4: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres4.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_5: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres5.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_6: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres6.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_7: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres7.jpg"}) {...FileImgFormat}
+            OptimasMax__BeforeAfter_8: file(relativePath: {eq: "products/optimas_max/InMode - Optimas Max - Avant-Apres8.jpg"}) {...FileImgFormat}
         }
 
         fragment FileImgFormat on File {
@@ -350,6 +444,8 @@ interface ImagesList {
 
     DefineMorpheus8AddonTitle: GatsbyImage_Interface;
     EmpowerRFMorpheus8AddonTitle: GatsbyImage_Interface;
+
+    BannerAddonMorpheus8: GatsbyImage_Interface;
 
     ProductBannerBodyTite: GatsbyImage_Interface;
     ProductBannerEvoke: GatsbyImage_Interface;

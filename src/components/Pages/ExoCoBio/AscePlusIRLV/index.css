@@ -1,0 +1,145 @@
+#page_exocobio-asce_irlv {
+    font-size: 0;
+}
+
+#page_exocobio-asce_irlv-irlv1 {
+    position: relative;
+}
+
+#page_exocobio-asce_irlv1-bg {
+    
+}
+
+#page_exocobio-asce_irlv1-bg img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+#page_exocobio-asce_irlv1-text {
+    background-color: var(--exocobio);
+    padding: 40px;
+    position: relative;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_irlv1-text {
+        text-align: left;
+        position: absolute;
+        background-color: transparent;
+        right: 0;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+        width: 40%;
+        max-width: 512px;
+    }
+}
+
+#page_exocobio-asce_irlv1-text h2 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 500;
+    font-family: lato;
+    line-height: 36px;
+    color: var(--pure-white);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_irlv1-text h2 {
+        font-size: 36px;
+        line-height: 44px;
+    }
+}
+
+#page_exocobio-asce_irlv1-text h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    font-family: lato;
+    line-height: 30px;
+    color: var(--teal);
+    margin-bottom: 14px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_irlv1-text h3 {
+        color: var(--pure-white);
+        font-size: 32px;
+        line-height: 34px;
+    }
+}
+
+#page_exocobio-asce_irlv1-text h4 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: lato;
+    line-height: 22px;
+    color: var(--teal);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_irlv1-text h4 {
+        color: var(--pure-white);
+        font-size: 24px;
+        line-height: 26px;
+    }
+}
+
+#page_exocobio-asce_irlv-irlv1-band {
+    position: absolute;
+    background-color: var(--teal);
+    width: 30%;
+    top: 0;
+    left: 35%;
+    height: 12px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_irlv-irlv1-band {
+        position: relative;
+        background-color: var(--midnight);
+        width: 88px;
+        top: 0;
+        margin: 8px 0 12px;
+        left: 0;
+        height: 6px;
+    }
+}
+
+#page_exocobio-asce_irlv-specialty {
+    font-size: 0;
+    background-color: var(--pure-white);
+    font-family: lato;
+    padding: 16px 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "spec_tl .       .       spec_tr"
+        "spec_tl spec_mm spec_mm spec_tr"
+        "spec_bl spec_mm spec_mm spec_br"
+        "spec_bl .       .       spec_br"
+    ;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+}
+
+
+#page_exocobio-asce_irlv-irlv2 {
+    position: relative;
+}
+
+#page_exocobio-asce_irlv2-bg {
+    
+}
+
+#page_exocobio-asce_irlv2-bg img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}

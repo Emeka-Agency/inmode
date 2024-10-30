@@ -62,7 +62,7 @@ const AddonTemplates = ({ data }:AddonTemplates) => {
     return (
             <Layout title="addon" variant={color_variant(datas.Name)} rest={{"data-addon": datas.Name}}>
                 <SEO lang="fr" title="Addon"/>
-                <AddonBanner datas={datas.Banner}/>
+                <AddonBanner datas={datas.Banner} name={datas.Name}/>
                 <AddonNavigation
                     name={datas.Name}
                     exist={{

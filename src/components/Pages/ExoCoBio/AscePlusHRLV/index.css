@@ -1,0 +1,222 @@
+#page_exocobio-asce_hrlv {
+    font-size: 0;
+}
+
+#page_exocobio-asce_hrlv-hrlv1 {
+    position: relative;
+}
+
+#page_exocobio-asce_hrlv1-bg {
+    
+}
+
+#page_exocobio-asce_hrlv1-bg img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+#page_exocobio-asce_hrlv1-text {
+    background-color: var(--exocobio);
+    padding: 40px;
+    position: relative;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_hrlv1-text {
+        text-align: left;
+        position: absolute;
+        background-color: var(--midnight-75);
+        right: 0;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+        width: 50%;
+        max-width: 512px;
+    }
+}
+
+#page_exocobio-asce_hrlv1-text h2 {
+    margin: 0 0 24px;
+    font-size: 36px;
+    font-weight: 500;
+    font-family: lato;
+    line-height: 56px;
+    color: var(--pure-white);
+}
+
+#page_exocobio-asce_hrlv1-text h3 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+    font-family: lato;
+    line-height: 34px;
+    color: var(--teal)
+}
+
+#page_exocobio-asce_hrlv-hrlv1-band {
+    position: absolute;
+    background-color: var(--teal);
+    width: 30%;
+    top: 0;
+    left: 35%;
+    height: 12px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-asce_hrlv-hrlv1-band {
+        width: 12px;
+        top: 10%;
+        left: 0;
+        height: 40%;
+    }
+}
+
+#page_exocobio-asce_hrlv-specialty {
+    font-size: 0;
+    background-color: var(--pure-white);
+    font-family: lato;
+    padding: 16px 0 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "spec_tl .       .       spec_tr"
+        "spec_tl spec_mm spec_mm spec_tr"
+        "spec_bl spec_mm spec_mm spec_br"
+        "spec_bl .       .       spec_br"
+    ;
+    align-content: space-around;
+    justify-content: space-around;
+    align-items: center;
+    justify-items: center;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tl,
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tr,
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-bl,
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-br {
+    font-size: 2vw;
+    color: var(--pure-white);
+    background-color: var(--teal);
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 20vw;
+    padding: 15% 16px;
+    box-sizing: border-box;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tl,
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-bl {
+    position: relative;
+    left: 10vw;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tr,
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-br {
+    position: relative;
+    right: 10vw;
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tl,
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tr,
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-bl,
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-br {
+        font-family: lato;
+        font-size: 28px;
+        line-height: 32px;
+        font-weight: 400;
+        width: 288px;
+        height: 288px;
+    }
+
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tl,
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-bl {
+        position: relative;
+        left: 144px;
+    }
+    
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tr,
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-br {
+        position: relative;
+        right: 144px;
+    }
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tl {
+    grid-area: spec_tl;
+    white-space: wrap;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-tr {
+    grid-area: spec_tr;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-mm {
+    grid-area: spec_mm;
+    background-color: var(--pure-white);
+    border-radius: 50%;
+    border: 8px solid var(--teal-50);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 30vw;
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-mm {
+        width: 432px;
+        height: 432px;
+    }
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-mm > div {
+    font-size: 3vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 16px);
+    height: calc(100% - 16px);
+    font-weight: 700;
+    color: var(--pure-white);
+    background-color: var(--teal);
+    border-radius: 50%;
+    text-align: center;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-mm > div {
+        font-size: 40px;
+    }
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-bl {
+    grid-area: spec_bl;
+}
+
+#page_exocobio-asce_hrlv-specialty #page_exocobio-asce_hrlv-specialty-br {
+    grid-area: spec_br;
+}
+
+#page_exocobio-asce_hrlv-hrlv2 {
+    position: relative;
+}
+
+#page_exocobio-asce_hrlv2-bg {
+    
+}
+
+#page_exocobio-asce_hrlv2-bg img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}

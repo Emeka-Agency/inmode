@@ -1,0 +1,143 @@
+#page_exocobio-exo_balm {
+    font-size: 0;
+    background-color: var(--exocobio);
+}
+
+#page_exocobio-exo_balm-balm1 {
+    position: relative;
+    background-color: #f7f7f7;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-balm1 {
+        display: flex;
+        flex-direction: row-reverse;
+    }
+}
+
+#page_exocobio-exo_balm-bg {
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-bg {
+        position: relative;
+    }
+}
+
+#page_exocobio-exo_balm-bg img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-bg img {
+        
+    }
+}
+
+#page_exocobio-exo_balm-text {
+    background-color: var(--exocobio);
+    padding: 24px;
+    position: relative;
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-text {
+        text-align: left;
+        background-color: var(--exocobio);
+        left: 0;
+        padding: 12px 24px;
+        width: 40%;
+        max-width: 512px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-exo_balm-text {
+        padding: 14px 28px;
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: unset;
+    }
+}
+
+@media (min-width: 1440px) {
+    #page_exocobio-exo_balm-text {
+        padding: 16px 32px;
+        width: 80%;
+    }
+}
+
+#page_exocobio-exo_balm-text h2 {
+    margin: 0 0 8px;
+    font-size: 32px;
+    font-weight: 400;
+    font-family: lato-bld;
+    color: var(--pure-white);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-text h3 {
+        
+    }
+}
+
+#page_exocobio-exo_balm-text h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 400;
+    font-family: lato;
+    line-height: 30px;
+    color: var(--teal);
+    margin-bottom: 14px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-text h3 {
+        color: var(--pure-white);
+        font-size: 32px;
+        line-height: 34px;
+    }
+}
+
+#page_exocobio-exo_balm-text h4 {
+    margin: 8px 0 0;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: lato;
+    letter-spacing: 0.6px;
+    color: var(--teal);
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-text h4 {
+        color: var(--pure-white);
+    }
+}
+
+#page_exocobio-exo_balm-balm1-band {
+    position: absolute;
+    background-color: var(--teal);
+    width: 30%;
+    top: 0;
+    left: 35%;
+    height: 12px;
+}
+
+@media (min-width: 768px) {
+    #page_exocobio-exo_balm-balm1-band {
+        position: relative;
+        background-color: var(--teal);
+        width: 88px;
+        top: 0;
+        margin: 8px 0 12px;
+        left: 0;
+        height: 6px;
+    }
+}

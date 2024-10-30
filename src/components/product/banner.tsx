@@ -15,6 +15,9 @@ const ProductBanner = ({ datas, name }:ProductBanner_Interface) => {
         if(__name == "BodyTite") {
             return <img src={images.resolve_img('BannerIgniteRF2')} srcSet={images.resolve_img_set('BannerIgniteRF2')} style={{width:'90%', height: 'auto', position: 'relative', zIndex: 1, margin: '64px 5%'}} />;
         }
+        if(__name == "Optimas") {
+            return <img src={images.resolve_img('BannerOptimas')} srcSet={images.resolve_img_set('BannerOptimas')} style={{width:'90%', height: 'auto', position: 'relative', zIndex: 1, margin: '64px 5%'}} />;
+        }
 
         return <></>;
     }
@@ -38,7 +41,7 @@ const ProductBanner = ({ datas, name }:ProductBanner_Interface) => {
             case "bodytite": return <img className="product-icon" src={images.resolve_img("ProductBannerBodyTite")} srcSet={images.resolve_img_set("ProductBannerBodyTite")} style={icon_style} />
             case "evoke": return <img className="product-icon" src={images.resolve_img("ProductBannerEvoke")} srcSet={images.resolve_img_set("ProductBannerEvoke")} style={icon_style} />
             case "envision": return <img className="product-icon" src={images.resolve_img("ProductBannerEnvision")} srcSet={images.resolve_img_set("ProductBannerEnvision")} style={icon_style} />
-            case "igniterf": return <img className="product-icon" src={images.resolve_img("ProductBannerIgniteRF")} srcSet={images.resolve_img_set("ProductBannerIgniteRF")} style={icon_style} />
+            case "igniterf": return <img className="product-icon" src={images.resolve_img("ProductBannerIgniteRFIcon")} srcSet={images.resolve_img_set("ProductBannerIgniteRFIcon")} style={{maxHeight: '80px'}} />
             default: return <></>;
         }
     }

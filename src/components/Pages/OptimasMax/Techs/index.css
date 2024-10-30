@@ -1,0 +1,198 @@
+#page-optimas_max-techs {
+    padding: 50px 8vw;
+    background-color: var(--pure-white);
+}
+
+#page-optimas_max-techs h2 {
+    margin: 10px 0;
+    font-size: 32px;
+    color: var(--pure-black);
+    text-align: center;
+    margin: 0 auto;
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs h2 {
+        margin-left: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    #page-optimas_max-techs h2 {
+        margin-left: 0px;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list {
+    margin-top: 20px;
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: 50% 50%;
+    align-content: space-between;
+    align-items: start;
+    justify-items: center;
+    column-gap: 16px;
+    row-gap: 16px;
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list {
+        flex-direction: column;
+        grid-template-columns: 100%;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    padding: 12px 12px;
+    box-sizing: border-box;
+    column-gap: 16px;
+    /* background-color: rgba(0, 0, 0, 0.02); */
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 6px 1px;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.05) 2px 2px 4px 4px;
+}
+
+@media (max-width: 768px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card {
+        margin-bottom: 20px;
+        width: 100%;
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 12px;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img {
+    width: 100%;
+    margin: 0 auto;
+    padding: 12px;
+    position: relative;
+    background-color: rgb(241, 241, 243);
+    height: 100%;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img {
+        max-width: 150px;
+        height: 224px;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img img {
+    max-width: 90%;
+    max-height: 90%;
+    aspect-ratio: auto;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img img {
+        max-width: 192px;
+        max-height: 256px;
+    }
+}
+
+@media (max-width: 768px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img img {
+        max-width: 192px;
+        max-height: 256px;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img img.img-back {
+    z-index: 0;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img img.img-zoom {
+    z-index: 1;
+    visibility: hidden;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img:hover img.img-back {
+    filter: blur(4px);
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-img:hover img.img-zoom {
+    visibility: visible;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text {
+    display: flex;
+    flex-direction: column;
+    column-gap: 16px;
+    max-width: calc(100% - (224px + 16px));
+    background-color: white;
+    border-radius: 8px;
+    padding: 4px 8px;
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text {
+        max-width: calc(100% - (150px + 16px));
+    }
+}
+
+@media (max-width: 768px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text {
+        max-width: 100%;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text .page-optimas_max-techs-card-title {
+    margin: 0 auto;
+}
+
+@media (max-width: 1280px) {
+    #page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text .page-optimas_max-techs-card-title {
+        margin: 20px auto 0;
+    }
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-title img {
+    margin-top: 12px;
+    margin-left: 12.5%;
+    width: 75%;
+    max-width: 100%;
+    min-height: 0px;
+    max-height: 48px;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-title span {
+    margin-top: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 0px;
+    font-size: 20px;
+    font-weight: 600;
+    display: block;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text .page-optimas_max-techs-card-descr {
+    margin: 20px auto 0;
+    max-width: 100%;
+}
+
+#page-optimas_max-techs #page-optimas_max-techs-list .page-optimas_max-techs-card .page-optimas_max-techs-card-text .page-optimas_max-techs-card-descr p {
+    color: var(--midnight);
+    text-align: center;
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    line-height: 26px;
+}

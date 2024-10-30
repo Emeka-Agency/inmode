@@ -41,7 +41,7 @@
 }
 
 #page-igniterf-ba #page-igniterf-ba-carousel .carousel .thumbs {
-
+    text-align: center;
 }
 
 #page-igniterf-ba #page-igniterf-ba-carousel .carousel .thumbs .thumb {
@@ -49,5 +49,17 @@
 }
 
 #page-igniterf-ba #page-igniterf-ba-carousel .ba-image {
+    margin-bottom: 48px;
+}
 
+#page-igniterf-ba #page-igniterf-ba-carousel .ba-image img {
+
+}
+
+#page-igniterf-ba #page-igniterf-ba-carousel .ba-image span {
+    display: block;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 12px;
 }

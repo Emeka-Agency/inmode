@@ -1,0 +1,104 @@
+#page_exocobio-benefits {
+    padding: 16px 20px 20px;
+    background-color: var(--pure-white);
+    text-align: center;
+    position: relative;
+    background-color: var(--exocobio);
+    overflow: hidden;
+}
+
+#page_exocobio-benefits img {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 25%;
+    z-index: 1;
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-benefits img {
+        display: initial;
+    }
+}
+
+#page_exocobio-benefits h2 {
+    color: var(--pure-white);
+    font-family: lato;
+    font-size: 36px;
+    font-weight: 400;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+#page_exocobio-benefits-texts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 16px;
+    position: relative;
+    z-index: 2;
+    margin-top: 32px;
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-benefits-texts {
+        flex-direction: row;
+        align-items: start;
+        column-gap: 16px;
+    }
+}
+
+#page_exocobio-benefits-text {
+    width: 100%;
+    max-width: 768px;
+    padding: 0 12px;
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-benefits-text {
+        width: 0;
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-benefits-text:nth-child(1) {
+        border-right: 1px solid var(--teal);
+    }
+}
+
+#page_exocobio-benefits-divider {
+    width: 70%;
+    height: 1px;
+    background-color: var(--teal);
+    border: none;
+    margin: 12px auto;
+}
+
+@media (min-width: 1024px) {
+    #page_exocobio-benefits-divider {
+        display: none;
+    }
+}
+
+h3#page_exocobio-benefits-text-titre {
+    color: var(--teal);
+    font-size: 36px;
+    font-size: 400;
+    margin: 0 0 32px;
+}
+
+ul#page_exocobio-benefits-text-list {
+
+}
+
+ul#page_exocobio-benefits-text-list li {
+    color: var(--pure-white);
+    font-size: 24px;
+    margin-bottom: 8px;
+    text-align: left;
+    list-style-type: disc;
+}
