@@ -18,6 +18,18 @@ const ProductBanner = ({ datas, name }:ProductBanner_Interface) => {
         if(__name == "Optimas") {
             return <img src={images.resolve_img('BannerOptimas')} srcSet={images.resolve_img_set('BannerOptimas')} style={{width:'90%', height: 'auto', position: 'relative', zIndex: 1, margin: '64px 5%'}} />;
         }
+        if(__name == "Morpheus8") {
+            return <video
+                controls
+                style={{width:'90%', height: 'auto', position: 'relative', zIndex: 1, margin: '64px 5%'}}
+            >
+                <source
+                    src="https://inmode.emeka.fr/public/vids/Bandeau Morpheus8.mp4"
+                    type="video/mp4"
+                />
+                Votre navigateur ne supporte pas les vidéos.
+            </video>;
+        }
 
         return <></>;
     }

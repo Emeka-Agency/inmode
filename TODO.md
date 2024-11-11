@@ -1,3 +1,7 @@
+https://www.egaliteetreconciliation.fr/Le-docu-sur-les-francs-macons-que-la-tele-n-oserait-plus-montrer-aujourd-hui-77013.html
+
+Shoshol’asticot,Scousslamousse**$$
+
 - Option virement dans les payment sur le site.
 ( Choix entre les deux, ils ont l'iban, référence sur le virement. )
 Bouton à cocher
@@ -412,3 +416,24 @@ FR - Shop mobile
 FR - Intuitive surgeon / Apple pour le style du nouveau InModeMD
 
 UK - Page Eva Longoria
+
+
+
+
+
+======================
+
+IgniteRF
+
+
+
+======================
+
+Cookies
+
+
+
+======================
+
+Privacy
+
