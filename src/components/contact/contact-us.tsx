@@ -70,8 +70,10 @@ const ContactUs = (props:ContactUs) => {
                 <img
                     id="piece"
                     className="transition user-select-none"
-                    src={images.resolve_img('contactUsPiece')}
-                    srcSet={images.resolve_img_set('contactUsPiece')}
+                    // src={images.resolve_img('contactUsPiece')}
+                    src={images.resolve_img('contactUsPiece2')}
+                    // srcSet={images.resolve_img_set('contactUsPiece')}
+                    srcSet={images.resolve_img_set('contactUsPiece2')}
                     alt="contact-us"
                     onClick={(e) => {resolve_click(e)}}
                 />

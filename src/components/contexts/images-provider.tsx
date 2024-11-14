@@ -31,6 +31,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             rmvInit: file(relativePath: {eq: "icons/rmv-article-init.svg"}) {...FileImgFormat}
             rmvHover: file(relativePath: {eq: "icons/rmv-article-blue.svg"}) {...FileImgFormat}
             contactUsPiece: file(relativePath: {eq: "contact_us.png"}) {...FileImgFormat}
+            contactUsPiece2: file(relativePath: {eq: "nous_contacter.png"}) {...FileImgFormat}
             fixedMenuLogo: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
             headerLogo: file(relativePath: {eq: "header-logo.png"}) {...FileImgFormat}
             headerLogo2: file(relativePath: {eq: "header-logo-2.png"}) {...FileImgFormat}
@@ -356,6 +357,7 @@ interface ImagesList {
     rmvInit: GatsbyImage_Interface;
     rmvHover: GatsbyImage_Interface;
     contactUsPiece: GatsbyImage_Interface;
+    contactUsPiece2: GatsbyImage_Interface;
     fixedMenuLogo: GatsbyImage_Interface;
     headerLogo: GatsbyImage_Interface;
     headerLogo2: GatsbyImage_Interface;
