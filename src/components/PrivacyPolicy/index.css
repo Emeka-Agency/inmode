@@ -1,0 +1,234 @@
+#privacy-policy {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+#privacy-policy[data-privacy="on"] {
+    z-index: 5;
+}
+
+/* EDIT */
+
+#privacy-policy-edit {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--teal);
+    border-radius: 24px;
+    box-sizing: border-box;
+    cursor: pointer;
+    z-index: 2;
+    background-color: var(--pure-white);
+    color: var(--teal);
+    transition: width 0.15s ease-in-out 0s;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#privacy-policy-edit:hover {
+    width: 224px;
+    padding-right: 4px;
+}
+
+#privacy-policy-edit svg {
+    color: var(--teal);
+    width: auto;
+    height: 100%;
+}
+
+#privacy-policy-edit span {
+    color: var(--teal);
+    font-size: 16px;
+    margin-left: 0px;
+    font-weight: bold;
+}
+
+#privacy-policy-edit:hover span {
+
+}
+
+#privacy-policy-edit svg,
+#privacy-policy-edit span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* MAIN */
+
+#privacy-policy-main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* MASQUE */
+
+#privacy-policy-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+/* BANDEAU */
+
+#privacy-policy-bandeau {
+    box-sizing: border-box;
+    background-color: var(--pure-white);
+    padding: 4px 8px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 425px) {
+    #privacy-policy-bandeau {
+        max-height: unset;
+        padding: 6px 12px;
+    }
+}
+
+@media (min-width: 768px) {
+    #privacy-policy-bandeau {
+        flex-direction: row;
+        column-gap: 12px;
+        row-gap: 0;
+        padding: 8px 16px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #privacy-policy-bandeau {
+        padding: 8px calc(50vw - 585px);
+    }
+}
+
+#privacy-bandeau-text {
+    text-wrap: wrap;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12px;
+    line-height: 20px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    height: calc(100% - 150px);
+    overflow: auto;
+    padding-right: 4px;
+}
+
+@media (min-width: 425px) {
+    #privacy-bandeau-text {
+        height: auto;
+        overflow: unset;
+    }
+}
+
+#privacy-bandeau-text a {
+    color: var(--teal);
+    font-weight: bold;
+}
+
+#privacy-bandeau-boutons {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 100%;
+}
+
+@media (min-width: 425px) {
+    #privacy-bandeau-boutons {
+        flex-direction: row;
+        column-gap: 12px;
+        row-gap: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    #privacy-bandeau-boutons {
+        flex-direction: column;
+        column-gap: 0;
+        row-gap: 12px;
+    }
+}
+
+@media (min-width: 1920px) {
+    #privacy-bandeau-boutons {
+        flex-direction: row;
+        column-gap: 12px;
+        row-gap: 0;
+    }
+}
+
+#open-privacy-settings,
+#privacy-reject-all,
+#privacy-accept-all {
+    border: 1px solid var(--teal);
+    font-family: raleway;
+    padding: 12px 10px;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.12px;
+    line-height: 16px;
+    width: 100%;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+@media (min-width: 425px) {
+    #open-privacy-settings,
+    #privacy-reject-all,
+    #privacy-accept-all {
+        width: auto;
+    }
+}
+
+@media (min-width: 768px) {
+    #open-privacy-settings,
+    #privacy-reject-all,
+    #privacy-accept-all {
+        min-width: 160px;
+    }
+}
+
+#open-privacy-settings:hover,
+#privacy-reject-all:hover,
+#privacy-accept-all:hover {
+    opacity: 0.7;
+}
+
+#privacy-reject-all,
+#privacy-accept-all {
+    background-color: var(--teal);
+    color: var(--pure-white);
+}
+
+#open-privacy-settings {
+    background-color: var(--pure-white);
+    color: var(--teal);;
+}
+
+#privacy-reject-all {
+
+}
+
+#privacy-accept-all {
+
+}

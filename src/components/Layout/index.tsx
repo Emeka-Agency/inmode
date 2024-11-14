@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Header from "../Header/index";
 import Footer from "../Footer";
 import ContactUs from "../contact/contact-us";
-import PrivacyPolicy from "../privacy-policy";
+import PrivacyPolicy from "../PrivacyPolicy";
 import FixedMenu from "../fixed-menu";
 import MenusProvider from "../contexts/menus-provider";
 import ProductsProvider from "../contexts/products-provider";
@@ -53,7 +53,7 @@ const Layout = ({ children, title, variant = "teal", rest = {} }:Layout) => {
                 </main>
                 </ProductsProvider>
                 <FixedMenu/>
-                {/* / <PrivacyPolicy /> */}
+                <PrivacyPolicy/>
                 <ContactUs/>
                 <Footer/>
                 <Modale/>

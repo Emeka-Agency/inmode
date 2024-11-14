@@ -1,0 +1,73 @@
+import React from "react";
+
+import Layout from "../components/Layout";
+import SEO from "../components/seo";
+
+const CGUPage = () => {
+
+    return (
+        <Layout title="CGU">
+            <SEO lang="fr" title="Conditions générales d'utilisation" />
+            <div id="page-legals">
+                <div className="container">
+                    <div className="main-title">CONDITIONS GÉNÉRALES D'UTILISATION (CGU) DU SITE WEB INMDOEMD.FR</div>
+                    <hr />
+                    <div className="content">Nous vous remercions de votre visite sur ce site. Veuillez lire attentivement les conditions générales contenues dans ce document, car toute utilisation de ce site web constitue votre acceptation des conditions générales d’utilisations énoncées dans le présent document.</div>
+                    <div className="content">Sur ce site, les termes « nous », « notre », « InMode » , « La société InMode » font référence à la société IMD FRANCE et à ses sociétés affiliées, selon le contexte. « Vous » désigne toute personne accédant et/ou utilisant ce site Internet.</div>
+                    <hr />
+                    <div className="title title-section">INFORMATIONS SUR LE SITE</div>
+                    <div className="content">Ce site Web est conçu à des fins éducatives et informatives uniquement. Ces informations ne sont pas destinées à remplacer les conseils médicaux éclairés ou les recommandations de professionnels de la santé. Vous ne devez pas utiliser ces informations pour diagnostiquer ou traiter un problème de santé ou une maladie sans consulter un professionnel de la santé qualifié.</div>
+                    <div className="content">InMode ne cautionne ni ne certifie la validité ou l'exactitude des traitements, médicaments ou produits non InMode décrits, mentionnés ou discutés dans les services, bases de données ou pages accessibles sur ou à partir de ce site Web ou de tout autre service ou publication InMode. De plus, InMode ne fait aucune déclaration concernant l'efficacité, la pertinence ou l'adéquation de ces produits ou traitements. Avant d'agir sur la base de toute information contenue dans les pages Web, vous acceptez de consulter votre professionnel de santé pour déterminer si les informations sur lesquelles vous vous appuyez sont appropriées à votre état de santé. InMode ne fournit pas de conseils ou de services médicaux.</div>
+                    <div className="content">Compte tenu de la possibilité d'erreur humaine ou des progrès des connaissances médicales, ni InMode, ses partenaires, son personnel ni les autres parties impliquées dans la fourniture des services, bases de données ou pages accessibles sur ou à partir de ce site Web ou de tout autre service ou publication de InMode ne garantissent que les informations contenues dans ce site sont à tous égards exactes ou complètes et ne sont pas responsables des erreurs ou omissions qui pourraient être trouvées dans ces informations ou des résultats obtenus suite à l'utilisation de ces informations. Vous êtes encouragé à consulter d'autres sources et à confirmer les informations contenues dans l'un de ces services, bases de données ou pages accessibles sur ou à partir de ce site Web ou de tout autre service ou publication de InMode.</div>
+                    <div className="title">Exactitude, exhaustivité et actualité des informations</div>
+                    <div className="content">Bien que nous fassions tout notre possible pour garantir l'exactitude et l'exhaustivité des informations sur ce site Web, nous ne sommes pas responsables si les informations que nous mettons à disposition sur ce site Web ne sont pas à jour, exactes ou complètes. Toute confiance accordée au contenu de ce site Web se fait à vos propres risques. Vous acceptez qu'il soit de votre responsabilité de surveiller toute modification apportée au contenu et aux informations contenues sur ce site Web.</div>
+                    <hr />
+                    <div className="title title-section">TRANSMISSION</div>
+                    <div className="content">Toute communication ou tout matériel non personnel que vous transmettez à ce site Web par courrier électronique ou autrement, y compris les données, questions, commentaires, suggestions ou autres, est et sera traité comme non confidentiel et non exclusif. Tout ce que vous transmettez ou publiez devient la propriété d’InMode et peut être utilisé à toutes fins, y compris, mais sans s'y limiter, la reproduction, la divulgation, la transmission, la publication, la diffusion et l'affichage. En outre, InMode est libre d'utiliser à toutes fins (y compris, mais sans s'y limiter, le développement, la fabrication, la publicité et la commercialisation de produits) toutes idées, illustrations, inventions, développements, suggestions ou concepts contenus dans toute communication que vous envoyez à ce site Web. Toute utilisation de ce type est sans compensation pour la partie qui soumet les informations. En soumettant des informations, vous garantissez également que vous êtes propriétaire du matériel/contenu soumis, qu'il n'est pas diffamatoire et que l'utilisation par InMode ne violera pas les droits d'un tiers ou ne nous placera pas en violation des lois applicables. InMode n'a aucune obligation d'utiliser les informations soumises.</div>
+                    <hr />
+                    <div className="title title-section">DROITS DE PROPRIÉTÉ INTELLECTUELLE</div>
+                    <div className="content">Tous les droits d'auteur, marques commerciales et autres droits de propriété intellectuelle sur tous les textes, images et autres éléments de ce site Web sont la propriété d’InMode ou sont inclus avec l'autorisation du propriétaire concerné.</div>
+                    <div className="content">Vous êtes autorisé à parcourir ce site Web, à reproduire des extraits par impression, à télécharger sur un disque dur ou à des fins de distribution à d'autres personnes. Cela ne peut être fait qu'à condition que vous conserviez intacts tous les avis de droit d'auteur et autres avis de propriété et que l'avis de marque ci-dessous apparaisse sur ces reproductions. Aucune reproduction d'une partie de ce site Web ne peut être vendue ou distribuée à des fins commerciales, ni modifiée ou incorporée dans une autre œuvre, publication ou site Web.</div>
+                    <div className="title">® Marque déposée. Tous droits réservés.</div>
+                    <div className="content">Les marques commerciales, logos, caractères et marques de service (collectivement les « marques commerciales ») affichés sur ce site Web appartiennent à InMode ou à ses sociétés affiliées faisant partie d’InMode ou à ses concédants de licence. Aucun élément contenu sur ce site Web ne doit être interprété comme accordant une licence ou un droit d'utilisation d'une marque commerciale affichée sur ce site Web. Votre utilisation/utilisation abusive des marques commerciales affichées sur ce site Web, ou sur tout autre contenu de ce site Web, sauf dans les cas prévus dans les présentes conditions générales, est strictement interdite. Vous êtes également informé qu’InMode fera valoir vigoureusement ses droits de propriété intellectuelle dans toute la mesure permise par la loi.</div>
+                    <hr />
+                    <div className="title title-section">LIENS VERS D'AUTRES SITES WEB</div>
+                    <div className="content">Les liens sur les sites Internet d’InMode peuvent vous conduire hors du réseau et des systèmes d’InMode et InMode n'assume aucune responsabilité quant au contenu, à l'exactitude ou au fonctionnement de ces autres sites Internet tiers. Les liens sont fournis de bonne foi et InMode ne peut être tenu responsable de tout changement ultérieur sur d'autres sites Internet tiers vers lesquels nous fournissons un lien. L'inclusion de tout lien vers d'autres sites Internet n'implique pas l'approbation d’InMode. Nous vous recommandons vivement de prendre connaissance et de lire attentivement les mentions légales et la politique de confidentialité de tous les autres sites Internet que vous visitez.</div>
+                    <hr />
+                    <div className="title title-section">GARANTIES ET EXONÉRATIONS DE RESPONSABILITÉ</div>
+                    <div className="content">Votre utilisation de ce site Web se fait à vos propres risques et périls.</div>
+                    <hr />
+                    <div className="title title-section">GARANTIES</div>
+                    <div className="content">Ce site Web vous est fourni « tel quel » et « tel que disponible » et, par conséquent, InMode ne donne aucune garantie d'aucune sorte, qu'elle soit expresse, implicite, légale ou autre (y compris les garanties implicites de qualité marchande ou de qualité satisfaisante et d'adéquation à un usage particulier), y compris les garanties ou déclarations selon lesquelles le matériel sur ce site Web sera complet, exact, fiable, opportun, non contrefaisant pour des tiers, que l'accès à ce site Web sera ininterrompu ou sans erreur ou exempt de virus, que ce site Web sera sécurisé, que tout conseil ou opinion obtenu d’InMode via ce site Web est exact ou fiable et toutes les déclarations ou garanties à cet égard sont en conséquence expressément rejetées.</div>
+                    <div className="content">Veuillez noter que certaines juridictions peuvent ne pas autoriser les exclusions de garanties implicites. Certaines de ces exclusions peuvent donc ne pas s'appliquer à votre cas. Veuillez vérifier les lois locales.</div>
+                    <div className="content">Nous nous réservons le droit de restreindre, suspendre ou résilier sans préavis votre accès à ce site Web ou à toute fonctionnalité de ce site Web ou à toute fonctionnalité ou partie de celui-ci à tout moment.</div>
+                    <hr />
+                    <div className="title title-section">RESPONSABILITÉ</div>
+                    <div className="content">InMode et/ou toute autre partie impliquée dans la création, la production ou la livraison de ce site Web en notre nom n'auront aucune responsabilité, quelle qu'elle soit, pour tout dommage direct, accessoire, consécutif, indirect, spécial ou punitif, coût, perte ou responsabilité, quel qu'il soit et de quelque manière que ce soit, découlant de votre accès, de votre utilisation, de votre incapacité à utiliser, de la modification du contenu de ce site Web ou découlant de tout autre site Web auquel vous accédez via un lien à partir de ce site Web ou dans la mesure permise par la loi applicable, de toute action que nous prenons ou ne prenons pas à la suite de tout message électronique que vous nous envoyez.</div>
+                    <div className="content">InMode et/ou toute autre partie impliquée dans la création, la production ou la diffusion de ce site Internet ne sont pas tenus de maintenir le matériel et les services mis à disposition sur ce site Internet ou de fournir des corrections, mises à jour ou versions en rapport avec ceux-ci. Tout matériel sur ce site Internet est sujet à modification sans préavis.</div>
+                    <div className="content">En outre, InMode ne saurait être tenu responsable de quelque perte que ce soit causée par des virus qui pourraient infecter votre équipement informatique ou tout autre bien en raison de votre utilisation, de votre accès ou du téléchargement de tout matériel provenant de ce site Web. Si vous choisissez de télécharger du matériel à partir de ce site Web, vous le faites à vos propres risques.</div>
+                    <div className="content">Dans la mesure maximale permise par la loi applicable, vous renoncez expressément à toute réclamation contre InMode, ses dirigeants, administrateurs, employés, fournisseurs et programmeurs qui pourraient découler de votre utilisation ou de votre accès à ce site Web.</div>
+                    <hr />
+                    <div className="title title-section">ACTIVITÉ INTERDITE</div>
+                    <div className="content">Il vous est interdit de faire tout acte qu’InMode, à son entière discrétion, pourrait juger inapproprié et/ou qui serait considéré comme un acte illégal ou qui est interdit par toute loi applicable à ce site Web, y compris, mais sans s'y limiter :</div>
+                    <div className="content">
+                        <ol>
+                            <li>1. Tout acte qui constituerait une violation de la vie privée (y compris le téléchargement d’informations privées sans le consentement de la personne concernée) ou de tout autre droit légal des individus ;</li>
+                            <li>2. Utiliser ce site Web pour diffamer ou calomnier Ia société InMode, ses employés ou d'autres personnes ou agir d'une manière qui porte atteinte à la réputation de la société InMode ;</li>
+                            <li>3. Télécharger des fichiers contenant des virus susceptibles de causer des dommages à la propriété de la société InMode ou à la propriété d'autres personnes ; et</li>
+                            <li>4. Publier ou transmettre sur ce site Web tout matériel non autorisé, y compris, mais sans s'y limiter, tout matériel qui, à notre avis, est susceptible de causer des désagréments, de porter préjudice ou de violer la sécurité des systèmes ou du réseau de la société InMode ou de tiers, de nature diffamatoire, raciste, obscène, menaçante, pornographique ou autrement illégal.</li>
+                        </ol>
+                    </div>
+                    <hr />
+                    <div className="title title-section">JURIDICTION ET LOI APPLICABLE</div>
+                    <div className="content">La société InMode ne garantit pas que le matériel et les informations de ce site Web sont appropriés ou disponibles dans tous les pays ou dans toutes les langues.</div>
+                    <div className="content">Vous et la société InMode convenez que toute controverse ou réclamation découlant ou relative à l'utilisation de ce site Web sera régie par le droit suisse et soumise à la juridiction exclusive des tribunaux suisses.</div>
+                    <div className="title">Mise à jour des Conditions Générales d’Utilisation (CGU)</div>
+                    <div className="content">Nous nous réservons le droit d'apporter des modifications et des corrections à ces conditions générales d’utilisation. Veuillez consulter cette page de temps à autre pour consulter ces informations et de nouvelles informations supplémentaires.</div>
+                </div>
+            </div>
+        </Layout>
+    );
+};
+
+export default CGUPage

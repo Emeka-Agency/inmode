@@ -1,0 +1,162 @@
+#privacy-settings {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CONTENT */
+
+#privacy-settings p,
+#privacy-settings h2,
+#privacy-settings label {
+    font-size: 16px;
+}
+
+#privacy-settings h2 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: bold;
+    color: var(--teal);
+}
+
+#privacy-settings p {
+
+}
+
+#privacy-settings table,
+#privacy-settings th,
+#privacy-settings td {
+    border: 1px solid #bdc1c6;
+    border-collapse: collapse;
+}
+
+#privacy-settings table {
+    width: 100%;
+    border-spacing: 0;
+}
+
+#privacy-settings tr {
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#privacy-settings tr:hover {
+    background-color: var(--teal-25);
+}
+
+#privacy-settings td {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+#privacy-settings tr summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#privacy-settings-content {
+    position: absolute;
+    width: 80%;
+    height: auto;
+    max-width: 512px;
+    max-height: 768px;
+    background-color: var(--pure-white);
+    padding: 24px;
+    border-radius: 2.5px;
+}
+
+/* MASQUE */
+
+#privacy-settings-mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+/* FERMER */
+
+#privacy-settings-close {
+    position: absolute;
+    z-index: 1;
+    top: 18px;
+    right: 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--teal);
+    padding: 4px 7px;
+    background-color: var(--pure-white);
+    cursor: pointer;
+}
+
+#privacy-settings-close:hover {
+    background-color: var(--teal);
+    color: var(--pure-white);
+}
+
+#privacy-settings-buttons {
+    display: flex;
+    width: 100%;
+    padding: 8px 0;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 12px;
+}
+
+@media (min-width: 768px) {
+    #privacy-settings-buttons {
+        flex-direction: row;
+        row-gap: 0;
+        column-gap: 16px;
+        justify-content: flex-end;
+    }
+}
+
+#privacy-settings-accept-all,
+#privacy-settings-reject-all,
+#privacy-settings-confirm-choices {
+    background-color: var(--teal);
+    color: var(--pure-white);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 12px;
+    letter-spacing: 0.96px;
+    padding: 12px 30px;
+    width: 100%;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+}
+
+#privacy-settings-accept-all:hover,
+#privacy-settings-reject-all:hover,
+#privacy-settings-confirm-choices:hover {
+    opacity: 0.7;
+}
+
+@media (min-width: 768px) {
+    #privacy-settings-accept-all,
+    #privacy-settings-reject-all,
+    #privacy-settings-confirm-choices {
+        width: auto;
+        margin: 0;
+    }
+}
+
+button#privacy-settings-accept-all {
+    margin-bottom: 16px;
+}
