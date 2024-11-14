@@ -1,8 +1,8 @@
-const disableMainScroll = function () {
+export const disableMainScroll = function () {
   document.querySelector('body').classList.add('no-scroll');
 }
 
-const enableMainScroll = function () {
+export const enableMainScroll = function () {
   let i = 0;
   document.querySelector('#contact-us.opened') && ++i;
   document.querySelector('.privacy-policy.opened') && ++i;
@@ -31,7 +31,7 @@ function modaleClose() {
     return document.getElementById('modale-close');
 }
 
-function openModale(params) {
+export const openModale = (params) => {
     disableMainScroll();
     let _temp = modale();
     _temp && _temp.classList.add('opened');
@@ -60,7 +60,7 @@ function openModale(params) {
     });
 }
 
-function closeModale(onClose) {
+export const closeModale = (onClose) => {
     let _temp = modale();
     _temp && _temp.classList.remove('opened');
     _temp = modaleContainer();

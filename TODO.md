@@ -418,22 +418,157 @@ FR - Intuitive surgeon / Apple pour le style du nouveau InModeMD
 UK - Page Eva Longoria
 
 
+npm i @woocommerce/woocommerce-rest-api@1.0.1 @pasdo501/gatsby-source-woocommerce@0.17.2 axios@^1.2.3 crc@^4.2.0 dotenv@^16.0.3 express@^4.18.2 gatsby@^5.4.1 gatsby-plugin-anchor-links@^1.2.1 gatsby-plugin-image@^3.8.0 gatsby-plugin-manifest@^5.4.0 gatsby-plugin-react-helmet@^6.4.0 gatsby-plugin-sharp@^5.8.0 gatsby-plugin-sitemap@^6.4.0 gatsby-source-filesystem@^5.8.0 gatsby-source-strapi@^1.0.3 gatsby-transformer-remark@^6.8.0 gatsby-transformer-sharp@^5.8.0 moment@^2.29.4 punycode@^2.3.1 react@^18.2.0 react-dom@^18.2.0 react-flickity-component@^4.0.0 react-hash-string@^1.0.0 react-helmet@^6.1.0 react-moment@^1.1.3 react-responsive-carousel@^3.2.23 react-simply-carousel@^8.5.5
 
+npm i axios@^1.2.3 crc@^4.2.0 dotenv@^16.0.3 express@^4.18.2 gatsby@^5.4.1 gatsby-plugin-anchor-links@^1.2.1 gatsby-plugin-image@^3.8.0 gatsby-plugin-manifest@^5.4.0 gatsby-plugin-react-helmet@^6.4.0 gatsby-plugin-sharp@^5.8.0 gatsby-plugin-sitemap@^6.4.0 gatsby-source-filesystem@^5.8.0 gatsby-source-strapi@1.0.3 gatsby-transformer-remark@^6.8.0 gatsby-transformer-sharp@^5.8.0 moment@^2.29.4 react@^18.2.0 react-dom@^18.2.0 react-flickity-component@^4.0.0 react-hash-string@^1.0.0 react-helmet@^6.1.0 react-moment@^1.1.3 react-responsive-carousel@^3.2.23 react-simply-carousel@^8.5.5
 
+npm i axios crc dotenv express gatsby gatsby-plugin-anchor-links gatsby-plugin-image gatsby-plugin-manifest gatsby-plugin-react-helmet gatsby-plugin-sharp gatsby-plugin-sitemap gatsby-source-filesystem gatsby-source-strapi@1.0.3 gatsby-transformer-remark gatsby-transformer-sharp moment react react-dom react-flickity-component react-hash-string react-helmet react-moment react-responsive-carousel react-simply-carousel
+
+npm i axios crc dotenv express gatsby gatsby-plugin-anchor-links gatsby-plugin-image gatsby-plugin-manifest gatsby-plugin-react-helmet gatsby-plugin-sharp gatsby-plugin-sitemap gatsby-source-filesystem gatsby-source-strapi@1.0.3 gatsby-transformer-remark gatsby-transformer-sharp moment react react-dom react-flickity-component react-hash-string react-helmet react-moment react-responsive-carousel react-simply-carousel
+
+npm i -S @pasdo501/gatsby-source-woocommerce @woocommerce/woocommerce-rest-api axios crc dotenv express gatsby gatsby-plugin-anchor-links gatsby-plugin-image gatsby-plugin-manifest gatsby-plugin-react-helmet gatsby-plugin-sharp gatsby-plugin-sitemap gatsby-source-filesystem gatsby-source-strapi@1.0.3 gatsby-transformer-remark gatsby-transformer-sharp moment react react-dom react-flickity-component react-hash-string react-helmet react-moment react-responsive-carousel react-simply-carousel
+
+npm i gatsby-source-strapi@1.0.3
+npm i @pasdo501/gatsby-source-woocommerce @woocommerce/woocommerce-rest-api axios crc dotenv express gatsby gatsby-plugin-anchor-links gatsby-plugin-image gatsby-plugin-manifest gatsby-plugin-react-helmet gatsby-plugin-sharp gatsby-plugin-sitemap gatsby-source-filesystem gatsby-transformer-remark gatsby-transformer-sharp moment react react-dom react-flickity-component react-hash-string react-helmet react-moment react-responsive-carousel react-simply-carousel
 
 ======================
 
 IgniteRF
 
+Bonjour Maël,
+
+Merci pour la prise en compte des modifications sur la page Optimas Max.
+
+Comme annoncé par Julie, je reprends le flambeau sur les différents projets web.
+
+Concernant le webdesign et le développement des pages Optimas Max et IgniteRF, pouvez-vous coller au modèle de page d’EmpowerRF que vous avez déjà développé en respectant l’enchainement des zonings suivants :
+
+Zoning 1 —> Bandeau header (Vidéo + Logo + Accroche)
+Zoning 2 —> Qu’est-ce que xxx ? (Titre + Texte descriptif)
+Zoning 3 —> Avantages (Puces + Textes)
+Zoning 4 —> Modes Burst® & Scale® => Zoning à développer avec 2 logos (Burst / Scale) puis texte.
+Zoning 5 —> Technologies associées (Photo techno + Logo Techno + Texte descriptif + Photos Avant/Après)
+Zoning 6 —> Études cliniques 
+
+Sur cette base, vous trouverez ci-dessous un lien de révision avec l’ensemble des contenus éditoriaux et informations à prendre en compte dans le cadre du développement de la page Optimas Max et IgniteRF. Page 1 = OptimasMax / Page 2 = IgniteRF.
+Je vous ai commenté tous les zonings à remplacer pour chaque page sur la base de la page EmpowerRF
+
+Consulter le lien de révision.
+
+En parallèle de cela, vous trouverez en téléchargement ci-dessous l’ensemble des imports classés par page et par zoning à prendre en compte.
+
+Pouvez-vous me tenir au courant en retour de ce mail quand les deux pages seront pour vous terminer ?
+Je reste disponible si vous avez des questions,
+
+Cordialement,
+
+======================
+
+ExoCoBio
+
+La page ExoCoBio est terminée. Comme signalé dans un précédent mail, le texte faisait partie intégrante de certaines images, que j'ai dû retravailler. Il en reste toutefois une qui n'a pas été modifiée.
+
+Pour celle-ci, je peux retravailler l'image et mettre les textes transmis dans le Word. Si c'est une image faîte en interne, auquel cas est-ce que vous avez la police ou même un template vierge ?
+
+La page ExoCoBio reçue ne corresponds pas à nos attentes.
+Globalement tout est trop gros d’au-moins 25%.
+L’ensemble manque de clarté et de respiration.
+Je vous fais parvenir le webdesign complet de cette page lundi qui sera à reprendre dans son intégralité.
+
+IgniteRF :
+
+Lien : IgniteRF
+
+- Pour la partie "Avant/après", ce qui était sur le modèle monde correspond simplement au modèle habituel des autres pages de machines.
+
+Pour être sûr, et en vue de possibles retours, voici quand même l'ancienne et la nouvelle version pour comparer.
+
+- Est-ce que QRF10 et M8DeepBurst ont des images Avant/après ?
+=> Pas pour QR10.
+=> Images envoyées le 28 octobre pour M8 Burst Deep.
+
+- Pour QRF10 et QRF25, qu'est-ce que vous entendez par "ajouter un onglet" ? Un bouton cliquable qui servira à changer le texte et/ou les images affichées ? Un simple texte avec marqué "Nouveauté" ? Autre chose ?
+
+=> Je vous ai fait parvenir un brief retour complet concernant la page IgniteRF et la page Optimas Max le 28 octobre 2024, l’avez-vous pris en compte ?
+En effet, je ne vois pas l’ensemble de nos demandes sur le lien (par exemple je ne vois pas : la vidéo dans le bandeau en haut de page // le zoning « Qu’est-ce que IgniteRF ? » // le zoning avec les logos des Modes Burst et Scale // …).
+
+Pouvez-vous faire le nécessaire s’il vous plaît ou me dire ce qu’il vous manque pour pouvoir terminer ces pages dans les plus brefs délais ?
+Pouvez-vous également me donner une date concernant le déploiement de nos demandes sur la partie législation de notre site web ?
+
+Cordialement,
+
+======================
+
+DONE - Cookies
+
 
 
 ======================
 
-Cookies
+DONE - Privacy
+
+MODULE DE GESTION DU CONSENTEMENT DES COOKIES ET TRACEURS
+—
+Vous nous indiquez que notre site internet actuel n’installe aucun cookie, or l’installation d’au moins 1 cookie est bien nécessaire (Voir PJ).
+Dans tous les cas, pour respecter Le Règlement Général de la Protection des Données (RGPD) encadré par la Commission Nationale de l'Informatique et des Libertés (CNIL),
+et pour anticiper les opérations marketing futures, pouvez-vous installer sur notre site internet inmodemd.fr un module de gestion des cookies respectant les informations suivantes :
+En premier niveau de lecture (sur la bannière principale)
+Texte lisible sur la bannière principale :
+Notre site inmodemd.fr et nos partenaires utilisent des cookies pour améliorer votre expérience sur le site. Les cookies catégorisés comme « nécessaires » sont enregistrés sur votre navigateur car ils sont essentiels pour le bon fonctionnement du site (fonctionnalités, sécurité). Nous utilisons également d’autres cookies qui permettent d’analyser et de mieux comprendre l’utilisation du site. Ces derniers sont enregistrés sur votre navigateur avec votre consentement. Vous avez la possibilité de gérer l’activation de certains de ces cookies (cela pouvant affecter votre expérience de navigation). Nous conservons votre choix pendant 6 mois. Vous pouvez changer d’avis à tout moment en cliquant sur l’icône « gestion des cookies » en bas de chaque page de notre site. Consulter notre politique de confidentialité (=> Lien cliquable vers la page).
+Intégrer les 3 boutons suivants :
+Tout accepter
+Tout refuser
+Personnaliser mon choix
+Choix distinct d’acception ou de refus du type de cookies
+L’utilisateur devra avoir la capacité de pouvoir sélectionner le type de cookies (grâce à des cases à cocher) qu’il accepte ou non selon la liste ci-dessous (même si vide) :
+Nécessaires
+Fonctionnels
+Analytiques
+Performances
+Publicitaires
+
+Actions après choix de l’utilisateur
+Permettre à l’utilisateur d’exercer ses choix avec simplicité
+Le choix de l’utilisateur devra être conservé durant leur navigation sur le site. 
+Ce choix exprimé par l’utilisateur, qu’il s’agisse d’un consentement ou d’un refus, devra être enregistré de manière à ne pas les solliciter à nouveau pendant une durée de 6 mois.
+Permettre à l’utilisateur de revenir sur sa décision à tout moment
+L’utilisateur doit avoir la possibilité de retirer son consentement (grâce au bouton [ Personnaliser mon choix ]) à tout moment en ayant accès au module de gestion des cookies et sur toutes les pages du site.
+
+Tableau / Liste des cookies
+Intégrer le tableau présentant la liste des cookies devra être accessible sur la page [ Politique de confidentialité ] du site dans la partie [ Cookies ]
+
+PAGE MENTIONS LÉGALES
+—
+• Mettre à jour la page [ Mentions légales ] selon le contenu ci-joint.
+
+PAGE CONDITIONS D’UTILISATION (CGU)
+—
+• Ajouter le bouton d’accès [ Conditions d’Utilisation ] pour accéder à la page Conditions Générales d’Utilisation dans l’ordre suivant : Plan du site | Mention légales | CGU | Politique de confidentialité
+Retirer contact à ce niveau car déjà présent dans le menu principal et via le sticky bouton à droite du site.
+• Vous trouverez ci-joint l’ensemble du contenu de la page web [ CGU ] à intégrer au site web
+
+PAGE POLITIQUE DE CONFIDENTIALITÉ
+—
+• Ajouter le bouton d’accès [ Politique de confidentialité ] pour accéder à la page Politique de confidentialité
+• Vous trouverez ci-joint l’ensemble du contenu de la page web [ Politique de confidentialité ] à intégrer au site web
+
+FORMULAIRES EN LIGNE
+—
+Nos formulaires en ligne actuels présents sur les pages suivantes, ne respectent pas la législation en vigueur :
+Le formulaire se déroulant lorsque nous cliquons sur le sticky bouton [ Contact Us ] (D’ailleurs à traduire par [ Contactez nous ] s’il vous plait)
+https://inmodemd.fr/contact/
+
+De ce fait, pouvez-vous actualiser tous les formulaires en ligne listés ci-dessus en ajoutant en bas de chacun, juste avant le bouton [ Envoyer ], une case à cocher suivi de la mention suivante :
+
+« En soumettant ce formulaire j'accepte que les informations saisies soient exploitées dans le cadre de ma demande d'informations et de la relation commerciale qui peut en découler.
+J'ai également pris connaissance de la politique de confidentialité »
 
 
+- Images :
+    - IgniteRF:
+        Morpheus8 Burst, Dr. Farhang
 
-======================
-
-Privacy
-
+https://xd.adobe.com/view/1de4d2fd-20cf-41a2-9f91-7265f7509898-48b7/variables/
+https://xd.adobe.com/view/1de4d2fd-20cf-41a2-9f91-7265f7509898-48b7/screen/d3c976b4-a6cb-4a49-8795-202c38e7a32a/
+https://xd.adobe.com/view/4cf14ba7-7cff-4aa4-99aa-393ba0f76350-19a2/
+https://2022.stateofjs.com/en-US/libraries/
