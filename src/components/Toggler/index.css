@@ -1,0 +1,48 @@
+.toggle-button {
+    background-color: var(--pearl);
+    position: relative;
+    display: inline-flex;
+    height: 24px;
+    width: 44px;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 9999px;
+    border-width: 2px;
+    border-color: transparent;
+    transition: transform 0.2s ease-in-out 0s,
+                background-color 0.2s ease-in-out 0s;
+    outline: none;
+    padding: 0;
+    box-shadow: 0 0 0 2px var(--teal-50);
+}
+
+.toggle-button[data-toggled="on"] {
+    background-color: var(--teal);
+    box-shadow: 0 0 0 2px var(--teal);
+}
+
+.toggle-button:focus {
+    box-shadow: 0 0 0 2px var(--teal);
+}
+
+.toggle-cursor {
+    pointer-events: none;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    transform: translate3d(0px, 0, 0);
+    border-radius: 9999px;
+    background-color: var(--teal);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease-in-out 0s,
+                background-color 0.2s ease-in-out 0s;
+}
+
+.toggle-button[data-indeterminate="on"][data-toggled="off"] .toggle-cursor {
+    transform: translate3d(10px, 0px, 0px);
+}
+
+.toggle-button[data-toggled="on"] .toggle-cursor {
+    transform: translate3d(20px, 0px, 0px);
+    background-color: var(--pure-white);
+}
