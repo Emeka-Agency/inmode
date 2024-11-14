@@ -7,7 +7,15 @@ exports.onCreateWebpackConfig = ({
       // otherwise the webpack resolve won't be able to find dependencies
       // correctly.
       modules: ['node_modules']
-    }
+    },
+    module: {
+        rules: [
+          {
+            test: /\.svg$/,
+            use: ['@svgr/webpack'],
+          },
+        ],
+      },
   })
 }
 

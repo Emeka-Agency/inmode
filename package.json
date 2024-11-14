@@ -53,6 +53,7 @@
     "launch_prod": "gatsby clean && npm run build && gatsby serve"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@types/js-cookie": "^3.0.6"
   }
 }
