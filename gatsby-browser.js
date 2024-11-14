@@ -8,6 +8,8 @@
 
 import React from 'react';
 
+import "./src/css/global.css";
+
 export function onClientEntry () {
     window.addEventListener('load', () => {
         document.body.className = document.body.className.replace(/\bno-js\b/, '');
