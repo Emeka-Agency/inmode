@@ -48,8 +48,8 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "update_all": "npm update --save/--save-dev -f",
-    "launch_dev": "gatsby clean && npm run develop",
-    "launch_stage": "gatsby clean && NODE_ENV=staging npm run develop",
+    "launch_dev": "npm cache clean --force && timeout 5 && gatsby clean && timeout 5 && npm run develop",
+    "launch_stage": "npm cache clean --force && timeout 5 && gatsby clean && timeout 5 && NODE_ENV=staging npm run develop",
     "launch_prod": "gatsby clean && npm run build && gatsby serve"
   },
   "devDependencies": {
