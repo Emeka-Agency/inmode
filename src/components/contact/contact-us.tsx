@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import { useWindowSize } from "../../functions/window-size";
 import { disableMainScroll, enableMainScroll } from "../../functions/disable-scroll";
 import { useImages } from '../contexts/images-provider';
@@ -115,6 +116,10 @@ const ContactUs = (props:ContactUs) => {
                                 required={true}
                                 className="custom-scrollbar moz-scrollbar"
                             ></textarea>
+                            <div className="policy" style={{width: '470px', display: 'flex', flexDirection: 'row', columnGap: '8px', alignItems: 'flex-start', marginBottom: '12px', marginTop: '8px'}}>
+                                <input type="checkbox" id="policy" name="policy" value="policy" required style={{width: 'auto', height: 'auto', padding: '10px'}}/>
+                                <label className="user-select-none" style={{color: 'var(--pure-white)', whiteSpace: 'wrap', marginTop: '0', marginBottom: '0', left: '0'}} htmlFor={"policy"}>En soumettant ce formulaire j'accepte que les informations saisies soient exploitées dans le cadre de ma demande d'informations et de la relation commerciale qui peut en découler. J'ai également pris connaissance de la <Link to="/privacy-policy" target="_blank" style={{color: 'var(--teal)', display: 'inline'}} target="_blank" title="Politique de confidentialité">politique de confidentialité</Link></label>
+                            </div>
                             <div className="current-length user-select-none" style={{color: msgLength === max_length ? '#f00' : 'var(--teal)'}}>{`${msgLength} / ${max_length}`}</div>
                             <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
                             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>

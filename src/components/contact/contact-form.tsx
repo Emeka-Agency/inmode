@@ -255,7 +255,7 @@ const ContactForm = ({ from }:ContactForm) => {
             </div>
             <div className="policy">
                 <input type="checkbox" id="policy" name="policy" value="policy" required/>
-                <label className="user-select-none" htmlFor={"policy"}>J'accepte les <a href="/mentions-legales#cgu" target="_blank" title="Conditions générales d'utilisation">conditions générales d'utilisation</a></label>
+                <label className="user-select-none" htmlFor={"policy"}>En soumettant ce formulaire j'accepte que les informations saisies soient exploitées dans le cadre de ma demande d'informations et de la relation commerciale qui peut en découler. J'ai également pris connaissance de la <Link to="/privacy-policy" target="_blank" title="Politique de confidentialité">politique de confidentialité</Link></label>
             </div>
             <div className="req-return success" style={{color: 'var(--teal)', fontSize: 15, fontWeight: 400}}></div>
             <div className="req-return error" style={{color: 'red', fontSize: 15, fontWeight: 400}}></div>
