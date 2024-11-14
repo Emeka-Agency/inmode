@@ -3319,17 +3319,28 @@ main {
 
 .contact-us {
     position: fixed;
-    right: -470px;
+    right: 0px;
     bottom: 70px;
     min-width: 470px;
     max-width: 60vw;
     width: max-content;
-    z-index: 1;
+    z-index: 2;
+}
+
+@media (min-width: 481px) {
+    .contact-us {
+        transform: translate3d(100%, 0, 0);
+    }
 }
 
 .contact-us.opened {
-    right: 0px;
     z-index: 3;
+}
+
+@media (min-width: 481px) {
+    .contact-us.opened {
+        transform: translate3d(0, 0, 0);
+    }
 }
 
 .contact-us .transition {
