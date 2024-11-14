@@ -54,7 +54,7 @@ const HeaderMini = ({}:HeaderMini) => {
                 <span>FERMER</span>
                 <img className="close-mini-menu-icon" src={images.resolve_img('closeWhiteIcon')} alt="close-white"/>
             </div>
-            <div className="header-mini-divider"></div>
+            <div className="header-mini-divider" style={{marginTop: '64px'}}></div>
             <div id="header-mini-bottom" className="header-bottom">
                 {menus_bottom && menus_bottom.map((menu:InmodePanel_Menu_Interface, key:number) => {
                     let temp:InmodePanel_Menu_Interface|any = new Object();

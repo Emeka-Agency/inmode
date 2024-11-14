@@ -934,6 +934,11 @@ header .header-parts .logout {
         top: 5px;
         right: 5px;
         z-index: 1;
+        height: 40px;
+    }
+
+    header .header-content .header-parts.mini-opened {
+        height: auto;
     }
 
     .header-logo {
