@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import Cookies from 'js-cookie';
 
 import { useImages } from '../contexts/images-provider';
@@ -63,7 +64,7 @@ const PrivacySettings = ({ onClose }:PrivacySettings) => {
             <div id="privacy-settings-mask" onClick={() => onClose()}></div>
             <div id="privacy-settings-content" className="custom-scrollbar">
                 <h2>MES CHOIX</h2>
-                <p>Ipsum ea culpa consectetur nisi sit eiusmod mollit. Eiusmod labore sunt pariatur nostrud laborum cillum sint anim voluptate duis ad. Exercitation incididunt et qui fugiat irure. Voluptate ipsum esse do aliqua in. Sit anim nostrud adipisicing incididunt consequat ullamco qui irure voluptate aliqua elit officia dolore esse. Ut cupidatat ad velit id.</p>
+                <p>Notre site inmodemd.fr et nos partenaires utilisent des cookies pour améliorer votre expérience sur le site. Les cookies catégorisés comme « nécessaires » sont enregistrés sur votre navigateur car ils sont essentiels pour le bon fonctionnement du site (fonctionnalités, sécurité). Nous utilisons également d’autres cookies qui permettent d’analyser et de mieux comprendre l’utilisation du site. Ces derniers sont enregistrés sur votre navigateur avec votre consentement. Vous avez la possibilité de gérer l’activation de certains de ces cookies (cela pouvant affecter votre expérience de navigation). Nous conservons votre choix pendant 6 mois. Vous pouvez changer d’avis à tout moment en cliquant sur l’icône « gestion des cookies » en bas de chaque page de notre site. Consulter notre <Link to="/privacy-policy">politique de confidentialité</Link></p>
                 <div id="privacy-settings-close" onClick={() => onClose()}>FERMER X</div>
                 <button id="privacy-settings-accept-all" onClick={tout_accepter}>Tout accepter</button>
                 <table>
