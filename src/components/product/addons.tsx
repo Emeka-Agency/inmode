@@ -164,6 +164,7 @@ const Addons = ({ datas, sensible = false, variant = "teal", product_name }:Addo
                                     </div>
                                 </div>
                                 {images.length == 0 ?
+                                    addon.Name == "IgniteRF" ? <></> : 
                                     addon.sensitivity ?
                                         <Sensible from="product-addons"/>
                                         :

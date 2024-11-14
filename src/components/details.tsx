@@ -53,6 +53,12 @@ const GenericDetails = ({ datas }:GenericDetails) => {
         }}></div>;
     }
 
+    const get_variant = (variation?:string, machine?:string) => {
+        if(variation == "dusty-rose") {return 'keyBenefitIconRose';}
+        if(machine == "IgniteRF") {return 'keyBenefitIgniteRF2';}
+        return 'keyBenefitIconTeal';
+    }
+
     return (
         <div id="what-is" className="details">
             <div
@@ -92,19 +98,19 @@ const GenericDetails = ({ datas }:GenericDetails) => {
                         return (
                             <div key={key} className="list-elem">
                                 {!special(datas.name) && datas.list_icon && <img
-                                    src={images.resolve_img(datas.variant == "dusty-rose" ? 'keyBenefitIconRose' : 'keyBenefitIconTeal')}
+                                    src={images.resolve_img(get_variant(datas.variant, datas.name))}
                                     alt={`elem-${key}`}
                                     className="before-text user-select-none"
                                 />}
                                 {special(datas.name) && special_icon(datas.name)}
                                 {!datas.list_icon && <span className="before-text user-select-none">&bull;</span>}
-                                <div className="text user-select-none">{prepare_str(elem.texte)}</div>
+                                <div className="text user-select-none">{prepare_str(elem.texte || "")}</div>
                             </div>
                         );
                     })}
                 </div>
             </div>
-            <RequestInformation variant={datas.variant}/>
+            {["EmpowerRF", "Optimas Max"].indexOf(datas.name || "") > -1 ? <></> : <RequestInformation variant={datas.variant}/>}
             {datas.name != "Define" ? <></> :
             <div id="page-define-whatis-video">
                 <iframe src="https://inmodemd.fr/public/vids/define_presentation.mp4" title="Define par InMode - Remodelage du visage" loading="lazy"> </iframe>

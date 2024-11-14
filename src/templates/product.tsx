@@ -13,6 +13,7 @@ import { graphql } from 'gatsby';
 import { InmodePanel_Product_Interface } from '../components/interfaces';
 import { color_variant } from '../functions/tools';
 import AddonVideos from '../components/addon/videos';
+import { useImages } from '../components/contexts/images-provider';
 
 const VIDS = {
   "EmpowerRF": [
@@ -35,6 +36,8 @@ const subtext_style = {
 };
 
 const ProductTemplates = ({ data }:ProductTemplates) => {
+
+    const images = useImages();
 
     const [datas]:[InmodePanel_Product_Interface, React.Dispatch<InmodePanel_Product_Interface>] = React.useState(data.strapiProduct);
 
@@ -80,6 +83,30 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
       return <></>;
     }
 
+    const igniterf_special_modes = () => {
+        return (
+            <section id="empowerrf-special-modes">
+                <div className="flex flex-row space-evenly gap-x-4">
+                    <img src={images.resolve_img('IgniteRFSpecialModesBurst')} srcSet={images.resolve_img_set('IgniteRFSpecialModesBurst')} alt="Icône Burst" />
+                    <img src={images.resolve_img('IgniteRFSpecialModesScale')} srcSet={images.resolve_img_set('IgniteRFSpecialModesScale')} alt="Icône Scale" />
+                </div>
+                <p>Les modes BURST® et SCALE® sont disponibles sur les technologies Morpheus8 Burst et Morpheus8 Burst Deep, permettant une efficacité et une précision accrues.</p>
+            </section>
+        );
+    }
+
+    const optimas_max_special_modes = () => {
+        return (
+            <section id="optimasmax-special-modes">
+                <div className="flex flex-row space-evenly gap-x-4">
+                    <img src={images.resolve_img('IgniteRFSpecialModesBurst')} srcSet={images.resolve_img_set('IgniteRFSpecialModesBurst')} alt="Icône Burst" />
+                    <img src={images.resolve_img('IgniteRFSpecialModesScale')} srcSet={images.resolve_img_set('IgniteRFSpecialModesScale')} alt="Icône Scale" />
+                </div>
+                <p>Les modes BURST® et SCALE® sont disponibles sur les technologies Morpheus8 Burst et Morpheus8 Burst Deep, permettant une efficacité et une précision accrues.</p>
+            </section>
+        );
+    }
+
     return (
             <Layout title="products" variant={datas.Name == "EmpowerRF" ? "dusty-rose" : "teal"} rest={{"data-addon": datas.Name, "data-machine": datas.Name}}>
                 <SEO lang="fr" title="Product"/>
@@ -104,6 +131,8 @@ const ProductTemplates = ({ data }:ProductTemplates) => {
                         'variant': color_variant(datas.Name)
                     }}
                 />
+                {datas.Name == "IgniteRF" ? igniterf_special_modes() : <></>}
+                {datas.Name == "Optimas Max" ? optimas_max_special_modes() : <></>}
                 {special_videos(datas.Name)}
                 <Addons
                     datas={{

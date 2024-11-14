@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_2" data-name="Calque 2" xmlns="http://www.w3.org/2000/svg" width="41.46mm" height="46.89mm" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 117.52 132.91">
+  <defs>
+    <filter id="drop-shadow-1" filterUnits="userSpaceOnUse">
+      <feOffset dx="5.67" dy="5.67"/>
+      <feGaussianBlur result="blur" stdDeviation="5.67"/>
+      <feFlood flood-color="#1d1d1b" flood-opacity=".1"/>
+      <feComposite in2="blur" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="drop-shadow-2" filterUnits="userSpaceOnUse">
+      <feOffset dx="5.67" dy="5.67"/>
+      <feGaussianBlur result="blur-2" stdDeviation="5.67"/>
+      <feFlood flood-color="#1d1d1b" flood-opacity=".5"/>
+      <feComposite in2="blur-2" operator="in"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <linearGradient id="linear-gradient" x1="58.76" y1="47.16" x2="58.76" y2="85.34" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f28a1a"/>
+      <stop offset=".16" stop-color="#e57319"/>
+      <stop offset=".54" stop-color="#c94218"/>
+      <stop offset=".83" stop-color="#b82417"/>
+      <stop offset=".99" stop-color="#b21917"/>
+    </linearGradient>
+  </defs>
+  <g id="Calque_1-2" data-name="Calque 1">
+    <g>
+      <g filter="url(#drop-shadow-1)">
+        <g>
+          <path d="M10.56,39.11v55.04l48.32,27.42V11.69L10.56,39.11Z" fill="#3c3c3b" stroke-width="0"/>
+          <path d="M58.88,11.69v109.88l48.32-27.42v-55.04L58.88,11.69Z" fill="#3c3c3b" stroke-width="0"/>
+        </g>
+        <path d="M114.95,31.36L61.34.68c-.8-.45-1.69-.68-2.59-.68h0c-.88,0-1.77.23-2.57.68L2.57,31.36c-1.59.91-2.57,2.59-2.57,4.41v61.37c0,1.82.98,3.5,2.57,4.41l52.68,30.14.93.53c.8.45,1.69.68,2.57.68h0c.9,0,1.78-.23,2.58-.68l.93-.53,52.69-30.14c1.59-.91,2.57-2.59,2.57-4.41v-61.38c0-1.82-.98-3.5-2.57-4.41ZM107.2,94.15l-48.32,27.42-48.32-27.42v-55.04L58.88,11.69l48.32,27.42v55.04Z" fill="#3c3c3b" stroke-width="0"/>
+      </g>
+      <path d="M107.2,39.11v55.04l-48.32,27.42-48.32-27.42,9.49,17.41,35.21,20.14.93.53c.8.45,1.69.68,2.57.68h0c.9,0,1.78-.23,2.58-.68l.93-.53,52.69-30.14c1.59-.91,2.57-2.59,2.57-4.41v-50.89l-10.33-7.15Z" fill="#1d1d1b" stroke-width="0"/>
+      <g filter="url(#drop-shadow-2)">
+        <g>
+          <path d="M10.56,39.11v55.04l48.32,27.42V11.69L10.56,39.11Z" fill="#fff" stroke-width="0"/>
+          <path d="M58.88,11.69v109.88l48.32-27.42v-55.04L58.88,11.69Z" fill="#f7f7f9" stroke-width="0"/>
+        </g>
+      </g>
+      <path d="M33.81,69.42c-.39-.39-.58-.98-.58-1.37s.19-.99.58-1.38l2.75-2.74c.79-.79,1.97-.79,2.75,0l.19.19,10.81,11.6c.39.39.98.39,1.37,0l26.32-27.31h.2c.79-.79,1.97-.79,2.75,0l2.75,2.75c.79.78.79,1.96,0,2.74l-31.43,32.62c-.39.39-.79.58-1.38.58s-.98-.19-1.37-.58l-15.33-16.5-.39-.59Z" fill="url(#linear-gradient)" stroke-width="0"/>
+    </g>
+  </g>
+</svg>

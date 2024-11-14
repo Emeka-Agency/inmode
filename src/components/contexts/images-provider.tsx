@@ -22,6 +22,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             keyBenefitDefine: file(relativePath: {eq: "icons/key_define.png"}) {...FileImgFormat}
             keyBenefitEnvision: file(relativePath: {eq: "icons/key_envision.png"}) {...FileImgFormat}
             keyBenefitIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - Bullet Point (Carbon-Fire) - V1.svg"}) {...FileImgFormat}
+            keyBenefitIgniteRF2: file(relativePath: {eq: ""products/igniterf/Zoning 3 - Avantages/InMode - Bullet Point (Carbon-Fire) - V2.svg""}) {...FileImgFormat}
             
             orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {...FileImgFormat}
             cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {...FileImgFormat}
@@ -209,6 +210,8 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             OptimasMax__Burst_ChromeLogo: file(relativePath: {eq: "products/optimas_max/Burst_ChromeLogo_0124.png"}) {...FileImgFormat}
             OptimasMax__OptimasMAX4TechLeftSide: file(relativePath: {eq: "products/optimas_max/OptimasMAX_4_Tech_Left_Side (2).png"}) {...FileImgFormat}
             
+            IgniteRFSpecialModesBurst: file(relativePath: {eq: "products/igniterf/Zoning 4 - Technologies Burst et Scale/Burst_ChromeLogo.png"}) {...FileImgFormat}
+            IgniteRFSpecialModesScale: file(relativePath: {eq: "products/igniterf/Zoning 4 - Technologies Burst et Scale/Scale-Chrome.png"}) {...FileImgFormat}
             
             OptimasMax__Morpheus8Burst24PinTopAngled: file(relativePath: {eq: "products/optimas_max/Morpheus8Burst_24Pin_Top_Angled (1).png"}) {...FileImgFormat}
             OptimasMax__Morpheus8BurstLogo_Final_Black: file(relativePath: {eq: "products/optimas_max/Morpheus8BurstLogo_Final-Black.png"}) {...FileImgFormat}
