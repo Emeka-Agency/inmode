@@ -16,12 +16,12 @@ const PrivacyPolicyPage = () => {
                     <div className="title title-section">POLITIQUE DE CONFIDENTIALITÉ</div>
                     <div className="content">La présente politique de confidentialité et politique d’utilisation des cookies (la &quot;politique de confidentialité&quot;) décrit la manière dont nous, IMD France et toutes nos filiales mondiales (&quot;InMode&quot; ou &quot;nous&quot;) traitons les données personnelles que nous recueillons lorsque vous visitez notre page web, achetez un produit, souscrivez à l'un de nos services de courrier électronique, demandez des informations, vous inscrivez sur le site web, participez à l'un de nos concours, bénéficiez d'une promotion, utilisez l'une des autres parties interactives de notre site web, communiquez avec nous par le biais des réseaux sociaux, ou dans le cadre d'une relation commerciale ou professionnelle, réelle ou potentielle, avec nous (&quot;vous&quot;). Nous nous efforçons de traiter vos données personnelles de manière professionnelle et consciencieuse et, à cet égard, nous nous engageons à veiller à ce que les données personnelles soient traitées et sécurisées avec la plus grande précaution.</div>
                     <div className="content">Afin d'être aussi transparents que possible vis-à-vis de nos clients, nous avons révisé notre politique de confidentialité. Cela signifie, entre autres, que :</div>
-                    <ul>
-                        <li>Nous indiquons clairement à quelles fins nous collectons des données personnelles.</li>
-                        <li>Nous nous efforçons de limiter notre collecte de données personnelles aux seules données personnelles nécessaires à des fins légitimes.</li>
-                        <li>Nous vous demandons d'abord la permission de traiter vos données à caractère personnel dans les cas où votre consentement est requis.</li>
-                        <li>Nous prenons les mesures de sécurité appropriées pour protéger vos données personnelles ainsi que les exigences des parties qui traitent les données personnelles.</li>
-                        <li>À votre demande, nous vous autorisons à modifier et/ou à supprimer vos données personnelles.</li>
+                    <ul className="content">
+                        <li className="content">Nous indiquons clairement à quelles fins nous collectons des données personnelles.</li>
+                        <li className="content">Nous nous efforçons de limiter notre collecte de données personnelles aux seules données personnelles nécessaires à des fins légitimes.</li>
+                        <li className="content">Nous vous demandons d'abord la permission de traiter vos données à caractère personnel dans les cas où votre consentement est requis.</li>
+                        <li className="content">Nous prenons les mesures de sécurité appropriées pour protéger vos données personnelles ainsi que les exigences des parties qui traitent les données personnelles.</li>
+                        <li className="content">À votre demande, nous vous autorisons à modifier et/ou à supprimer vos données personnelles.</li>
                     </ul>
                     <div className="content">
                         InMode est le responsable du traitement des données. Dans la présente politique de confidentialité, nous expliquons quelles sont les données personnelles que nous collectons et utilisons, et dans quel but nous le faisons.
@@ -38,16 +38,16 @@ const PrivacyPolicyPage = () => {
                     <hr />
                     <div className="title title-section">TYPES DE DONNÉES PERSONNELLES QUE NOUS TRAITONS</div>
                     <div className="content">Les types d'informations que nous pouvons détenir à votre sujet sont les suivants :</div>
-                    <ul>
-                        <li>Des informations de contact (telles que le prénom, nom, l'adresse postale et/ou électronique et le numéro de téléphone) ;</li>
-                        <li>Des coordonnées professionnelles (telles que l'intitulé du poste, le service et le nom de l'organisation, l’adresse postale et/ou électronique et le numéro de téléphone) ;</li>
-                        <li>Des informations professionnelles (telles que votre expérience avec nos produits ou services) ;</li>
-                        <li>Des informations relatives au paiement (y compris le numéro de la carte de paiement, la date d'expiration et l'adresse de facturation) ;</li>
-                        <li>Des informations relatives à l'expédition (y compris l'adresse de livraison et le numéro de téléphone) ;</li>
-                        <li>Le nom d'utilisateur et le mot de passe du compte client que vous pouvez créer sur notre site web ;</li>
-                        <li>Le contenu (tel que les photographies et les commentaires) ;</li>
-                        <li>Les informations que vous choisissez de fournir dans le cadre d'une demande d'emploi ;</li>
-                        <li>Les informations générées par nous dans le cadre de la gestion de notre relation avec vous, telles que l'historique de nos interactions avec vous, vos achats auprès de nous et les informations relatives à votre utilisation de nos produits ;</li>
+                    <ul className="content">
+                        <li className="content">Des informations de contact (telles que le prénom, nom, l'adresse postale et/ou électronique et le numéro de téléphone) ;</li>
+                        <li className="content">Des coordonnées professionnelles (telles que l'intitulé du poste, le service et le nom de l'organisation, l’adresse postale et/ou électronique et le numéro de téléphone) ;</li>
+                        <li className="content">Des informations professionnelles (telles que votre expérience avec nos produits ou services) ;</li>
+                        <li className="content">Des informations relatives au paiement (y compris le numéro de la carte de paiement, la date d'expiration et l'adresse de facturation) ;</li>
+                        <li className="content">Des informations relatives à l'expédition (y compris l'adresse de livraison et le numéro de téléphone) ;</li>
+                        <li className="content">Le nom d'utilisateur et le mot de passe du compte client que vous pouvez créer sur notre site web ;</li>
+                        <li className="content">Le contenu (tel que les photographies et les commentaires) ;</li>
+                        <li className="content">Les informations que vous choisissez de fournir dans le cadre d'une demande d'emploi ;</li>
+                        <li className="content">Les informations générées par nous dans le cadre de la gestion de notre relation avec vous, telles que l'historique de nos interactions avec vous, vos achats auprès de nous et les informations relatives à votre utilisation de nos produits ;</li>
                     </ul>
                     <div className="content">Dans l'Union européenne (UE), les « Données à Caractère Personnel » sont définies de manière très large et comprennent toute information relative à une personne physique qui peut être identifiée, directement ou indirectement, à partir des données que nous détenons à son sujet ou à partir de données combinées à d'autres informations. Il peut s'agir de données concernant nos employés, nos clients, nos patients, nos actionnaires, nos sous-traitants ou le personnel de nos fournisseurs, les visiteurs de nos locaux ou les utilisateurs de notre site web.</div>
                     <hr />
@@ -56,16 +56,16 @@ const PrivacyPolicyPage = () => {
                         InMode a besoin de traiter à diverses fins un certain nombre de Données à Caractère Personnel vous concernant.
                         Nous ne traiterons vos Données Personnelles qu'en conformité avec la loi applicable, ce qui peut inclure :
                     </div>
-                    <ul>
+                    <ul className="content">
 
-                    <li>Fournir l'accès aux sites web <a href="https://inmodemd.fr">https://inmodemd.fr</a> ;</li>
-                    <li>Gérer vos relations commerciales avec nous, par exemple en administrant les bons de commande, en gérant et en maintenant votre compte client chez nous, en répondant à vos questions et à vos commentaires et en fournissant une assistance à la clientèle ;</li>
-                    <li>L'analyse des statistiques et l'optimisation du site web ;</li>
-                    <li>Marketing, publicité et relations publiques, par exemple en commercialisant nos activités et nos produits ; en vous fournissant les informations que vous avez demandées sur notre société, nos produits et nos services ; en vous fournissant des informations ou des échantillons de notre gamme de produits à des fins de marketing et en vous contactant par courrier électronique ou postal ; en personnalisant votre expérience sur notre site web en vous fournissant un contenu adapté à vos centres d'intérêt et à votre situation géographique ;</li>
-                    <li>Obtenir des informations sur vous ou votre santé qui peuvent nous être fournies par vous ou vos prestataires de soins, afin de nous permettre de fabriquer des produits pour vous et/ou de vous distribuer des produits ;</li>
-                    <li>Améliorer nos services ;</li>
-                    <li>Recrutement, par exemple, traitement de votre candidature, conformité, objectifs juridiques, réglementaires et éthiques, par exemple, respect des lois et des exigences des autorités gouvernementales ou de nos politiques internes ;</li>
-                    <li>Recherche et développement de produits, par exemple, nous pouvons utiliser les commentaires des personnes concernées relatifs à leur utilisation de nos produits, afin d'améliorer nos produits.</li>
+                    <li className="content">Fournir l'accès aux sites web <a href="https://inmodemd.fr">https://inmodemd.fr</a> ;</li>
+                    <li className="content">Gérer vos relations commerciales avec nous, par exemple en administrant les bons de commande, en gérant et en maintenant votre compte client chez nous, en répondant à vos questions et à vos commentaires et en fournissant une assistance à la clientèle ;</li>
+                    <li className="content">L'analyse des statistiques et l'optimisation du site web ;</li>
+                    <li className="content">Marketing, publicité et relations publiques, par exemple en commercialisant nos activités et nos produits ; en vous fournissant les informations que vous avez demandées sur notre société, nos produits et nos services ; en vous fournissant des informations ou des échantillons de notre gamme de produits à des fins de marketing et en vous contactant par courrier électronique ou postal ; en personnalisant votre expérience sur notre site web en vous fournissant un contenu adapté à vos centres d'intérêt et à votre situation géographique ;</li>
+                    <li className="content">Obtenir des informations sur vous ou votre santé qui peuvent nous être fournies par vous ou vos prestataires de soins, afin de nous permettre de fabriquer des produits pour vous et/ou de vous distribuer des produits ;</li>
+                    <li className="content">Améliorer nos services ;</li>
+                    <li className="content">Recrutement, par exemple, traitement de votre candidature, conformité, objectifs juridiques, réglementaires et éthiques, par exemple, respect des lois et des exigences des autorités gouvernementales ou de nos politiques internes ;</li>
+                    <li className="content">Recherche et développement de produits, par exemple, nous pouvons utiliser les commentaires des personnes concernées relatifs à leur utilisation de nos produits, afin d'améliorer nos produits.</li>
                     </ul>
 
                     <hr />
@@ -79,13 +79,13 @@ const PrivacyPolicyPage = () => {
                     <hr />
                     <div className="title title-section">DIVULGATION D'INFORMATIONS VOUS CONCERNANT</div>
                     <div className="content">Nous avons l'intention de garder vos Données Personnelles confidentielles, conformément à nos obligations légales. Nous ne vendons pas, ne louons pas, ne commercialisons pas et ne divulguons pas ces informations à des tiers, sauf dans les cas décrits dans la présente politique de confidentialité, aux fins décrites ci-dessus, ou comme nous vous l'indiquons au moment où les données sont collectées. Nous pouvons divulguer vos Données Personnelles conformément à la loi applicable et dans la mesure où celle-ci l'autorise :</div>
-                    <ul>
+                    <ul className="content">
 
-                    <li>à nos filiales et sociétés affiliées ;</li>
-                    <li>pour protéger la sécurité ou l'intégrité de notre entreprise, y compris nos bases de données et nos systèmes ;</li>
-                    <li>à l'un de nos prestataires de services, fournisseurs ou distributeurs pour faciliter la fourniture de services ou de biens contractuels ou pour fournir des services à nos clients et visiteurs du site web, par exemple pour sous-traiter le traitement de certaines fonctions interactives du site web, administrer les services de courrier électronique, organiser des promotions spéciales ;</li>
-                    <li>dans le cadre d'une association, d'une collaboration, d'un financement, d'une vente, d'une fusion, d'une réorganisation, d'un changement de forme juridique, d'une liquidation ou d'un événement similaire ;</li>
-                    <li>pour nous conformer à nos obligations légales, c'est-à-dire si vous êtes soupçonné d'avoir enfreint une loi ou un règlement et que les autorités ont besoin de vos Données Personnelles, nous fournirons ces informations aux autorités à la suite d'une demande expresse et motivée de ces dernières, lorsque vos Données Personnelles ne seront plus protégées par la présente politique de confidentialité; et  à tout autre tiers lorsque vous avez donné votre accord.</li>
+                    <li className="content">à nos filiales et sociétés affiliées ;</li>
+                    <li className="content">pour protéger la sécurité ou l'intégrité de notre entreprise, y compris nos bases de données et nos systèmes ;</li>
+                    <li className="content">à l'un de nos prestataires de services, fournisseurs ou distributeurs pour faciliter la fourniture de services ou de biens contractuels ou pour fournir des services à nos clients et visiteurs du site web, par exemple pour sous-traiter le traitement de certaines fonctions interactives du site web, administrer les services de courrier électronique, organiser des promotions spéciales ;</li>
+                    <li className="content">dans le cadre d'une association, d'une collaboration, d'un financement, d'une vente, d'une fusion, d'une réorganisation, d'un changement de forme juridique, d'une liquidation ou d'un événement similaire ;</li>
+                    <li className="content">pour nous conformer à nos obligations légales, c'est-à-dire si vous êtes soupçonné d'avoir enfreint une loi ou un règlement et que les autorités ont besoin de vos Données Personnelles, nous fournirons ces informations aux autorités à la suite d'une demande expresse et motivée de ces dernières, lorsque vos Données Personnelles ne seront plus protégées par la présente politique de confidentialité; et  à tout autre tiers lorsque vous avez donné votre accord.</li>
                     </ul>
 
                     <hr />
@@ -111,37 +111,37 @@ const PrivacyPolicyPage = () => {
                     <div className="content">Des cookies sont utilisés sur notre site web. Des cookies sont également placés par des tiers avec notre autorisation.</div>
                     <div className="content">Lorsque vous visitez notre site web pour la première fois, une fenêtre de dialogue s'affiche vous invitant à accepter notre Politique des Cookies. Dès que vous cliquez sur notre site web, vous nous autorisez à utiliser tous les cookies et plugins décrits dans la fenêtre de dialogue et dans la présente politique de confidentialité. Vous êtes libre de désactiver les cookies via votre navigateur. Gardez à l'esprit qu'il est possible que notre site web ne fonctionnera plus de manière optimale.</div>
                     <div className="content">Vous trouverez ci-dessous la liste des types de cookies qui peuvent être utilisés sur nos sites web :</div>
-                    <ul>
-                        <li>
+                    <ul className="content">
+                        <li className="content">
                             Cookies strictement nécessaires.
                             Il s'agit de cookies nécessaires au fonctionnement de nos sites web. Ils comprennent, par exemple, les cookies qui vous permettent de vous connecter à des zones sécurisées de notre site web.
                         </li>
-                        <li>
+                        <li className="content">
                             Cookies analytiques/performance.
                             Ces cookies nous permettent de reconnaître et de compter le nombre de visiteurs sur nos sites web et de voir comment les visiteurs utilisent nos sites web. Ces cookies nous aident à améliorer le fonctionnement de notre site web.
                         </li>
-                        <li>
+                        <li className="content">
                             Cookies de fonctionnalité.
                             Ces cookies sont utilisés pour vous reconnaître lorsque vous revenez sur notre site web. Cela nous permet de personnaliser notre contenu, de vous accueillir par votre nom et de mémoriser vos préférences.
                         </li>
-                        <li>
+                        <li className="content">
                             Cookies de ciblage.
                             Ces cookies enregistrent votre visite sur notre site web, les pages que vous avez visitées et les liens que vous avez suivis. Nous utiliserons ces informations pour rendre notre site web et la publicité qui y est affichée plus pertinents par rapport à vos intérêts. À cette fin, nous pouvons également partager ces informations avec des tiers.
                         </li>
                     </ul>
                     <div className="content">Notre site web utilise également des plugins pour réseaux sociaux et vidéos, tels que ceux fournis par :</div>
-                    <ul>
-                        <li>Google Analytics</li>
-                        <li>Google Tag manager</li>
+                    <ul className="content">
+                        <li className="content">Google Analytics</li>
+                        <li className="content">Google Tag manager</li>
                     </ul>
                     <div className="content">Les cookies susmentionnés sont utilisés aux fins suivantes :</div>
-                    <ul>
-                        <li>Générer des statistiques générales et obtenir des informations sur l'utilisation de notre site web par le public ;</li>
-                        <li>Optimiser nos services ;</li>
-                        <li>Faire correspondre les publicités sur notre site web et les sites web de tiers et dans nos lettres d'information, en fonction de vos intérêts et de votre comportement en matière de clics et de navigation ;</li>
-                        <li>Adapter le contenu de notre site web en fonction de vos centres d'intérêt et de votre comportement de navigation ;</li>
-                        <li>Afficher des vidéos ;</li>
-                        <li>Pouvoir suivre les visiteurs et leur donner la possibilité de partager des produits via les réseaux sociaux.</li>
+                    <ul className="content">
+                        <li className="content">Générer des statistiques générales et obtenir des informations sur l'utilisation de notre site web par le public ;</li>
+                        <li className="content">Optimiser nos services ;</li>
+                        <li className="content">Faire correspondre les publicités sur notre site web et les sites web de tiers et dans nos lettres d'information, en fonction de vos intérêts et de votre comportement en matière de clics et de navigation ;</li>
+                        <li className="content">Adapter le contenu de notre site web en fonction de vos centres d'intérêt et de votre comportement de navigation ;</li>
+                        <li className="content">Afficher des vidéos ;</li>
+                        <li className="content">Pouvoir suivre les visiteurs et leur donner la possibilité de partager des produits via les réseaux sociaux.</li>
                     </ul>
                     <hr />
                     <div className="title title-section">LISTE DES COOKIES</div>
