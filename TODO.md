@@ -41,6 +41,11 @@ InmodeAdmin
 inmode@emeka.fr
 @f2WE5&kYC#fpxQSNUu%nSh95EP*ganF
 
+julie@inmodemd.fr
+mMGtWAXPZx6X827m
+
+alice@inmodemd.fr
+H6BHe74dQeMveqzh
 
 Mail InMode
 o2switch@inmodemd.com
@@ -133,7 +138,7 @@ gatsby-minify                                                               // T
 remove appels mysql                                                         // TODO US          // CANCEL
 gatsby unit testing                                                         // TODO             // LATER
 flickity                                                                    // TODO             // PENDING
-useEffect window.width pour carousel ou pas (drag 3 pour 3 inutile)         // TODO             // LATER
+useEffect window.width pour carrousel ou pas (drag 3 pour 3 inutile)        // TODO             // LATER
 flickity fix wrapAround // ib click right return first                      // TODO             // LATER
 Phone tourné textes                                                         // TODO             // DONE
 
@@ -416,6 +421,91 @@ FR - Shop mobile
 FR - Intuitive surgeon / Apple pour le style du nouveau InModeMD
 
 UK - Page Eva Longoria
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+EMPOWER RF old video link
+https://inmodemd.com/wp-content/uploads/2021/07/EmpowerRF_Workstation_WebBanner_Video_HR_10sec.mp4
+
+
+EMPOWERRF :
+- Les deux pièces à main morpheus8 sont sur une seule entrée dans Strapi. Autrement dit, èchanger leur position échangera leur position sur tout le site. C'est sans conséquence, sauf dans le cas où vous voudriez des ordres différents selon les pages et alors il faudrait créer une nouvelle entrée pour rendre les deux pièces indépendantes.
+- Les logos de Morpheus8 et Morpheus8 Body 3D ont été changés. Néanmoins, cette modification affecte toutes leurs apparitions. Est-ce que c'était le comportement souhaité ? Si non, il est possible de faire une apparition différente selon les pages.
+- Pour Tone sur EmpowerRF, j'ai réutilisé par défaut les textes de la page EvolveX
+- Pour le texte "Aucune image disponible", est-ce que c'est bien uniquement sur cette page ou sur toutes les pages ?
+- Pour la vidéo, le "+" signifie bien que la vidéo est 2 en 1 et non pas qu'il faut mettre 2 vidéos ? S'il y avait le moindre souci, j'ai encore l'URL de l'ancienne source.
+- Les textes ont été ajoutés
+
+DIVERS :
+- Pour la page Aviva en rose, même question pour la section "Quelles zones peuvent-être traitées" et j'imagine même réponse.
+- Pour Morpheus8V il y a deux injonctions concurrentes :
+    - Écrire dans le bandeau "Remodelage tissulaire intime mini-invasif" à la place de "Bien-être des femmes"
+    - Phrase dans le bandeau : électrostimulation musculaire intime
+Laquelle des deux est la bonne ?
+- Pour Transform, l'image a la même taille, c'est le découpage qui a été fait avec trop de fond
+- Pour les vidéos, je ne les ai pas dans mes fichiers One Drive partagés. J'ai bien les 2 Words mais pas les vidéos. J'ai deux adresses mael.fallet@hotmail.fr et black.blood2008@hotmail.fr.
+- Pour la page About us, le texte est directement dans l'image et il n'est donc pas possible de l'éditer sans perdre d'information
+- Pour "Contactez-nous", qu'en est-il de quelle image ? Je suis allé voir sur le site monde et il y a en effet une image biseautée au-dessus du formulaire de contact, une autre zone de contact avec une image en fond et le tampin InMode. Est-ce qu'il s'agit d'une de ces images ou d'autre chose ?
+
+24/11/2023
+
+- Pour les pièces à main du carrousel  il s'agit d'un simple décalage, le souci est réglé
+- Le xl du DiolazeXL qui est en minuscule dans les pièces à main d'Optimas dans le carrousel est une image, idem pour le 'tite' de AccuTite
+- Morpheus8 a été supprimée de la page des machines
+- Le logo Bodyfx a été modifié
+- Les traductions sont faîtes
+- Sur la page Noter histoire tous les textes ont la police fk-gothic-regular
+- Le logo Aviva a été modifié
+
+- Pour Morpheus8 sur Contoura, les images utilisées ne sont pas les mêmes selon les machines. Lesquelles sont les bonnes ?
+- Pour la page des pièces à main, c'est un peu plus long que le reste et elle arrive dans la semaine (semaine du 27/11/23 au 03/12/23)
+
+
+
+
+15/01/2024
+
+- Suppression de la notification des cookies                0
+- Modification des images de la partie traitement           0.125j
+- Résolution images événements                              0.125j
+- Pour ce qui est des nouvelles images, elles sont changées sauf pour celles du bandeau pour lesquelles il y a un souci de ratio. Le bandeau est plus large que haut, hors les images fournies ont un ratio largeur/hauteur trop faible voir inférieur à 1. Pour exemple les images 1 et 2 avec des images déjà sur le site et les images 3, 4 et 5 avec les nouvelles images. Il y a plusieurs solutions :
+    - Changer les images pour des images avec un ratio plus grand (ou reprendre les anciennes images en attendant de nouvelles images)
+    - Laisser les nouvelles images et les retravailler pour qu'elles aient un ratio plus grand, mais ça semble compromis au vu du cadrage des images qui ne montre déjà que ce qui est important
+    - Laisser les nouvelles images avec leur ratio actuel mais en plus petit pour qu'elles entrent dans le bandeau et mettre un fond de couleur (images 6 et 7)
+- Qu'entendez-vous par "des intitulés du menu / sous-menu disparaissent" ? Pour ce qui est du comportement actuel, le style est responsive et donc à partir d'une certaine largeur d'écran, le menu se transforme en menu hamburger. C'est le comportement voulu et attendu.
+- Tout ce qui était du ressort du Airtable a été déplacé sur le spreadsheet. J'ai déplacé les événements que vous aviez mis sur le Airtable sur le spreadsheet.
+- Les images pour les encadrés des événements ont été restaurées
+
+
+- DONE - Lien WeTransfer pour les logos et les icônes du carrousel des plateformes de la page d'accueil
+- DONE - Colonne site excel pour site internet clinique
+- DONE - Afficher "Site clinique" plutôt que le lien
+- DONE - Coller les liens
+
+- TODO - Mettre les icônes à côté des logos dans la bannière pour les plateformes qui n'ont pas d'icône (BodyTite, Evoke, Envision)
+- TODO - Mettre sur Strapi la nouvelle plateforme IgniteRF
+- TODO - 
+
+// Facture septembre - ...
+
+https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQXJQTfrJrbkkDLqsxglPFHXsGX
+
+
+
 
 
 npm i @woocommerce/woocommerce-rest-api@1.0.1 @pasdo501/gatsby-source-woocommerce@0.17.2 axios@^1.2.3 crc@^4.2.0 dotenv@^16.0.3 express@^4.18.2 gatsby@^5.4.1 gatsby-plugin-anchor-links@^1.2.1 gatsby-plugin-image@^3.8.0 gatsby-plugin-manifest@^5.4.0 gatsby-plugin-react-helmet@^6.4.0 gatsby-plugin-sharp@^5.8.0 gatsby-plugin-sitemap@^6.4.0 gatsby-source-filesystem@^5.8.0 gatsby-source-strapi@^1.0.3 gatsby-transformer-remark@^6.8.0 gatsby-transformer-sharp@^5.8.0 moment@^2.29.4 punycode@^2.3.1 react@^18.2.0 react-dom@^18.2.0 react-flickity-component@^4.0.0 react-hash-string@^1.0.0 react-helmet@^6.1.0 react-moment@^1.1.3 react-responsive-carousel@^3.2.23 react-simply-carousel@^8.5.5
