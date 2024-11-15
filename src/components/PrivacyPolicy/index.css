@@ -169,14 +169,6 @@
     }
 }
 
-@media (min-width: 1920px) {
-    #privacy-bandeau-boutons {
-        flex-direction: row;
-        column-gap: 12px;
-        row-gap: 0;
-    }
-}
-
 #open-privacy-settings,
 #privacy-reject-all,
 #privacy-accept-all {
