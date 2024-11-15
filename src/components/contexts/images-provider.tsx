@@ -22,7 +22,7 @@ const ImagesProvider = ({ children }:{children:React.ReactNode}):React.Provider<
             keyBenefitDefine: file(relativePath: {eq: "icons/key_define.png"}) {...FileImgFormat}
             keyBenefitEnvision: file(relativePath: {eq: "icons/key_envision.png"}) {...FileImgFormat}
             keyBenefitIgniteRF: file(relativePath: {eq: "products/igniterf/InMode - Bullet Point (Carbon-Fire) - V1.svg"}) {...FileImgFormat}
-            keyBenefitIgniteRF2: file(relativePath: {eq: ""products/igniterf/Zoning 3 - Avantages/InMode - Bullet Point (Carbon-Fire) - V2.svg""}) {...FileImgFormat}
+            keyBenefitIgniteRF2: file(relativePath: {eq: "products/igniterf/Zoning 3 - Avantages/InMode - Bullet Point (Carbon-Fire) - V2.svg"}) {...FileImgFormat}
             
             orderCreateSpinner: file(relativePath: {eq: "icons/order-create-spinner.svg"}) {...FileImgFormat}
             cartBasketIcon: file(relativePath: {eq: "icons/cart_basket.svg"}) {...FileImgFormat}
