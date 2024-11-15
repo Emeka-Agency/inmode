@@ -52,10 +52,10 @@ const CGUPage = () => {
                     <div className="content">Il vous est interdit de faire tout acte qu’InMode, à son entière discrétion, pourrait juger inapproprié et/ou qui serait considéré comme un acte illégal ou qui est interdit par toute loi applicable à ce site Web, y compris, mais sans s'y limiter :</div>
                     <div className="content">
                         <ol>
-                            <li>1. Tout acte qui constituerait une violation de la vie privée (y compris le téléchargement d’informations privées sans le consentement de la personne concernée) ou de tout autre droit légal des individus ;</li>
-                            <li>2. Utiliser ce site Web pour diffamer ou calomnier Ia société InMode, ses employés ou d'autres personnes ou agir d'une manière qui porte atteinte à la réputation de la société InMode ;</li>
-                            <li>3. Télécharger des fichiers contenant des virus susceptibles de causer des dommages à la propriété de la société InMode ou à la propriété d'autres personnes ; et</li>
-                            <li>4. Publier ou transmettre sur ce site Web tout matériel non autorisé, y compris, mais sans s'y limiter, tout matériel qui, à notre avis, est susceptible de causer des désagréments, de porter préjudice ou de violer la sécurité des systèmes ou du réseau de la société InMode ou de tiers, de nature diffamatoire, raciste, obscène, menaçante, pornographique ou autrement illégal.</li>
+                            <li className="content">1. Tout acte qui constituerait une violation de la vie privée (y compris le téléchargement d’informations privées sans le consentement de la personne concernée) ou de tout autre droit légal des individus ;</li>
+                            <li className="content">2. Utiliser ce site Web pour diffamer ou calomnier Ia société InMode, ses employés ou d'autres personnes ou agir d'une manière qui porte atteinte à la réputation de la société InMode ;</li>
+                            <li className="content">3. Télécharger des fichiers contenant des virus susceptibles de causer des dommages à la propriété de la société InMode ou à la propriété d'autres personnes ; et</li>
+                            <li className="content">4. Publier ou transmettre sur ce site Web tout matériel non autorisé, y compris, mais sans s'y limiter, tout matériel qui, à notre avis, est susceptible de causer des désagréments, de porter préjudice ou de violer la sécurité des systèmes ou du réseau de la société InMode ou de tiers, de nature diffamatoire, raciste, obscène, menaçante, pornographique ou autrement illégal.</li>
                         </ol>
                     </div>
                     <hr />

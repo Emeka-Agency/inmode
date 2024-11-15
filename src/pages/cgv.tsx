@@ -31,7 +31,7 @@ const PrivacyPolicies = (  ) => {
                     <div className="title">Clause n° 4 : Modalités de paiement</div>
                     <div className="content">
                         Le règlement des commandes s'effectue :
-                        <ul>
+                        <ul className="content">
                             <li style={{listStyle: "initial"}}>soit par carte bancaire</li>
                             <li style={{listStyle: "initial"}}>soit par virement bancaire</li>
                         </ul>
@@ -58,7 +58,7 @@ const PrivacyPolicies = (  ) => {
                     </div>
                     <div className="content">
                         Par voie de conséquence, tout retard raisonnable dans la livraison des produits ne pourra pas donner lieu au profit de l'acheteur à :
-                        <ul>
+                        <ul className="content">
                             <li style={{listStyle: "initial"}}>l'allocation de dommages et intérêts ;</li>
                             <li style={{listStyle: "initial"}}>l'annulation de la commande.</li>
                         </ul>
