@@ -4075,6 +4075,15 @@ input[type="submit"].neumorphic:hover,
     padding: 0 10px;
 }
 
+#page-legals ul.content {
+    margin-left: 32px;
+    padding-left: 0;
+}
+
+#page-legals li.content {
+    padding: 0;
+}
+
 #page-legals a {
     color: var(--teal);
     transition: none;
@@ -4129,6 +4138,15 @@ input[type="submit"].neumorphic:hover,
     padding: 0 10px;
 }
 
+#page-cgu ul.content {
+    margin-left: 32px;
+    padding-left: 0;
+}
+
+#page-cgu li.content {
+    padding: 0;
+}
+
 #page-cgu a {
     color: var(--teal);
     transition: none;
@@ -4181,6 +4199,15 @@ input[type="submit"].neumorphic:hover,
     font-weight: 400;
     color: var(--midnight);
     padding: 0 10px;
+}
+
+#page-privacy ul.content {
+    margin-left: 32px;
+    padding-left: 0;
+}
+
+#page-privacy li.content {
+    padding: 0;
 }
 
 #page-privacy a {
