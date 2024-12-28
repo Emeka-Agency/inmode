@@ -1,0 +1,1 @@
+npm i -D @svgr/webpack @types/js-cookie autoprefixer gatsby-plugin-postcss postcss tailwindcss
