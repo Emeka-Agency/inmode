@@ -1,0 +1,1 @@
+sh npms.bat && sh npmi.bat && sh npmd.bat

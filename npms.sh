@@ -1,0 +1,1 @@
+npm i -S gatsby-source-strapi@1.0.3
