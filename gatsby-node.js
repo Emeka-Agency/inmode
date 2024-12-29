@@ -11,92 +11,103 @@ exports.onCreateNode = ({ node }) => {
 };
 
 exports.onCreateWebpackConfig = ({
-  actions
+    actions
 }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      // It's important to have 'node_modules' in resolve module,
-      // otherwise the webpack resolve won't be able to find dependencies
-      // correctly.
-      modules: ['node_modules']
-    },
-    module: {
-        rules: [
-          {
-            test: /\.svg$/,
-            use: ['@svgr/webpack'],
-          },
-        ],
-      },
-  })
-}
+    actions.setWebpackConfig({
+        resolve: {
+            // It's important to have 'node_modules' in resolve module,
+            // otherwise the webpack resolve won't be able to find dependencies
+            // correctly.
+            modules: ['node_modules']
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.svg$/,
+                    use: ['@svgr/webpack'],
+                },
+            ],
+        },
+    })
+};
+
+// console.log('Registering custom Date scalar');
+
+// exports.createSchemaCustomization = ({ actions }) => {
+//     const { createTypes } = actions;
+//     createTypes(`
+//         scalar Date @dateformat
+//     `);
+// };
+
+// console.log('Custom Date scalar registered');
 
 exports.onCreatePage = async ({
-  page,
-  actions
+    page,
+    actions
 }) => {
-  const {
-    createPage,
-    deletePage
-  } = actions
-  deletePage(page)
-  // You can access the variable "house" in your page queries now
+    const {
+        createPage,
+        deletePage
+    } = actions
+    deletePage(page)
+    // You can access the variable "house" in your page queries now
 
-  if(page.path == '/test/') {
-    return false;
-  }
+    if (page.path == '/test/') {
+        return false;
+    }
 
-  if(page.path == '/shop/') {
-    return false;
-  }
-  
-//   if(page.path == '/workstation/envision') {
-//     return false;
-//   }
+    if (page.path == '/shop/') {
+        return false;
+    }
 
-//   if(page.path.includes('/workstation/igniterf')) {
-//     return false;
-//   }
+    //   if(page.path == '/workstation/envision') {
+    //     return false;
+    //   }
 
-  // {/* SWITCH CART */}
+    //   if(page.path.includes('/workstation/igniterf')) {
+    //     return false;
+    //   }
 
-  if(page.path == '/old-shop/') {
-    return false;
-  }
-//   if(page.path == '/payment/cancel/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/error/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/paid/') {
-//     return false;
-//   }
-//   if(page.path == '/payment/refused/') {
-//     return false;
-//   }
+    // {/* SWITCH CART */}
 
-  // {/* SWITCH CART END */}
+    if (page.path == '/old-shop/') {
+        return false;
+    }
+    //   if(page.path == '/payment/cancel/') {
+    //     return false;
+    //   }
+    //   if(page.path == '/payment/error/') {
+    //     return false;
+    //   }
+    //   if(page.path == '/payment/paid/') {
+    //     return false;
+    //   }
+    //   if(page.path == '/payment/refused/') {
+    //     return false;
+    //   }
 
-  createPage({
-    ...page,
-    context: {
-      ...page.context,
-      today_string: [new Date().getFullYear(), (new Date().getMonth() + 1 > 9 ? new Date().getMonth() + 1 : `0${new Date().getMonth() + 1}`), (new Date().getDate() > 9 ? new Date().getDate() : `0${new Date().getDate()}`)].join('-'),
-    },
-  })
+    // {/* SWITCH CART END */}
+
+    createPage({
+        ...page,
+        context: {
+            ...page.context,
+            today_string: [new Date().getFullYear(), (new Date().getMonth() + 1 > 9 ? new Date().getMonth() + 1 : `0${new Date().getMonth() + 1}`), (new Date().getDate() > 9 ? new Date().getDate() : `0${new Date().getDate()}`)].join('-'),
+        },
+    })
 }
 
 exports.createPages = async ({
-  graphql,
-  actions
+    graphql,
+    actions
 }) => {
-  const {
-    createPage
-  } = actions
+    const {
+        createPage
+    } = actions
 
-  const result = await graphql(
-    `
+    const result = await graphql(
+        `
       {
         addons: allStrapiAddon {
           edges {
