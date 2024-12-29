@@ -123,6 +123,7 @@ module.exports = {
                     `hero-header`,
                     `seo-meta`
                 ],
+                concurrentFileRequests: 5,
                 queryLimit: 10000,
                 loginData: {
                     identifier: process.env.STRAPI_ID,
