@@ -145,55 +145,55 @@ exports.createPages = async ({
         }
       }
     `
-  );
+    );
 
-  if (result.errors) {
-    throw result.errors
-  }
+    if (result.errors) {
+        throw result.errors
+    }
 
-  // Create addons pages.
-  const addons = result.data.addons.edges
+    // Create addons pages.
+    const addons = result.data.addons.edges
 
-  const AddonTemplates = require.resolve("./src/templates/addon.tsx")
+    const AddonTemplates = require.resolve("./src/templates/addon.tsx")
 
-  addons.forEach((addon, index) => {
-    addon.node.Page_addon && createPage({
-      path: addon.node.MenuParams.url,
-      component: AddonTemplates,
-      context: {
-        id: addon.node.id,
-      },
+    addons.forEach((addon, index) => {
+        addon.node.Page_addon && createPage({
+            path: addon.node.MenuParams.url,
+            component: AddonTemplates,
+            context: {
+                id: addon.node.id,
+            },
+        })
     })
-  })
 
-  // Create products pages.
-  const products = result.data.products.edges
+    // Create products pages.
+    const products = result.data.products.edges
 
-  const ProductTemplates = require.resolve("./src/templates/product.tsx")
+    const ProductTemplates = require.resolve("./src/templates/product.tsx")
 
-  products.forEach((product, index) => {
-    createPage({
-      path: product.node.MenuParams.url,
-      component: ProductTemplates,
-      context: {
-        id: product.node.id,
-      },
+    products.forEach((product, index) => {
+        createPage({
+            path: product.node.MenuParams.url,
+            component: ProductTemplates,
+            context: {
+                id: product.node.id,
+            },
+        })
     })
-  })
 
-  // Create treatments pages.
-  const treatments = result.data.treatments.edges
+    // Create treatments pages.
+    const treatments = result.data.treatments.edges
 
-  const TreatmentTemplates = require.resolve("./src/templates/treatment.tsx")
+    const TreatmentTemplates = require.resolve("./src/templates/treatment.tsx")
 
-  treatments.forEach((treatment, index) => {
-    createPage({
-      path: treatment.node.MenuParams.url,
-      component: TreatmentTemplates,
-      context: {
-        id: treatment.node.id
-      },
+    treatments.forEach((treatment, index) => {
+        createPage({
+            path: treatment.node.MenuParams.url,
+            component: TreatmentTemplates,
+            context: {
+                id: treatment.node.id
+            },
+        })
     })
-  })
 
 }
