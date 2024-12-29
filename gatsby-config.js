@@ -60,7 +60,17 @@ module.exports = {
             },
         },
         `gatsby-transformer-sharp`,
-        `gatsby-plugin-sharp`,
+        {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+              defaults: {},
+              failOnError: false,
+              base64Width: 20,
+              stripMetadata: true,
+              defaultQuality: 50,
+              concurrent: 2, // Adjust this value to throttle processing
+            },
+        },
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
