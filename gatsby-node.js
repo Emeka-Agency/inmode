@@ -1,3 +1,15 @@
+const fs = require('fs');
+
+exports.onCreateNode = ({ node }) => {
+    if (node.internal.type === 'File') {
+        try {
+            fs.chmodSync(node.absolutePath, 0o666); // Read & write for everyone
+        } catch (error) {
+            console.error(`Failed to change permissions for ${node.absolutePath}`, error);
+        }
+    }
+};
+
 exports.onCreateWebpackConfig = ({
   actions
 }) => {
